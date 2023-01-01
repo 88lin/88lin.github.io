@@ -1,0 +1,176 @@
+@font-face {
+    font-family: SettingsIcons;
+    src: url(../icons/setting/icons.woff2) format("woff2")
+}
+
+#win-setting>.page>.title {
+    font-size: 35px;
+    margin: 0;
+}
+
+.s-icon {
+    font-family: SettingsIcons;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#win-setting {
+    display: flex;
+    height: calc(100% - 32px);
+}
+
+#win-setting>* {
+    height: 100%
+}
+
+#win-setting>.page {
+    flex-grow:1
+}
+
+
+#win-setting>.menu {
+    width: 25%;
+    min-width: 300px;
+    padding: 10px 5px 5px 10px;
+}
+
+#win-setting>.menu>.user {
+    display: flex;
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    /* transition: 200ms; */
+}
+
+#win-setting>.menu>.user:hover {
+    background-color: var(--hover);
+}
+
+#win-setting>.menu>.user>div>p:first-child {
+    font-size: 25px;
+    margin-bottom: -7px;
+}
+#win-setting>.menu>.user>div>p:last-child{
+    overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+}
+
+#win-setting>.menu>.user>div {
+    padding: 0px 0 0 10px;
+    overflow: hidden;text-overflow: ellipsis;white-space: nowrap;
+}
+
+#win-setting>.menu>.user>svg {
+    background-color: var(--bggrey);
+    box-shadow: 0 0 10px var(--sd);
+    width: 60px;
+    min-width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+#win-setting>.menu>list {
+    padding-bottom: 13px;
+    margin-left: 5px;
+    margin-top: 40px;
+    height: calc(100% - 123px);
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+#win-setting>.menu>list>a {
+    padding: 5px 15px;
+    font-size: 15px;
+    display: flex;
+    margin-bottom: 3px;
+}
+
+#win-setting>.menu>list>a>p {
+    margin: 5px 7px;
+}
+
+#win-setting>.menu>list>a>img {
+    height: 20px;
+    width: 20px;
+    margin: 1px 10px 0 0;
+}
+
+#win-setting>.menu>list>a.check {
+    background-color: var(--hover)!important;
+}
+
+.setting-list {
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+    margin-bottom: 0;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.setting-list>* {
+    width: 100%;
+    color: var(--text);
+    background: radial-gradient(circle, var(--card),var(--card));
+    margin-bottom: 5px;
+    border-radius: 10px;
+    border: 2px solid #7f7f7f30;
+    text-decoration: none;
+    display: flex;
+    padding: 10px 15px;
+    /* transition: 100ms; */
+    box-shadow: 3px 3px 6px var(--sd);
+    transition: transform 300ms cubic-bezier(0.14, 1.02, 0.17, 0.03) !important;
+}
+
+.setting-list>*:hover {
+    text-decoration: none;
+    background-color: var(--hover);
+}
+
+.setting-list>*:active {
+    transform: scale(0.98);
+    /* filter: blur(0.5px); */
+}
+
+
+.setting-list>a>icon {
+    font-family: SettingsIcons;
+    font-size: 20px;
+    margin: 10px 20px 0 5px;
+    background-image:linear-gradient(100deg, #ad6eca, #3b91d8); 
+    -webkit-background-clip:text; 
+    -webkit-text-fill-color:transparent;
+    filter: saturate(130%) brightness(1.1);
+}
+
+.setting-list>a>icon.b {
+    font-family: bootstrap-icons;
+}
+
+.setting-list>a>div>p:first-child {
+    font-size: 20px;
+    margin: 0 0 0 0;
+}
+
+.setting-list>a>div>p:last-child {
+    font-size: 10px;
+    color: #7f7f7f;
+    margin-bottom: 0px;
+}
+
+.setting-list>a>.bi {
+    flex-grow: 1;
+    margin-top: 15px;
+    color: #7f7f7f;
+    font-size: 20px;
+}
+
+.setting-list>a>.bi::before {
+    position: relative;
+    float: right;
+    right: 5px;
+}
