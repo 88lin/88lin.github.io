@@ -1,0 +1,144 @@
+// @import './normalize.scss';
+@import './var.scss';
+@import './responsive.scss';
+html {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    *,
+    *::before,
+    *::after {
+        box-sizing: inherit;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        background-color: $color_bg;
+        .wrapper {
+            width: 60%;
+            @include phone {
+                width: 80%;
+            }
+            max-width: 800px;
+            margin: 0 auto;
+            .input-container {
+                padding: 1rem;
+                .book-selector {
+                    // display: flex;
+                    .inputGroup {
+                        flex: 1; // display: block;
+                    } // display: flex;
+                    // input {
+                    //     // display:   
+                    //     // padding-right: 8px; // display: block;
+                    // }
+                }
+                p.famliy {
+                    label {
+                        font-size: 2rem;
+                    }
+                }
+                button {
+                    width: 100%; // height: 20px;
+                    line-height: 3;
+                    background-color: darken($my_green, 20%);
+                    color: #fff;
+                    border-radius: 2px;
+                    padding: 0.2rem 1.1rem;
+                    border: none; // margin-left: 2rem;
+                    text-align: center; // width: 8rem; // margin-top: 0.2rem;
+                    margin: 0.2rem auto;
+                    outline: none;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: darken($my_green, 15%);
+                    }
+                }
+            }
+            .result {
+                position: relative;
+                .result-container {
+                    list-style-type: none;
+                    padding: 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    justify-content: space-between;
+                    .name-box {
+                        // display: inline-block;
+                        box-sizing: border-box;
+                        min-height: 280px; // width: 48%;
+                        min-width: 320px;
+                        flex: 1;
+                        @include phone {
+                            width: 100%;
+                            min-height: 0;
+                            min-width: 90%;
+                        }
+                        margin: 1rem;
+                        padding: 2rem 1rem;
+                        background-color: $color_card;
+                        font-size: 1rem;
+                        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .05),
+                        0 1px 4px 0 rgba(0, 0, 0, .08),
+                        0 3px 1px -2px rgba(0, 0, 0, .2);
+                        border-radius: 2px;
+                        >h3 {
+                            font-size: 3rem;
+                            color: #fff;
+                            text-align: center;
+                            line-height: 1.6;
+                            margin: 0;
+                        }
+                        .sentence {
+                            color: #fff;
+                            line-height: 1.5rem; // span {
+                            //     color: $my_green;
+                            // }
+                        }
+                        .source-row {
+                            display: flex; // justify-content: space-between;
+                            color: $color_white; // display: inline-block;
+                            .book,
+                            .author {
+                                flex: 1; // text-align: left;
+                            }
+                            .author {
+                                text-align: right;
+                            } // .author {
+                            //     // color: $my_green; // display: inline-block;
+                            // }
+                        }
+                        i {
+                            // color: #000;
+                            font-style: normal; // text-decoration: underline;
+                            padding: 0 2px;
+                            font-size: 1.2rem;
+                            font-weight: bold;
+                        } // position: absolute;
+                    }
+                }
+            }
+        }
+        .loader {
+            z-index: 100;
+            left: 0;
+            top: 0;
+            min-height: 100vh;
+            position: absolute; // opacity: 0.5;
+            width: 100%; // height: 100%; // height: 300px;
+            // background-color: #fff;
+            background-color: rgba(0, 0, 0, .05);
+            svg {
+                width: 100px;
+                height: 100px; // margin: 20px;
+                display: block;
+                margin: 20px auto;
+                margin-top: 40vh;
+            }
+        }
+    }
+}
