@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计时器</title>
+    <style>
+        body {
+            background-image: url(https://cdn.staticaly.com/gh/88lin/PicX@master/20230212/0072Vf1pgy1foxkf1iizuj31hc0u0dy7.45ms9ofejxk0.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mainBox {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 800px;
+            padding: 30px 30px 50px;
+            width: 70%;
+            height: 40vh;
+            background: rgba(255, 255, 255, .8);
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+        }
+        
+        #time {
+            color: #333;
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 8rem;
+        }
+        
+        #btns {
+            display: flex;
+            justify-content: center;
+        }
+        
+        #btns button {
+            cursor: pointer;
+            margin: 0 10px;
+            height: 50px;
+            width: 25%;
+            border-radius: 15px;
+            font-size: 1.5rem;
+            letter-spacing: 10px;
+            color: white;
+            background: #ff9966;
+            background: -webkit-linear-gradient(to right, rgb(255, 153, 102), rgb(255, 94, 98));
+            background: linear-gradient(to right, rgb(255, 153, 102), rgb(255, 94, 98));
+            border: 0;
+        }
+        
+        #btns button:not(:first-child) {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mainBox">
+        <div id="time">
+            <span>00</span>:
+            <span>00</span>:
+            <span>00</span>
+        </div>
+        <div id="btns">
+            <button onclick="begin()">开始</button>
+            <button onclick="cont()">继续</button>
+            <button onclick="pause()">暂停</button>
+            <button onclick="reset()">重置</button>
+        </div>
+    </div>
+    <script>
+        let initTime = passTime = t = null,
+            btns = document.getElementById('btns'),
+            tBox = document.getElementById('time')
+
+        function begin() {
+            initTime = new Date().getTime();
+            t = setInterval(timer, 1000);
+            btns.children[0].style.display = 'none'
+            btns.children[2].style.display = 'block'
+            btns.children[3].style.display = 'block'
+        }
+
+        function cont() {
+            initTime = new Date().getTime() - passTime
+            t = setInterval(timer, 1000);
+            btns.children[2].style.display = 'block'
+            btns.children[1].style.display = 'none'
+
+        }
+
+        function pause() {
+            passTime = new Date().getTime() - initTime;
+            clearInterval(t)
+            t = null
+            btns.children[1].style.display = 'block'
+            btns.children[2].style.display = 'none'
+        }
+
+        function reset() {
+            clearInterval(t)
+            t = null
+            btns.children[0].style.display = 'block'
+            btns.children[1].style.display = 'none'
+            btns.children[2].style.display = 'none'
+            btns.children[3].style.display = 'none'
+
+            tBox.children[0].innerHTML = '00'
+            tBox.children[1].innerHTML = '00'
+            tBox.children[2].innerHTML = '00'
+        }
+
+        function nol(h) {
+            return h > 9 ? h : '0' + h
+        }
+
+        function timer() {
+            let second = Math.floor((new Date().getTime() - initTime) / 1000)
+            if (second >= 3600) {
+                tBox.children[0].innerHTML = nol(parseInt(second / 3600));
+                second %= 3600;
+            }
+            if (second >= 60) {
+                tBox.children[1].innerHTML = nol(parseInt(second / 60));
+                second %= 60;
+            }
+            if (second >= 0) tBox.children[2].innerHTML = nol(second);
+        }
+    </script>
+</body>
+
+</html>
