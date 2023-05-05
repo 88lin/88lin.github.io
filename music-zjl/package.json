@@ -1,0 +1,15 @@
+{
+  "name": "jay-music",
+  "version": "3.0.0",
+  "description": "专门播放周杰伦歌曲的项目",
+  "scripts": {
+    "update:data": "node ./server.js",
+    "dev": ""
+  },
+  "author": "lvyueyang",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/core": "^4.1.0",
+    "migu-music-api": "^1.0.1"
+  }
+}
