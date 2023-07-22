@@ -6,7 +6,7 @@
 
 ## 预览
 
-[HeoMusic - 用音乐感染人心](https://music.zhheo.com/)
+[HeoMusic - 用音乐感染人心](https://520.txsb.gq/Music/index.html)
 
 ## 基本操作
 
@@ -44,15 +44,9 @@ HeoMusic支持URL参数 `https://music.zhheo.com/?id=`+ id +`&server=` + server
 
 编辑`index.html`的相关代码，填写歌单id和服务商
 
-![修改id和server](/img/help.webp)
+# 修改id和server
 
 直接访问首页`index.html`即可
-
-## 参与开发
-
-[@张洪Heo](https://github.com/zhheo)
-[@anzhiyu](https://github.com/anzhiyu-c)
-[@Glowed](https://github.com/Glowed)
 
 ## 许可
 
