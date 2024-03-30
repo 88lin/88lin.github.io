@@ -1497,3 +1497,6 @@
         -webkit-transform: rotate(-10deg)
     }
 }
+.ctrm-title { 
+    background: linear-gradient(90deg, #ffdee9, #b5fffc)!important; /* 标题背景渐变色 */
+}
