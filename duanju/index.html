@@ -79,7 +79,7 @@
     width: 100%;
     max-width: 100%;
     height: 250px; /* 默认高度 */
-    background-image: url('/img/banner.png');
+    background-image: url('img/banner.png');
     background-size: cover;
     background-position: center;
     margin-bottom: 20px;
@@ -161,7 +161,7 @@
         <div class="button-group">
             <button class="api-button" onclick="dailyUpdate()">每日更新</button>
             <button class="api-button" onclick="getAllShortDramas()">全部短剧</button>
-            <button class="api-button" onclick="dailyUpdateAndDownload()">下载今日更新</button>
+            <button class="api-button" onclick="dailyUpdateAndDownload()">故人博客</button>
         </div>
         <div class="results" id="results"></div>
         <div class="pagination" id="pagination"></div>
@@ -201,10 +201,7 @@
 function dailyUpdateAndDownload() {
     dailyUpdate();
 
-    setTimeout(() => {
-        const content = "这里是每日更新内容，可以根据实际情况修改"; // 可以根据实际情况修改每日更新内容
-        downloadTxtFile("update.txt", content);
-    }, 2000); // 等待2秒，确保更新完成后再生成文件并下载
+    window.location.href = 'http://yyyy.gay';
 }
 
 function downloadTxtFile(filename, content) {
