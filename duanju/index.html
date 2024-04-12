@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短剧搜索</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #searchText {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #searchBtn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #searchBtn:hover {
+            background-color: #0056b3;
+        }
+
+        .results {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .result-item {
+            width: 45%;
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        #slider {
+    width: 100%;
+    max-width: 100%;
+    height: 250px; /* 默认高度 */
+    background-image: url('img/banner.png');
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+/* 在屏幕宽度小于768px时，幻灯片自适应高度 */
+@media (max-width: 768px) {
+    #slider {
+        height: 100px; /* 自适应高度，可根据实际需求调整 */
+    }
+}
+
+        .button-group {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .api-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .api-button:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .page-link {
+            padding: 8px 12px;
+            margin: 0 5px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .page-link:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 768px) {
+            .result-item {
+                width: 100%;
+            }
+        }
+@media (max-width: 768px) {
+    .button-group {
+        flex-direction: column; /* 在小屏幕下将按钮垂直排列 */
+        align-items: center; /* 水平居中按钮 */
+    }
+
+    .api-button {
+        margin-bottom: 10px; /* 增加按钮之间的间距 */
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="slider"></div>
+        <h1>短剧搜索</h1>
+        <div class="search-container">
+            <input type="text" id="searchText" placeholder="找剧请输入：部分剧名">
+            <button id="searchBtn" onclick="searchAPI()">搜索</button>
+        </div>
+        <div class="button-group">
+            <button class="api-button" onclick="dailyUpdate()">每日更新</button>
+            <button class="api-button" onclick="getAllShortDramas()">全部短剧</button>
+            <button class="api-button" onclick="dailyUpdateAndDownload()">故人博客</button>
+        </div>
+        <div class="results" id="results"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script>
+        function searchAPI() {
+    // 清除“全部短剧”页面的查询结果
+    allShortDramasData = [];
+    currentPage = -1;
+    document.getElementById('pagination').innerHTML = '';
+    
+    const searchText = document.getElementById('searchText').value;
+    fetch(`https://zy.6789o.com/duanjuapi/search.php?text=${encodeURIComponent(searchText)}`)
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+            if (data.code === 200) {
+                data.data.forEach(item => {
+                    const name = item.name;
+                    const viewLink = item.viewlink;
+                    const resultElement = document.createElement('div');
+                    resultElement.classList.add('result-item');
+                    resultElement.innerHTML = `<strong>短剧名称：</strong> ${name}<br><strong>观看地址：</strong> <a href="${viewLink}" target="_blank">${viewLink}</a>`;
+                    resultsDiv.appendChild(resultElement);
+                });
+            } else {
+                resultsDiv.innerHTML = '搜索关键词资源名字不能为空';
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('results').innerHTML = 'An error occurred while fetching data';
+        });
+}
+function dailyUpdateAndDownload() {
+    dailyUpdate();
+
+    window.location.href = 'http://yyyy.gay';
+}
+
+function downloadTxtFile(filename, content) {
+    const element = document.createElement('a');
+    const file = new Blob([content], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = filename;
+    document.body.appendChild(element); // 兼容Firefox
+    element.click();
+    document.body.removeChild(element);
+}
+
+function dailyUpdate() {
+    // 清除“全部短剧”页面的查询结果
+    allShortDramasData = [];
+    currentPage = -1;
+    document.getElementById('pagination').innerHTML = '';
+    
+    fetch('https://zy.6789o.com/duanjuapi/today.php')
+        .then(response => response.json())
+        .then(data => {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // 清空先前的结果
+
+            if (data.code === 1) {
+                if (data.data && Array.isArray(data.data)) {
+                    data.data.forEach(item => {
+                        const name = item.name;
+                        const viewLink = item.viewlink;
+
+                        const resultElement = document.createElement('div');
+                        resultElement.classList.add('result-item');
+                        resultElement.innerHTML = `<strong>短剧名称：</strong> ${name}<br><strong>观看地址：</strong> <a href="${viewLink}" target="_blank">${viewLink}</a>`;
+                        resultsDiv.appendChild(resultElement);
+                    });
+                } else {
+                    resultsDiv.innerHTML = 'No daily update information available';
+                }
+            } else {
+                resultsDiv.innerHTML = 'Daily update data not found';
+            }
+        })
+        .catch(error => {
+            console.error('Daily Update Error:', error);
+            document.getElementById('results').innerHTML = 'An error occurred while fetching daily update data';
+        });
+}
+               let currentPage = 1;
+        const itemsPerPage = 20;
+        let allShortDramasData = [];
+
+        function displayResults() {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const currentPageData = allShortDramasData.slice(startIndex, endIndex);
+
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // 清空之前的结果
+
+            currentPageData.forEach(item => {
+                const name = item.name;
+                const viewLink = item.viewlink;
+
+                const resultElement = document.createElement('div');
+                resultElement.classList.add('result-item');
+                resultElement.innerHTML = `<strong>短剧名称：</strong> ${name}<br><strong>观看地址：</strong> <a href="${viewLink}" target="_blank">${viewLink}</a>`;
+                resultsDiv.appendChild(resultElement);
+            });
+
+            updatePagination();
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(allShortDramasData.length / itemsPerPage);
+            const paginationDiv = document.getElementById('pagination');
+            paginationDiv.innerHTML = '';
+
+            const prevArrow = createPaginationArrow('首页', currentPage > 1 ? currentPage - 1 : 1);
+            paginationDiv.appendChild(prevArrow);
+            
+            let startPage = currentPage > 2 ? currentPage - 2 : 1;
+            let endPage = startPage + 1 < totalPages ? startPage + 1 : totalPages;
+            
+            if (startPage > 1) {
+                const firstPage = createPaginationLink(1);
+                paginationDiv.appendChild(firstPage);
+                if (startPage > 2) {
+                    const ellipsis = createPaginationEllipsis();
+                    paginationDiv.appendChild(ellipsis);
+                }
+            }
+
+            for (let i = startPage; i <= endPage; i++) {
+                const pageLink = createPaginationLink(i);
+                paginationDiv.appendChild(pageLink);
+            }
+
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    const ellipsis = createPaginationEllipsis();
+                    paginationDiv.appendChild(ellipsis);
+                }
+                const lastPage = createPaginationLink(totalPages);
+                paginationDiv.appendChild(lastPage);
+            }
+
+        }
+
+        function createPaginationLink(pageNum) {
+            const pageLink = document.createElement('a');
+            pageLink.classList.add('page-link');
+            pageLink.href = '#';
+            pageLink.textContent = pageNum;
+            pageLink.onclick = () => {
+                currentPage = pageNum;
+                displayResults();
+            };
+            return pageLink;
+        }
+
+        function createPaginationArrow(text, pageNum) {
+            const pageArrow = document.createElement('a');
+            pageArrow.classList.add('page-link');
+            pageArrow.href = '#';
+            pageArrow.textContent = text;
+            pageArrow.onclick = () => {
+                currentPage = pageNum;
+                displayResults();
+            };
+            return pageArrow;
+        }
+
+        function createPaginationEllipsis() {
+            const ellipsis = document.createElement('span');
+            ellipsis.textContent = '...';
+            return ellipsis;
+        }
+
+        function getAllShortDramas() {
+            fetch('https://zy.6789o.com/duanjuapi/list.php')
+                .then(response => response.json())
+                .then(data => {
+                    allShortDramasData = data.data;
+                    currentPage = 1;
+                    displayResults();
+                })
+                .catch(error => {
+                    console.error('Get All Short Dramas Error:', error);
+                    document.getElementById('results').innerHTML = 'An error occurred while fetching all short dramas data';
+                });
+        }
+    </script>
+</body>
+</html>
