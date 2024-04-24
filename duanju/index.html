@@ -175,7 +175,7 @@
     document.getElementById('pagination').innerHTML = '';
     
     const searchText = document.getElementById('searchText').value;
-    fetch(`https://api.ahfi.cn/api/short?text=${encodeURIComponent(searchText)}`)
+    fetch(`https://zy.6789o.com/duanjuapi/search.php?text=${encodeURIComponent(searchText)}`)
         .then(response => response.json())
         .then(data => {
             const resultsDiv = document.getElementById('results');
@@ -220,7 +220,7 @@ function dailyUpdate() {
     currentPage = -1;
     document.getElementById('pagination').innerHTML = '';
     
-    fetch('https://api.ahfi.cn/api/short?today')
+    fetch('https://zy.6789o.com/duanjuapi/today.php')
         .then(response => response.json())
         .then(data => {
             const resultsDiv = document.getElementById('results');
