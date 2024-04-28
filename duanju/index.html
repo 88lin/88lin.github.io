@@ -275,40 +275,44 @@ function dailyUpdate() {
         }
 
         function updatePagination() {
-            const totalPages = Math.ceil(allShortDramasData.length / itemsPerPage);
-            const paginationDiv = document.getElementById('pagination');
-            paginationDiv.innerHTML = '';
+    const totalPages = Math.ceil(allShortDramasData.length / itemsPerPage);
+    const paginationDiv = document.getElementById('pagination');
+    paginationDiv.innerHTML = '';
 
-            const prevArrow = createPaginationArrow('首页', currentPage > 1 ? currentPage - 1 : 1);
-            paginationDiv.appendChild(prevArrow);
-            
-            let startPage = currentPage > 2 ? currentPage - 2 : 1;
-            let endPage = startPage + 1 < totalPages ? startPage + 1 : totalPages;
-            
-            if (startPage > 1) {
-                const firstPage = createPaginationLink(1);
-                paginationDiv.appendChild(firstPage);
-                if (startPage > 2) {
-                    const ellipsis = createPaginationEllipsis();
-                    paginationDiv.appendChild(ellipsis);
-                }
-            }
+    let prevArrow = null;
+    if (currentPage > 1) {
+        prevArrow = createPaginationArrow('上一页', currentPage - 1);
+    }
+    if (prevArrow) {
+        paginationDiv.appendChild(prevArrow);
+    }
+    
+    let startPage = currentPage > 4 ? currentPage - 2 : 1;
+    let endPage = startPage + 4 < totalPages ? startPage + 4 : totalPages;
 
-            for (let i = startPage; i <= endPage; i++) {
-                const pageLink = createPaginationLink(i);
-                paginationDiv.appendChild(pageLink);
-            }
-
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    const ellipsis = createPaginationEllipsis();
-                    paginationDiv.appendChild(ellipsis);
-                }
-                const lastPage = createPaginationLink(totalPages);
-                paginationDiv.appendChild(lastPage);
-            }
-
+    if (startPage > 1) {
+        const firstPageLink = createPaginationLink(1);
+        paginationDiv.appendChild(firstPageLink);
+        if (startPage > 2) {
+            const ellipsis = createPaginationEllipsis();
+            paginationDiv.appendChild(ellipsis);
         }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+        const pageLink = createPaginationLink(i);
+        paginationDiv.appendChild(pageLink);
+    }
+
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+            const ellipsis = createPaginationEllipsis();
+            paginationDiv.appendChild(ellipsis);
+        }
+        const lastPageLink = createPaginationLink(totalPages);
+        paginationDiv.appendChild(lastPageLink);
+    }
+}
 
         function createPaginationLink(pageNum) {
             const pageLink = document.createElement('a');
