@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.4.3/files/dist/echarts.min.js"></script>
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    const colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
+const bgColor = '#2E2733';
+const itemStyle = {
+  star5: {
+    color: colors[0]
+  },
+  star4: {
+    color: colors[1]
+  },
+  star3: {
+    color: colors[2]
+  },
+  star2: {
+    color: colors[3]
+  },
+  star1: {
+    color: colors[4]
+  }
+};
+const data = [{'name': '实用类',
+  'itemStyle': {'color': colors[1]},
+  'children': [{'name': '学习方法',
+    'children': [{'name': '4☆',
+      'children': [{'name': '好好学习'},
+       {'name': '学习之道'},
+       {'name': '如何实现从阅读到写作'}]},
+     {'name': '3☆', 'children': [{'name': '暗时间'}, {'name': '如何阅读一本书'}]},
+     {'name': '5☆', 'children': [{'name': '笔记的方法'}, {'name': '精准学习'}]}]},
+   {'name': '思维逻辑',
+    'children': [{'name': '4☆',
+      'children': [{'name': '认知驱动'}, {'name': '黑客与画家'}, {'name': '系统之美'}]},
+     {'name': '3☆', 'children': [{'name': '麦肯锡结构化战略思维'}]}]},
+   {'name': '人生规划',
+    'children': [{'name': '4☆',
+      'children': [{'name': '把时间当作朋友'},
+       {'name': '模仿欲望'},
+       {'name': '远见:如何规划职业生涯3大阶段'}]},
+     {'name': '3☆',
+      'children': [{'name': '对生命说是'},
+       {'name': '你要如何衡量你的人生'},
+       {'name': '如何达成目标'},
+       {'name': '原则'},
+       {'name': '设计你的工作和人生'},
+       {'name': '斯坦福大学人生设计课'}]},
+     {'name': '5☆',
+      'children': [{'name': '规划最好的一年'},
+       {'name': '小强升职记'}]}]},
+   {'name': '工作技能',
+    'children': [{'name': '3☆', 'children': [{'name': '华为战略管理法'}]},
+     {'name': '5☆',
+      'children': [{'name': '绝不是靠运气'},
+       {'name': '幕后产品'},
+       {'name': '如何开会不添堵'}]}]},
+   {'name': '管理思想',
+    'children': [{'name': '4☆',
+      'children': [{'name': '管理的实践'}, {'name': '德鲁克管理思想精要'}]}]},
+   {'name': '生活技巧',
+    'children': [{'name': '5☆',
+      'children': [{'name': '四千周：凡人的时间管理'},
+       {'name': '圆圈正义'},
+       {'name': '掌控习惯'}]},
+     {'name': '4☆', 'children': [{'name': '正念禅修'}, {'name': '幽默感：成为更受欢迎的人'}]},
+     {'name': '3☆', 'children': [{'name': '孤独的150个信念'}]}]},
+   {'name': '信息架构',
+    'children': [{'name': '4☆', 'children': [{'name': '随意搜寻'}]}]},
+   {'name': '理财',
+    'children': [{'name': '4☆',
+      'children': [{'name': '财务自由之路III'}, {'name': '财务自由之路II'}]},
+     {'name': '5☆', 'children': [{'name': '财务自由之路（全三册）'}, {'name': '小狗钱钱'}]}]},
+   {'name': '沟通技能',
+    'children': [{'name': '5☆',
+      'children': [{'name': '沟通的艺术：看入人里，看出人外'}, {'name': '即兴演讲'}]}]}]},
+ {'name': '理论类',
+  'itemStyle': {'color': colors[2]},
+  'children': [{'name': '认知心理学',
+    'children': [{'name': '5☆', 'children': [{'name': '认知觉醒'}]},
+     {'name': '4☆', 'children': [{'name': '为什么大象不听话'}]}]},
+   {'name': '人生哲学',
+    'children': [{'name': '4☆',
+      'children': [{'name': '生命之书'}, {'name': '银盘中的宝石'}]},
+     {'name': '3☆', 'children': [{'name': '行动瑜伽'}]},
+     {'name': '5☆', 'children': [{'name': '洞见'}, {'name': '人间值得'}]}]},
+   {'name': '心理学',
+    'children': [{'name': '4☆', 'children': [{'name': '心流'}]},
+     {'name': '3☆', 'children': [{'name': '思考，快与慢'}]},
+     {'name': '5☆',
+      'children': [{'name': '幸福的勇气'},
+       {'name': '被讨厌的勇气'},
+       {'name': '发现心流'},
+       {'name': '象与骑象人'}]}]},
+   {'name': '物理学',
+    'children': [{'name': '5☆',
+      'children': [{'name': '宇宙'},
+       {'name': '论生命的起源、意义和宇宙本身'},
+       {'name': '从一到无穷大'},
+       {'name': '世界观'}]}]},
+   {'name': '认知神经科学',
+    'children': [{'name': '4☆',
+      'children': [{'name': '大脑传'}, {'name': '神经的逻辑'}, {'name': '脑与意识'}]},
+     {'name': '5☆', 'children': [{'name': '追寻记忆的痕迹'}, {'name': '有序'}]},
+     {'name': '3☆', 'children': [{'name': '大脑帝国'}]}]}]}];
+for (let j = 0; j < data.length; ++j) {
+  let level1 = data[j].children;
+  for (let i = 0; i < level1.length; ++i) {
+    let block = level1[i].children;
+    let bookScore = [];
+    let bookScoreId;
+    for (let star = 0; star < block.length; ++star) {
+      let style = (function (name) {
+        switch (name) {
+          case '5☆':
+            bookScoreId = 0;
+            return itemStyle.star5;
+          case '4☆':
+            bookScoreId = 1;
+            return itemStyle.star4;
+          case '3☆':
+            bookScoreId = 2;
+            return itemStyle.star3;
+          case '2☆':
+            bookScoreId = 3;
+            return itemStyle.star2;
+          case '☆':
+            bookScoreId = 4;
+            return itemStyle.star1;
+        }
+      })(block[star].name);
+      block[star].label = {
+        color: style.color,
+        downplay: {
+          opacity: 0.5
+        }
+      };
+      if (block[star].children) {
+        style = {
+          opacity: 1,
+          color: style.color
+        };
+        block[star].children.forEach(function (book) {
+          book.value = 1;
+          book.itemStyle = style;
+          book.label = {
+            color: style.color
+          };
+          let value = 1;
+          if (bookScoreId === 0 || bookScoreId === 3) {
+            value = 5;
+          }
+          if (bookScore[bookScoreId]) {
+            bookScore[bookScoreId].value += value;
+          } else {
+            bookScore[bookScoreId] = {
+              color: colors[bookScoreId],
+              value: value
+            };
+          }
+        });
+      }
+    }
+    level1[i].itemStyle = {
+      color: data[j].itemStyle.color
+    };
+  }
+}
+option = {
+  backgroundColor: bgColor,
+  color: colors,
+  series: [
+    {
+      type: 'sunburst',
+      center: ['50%', '48%'],
+      data: data,
+      sort: function (a, b) {
+        if (a.depth === 1) {
+          return b.getValue() - a.getValue();
+        } else {
+          return a.dataIndex - b.dataIndex;
+        }
+      },
+      label: {
+        rotate: 'radial',
+        color: bgColor
+      },
+      itemStyle: {
+        borderColor: bgColor,
+        borderWidth: 2
+      },
+      levels: [
+        {},
+        {
+          r0: 0,
+          r: 75,
+          label: {
+            rotate: 0
+          }
+        },
+        {
+          r0: 75,
+          r: 185
+        },
+        {
+          r0: 185,
+          r: 215,
+          itemStyle: {
+            shadowBlur: 2,
+            shadowColor: colors[2],
+            color: 'transparent'
+          },
+          label: {
+            rotate: 'tangential',
+            fontSize: 10,
+            color: colors[0]
+          }
+        },
+        {
+          r0: 215,
+          r: 220,
+          itemStyle: {
+            shadowBlur: 80,
+            shadowColor: colors[0]
+          },
+          label: {
+            position: 'outside',
+            textShadowBlur: 5,
+            textShadowColor: '#333'
+          },
+          downplay: {
+            label: {
+              opacity: 0.5
+            }
+          }
+        }
+      ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
