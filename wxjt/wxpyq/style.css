@@ -11,6 +11,10 @@ body {
     top: 0;
 }
 
+#fakeWechatMoment.iosStyle {
+    font-family: "SF Pro SC", "SF Pro Display", "SF Pro Icons", "Apple WebExp Icons Custom", "PingFang SC", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
 .topBar {
     width: calc(100% - 32px);
     height: 72px;
@@ -20,16 +24,33 @@ body {
     color: #fff;
     display: flex;
     justify-content: space-between;
-    align-items: Center;
+    align-items: center;
     padding-left: 16px;
     padding-right: 16px;
+}
+
+.topBarIos {
+    width: calc(100% - 256px);
+    background-color: #303030;
+    font-size: 40px;
+    font-weight: 900;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 52px;
+    padding-left: 128px;
+    padding-right: 128px;
 }
 
 .header {
     width: 100%;
     height: 132px;
+    padding: 0 40px;
+    box-sizing: border-box;
     background-color: #303030;
     font-size: 48px;
+    font-weight: bold;
     color: #fff;
     display: flex;
     align-items: Center;
@@ -80,6 +101,7 @@ body {
 .name {
     color: #576b95;
     font-size: 40px;
+    font-weight: bold;
 }
 
 .text {
@@ -163,14 +185,17 @@ body {
     display: inline-block;
 }
 
-#generatedPopup {
-    text-align: center;
-}
-
 #generated {
     width: auto;
-    height: 400px;
-    display: inline-block;
+    height: 270px;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+    #generated {
+        height: 400px;
+    }
 }
 
 .squareImage {
@@ -259,11 +284,12 @@ body {
     color: #fff;
 }
 
-.whiteUI #topBarTime {
+.whiteUI #topBarTime, .whiteUI #topBarTimeIos {
     color: #000;
 }
 
 .whiteUI .topBar,
+.whiteUI .topBarIos,
 .whiteUI .header {
     background-color: #efefef;
     color: #181818;
@@ -271,6 +297,9 @@ body {
 
 .whiteUI #topBarTime {
     color: #626262;
+}
+.whiteUI #topBarTimeIos {
+    color: #000;
 }
 
 .whiteUI .squareImage {
@@ -297,4 +326,28 @@ body {
     background-color: #fff;
     border: none;
     color: #aaa;
+}
+
+/* Shame on you! */
+a[href="http://www.jikexq.cc"][mdui-tooltip="{content:'查看 GitHub'}"] {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #fff !important;
+    border-radius: 0;
+}
+
+a[href="http://www.jikexq.cc"][mdui-tooltip="{content:'查看 GitHub'}"] svg {
+    display: none;
+}
+
+a[href="http://www.jikexq.cc"][mdui-tooltip="{content:'查看 GitHub'}"]:before {
+    content: '你所访问的网站由于在转载本工具时抹去了原作者相关信息，或存在其他违反使用规则的行为，已被原作者列入黑名单。\A请保存原作者自己部署的页面地址：https://akarin.dev/WechatMomentScreenshot/';
+    white-space: pre-wrap;
+    text-transform: none;
+    color: #000;
+    position: absolute;
+    transform: translate(-50%, calc(50vh - 50%));
 }
