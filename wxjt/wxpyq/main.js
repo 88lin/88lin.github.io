@@ -85,9 +85,9 @@ if (location.hostname !== 'akarin.dev' && location.hostname !== 'transparentlc.g
 }
 */
 
-if (navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) loadScript('https://cdn.jsdelivr.net/gh/TransparentLC/WechatMomentScreenshot/fuckWechat.min.js');
+if (navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1) loadScript('https://jsd.cdn.zzko.cn/gh/TransparentLC/WechatMomentScreenshot/fuckWechat.min.js');
 
-if (!window.Promise) loadScript('https://cdn.jsdelivr.net/npm/promise-polyfill/dist/polyfill.min.js');
+if (!window.Promise) loadScript('https://jsd.cdn.zzko.cn/npm/promise-polyfill/dist/polyfill.min.js');
 
 var avatarURL = [];
 
@@ -98,7 +98,7 @@ function loadAvatarSet(s, n) {
     if (n) mdui.snackbar('加载成功，头像库中一共有 ' + avatarURL.length + ' 个头像');
 }
 var emoticon = [];
-xhrGet('https://cdn.jsdelivr.net/gh/TransparentLC/WechatMomentScreenshot/emoticon.json', function (result) { emoticon = JSON.parse(result) });
+xhrGet('https://jsd.cdn.zzko.cn/gh/TransparentLC/WechatMomentScreenshot/emoticon.json', function (result) { emoticon = JSON.parse(result) });
 
 // 读取配置
 var configDefault = {

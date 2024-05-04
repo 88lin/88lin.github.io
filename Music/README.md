@@ -6,7 +6,7 @@
 
 ## 预览
 
-[HeoMusic - 用音乐感染人心](https://520.txsb.gq/Music/index.html)
+[HeoMusic - 用音乐感染人心](https://88lin.github.io/Music/index.html)
 
 ## 基本操作
 
