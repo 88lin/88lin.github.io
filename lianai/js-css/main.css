@@ -74,16 +74,15 @@
 		body {
 			height: 100%;
 			background-color: #ffffff;
-			background-image: url(""), -moz-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn.mom1.cn/img/mom2018%20(819).jpg");
-			background-image: url(""), -webkit-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn.mom1.cn/img/mom2018%20(819).jpg");
-			background-image: url(""), -ms-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn.mom1.cn/img/mom2018%20(819).jpg");
-			background-image: url(""), linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn.mom1.cn/img/mom2018%20(819).jpg");
+			background-image: url(""), -moz-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn-hw-static2.shanhutech.cn/bizhi/staticwp/202310/009ae53294a28a97fbe6c398f4651a9e--2182250381.jpg");
+			background-image: url(""), -webkit-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn-hw-static2.shanhutech.cn/bizhi/staticwp/202310/009ae53294a28a97fbe6c398f4651a9e--2182250381.jpg");
+			background-image: url(""), -ms-linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn-hw-static2.shanhutech.cn/bizhi/staticwp/202310/009ae53294a28a97fbe6c398f4651a9e--2182250381.jpg");
+			background-image: url(""), linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35)), url("https://cdn-hw-static2.shanhutech.cn/bizhi/staticwp/202310/009ae53294a28a97fbe6c398f4651a9e--2182250381.jpg");
 			background-repeat: repeat,			no-repeat,			no-repeat;
 			background-size: 100px 100px, cover,				cover;
 			background-position: top left,		center center,		bottom centr;
 			background-attachment: fixed,			fixed,				fixed;
 		}
-
 
 		body:after {
 			content: '';
@@ -708,4 +707,4 @@
 		body.is-ie #wrapper {
 			height: 100%;
 		}
-		body {cursor: url(https://ae01.alicdn.com/kf/H1983cf2b4b5b45f3a95f9cd50be5f9ebV.png), default;}a:hover{cursor:url(https://ae01.alicdn.com/kf/H88647b1696564b9d880fdf741d728ec3a.png), pointer;}
+		body {cursor: url(https://jsd.cdn.zzko.cn/gh/sviptzk/HexoStaticFile@latest/Hexo/img/pointer.cur), default;}a:hover{cursor:url(https://www.dreamwings.cn/wp-content/themes/kotha/images/1.cur), pointer;}

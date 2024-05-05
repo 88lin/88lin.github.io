@@ -1,0 +1,63 @@
+body {
+  background: burlywood;
+  overflow: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+.gallery {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 5rem;
+}
+.gallery__image {
+  padding: 0.5rem 0.5rem 1.5rem;
+  background: white;
+  position: relative;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  transform-origin: center -5rem;
+}
+.gallery__image::before {
+  content: "";
+  display: block;
+  height: 10rem;
+  width: 2px;
+  background: saddlebrown;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+}
+.gallery__image:nth-child(1) {
+  animation: 5s infinite bounce;
+  animation-name: image1;
+  transform: rotate(-10deg);
+}
+.gallery__image:nth-child(2) {
+  animation: 4.5s infinite bounce;
+  animation-name: image2;
+  transform: rotate(8deg);
+}
+.gallery__image:nth-child(3) {
+  animation: 4s infinite bounce;
+  animation-name: image3;
+  transform: rotate(-4deg);
+}
+
+@keyframes image1 {
+  50% {
+    transform: rotate(10deg);
+  }
+}
+@keyframes image2 {
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+@keyframes image3 {
+  50% {
+    transform: rotate(6deg);
+  }
+}

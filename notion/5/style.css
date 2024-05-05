@@ -5,7 +5,8 @@
 
 body {
   padding: 50px;
-  font-family: 'Noto Sans KR', sans-serif;
+  /* 使用在线字体 */
+  font-family: 'IconFont';
 }
 
 .chatbot {
@@ -16,12 +17,14 @@ body {
 }
 
 .chatbot-box {
-  width: 250px;
-  padding: 35px;
-  border: 1px solid #ffd966;
+  width: 400px;
+  padding: 40px;
+  border: 2px solid #ffd966;
   border-radius: 10px;
   color: #f5a42b;
   text-align: center;
+  font-family: 'IconFont'; /* 应用字体到聊天框 */
+  font-size: 18px; /* 增大聊天框文本的字体大小 */
 }
 
 .chatbot-box img {
@@ -36,16 +39,26 @@ body {
   margin-bottom: 20px;
 }
 
-input,
-button {
-  padding: 10px;
+input {
+  padding: 30px 80px; /* 适当调整输入框的内边距 */
+  width: calc(100% - 95px); /* 减去按钮的宽度，确保输入框和按钮都能在视口中显示 */
+  height: 40px; /* 适当调整输入框的高度 */
+  margin-right: 5px; /* 适当调整输入框与按钮的间距 */
+  background-color: #fff2cc;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
+  font-family: 'IconFont'; /* 确保有备选字体 */
+  font-size: 16px; /* 输入框文本的字体大小 */
 }
 
-input {
-  margin-right: 10px;
-  background-color: #fff2cc;
+button {
+  padding: 10px 20px; /* 适当调整按钮的内边距 */
+  border: none;
+  border-radius: 12px;
+  background-color: #ffd966;
+  color: #f5a42b;
+  font-family: 'IconFont'; /* 确保有备选字体 */
+  font-size: 16px; /* 按钮文本的字体大小 */
 }
 
 input::placeholder {
@@ -54,7 +67,15 @@ input::placeholder {
 }
 
 button {
-  border-radius: 10px;
+  border-radius: 12px;
   background-color: #ffd966;
   color: #f5a42b;
+}
+
+/* 添加在线字体 */
+@font-face {
+  font-family: 'IconFont';  /* 定义的字体名，用于CSS中引用 */
+  src: url('https://cdn3.codesign.qq.com/icons/X2bzpZvRWkZkAaV/latest/iconfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
