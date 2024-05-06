@@ -1301,7 +1301,7 @@
 	}
 		#footer .copyright {
 			letter-spacing: 0.2rem;
-			font-size: 0.6rem;
+			font-size: 0.9rem;
 			opacity: 0.75;
 			margin-bottom: 0;
 			text-transform: uppercase;
@@ -1499,4 +1499,9 @@
 }
 .ctrm-title { 
     background: linear-gradient(90deg, #ffdee9, #b5fffc)!important; /* 标题背景渐变色 */
+}
+
+#showsectime {
+    font-size: 14px;
+    color: #ffffff;
 }
