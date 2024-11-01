@@ -757,99 +757,123 @@
 				border-top: 0;
 			}
 /* Button */
-	input[type="submit"],
-	input[type="reset"],
-	input[type="button"],
-	button,
-	.button {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-		-moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		-webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		-ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
-		background-color: transparent;
-		border-radius: 4px;
-		border: 0;
-		box-shadow: inset 0 0 0 1px #ffffff;
-		color: #ffffff !important;
-		cursor: pointer;
-		display: inline-block;
-		font-size: 0.8rem;
-		font-weight: 300;
-		height: 2.75rem;
-		letter-spacing: 0.2rem;
-		line-height: 2.75rem;
-		outline: 0;
-		padding: 0 1.25rem 0 1.35rem;
-		text-align: center;
-		text-decoration: none;
-		text-transform: uppercase;
-		white-space: nowrap;
-	}
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		input[type="button"]:hover,
-		button:hover,
-		.button:hover {
-			background-color: rgba(255, 255, 255, 0.075);
-		}
-		input[type="submit"]:active,
-		input[type="reset"]:active,
-		input[type="button"]:active,
-		button:active,
-		.button:active {
-			background-color: rgba(255, 255, 255, 0.175);
-		}
-		input[type="submit"].icon:before,
-		input[type="reset"].icon:before,
-		input[type="button"].icon:before,
-		button.icon:before,
-		.button.icon:before {
-			margin-right: 0.5em;
-		}
-		input[type="submit"].fit,
-		input[type="reset"].fit,
-		input[type="button"].fit,
-		button.fit,
-		.button.fit {
-			display: block;
-			margin: 0 0 1rem 0;
-			width: 100%;
-		}
-		input[type="submit"].special,
-		input[type="reset"].special,
-		input[type="button"].special,
-		button.special,
-		.button.special {
-			background-color: #ffffff;
-			color: #1b1f22 !important;
-			font-weight: 600;
-		}
-		input[type="submit"].disabled, input[type="submit"]:disabled,
-		input[type="reset"].disabled,
-		input[type="reset"]:disabled,
-		input[type="button"].disabled,
-		input[type="button"]:disabled,
-		button.disabled,
-		button:disabled,
-		.button.disabled,
-		.button:disabled {
-			-moz-pointer-events: none;
-			-webkit-pointer-events: none;
-			-ms-pointer-events: none;
-			pointer-events: none;
-			cursor: default;
-			opacity: 0.25;
-		}
-	input[type="submit"],
-	input[type="reset"],
-	input[type="button"],
-	button {
-		line-height: calc(2.75rem - 2px);
-	}
+input[type="submit"],
+input[type="reset"],
+input[type="button"],
+button,
+.button {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    -moz-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -webkit-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    position: relative;
+    padding: 1em 2em;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.2rem;
+    background-color: transparent;
+    border: none;
+    border-radius: 50px;
+    outline: 0;
+    cursor: pointer;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+button:hover,
+.button:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+input[type="submit"]:active,
+input[type="reset"]:active,
+input[type="button"]:active,
+button:active,
+.button:active {
+    background-color: rgba(255, 255, 255, 0.175);
+}
+
+/* Special Button Effect */
+.button::after,
+.button::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -99999;
+    transition: all 0.4s;
+}
+
+.button::before {
+    transform: translate(0%, 0%);
+    width: 100%;
+    height: 100%;
+    background: #ffa36421;
+    border-radius: 50px;
+}
+
+.button::after {
+    transform: translate(0px, 0px);
+    width: 10px;
+    height: 10px;
+    background: #ffffff15;
+    backdrop-filter: blur(5px);
+    border-radius: 50px;
+}
+
+.button:hover::before {
+    transform: translate(5%, 20%);
+    width: 10px;
+    height: 10px;
+}
+
+.button:hover::after {
+    transform: translate(0, 0);
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+}
+
+.button:active::after {
+    transition: 0s;
+    transform: translate(0, 5%);
+}
+
+/* Additional States */
+input[type="submit"].special,
+input[type="reset"].special,
+input[type="button"].special,
+button.special,
+.button.special {
+    background-color: #ffffff;
+    color: #1b1f22 !important;
+    font-weight: 600;
+}
+
+input[type="submit"].disabled,
+input[type="submit"]:disabled,
+input[type="reset"].disabled,
+input[type="reset"]:disabled,
+input[type="button"].disabled,
+input[type="button"]:disabled,
+button.disabled,
+button:disabled,
+.button.disabled,
+.button:disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.25;
+}
+
 /* BG */
 	#bg {
 		-moz-transform: scale(1.0);
