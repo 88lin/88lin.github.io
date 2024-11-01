@@ -11,9 +11,22 @@
 <meta name="description" content="">
 <link rel="shortcut icon" href="https://young.zhubai.love/favicon.png">
 <link rel="stylesheet" href="css/style.css">
+<script src="js/BigBlobBg.min.js"></script>
+    <script>
+        // 初始化背景
+        document.addEventListener('DOMContentLoaded', function() {
+            new Color4Bg.BigBlobBg({
+                dom: "background-box",
+                colors: ["#9FCFFF", "#6BA3FA", "#3667F0", "#284CE0", "#9FCFFF", "#6BA3FA"],
+                loop: true
+            });
+        });
+    </script>
 
 <title>故人</title>
 </head><body>
+<!-- 背景容器 -->
+<div id="background-box" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
 <div id="bg"><div class="backstretch"></div></div>
 <div class="container">
 <header id="header">
