@@ -11,7 +11,7 @@ var S = {
     if (i !== -1) {
       S.UI.simulate(decodeURI(action).substring(i + 3));
     } else {
-      S.UI.simulate('|#countdown 3||2024|龙圆圆||#rectangle|');
+      S.UI.simulate('|#countdown 3||2025|金蛇含珠||#rectangle|');
       // S.UI.simulate('|写|尽|千|山|落|笔|是|你|#rectangle|');
     }
 
@@ -221,51 +221,6 @@ S.UI = (function () {
         performAction(input.value);
       }
     });
-
-    // input.addEventListener('input', checkInputWidth);
-    // input.addEventListener('change', checkInputWidth);
-    // input.addEventListener('focus', checkInputWidth);
-
-    // help.addEventListener('click', function (e) {
-    //   overlay.classList.toggle('overlay--visible');
-    //   overlay.classList.contains('overlay--visible') && reset(true);
-    // });
-
-    // commands.addEventListener('click', function (e) {
-    //   var el,
-    //       info,
-    //       demo,
-    //       tab,
-    //       active,
-    //       url;
-    //
-    //   if (e.target.classList.contains('commands-item')) {
-    //     el = e.target;
-    //   } else {
-    //     el = e.target.parentNode.classList.contains('commands-item') ? e.target.parentNode : e.target.parentNode.parentNode;
-    //   }
-    //
-    //   info = el && el.querySelector('.commands-item-info');
-    //   demo = el && info.getAttribute('data-demo');
-    //   url = el && info.getAttribute('data-url');
-    //
-    //   if (info) {
-    //     overlay.classList.remove('overlay--visible');
-    //
-    //     if (demo) {
-    //       input.value = demo;
-    //
-    //       if (isTouch) {
-    //         reset();
-    //         performAction(input.value);
-    //       } else {
-    //         input.focus();
-    //       }
-    //     } else if (url) {
-    //       //window.location = url;
-    //     }
-    //   }
-    // });
 
     canvas.addEventListener('click', function (e) {
       overlay.classList.remove('overlay--visible');

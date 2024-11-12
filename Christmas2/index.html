@@ -4,7 +4,7 @@
 <head>
  <meta charset="UTF-8">
 
- <title>送给你们的小小圣诞树</title>
+ <title>送给你们的小小圣诞树🎄</title>
 
  <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css">
 
@@ -20,23 +20,32 @@
    display: flex;
    align-items: center;
    justify-content: center;
-   background: #161616;
-   color: #c5a880;
    font-family: sans-serif;
+   background-image: url('https://cdn-hw-static2.shanhutech.cn/bizhi/staticwp/202310/009ae53294a28a97fbe6c398f4651a9e--2182250381.jpg?t=5a099d3f-9aee-4e6c-8502-6b9d75a9d44c');
+   background-size: cover; /* 背景图片覆盖整个页面 */
+   background-position: center; /* 背景图片居中 */
   }
 
   label {
    display: inline-block;
-   background-color: #161616;
+   background-color: rgba(163, 233, 235, 0.5);
    padding: 16px;
    border-radius: 0.3rem;
    cursor: pointer;
    margin-top: 1rem;
    width: 300px;
-   border-radius: 10px;
-   border: 1px solid #c5a880;
+   border-radius: 25px;
+   border: 1px solid #b0c4de;
    text-align: center;
+   transition: all 0.3s ease;
   }
+  label:hover {
+    background-color: #eccec5;
+    border-color: #e8d8b9;
+    color: #161616;
+    border-color: #b0c4de; /* 当鼠标悬停时，边框颜色改变 */
+    box-shadow: 0 0 8px #b0c4de, 0 0 16px #b0c4de; /* 添加阴影效果 */
+ }
 
   ul {
    list-style-type: none;
@@ -45,29 +54,33 @@
   }
 
   .btn {
-   background-color: #161616;
-   border-radius: 10px;
-   color: #c5a880;
-   border: 1px solid #c5a880;
+   background-color: rgba(163, 233, 235, 0.5);
+   border-radius: 30px;
+   color: #161616;
+   border: 1px solid #b0c4de;
    padding: 16px;
    width: 300px;
    margin-bottom: 16px;
    line-height: 1.5;
    cursor: pointer;
+   transition: all 0.3s ease;
   }
-  .separator {
-   font-weight: bold;
-   text-align: center;
-   width: 300px;
-   margin: 16px 0px;
-   color: #a07676;
-  }
-
+  .btn:hover {
+    background-color: #eccec5;
+    border-color: #e8d8b9;
+    color: #161616;
+    border-color: #b0c4de; /* 当鼠标悬停时，边框颜色改变 */
+    box-shadow: 0 0 8px #b0c4de, 0 0 16px #b0c4de; /* 添加阴影效果 */
+ }
+ 
   .title {
-   color: #a07676;
+    background: -webkit-linear-gradient(35deg, #009ff7, #6dc6b4, #db6c31);  /* 使用线性渐变背景色 */
+   -webkit-background-clip: text;  /* 让背景只应用于文本 */
+   -webkit-text-fill-color: transparent;  /* 使文字填充透明，以便显示渐变 */
+   margin: 0 0 0.55em 0;  /* 设置底部外边距 */
    font-weight: bold;
-   font-size: 1.25rem;
-   margin-bottom: 16px;
+   font-size: 2rem;
+   margin-bottom: 72px;
   }
 
   .text-loading {
@@ -114,15 +127,12 @@
  <script>
   window.console = window.console || function(t) {};
  </script>
-
-
-
+ 
  <script>
   if (document.location.search.match(/type=embed/gi)) {
    window.parent.postMessage("resize", "*");
   }
  </script>
-
 
 </head>
 
@@ -140,16 +150,15 @@
    <li class="title">宝贝，选一首喜欢的歌吧</li>
    <li>
     <button class="btn" id="btnA" type="button">
-     爱是无畏的冒险
+      痴情冢
     </button>
    </li>
-   <li><button class="btn" id="btnB" type="button">在你的身边</button></li>
+   <li><button class="btn" id="btnB" type="button">占地往事</button></li>
    <li><button class="btn" id="btnC" type="button">起风了</button></li>
-   <li><button class="btn" id="btnD" type="button">化作烟火为你坠落</button></li>
-   <li class="separator" style="display: none;">或者</li>
-   <li  style="display: none;">
+   <li><button class="btn" id="btnD" type="button">可有可无的角色</button></li>
+   <li>
     <input type="file" id="upload" hidden />
-    <label for="upload">Upload File</label>
+    <label for="upload">上传自定义音乐</label>
    </li>
   </ul>
  </div>
@@ -276,10 +285,10 @@
       document.getElementById("overlay").innerHTML =
       '<div class="text-loading">稍等一下下...</div>';
       const files = [
-        "/music/爱是无畏的冒险.mp3",
-        "/music/在你的身边.mp3",
-        "/music/起风了.mp3",
-        "/music/化作烟火为你坠落.mp3"];
+        "/Music/痴情冢.mp3",
+        "/Music/占地往事.mp3",
+        "/Music/起风了.mp3",
+        "/Music/可有可无的角色.mp3"];
 
       const file = files[i];
 
