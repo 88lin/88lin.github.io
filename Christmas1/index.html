@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
  
-    <title>哈喽❤️圣诞节快乐</title>
+    <title>哈喽💝圣诞节快乐</title>
  
     <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.min.css">
  
@@ -12,8 +12,7 @@
         * {
             box-sizing: border-box;
         }
- 
- 
+
         body {
             margin: 0;
             height: 100vh;
@@ -22,61 +21,68 @@
             align-items: center;
             justify-content: center;
             background: #161616;
-            color: #c5a880;
             font-family: sans-serif;
+            background-image: url('https://cdn-hw-static2.shanhutech.cn/bizhi/staticwp/202310/009ae53294a28a97fbe6c398f4651a9e--2182250381.jpg?t=5a099d3f-9aee-4e6c-8502-6b9d75a9d44c');
+            background-size: cover; /* 背景图片覆盖整个页面 */
+            background-position: center; /* 背景图片居中 */
         }
- 
- 
         label {
             display: inline-block;
-            background-color: #161616;
+            background-color: rgba(163, 233, 235, 0.5);
             padding: 16px;
             border-radius: 0.3rem;
             cursor: pointer;
             margin-top: 1rem;
             width: 300px;
-            border-radius: 10px;
-            border: 1px solid #c5a880;
+            border-radius: 25px;
+            border: 1px solid #b0c4de;
             text-align: center;
+            transition: all 0.3s ease;
         }
- 
- 
+        label:hover {
+            background-color: #eccec5;
+            border-color: #e8d8b9;
+            color: #161616;
+            border-color: #b0c4de; /* 当鼠标悬停时，边框颜色改变 */
+            box-shadow: 0 0 8px #b0c4de, 0 0 16px #b0c4de; /* 添加阴影效果 */
+        }
+
         ul {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
- 
- 
+
         .btn {
-            background-color: #161616;
-            border-radius: 10px;
-            color: #c5a880;
-            border: 1px solid #c5a880;
+            background-color: rgba(163, 233, 235, 0.5);
+            border-radius: 30px;
+            color: #161616;
+            border: 1px solid #b0c4de;
             padding: 16px;
             width: 300px;
             margin-bottom: 16px;
             line-height: 1.5;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
- 
-        .separator {
-            font-weight: bold;
-            text-align: center;
-            width: 300px;
-            margin: 16px 0px;
-            color: #a07676;
-        }
- 
- 
+        .btn:hover {
+                background-color: #eccec5; 
+                border-color: #e8d8b9; 
+                color: #161616; 
+                border-color: #b0c4de; /* 当鼠标悬停时，边框颜色改变 */
+                box-shadow: 0 0 8px #b0c4de, 0 0 16px #b0c4de; /* 添加阴影效果 */
+            }
+
         .title {
-            color: #a07676;
+            background: -webkit-linear-gradient(35deg, #009ff7, #6dc6b4, #db6c31);  /* 使用线性渐变背景色 */
+            -webkit-background-clip: text;  /* 让背景只应用于文本 */
+            -webkit-text-fill-color: transparent;  /* 使文字填充透明，以便显示渐变 */
+            margin: 0 0 0.55em 0;  /* 设置底部外边距 */
             font-weight: bold;
-            font-size: 1.25rem;
-            margin-bottom: 16px;
+            font-size: 2rem;
+            margin-bottom: 72px;
         }
- 
- 
+
         .text-loading {
             font-size: 2rem;
         }
@@ -85,16 +91,13 @@
     <script>
         window.console = window.console || function (t) { };
     </script>
- 
- 
- 
+
     <script>
         if (document.location.search.match(/type=embed/gi)) {
             window.parent.postMessage("resize", "*");
         }
     </script>
- 
- 
+
 </head>
  
 <body translate="no">
@@ -111,12 +114,11 @@
             <li class="title">请选择音乐（建议上传音乐）</li>
             <li>
                 <button class="btn" id="btnA" type="button">
-                    痴情冢
+                    夜曲-周杰伦
                 </button>
             </li>
             <li><button class="btn" id="btnB" type="button">梅花泪</button></li>
             <li><button class="btn" id="btnC" type="button">占地往事</button></li>
-            <li class="separator">或者</li>
             <li>
                 <input type="file" id="upload" hidden />
                 <label for="upload">上传自定义音乐</label>
@@ -242,9 +244,9 @@
             document.getElementById("overlay").innerHTML =
                 '<div class="text-loading">正在下载音乐，请稍等...</div>';
             const files = [
-            "http://m701.music.126.net/20240506003945/08a72ac18252ba7612484a073d433353/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/11935672667/41dc/d9ae/46cd/1b50e746c03a79590490fe062f11e917.mp3",
-            "http://m701.music.126.net/20240506003900/de55d53dae993068222f039de47d61dc/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/25279804711/fb82/5938/e558/2dda88bcdeb693c99a68a01409c35b1c.mp3",
-            "http://m10.music.126.net/20240506004112/8aeb7cf4a8589ea846ae37baf7b246ae/ymusic/40b4/246a/b66c/362c18419f86be9c36a72cd739fe7c1c.mp3"];
+            "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VYMHIySWhFRlQxSWdyc0lYUldfMXprQmk0WnNwNkZUVWpGVHdleVlma3BQakE.mp3",
+            "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VhTktEd2Etd2ZkSHZlWHNnTjFzUUlZQndxWG40eHY1YThyb3hScHdFY3FwM0E.mp3",
+            "https://em-sycdn.kuwo.cn/6a17469fbef1eb5cb6ceaa7527cbd5ef/67333000/resource/n3/51/29/1467404703.mp3"];
             const file = files[i];
  
             const loader = new THREE.AudioLoader();
@@ -257,7 +259,7 @@
  
         }
  
- 
+
         function uploadAudio(event) {
             document.getElementById("overlay").innerHTML =
                 '<div class="text-loading">请稍等...</div>';
@@ -443,7 +445,6 @@
                     vertexColors: true
                 });
  
- 
                 const geometry = new THREE.BufferGeometry();
                 const positions = [];
                 const colors = [];
@@ -523,7 +524,6 @@
                         value: new THREE.TextureLoader().load(`https://assets.codepen.io/3685267/spark1.png`)
                     }
                 },
- 
  
                 vertexShader,
                 fragmentShader,
