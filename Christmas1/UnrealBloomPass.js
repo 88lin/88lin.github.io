@@ -1,16 +1,3 @@
-/**
- * @author spidersharma / http://eduperiment.com/
- */
-
-/**
- * UnrealBloomPass is inspired by the bloom pass of Unreal Engine. It creates a
- * mip map chain of bloom textures and blurs them with different radii. Because
- * of the weighted combination of mips, and because larger blurs are done on
- * higher mips, this effect provides good quality and performance.
- *
- * Reference:
- * - https://docs.unrealengine.com/latest/INT/Engine/Rendering/PostProcessEffects/Bloom/
- */
 THREE.UnrealBloomPass = function ( resolution, strength, radius, threshold ) {
 
 	THREE.Pass.call( this );
