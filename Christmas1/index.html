@@ -244,9 +244,9 @@
             document.getElementById("overlay").innerHTML =
                 '<div class="text-loading">正在下载音乐，请稍等...</div>';
             const files = [
-            "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VYMHIySWhFRlQxSWdyc0lYUldfMXprQmk0WnNwNkZUVWpGVHdleVlma3BQakE.mp3",
-            "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VhTktEd2Etd2ZkSHZlWHNnTjFzUUlZQndxWG40eHY1YThyb3hScHdFY3FwM0E.mp3",
-            "https://dlink.host/musics/aHR0cHM6Ly9vbmVkcnYtbXkuc2hhcmVwb2ludC5jb20vOnU6L2cvcGVyc29uYWwvc3Rvcl9vbmVkcnZfb25taWNyb3NvZnRfY29tL0VYcHo4T3gyMUhCTXVyRTZkOWZHNGo0QjlMU01aR04ydlJJUWJXbndtRi00RVE.MP3"];
+            "https://88lin.github.io/Music/yequ.mp3",
+            "https://88lin.github.io/Music/meihualei.mp3",
+            "https://88lin.github.io/Music/qiannianyitan.mp3"];
             const file = files[i];
  
             const loader = new THREE.AudioLoader();
@@ -258,7 +258,6 @@
             });
  
         }
- 
 
         function uploadAudio(event) {
             document.getElementById("overlay").innerHTML =
@@ -323,8 +322,7 @@
                         value: new THREE.TextureLoader().load(`https://assets.codepen.io/3685267/spark1.png`)
                     }
                 },
- 
- 
+
                 vertexShader,
                 fragmentShader,
                 blending: THREE.AdditiveBlending,
@@ -332,8 +330,7 @@
                 transparent: true,
                 vertexColors: true
             });
- 
- 
+
             const geometry = new THREE.BufferGeometry();
             const positions = [];
             const colors = [];
@@ -435,8 +432,7 @@
                             value: new THREE.TextureLoader().load(sprite)
                         }
                     },
- 
- 
+
                     vertexShader,
                     fragmentShader,
                     blending: THREE.AdditiveBlending,
@@ -533,7 +529,6 @@
                 vertexColors: true
             });
  
- 
             const geometry = new THREE.BufferGeometry();
             const positions = [];
             const colors = [];
@@ -557,8 +552,7 @@
                 "position",
                 new THREE.Float32BufferAttribute(positions, 3).setUsage(
                     THREE.DynamicDrawUsage));
- 
- 
+
             geometry.setAttribute(
                 "customColor",
                 new THREE.Float32BufferAttribute(colors, 3));
@@ -592,10 +586,8 @@
                     composer.setSize(width, height);
                 },
                 false);
- 
         }
     </script>
  
 </body>
- 
 </html>
