@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎页面</title>
+    <style>
+        /* 全局样式 */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body, html {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(145deg, #e4e9f0, #f7f9fc);
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 主容器 */
+        #main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: auto;
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* 标题样式 */
+        .welcome-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        /* 加载动画 */
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(44, 62, 80, 0.2);
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 欢迎信息样式 */
+        .welcome-message {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #2c3e50;
+        }
+
+        .welcome-message b {
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            color: #3498db;
+        }
+
+        /* IP 地址样式 */
+        .ip-address {
+            filter: blur(8px);
+            transition: filter 0.3s ease, color 0.3s ease;
+            cursor: pointer;
+            color: #e74c3c;
+        }
+
+        .ip-address:hover {
+            filter: blur(0);
+            color: #c0392b;
+        }
+
+        /* 错误信息 */
+        .error-message {
+            font-family: 'Roboto', sans-serif;
+            color: #e74c3c;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* 按钮样式 */
+        .refresh-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* 媒体查询 */
+        @media (max-width: 768px) {
+            #main-container {
+                padding: 20px;
+            }
+            .welcome-header {
+                font-size: 1.8rem;
+            }
+            .welcome-message {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="main-container">
+        <!-- 标题 -->
+        <h1 class="welcome-header">欢迎来到我的博客</h1>
+        <!-- 加载指示器 -->
+        <div class="loading-spinner" id="loading-spinner"></div>
+        <!-- 欢迎信息 -->
+        <div class="welcome-message" id="welcome-message" style="display: none;">
+            <p>欢迎来自 <b id="visitor-location"></b> 的朋友！</p>
+            <p>你当前距博主约 <b id="visitor-distance"></b> 公里！</p>
+            <p>你的 IP 地址：<b class="ip-address" id="visitor-ip"></b></p>
+            <p id="greeting-message"></p>
+            <button class="refresh-button" onclick="initialize()">刷新数据</button>
+        </div>
+        <!-- 错误信息 -->
+        <div class="error-message" id="error-message" style="display: none;">
+            <p>抱歉，无法加载访客信息。</p>
+        </div>
+    </div>
+
+    <script>
+        const CONFIG = {
+            API_KEY: '4xR95RXijydgvLwXDmINz8ebaq',
+            BLOG_LOCATION: { lng: 113.506990, lat: 34.704587 },
+        };
+
+        const fetchIpData = async () => {
+            try {
+                const response = await fetch(`https://api.76.al/api/ip/query?key=${CONFIG.API_KEY}`);
+                if (!response.ok) {
+                    throw new Error('网络错误，无法获取IP信息');
+                }
+                return await response.json();
+            } catch (error) {
+                console.error('Error fetching IP data:', error);
+                throw error;
+            }
+        };
+
+        const calculateDistance = (lng, lat) => {
+            const R = 6371; // 地球半径
+            const rad = Math.PI / 180;
+            const dLat = (lat - CONFIG.BLOG_LOCATION.lat) * rad;
+            const dLon = (lng - CONFIG.BLOG_LOCATION.lng) * rad;
+            const a = Math.sin(dLat / 2) ** 2 +
+                Math.cos(CONFIG.BLOG_LOCATION.lat * rad) * Math.cos(lat * rad) *
+                Math.sin(dLon / 2) ** 2;
+            return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+        };
+
+        const formatLocation = (country, prov, city) => {
+            if (!country) return '未知地区';
+            if (country === '中国') return `${prov || ''} ${city || ''}`.trim();
+            return country;
+        };
+
+        const formatIp = (ip) => ip.includes(':') ? 'IPv6 地址（隐藏）' : ip;
+
+        const showWelcomeMessage = (location, distance, ip) => {
+            document.getElementById('loading-spinner').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
+
+            const welcomeMessage = document.getElementById('welcome-message');
+            welcomeMessage.style.display = 'block';
+
+            document.getElementById('visitor-location').textContent = location;
+            document.getElementById('visitor-distance').textContent = distance;
+            document.getElementById('visitor-ip').textContent = ip;
+            document.getElementById('greeting-message').textContent = getGreeting();
+        };
+
+        const showErrorMessage = () => {
+            document.getElementById('loading-spinner').style.display = 'none';
+            document.getElementById('welcome-message').style.display = 'none';
+            document.getElementById('error-message').style.display = 'block';
+        };
+
+        const getGreeting = () => {
+            const hour = new Date().getHours();
+            if (hour < 11) return '早上好 🌤️，一日之计在于晨！';
+            if (hour < 13) return '中午好 ☀️，记得午休哦！';
+            if (hour < 17) return '下午好 🕒，工作顺利！';
+            if (hour < 21) return '晚上好 🌙，注意休息！';
+            return '深夜了 🌌，早点休息吧！';
+        };
+
+        const initialize = async () => {
+            try {
+                const data = await fetchIpData();
+                const { lng, lat, country, prov, city } = data.data || {};
+                const ip = data.ip || '未知IP';
+                const location = formatLocation(country, prov, city);
+                const distance = calculateDistance(lng, lat);
+                const formattedIp = formatIp(ip);
+
+                showWelcomeMessage(location, `${distance} 公里`, formattedIp);
+            } catch {
+                showErrorMessage();
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', initialize);
+    </script>
+</body>
+</html>
