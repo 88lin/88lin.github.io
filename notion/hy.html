@@ -150,18 +150,17 @@
         <div class="loading-spinner" id="loading-spinner"></div>
         <!-- 欢迎信息 -->
         <div class="welcome-message" id="welcome-message" style="display: none;">
-            <p>欢迎来自 <b id="visitor-location"></b> 的朋友！</p>
-            <p>你当前距博主约 <b id="visitor-distance"></b> 公里！</p>
+            <p>欢迎来自 <b id="visitor-location"></b> 的朋友💖</p>
+            <p>你当前距博主约 <b id="visitor-distance"></b> 公里🍃 </p>
             <p>你的 IP 地址：<b class="ip-address" id="visitor-ip"></b></p>
             <p id="greeting-message"></p>
             <button class="refresh-button" onclick="initialize()">刷新数据</button>
         </div>
         <!-- 错误信息 -->
         <div class="error-message" id="error-message" style="display: none;">
-            <p>抱歉，无法加载访客信息。</p>
+            <p>抱歉，无法加载访客信息</p>
         </div>
     </div>
-
     <script>
         const CONFIG = {
             API_KEY: 'Cj2YOIkAasSNDaLYiOTQ7W2LRM',
@@ -192,9 +191,9 @@
             return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
         };
 
-        const formatLocation = (country, prov, city) => {
+        const formatLocation = (country, city, district) => {
             if (!country) return '未知地区';
-            if (country === '中国') return `${prov || ''} ${city || ''}`.trim();
+            if (country === '中国') return `${city || ''} ${district || ''}`.trim();
             return country;
         };
 
@@ -221,20 +220,20 @@
 
         const getGreeting = () => {
             const hour = new Date().getHours();
+            if (hour < 5) return '夜深了！🌌 别忘了休息，睡个好觉，明天更美好';
             if (hour < 11) return '早上好！🌄 一日之计在于晨！';
             if (hour < 13) return '中午好！☀️ 午饭时间到，记得吃点好吃的！';
-            if (hour < 17) return '下午好！🌤️ 希望今天的你状态满满，事事顺心！';
-            if (hour < 21) return '晚上好！🌙  忙碌了一天，放松一下享受宁静时光吧！';
-            return '夜深了！🌌 别忘了休息，睡个好觉，明天更美好！';
+            if (hour < 18) return '下午好！🌤️ 希望今天的你状态满满，事事顺心！';
+            if (hour < 23) return '晚上好！🌙  忙碌了一天，放松一下享受宁静时光吧！';
+            return '夜深了！🌌 别忘了休息，睡个好觉，明天更美好';
         };
 
         const initialize = async () => {
             try {
                 const data = await fetchIpData();
-                const { lng
-, lat, country, prov, city } = data.data || {};
+                const { lng, lat, country, city, district } = data.data || {};
                 const ip = data.ip || '未知IP';
-                const location = formatLocation(country, prov, city);
+                const location = formatLocation(country, city, district);
                 const distance = calculateDistance(lng, lat);
                 const formattedIp = formatIp(ip);
 
