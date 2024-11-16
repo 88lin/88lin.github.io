@@ -15,8 +15,8 @@
             height: 100%;
             overflow: hidden;
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(145deg, #e4e9f0, #f7f9fc);
-            color: #2c3e50;
+            background: linear-gradient(145deg, #e8f6ff, #eef9fc);
+            color: #34495e;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -28,33 +28,37 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
-            height: auto;
-            width: 90%;
-            max-width: 600px;
+            max-width: 700px;
             padding: 40px;
             background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            transition: transform 0.3s ease;
             text-align: center;
+        }
+
+        #main-container:hover {
+            transform: translateY(-5px);
         }
 
         /* 标题样式 */
         .welcome-header {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: -webkit-linear-gradient(45deg, #ff6b6b, #ffd66b, #4dd4b0, #42a5f5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 20px;
-            color: #2c3e50;
         }
 
         /* 加载动画 */
         .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid rgba(44, 62, 80, 0.2);
-            border-top: 4px solid #3498db;
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(52, 73, 94, 0.2);
+            border-top: 5px solid #3498db;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            animation: spin 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
             margin-bottom: 20px;
         }
 
@@ -65,34 +69,36 @@
 
         /* 欢迎信息样式 */
         .welcome-message {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             line-height: 1.8;
-            color: #2c3e50;
+            transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
         .welcome-message b {
             font-family: 'Roboto', sans-serif;
             font-weight: 700;
-            color: #3498db;
+            color: #0ecffe;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         /* IP 地址样式 */
         .ip-address {
             filter: blur(8px);
-            transition: filter 0.3s ease, color 0.3s ease;
+            transition: filter 0.3s ease, color 0.3s ease, transform 0.3s ease;
             cursor: pointer;
-            color: #e74c3c;
+            color: #ff1900;
         }
 
         .ip-address:hover {
             filter: blur(0);
-            color: #c0392b;
+            color: #ff1900;
+            transform: scale(1.05);
         }
 
         /* 错误信息 */
         .error-message {
             font-family: 'Roboto', sans-serif;
-            color: #e74c3c;
+            color: #ff1900;
             font-size: 1.2rem;
             font-weight: bold;
         }
@@ -100,20 +106,21 @@
         /* 按钮样式 */
         .refresh-button {
             margin-top: 20px;
-            padding: 10px 20px;
+            padding: 10px 25px;
             font-family: 'Roboto', sans-serif;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             color: #fff;
-            background-color: #3498db;
+            background: linear-gradient(45deg,#0ecffe 50%,#07a6f1);
             border: none;
-            border-radius: 8px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .refresh-button:hover {
-            background-color: #2980b9;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
 
         /* 媒体查询 */
@@ -122,10 +129,15 @@
                 padding: 20px;
             }
             .welcome-header {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             .welcome-message {
                 font-size: 1rem;
+            }
+            .loading-spinner {
+                width: 50px;
+                height: 50px;
+                border-width: 4px;
             }
         }
     </style>
@@ -133,7 +145,7 @@
 <body>
     <div id="main-container">
         <!-- 标题 -->
-        <h1 class="welcome-header">欢迎来到我的博客</h1>
+        <h1 class="welcome-header">欢迎来到故人博客</h1>
         <!-- 加载指示器 -->
         <div class="loading-spinner" id="loading-spinner"></div>
         <!-- 欢迎信息 -->
@@ -152,8 +164,8 @@
 
     <script>
         const CONFIG = {
-            API_KEY: '4xR95RXijydgvLwXDmINz8ebaq',
-            BLOG_LOCATION: { lng: 113.506990, lat: 34.704587 },
+            API_KEY: 'Cj2YOIkAasSNDaLYiOTQ7W2LRM',
+            BLOG_LOCATION: { lng: 106.629681, lat: 29.727659},
         };
 
         const fetchIpData = async () => {
@@ -209,23 +221,24 @@
 
         const getGreeting = () => {
             const hour = new Date().getHours();
-            if (hour < 11) return '早上好 🌤️，一日之计在于晨！';
-            if (hour < 13) return '中午好 ☀️，记得午休哦！';
-            if (hour < 17) return '下午好 🕒，工作顺利！';
-            if (hour < 21) return '晚上好 🌙，注意休息！';
-            return '深夜了 🌌，早点休息吧！';
+            if (hour < 11) return '早上好！🌄 一日之计在于晨！';
+            if (hour < 13) return '中午好！☀️ 午饭时间到，记得吃点好吃的！';
+            if (hour < 17) return '下午好！🌤️ 希望今天的你状态满满，事事顺心！';
+            if (hour < 21) return '晚上好！🌙  忙碌了一天，放松一下享受宁静时光吧！';
+            return '夜深了！🌌 别忘了休息，睡个好觉，明天更美好！';
         };
 
         const initialize = async () => {
             try {
                 const data = await fetchIpData();
-                const { lng, lat, country, prov, city } = data.data || {};
+                const { lng
+, lat, country, prov, city } = data.data || {};
                 const ip = data.ip || '未知IP';
                 const location = formatLocation(country, prov, city);
                 const distance = calculateDistance(lng, lat);
                 const formattedIp = formatIp(ip);
 
-                showWelcomeMessage(location, `${distance} 公里`, formattedIp);
+                showWelcomeMessage(location, `${distance}`, formattedIp);
             } catch {
                 showErrorMessage();
             }
