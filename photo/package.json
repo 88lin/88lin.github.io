@@ -1,9 +1,0 @@
-{
-    "scripts": {
-      "build": "wasm-pack build --target web",
-      "pages": "npm run build && cargo run && gh-pages --dist build --dest . --repo https://github.com/lecepin/gen-brand-photo-pictrue"
-    },
-    "devDependencies": {
-      "gh-pages": "^4.0.0"
-    }
-  }
