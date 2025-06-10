@@ -1,193 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div>
-      <label for="appid">appid</label>
-      <input type="text" class="appid" id="appid" />
-
-      <label for="key">秘钥</label>
-      <input type="text" class="key" id="key" />
-
-      <label for="level">去重等级</label>
-      <select name="level" id="" class="level">
-        <option value="simple">简单</option>
-        <option value="middle">中等</option>
-        <option value="high">高级</option>
-      </select>
-
-      <a
-        target="_blank"
-        href="https://api.fanyi.baidu.com/api/trans/product/apichoose"
-        >获取百度通用翻译API</a
-      >
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+  <title>高级百度翻译工具</title>
+  <style>
+    /* CSS变量定义 - 现代化设计系统 */
+    :root {
+      --primary: #4361ee;
+      --primary-dark: #3a56d4;
+      --secondary: #ff6b6b;
+      --accent: #4cc9f0;
+      --light: #f8f9fa;
+      --dark: #212529;
+      --gray: #6c757d;
+      --light-gray: #e9ecef;
+      --border-radius: 12px;
+      --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --transition: all 0.3s ease;
+      --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+    
+    /* 全局样式重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--font-main);
+      line-height: 1.6;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      color: var(--dark);
+      min-height: 100vh;
+      padding: 20px;
+      background-attachment: fixed;
+    }
+    
+    /* 响应式容器 */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    /* 头部卡片样式 */
+    .card {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 25px;
+      margin-bottom: 30px;
+      transition: var(--transition);
+    }
+    
+    .card:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card-title {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .card-title i {
+      font-size: 1.5rem;
+    }
+    
+    /* 表单控件组 */
+    .control-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    label {
+      font-weight: 600;
+      color: var(--gray);
+      font-size: 0.95rem;
+    }
+    
+    input, select {
+      padding: 14px;
+      border: 1px solid var(--light-gray);
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-color: white;
+    }
+    
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    /* 链接样式 */
+    .api-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 10px 15px;
+      border-radius: 8px;
+      background: rgba(67, 97, 238, 0.05);
+      transition: var(--transition);
+    }
+    
+    .api-link:hover {
+      background: rgba(67, 97, 238, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    /* 翻译面板 */
+    .translation-panel {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 20px;
+      align-items: stretch;
+      margin-bottom: 30px;
+    }
+    
+    @media (max-width: 768px) {
+      .translation-panel {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+      }
+    }
+    
+    /* 文本区域样式 */
+    textarea {
+      width: 100%;
+      min-height: 300px;
+      padding: 20px;
+      border: 1px solid var(--light-gray);
+      border-radius: var(--border-radius);
+      font-size: 1.1rem;
+      line-height: 1.7;
+      resize: vertical;
+      transition: var(--transition);
+      background-color: white;
+    }
+    
+    textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+    
+    .fromText {
+      border-top: 4px solid var(--accent);
+    }
+    
+    .toText {
+      border-top: 4px solid var(--secondary);
+    }
+    
+    /* 按钮样式 */
+    .switchBtn {
+      align-self: center;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+      margin: 0 10px;
+    }
+    
+    .switchBtn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(67, 97, 238, 0.4);
+    }
+    
+    .switchBtn:active {
+      transform: translateY(1px);
+    }
+    
+    .switchBtn:disabled {
+      background: var(--light-gray);
+      cursor: not-allowed;
+    }
+    
+    /* 日志区域 */
+    .log-container {
+      margin-top: 20px;
+    }
+    
+    .log-title {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+    }
+    
+    .log {
+      background-color: #2c3e50;
+      color: #ecf0f1;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      min-height: 150px;
+      width: 100%;
+      border: none;
+      resize: vertical;
+      overflow-y: auto;
+    }
+    
+    .log-header {
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    
+    /* 图标样式 */
+    .icon {
+      font-size: 1.2rem;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .card {
+        padding: 18px;
+      }
+      
+      .switchBtn {
+        width: 100%;
+        margin: 15px 0;
+        padding: 16px;
+      }
+      
+      textarea {
+        min-height: 250px;
+      }
+    }
+    
+    /* 美化滚动条 */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: rgba(67, 97, 238, 0.4);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+    
+    /* 动画效果 */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .card {
+      animation: fadeIn 0.6s ease-out;
+    }
+    
+    /* 加载状态 */
+    .loading .switchBtn::after {
+      content: "";
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s linear infinite;
+      margin-left: 10px;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+  <!-- 引入图标库 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- API配置卡片 -->
+    <div class="card">
+      <h2 class="card-title">
+        <i class="fas fa-key"></i>API配置
+      </h2>
+      
+      <div class="control-group">
+        <div class="form-group">
+          <label for="appid"><i class="fas fa-id-card"></i> App ID</label>
+          <input type="text" class="appid" id="appid" placeholder="输入您的百度API App ID" />
+        </div>
+        
+        <div class="form-group">
+          <label for="key"><i class="fas fa-lock"></i> API密钥</label>
+          <input type="text" class="key" id="key" placeholder="输入您的百度API密钥" />
+        </div>
+        
+        <div class="form-group">
+          <label for="level"><i class="fas fa-layer-group"></i> 去重等级</label>
+          <select name="level" id="level" class="level">
+            <option value="simple">简单</option>
+            <option value="middle">中等</option>
+            <option value="high">高级</option>
+          </select>
+        </div>
+      </div>
+      
+      <a target="_blank" href="https://api.fanyi.baidu.com/api/trans/product/apichoose" class="api-link">
+        <i class="fas fa-external-link-alt"></i>获取百度通用翻译API
+      </a>
     </div>
-    <hr />
-    <div>
-      <textarea
-        name=""
-        class="fromText"
-        cols="50"
-        rows="20"
-        placeholder="输入要转换的文本"
-      ></textarea>
-      <button class="switchBtn">转换</button>
-      <textarea name="" class="toText" cols="50" rows="20"></textarea>
+    
+    <hr class="divider" />
+    
+    <!-- 翻译面板 -->
+    <div class="translation-panel">
+      <div class="form-group">
+        <label for="source-text"><i class="fas fa-pencil-alt"></i> 源文本</label>
+        <textarea class="fromText" id="source-text" placeholder="输入要转换的文本..."></textarea>
+      </div>
+      
+      <button class="switchBtn">
+        <i class="fas fa-exchange-alt"></i> 转换
+      </button>
+      
+      <div class="form-group">
+        <label for="target-text"><i class="fas fa-language"></i> 翻译结果</label>
+        <textarea class="toText" id="target-text" readonly></textarea>
+      </div>
     </div>
+    
+    <!-- 日志面板 -->
+    <div class="log-container card">
+      <h3 class="log-title"><i class="fas fa-clipboard-list"></i> 操作日志</h3>
+      <div class="log-header">提示：请先到百度翻译开放平台完成以下步骤：</div>
+      <textarea class="log" readonly>
+1. 注册个人/企业账户
+2. 完成实名认证（高级认证）
+3. 申请开通通用翻译API服务
+4. 将获得的App ID和API密钥填写到本工具中
 
-    <br />
-    日志：
-    <textarea name="" class="log" cols="60" rows="10">
-请先到百度翻译开放平台注册账号、实名认证免费升级到高级版、申请通用翻译api、将appid和密钥粘贴到本工具
-如果出现闪退，请先自行检查
-1. 是否是个人账户
-2. 是否进行了高级认证
-3. 是否开通了通用翻译api
+如遇闪退问题，请检查：
+- 账户类型是否符合要求
+- 是否已完成高级认证
+- 是否已成功开通通用翻译API
+      </textarea>
+    </div>
+  </div>
 
-    </textarea>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
+  <script>
+    // 为美观添加的加载状态
+    function setLoading(isLoading) {
+      if (isLoading) {
+        $('body').addClass('loading');
+        $('.switchBtn').attr('disabled', true).html('<i class="fas fa-spinner"></i> 翻译中...');
+      } else {
+        $('body').removeClass('loading');
+        $('.switchBtn').attr('disabled', false).html('<i class="fas fa-exchange-alt"></i> 转换');
+      }
+    }
+    
+    // 优化日志功能
+    function log(...params) {
+      var timestamp = new Date().toLocaleTimeString();
+      var insertStr = `[${timestamp}] ` + params.join('');
+      var logEle = $('.log');
+      var currentText = logEle.val();
+      
+      // 自动滚动到底部
+      logEle.val(insertStr + '\n' + currentText);
+      logEle.scrollTop(0);
+    }
+    
+    // 添加输入验证
+    function validateInputs() {
+      var appid = $('.appid').val().trim();
+      var key = $('.key').val().trim();
+      var text = $('.fromText').val().trim();
+      
+      if (!appid || !key) {
+        log('错误：App ID和API密钥不能为空');
+        return false;
+      }
+      
+      if (!text) {
+        log('错误：请输入要翻译的文本');
+        return false;
+      }
+      
+      return true;
+    }
+    
+    // 添加翻译进度指示
+    var totalSteps = 0, currentStep = 0;
+    
+    function updateProgress() {
+      currentStep++;
+      var progress = Math.round((currentStep / totalSteps) * 100);
+      $('.switchBtn').html(`<i class="fas fa-spinner"></i> ${progress}%`);
+    }
+    
+    // 原代码功能保持不变，但添加了UI增强
+    var fromTextEle = $(".fromText"),
+      toTextELe = $(".toText"),
+      switchBtnEle = $(".switchBtn"),
+      appid = "20210323000739360",
+      key = "82GT5f3GpFEjNsNBPF1c";
 
-    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
-    <script>
-      var fromTextEle = $(".fromText"),
-        toTextELe = $(".toText"),
-        switchBtnEle = $(".switchBtn"),
-        appid = "20210323000739360", // 设置默认appid
-        key = "82GT5f3GpFEjNsNBPF1c"; // 设置默认key
+    var transList = {
+      simple: ["zh en", "en de", "de zh"],
+      middle: ["zh en", "en de", "de jp", "jp pt", "pt zh"],
+      high: [
+        "zh en", "en de", "de jp", "jp pt", "pt it", 
+        "it pl", "pl bul", "bul est", "est zh"
+      ]
+    };
 
-      // 关于appid和key信息，强烈建议同学们自行免费申请，避免卡顿
-      // 申请地址: https://api.fanyi.baidu.com/api/trans/product/apichoose
+    var mode = "simple";
 
-      /*
-      初级	中->英->德->中
-      中级	中->英->德->日->葡萄牙->中
-      高级	中->英->德->日->葡萄牙->意大利->波兰->保加利亚->爱沙尼亚->中
-      */
-      var transList = {
-        simple: ["zh en", "en de", "de zh"],
-        middle: ["zh en", "en de", "de jp", "jp pt", "pt zh"],
-        high: [
-          "zh en",
-          "en de",
-          "de jp",
-          "jp pt",
-          "pt it",
-          "it pl",
-          "pl bul",
-          "bul est",
-          "est zh",
-        ],
+    // 生成API参数
+    function genParams(q, from, to) {
+      var url = "https://fanyi-api.baidu.com/api/trans/vip/translate";
+      var data = {
+        q: q,
+        from: from,
+        to: to,
+        appid: appid,
+        salt: "",
+        sign: "",
       };
 
-      var mode = "simple";
+      data.salt = Math.floor(Math.random() * 10000000000);
+      data.sign = md5(appid + q + data.salt + key);
 
-      // 生成API参数
-      function genParams(q, from, to) {
-        var url = "https://fanyi-api.baidu.com/api/trans/vip/translate";
-        var data = {
-          q: q,
-          from: from,
-          to: to,
-          appid: appid,
-          salt: "",
-          sign: "",
-        };
+      return { url, data };
+    }
 
-        data.salt = Math.floor(Math.random() * 10000000000);
-        data.sign = md5(appid + q + data.salt + key);
+    // 翻译
+    function translate(q, from, to) {
+      var params = genParams(q, from, to);
 
-        return { url, data };
-      }
-
-      // 翻译
-      function translate(q, from, to) {
-        var params = genParams(q, from, to);
-
-        return new Promise((resolve, reject) => {
-          $.ajax({
-            type: "POST",
-            url: params.url,
-            data: params.data,
-            dataType: "jsonp",
-            headers: {
-              "Content-Type": "application/x-www-form-urlencoded",
-            },
-            success: (res) => {
-              log("from: " + from, "; ", "to:" + to);
-              resolve(res);
-            },
-            error: () => {
-              reject();
-            },
-          });
+      return new Promise((resolve, reject) => {
+        $.ajax({
+          type: "POST",
+          url: params.url,
+          data: params.data,
+          dataType: "jsonp",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          success: (res) => {
+            log(`翻译步骤完成: ${from} -> ${to}`);
+            updateProgress();
+            resolve(res);
+          },
+          error: (err) => {
+            log(`翻译错误: ${err.statusText || '服务器错误'}`);
+            updateProgress();
+            reject();
+          }
         });
-      }
+      });
+    }
 
-      // 翻译队列
-      function queen(str) {
-        var dst = str;
-        (async () => {
-          for (let i = 0; i < transList[mode].length; i++) {
-            var lang = transList[mode][i].split(" ");
+    // 翻译队列
+    function queen(str) {
+      var dst = str;
+      totalSteps = transList[mode].length;
+      currentStep = 0;
+      
+      (async () => {
+        for (let i = 0; i < transList[mode].length; i++) {
+          var lang = transList[mode][i].split(" ");
+          try {
             res = await translate(dst, lang[0], lang[1]);
             dst = res.trans_result[0].dst;
-            log("result: ", dst);
+            log(`中间结果: ${dst}`);
+          } catch (error) {
+            log('翻译过程中遇到错误，已停止');
+            return;
           }
-          toTextELe.text(dst);
-        })();
-      }
-
-      // 开始翻译
-      function starSwitch() {
-        appid = $(".appid").val();
-        key = $(".key").val();
-        if (fromTextEle.val() === "" || appid === "" || key === "") {
-          log("请将appid key和要翻译的文本补充完整");
-          return false;
         }
+        toTextELe.val(dst);
+        log('翻译完成！');
+        setLoading(false);
+      })();
+    }
 
-        mode = $(".level option:selected").val();
+    // 开始翻译
+    function starSwitch() {
+      if (!validateInputs()) return;
+      
+      setLoading(true);
+      
+      appid = $(".appid").val().trim();
+      key = $(".key").val().trim();
+      mode = $("#level").val();
 
-        setCacheData();
+      // 清空结果区域
+      toTextELe.val('');
+      log('开始翻译流程...');
+      
+      setCacheData();
+      queen(fromTextEle.val());
+    }
 
-        queen(fromTextEle.val());
+    // 缓存appid和key
+    function setCacheData() {
+      localStorage.setItem("appid", appid);
+      localStorage.setItem("key", key);
+    }
+
+    // 读取缓存中的appid和key
+    function getCacheData() {
+      var savedAppid = localStorage.getItem("appid");
+      var savedKey = localStorage.getItem("key");
+      if (savedAppid && savedKey) {
+        $(".appid").val(savedAppid);
+        $(".key").val(savedKey);
       }
+    }
 
-      // 日志
-      function log(...params) {
-        var insertStr = params.join("");
-        logEle = $(".log");
-        logEle.text(insertStr + "\n" + logEle.text());
-      }
+    function init() {
+      getCacheData();
+      $(".switchBtn").click(starSwitch);
+      
+      // 添加示例文本
+      $('.fromText').attr('placeholder', '例如：这是一个高质量的翻译工具');
+    }
 
-      // 缓存appid和key
-      function setCacheData() {
-        localStorage.setItem("appid", $(".appid").val());
-        localStorage.setItem("key", $(".key").val());
-      }
-
-      // 读取缓存中的appid和key
-      function getCacheData() {
-        var appid = localStorage.getItem("appid");
-        var key = localStorage.getItem("key");
-        if (appid + key + $(".appid").val() + $(".key").val() !== "") {
-          $(".appid").val(appid);
-          $(".key").val(key);
-        }
-      }
-
-      function init() {
-        getCacheData();
-        $(".switchBtn").click(starSwitch);
-      }
-
-      init();
-    </script>
-  </body>
+    init();
+  </script>
+</body>
 </html>
