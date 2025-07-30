@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimePulse</title>
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+    .container {
+      max-width: 500px;
+      padding: 30px;
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      margin-top: 0;
+      color: #0ea5e9;
+    }
+    p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .btn {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: #0284c7;
+    }
+    .lang-switch {
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #e5e7eb;
+    }
+    .lang-btn {
+      background: none;
+      border: 1px solid #d1d5db;
+      padding: 8px 16px;
+      margin: 0 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .lang-btn:hover {
+      background-color: #f3f4f6;
+    }
+    .lang-btn.active {
+      background-color: #0ea5e9;
+      color: white;
+      border-color: #0ea5e9;
+    }
+    .icon {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+      }
+      .container {
+        background-color: #1e1e1e;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .lang-btn {
+        border-color: #4b5563;
+        color: #e0e0e0;
+      }
+      .lang-btn:hover {
+        background-color: #374151;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="icon">📶</div>
+    <h1 id="title">您当前处于离线模式</h1>
+    <p id="message">TimePulse 检测到您的设备已断开网络连接。您可以继续使用基本功能，但数据同步和分享等功能将暂时不可用。</p>
+    <p id="description">请检查您的网络连接，然后刷新页面。</p>
+    <button class="btn" onclick="window.location.reload()" id="return-btn">重新连接</button>
+    
+    <div class="lang-switch">
+      <button class="lang-btn" onclick="switchLanguage('zh')" id="zh-btn">中文</button>
+      <button class="lang-btn" onclick="switchLanguage('en')" id="en-btn">English</button>
+    </div>
+  </div>
+
+  <script>
+    const translations = {
+      zh: {
+        title: '您当前处于离线模式',
+        message: 'TimePulse 检测到您的设备已断开网络连接。您可以继续使用基本功能，但数据同步和分享等功能将暂时不可用。',
+        description: '请检查您的网络连接，然后刷新页面。',
+        returnBtn: '重新连接'
+      },
+      en: {
+        title: 'You are currently offline',
+        message: 'TimePulse detected that your device is disconnected from the network. You can continue to use basic functions, but data sync and sharing functions will be temporarily unavailable.',
+        description: 'Please check your network connection and refresh the page.',
+        returnBtn: 'Reconnect'
+      }
+    };
+
+    let currentLang = 'zh';
+
+    function switchLanguage(lang) {
+      currentLang = lang;
+      const t = translations[lang];
+      
+      document.getElementById('title').textContent = t.title;
+      document.getElementById('message').textContent = t.message;
+      document.getElementById('description').textContent = t.description;
+      document.getElementById('return-btn').textContent = t.returnBtn;
+      
+      // Update active button
+      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(lang + '-btn').classList.add('active');
+      
+      // Update HTML lang attribute
+      document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en-US';
+    }
+
+    // Detect language from URL or browser preference
+    function detectLanguage() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      
+      if (langParam === 'en-US') {
+        return 'en';
+      } else if (langParam === 'zh-CN') {
+        return 'zh';
+      }
+      
+      // Default to Chinese
+      return 'zh';
+    }
+
+    // Initialize
+    const detectedLang = detectLanguage();
+    switchLanguage(detectedLang);
+  </script>
+</body>
+</html>
