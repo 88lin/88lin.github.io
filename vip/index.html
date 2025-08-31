@@ -13,11 +13,9 @@
              :root {
             --primary: #009ff7;
             --secondary: #78fadc;
-            --accent: #db6c31;
+            --accent: #1eb6ff;
             --dark: #06000cf0;
             --light: #f0fcfa;
-            --gray: #7f8c8d;
-            --light-gray: #e0f4f0;
             --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
@@ -91,7 +89,6 @@
                 cursor: pointer;
                 transition: var(--transition);
                 text-decoration: none;
-                box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
                 position: relative;
                 overflow: hidden;
                 border: 2px solid rgba(255, 255, 255, 0.8);
@@ -112,7 +109,7 @@
 
             .nav-btn:hover {
                 transform: translateY(-3px);
-                box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1), 0 12px 25px rgba(0, 0, 0, 0.15);
+
             }
 
             .nav-btn:hover::before {
@@ -197,12 +194,11 @@
                 padding: 14px 20px;
                 border-radius: 18px;
                 border: none;
-                background: linear-gradient(145deg, #f0f0f0, #ffffff);
+                background: #e2f6ff;
                 color: var(--dark);
                 font-size: 1rem;
                 outline: none;
                 transition: var(--transition);
-                box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
                 position: relative;
                 overflow: hidden;
                 border: 2px solid rgba(255, 255, 255, 0.8);
@@ -215,7 +211,6 @@
             }
 
             select option {
-                background: #f8f9fa;
                 padding: 10px;
             }
 
@@ -345,10 +340,9 @@
                 gap: 8px;
                 font-size: 0.95rem;
                 color: var(--dark);
-                background: linear-gradient(145deg, #f0f0f0, #ffffff);
+                background: #e2f6ff;
                 padding: 8px 15px;
                 border-radius: 18px;
-                box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.08);
                 position: relative;
                 overflow: hidden;
                 border: 2px solid rgba(255, 255, 255, 0.8);
@@ -435,7 +429,7 @@
 
             .tab.active {
                 border-bottom: 3px solid var(--primary);
-                background: rgba(52, 152, 219, 0.1);
+                background: rgba(52, 152, 219, 0.15);
                 color: var(--primary);
             }
 
@@ -449,7 +443,7 @@
                 position: relative;
                 z-index: 1;
                 background: linear-gradient(145deg, #f5f7fa, #e4edf5);
-                border-radius: 0 0 24px 24px;
+                border-radius: 24px 24px 24px 24px;
                 box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05), 0 15px 40px rgba(0, 0, 0, 0.1);
                 border: 2px solid rgba(255, 255, 255, 0.8);
             }
@@ -481,21 +475,21 @@
 
             .history-list li {
                 padding: 12px 15px;
-                background: linear-gradient(145deg, #f0f0f0, #ffffff);
+                background: #e2f6ff;
                 border-radius: 18px;
+                overflow: hidden;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 transition: var(--transition);
-                box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
                 position: relative;
-                overflow: hidden;
                 border: 2px solid rgba(255, 255, 255, 0.8);
+                will-change: transform, box-shadow; /* 性能优化 */
+                transition: transform 0.2s ease, box-shadow 0.2s ease; /* 添加过渡效果 */
             }
 
             .history-list li:hover {
                 transform: translateY(-3px);
-                box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1), 0 12px 25px rgba(0, 0, 0, 0.15);
             }
 
             .history-list .url {
@@ -551,10 +545,10 @@
             }
 
             .disclaimer {
-                background: rgba(231, 76, 60, 0.1);
+                background: #e2f6ff;
                 border-left: 4px solid var(--accent);
                 padding: 15px;
-                border-radius: 0 18px 18px 0;
+                border-radius: 9px 18px 18px 9px;
                 margin-top: 20px;
             }
 
@@ -622,12 +616,11 @@
                 display: flex;
                 justify-content: space-between;
                 padding: 15px;
-                background: linear-gradient(145deg, #f0f0f0, #ffffff);
+                background: linear-gradient(145deg, #ffffff, #f0f4f9);
                 border-top: 1px solid rgba(0, 0, 0, 0.05);
                 position: relative;
                 z-index: 1;
                 border-radius: 18px;
-                box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.05);
                 margin-bottom: 20px;
                 border: 2px solid rgba(255, 255, 255, 0.8);
             }
@@ -872,7 +865,7 @@
                         </li>
                         <li>
                             <strong>粘贴视频链接</strong>
-                            - 复制VIP视频链接（支持腾讯、爱奇艺、优酷、芒果TV等平台），粘贴到输入框中
+                            - 复制任意VIP视频链接（支持腾讯、爱奇艺、优酷、芒果TV等平台），粘贴到输入框中
                 
                         </li>
                         <li>
@@ -1159,7 +1152,7 @@
                 // 提取剧名
                 async function extractDramaName(url) {
                     try {
-                        const api = `https://v2.xxapi.cn/api/title?url=${url}`;
+                        const api = `https://v2.xxapi.cn/api/title?url=${encodeURIComponent(url)}`;
                         const response = await fetch(api);
                         const data = await response.json();
                         if (!data || !data.data) {
@@ -1191,8 +1184,7 @@
                         <span class="url" title="${item.url}">${item.dramaName}</span>
                         <span class="action" data-url="${item.url}" api-url="${item.apiUrl}">
                             <i class="fas fa-play-circle"></i>
-                        </span>
-                    `;
+                        </span> `;
 
                         historyList.appendChild(li);
                     }
@@ -1213,6 +1205,7 @@
                     );
                 }
                 function showToast(message, type='success') {
+                    toastMessage.textContent = message;
 
                     // 更新图标
                     const icon = toast.querySelector('i');
@@ -1338,18 +1331,6 @@
                         showToast('请先解析视频', 'error');
                     }
                 });
-
-                // 手动播放按钮
-                // playBtn.addEventListener('click', function() {
-                //     if (videoPlayer.src) {
-                //         // 尝试重新加载视频以确保播放
-                //         const currentSrc = videoPlayer.src;
-                //         videoPlayer.src = currentSrc.replace(/autoplay=\d+/g, 'autoplay=1');
-                //         showToast('正在尝试播放...');
-                //     } else {
-                //         showToast('请先解析视频', 'error');
-                //     }
-                // });
 
                 // 标签切换功能
                 tabs.forEach(tab => {
