@@ -3,19 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>VIP视频解析播放器 | Spring</title>
+        <title>VIP视频解析 | Spring</title>
         <meta name="keywords" content="全网VIP视频云解析"/>
         <meta name="description" content="VIP视频云解析支持爱奇艺、腾讯视频、优酷、芒果TV、乐视视频、搜狐视频、bilibili哔哩哔哩（B站）、AcFun弹幕视频网（A站）等视频解析"/>
         <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/7.0.0/css/all.min.css">
         <link rel="icon" href="https://nuaa.tech/zz.svg">
-        <script>
-            LA.init({
-                id: "KrUbnfpzlAPd5saK",
-                ck: "KrUbnfpzlAPd5saK",
-                autoTrack: true,
-                prefix: 'event'
-            })
-        </script>
         <link href="static/css/duck.css" rel="stylesheet">
         <style>
              :root {
@@ -832,17 +824,13 @@
                         </div>
                     </div>
                     <div class="player-actions">
-                        <!--                <div class="action-btn" id="play-btn">-->
-                        <!--                    <i class="fas fa-play"></i>-->
-                        <!--                    <span>播放</span>-->
-                        <!--                </div>-->
-                        <div class="action-btn" id="fullscreen-btn">
-                            <i class="fas fa-expand"></i>
-                            <span>全屏播放</span>
-                        </div>
                         <div class="action-btn" id="refresh-btn">
                             <i class="fas fa-sync-alt"></i>
                             <span>刷新播放器</span>
+                        </div>
+                        <div class="action-btn" id="fullscreen-btn">
+                            <i class="fas fa-expand"></i>
+                            <span>全屏播放</span>
                         </div>
                     </div>
                 </div>
@@ -1067,7 +1055,7 @@
             <div class="footer">
                 <p>本工具仅供学习交流使用，请支持正版视频平台 | 解析接口来源于网络</p>
                 <p>
-                    © 2025 VIP视频解析播放器 | 遇到问题可 <a href="https://520.txsb.gq/gzh/index.html" target="_blank" rel="noopener noreferrer">反馈</a>
+                    © 2025 全网VIP视频解析 | 遇到问题前往 <a href="https://520.txsb.gq/gzh/index.html" target="_blank" rel="noopener noreferrer">公众号</a> 后台反馈
                 </p>
             </div>
         </div>
@@ -1075,7 +1063,6 @@
             <i class="fas fa-check-circle"></i>
             <span id="toast-message">操作成功</span>
         </div>
-        <script src="//dh.z-l.top/chat.js" async="async" fold></script>
         <script>
             document.addEventListener('DOMContentLoaded', function() {
                 // 获取DOM元素
@@ -1221,9 +1208,7 @@
                     }
                     );
                 }
-                // 显示Toast通知
                 function showToast(message, type='success') {
-                    toastMessage.textContent = message;
 
                     // 更新图标
                     const icon = toast.querySelector('i');
@@ -1406,5 +1391,7 @@
                 }
             });
         </script>
+        <script src="https://cdn.jsdmirror.cn/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+        <script src="https://dh.z-l.top/chat.js" async="async" fold></script>
     </body>
 </html>
