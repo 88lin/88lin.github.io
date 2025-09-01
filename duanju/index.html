@@ -1,362 +1,1806 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>短剧搜索</title>
+    <meta name="description" content="短剧搜索与播放平台 - 海量精彩短剧，随时随地观看">
+    <meta name="keywords" content="短剧平台, 短剧搜索, 在线短剧, 短剧播放">
+    <title>短剧搜索与播放平台</title>
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="icon" href="https://nuaa.tech/zz.svg">
+    <link href="static/css/duck.css" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
+        :root {
+            --primary: #009ff7;
+            --secondary: #78fadc;
+            --accent: #1eb6ff;
+            --light: #f0fcfa;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --light-gray: #e0e6ed;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
+            box-sizing: border-box;
+            font-family: 'Nunito', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef2f5 0%, #d9e4f0 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            line-height: 1.6;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #f5f5f5;background-image: linear-gradient(90deg, rgba(200,200,200,0.15) 1px, transparent 1px), linear-gradient(rgba(200,200,200,0.15) 1px, transparent 1px);background-size: 20px 20px;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .container {
-            width: 80%;
-            margin: 50px auto;
-            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 拟物化头部样式 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            cursor: pointer;
+            position: relative;
+            padding: 10px 20px;
+            border-radius: 18px;
             background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
         }
 
-        h1 {
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 14px 28px;
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            color: var(--dark) !important;
+            border: none;
+            border-radius: 18px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .nav-btn:hover::before {
+            opacity: 1;
+        }
+
+        .nav-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.15),
+            0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-btn span {
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .nav-btn i {
+            margin-right: 10px;
+            position: relative;
+            z-index: 1;
+            color: var(--primary);
+        }
+
+        .nav-btn:hover span,
+        .nav-btn:hover i {
+            color: white;
+        }
+
+        /* 工具标题 */
+        .tool-header {
             text-align: center;
-            color: #333;
+            margin: 30px 0 40px;
         }
 
+        .tool-title {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            text-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 6px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 4px;
+            box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .tool-subtitle {
+            color: var(--dark);
+            max-width: 800px;
+            margin: 5px auto 0;
+            font-size: 1.2rem;
+            font-weight: lighter;
+            padding: 15px 25px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 搜索区域 */
         .search-container {
+            max-width: 700px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 15px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 17px 25px;
+            border: none;
+            border-radius: 50px;
+            background: #e2f6ff;
+            color: var(--dark);
+            font-size: 1.1rem;
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(52, 152, 219, 0.2),
+            0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .search-input::placeholder {
+            color: var(--gray);
+        }
+
+        .search-btn {
+            background: #e2f6ff;
+            color: var(--dark);
+            border: none;
+            border-radius: 50px;
+            padding: 0 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(0, 0, 0, 0.08);
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
-        #searchText {
+        .search-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .search-btn:hover::before {
+            opacity: 1;
+        }
+
+        .search-btn:active {
+            transform: translateY(1px);
+            box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.15),
+            0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-btn span {
+            position: relative;
+            z-index: 1;
+            color: var(--primary);
+        }
+
+        .search-btn i {
+            position: relative;
+            z-index: 1;
+            color: var(--primary);
+        }
+
+        .search-btn:hover span,
+        .search-btn:hover i {
+            color: white;
+        }
+
+        /* 结果区域 */
+        .results-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background: linear-gradient(145deg, #f5f7fa, #e4edf5);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 15px 40px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #ffffff, #f0f4f9);
+            z-index: 0;
+            box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.05),
+            0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .result-card:hover {
+            transform: translateY(-8px);
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .card-content {
+            padding: 20px;
             flex: 1;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-
-        #searchBtn {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        #searchBtn:hover {
-            background-color: #0056b3;
-        }
-
-        .results {
-            margin-top: 20px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
         }
 
-        .result-item {
-            width: 45%;
-            background-color: #f9f9f9;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            color: var(--dark);
         }
 
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        #slider {
-    width: 100%;
-    max-width: 100%;
-    height: 250px; /* 默认高度 */
-    background-image: url('https://cdn.jsdelivr.net/gh/88lin/PicX@master/banner.7fulhg6q4hg0.webp');
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
-    border-radius: 10px;
-}
-
-/* 在屏幕宽度小于768px时，幻灯片自适应高度 */
-@media (max-width: 768px) {
-    #slider {
-        height: 100px; /* 自适应高度，可根据实际需求调整 */
-    }
-}
-
-        .button-group {
+        .card-info {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
             display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
+            align-items: center;
+            gap: 8px;
         }
 
-        .api-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-right: 10px;
-        }
-
-        .api-button:hover {
-            background-color: #0056b3;
+        .card-desc {
+            color: var(--dark);
+            font-size: 0.95rem;
+            margin-top: auto;
+            min-height: 60px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            opacity: 0.8;
         }
 
         .pagination {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 40px;
+            gap: 10px;
         }
 
-        .page-link {
-            padding: 8px 12px;
-            margin: 0 5px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
+        .page-btn {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            color: var(--dark);
+            border: none;
+            width: 80px;
+            height: 45px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 700;
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
-        .page-link:hover {
-            background-color: #0056b3;
+        .page-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, #8bdeff, #a0ceff);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .page-btn:hover, .page-btn.active {
+            transform: translateY(-3px);
+        }
+
+        .page-btn.active::before, .page-btn:hover::before {
+            opacity: 1;
+        }
+
+        .page-btn:hover span, .page-btn.active span {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 加载状态 */
+        .loading {
+            text-align: center;
+            padding: 60px 0;
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(52, 152, 219, 0.1);
+            border-top: 6px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .error-message {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            padding: 25px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 600px;
+            display: none;
+            position: relative;
+            z-index: 1;
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .error-message i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .error-message p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        /* 播放器页面样式 */
+        .player-page {
+            display: none;
+            padding: 20px 0;
+        }
+
+        .back-btn {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            color: var(--primary);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.05rem;
+            transition: var(--transition);
+            font-weight: 700;
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .back-btn:hover::before {
+            opacity: 1;
+        }
+
+        .back-btn:hover span, .back-btn:hover i {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .player-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 15px 40px rgba(0, 0, 0, 0.15);
+            background: #000;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        #video-player {
+            width: 100%;
+            display: block;
+            aspect-ratio: 16/9;
+        }
+
+        .player-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px 0;
+            justify-content: center;
+        }
+
+        .control-btn {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            color: var(--primary);
+            border: none;
+            padding: 14px 28px;
+            border-radius: 18px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .control-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .control-btn:hover::before {
+            opacity: 1;
+        }
+
+        .control-btn:hover span, .control-btn:hover i {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quality-selector {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            color: var(--primary);
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .quality-selector::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .quality-selector:hover {
+            transform: translateY(-3px);
+        }
+
+        .quality-selector:hover::before {
+            opacity: 1;
+        }
+
+        .quality-selector:hover span, .quality-selector:hover i {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quality-selector select {
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 14px 28px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quality-selector select option {
+            background: white;
+            color: var(--dark);
+        }
+
+        .episode-info {
+            background: linear-gradient(145deg, #f5f7fa, #e4edf5);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .episode-info::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #ffffff, #f0f4f9);
+            z-index: 0;
+            box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.05),
+            0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .episode-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .episode-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: var(--gray);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .episode-desc {
+            line-height: 1.7;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .episodes-container {
+            margin-top: 30px;
+            background: linear-gradient(145deg, #f5f7fa, #e4edf5);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 15px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .episodes-container::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border-radius: 18px;
+            background: linear-gradient(145deg, #ffffff, #f0f4f9);
+            z-index: 0;
+            box-shadow: inset 0 3px 10px rgba(0, 0, 0, 0.05),
+            0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .episodes-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .episode-item {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            border-radius: 12px;
+            padding: 14px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--dark);
+            font-weight: 600;
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.05),
+            0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .episode-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 0;
+        }
+
+        .episode-item:hover {
+            transform: translateY(-3px);
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.05),
+            0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .episode-item:hover::before {
+            opacity: 0.2;
+        }
+
+        .episode-item.active {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 700;
+        }
+
+        .quality-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 1rem;
+            color: var(--dark);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+        }
+
+        .quality-indicator .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .quality-720 .dot {
+            background-color: var(--secondary);
+        }
+
+        .quality-1080 .dot {
+            background-color: var(--primary);
+        }
+
+        .quality-original .dot {
+            background-color: var(--accent);
+        }
+
+        /* 历史记录样式 */
+        .history-container {
+            margin: 30px auto 40px;
+            max-width: 1200px;
+            display: none;
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .history-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .history-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 24px;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 3px;
+        }
+
+        .clear-history-btn {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            color: var(--primary);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .clear-history-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: inset 0 -3px 10px rgba(0, 0, 0, 0.1),
+            0 8px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .history-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .history-card {
+            background: linear-gradient(145deg, #f5f7fa, #e4edf5);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 10px 30px rgba(0, 0, 0, 0.08);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            position: relative;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .history-card:hover {
+            transform: translateY(-5px);
+            box-shadow: inset 0 -8px 25px rgba(0, 0, 0, 0.05),
+            0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .history-img {
+            width: 100px;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        .history-content {
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+        }
+
+        .history-title-text {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            color: var(--dark);
+        }
+
+        .history-episode {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+
+        .history-time {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: auto;
+        }
+
+        .no-history {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px;
+            color: var(--gray);
+        }
+
+        /* 装饰元素 */
+        .decoration {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .film-icon {
+            position: absolute;
+            font-size: 6rem;
+            color: var(--dark);
+            opacity: 0.05;
+        }
+
+        .film-1 {
+            top: 5%;
+            left: 5%;
+        }
+
+        .film-2 {
+            top: 15%;
+            right: 7%;
+            transform: rotate(-25deg);
+        }
+
+        .film-3 {
+            bottom: 15%;
+            left: 8%;
+            transform: rotate(15deg);
+        }
+
+        .film-4 {
+            bottom: 10%;
+            right: 6%;
+            transform: rotate(-45deg);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .tool-title {
+                font-size: 2.2rem;
+            }
+
+            .tool-subtitle {
+                font-size: 1.1rem;
+                padding: 12px 20px;
+            }
+
+            .history-list {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
         }
 
         @media (max-width: 768px) {
-            .result-item {
-                width: 100%;
+            .tool-title {
+                font-size: 1.9rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 17px;
+                justify-content: center;
+            }
+
+            .results-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .player-container {
+                flex-direction: column;
+            }
+
+            .episodes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+
+            .player-controls {
+                gap: 12px;
+            }
+
+            .history-list {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             }
         }
-@media (max-width: 768px) {
-    .button-group {
-        flex-direction: column; /* 在小屏幕下将按钮垂直排列 */
-        align-items: center; /* 水平居中按钮 */
-    }
 
-    .api-button {
-        margin-bottom: 10px; /* 增加按钮之间的间距 */
-    }
-}
+        @media (max-width: 580px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .tool-title {
+                font-size: 1.7rem;
+            }
+
+            .tool-subtitle {
+                font-size: 1rem;
+            }
+
+            .results-container {
+                grid-template-columns: 1fr;
+            }
+
+            .episodes-grid {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+
+            .control-btn, .quality-selector {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .player-controls {
+                flex-direction: column;
+            }
+
+            .film-icon {
+                display: none;
+            }
+
+            .history-list {
+                grid-template-columns: 1fr;
+            }
+
+            .history-card {
+                flex-direction: column;
+            }
+
+            .history-img {
+                width: 100%;
+                height: 120px;
+            }
+        }
+
+        .tool-title {
+                background: -webkit-linear-gradient(110deg, #009ff7, #78fadc);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                display: inline;
+            }
+
+        .ctrm-title { 
+                background: linear-gradient(90deg, #ffdee9, #b5fffc)!important;
+            }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <div id="slider"></div>
-        <h1>短剧搜索</h1>
-        <div class="search-container">
-            <input type="text" id="searchText" placeholder="找剧请输入：部分剧名">
-            <button id="searchBtn" onclick="searchAPI()">搜索</button>
-        </div>
-        <div class="button-group">
-            <button class="api-button" onclick="dailyUpdate()">每日更新</button>
-            <button class="api-button" onclick="getAllShortDramas()">全部短剧</button>
-            <button class="api-button" onclick="dailyUpdateAndDownload()">免费看剧</button>
-        </div>
-        <div class="results" id="results"></div>
-        <div class="pagination" id="pagination"></div>
+<!-- 装饰元素 -->
+<i class="fas fa-film film-icon film-1"></i>
+<i class="fas fa-film film-icon film-2"></i>
+<i class="fas fa-film film-icon film-3"></i>
+<i class="fas fa-film film-icon film-4"></i>
+<div class="container">
+    <!-- 头部导航 -->
+    <header>
+        <div class="logo" onclick="location.href='https://520.txsb.gq/duanju'">短剧搜索平台</div>
+        <a href="https://pro.gleeze.com" target="_blank" rel="noopener noreferrer" class="nav-btn"></a>
+            <i class="fa-solid fa-user"></i>
+            <span>故人博客</span>
+        </a>
+    </header>
+
+    <!-- 工具标题 -->
+    <div class="tool-header">
+        <h2 class="tool-title">短剧搜索与播放平台</h2>
     </div>
 
-    <script>
-        function searchAPI() {
-    // 清除“全部短剧”页面的查询结果
-    allShortDramasData = [];
-    currentPage = -1;
-    document.getElementById('pagination').innerHTML = '';
-    
-    const searchText = document.getElementById('searchText').value;
-    fetch(`https://zy.6789o.com/duanjuapi/search.php?text=${encodeURIComponent(searchText)}`)
-        .then(response => response.json())
-        .then(data => {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = '';
-            if (data.code === 200) {
-                data.data.forEach(item => {
-                    const name = item.name;
-                    const viewLink = item.viewlink;
-                    const resultElement = document.createElement('div');
-                    resultElement.classList.add('result-item');
-                    resultElement.innerHTML = `<strong>短剧名称：</strong> ${name}<br><strong>观看地址：</strong> <a href="${viewLink}" target="_blank">${viewLink}</a>`;
-                    resultsDiv.appendChild(resultElement);
-                });
-            } else {
-                resultsDiv.innerHTML = '搜索关键词资源名字不能为空';
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            document.getElementById('results').innerHTML = 'An error occurred while fetching data';
+    <!-- 搜索页面 -->
+    <div id="searchPage">
+        <!-- 搜索区域 -->
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="输入短剧名称进行搜索...">
+                <button id="searchBtn" class="search-btn">
+                    <i class="fas fa-search"></i>
+                    <span>搜索</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- 历史记录区域 -->
+        <div class="history-container" id="historyContainer">
+            <div class="history-header">
+                <h3 class="history-title">观看历史</h3>
+                <button class="clear-history-btn" id="clearHistoryBtn">
+                    <i class="fas fa-trash-alt"></i>
+                    <span>清空历史</span>
+                </button>
+            </div>
+            <div class="history-list" id="historyList">
+                <!-- 历史记录将通过JS动态填充 -->
+            </div>
+        </div>
+
+        <div class="loading" id="searchLoading">
+            <div class="spinner"></div>
+            <p>正在搜索短剧，请稍候...</p>
+        </div>
+
+        <div class="error-message" id="searchError">
+            <i class="fas fa-exclamation-circle"></i>
+            <p id="errorText">请求错误，请稍后再试</p>
+        </div>
+
+        <!-- 结果区域 -->
+        <div class="results-container" id="resultsContainer">
+            <!-- 搜索结果将通过JS动态填充 -->
+        </div>
+
+        <div class="pagination" id="pagination">
+            <!-- 分页按钮将通过JS动态生成 -->
+        </div>
+    </div>
+
+    <!-- 播放页面 -->
+    <div id="playerPage" class="player-page">
+        <button class="back-btn" id="backToDetail">
+            <i class="fas fa-arrow-left"></i>
+            <span>返回剧集列表</span>
+        </button>
+
+        <div class="player-container">
+            <div class="video-wrapper">
+                <video id="video-player" controls playsinline></video>
+            </div>
+
+            <div class="player-controls">
+                <div class="quality-selector">
+                    <select id="qualitySelect">
+                        <option value="original">原始画质</option>
+                        <option value="1080p">超清 1080p</option>
+                        <option value="720p">高清 720p</option>
+                    </select>
+                </div>
+                <button class="control-btn" id="prevBtn">
+                    <i class="fas fa-step-backward"></i>
+                    <span>上一集</span>
+                </button>
+                <button class="control-btn" id="nextBtn">
+                    <i class="fas fa-step-forward"></i>
+                    <span>下一集</span>
+                </button>
+                <button class="control-btn" id="fullscreenBtn">
+                    <i class="fas fa-expand"></i>
+                    <span>全屏播放</span>
+                </button>
+            </div>
+
+            <div class="episode-info">
+                <h2 class="episode-title" id="currentEpisodeTitle">正在加载...</h2>
+                <div class="episode-meta">
+                            <span class="quality-indicator quality-720" id="episodeQuality">
+                                <span class="dot"></span> 720p
+                            </span>
+                    <span id="episodeDuration">时长: 0秒</span>
+                    <span id="episodeSize">大小: 0MB</span>
+                </div>
+                <p class="episode-desc" id="episodeDesc"></p>
+            </div>
+
+            <div class="episodes-container">
+                <h3 class="episodes-title">
+                    <span>剧集列表</span>
+                    <span class="quality-indicator quality-720" id="currentQuality">
+                                <span class="dot"></span> 当前清晰度: 720p
+                            </span>
+                </h3>
+                <div class="episodes-grid" id="episodesGrid">
+                    <!-- 剧集列表将通过JS动态填充 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 全局变量
+    let currentPage = 1;
+    let totalPages = 1;
+    let currentDrama = null;
+    let currentEpisodeIndex = 0;
+    let videoList = [];
+    let currentQuality = '720p'; // 默认清晰度
+    const HISTORY_KEY = 'drama_watch_history';
+    const MAX_HISTORY_ITEMS = 12; // 最多存储12条历史记录
+
+    // DOM元素
+    const searchPage = document.getElementById('searchPage');
+    const playerPage = document.getElementById('playerPage');
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const pagination = document.getElementById('pagination');
+    const searchLoading = document.getElementById('searchLoading');
+    const searchError = document.getElementById('searchError');
+    const errorText = document.getElementById('errorText');
+    const backToDetail = document.getElementById('backToDetail');
+    const videoPlayer = document.getElementById('video-player');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    const qualitySelect = document.getElementById('qualitySelect');
+    const currentEpisodeTitle = document.getElementById('currentEpisodeTitle');
+    const episodeQuality = document.getElementById('episodeQuality');
+    const episodeDuration = document.getElementById('episodeDuration');
+    const episodeSize = document.getElementById('episodeSize');
+    const episodeDesc = document.getElementById('episodeDesc');
+    const episodesGrid = document.getElementById('episodesGrid');
+    const currentQualityIndicator = document.getElementById('currentQuality');
+    const historyContainer = document.getElementById('historyContainer');
+    const historyList = document.getElementById('historyList');
+    const clearHistoryBtn = document.getElementById('clearHistoryBtn');
+
+    // 初始化
+    document.addEventListener('DOMContentLoaded', () => {
+        // 绑定事件
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') performSearch();
         });
-}
-function dailyUpdateAndDownload() {
-    dailyUpdate();
 
-    window.location.href = 'https://pro.gleeze.com/article/46';
-}
+        backToDetail.addEventListener('click', () => {
+            // 修复播放界面未完全关闭的问题
+            videoPlayer.pause();
+            videoPlayer.src = '';
 
-function downloadTxtFile(filename, content) {
-    const element = document.createElement('a');
-    const file = new Blob([content], { type: 'text/plain' });
-    element.href = URL.createObjectURL(file);
-    element.download = filename;
-    document.body.appendChild(element); // 兼容Firefox
-    element.click();
-    document.body.removeChild(element);
-}
+            playerPage.style.display = 'none';
+            searchPage.style.display = 'block';
 
-function dailyUpdate() {
-    // 清除“全部短剧”页面的查询结果
-    allShortDramasData = [];
-    currentPage = -1;
-    document.getElementById('pagination').innerHTML = '';
-    
-    fetch('https://zy.6789o.com/duanjuapi/today.php')
-        .then(response => response.json())
-        .then(data => {
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = ''; // 清空先前的结果
+            // 显示历史记录
+            renderHistory();
+        });
 
-            if (data.code === 1) {
-                if (data.data && Array.isArray(data.data)) {
-                    data.data.forEach(item => {
-                        const name = item.name;
-                        const viewLink = item.viewlink;
+        prevBtn.addEventListener('click', playPreviousEpisode);
+        nextBtn.addEventListener('click', playNextEpisode);
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
 
-                        const resultElement = document.createElement('div');
-                        resultElement.classList.add('result-item');
-                        resultElement.innerHTML = `<strong>短剧名称：</strong> ${name}<br><strong>观看地址：</strong> <a href="${viewLink}" target="_blank">${viewLink}</a>`;
-                        resultsDiv.appendChild(resultElement);
-                    });
-                } else {
-                    resultsDiv.innerHTML = 'No daily update information available';
+        // 清晰度切换事件
+        qualitySelect.addEventListener('change', () => {
+            currentQuality = qualitySelect.value;
+            updateQualityIndicator();
+            playEpisode(currentEpisodeIndex);
+        });
+
+        // 监听视频结束事件
+        videoPlayer.addEventListener('ended', () => {
+            if (currentEpisodeIndex < videoList.length - 1) {
+                playNextEpisode();
+            }
+        });
+
+        // 清空历史记录按钮事件
+        clearHistoryBtn.addEventListener('click', clearHistory);
+
+        // 初始化时渲染历史记录
+        renderHistory();
+    });
+
+    // 执行搜索
+    function performSearch() {
+        const keyword = searchInput.value.trim();
+        if (keyword) {
+            currentPage = 1;
+            searchDrama(keyword, currentPage, false);
+        }
+    }
+
+    // 搜索短剧
+    async function searchDrama(keyword, page, isDefault) {
+        showLoading(true);
+        hideError();
+        try {
+            const url = `https://api.xingzhige.com/API/playlet/?keyword=${encodeURIComponent(keyword)}&page=${page}`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`HTTP错误! 状态: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.code === 0) {
+                displayResults(data.data, isDefault);
+                if (!isDefault) {
+                    setupPagination(data.data.length, page);
                 }
             } else {
-                resultsDiv.innerHTML = 'Daily update data not found';
+                showError(`搜索失败: ${data.msg}`);
             }
-        })
-        .catch(error => {
-            console.error('Daily Update Error:', error);
-            document.getElementById('results').innerHTML = 'An error occurred while fetching daily update data';
-        });
-}
-               let currentPage = 1;
-        const itemsPerPage = 20;
-        let allShortDramasData = [];
+        } catch (error) {
+            console.error('搜索出错:', error);
+            showError(`请求出错: ${error.message}`);
+        } finally {
+            showLoading(false);
+        }
+    }
 
-        function displayResults() {
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            const currentPageData = allShortDramasData.slice(startIndex, endIndex);
+    // 显示搜索结果
+    function displayResults(results, isDefault) {
+        resultsContainer.innerHTML = '';
 
-            const resultsDiv = document.getElementById('results');
-            resultsDiv.innerHTML = ''; // 清空之前的结果
+        if (results.length === 0) {
+            resultsContainer.innerHTML = `
+                        <div class="no-results" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+                            <i class="fas fa-film" style="font-size: 3rem; margin-bottom: 20px; color: var(--gray);"></i>
+                            <h3>未找到相关短剧</h3>
+                            <p>请尝试其他关键词搜索</p>
+                        </div>
+                    `;
+            return;
+        }
+        if (isDefault) {
+            results = results.slice(0, 9)
+        }
+        results.forEach(drama => {
+            const card = document.createElement('div');
+            card.className = 'result-card';
+            card.innerHTML = `
+                        <img src="${drama.cover}" alt="${drama.title}" class="card-img" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                        <div class="card-content">
+                            <h3 class="card-title">${drama.title}</h3>
+                            <div class="card-info">
+                                <i class="fas fa-user"></i> ${drama.author}
+                            </div>
+                            <div class="card-info">
+                                <i class="fas fa-tags"></i> ${drama.type}
+                            </div>
+                            <p class="card-desc">${drama.desc || '暂无简介'}</p>
+                        </div>
+                    `;
 
-            currentPageData.forEach(item => {
-                const name = item.name;
-                const viewLink = item.viewlink;
-
-                const resultElement = document.createElement('div');
-                resultElement.classList.add('result-item');
-                resultElement.innerHTML = `<strong>短剧名称：</strong> ${name}<br><strong>观看地址：</strong> <a href="${viewLink}" target="_blank">${viewLink}</a>`;
-                resultsDiv.appendChild(resultElement);
+            card.addEventListener('click', () => {
+                getDramaDetail(drama.book_id);
             });
 
-            updatePagination();
-        }
-
-        function updatePagination() {
-    const totalPages = Math.ceil(allShortDramasData.length / itemsPerPage);
-    const paginationDiv = document.getElementById('pagination');
-    paginationDiv.innerHTML = '';
-
-    let prevArrow = null;
-    if (currentPage > 1) {
-        prevArrow = createPaginationArrow('上一页', currentPage - 1);
-    }
-    if (prevArrow) {
-        paginationDiv.appendChild(prevArrow);
-    }
-    
-    let startPage = currentPage > 4 ? currentPage - 2 : 1;
-    let endPage = startPage + 4 < totalPages ? startPage + 4 : totalPages;
-
-    if (startPage > 1) {
-        const firstPageLink = createPaginationLink(1);
-        paginationDiv.appendChild(firstPageLink);
-        if (startPage > 2) {
-            const ellipsis = createPaginationEllipsis();
-            paginationDiv.appendChild(ellipsis);
-        }
+            resultsContainer.appendChild(card);
+        });
     }
 
-    for (let i = startPage; i <= endPage; i++) {
-        const pageLink = createPaginationLink(i);
-        paginationDiv.appendChild(pageLink);
+    // 设置分页
+    function setupPagination(totalItems, currentPage) {
+        pagination.innerHTML = '';
+
+        // 计算总页数（假设每页6个结果）
+        totalPages = Math.ceil(totalItems / 6);
+
+        // 添加上一页按钮
+        const prevBtn = document.createElement('button');
+        prevBtn.className = 'page-btn';
+        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+        prevBtn.disabled = currentPage === 1;
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                searchDrama(searchInput.value.trim(), currentPage, false);
+            }
+        });
+        pagination.appendChild(prevBtn);
+
+        // 添加页码按钮
+        const startPage = Math.max(1, currentPage - 2);
+        const endPage = Math.min(totalPages, currentPage + 2);
+
+        for (let i = startPage; i <= endPage; i++) {
+            const pageBtn = document.createElement('button');
+            pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+            pageBtn.innerHTML = `<span>${i}</span>`;
+            pageBtn.addEventListener('click', () => {
+                if (i !== currentPage) {
+                    currentPage = i;
+                    searchDrama(searchInput.value.trim(), currentPage, false);
+                }
+            });
+            pagination.appendChild(pageBtn);
+        }
+
+        // 添加下一页按钮
+        const nextBtn = document.createElement('button');
+        nextBtn.className = 'page-btn';
+        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+        nextBtn.disabled = currentPage === totalPages;
+        nextBtn.addEventListener('click', () => {
+            if (currentPage < totalPages) {
+                currentPage++;
+                searchDrama(searchInput.value.trim(), currentPage, false);
+            }
+        });
+        pagination.appendChild(nextBtn);
     }
 
-    if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-            const ellipsis = createPaginationEllipsis();
-            paginationDiv.appendChild(ellipsis);
+    // 获取短剧详情
+    async function getDramaDetail(bookId) {
+        showLoading(true);
+        hideError();
+
+        try {
+            const url = `https://api.xingzhige.com/API/playlet/?book_id=${bookId}`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`HTTP错误! 状态: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.code === 0) {
+                currentDrama = data.data.detail;
+                videoList = data.data.video_list;
+
+                // 关键优化：检查该剧是否有历史记录
+                const history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+                const historyItem = history.find(item => item.bookId === bookId);
+
+                // 重置当前剧集索引
+                if (historyItem) {
+                    // 使用历史记录中的集数索引，但要确保在范围内
+                    currentEpisodeIndex = Math.min(Math.max(0, historyItem.episodeIndex), videoList.length - 1);
+                } else {
+                    // 没有历史记录，从第一集开始
+                    currentEpisodeIndex = 0;
+                }
+
+                showPlayerPage();
+            } else {
+                showError(`获取详情失败: ${data.msg}`);
+            }
+        } catch (error) {
+            console.error('获取详情出错:', error);
+            showError(`请求出错: ${error.message}`);
+        } finally {
+            showLoading(false);
         }
-        const lastPageLink = createPaginationLink(totalPages);
-        paginationDiv.appendChild(lastPageLink);
     }
-}
 
-        function createPaginationLink(pageNum) {
-            const pageLink = document.createElement('a');
-            pageLink.classList.add('page-link');
-            pageLink.href = '#';
-            pageLink.textContent = pageNum;
-            pageLink.onclick = () => {
-                currentPage = pageNum;
-                displayResults();
-            };
-            return pageLink;
+    // 显示播放页面
+    function showPlayerPage() {
+        searchPage.style.display = 'none';
+        playerPage.style.display = 'block';
+
+        // 更新剧集信息
+        currentEpisodeTitle.textContent = currentDrama.title;
+        episodeDesc.textContent = currentDrama.desc || '暂无简介';
+
+        // 重置清晰度选择器
+        currentQuality = '720p';
+        qualitySelect.value = currentQuality;
+        updateQualityIndicator();
+
+        // 渲染剧集列表
+        renderEpisodeList();
+
+        // 播放当前剧集
+        if (videoList.length > 0) {
+            playEpisode(currentEpisodeIndex);
+        }
+    }
+
+    // 更新清晰度指示器
+    function updateQualityIndicator() {
+        // 更新当前清晰度指示器
+        const qualityClass = `quality-${currentQuality.replace('p', '')}`;
+        currentQualityIndicator.className = `quality-indicator ${qualityClass}`;
+        currentQualityIndicator.innerHTML = `<span class="dot"></span> 当前清晰度: ${currentQuality}`;
+
+        // 更新视频信息区域的清晰度指示器
+        episodeQuality.className = `quality-indicator ${qualityClass}`;
+        episodeQuality.innerHTML = `<span class="dot"></span> ${currentQuality}`;
+    }
+
+    // 渲染剧集列表
+    function renderEpisodeList() {
+        episodesGrid.innerHTML = '';
+
+        videoList.forEach((episode, index) => {
+            const episodeItem = document.createElement('div');
+            episodeItem.className = `episode-item ${index === currentEpisodeIndex ? 'active' : ''}`;
+            episodeItem.textContent = episode.title;
+
+            episodeItem.addEventListener('click', () => {
+                currentEpisodeIndex = index;
+                playEpisode(currentEpisodeIndex);
+                updateEpisodeListSelection();
+            });
+
+            episodesGrid.appendChild(episodeItem);
+        });
+    }
+
+    // 更新剧集列表选择状态
+    function updateEpisodeListSelection() {
+        const items = episodesGrid.querySelectorAll('.episode-item');
+        items.forEach((item, index) => {
+            item.classList.toggle('active', index === currentEpisodeIndex);
+        });
+    }
+
+    // 播放指定剧集
+    async function playEpisode(index) {
+        if (index < 0 || index >= videoList.length) return;
+
+        const videoId = videoList[index].video_id;
+        try {
+            const url = `https://api.xingzhige.com/API/playlet/?video_id=${videoId}&quality=${currentQuality}`;
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error(`HTTP错误! 状态: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (data.code === 0) {
+                const videoData = data.data.video;
+
+                // 设置视频源
+                videoPlayer.src = videoData.url;
+                videoPlayer.load();
+
+                // 更新剧集信息
+                currentEpisodeTitle.textContent = `${currentDrama.title} - ${videoList[index].title}`;
+
+                // 更新清晰度指示器
+                updateQualityIndicator();
+
+                // 更新视频信息
+                episodeDuration.textContent = `时长: ${Math.round(videoData.duration)}秒`;
+                episodeSize.textContent = `大小: ${videoData.size_str || '未知'}`;
+
+                // 更新剧集选择状态
+                updateEpisodeListSelection();
+
+                // 添加观看历史
+                addToHistory(currentDrama.book_id, currentDrama.title, currentDrama.cover, index);
+
+                setTimeout(() => {
+                    videoPlayer.setAttribute('referrerpolicy', 'no-referrer');
+                    // 自动播放
+                    videoPlayer.play().catch(e => console.log('自动播放失败:', e));
+                }, 1000);
+            } else {
+                showError(`获取视频失败: ${data.msg}`);
+            }
+        } catch (error) {
+            console.error('播放剧集出错:', error);
+            showError(`请求出错: ${error.message}`);
+        }
+    }
+
+    // 播放上一集
+    function playPreviousEpisode() {
+        if (currentEpisodeIndex > 0) {
+            currentEpisodeIndex--;
+            playEpisode(currentEpisodeIndex);
+        }
+    }
+
+    // 播放下一集
+    function playNextEpisode() {
+        if (currentEpisodeIndex < videoList.length - 1) {
+            currentEpisodeIndex++;
+            playEpisode(currentEpisodeIndex);
+        }
+    }
+
+    // 切换全屏
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            if (videoPlayer.requestFullscreen) {
+                videoPlayer.requestFullscreen();
+            } else if (videoPlayer.mozRequestFullScreen) {
+                videoPlayer.mozRequestFullScreen();
+            } else if (videoPlayer.webkitRequestFullscreen) {
+                videoPlayer.webkitRequestFullscreen();
+            } else if (videoPlayer.msRequestFullscreen) {
+                videoPlayer.msRequestFullscreen();
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+
+    // 添加观看历史
+    function addToHistory(bookId, title, cover, episodeIndex) {
+        // 获取现有历史记录
+        let history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+
+        // 检查是否已存在相同bookId的记录
+        const existingIndex = history.findIndex(item => item.bookId === bookId);
+
+        // 创建新历史记录项
+        const historyItem = {
+            bookId,
+            title,
+            cover,
+            episodeIndex,
+            timestamp: new Date().toISOString()
+        };
+
+        if (existingIndex !== -1) {
+            // 更新现有记录
+            history[existingIndex] = historyItem;
+        } else {
+            // 添加新记录
+            history.unshift(historyItem);
+
+            // 限制历史记录数量
+            if (history.length > MAX_HISTORY_ITEMS) {
+                history = history.slice(0, MAX_HISTORY_ITEMS);
+            }
         }
 
-        function createPaginationArrow(text, pageNum) {
-            const pageArrow = document.createElement('a');
-            pageArrow.classList.add('page-link');
-            pageArrow.href = '#';
-            pageArrow.textContent = text;
-            pageArrow.onclick = () => {
-                currentPage = pageNum;
-                displayResults();
-            };
-            return pageArrow;
+        // 保存到本地存储
+        localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+
+        // 渲染历史记录
+        renderHistory();
+    }
+
+    // 渲染历史记录
+    function renderHistory() {
+        const history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+
+        if (history.length === 0) {
+            historyContainer.style.display = 'none';
+            return;
         }
 
-        function createPaginationEllipsis() {
-            const ellipsis = document.createElement('span');
-            ellipsis.textContent = '...';
-            return ellipsis;
-        }
+        historyContainer.style.display = 'block';
+        historyList.innerHTML = '';
 
-        function getAllShortDramas() {
-            fetch('https://zy.6789o.com/duanjuapi/list.php')
-                .then(response => response.json())
-                .then(data => {
-                    allShortDramasData = data.data;
-                    currentPage = 1;
-                    displayResults();
-                })
-                .catch(error => {
-                    console.error('Get All Short Dramas Error:', error);
-                    document.getElementById('results').innerHTML = 'An error occurred while fetching all short dramas data';
-                });
+        history.forEach(item => {
+            const historyCard = document.createElement('div');
+            historyCard.className = 'history-card';
+            historyCard.innerHTML = `
+                    <img src="${item.cover}" alt="${item.title}" class="history-img" onerror="this.src='https://via.placeholder.com/100x150?text=No+Image'">
+                    <div class="history-content">
+                        <h3 class="history-title-text">${item.title}</h3>
+                        <div class="history-episode">播放至: 第${item.episodeIndex + 1}集</div>
+                        <div class="history-time">${formatDate(item.timestamp)}</div>
+                    </div>
+                `;
+
+            historyCard.addEventListener('click', () => {
+                // 从历史记录播放
+                playFromHistory(item.bookId, item.episodeIndex);
+            });
+
+            historyList.appendChild(historyCard);
+        });
+    }
+
+    // 从历史记录播放
+    function playFromHistory(bookId, episodeIndex) {
+        // 设置当前播放集数
+        currentEpisodeIndex = episodeIndex;
+
+        // 获取短剧详情
+        getDramaDetail(bookId);
+    }
+
+    // 清空历史记录
+    function clearHistory() {
+        if (confirm('确定要清空所有观看历史吗？')) {
+            localStorage.removeItem(HISTORY_KEY);
+            historyContainer.style.display = 'none';
         }
-    </script>
+    }
+
+    // 格式化日期
+    function formatDate(isoString) {
+        const date = new Date(isoString);
+        return `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')} ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
+    }
+
+    // 显示加载状态
+    function showLoading(show) {
+        searchLoading.style.display = show ? 'block' : 'none';
+    }
+
+    // 显示错误信息
+    function showError(message) {
+        errorText.textContent = message;
+        searchError.style.display = 'block';
+    }
+
+    // 隐藏错误信息
+    function hideError() {
+        searchError.style.display = 'none';
+    }
+</script>
+<script src="https://cdn.jsdmirror.cn/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://dh.z-l.top/chat.js" async="async" fold></script>
 </body>
 </html>
