@@ -409,6 +409,10 @@
             border: 2px solid rgba(255, 255, 255, 0.8);
         }
 
+        .page-btn.dots::before {
+            opacity: 0 !important;
+        }
+
         .page-btn::before {
             content: '';
             position: absolute;
@@ -431,6 +435,12 @@
         }
 
         .page-btn:hover span, .page-btn.active span {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .page-btn:hover i, .page-btn.active i {
             color: white;
             position: relative;
             z-index: 1;
@@ -1287,6 +1297,7 @@
     let currentQuality = '720p'; // 默认清晰度
     const HISTORY_KEY = 'drama_watch_history';
     const MAX_HISTORY_ITEMS = 12; // 最多存储12条历史记录
+    const PAGE_SIZE = 6; // 每页显示条数
 
     // DOM元素
     const searchPage = document.getElementById('searchPage');
@@ -1320,7 +1331,7 @@
         // 绑定事件
         searchBtn.addEventListener('click', performSearch);
         searchInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') performSearch();
+            if (!e.isComposing && e.key === 'Enter') performSearch();
         });
 
         backToDetail.addEventListener('click', () => {
@@ -1386,7 +1397,8 @@
             if (data.code === 0) {
                 displayResults(data.data, isDefault);
                 if (!isDefault) {
-                    setupPagination(data.data.length, page);
+                    const isLastPage = data.data.length < PAGE_SIZE;
+                    setupPaginationWindow(page, isLastPage); 
                 }
             } else {
                 showError(`搜索失败: ${data.msg}`);
@@ -1397,6 +1409,12 @@
         } finally {
             showLoading(false);
         }
+    }
+
+    function escapeHTML(s) {
+    return s ? s.replace(/[&<>\"']/g, c => (
+        {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]
+    )) : '';
     }
 
     // 显示搜索结果
@@ -1413,25 +1431,19 @@
                     `;
             return;
         }
-        if (isDefault) {
-            results = results.slice(0, 9)
-        }
+        if (!isDefault) results = results.slice(0, PAGE_SIZE);
         results.forEach(drama => {
             const card = document.createElement('div');
             card.className = 'result-card';
             card.innerHTML = `
-                        <img src="${drama.cover}" alt="${drama.title}" class="card-img" onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
+                        <img src="${escapeHTML(drama.cover)}" alt="${escapeHTML(drama.title)}" class="card-img"
+                            onerror="this.src='https://via.placeholder.com/300x200?text=No+Image'">
                         <div class="card-content">
-                            <h3 class="card-title">${drama.title}</h3>
-                            <div class="card-info">
-                                <i class="fas fa-user"></i> ${drama.author}
-                            </div>
-                            <div class="card-info">
-                                <i class="fas fa-tags"></i> ${drama.type}
-                            </div>
-                            <p class="card-desc">${drama.desc || '暂无简介'}</p>
-                        </div>
-                    `;
+                            <h3 class="card-title">${escapeHTML(drama.title)}</h3>
+                            <div class="card-info"><i class="fas fa-user"></i> ${escapeHTML(drama.author)}</div>
+                            <div class="card-info"><i class="fas fa-tags"></i> ${escapeHTML(drama.type)}</div>
+                            <p class="card-desc">${escapeHTML(drama.desc || '暂无简介')}</p>
+                        </div>`;
 
             card.addEventListener('click', () => {
                 getDramaDetail(drama.book_id);
@@ -1442,54 +1454,86 @@
     }
 
     // 设置分页
-    function setupPagination(totalItems, currentPage) {
-        pagination.innerHTML = '';
+    function setupPaginationWindow(pageNum, isLastPage) {
+    currentPage = pageNum;
+    pagination.innerHTML = '';
 
-        // 计算总页数（假设每页6个结果）
-        totalPages = Math.ceil(totalItems / 6);
-
-        // 添加上一页按钮
-        const prevBtn = document.createElement('button');
-        prevBtn.className = 'page-btn';
-        prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
-        prevBtn.disabled = currentPage === 1;
-        prevBtn.addEventListener('click', () => {
-            if (currentPage > 1) {
-                currentPage--;
-                searchDrama(searchInput.value.trim(), currentPage, false);
-            }
-        });
-        pagination.appendChild(prevBtn);
-
-        // 添加页码按钮
-        const startPage = Math.max(1, currentPage - 2);
-        const endPage = Math.min(totalPages, currentPage + 2);
-
-        for (let i = startPage; i <= endPage; i++) {
-            const pageBtn = document.createElement('button');
-            pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
-            pageBtn.innerHTML = `<span>${i}</span>`;
-            pageBtn.addEventListener('click', () => {
-                if (i !== currentPage) {
-                    currentPage = i;
-                    searchDrama(searchInput.value.trim(), currentPage, false);
-                }
-            });
-            pagination.appendChild(pageBtn);
+    // 上一页
+    const prevBtn = document.createElement('button');
+    prevBtn.className = 'page-btn';
+    prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+    prevBtn.disabled = currentPage === 1;
+    prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+        const kw = searchInput.value.trim();
+        const target = currentPage - 1;
+        currentPage = target;
+        searchDrama(kw, target, false);
         }
+    });
+    pagination.appendChild(prevBtn);
 
-        // 添加下一页按钮
-        const nextBtn = document.createElement('button');
-        nextBtn.className = 'page-btn';
-        nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
-        nextBtn.disabled = currentPage === totalPages;
-        nextBtn.addEventListener('click', () => {
-            if (currentPage < totalPages) {
-                currentPage++;
-                searchDrama(searchInput.value.trim(), currentPage, false);
-            }
-        });
-        pagination.appendChild(nextBtn);
+    // 计算数字页范围
+    const start = Math.max(1, currentPage - 2);
+    const end   = isLastPage ? currentPage : currentPage + 2;
+
+    if (start > 1) {
+        const firstBtn = document.createElement('button');
+        firstBtn.className = 'page-btn';
+        firstBtn.innerHTML = '<span>1</span>';
+        firstBtn.dataset.page = '1';
+        firstBtn.addEventListener('click', onPageClick);
+        pagination.appendChild(firstBtn);
+
+        if (start > 2) {
+        const leftDots = document.createElement('button');
+        leftDots.className = 'page-btn dots';
+        leftDots.disabled = true;
+        leftDots.innerHTML = '<span>…</span>';
+        pagination.appendChild(leftDots);
+        }
+    }
+
+    // 数字页
+    for (let i = start; i <= end; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.className = `page-btn ${i === currentPage ? 'active' : ''}`;
+        pageBtn.innerHTML = `<span>${i}</span>`;
+        pageBtn.dataset.page = String(i);
+        pageBtn.addEventListener('click', onPageClick);
+        pagination.appendChild(pageBtn);
+    }
+
+    if (!isLastPage) {
+        const rightDots = document.createElement('button');
+        rightDots.className = 'page-btn dots';
+        rightDots.disabled = true;
+        rightDots.innerHTML = '<span>…</span>';
+        pagination.appendChild(rightDots);
+    }
+
+    // 下一页
+    const nextBtn = document.createElement('button');
+    nextBtn.className = 'page-btn';
+    nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+    nextBtn.disabled = isLastPage;
+    nextBtn.addEventListener('click', () => {
+        if (!isLastPage) {
+        const kw = searchInput.value.trim();
+        const target = currentPage + 1;
+        currentPage = target;
+        searchDrama(kw, target, false);
+        }
+    });
+    pagination.appendChild(nextBtn);
+
+    function onPageClick(e) {
+        const target = Number(e.currentTarget.dataset.page);
+        if (!Number.isFinite(target) || target === currentPage) return;
+        const kw = searchInput.value.trim();
+        currentPage = target;
+        searchDrama(kw, target, false);
+    }
     }
 
     // 获取短剧详情
@@ -1744,13 +1788,13 @@
             const historyCard = document.createElement('div');
             historyCard.className = 'history-card';
             historyCard.innerHTML = `
-                    <img src="${item.cover}" alt="${item.title}" class="history-img" onerror="this.src='https://via.placeholder.com/100x150?text=No+Image'">
+                    <img src="${escapeHTML(item.cover)}" alt="${escapeHTML(item.title)}" class="history-img"
+                        onerror="this.src='https://via.placeholder.com/100x150?text=No+Image'">
                     <div class="history-content">
-                        <h3 class="history-title-text">${item.title}</h3>
+                        <h3 class="history-title-text">${escapeHTML(item.title)}</h3>
                         <div class="history-episode">播放至: 第${item.episodeIndex + 1}集</div>
                         <div class="history-time">${formatDate(item.timestamp)}</div>
-                    </div>
-                `;
+                    </div>`;
 
             historyCard.addEventListener('click', () => {
                 // 从历史记录播放
