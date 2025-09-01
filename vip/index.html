@@ -775,7 +775,7 @@
         <i class="fas fa-play-circle film-icon film-4"></i>
         <div class="container">
             <header>
-                <div class="logo">视频云解析</div>
+                <div class="logo" onclick="location.href='https://520.txsb.gq/vip'">视频云解析</div>
                 <a href="https://pro.gleeze.com" target="_blank" rel="noopener noreferrer" class="nav-btn">
                     <i class="fa-solid fa-user"></i>
                     <span>故人博客</span>
@@ -783,17 +783,7 @@
             </header>
             <div class="control-bar">
                 <div class="input-group api-group">
-                    <select id="api-select">
-                        <option value="https://jiexi.789jiexi.icu:4433/?url=">接口1 - yemu.xyz</option>
-                        <option value="https://jx.2s0.cn/player/?url=">接口2 - pouyuan.com</option>
-                        <option value="https://jx.973973.xyz/?url=">接口3 - playerjy.com</option>
-                        <option value="https://jx.xmflv.com/?url=">接口4 - xmflv.com</option>
-                        <option value="https://jx.m3u8.tv/jiexi/?url=">接口5 - m3u8.tv</option>
-                        <option value="http://www.jzmhtt.com/zdy/vip/?url=">接口6 - jzmhtt.com</option>
-                        <option value="https://jx.xmflv.cc/?url=">接口7 - xmflv.cc</option>
-                        <option value="https://jx.mmkv.cn/tv.php?url=">接口8 - mmkv.cn</option>
-                        <option value="https://jx.xymp4.cc/?url=">接口9 - xymp4.cc</option>
-                    </select>
+                    <select id="api-select"></select>
                 </div>
                 <div class="input-group url-group">
                     <input type="url" id="video-url" placeholder="输入视频链接点击解析视频即可" autocomplete="off">
@@ -805,7 +795,7 @@
             </div>
             <div class="player-container">
                 <div class="video-wrapper">
-                    <iframe id="video-player" allowfullscreen></iframe>
+                    <iframe id="video-player" allow="fullscreen" allowfullscreen></iframe>
                 </div>
                 <div class="player-controls">
                     <div class="player-info">
@@ -1044,6 +1034,10 @@
                         条
                     </span>
                 </div>
+                <div class="status-item">
+                    <i class="fas fa-clock"></i>
+                    <span>最近一次解析：<span id="last-updated">--:--</span></span>
+                </div>
             </div>
             <div class="footer">
                 <p>本工具仅供学习交流使用，请支持正版视频平台 | 解析接口来源于网络</p>
@@ -1238,7 +1232,7 @@
                     // 保存到历史记录
                     saveToHistory(url);
 
-                    showToast('解析成功，开始播放...');
+                    showToast('开始解析...');
                 }
 
                 // 保存到历史记录
@@ -1308,7 +1302,7 @@
                 });
 
                 //API本地存储
-                apiSelect.addEventListener('click', function() {
+                apiSelect.addEventListener('change', function() {
                     localStorage.setItem('PLAY_VIP_API', apiSelect.value || '');
                 })
 
