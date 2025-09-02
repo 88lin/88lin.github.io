@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>全网VIP视频云解析 | Spring</title>
+        <title>全网VIP视频云解析</title>
         <meta name="keywords" content="全网VIP视频云解析"/>
         <meta name="description" content="VIP视频云解析支持爱奇艺、腾讯视频、优酷、芒果TV、乐视视频、搜狐视频、bilibili哔哩哔哩（B站）、AcFun弹幕视频网（A站）等视频解析"/>
         <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/7.0.0/css/all.min.css">
@@ -318,8 +318,7 @@
 
             .video-wrapper {
                 position: relative;
-                padding-top: 56.25%;
-                /* 16:9 Aspect Ratio */
+                aspect-ratio: 16 / 9;
                 background: #000;
                 border-radius: 18px;
                 overflow: hidden;
@@ -766,9 +765,71 @@
                 }
             }
 
+            @media (max-width: 768px) {
+                .control-bar {
+                    flex-direction: column;
+                    gap: 15px;
+                }
+
+                .btn {
+                    width: 100%;
+                    justify-content: center;
+                }
+
+                .player-container {
+                    flex-direction: column;
+                }
+
+                .player-controls {
+                    flex-direction: column;
+                    gap: 12px;
+                }
+
+                .status-item {
+                    font-size: 0.9rem;
+                    text-align: center;
+                }
+
+                .platforms {
+                    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                }
+
+                .history-list li {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+            }
+
             @media (max-width: 580px) {
+                header {
+                    flex-direction: column;
+                    gap: 20px;
+                }
+
                 .logo {
                     font-size: 1.8rem;
+                }
+
+                .btn, .action-btn {
+                    width: 100%;
+                    justify-content: center;
+                }
+
+                .player-controls {
+                    flex-direction: column;
+                }
+
+                .status-bar {
+                    flex-direction: column;
+                    align-items: center;
+                }
+
+                .platforms {
+                    grid-template-columns: 1fr;
+                }
+
+                .history-list {
+                    max-height: none;
                 }
             }
         </style>
