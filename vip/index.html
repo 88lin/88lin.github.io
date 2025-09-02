@@ -94,7 +94,7 @@
             .nav-btn {
                 display: inline-flex;
                 align-items: center;
-                padding: 14px 28px;
+                padding: 10px 20px;
                 background: linear-gradient(145deg, #f0f0f0, #ffffff);
                 color: var(--dark) !important;
                 border: none;
@@ -603,6 +603,12 @@
                 background: linear-gradient(90deg, #ffdee9, #b5fffc)!important; /* 标题背景渐变色 */
             }
 
+            .nav-group {
+                display:flex;
+                gap:10px;
+                align-items:center;
+            }
+
             .status-bar {
                 display: flex;
                 justify-content: space-between;
@@ -776,10 +782,16 @@
         <div class="container">
             <header>
                 <div class="logo" onclick="location.href='https://520.txsb.gq/vip'">视频云解析</div>
+                <div class="nav-group">
+                <a href="https://520.txsb.gq/vip" target="_blank" rel="noopener noreferrer" class="nav-btn">
+                    <i class="fas fa-video"></i>
+                    <span>免费短剧</span>
+                </a>
                 <a href="https://pro.gleeze.com" target="_blank" rel="noopener noreferrer" class="nav-btn">
                     <i class="fa-solid fa-user"></i>
                     <span>故人博客</span>
                 </a>
+             </div>
             </header>
             <div class="control-bar">
                 <div class="input-group api-group">

@@ -98,7 +98,7 @@
         .nav-btn {
             display: inline-flex;
             align-items: center;
-            padding: 14px 28px;
+            padding: 10px 20px;
             background: linear-gradient(145deg, #f0f0f0, #ffffff);
             color: var(--dark) !important;
             border: none;
@@ -532,7 +532,7 @@
             background: linear-gradient(145deg, #f0f0f0, #ffffff);
             color: var(--primary);
             border: none;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 30px;
             cursor: pointer;
             margin-bottom: 30px;
@@ -881,15 +881,15 @@
         }
 
         .quality-720 .dot {
-            background-color: var(--secondary);
+            background-color: #2ecc71;
         }
 
         .quality-1080 .dot {
-            background-color: var(--primary);
+            background-color: #2ecc71;
         }
 
         .quality-original .dot {
-            background-color: var(--accent);
+            background-color: #2ecc71;
         }
 
         /* 历史记录样式 */
@@ -1168,6 +1168,12 @@
                 display: inline;
             }
 
+        .nav-group {
+                display:flex;
+                gap:10px;
+                align-items:center;
+            }
+
         .ctrm-title { 
                 background: linear-gradient(90deg, #ffdee9, #b5fffc)!important;
             }
@@ -1183,10 +1189,16 @@
     <!-- 头部导航 -->
     <header>
         <div class="logo" onclick="location.href='https://520.txsb.gq/duanju'">短剧搜索平台</div>
+        <div class="nav-group">
+        <a href="https://520.txsb.gq/vip" target="_blank" rel="noopener noreferrer" class="nav-btn">
+            <i class="fas fa-tv"></i>
+            <span>免费影视</span>
+        </a>
         <a href="https://pro.gleeze.com" target="_blank" rel="noopener noreferrer" class="nav-btn">
             <i class="fa-solid fa-user"></i>
             <span>故人博客</span>
         </a>
+     </div>
     </header>
 
     <!-- 工具标题 -->
@@ -1279,7 +1291,7 @@
                 <h2 class="episode-title" id="currentEpisodeTitle">正在加载...</h2>
                 <div class="episode-meta">
                             <span class="quality-indicator quality-720" id="episodeQuality">
-                                <span class="dot"></span> 720p
+                                <span class="dot"></span> 1080p
                             </span>
                     <span id="episodeDuration">时长: 0秒</span>
                     <span id="episodeSize">大小: 0MB</span>
@@ -1291,7 +1303,7 @@
                 <h3 class="episodes-title">
                     <span>剧集列表</span>
                     <span class="quality-indicator quality-720" id="currentQuality">
-                                <span class="dot"></span> 当前清晰度: 720p
+                                <span class="dot"></span> 当前清晰度: 1080p
                             </span>
                 </h3>
                 <div class="episodes-grid" id="episodesGrid">
@@ -1309,7 +1321,7 @@
     let currentDrama = null;
     let currentEpisodeIndex = 0;
     let videoList = [];
-    let currentQuality = '720p'; // 默认清晰度
+    let currentQuality = '1080p'; // 默认清晰度
     const HISTORY_KEY = 'drama_watch_history';
     const MAX_HISTORY_ITEMS = 12; // 最多存储12条历史记录
     const PAGE_SIZE = 6; // 每页显示条数
@@ -1605,7 +1617,7 @@
         episodeDesc.textContent = currentDrama.desc || '暂无简介';
 
         // 重置清晰度选择器
-        currentQuality = '720p';
+        currentQuality = '1080p';
         qualitySelect.value = currentQuality;
         updateQualityIndicator();
 
