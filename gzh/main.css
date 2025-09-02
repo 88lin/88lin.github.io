@@ -51,7 +51,7 @@ body {
 .wechatOA-head {
   width: 48px;
   height: 48px;
-  background-image: url(./img/icon.webp);
+  background-image: url(./img/icon.svg);
   border-radius: 68px;
   background-size: contain;
   margin-right: 16px;
