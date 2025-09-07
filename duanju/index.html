@@ -1177,6 +1177,26 @@
         .ctrm-title { 
                 background: linear-gradient(90deg, #ffdee9, #b5fffc)!important;
             }
+
+        .feedback-line {
+                margin: 40px auto 20px;
+                text-align: center;
+                font-size: 1.3rem;
+                font-weight: 600;
+                color: var(--gray);
+            }
+
+        .feedback-line .wechat-link {
+                font-weight: 800;
+                color: var(--gray);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+        .feedback-line .wechat-link:hover,.feedback-line .wechat-link:focus-visible {
+                color: #6d28d9;
+                text-decoration: underline;
+            }
     </style>
 </head>
 <body class="bg-grid-aurora">
@@ -1205,6 +1225,8 @@
     <div class="tool-header">
         <h2 class="tool-title">短剧搜索与播放平台</h2>
     </div>
+
+    <p class="feedback-line">反馈问题，请前往<a class="wechat-link" href="https://home.nuaa.tech/gzh/index.html" target="_blank" rel="noopener noreferrer">公众号</a>后台留言</p>
 
     <!-- 搜索页面 -->
     <div id="searchPage">
@@ -1872,8 +1894,8 @@
         searchError.style.display = 'none';
     }
 </script>
-<script src="static/js/main.min.js"></script>
-<script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/chat1.js" async="async" fold></script>
+<script src="//cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/duanju/main.min.js"></script>
+<!-- <script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/chat1.js" async="async" fold></script> -->
 </body>
 </html>
