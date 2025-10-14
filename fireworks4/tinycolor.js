@@ -285,21 +285,6 @@ tinycolor.fromRatio = function(color, opts) {
     return tinycolor(color, opts);
 };
 
-// Given a string or object, convert that input to RGB
-// Possible string inputs:
-//
-//     "red"
-//     "#f00" or "f00"
-//     "#ff0000" or "ff0000"
-//     "#ff000000" or "ff000000"
-//     "rgb 255 0 0" or "rgb (255, 0, 0)"
-//     "rgb 1.0 0 0" or "rgb (1, 0, 0)"
-//     "rgba (255, 0, 0, 1)" or "rgba 255, 0, 0, 1"
-//     "rgba (1.0, 0, 0, 1)" or "rgba 1.0, 0, 0, 1"
-//     "hsl(0, 100%, 50%)" or "hsl 0 100% 50%"
-//     "hsla(0, 100%, 50%, 1)" or "hsla 0 100% 50%, 1"
-//     "hsv(0, 100%, 100%)" or "hsv 0 100% 100%"
-//
 function inputToRGB(color) {
 
     var rgb = { r: 0, g: 0, b: 0 };
@@ -352,18 +337,6 @@ function inputToRGB(color) {
     };
 }
 
-
-// Conversion Functions
-// --------------------
-
-// `rgbToHsl`, `rgbToHsv`, `hslToRgb`, `hsvToRgb` modified from:
-// <http://mjijackson.com/2008/02/rgb-to-hsl-and-rgb-to-hsv-color-model-conversion-algorithms-in-javascript>
-
-// `rgbToRgb`
-// Handle bounds / percentage checking to conform to CSS color spec
-// <http://www.w3.org/TR/css3-color/>
-// *Assumes:* r, g, b in [0, 255] or [0, 1]
-// *Returns:* { r, g, b } in [0, 255]
 function rgbToRgb(r, g, b){
     return {
         r: bound01(r, 255) * 255,
@@ -372,10 +345,6 @@ function rgbToRgb(r, g, b){
     };
 }
 
-// `rgbToHsl`
-// Converts an RGB color value to HSL.
-// *Assumes:* r, g, and b are contained in [0, 255] or [0, 1]
-// *Returns:* { h, s, l } in [0,1]
 function rgbToHsl(r, g, b) {
 
     r = bound01(r, 255);
@@ -403,10 +372,6 @@ function rgbToHsl(r, g, b) {
     return { h: h, s: s, l: l };
 }
 
-// `hslToRgb`
-// Converts an HSL color value to RGB.
-// *Assumes:* h is contained in [0, 1] or [0, 360] and s and l are contained [0, 1] or [0, 100]
-// *Returns:* { r, g, b } in the set [0, 255]
 function hslToRgb(h, s, l) {
     var r, g, b;
 
@@ -437,10 +402,6 @@ function hslToRgb(h, s, l) {
     return { r: r * 255, g: g * 255, b: b * 255 };
 }
 
-// `rgbToHsv`
-// Converts an RGB color value to HSV
-// *Assumes:* r, g, and b are contained in the set [0, 255] or [0, 1]
-// *Returns:* { h, s, v } in [0,1]
 function rgbToHsv(r, g, b) {
 
     r = bound01(r, 255);
@@ -467,10 +428,6 @@ function rgbToHsv(r, g, b) {
     return { h: h, s: s, v: v };
 }
 
-// `hsvToRgb`
-// Converts an HSV color value to RGB.
-// *Assumes:* h is contained in [0, 1] or [0, 360] and s and v are contained in [0, 1] or [0, 100]
-// *Returns:* { r, g, b } in the set [0, 255]
  function hsvToRgb(h, s, v) {
 
     h = bound01(h, 360) * 6;
@@ -490,10 +447,6 @@ function rgbToHsv(r, g, b) {
     return { r: r * 255, g: g * 255, b: b * 255 };
 }
 
-// `rgbToHex`
-// Converts an RGB color to hex
-// Assumes r, g, and b are contained in the set [0, 255]
-// Returns a 3 or 6 character hex
 function rgbToHex(r, g, b, allow3Char) {
 
     var hex = [
@@ -510,10 +463,6 @@ function rgbToHex(r, g, b, allow3Char) {
     return hex.join("");
 }
 
-// `rgbaToHex`
-// Converts an RGBA color plus alpha transparency to hex
-// Assumes r, g, b are contained in the set [0, 255] and
-// a in [0, 1]. Returns a 4 or 8 character rgba hex
 function rgbaToHex(r, g, b, a, allow4Char) {
 
     var hex = [
@@ -531,9 +480,6 @@ function rgbaToHex(r, g, b, a, allow4Char) {
     return hex.join("");
 }
 
-// `rgbaToArgbHex`
-// Converts an RGBA color to an ARGB Hex8 string
-// Rarely used, but required for "toFilter()"
 function rgbaToArgbHex(r, g, b, a) {
 
     var hex = [
@@ -546,8 +492,6 @@ function rgbaToArgbHex(r, g, b, a) {
     return hex.join("");
 }
 
-// `equals`
-// Can be called with any tinycolor input
 tinycolor.equals = function (color1, color2) {
     if (!color1 || !color2) { return false; }
     return tinycolor(color1).toRgbString() == tinycolor(color2).toRgbString();
@@ -560,12 +504,6 @@ tinycolor.random = function() {
         b: mathRandom()
     });
 };
-
-
-// Modification Functions
-// ----------------------
-// Thanks to less.js for some of the basics here
-// <https://github.com/cloudhead/less.js/blob/master/lib/less/functions.js>
 
 function desaturate(color, amount) {
     amount = (amount === 0) ? 0 : (amount || 10);
@@ -612,19 +550,12 @@ function darken (color, amount) {
     return tinycolor(hsl);
 }
 
-// Spin takes a positive or negative amount within [-360, 360] indicating the change of hue.
-// Values outside of this range will be wrapped into this range.
 function spin(color, amount) {
     var hsl = tinycolor(color).toHsl();
     var hue = (hsl.h + amount) % 360;
     hsl.h = hue < 0 ? 360 + hue : hue;
     return tinycolor(hsl);
 }
-
-// Combination Functions
-// ---------------------
-// Thanks to jQuery xColor for some of the ideas behind these
-// <https://github.com/infusion/jQuery-xcolor/blob/master/jquery.xcolor.js>
 
 function complement(color) {
     var hsl = tinycolor(color).toHsl();
@@ -693,9 +624,6 @@ function monochromatic(color, results) {
     return ret;
 }
 
-// Utility Functions
-// ---------------------
-
 tinycolor.mix = function(color1, color2, amount) {
     amount = (amount === 0) ? 0 : (amount || 50);
 
@@ -714,29 +642,12 @@ tinycolor.mix = function(color1, color2, amount) {
     return tinycolor(rgba);
 };
 
-
-// Readability Functions
-// ---------------------
-// <http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef (WCAG Version 2)
-
-// `contrast`
-// Analyze the 2 colors and returns the color contrast defined by (WCAG Version 2)
 tinycolor.readability = function(color1, color2) {
     var c1 = tinycolor(color1);
     var c2 = tinycolor(color2);
     return (Math.max(c1.getLuminance(),c2.getLuminance())+0.05) / (Math.min(c1.getLuminance(),c2.getLuminance())+0.05);
 };
 
-// `isReadable`
-// Ensure that foreground and background color combinations meet WCAG2 guidelines.
-// The third argument is an optional Object.
-//      the 'level' property states 'AA' or 'AAA' - if missing or invalid, it defaults to 'AA';
-//      the 'size' property states 'large' or 'small' - if missing or invalid, it defaults to 'small'.
-// If the entire object is absent, isReadable defaults to {level:"AA",size:"small"}.
-
-// *Example*
-//    tinycolor.isReadable("#000", "#111") => false
-//    tinycolor.isReadable("#000", "#111",{level:"AA",size:"large"}) => false
 tinycolor.isReadable = function(color1, color2, wcag2) {
     var readability = tinycolor.readability(color1, color2);
     var wcag2Parms, out;
@@ -760,15 +671,6 @@ tinycolor.isReadable = function(color1, color2, wcag2) {
 
 };
 
-// `mostReadable`
-// Given a base color and a list of possible foreground or background
-// colors for that base, returns the most readable color.
-// Optionally returns Black or White if the most readable color is unreadable.
-// *Example*
-//    tinycolor.mostReadable(tinycolor.mostReadable("#123", ["#124", "#125"],{includeFallbackColors:false}).toHexString(); // "#112255"
-//    tinycolor.mostReadable(tinycolor.mostReadable("#123", ["#124", "#125"],{includeFallbackColors:true}).toHexString();  // "#ffffff"
-//    tinycolor.mostReadable("#a8015a", ["#faf3f3"],{includeFallbackColors:true,level:"AAA",size:"large"}).toHexString(); // "#faf3f3"
-//    tinycolor.mostReadable("#a8015a", ["#faf3f3"],{includeFallbackColors:true,level:"AAA",size:"small"}).toHexString(); // "#ffffff"
 tinycolor.mostReadable = function(baseColor, colorList, args) {
     var bestColor = null;
     var bestScore = 0;
@@ -796,10 +698,6 @@ tinycolor.mostReadable = function(baseColor, colorList, args) {
     }
 };
 
-
-// Big List of Colors
-// ------------------
-// <http://www.w3.org/TR/css3-color/#svg-color>
 var names = tinycolor.names = {
     aliceblue: "f0f8ff",
     antiquewhite: "faebd7",
@@ -1012,8 +910,6 @@ function parseIntFromHex(val) {
     return parseInt(val, 16);
 }
 
-// Need to handle 1.0 as 100%, since once it is a number, there is no difference between it and 1
-// <http://stackoverflow.com/questions/7422072/javascript-how-to-detect-number-as-a-decimal-including-1-0>
 function isOnePointZero(n) {
     return typeof n == "string" && n.indexOf('.') != -1 && parseFloat(n) === 1;
 }
@@ -1057,9 +953,6 @@ var matchers = (function() {
     // Allow positive/negative integer/number.  Don't capture the either/or, just the entire outcome.
     var CSS_UNIT = "(?:" + CSS_NUMBER + ")|(?:" + CSS_INTEGER + ")";
 
-    // Actual matching.
-    // Parentheses and commas are optional, but not required.
-    // Whitespace can take the place of commas or opening paren
     var PERMISSIVE_MATCH3 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
     var PERMISSIVE_MATCH4 = "[\\s|\\(]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")[,|\\s]+(" + CSS_UNIT + ")\\s*\\)?";
 
@@ -1078,16 +971,10 @@ var matchers = (function() {
     };
 })();
 
-// `isValidCSSUnit`
-// Take in a single string / number and check to see if it looks like a CSS unit
-// (see `matchers` above for definition).
 function isValidCSSUnit(color) {
     return !!matchers.CSS_UNIT.exec(color);
 }
 
-// `stringInputToObject`
-// Permissive string parsing.  Take in a number of formats, and output an object
-// based on detected format.  Returns `{ r, g, b }` or `{ h, s, l }` or `{ h, s, v}`
 function stringInputToObject(color) {
 
     color = color.replace(trimLeft,'').replace(trimRight, '').toLowerCase();
@@ -1100,10 +987,6 @@ function stringInputToObject(color) {
         return { r: 0, g: 0, b: 0, a: 0, format: "name" };
     }
 
-    // Try to match string input using regular expressions.
-    // Keep most of the number bounding out of this function - don't worry about [0,1] or [0,100] or [0,360]
-    // Just return an object and let the conversion functions handle that.
-    // This way the result will be the same whether the tinycolor is initialized with string or object.
     var match;
     if ((match = matchers.rgb.exec(color))) {
         return { r: match[1], g: match[2], b: match[3] };
@@ -1162,8 +1045,7 @@ function stringInputToObject(color) {
 }
 
 function validateWCAG2Parms(parms) {
-    // return valid WCAG2 parms for isReadable.
-    // If input parms are invalid, return {"level":"AA", "size":"small"}
+
     var level, size;
     parms = parms || {"level":"AA", "size":"small"};
     level = (parms.level || "AA").toUpperCase();
