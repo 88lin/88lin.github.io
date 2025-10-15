@@ -2,14 +2,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="apple-mobile-web-app-title" content="">
+<title>个人主页｜茉灵智库</title>
 <meta itemprop="name" content="茉灵智库">
-<meta name="apple-mobile-web-app-title" content="">
-<meta http-equiv="Cache-Control" content="no-siteapp">
-<meta name="author" content="">
-<meta name="keywords" content="">
-<meta name="description" content="">
-<link rel="shortcut icon" href="https://young.zhubai.love/favicon.png">
+<meta name="apple-mobile-web-app-title" content="茉灵智库" />
+<meta name="description" content="茉灵智库：个人主页与作品集合，记录工具与实用干货。" />
+<link rel="shortcut icon" href="/favicon.svg">
 <link rel="stylesheet" href="css/style.css">
 <script src="js/BigBlobBg.min.js"></script>
     <script>
@@ -22,8 +19,6 @@
             });
         });
     </script>
-
-<title>茉灵智库</title>
 </head><body>
 <!-- 背景容器 -->
 <div id="background-box" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
@@ -47,7 +42,7 @@
 <img src="https://jsd.akass.cn/gh/88lin/PicX@master/微信图片_20231204174129.jpg" alt=""></div>
 <div class="quote">
 <i class="iconfont icon-Artboard1"></i>
-<span id="yiyan"><p>撑舟渡星河，载梦至江南</p></span>
+<span id="yiyan"><p>生活不止眼前的苟且，还有诗和远方</p></span>
 <i class="iconfont icon-Artboard"></i></div>
 <div class="segment" style="border-color: rgb(245, 150, 170);">
 <div class="label" style="color: rgb(245, 150, 170);">
@@ -63,7 +58,7 @@
 <footer id="footer">
 <div class="site-info">
 <br>
-<p>2020-2024 ©版权所有丨<a href="http://beian.miit.gov.cn/">桂ICP备2020000530号-1</a>
+<p>2020-2026 ©版权所有丨<a href="http://beian.miit.gov.cn/">桂ICP备2020000530号-1</a>
 		<br>
 		本站已安全运行：<span id="momk"></span>
 <script language="javascript">
@@ -97,30 +92,6 @@ show_date_time();
 @keyframes change{100%{color:#7fb7be;}75%{color:#2a628f;}50%{color:#c49799;}25%{color:#e5625e;}0% {color:#7880b5;}}
 </style>
 </div></footer>
-
-<script>
-setTimeout( function(){$("#yiyan").fadeOut(1000);}, 5000 );
-  function goo(){
-  fetch('https://www.xccx.cc/api/yiyan/index.php')
-    .then(function (res){
-      return res.json();
-    })
-    .then(function (data) {
-      var yiyan = document.getElementById('yiyan');
-      
-      yiyan.innerHTML = data.yiyan; 
-      
-      $("#yiyan").fadeIn(1000);
-    })
-    .catch(function (err) {
-      console.error(err);
-    })
-    setTimeout( function(){$("#yiyan").fadeOut(1000);}, 5000 );
-  }
-  setInterval("goo()",5800);
-  
-</script>
-<!--随机一言结束-->
 </body>
 </html>
 <!--樱花飘落开始-->
