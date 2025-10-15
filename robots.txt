@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemapp: https://home.nuaa.tech/sitemap.xml
