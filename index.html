@@ -277,9 +277,33 @@ style="border: 1px solid #63B8FF; min-height: 50px; font-size: 16px; line-height
     });
 </script>
 <script>
-  window.addEventListener('load', function() {
-    document.title = "茉灵导航";
-  });
+var originalTitle = document.title;
+
+Object.defineProperty(document, 'title', {
+    get: function() {
+        return originalTitle;
+    },
+    set: function(value) {
+        console.log("阻止了标题修改尝试: " + value);
+    }
+});
+
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.target.nodeName === 'TITLE') {
+            document.title = originalTitle;
+        }
+    });
+});
+
+observer.observe(document.querySelector('title'), { 
+    childList: true,
+    characterData: true,
+    subtree: true
+});
+
+document.title = "茉灵导航";
+originalTitle = document.title;
 </script>
 <script src="//dh.z-l.top/chat.js" async="async" fold></script>
 <div id="music" key="63ca04db574c0" api="https://music.xfyun.club"></div><script id="xplayer" src="https://player.xfyun.club/Static/player9/js/player.js" ></script>
