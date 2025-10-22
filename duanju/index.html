@@ -21,6 +21,7 @@
     <meta name="twitter:description" content="免费短剧搜索与播放平台，海量精彩短剧，随时随地免费观看。热门更新、高清播放，聚合全网热门短剧与微短剧。" />
     <meta name="twitter:image" content="https://images.nuaa.tech/img/duanju_Image.webp" />
     <meta name="twitter:image:alt" content="短剧搜索与播放平台｜免费短剧在线看" />
+    <meta name="referrer" content="no-referrer">
     <script type="application/ld+json">
     {
     "@context": "https://schema.org",
@@ -1314,7 +1315,7 @@
 
         <div class="player-container">
             <div class="video-wrapper">
-                <video id="video-player" controls playsinline></video>
+                <video id="video-player" controls playsinline crossorigin="anonymous" referrerpolicy="no-referrer"></video>
             </div>
 
             <div class="player-controls">
@@ -1465,7 +1466,7 @@
         hideError();
         try {
             const url = `https://api.xingzhige.com/API/playlet/?keyword=${encodeURIComponent(keyword)}&page=${page}`;
-            const response = await fetch(url);
+            const response = await fetch(url, { referrerPolicy: 'no-referrer' });
 
             if (!response.ok) {
                 throw new Error(`HTTP错误! 状态: ${response.status}`);
@@ -1622,7 +1623,7 @@
 
         try {
             const url = `https://api.xingzhige.com/API/playlet/?book_id=${bookId}`;
-            const response = await fetch(url);
+            const response = await fetch(url, { referrerPolicy: 'no-referrer' });
 
             if (!response.ok) {
                 throw new Error(`HTTP错误! 状态: ${response.status}`);
@@ -1728,7 +1729,7 @@
         const videoId = videoList[index].video_id;
         try {
             const url = `https://api.xingzhige.com/API/playlet/?video_id=${videoId}&quality=${currentQuality}`;
-            const response = await fetch(url);
+            const response = await fetch(url, { referrerPolicy: 'no-referrer' });
 
             if (!response.ok) {
                 throw new Error(`HTTP错误! 状态: ${response.status}`);
