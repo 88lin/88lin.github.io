@@ -1795,6 +1795,7 @@
     function playPreviousEpisode() {
         if (currentEpisodeIndex > 0) {
             currentEpisodeIndex--;
+            scrollToPlayer();
             playEpisode(currentEpisodeIndex);
         }
     }
@@ -1803,6 +1804,7 @@
     function playNextEpisode() {
         if (currentEpisodeIndex < videoList.length - 1) {
             currentEpisodeIndex++;
+            scrollToPlayer();
             playEpisode(currentEpisodeIndex);
         }
     }
