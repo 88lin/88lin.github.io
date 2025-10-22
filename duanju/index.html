@@ -1406,6 +1406,19 @@
     const historyList = document.getElementById('historyList');
     const clearHistoryBtn = document.getElementById('clearHistoryBtn');
 
+    // 统一滚动到播放器
+    function scrollToPlayer() {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    const target = document.getElementById('video-player');
+    if (!target) return;
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 0);
+    });
+    }
+
     // 初始化
     document.addEventListener('DOMContentLoaded', () => {
         // 绑定事件
@@ -1434,6 +1447,7 @@
         qualitySelect.addEventListener('change', () => {
             currentQuality = qualitySelect.value;
             updateQualityIndicator();
+            scrollToPlayer();
             playEpisode(currentEpisodeIndex);
         });
 
@@ -1664,6 +1678,7 @@
     function showPlayerPage() {
         searchPage.style.display = 'none';
         playerPage.style.display = 'block';
+        scrollToPlayer();
 
         // 更新剧集信息
         currentEpisodeTitle.textContent = currentDrama.title;
@@ -1706,6 +1721,7 @@
 
             episodeItem.addEventListener('click', () => {
                 currentEpisodeIndex = index;
+                scrollToPlayer();
                 playEpisode(currentEpisodeIndex);
                 updateEpisodeListSelection();
             });
@@ -1925,5 +1941,6 @@
         searchError.style.display = 'none';
     }
 </script>
+<script src="//cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/duanju/main.min.js"></script>
 </body>
 </html>
