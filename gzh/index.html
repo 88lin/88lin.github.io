@@ -16,18 +16,55 @@
 </head>
 <body>
   <div class="wechatOA">
+    <!-- 标题区域 -->
+    <div class="header-section">
+      <h1 class="main-title">关注茉灵智库微信公众号</h1>
+      <p class="subtitle">获取最新链接，发现更多精彩内容</p>
+    </div>
+
+    <!-- 主卡片 -->
     <div class="wechat-card">
-      <img src="./img/qrcode.png" class="qrcode" alt="qrcode">
-      <div class="tips">扫描二维码关注公众号</div>
+      <!-- 二维码区域 -->
+      <div class="qrcode-section">
+        <img src="./img/qrcode.png" class="qrcode" alt="茉灵智库二维码">
+        <div class="tips">使用微信扫一扫关注公众号</div>
+      </div>
+
+      <!-- 公众号信息 -->
       <div class="wechatOA-card">
         <div class="wechatOA-head"></div>
         <div class="wechatOA-info">
           <div class="wechatOA-name">茉灵智库</div>
-          <div class="wechatOA-description">记录生活，分享资源</div>
+          <div class="wechatOA-description">分享各种实用教程、心理测试资源</div>
+        </div>
+      </div>
+
+      <!-- 功能特色 -->
+      <div class="features">
+        <div class="feature-item">
+          <div class="feature-icon">✨</div>
+          <div class="feature-text">优质教程</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">📈</div>
+          <div class="feature-text">测评资料</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-text">及时更新</div>
         </div>
       </div>
     </div>
-    <a class="help" href="https://kf.qq.com/touch/wxappfaq/1208117b2mai141113jaqAnU.html?platform=14" title="帮助" target="_blank">不会扫码？</a>
+
+    <!-- 底部帮助 -->
+    <div class="footer-section">
+      <a class="help" href="https://kf.qq.com/touch/wxappfaq/1208117b2mai141113jaqAnU.html?platform=14" title="帮助" target="_blank">
+        <svg class="icon-help" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+        </svg>
+        不会扫码？点击查看帮助
+      </a>
+    </div>
   </div>
   <script src="./main.js"></script>
 </body>
