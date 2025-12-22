@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemapp: https://home.nuaa.tech/sitemap.xml
+Sitemapp: https://home-gnwr20uh.maozi.io/sitemap.xml
