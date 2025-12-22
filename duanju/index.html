@@ -1228,6 +1228,9 @@
                 color: #6d28d9;
                 text-decoration: underline;
             }
+        #ctrm_ > div > div.ctrm-title > span > span.ctrm-title-domain::after {
+                content: "短剧搜索与播放平台";
+            }
     </style>
 </head>
 <body class="bg-grid-aurora">
@@ -1942,14 +1945,6 @@
     function hideError() {
         searchError.style.display = 'none';
     }
-    document.addEventListener('DOMContentLoaded', function() {
-    let titleDomain = document.querySelector('#ctrm_ > div > div.ctrm-title > span > span.ctrm-title-domain');
-    if (titleDomain) {
-        let fullText = titleDomain.textContent;
-        let newText = fullText.split('｜')[0];
-        titleDomain.textContent = newText;
-    }
-});
 </script>
 <script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script src="https://dh.z-l.top/chat.js" async="async" fold></script>
