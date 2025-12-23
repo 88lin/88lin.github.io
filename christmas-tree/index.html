@@ -45,16 +45,7 @@
     }
     </script>
     <style>
-        body { 
-            margin: 0; 
-            overflow: hidden; 
-            background: radial-gradient(circle at center, #0f2027 0%, #203a43 50%, #2c5364 100%);
-            background-color: #050d1a;
-            font-family: 'Times New Roman', serif;
-            touch-action: none;
-            user-select: none;
-            -webkit-user-select: none;
-        }
+        body { margin: 0; overflow: hidden; background-color: #000000; font-family: 'Times New Roman', serif; }
         #canvas-container { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; }
         
         /* UI Overlay - Minimalist */
@@ -202,11 +193,10 @@
         // --- CONFIGURATION ---
         const CONFIG = {
             colors: {
-                bg: 0x050d1a,
-                fog: 0x050d1a,
-                champagneGold: 0xffd966,
-                deepGreen: 0x03180a,
-                accentRed: 0x990000,
+                bg: 0x000000, 
+                champagneGold: 0xffd966, 
+                deepGreen: 0x03180a,     
+                accentRed: 0x990000, 
             },
             particles: {
                 count: 1500,
@@ -261,7 +251,7 @@
             const container = document.getElementById('canvas-container');
             scene = new THREE.Scene();
             scene.background = new THREE.Color(CONFIG.colors.bg);
-            scene.fog = new THREE.FogExp2(CONFIG.colors.fog, 0.015);   
+            scene.fog = new THREE.FogExp2(CONFIG.colors.bg, 0.01); 
 
             camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.set(0, 2, CONFIG.camera.z); 
