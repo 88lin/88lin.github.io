@@ -2,8 +2,8 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D手势圣诞树｜粒子特效 + 照片云</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3D粒子圣诞树｜手势控制</title>
     <link rel="icon" href="/favicon.svg">
     <!-- SEO Meta -->
     <meta name="description" content="一个基于手势识别的 3D 粒子互动圣诞树：握拳合拢、张手散开、旋转视角、指尖捏合放大照片。哑光绿与金属金打造电影级视觉，支持照片上传，带来沉浸式节日互动体验。">
@@ -13,14 +13,14 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_CN">
-    <meta property="og:title" content="3D手势圣诞树：粒子特效 × 照片云">
+    <meta property="og:title" content="3D粒子圣诞树：粒子特效 × 照片云">
     <meta property="og:description" content="挥挥手即可控制圣诞树：握拳收拢、张手散开、旋转视角、捏合放大照片。电影级光晕与节日视觉，让互动更梦幻。">
     <meta property="og:url" content="https://home-gnwr20uh.maozi.io/christmas-tree">
     <meta property="og:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2025-12-23_19-32-05.92qlogkk42.png">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="3D手势圣诞树：粒子特效 × 照片云">
+    <meta name="twitter:title" content="3D粒子圣诞树：粒子特效 × 照片云">
     <meta name="twitter:description" content="挥挥手即可控制圣诞树：握拳收拢、张手散开、旋转视角、捏合放大照片。电影级光晕与节日视觉，让互动更梦幻。">
     <meta name="twitter:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2025-12-23_19-32-05.92qlogkk42.png">
 
@@ -29,7 +29,7 @@
     {
     "@context": "https://schema.org",
     "@type": "WebApplication",
-    "name": "3D手势圣诞树",
+    "name": "3D粒子圣诞树",
     "url": "https://home-gnwr20uh.maozi.io/christmas-tree",
     "image": "https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2025-12-23_19-32-05.92qlogkk42.png",
     "applicationCategory": "MultimediaApplication",
@@ -45,38 +45,20 @@
     }
     </script>
     <style>
-        body { margin: 0; overflow: hidden; background-color: #000000; font-family: 'Times New Roman', serif; }
-        #canvas-container { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; }
-        
-        /* UI Overlay - Minimalist */
+        body { margin: 0; overflow: hidden; background-color: #000000; font-family: 'Times New Roman', serif;touch-action: none; }
+        #canvas-container { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1;touch-action: none; }
         #ui-layer {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10; pointer-events: none;
+            z-index: 10;
             display: flex; flex-direction: column; 
             align-items: center;
-            padding-top: 40px;
+            padding-top: 38px;
             box-sizing: border-box;
-            /* Remove transition here as we don't hide the whole layer anymore */
         }
-
-        /* ---------- UI Layout ---------- */
-        #ui-layer{
-        position:absolute;top:0;left:0;width:100%;height:100%;
-        z-index:10;
-        pointer-events:none;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        padding-top:38px;
-        box-sizing:border-box;
-        }
-
         .hero-title{
         pointer-events:none;
         margin:0;
         }
-
-        /* ---------- Side Panel ---------- */
         .side-panel{
         position:absolute;
         margin-right: 10px;
@@ -99,11 +81,10 @@
             transform: translateX(calc(100% + 12px));
         }
 
-        /* ---------- Toggle Button---------- */
         .panel-toggle {
             position: absolute;
             top: 50%;
-            left: -22px; /* 一半嵌入在面板外 */
+            left: -22px;
             transform: translateY(-50%);
             width: 22px;
             height: 60px;
@@ -132,26 +113,22 @@
             box-shadow: 0 0 10px rgba(212,175,55,0.6);
         }
 
-        /* 面板展开时，按钮滑入边缘但仍可见 */
         .side-panel:not(.is-collapsed) .panel-toggle {
-            left: -12px; /* 稍微缩进去，但仍可点击 */
+            left: -12px;
             opacity: 0.5;
-            pointer-events: auto; /* 关键点：仍可点击！ */
+            pointer-events: auto;
         }
 
-        /* 折叠状态：按钮完全露出 */
         .side-panel.is-collapsed .panel-toggle {
             left: -22px;
             opacity: 0.95;
         }
 
-        /* 图标方向切换动画 */
         .side-panel.is-collapsed .toggle-icon {
             transform: rotate(180deg);
             transition: transform 0.3s ease;
         }
 
-        /* ---------- Panel Content ---------- */
         .panel-content{
         display:flex;
         flex-direction:column;
@@ -167,25 +144,6 @@
         text-align:center;
         }
 
-        /* 上传按钮：纯文字，均匀间距 */
-        .upload-btn{
-        display:block;
-        padding:10px;
-        background:rgba(212,175,55,0.12);
-        color:rgba(252,238,167,0.9);
-        border:1px solid rgba(212,175,55,0.25);
-        border-radius:10px;
-        text-align:center;
-        font-size:14px;
-        cursor:pointer;
-        transition:background 0.25s ease, transform 0.25s ease;
-        }
-
-        .upload-btn:hover{
-        background:rgba(212,175,55,0.25);
-        transform:scale(1.05);
-        }
-
         .upload-btn input[type="file"]{
         position:absolute;
         width:1px;height:1px;
@@ -196,28 +154,22 @@
 
         /* 提示文字 */
         .panel-hint{
-        color:rgba(212,175,55,0.75);
+        color:#e6c66b;
         font-size:12px;
         text-align:center;
         letter-spacing:1px;
         font-weight:300;
         }
 
-        /* H键隐藏 */
-        .ui-hidden{
-        opacity:0;
-        pointer-events:none !important;
-        }
-
         /* ---------- Mobile Responsive ---------- */
         @media (max-width:520px){
             .side-panel{
                 width: 200px;
-                right: 10px;
-                top: 70px;
+                right: 1px;
+                top: 80px;
             }
             .panel-toggle{
-                width: 32px;
+                width: 18px;
                 height: 48px;
                 font-size: 18px;
             }
@@ -272,8 +224,8 @@
             h1 {
                 font-size: 30px;
                 letter-spacing: 4px;
-                margin-top: 10px;     /* 保持靠上但不贴边 */
-                text-align: center;   /* 居中对齐 */
+                margin-top: 10px;
+                text-align: center; 
             }
         }
 
@@ -287,22 +239,42 @@
         }
 
         .upload-btn {
-            background: rgba(20, 20, 20, 0.6); 
-            border: 1px solid rgba(212, 175, 55, 0.4); 
-            color: #d4af37; 
-            padding: 10px 25px; 
-            cursor: pointer; 
-            text-transform: uppercase; 
-            letter-spacing: 3px; 
-            font-size: 10px;
-            transition: all 0.4s;
             display: inline-block;
-            backdrop-filter: blur(5px);
+            padding: 12px 28px;
+            border-radius: 8px;
+            background-color: rgba(25, 25, 25, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            color: #d4af37;
+            font-size: 0.875rem; /* 14px */
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            cursor: pointer;
+            backdrop-filter: blur(6px);
+            border-radius: 12px;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+            -webkit-tap-highlight-color: transparent;
         }
-        .upload-btn:hover { 
-            background: #d4af37; 
-            color: #000; 
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+
+            /* 悬浮与聚焦状态 */
+            .upload-btn:hover,
+            .upload-btn:focus {
+            background-color: #d4af37;
+            color: #111;
+            border-color: #d4af37;
+            outline: none;
+            }
+
+            /* 移动端适配 */
+            @media (max-width: 600px) {
+            .upload-btn {
+                width: 100%;
+                font-size: 0.8rem;
+                padding: 14px 0;
+                letter-spacing: 1.5px;
+                border-radius: 10px;
+            }
         }
         .hint-text {
             color: rgba(212, 175, 55, 0.5);
@@ -339,10 +311,9 @@
     </script>
 </head>
 <body>
-
     <div id="loader">
         <div class="spinner"></div>
-        <div class="loader-text">正在加载模型...</div>
+        <div class="loader-text">Loading Memories</div>
     </div>
 
     <div id="canvas-container"></div>
@@ -362,8 +333,7 @@
                 <span>添加照片</span>
                 <input type="file" id="file-input" multiple accept="image/*" aria-label="上传照片添加到圣诞记忆树">
             </label>
-
-            <div class="panel-hint">按 <kbd>H</kbd> 隐藏/显示面板</div>
+            <div class="panel-hint">可以批量上传多张照片</div>
             </div>
         </aside>
     </div>
@@ -526,9 +496,6 @@
                 this.posTree = new THREE.Vector3();
                 this.posScatter = new THREE.Vector3();
                 this.baseScale = mesh.scale.x; 
-
-                // Individual Spin Speed
-                // Photos spin slower to be readable
                 const speedMult = (type === 'PHOTO') ? 0.3 : 2.0;
 
                 this.spinSpeed = new THREE.Vector3(
