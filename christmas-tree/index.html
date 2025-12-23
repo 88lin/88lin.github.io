@@ -45,7 +45,16 @@
     }
     </script>
     <style>
-        body { margin: 0; overflow: hidden; background-color: #000000; font-family: 'Times New Roman', serif; }
+        body { 
+            margin: 0; 
+            overflow: hidden; 
+            background: radial-gradient(circle at center, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            background-color: #050d1a;
+            font-family: 'Times New Roman', serif;
+            touch-action: none;
+            user-select: none;
+            -webkit-user-select: none;
+        }
         #canvas-container { width: 100vw; height: 100vh; position: absolute; top: 0; left: 0; z-index: 1; }
         
         /* UI Overlay - Minimalist */
@@ -85,7 +94,7 @@
 
         /* Typography - Centerpiece */
         h1 { 
-            color: #fceea7; font-size: 36px; margin: 0; font-weight: 400; 
+            color: #fceea7; font-size: 48px; margin: 0; font-weight: 400; 
             letter-spacing: 6px; 
             text-shadow: 0 0 50px rgba(252, 238, 167, 0.6); 
             background: linear-gradient(to bottom, #fff, #eebb66);
@@ -164,7 +173,7 @@
     <div id="canvas-container"></div>
 
     <div id="ui-layer">
-        <h1>圣诞快乐</h1>
+        <h1>Merry Christmas</h1>
         
         <div class="upload-wrapper">
             <label class="upload-btn">
@@ -193,16 +202,18 @@
         // --- CONFIGURATION ---
         const CONFIG = {
             colors: {
-                bg: 0x000000, 
-                champagneGold: 0xffd966, 
-                deepGreen: 0x03180a,     
-                accentRed: 0x990000,     
+                bg: 0x050d1a,
+                fog: 0x050d1a,
+                champagneGold: 0xffd966,
+                deepGreen: 0x03180a,
+                accentRed: 0x990000,
             },
             particles: {
-                count: 1500,     
-                dustCount: 2500, 
-                treeHeight: 24,  
-                treeRadius: 8    
+                count: 1500,
+                dustCount: 2500,
+                snowCount: 1000,
+                treeHeight: 24,
+                treeRadius: 8   
             },
             camera: {
                 z: 50 
@@ -223,7 +234,8 @@
         let particleSystem = []; 
         let photoMeshGroup = new THREE.Group();
         let handLandmarker, video, webcamCanvas, webcamCtx;
-        let caneTexture; 
+        let caneTexture;
+        let snowSystem;
 
         async function init() {
             initThree();
@@ -232,6 +244,7 @@
             createTextures();
             createParticles(); 
             createDust();     
+            createSnow();
             createDefaultPhotos();
             setupPostProcessing();
             setupEvents();
@@ -248,7 +261,7 @@
             const container = document.getElementById('canvas-container');
             scene = new THREE.Scene();
             scene.background = new THREE.Color(CONFIG.colors.bg);
-            scene.fog = new THREE.FogExp2(CONFIG.colors.bg, 0.01); 
+            scene.fog = new THREE.FogExp2(CONFIG.colors.fog, 0.015);   
 
             camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.position.set(0, 2, CONFIG.camera.z); 
@@ -482,13 +495,40 @@
                 particleSystem.push(new Particle(mesh, type, false));
             }
 
-            const starGeo = new THREE.OctahedronGeometry(1.2, 0);
-            const starMat = new THREE.MeshStandardMaterial({
-                color: 0xffdd88, emissive: 0xffaa00, emissiveIntensity: 1.0,
-                metalness: 1.0, roughness: 0
+            // 3D 星星形状 - 使用 THREE.ShapeGeometry
+            const starShape = new THREE.Shape();
+            const points = 5; // 星星的边数
+            for (let i = 0; i < points * 2; i++) {
+                const angle = (i * Math.PI) / points + Math.PI / 2;
+                const r = (i % 2 === 0) ? 1.5 : 0.7;  // 交替大和小
+                const x = Math.cos(angle) * r;
+                const y = Math.sin(angle) * r;
+                if (i === 0) starShape.moveTo(x, y);
+                else starShape.lineTo(x, y);
+            }
+            starShape.closePath();
+
+            // 用 ExtrudeGeometry 添加深度，使其变成 3D 星星
+            const starGeo = new THREE.ExtrudeGeometry(starShape, {
+                depth: 0.4,   // 星星的厚度
+                bevelEnabled: true,
+                bevelThickness: 0.1,
+                bevelSize: 0.1,
+                bevelSegments: 2
             });
+
+            // 创建材质，让星星发光
+            const starMat = new THREE.MeshStandardMaterial({
+                color: 0xffdd88, 
+                emissive: 0xffaa00, 
+                emissiveIntensity: 1.0,
+                metalness: 1.0,
+                roughness: 0
+            });
+
+            // 创建星星网格
             const star = new THREE.Mesh(starGeo, starMat);
-            star.position.set(0, CONFIG.particles.treeHeight/2 + 1.2, 0);
+            star.position.set(0, CONFIG.particles.treeHeight / 2 + 1.2, 0);  // 放在树顶
             mainGroup.add(star);
             
             mainGroup.add(photoMeshGroup);
@@ -504,6 +544,69 @@
                  mainGroup.add(mesh);
                  particleSystem.push(new Particle(mesh, 'DUST', true));
             }
+        }
+        function createSnow() {
+        const geometry = new THREE.BufferGeometry();
+        const vertices = [];
+        const velocities = [];
+
+        // 生成一个圆形雪花贴图（CanvasTexture）
+        const canvas = document.createElement('canvas');
+        canvas.width = 32; canvas.height = 32;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.arc(16, 16, 16, 0, Math.PI * 2);
+        ctx.fill();
+        const snowTexture = new THREE.CanvasTexture(canvas);
+
+        for (let i = 0; i < CONFIG.particles.snowCount; i++) {
+            vertices.push(
+            THREE.MathUtils.randFloatSpread(100),
+            THREE.MathUtils.randFloatSpread(60),
+            THREE.MathUtils.randFloatSpread(60)
+            );
+            velocities.push(Math.random() * 0.2 + 0.1, Math.random() * 0.05);
+        }
+
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3));
+        geometry.setAttribute('userData', new THREE.Float32BufferAttribute(velocities, 2));
+
+        const material = new THREE.PointsMaterial({
+            color: 0xffffff,
+            size: 0.4,
+            map: snowTexture,
+            transparent: true,
+            opacity: 0.8,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+
+        snowSystem = new THREE.Points(geometry, material);
+        scene.add(snowSystem);
+        }
+
+        function updateSnow() {
+        if (!snowSystem) return;
+
+        const positions = snowSystem.geometry.attributes.position.array;
+        const userData = snowSystem.geometry.attributes.userData.array;
+
+        for (let i = 0; i < CONFIG.particles.snowCount; i++) {
+            const fallSpeed = userData[i * 2];
+            positions[i * 3 + 1] -= fallSpeed;
+
+            const swaySpeed = userData[i * 2 + 1];
+            positions[i * 3] += Math.sin(clock.elapsedTime * 2 + i) * swaySpeed * 0.1;
+
+            if (positions[i * 3 + 1] < -30) {
+            positions[i * 3 + 1] = 30;
+            positions[i * 3] = THREE.MathUtils.randFloatSpread(100);
+            positions[i * 3 + 2] = THREE.MathUtils.randFloatSpread(60);
+            }
+        }
+
+        snowSystem.geometry.attributes.position.needsUpdate = true;
         }
 
         function createDefaultPhotos() {
@@ -540,8 +643,29 @@
             group.scale.set(s,s,s);
             
             photoMeshGroup.add(group);
-            particleSystem.push(new Particle(group, 'PHOTO', false));
+        particleSystem.push(new Particle(group, 'PHOTO', false));
+        updatePhotoLayout();
         }
+        function updatePhotoLayout() {
+            const photos = particleSystem.filter(p => p.type === 'PHOTO');
+            const count = photos.length;
+            if (count === 0) return;
+
+            const h = CONFIG.particles.treeHeight * 0.9;
+            const bottomY = -h / 2;
+            const stepY = h / count;
+            const loops = 3;
+
+            photos.forEach((p, i) => {
+                const y = bottomY + stepY * i + stepY / 2;
+                const normalizedH = (y + h/2) / CONFIG.particles.treeHeight;
+
+                const r = Math.max(1.0, CONFIG.particles.treeRadius * (1.0 - normalizedH)) + 3.0;
+                const angle = normalizedH * Math.PI * 2 * loops + (Math.PI / 4);
+
+                p.posTree.set(Math.cos(angle) * r, y, Math.sin(angle) * r);
+            });
+     }
         
         function handleImageUpload(e) {
             const files = e.target.files;
@@ -669,9 +793,20 @@
             mainGroup.rotation.x = STATE.rotation.x;
 
             particleSystem.forEach(p => p.update(dt, STATE.mode, STATE.focusTarget));
+            // 旋转和闪烁星星
+            mainGroup.children.forEach(obj => {
+                if (obj instanceof THREE.Mesh && obj.geometry instanceof THREE.ExtrudeGeometry) {
+                    obj.rotation.y += 0.01; // 让星星慢慢旋转
+                    obj.rotation.x = Math.sin(clock.elapsedTime * 0.5) * 0.05; // 轻微上下晃动
+                    // 让星星发光强度随时间变化
+                    if (obj.material.emissiveIntensity) {
+                        obj.material.emissiveIntensity = 1.0 + Math.sin(clock.elapsedTime * 2) * 0.5; 
+                    }
+                }
+            });
             composer.render();
+            updateSnow();
         }
-
         init();
     </script>
 </body>
