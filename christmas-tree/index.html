@@ -58,7 +58,170 @@
             box-sizing: border-box;
             /* Remove transition here as we don't hide the whole layer anymore */
         }
-        
+
+        /* ---------- UI Layout ---------- */
+        #ui-layer{
+        position:absolute;top:0;left:0;width:100%;height:100%;
+        z-index:10;
+        pointer-events:none;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        padding-top:38px;
+        box-sizing:border-box;
+        }
+
+        .hero-title{
+        pointer-events:none;
+        margin:0;
+        }
+
+        /* ---------- Side Panel ---------- */
+        .side-panel{
+        position:absolute;
+        margin-right: 10px;
+        top: 100px;
+        right: 2px;
+        transform: none;
+        width:240px;
+        pointer-events:auto;
+        border-radius:18px;
+        padding:14px;
+        background:rgba(0,0,0,0.65);
+        border:1px solid rgba(212,175,55,0.25);
+        box-shadow:0 18px 50px rgba(0,0,0,0.55);
+        backdrop-filter:blur(10px);
+        transition:transform 0.4s ease;
+        }
+
+        /* 折叠状态完全收起，只留按钮 */
+        .side-panel.is-collapsed {
+            transform: translateX(calc(100% + 12px));
+        }
+
+        /* ---------- Toggle Button---------- */
+        .panel-toggle {
+            position: absolute;
+            top: 50%;
+            left: -22px; /* 一半嵌入在面板外 */
+            transform: translateY(-50%);
+            width: 22px;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(40,40,40,0.9), rgba(20,20,20,0.9));
+            border: 1px solid rgba(212,175,55,0.4);
+            border-right: none;
+            color: rgba(252,238,167,0.9);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px 0 0 8px;
+            box-shadow: -2px 0 8px rgba(0,0,0,0.4);
+            backdrop-filter: blur(6px);
+            transition: all 0.4s ease;
+            pointer-events: auto;
+            opacity: 0.85;
+            z-index: 20; /* 确保永远能点到 */
+        }
+
+        .panel-toggle:hover {
+            background: rgba(212,175,55,0.25);
+            color: #fff8c2;
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 0 10px rgba(212,175,55,0.6);
+        }
+
+        /* 面板展开时，按钮滑入边缘但仍可见 */
+        .side-panel:not(.is-collapsed) .panel-toggle {
+            left: -12px; /* 稍微缩进去，但仍可点击 */
+            opacity: 0.5;
+            pointer-events: auto; /* 关键点：仍可点击！ */
+        }
+
+        /* 折叠状态：按钮完全露出 */
+        .side-panel.is-collapsed .panel-toggle {
+            left: -22px;
+            opacity: 0.95;
+        }
+
+        /* 图标方向切换动画 */
+        .side-panel.is-collapsed .toggle-icon {
+            transform: rotate(180deg);
+            transition: transform 0.3s ease;
+        }
+
+        /* ---------- Panel Content ---------- */
+        .panel-content{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+        }
+
+        .panel-title{
+        font-family:'Cinzel','Times New Roman',serif;
+        color:rgba(252,238,167,0.9);
+        font-size:14px;
+        text-transform:uppercase;
+        letter-spacing:2px;
+        text-align:center;
+        }
+
+        /* 上传按钮：纯文字，均匀间距 */
+        .upload-btn{
+        display:block;
+        padding:10px;
+        background:rgba(212,175,55,0.12);
+        color:rgba(252,238,167,0.9);
+        border:1px solid rgba(212,175,55,0.25);
+        border-radius:10px;
+        text-align:center;
+        font-size:14px;
+        cursor:pointer;
+        transition:background 0.25s ease, transform 0.25s ease;
+        }
+
+        .upload-btn:hover{
+        background:rgba(212,175,55,0.25);
+        transform:scale(1.05);
+        }
+
+        .upload-btn input[type="file"]{
+        position:absolute;
+        width:1px;height:1px;
+        overflow:hidden;
+        clip:rect(0,0,0,0);
+        white-space:nowrap;
+        }
+
+        /* 提示文字 */
+        .panel-hint{
+        color:rgba(212,175,55,0.75);
+        font-size:12px;
+        text-align:center;
+        letter-spacing:1px;
+        font-weight:300;
+        }
+
+        /* H键隐藏 */
+        .ui-hidden{
+        opacity:0;
+        pointer-events:none !important;
+        }
+
+        /* ---------- Mobile Responsive ---------- */
+        @media (max-width:520px){
+            .side-panel{
+                width: 200px;
+                right: 10px;
+                top: 70px;
+            }
+            .panel-toggle{
+                width: 32px;
+                height: 48px;
+                font-size: 18px;
+            }
+        }
         /* When hidden class is applied to specific elements */
         .ui-hidden {
             opacity: 0;
@@ -84,24 +247,45 @@
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* Typography - Centerpiece */
-        h1 { 
-            color: #fceea7; font-size: 48px; margin: 0; font-weight: 400; 
-            letter-spacing: 6px; 
-            text-shadow: 0 0 50px rgba(252, 238, 167, 0.6); 
+        h1 {
+            position: relative;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #fceea7;
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-shadow: 0 0 50px rgba(252, 238, 167, 0.6);
             background: linear-gradient(to bottom, #fff, #eebb66);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-family: 'Cinzel', 'Times New Roman', serif;
             opacity: 0.9;
-            transition: opacity 0.5s ease; /* Ensure smooth transitions if needed */
+            transition: opacity 0.5s ease;
+            width: 100%;
+            pointer-events: none; /* 确保手势区域不被遮挡 */
         }
 
-        /* Upload Button - Restored & Elegant */
-        .upload-wrapper {
-            margin-top: 20px;
-            pointer-events: auto;
-            text-align: center;
-            transition: opacity 0.5s ease; /* Add transition for smooth hiding */
+        /* 移动端优化 */
+        @media (max-width: 520px) {
+            h1 {
+                font-size: 30px;
+                letter-spacing: 4px;
+                margin-top: 10px;     /* 保持靠上但不贴边 */
+                text-align: center;   /* 居中对齐 */
+            }
         }
+
+        /* 平板端微调 */
+        @media (min-width: 521px) and (max-width: 900px) {
+            h1 {
+                font-size: 38px;
+                letter-spacing: 5px;
+                margin-top: 18px;
+            }
+        }
+
         .upload-btn {
             background: rgba(20, 20, 20, 0.6); 
             border: 1px solid rgba(212, 175, 55, 0.4); 
@@ -164,17 +348,25 @@
     <div id="canvas-container"></div>
 
     <div id="ui-layer">
-        <h1>Merry Christmas</h1>
-        
-        <div class="upload-wrapper">
+        <h1 class="hero-title">Merry Christmas</h1>
+
+        <aside id="side-panel" class="side-panel" aria-label="控制面板">
+            <button id="panel-toggle" class="panel-toggle" type="button" aria-label="折叠/展开面板">
+            <span class="toggle-icon">‹</span>
+            </button>
+
+            <div class="panel-content">
+            <div class="panel-title">Memory Panel</div>
+
             <label class="upload-btn">
-                添加照片
+                <span>添加照片</span>
                 <input type="file" id="file-input" multiple accept="image/*" aria-label="上传照片添加到圣诞记忆树">
             </label>
-            <div class="hint-text">按 “H” 隐藏/显示文字</div>
-        </div>
-    </div>
 
+            <div class="panel-hint">按 <kbd>H</kbd> 隐藏/显示面板</div>
+            </div>
+        </aside>
+    </div>
     <!-- Webcam hidden structure -->
     <div id="webcam-wrapper">
         <video id="webcam" autoplay playsinline style="display:none;"></video>
@@ -750,12 +942,18 @@
                 composer.setSize(window.innerWidth, window.innerHeight);
             });
             document.getElementById('file-input').addEventListener('change', handleImageUpload);
+            const panel = document.getElementById('side-panel');
+            const toggle = document.getElementById('panel-toggle');
+            if (panel && toggle) {
+                toggle.addEventListener('click', () => {
+                    panel.classList.toggle('is-collapsed');
+                });
+            }
             
             // Toggle UI logic - ONLY hide controls, keep title
             window.addEventListener('keydown', (e) => {
                 if (e.key.toLowerCase() === 'h') {
-                    const controls = document.querySelector('.upload-wrapper');
-                    if (controls) controls.classList.toggle('ui-hidden');
+                    if (panel) panel.classList.toggle('ui-hidden');
                 }
             });
         }
