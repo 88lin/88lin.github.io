@@ -421,8 +421,9 @@
             renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.outputColorSpace = THREE.SRGBColorSpace;
             renderer.toneMapping = THREE.ReinhardToneMapping; 
-            renderer.toneMappingExposure = 2.2; 
+            renderer.toneMappingExposure = 1.1; 
             container.appendChild(renderer.domElement);
 
             mainGroup = new THREE.Group();
@@ -460,9 +461,9 @@
         function setupPostProcessing() {
             const renderScene = new RenderPass(scene, camera);
             const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-            bloomPass.threshold = 0.7; 
-            bloomPass.strength = 0.45; 
-            bloomPass.radius = 0.4;
+            bloomPass.threshold = 0.8; 
+            bloomPass.strength = 0.35; 
+            bloomPass.radius = 0.35;
 
             composer = new EffectComposer(renderer);
             composer.addPass(renderScene);
@@ -774,26 +775,35 @@
             addPhotoToScene(tex);
         }
 
-        function addPhotoToScene(texture) {
-            const frameGeo = new THREE.BoxGeometry(1.4, 1.4, 0.05);
-            const frameMat = new THREE.MeshStandardMaterial({ color: CONFIG.colors.champagneGold, metalness: 1.0, roughness: 0.1 });
+        function addPhotoToScene(texture, aspect = 1) {
+            const shortSide = 1.2;
+            let w = shortSide, h = shortSide;
+            if (aspect >= 1) w = shortSide * aspect;
+            else h = shortSide / aspect;
+            const framePadding = 0.18;
+            const frameGeo = new THREE.BoxGeometry(w + framePadding, h + framePadding, 0.06);
+            const frameMat = new THREE.MeshStandardMaterial({
+                color: CONFIG.colors.champagneGold, metalness: 1.0, roughness: 0.1
+            });
             const frame = new THREE.Mesh(frameGeo, frameMat);
-
-            const photoGeo = new THREE.PlaneGeometry(1.2, 1.2);
+            const photoGeo = new THREE.PlaneGeometry(w, h);
             const photoMat = new THREE.MeshBasicMaterial({ map: texture });
+            photoMat.toneMapped = false;
+            photoMat.transparent = true;
+
             const photo = new THREE.Mesh(photoGeo, photoMat);
             photo.position.z = 0.04;
 
             const group = new THREE.Group();
             group.add(frame);
             group.add(photo);
-            
+
             const s = 0.8;
-            group.scale.set(s,s,s);
-            
+            group.scale.set(s, s, s);
+
             photoMeshGroup.add(group);
-        particleSystem.push(new Particle(group, 'PHOTO', false));
-        updatePhotoLayout();
+            particleSystem.push(new Particle(group, 'PHOTO', false));
+            updatePhotoLayout();
         }
         function updatePhotoLayout() {
             const photos = particleSystem.filter(p => p.type === 'PHOTO');
@@ -814,21 +824,42 @@
 
                 p.posTree.set(Math.cos(angle) * r, y, Math.sin(angle) * r);
             });
-     }
+        }
+
+        async function fileToTexture(file, maxSize = 2048) {
+            const bmp = await createImageBitmap(file, { imageOrientation: "from-image" });
+            let { width, height } = bmp;
+            const scale = Math.min(1, maxSize / Math.max(width, height));
+            const tw = Math.max(1, Math.round(width * scale));
+            const th = Math.max(1, Math.round(height * scale));
+
+            const canvas = document.createElement("canvas");
+            canvas.width = tw; canvas.height = th;
+            const ctx = canvas.getContext("2d", { alpha: true });
+
+            ctx.drawImage(bmp, 0, 0, tw, th);
+
+            const tex = new THREE.CanvasTexture(canvas);
+            tex.colorSpace = THREE.SRGBColorSpace;
+            tex.anisotropy = Math.min(renderer.capabilities.getMaxAnisotropy(), 8);
+            tex.needsUpdate = true;
+
+            const aspect = tw / th;
+            return { tex, aspect };
+        }
         
-        function handleImageUpload(e) {
-            const files = e.target.files;
-            if(!files.length) return;
-            Array.from(files).forEach(f => {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    new THREE.TextureLoader().load(ev.target.result, (t) => {
-                        t.colorSpace = THREE.SRGBColorSpace;
-                        addPhotoToScene(t);
-                    });
+        async function handleImageUpload(e) {
+            const files = Array.from(e.target.files || []);
+            if (!files.length) return;
+            for (const f of files) {
+                try {
+                    const { tex, aspect } = await fileToTexture(f, 2048);
+                    addPhotoToScene(tex, aspect);
+                } catch (err) {
+                    console.error("图片读取失败：", f?.name, err);
                 }
-                reader.readAsDataURL(f);
-            });
+            }
+            e.target.value = "";
         }
 
         // --- MEDIAPIPE ---
