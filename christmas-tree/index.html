@@ -203,7 +203,7 @@
         /* ---------- Mobile Responsive ---------- */
         @media (max-width:520px){
             .side-panel{
-                width: 160px;
+                width: 150px;
                 right: 0px;
                 top: 80px;
             }
@@ -211,6 +211,17 @@
                 width: 8px;
                 height: 58px;
                 font-size: 18px;
+            }
+        }
+        /* === 调整折叠按钮在移动端的位置 === */
+        @media (max-width: 768px) {
+            .toggle-btn,
+            #toggle-panel-btn,
+            .panel-toggle {
+                position: fixed !important;
+                top: 25px !important;
+                transform: none !important;
+                z-index: 9999 !important;
             }
         }
         /* When hidden class is applied to specific elements */
@@ -347,7 +358,7 @@
                     <div class="panel-title">Music Player</div>
                     <button class="music-btn" data-music="/Music/yequ.mp3">夜曲-周杰伦</button>
                     <button class="music-btn" data-music="/Music/meihualei.mp3">梅花泪</button>
-                    <label id="music-upload-label" for="music-upload">⬆️ 上传自定义音乐</label>
+                    <label id="music-upload-label" for="music-upload">⬆️ 上传音乐</label>
                     <input type="file" id="music-upload" accept="audio/*">
                     <div class="panel-hint">支持 MP3 / WAV 格式</div>
                 </div>
