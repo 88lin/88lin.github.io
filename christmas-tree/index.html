@@ -362,7 +362,7 @@
             },
             particles: {
                 count: 1500,
-                dustCount: 2500,
+                dustCount: 2300,
                 snowCount: 1000,
                 treeHeight: 24,
                 treeRadius: 8   
@@ -461,9 +461,9 @@
         function setupPostProcessing() {
             const renderScene = new RenderPass(scene, camera);
             const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-            bloomPass.threshold = 0.8; 
-            bloomPass.strength = 0.35; 
-            bloomPass.radius = 0.35;
+            bloomPass.threshold = 0.9; 
+            bloomPass.strength = 0.3; 
+            bloomPass.radius = 0.4;
 
             composer = new EffectComposer(renderer);
             composer.addPass(renderScene);
@@ -780,8 +780,8 @@
             let w = shortSide, h = shortSide;
             if (aspect >= 1) w = shortSide * aspect;
             else h = shortSide / aspect;
-            const framePadding = 0.18;
-            const frameGeo = new THREE.BoxGeometry(w + framePadding, h + framePadding, 0.06);
+            const framePadding = 0.12;
+            const frameGeo = new THREE.BoxGeometry(w + framePadding, h + framePadding, 0.06, 4, 4, 1);
             const frameMat = new THREE.MeshStandardMaterial({
                 color: CONFIG.colors.champagneGold, metalness: 1.0, roughness: 0.1
             });
