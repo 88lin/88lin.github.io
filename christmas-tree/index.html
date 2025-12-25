@@ -1014,16 +1014,37 @@
 
         let albumUrls = []; // 当前相册中所有图片链接
 
-        // 从远程 URL 加载图片并挂到圣诞树上
+        // 从图床 URL 加载图片并挂到圣诞树上（新版，更兼容）
         async function addPhotoFromURL(url) {
-            try {
-                const res = await fetch(url);
-                const blob = await res.blob();
-                const { tex, aspect } = await fileToTexture(blob, 2048);
-                addPhotoToScene(tex, aspect);
-            } catch (e) {
-                console.error("加载图床图片失败：", url, e);
-            }
+            return new Promise((resolve) => {
+                const img = new Image();
+                // 尽量允许跨域加载纹理（如果对方没配 CORS，也只是读不到像素，但能显示）
+                img.crossOrigin = "anonymous";
+
+                img.onload = () => {
+                    try {
+                        const tex = new THREE.Texture(img);
+                        tex.needsUpdate = true;
+                        tex.colorSpace = THREE.SRGBColorSpace;
+
+                        const aspect = img.naturalWidth && img.naturalHeight
+                            ? img.naturalWidth / img.naturalHeight
+                            : 1;
+
+                        addPhotoToScene(tex, aspect);
+                    } catch (err) {
+                        console.error("创建纹理失败：", url, err);
+                    }
+                    resolve();
+                };
+
+                img.onerror = (err) => {
+                    console.error("图片加载失败：", url, err);
+                    resolve(); // 不要卡死整个流程
+                };
+
+                img.src = url;
+            });
         }
 
         // 从多行文本中提取 URL
@@ -1038,9 +1059,10 @@
         function buildAlbumLink() {
             try {
                 const json = JSON.stringify(albumUrls);
-                const encoded = btoa(unescape(encodeURIComponent(json)));
+                // 先 URL 编码，再 base64
+                const encoded = btoa(encodeURIComponent(json));
                 const base = location.origin + location.pathname;
-                return `${base}?album=${encodeURIComponent(encoded)}`;
+                return `${base}?album=${encoded}`;
             } catch (e) {
                 console.error("生成相册链接失败：", e);
                 return location.href;
@@ -1052,11 +1074,15 @@
             const params = new URLSearchParams(location.search);
             const encoded = params.get("album");
             if (!encoded) return;
+
             try {
+                // 先 base64 解码，再 decodeURIComponent，再 JSON.parse
                 const json = decodeURIComponent(atob(encoded));
                 const list = JSON.parse(json);
                 if (!Array.isArray(list)) return;
+
                 albumUrls = list;
+
                 for (const url of albumUrls) {
                     await addPhotoFromURL(url);
                 }
