@@ -149,6 +149,7 @@
             background: rgba(40,40,40,0.7);
             color: #fceea7;
             font-size: 14px;
+            font-weight: 600;
             letter-spacing: 1px;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -163,7 +164,8 @@
             text-align: center;
             background: rgba(50,50,50,0.7);
             border: 1px dashed rgba(212,175,55,0.4);
-            color: #d4af37;
+            color: #fceea7;
+            font-weight: 600;
             border-radius: 15px;
             margin-bottom: 13px;
             padding: 10px;
@@ -355,14 +357,16 @@
 
             <div class="panel-content">
             <div class="panel-title">Memory Panel</div>
-
+            <button class="music-btn" id="open-christmas2-btn" type="button">
+            其他圣诞树特效
+            </button>
             <button class="music-btn" id="photo-upload-btn">添加照片</button>
             <input type="file" id="file-input" multiple accept="image/*" aria-label="上传照片添加到圣诞记忆树">
             <div class="panel-hint">可以批量上传多张照片</div>
                 <div class="music-section">
                     <div class="panel-title">Music Player</div>
                     <button class="music-btn" data-music="/Music/yequ.mp3">夜曲-周杰伦</button>
-                    <button class="music-btn" data-music="/Music/meihualei.mp3">梅花泪</button>
+                    <button class="music-btn" data-music="/Music/qiannianyitan.mp3">千年一叹</button>
                     <label id="music-upload-label" for="music-upload">⬆️ 上传自定义音乐</label>
                     <input type="file" id="music-upload" accept="audio/*">
                     <div class="panel-hint">支持 MP3 / WAV 格式</div>
@@ -976,6 +980,12 @@
             document.getElementById('photo-upload-btn').addEventListener('click', () => {
                 document.getElementById('file-input').click();
             });
+            const open2 = document.getElementById('open-christmas2-btn');
+        if (open2) {
+            open2.addEventListener('click', () => {
+                window.open('./Christmas2/index.html', '_blank', 'noopener,noreferrer');
+            });
+        }
             const panel = document.getElementById('side-panel');
             const toggle = document.getElementById('panel-toggle');
             if (panel && toggle) {
