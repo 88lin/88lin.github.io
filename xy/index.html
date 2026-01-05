@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>闲鱼敏感词加密工具</title>
+    <!-- SEO优化 -->
+    <meta name="description" content="免费在线闲鱼敏感词加密工具，支持文字加密、同音字替换、拼音混排等多种模式，帮助卖家安全过审商品标题和描述，提升上架成功率。" />
+    <meta name="keywords" content="闲鱼敏感词, 闲鱼加密, 闲鱼过审, 闲鱼标题加密, 闲鱼检测, 闲鱼卖家工具, 敏感词替换" />
+    <meta name="author" content="茉灵智库" />
+    <!-- Open Graph (社交分享优化) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="闲鱼敏感词加密工具 - 安全过审神器" />
+    <meta property="og:description" content="轻松加密闲鱼敏感词，避免违规风险，助你快速上架商品！" />
+    <meta property="og:url" content="https://home-gnwr20uh.maozi.io/xy/index.html" />
+    <meta property="og:site_name" content="茉灵智库" />
+    <meta property="og:locale" content="zh_CN" />
+
+    <!-- 图标 -->
+    <link rel="icon" href="/favicon.svg" />
+
+    <!-- 提高国内加载速度 -->
+    <meta http-equiv="Cache-Control" content="max-age=86400" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-soft: #e0e7ff;
+            --primary-dark: #4f46e5;
+            --accent: #a855f7;
+            --bg-gradient-start: #FA8BFF;
+            --bg-gradient-end: #2BD2FF;
+            --success: #10b981;
+            --success-dark: #059669;
+            --warning: #f59e0b;
+            --warning-dark: #d97706;
+            --danger: #ef4444;
+            --text-main: #111827;
+            --text-sub: #6b7280;
+            --border-soft: #e5e7eb;
+            --bg-soft: #f9fafb;
+            --radius-lg: 18px;
+            --radius-md: 10px;
+            --transition-fast: 0.2s ease;
+            --shadow-strong: 0 22px 60px rgba(15, 23, 42, 0.32);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                sans-serif;
+            background: radial-gradient(
+                    circle at top,
+                    rgba(255, 255, 255, 0.15),
+                    transparent 55%
+                ),
+                linear-gradient(
+                    150deg,
+                    var(--bg-gradient-start) 0%,
+                    var(--bg-gradient-end) 100%
+                );
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            color: var(--text-main);
+        }
+
+        .app-shell {
+            width: 100%;
+            max-width: 920px;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-strong);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .header {
+            position: relative;
+            padding: 22px 24px 18px;
+            color: #f9fafb;
+            background: radial-gradient(
+                    circle at top left,
+                    rgba(255, 255, 255, 0.16),
+                    transparent 60%
+                ),
+                linear-gradient(
+                    135deg,
+                    var(--bg-gradient-start),
+                    var(--bg-gradient-end)
+                );
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(
+                circle at top right,
+                rgba(250, 250, 250, 0.18),
+                transparent 55%
+            );
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .header-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            background: rgba(15, 23, 42, 0.12);
+            box-shadow: 0 6px 20px rgba(15, 23, 42, 0.35);
+        }
+
+        .tagline {
+            padding: 6px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: rgba(15, 23, 42, 0.18);
+            white-space: nowrap;
+        }
+
+        .header h1 {
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            margin-bottom: 3px;
+        }
+
+        .header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .header-meta {
+            margin-top: 6px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            font-size: 11px;
+            opacity: 0.9;
+        }
+
+        .header-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            background: rgba(15, 23, 42, 0.18);
+            border: 1px dashed rgba(255, 255, 255, 0.7);
+        }
+
+        .header-pill-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.3);
+        }
+
+        .content {
+            padding: 22px 24px 5px;
+            background: radial-gradient(
+                    circle at top,
+                    rgba(219, 234, 254, 0.55),
+                    transparent 60%
+                ),
+                linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title::before {
+            content: "";
+            width: 4px;
+            height: 16px;
+            background: linear-gradient(
+                180deg,
+                var(--primary),
+                var(--accent)
+            );
+            border-radius: 999px;
+        }
+
+        .subtitle {
+            font-size: 12px;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            border-radius: var(--radius-md);
+            padding: 14px 14px 12px;
+            font-size: 14px;
+            line-height: 1.6;
+            font-family: Consolas, Monaco, "SF Mono", ui-monospace, monospace;
+            resize: vertical;
+            min-height: 96px;
+            border: 1.5px solid var(--border-soft);
+            background: rgba(249, 250, 251, 0.95);
+            transition: border var(--transition-fast),
+                box-shadow var(--transition-fast),
+                background var(--transition-fast),
+                transform var(--transition-fast);
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        textarea::placeholder {
+            color: #9ca3af;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #ffffff;
+            box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.65),
+                0 10px 30px rgba(15, 23, 42, 0.18);
+            transform: translateY(-1px);
+        }
+
+        textarea[readonly] {
+            background: #f3f4f6;
+            color: #374151;
+            cursor: default;
+        }
+
+        textarea[readonly]:focus {
+            transform: none;
+            box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.7);
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        button {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: none;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            appearance: none;
+            outline: none;
+            transition: transform var(--transition-fast),
+                box-shadow var(--transition-fast),
+                background var(--transition-fast),
+                opacity var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: none;
+        }
+
+        button:focus-visible {
+            outline: 2px solid #111827;
+            outline-offset: 2px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 10px 22px rgba(79, 70, 229, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .btn-secondary:hover {
+            background: #d1d5db;
+            transform: translateY(-1px);
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: #ffffff;
+            box-shadow: 0 10px 22px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-success:hover {
+            background: var(--success-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-warning {
+            background: var(--warning);
+            color: #ffffff;
+            box-shadow: 0 10px 22px rgba(245, 158, 11, 0.35);
+        }
+
+        .btn-warning:hover {
+            background: var(--warning-dark);
+            transform: translateY(-1px);
+        }
+
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 12px;
+            padding: 10px 12px;
+            background: rgba(249, 250, 251, 0.95);
+            border-radius: var(--radius-md);
+            border: 1px dashed rgba(148, 163, 184, 0.75);
+            font-size: 12px;
+            color: var(--text-sub);
+        }
+
+        .stat-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .stat-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: #9ca3af;
+        }
+
+        .stat-value {
+            font-weight: 700;
+            color: var(--text-main);
+            background: var(--primary-soft);
+            padding: 2px 8px;
+            border-radius: 999px;
+        }
+
+        .copy-hint {
+            font-size: 11px;
+            color: var(--text-sub);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .example {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: var(--radius-md);
+            padding: 12px 12px 10px;
+            font-size: 12px;
+            color: #1e3a8a;
+            margin-top: 10px;
+        }
+
+        .example strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #1d4ed8;
+        }
+
+        .example p + p {
+            margin-top: 3px;
+        }
+
+        .example code {
+            background: #dbeafe;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, Monaco, ui-monospace, monospace;
+            word-break: break-all;
+        }
+
+        .format-verification {
+            background: #fffbeb;
+            border: 1px solid #facc15;
+            border-radius: var(--radius-md);
+            padding: 8px 10px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #92400e;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .format-verification::before {
+            content: "!";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            background: #f59e0b;
+            color: #fff7ed;
+            font-size: 10px;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 12px 16px 14px;
+            background: #f9fafb;
+            font-size: 11px;
+            color: var(--text-sub);
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .footer span {
+            opacity: 0.9;
+        }
+
+        .footer kbd {
+            font-size: 11px;
+            padding: 2px 5px;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            background: #ffffff;
+            box-shadow: 0 1px 0 #e5e7eb;
+            margin: 0 1px;
+        }
+
+        .notification {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            max-width: 260px;
+            background: var(--success);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 12px;
+            box-shadow: 0 14px 35px rgba(15, 23, 42, 0.3);
+            transform: translateX(360px);
+            opacity: 0;
+            transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+            z-index: 999;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .notification.error {
+            background: var(--danger);
+        }
+
+        .notification-icon {
+            width: 18px;
+            height: 18px;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 减少动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 640px) {
+            body {
+                align-items: stretch;
+            }
+
+            .container {
+                border-radius: 16px;
+            }
+
+            .header {
+                padding: 16px 14px 12px;
+            }
+
+            .header h1 {
+                font-size: 18px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            .content {
+                padding: 16px 14px 2px;
+            }
+
+            textarea {
+                font-size: 13px;
+                min-height: 90px;
+                padding: 12px 12px 10px;
+            }
+
+            .controls {
+                gap: 8px;
+            }
+
+            .controls button {
+                flex: 1 1 calc(50% - 8px);
+                padding-block: 9px;
+            }
+
+            .controls button.long {
+                flex: 1 0 100%;
+            }
+
+            .stats {
+                flex-direction: column;
+            }
+
+            .footer {
+                padding-inline: 10px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .content {
+                padding: 24px 28px 5px;
+            }
+
+            textarea {
+                min-height: 120px;
+            }
+
+            .section.large-split {
+                display: grid;
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+                gap: 20px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-shell">
+        <div class="container">
+            <header class="header">
+                <div class="header-inner">
+                    <div class="header-topline">
+                        <div class="logo-wrap">
+                            <div>
+                                <h1>闲鱼敏感词加密</h1>
+                                <p>规避闲鱼敏感词检测</p>
+                            </div>
+                        </div>
+                        <span class="tagline">茉灵智库</span>
+                    </div>
+                    <div class="header-meta" aria-hidden="true">
+                        <div class="header-pill">
+                            <span class="header-pill-dot"></span>
+                            在本地安全加密
+                        </div>
+                        <div class="header-pill">支持中英文 & 符号</div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="content">
+                <section class="section large-split" aria-label="文本转换区域">
+                    <div>
+                        <div class="section-title">输入文本</div>
+                        <textarea
+                            id="inputText"
+                            rows="4"
+                            placeholder="在此输入你想在闲鱼发送的内容... 例如：你好，世界！"
+                        ></textarea>
+                        <div class="controls">
+                            <button class="btn-primary" id="convertBtn">
+                                🔄 一键转换
+                            </button>
+                            <button class="btn-secondary" id="clearBtn">
+                                🧹 一键清除
+                            </button>
+                            <button class="btn-warning" id="exampleBtn">
+                                💡 填充示例
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="section-title">转换结果</div>
+                        <textarea
+                            id="outputText"
+                            rows="4"
+                            readonly
+                            placeholder="转换结果将显示在这里..."
+                        ></textarea>
+                        <div class="controls">
+                            <button class="btn-success long" id="copyBtn">
+                                📋 复制结果
+                            </button>
+                            <button class="btn-secondary" id="resetBtn">
+                                ↩️ 重置
+                            </button>
+                        </div>
+                        <p class="copy-hint">
+                            提示：如果自动复制失败，请手动选择结果文本并按
+                            <kbd>Ctrl</kbd> + <kbd>C</kbd>（Mac 上为
+                            <kbd>⌘</kbd> + <kbd>C</kbd>）
+                        </p>
+
+                        <div class="stats" aria-label="统计信息">
+                            <div class="stat-item">
+                                <span class="stat-label">
+                                    <span class="stat-dot"></span>
+                                    输入字符
+                                </span>
+                                <span class="stat-value" id="inputCount">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">
+                                    <span class="stat-dot"></span>
+                                    输出长度
+                                </span>
+                                <span class="stat-value" id="outputCount">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">
+                                    <span class="stat-dot"></span>
+                                    实体数量
+                                </span>
+                                <span class="stat-value" id="entityCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section" aria-label="示例与格式说明">
+                    <div class="example">
+                        <strong>使用示例：</strong>
+                        <p>输入：<code>你好，商品还在吗？</code></p>
+                        <p>输出：<code id="exampleOutput"></code></p>
+                        <p style="margin-top: 6px;">
+                            正确格式示例：&#20320;&#22909;&#65292;&#21830;&#21697;&#36824;&#22312;&#21527;
+                        </p>
+                    </div>
+
+                  
+                </section>
+            </main>
+
+            <footer class="footer">
+                <span>
+                    快捷键：
+                    <kbd>Ctrl/⌘</kbd> + <kbd>Enter</kbd> 转换 ·
+                    <kbd>Ctrl/⌘</kbd> + <kbd>K</kbd> 清除 ·
+                    <kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> 复制
+                </span>
+            </footer>
+        </div>
+    </div>
+
+    <div id="notification" class="notification" role="status" aria-live="polite">
+        <span class="notification-icon">✓</span>
+        <span id="notificationText">已复制到剪贴板！</span>
+    </div>
+
+    <script>
+        "use strict";
+
+        // 工具函数区域 --------------------------------------------------------
+
+        /**
+         * 文本 => HTML 实体编码
+         * 使用 UTF-16 code unit，输出形如 &#20320;&#22909;
+         */
+        const textToHTMLEntities = (text) => {
+            if (!text) return "";
+            let result = "";
+            for (let i = 0; i < text.length; i++) {
+                const code = text.charCodeAt(i);
+                result += `&#${code};`;
+            }
+            return result;
+        };
+
+        /**
+         * 验证输出格式：
+         * 1. 不包含中文分号
+         * 2. 不包含空格
+         * 3. 完全匹配 (&#+数字;)+
+         */
+        const verifyFormat = (encodedText) => {
+            if (!encodedText) return true;
+
+            if (encodedText.includes("；")) return false;
+            if (encodedText.includes(" ")) return false;
+
+            const pattern = /^(&#\d+;)+$/;
+            return pattern.test(encodedText);
+        };
+
+        /**
+         * 统计实体数量
+         */
+        const countEntities = (encodedText) => {
+            if (!encodedText) return 0;
+            const matches = encodedText.match(/&#\d+;/g);
+            return matches ? matches.length : 0;
+        };
+
+        /**
+         * 显示顶部通知
+         */
+        const showNotification = (message, isError = false) => {
+            const notification = document.getElementById("notification");
+            const textEl = document.getElementById("notificationText");
+            const iconEl = notification.querySelector(".notification-icon");
+
+            textEl.textContent = message;
+            notification.classList.remove("error");
+            if (isError) {
+                notification.classList.add("error");
+                iconEl.textContent = "!";
+            } else {
+                iconEl.textContent = "✓";
+            }
+
+            notification.classList.add("show");
+
+            window.clearTimeout(showNotification._timer);
+            showNotification._timer = window.setTimeout(() => {
+                notification.classList.remove("show");
+            }, 2000);
+        };
+
+        /**
+         * 更新统计显示
+         */
+        const updateStats = () => {
+            const input = inputText.value;
+            const output = outputText.value;
+
+            inputCount.textContent = String(input.length);
+            outputCount.textContent = String(output.length);
+            entityCount.textContent = String(countEntities(output));
+        };
+
+        /**
+         * 备用复制
+         */
+        const fallbackCopy = (text) => {
+            try {
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+                textarea.style.position = "fixed";
+                textarea.style.top = "-9999px";
+                textarea.style.opacity = "0";
+
+                document.body.appendChild(textarea);
+                textarea.focus();
+                textarea.select();
+
+                const successful = document.execCommand("copy");
+                document.body.removeChild(textarea);
+
+                if (successful) {
+                    showNotification("已复制到剪贴板！");
+                } else {
+                    showNotification(
+                        "自动复制失败，请手动选择文本复制",
+                        true
+                    );
+                    outputText.focus();
+                    outputText.select();
+                    outputText.setSelectionRange(0, 99999);
+                }
+            } catch (err) {
+                showNotification("复制失败: " + err.message, true);
+                outputText.focus();
+                outputText.select();
+                outputText.setSelectionRange(0, 99999);
+            }
+        };
+
+        // DOM 引用与事件绑定 ---------------------------------------------------
+
+        const inputText = document.getElementById("inputText");
+        const outputText = document.getElementById("outputText");
+
+        const convertBtn = document.getElementById("convertBtn");
+        const clearBtn = document.getElementById("clearBtn");
+        const exampleBtn = document.getElementById("exampleBtn");
+        const copyBtn = document.getElementById("copyBtn");
+        const resetBtn = document.getElementById("resetBtn");
+
+        const inputCount = document.getElementById("inputCount");
+        const outputCount = document.getElementById("outputCount");
+        const entityCount = document.getElementById("entityCount");
+        const exampleOutput = document.getElementById("exampleOutput");
+
+        // 转换逻辑封装
+        const doConvert = () => {
+            const input = inputText.value;
+            if (!input.trim()) {
+                showNotification("请输入文本后再转换！", true);
+                return;
+            }
+
+            const converted = textToHTMLEntities(input);
+
+            if (!verifyFormat(converted)) {
+                showNotification("格式验证失败！", true);
+                return;
+            }
+
+            outputText.value = converted;
+            updateStats();
+            showNotification("转换完成！");
+        };
+
+        // 按钮事件 ------------------------------------------------------------
+
+        convertBtn.addEventListener("click", doConvert);
+
+        clearBtn.addEventListener("click", () => {
+            inputText.value = "";
+            outputText.value = "";
+            updateStats();
+            showNotification("已清除所有内容！");
+        });
+
+        resetBtn.addEventListener("click", () => {
+            inputText.value = "";
+            outputText.value = "";
+            updateStats();
+            showNotification("已重置！");
+        });
+
+        copyBtn.addEventListener("click", () => {
+            const output = outputText.value;
+            if (!output) {
+                showNotification("没有内容可复制！", true);
+                return;
+            }
+
+            if (!verifyFormat(output)) {
+                showNotification("格式不正确，无法复制！", true);
+                return;
+            }
+
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard
+                    .writeText(output)
+                    .then(() => showNotification("已复制到剪贴板！"))
+                    .catch(() => fallbackCopy(output));
+            } else {
+                fallbackCopy(output);
+            }
+        });
+
+        exampleBtn.addEventListener("click", () => {
+            const examples = [
+                "你好，世界！Hello & World!",
+                "商品还在吗？价格多少？",
+            ];
+
+            const randomExample =
+                examples[Math.floor(Math.random() * examples.length)];
+            inputText.value = randomExample;
+
+            const converted = textToHTMLEntities(randomExample);
+            outputText.value = converted;
+            updateStats();
+            showNotification("已加载示例并自动转换！");
+        });
+
+        // 实时转换（防抖）
+        let autoConvertTimer = null;
+        inputText.addEventListener("input", function () {
+            window.clearTimeout(autoConvertTimer);
+            autoConvertTimer = window.setTimeout(() => {
+                const input = this.value;
+                if (input.trim()) {
+                    const converted = textToHTMLEntities(input);
+                    outputText.value = converted;
+                } else {
+                    outputText.value = "";
+                }
+                updateStats();
+            }, 500);
+        });
+
+        // 初始化与快捷键 --------------------------------------------------------
+
+        window.addEventListener("DOMContentLoaded", () => {
+            updateStats();
+
+            const exampleText = "你好，商品还在吗？";
+            exampleOutput.textContent = textToHTMLEntities(exampleText);
+
+            document.addEventListener("keydown", (e) => {
+                const isModifier = e.ctrlKey || e.metaKey;
+
+                if (isModifier && e.key === "Enter") {
+                    e.preventDefault();
+                    convertBtn.click();
+                }
+
+                if (isModifier && e.key.toLowerCase() === "k") {
+                    e.preventDefault();
+                    clearBtn.click();
+                }
+
+                if (
+                    isModifier &&
+                    e.shiftKey &&
+                    e.key.toLowerCase() === "c"
+                ) {
+                    e.preventDefault();
+                    copyBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
