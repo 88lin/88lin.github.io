@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemapp: https://home-gnwr20uh.maozi.io/sitemap.xml
+Sitemapp: https://lite.cc.cd/sitemap.xml
