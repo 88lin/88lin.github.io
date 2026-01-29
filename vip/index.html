@@ -709,6 +709,7 @@
                 gap: 10px;
                 z-index: 1000;
                 opacity: 0;
+                pointer-events: none;
                 transition: opacity 0.3s;
                 font-weight: 600;
                 border: 2px solid rgba(255, 255, 255, 0.8);
@@ -716,6 +717,7 @@
 
             .toast.show {
                 opacity: 1;
+                pointer-events: auto;
             }
 
             .decoration {
@@ -880,9 +882,9 @@
                     <i class="fas fa-video"></i>
                     <span>免费短剧</span>
                 </a>
-                <a href="https://easys.cc.cd" target="_blank" rel="noopener noreferrer" class="nav-btn">
+                <a href="https://blog.nuaa.tech/article/46" target="_blank" rel="noopener noreferrer" class="nav-btn">
                     <i class="fa-solid fa-user"></i>
-                    <span>茉灵智库</span>
+                    <span>更多资源</span>
                 </a>
              </div>
             </header>
@@ -1143,10 +1145,10 @@
                 </div>
             </div>
             <div class="footer">
+                <p>全网VIP视频解析 | 问题反馈及最新网站前往 <a href="https://qm.qq.com/q/67dmLguXkc" target="_blank" rel="noopener noreferrer">影视交流群</a></p>
                 <p>
-                    © 2025 全网VIP视频解析 | 反馈问题前往 <a href="https://lite.cc.cd/gzh/index.html" target="_blank" rel="noopener noreferrer">公众号</a> 后台留言
+                    Copyright © 2026 <a href="https://home.nuaa.tech/gzh" target="_blank" rel="noopener noreferrer">茉灵智库</a> All Rights Reserved.
                 </p>
-                <p>本工具仅供学习交流使用，请支持正版视频平台 | 解析接口来源于网络</p>
             </div>
         </div>
         <div class="toast" id="toast">
@@ -1187,9 +1189,6 @@
                 }, {
                     value: "https://bd.jx.cn/?url=",
                     label: "接口2 冰豆解析"
-                }, {
-                    value: "https://www.yemu.xyz/?url=",
-                    label: "接口3 夜幕解析"
                 }, {
                     value: "https://jx.xmflv.com/?url=",
                     label: "接口4 虾米解析"
