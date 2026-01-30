@@ -674,7 +674,7 @@
 
             .footer {
                 text-align: center;
-                padding: 25px;
+                padding: 8px;
                 color: var(--dark);
                 font-size: 0.95rem;
                 border-top: 1px solid rgba(0, 0, 0, 0.05);
@@ -865,6 +865,27 @@
                 .history-list {
                     max-height: none;
                 }
+            }
+            .footer-stats {
+                text-align: center;
+                font-size: 15px;
+                color: #202020;
+            }
+
+            .footer-stats i {
+                color: #168eff;
+                font-size: 15px;
+            }
+
+            .footer-stats strong {
+                color: #111;
+                font-weight: 600;
+            }
+
+            .stats-values {
+                display: flex;
+                justify-content: center;
+                gap: 16px;
             }
         </style>
     </head>
@@ -1150,6 +1171,22 @@
                     © 2026 <a href="https://home.nuaa.tech/gzh" target="_blank" rel="noopener noreferrer">茉灵智库</a> All Rights Reserved.
                 </p>
             </div>
+            <div class="footer-stats">
+                <div class="stats-values">
+                    <span>
+                        <i class="fas fa-chart-line"></i>
+                        访问量
+                        <strong id="busuanzi_site_pv">--</strong>
+                        次
+                    </span>
+                    <span>
+                        <i class="fas fa-user-friends"></i>
+                        访客数
+                        <strong id="busuanzi_site_uv">--</strong>
+                        人
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="toast" id="toast">
             <i class="fas fa-check-circle"></i>
@@ -1176,52 +1213,52 @@
                 const tabContents = document.querySelectorAll('.tab-content');
                 const apiList = [ {
                     value: "https://jiexi.789jiexi.icu:4433/?url=",
-                    label: "新增接口 789解析"
+                    label: "接口1 789解析"
                 }, {
                     value: "https://jx.hls.one/?url=",
-                    label: "新增接口 HLS解析"
+                    label: "接口2 HLS解析"
                 }, {
                     value: "https://jx.2s0.cn/player/?url=",
-                    label: "新增接口 极速解析"
+                    label: "接口3 极速解析"
                 }, {
                     value: "https://jx.playerjy.com/?url=",
-                    label: "接口1 PlayerJY解析"
+                    label: "接口4 PlayerJY解析"
                 }, {
                     value: "https://bd.jx.cn/?url=",
-                    label: "接口2 冰豆解析"
+                    label: "接口5 冰豆解析"
                 }, {
                     value: "https://jx.xmflv.com/?url=",
-                    label: "接口4 虾米解析"
+                    label: "接口6 虾米解析"
                 }, {
                     value: "https://video.isyour.love/player/getplayer?url=",
-                    label: "接口5 邦宁云解析"
+                    label: "接口7 邦宁云解析"
                 }, {
                     value: "https://jx.973973.xyz/?url=",
-                    label: "接口6 973解析"
+                    label: "接口8 973解析"
                 }, {
                     value: "https://jx.m3u8.tv/jiexi/?url=",
-                    label: "接口7 m3u8.tv"
+                    label: "接口9 m3u8.tv"
                 }, {
                     value: "https://jx.xymp4.cc/?url=",
-                    label: "接口8 闲鱼云解析"
+                    label: "接口10 闲鱼云解析"
                 }, {
                     value: "https://jx.77flv.cc/?url=",
-                    label: "接口9 77flv"
+                    label: "接口11 77flv"
                 }, {
                     value: "https://www.ckplayer.vip/jiexi/?url=",
-                    label: "接口10 KPLAYERC"
+                    label: "接口12 KPLAYERC"
                 }, {
                     value: "https://www.pangujiexi.com/pangu/?url=",
-                    label: "接口11 盘古解析"
+                    label: "接口13 盘古解析"
                 }, {
                     value: "https://jx.mmkv.cn/tv.php?url=",
-                    label: "接口12 七哥解析"
+                    label: "接口14 七哥解析"
                 }, {
                     value: "https://www.pouyun.com/?url=",
-                    label: "接口13 剖元解析"
+                    label: "接口15 剖元解析"
                 }, {
                     value: "http://www.jzmhtt.com/zdy/vip/?url=",
-                    label: "接口14 零点影视解析"
+                    label: "接口16 零点影视解析"
                 } ]
                 initApiHtml();
 
@@ -1470,6 +1507,7 @@
                 }
             });
         </script>
+        <script defer src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/cdn/busuanzi.js"></script>
         <script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js"></script>
         <script src="https://dh.z-l.top/chat.js" async="async" fold></script>
     </body>
