@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>科研学习分享海报生成器｜茉灵智库</title>
+    <meta name="description" content="在线生成适配小红书等图文社交媒体的科研学习分享海报。支持 Markdown、LaTeX 数学公式、代码高亮与分页排版，一键导出 PNG/ZIP 或合并 PDF，快速制作精美竖版学术海报与学习笔记。">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://lite.cc.cd/academic-poster-generator">
+    <link rel="alternate" hreflang="zh-CN" href="https://lite.cc.cd/academic-poster-generator">
+
+    <!-- Open Graph：用于社交分享卡片 -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="科研学习分享海报生成器｜一键生成小红书竖版海报">
+    <meta property="og:description" content="支持 Markdown、数学公式、代码高亮与自动分页，一键导出 PNG/ZIP 或 PDF。适合论文分享、理论分享、方法学习与阅读笔记。">
+    <meta property="og:url" content="https://lite.cc.cd/academic-poster-generator">
+    <meta property="og:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2026-01-30_22-18-54.webp">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="科研学习分享海报生成器｜一键生成小红书竖版海报">
+    <meta name="twitter:description" content="一键生成适配小红书的竖版科研学习海报，适合论文分享、理论分享、方法学习与阅读笔记。">
+    <meta name="twitter:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2026-01-30_22-18-54.webp">
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- 结构化数据：WebApplication -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "科研学习分享海报生成器",
+        "url": "https://lite.cc.cd/academic-poster-generator",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web",
+        "description": "在线生成适配小红书等图文社交媒体的科研学习分享海报，支持 Markdown、LaTeX 数学公式、代码高亮与自动分页，一键导出 PNG/ZIP 或 PDF。",
+        "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+        },
+        "featureList": [
+        "Markdown 排版",
+        "LaTeX 数学公式",
+        "代码高亮",
+        "分页规则：### 小标题自动分页",
+        "导出 PNG/ZIP",
+        "导出合并 PDF",
+        "小红书竖版海报模板"
+        ]
+    }
+    </script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- 左侧编辑栏 - Ribbon选项卡布局 -->
+        <div class="editor-column">
+            <!-- 标题栏 -->
+            <div class="editor-header">
+                <h1>学术分享海报生成器</h1>
+            </div>
+            
+            <!-- Ribbon选项卡导航 -->
+            <div class="ribbon-tabs">
+                <button class="ribbon-tab active" data-tab="cover">封面</button>
+                <button class="ribbon-tab" data-tab="content">正文</button>
+                <button class="ribbon-tab" data-tab="images">图片</button>
+                <button class="ribbon-tab" data-tab="settings">设置</button>
+                <button class="ribbon-tab" data-tab="export">导出</button>
+            </div>
+            
+            <!-- 选项卡内容区域 -->
+            <div class="ribbon-content">
+                <!-- ========== 封面选项卡 ========== -->
+                <div class="tab-panel active" id="tab-cover">
+                    <div class="editor-section">
+                        <div class="section-title">分享栏目</div>
+                        <div class="input-group">
+                            <label>选择栏目类型（不同栏目使用不同配色）</label>
+                            <select id="input-category" class="category-select">
+                                <option value="paper">论文分享 - 玫瑰粉</option>
+                                <option value="theory">理论分享 - 青绿色</option>
+                                <option value="method">方法学习 - 深蓝色</option>
+                                <option value="tool">工具分享 - 紫色</option>
+                                <option value="thinking">思考随笔 - 琥珀橙</option>
+                                <option value="reading">阅读笔记 - 红橙色</option>
+                                <option value="custom1">自定义1 - 青色</option>
+                                <option value="custom2">自定义2 - 靛蓝</option>
+                                <option value="custom3">自定义3 - 深灰</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>阅读难度</label>
+                            <select id="input-difficulty">
+                                <option value="beginner">入门</option>
+                                <option value="intermediate" selected>适中</option>
+                                <option value="advanced">较难</option>
+                            </select>
+                        </div>
+                        <div class="input-group" id="custom-name-group" style="display: none; margin-top: 10px;">
+                            <label>自定义栏目名称</label>
+                            <input type="text" id="input-custom-name" placeholder="请输入栏目名称" value="">
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">主标题</div>
+                        <div class="input-group">
+                            <textarea id="input-title" rows="2" placeholder="请输入本周学习的主题">开源社区的治理模式</textarea>
+                        </div>
+                        <div class="input-group" style="margin-top: 10px;">
+                            <label>主标题字号</label>
+                            <select id="input-title-font-size">
+                                <option value="32">32px（紧凑）</option>
+                                <option value="36">36px</option>
+                                <option value="38">38px</option>
+                                <option value="40">40px</option>
+                                <option value="42" selected>42px（默认）</option>
+                                <option value="44">44px</option>
+                                <option value="46">46px</option>
+                                <option value="48">48px（大号）</option>
+                                <option value="52">52px</option>
+                                <option value="56">56px（特大）</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">副标题</div>
+                        <div class="input-group">
+                            <label>可选项，显示在主标题下方</label>
+                            <input type="text" id="input-subtitle" placeholder="留空则不显示副标题" value="从《大教堂与集市》谈开源哲学">
+                        </div>
+                        <div class="input-group" style="margin-top: 10px;">
+                            <label>副标题字号</label>
+                            <select id="input-subtitle-font-size">
+                                <option value="16">16px（小）</option>
+                                <option value="17">17px</option>
+                                <option value="18">18px</option>
+                                <option value="19" selected>19px（默认）</option>
+                                <option value="20">20px</option>
+                                <option value="22">22px</option>
+                                <option value="24">24px（大）</option>
+                                <option value="26">26px</option>
+                                <option value="28">28px（特大）</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">作者信息</div>
+                        <div class="input-group">
+                            <input type="text" id="input-author" value="✨@茉灵智库" placeholder="您的名字 / 身份标签">
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">摘要</div>
+                        <div class="input-group">
+                            <textarea id="input-summary" rows="3" placeholder="简短的摘要，显示在封面页">深入研读 Eric S. Raymond 的经典著作《大教堂与集市》，探讨开源项目背后的两种组织哲学及其对现代软件开发的启示。</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">封面插图</div>
+                        <div class="input-group">
+                            <label>图片位置</label>
+                            <select id="cover-image-position">
+                                <option value="bottom">图片在底部</option>
+                                <option value="top">图片在顶部</option>
+                            </select>
+                        </div>
+                        <div class="input-group" style="margin-top: 15px;">
+                            <label>方式1：上传本地图片</label>
+                            <input type="file" id="cover-image-upload" accept="image/*" style="margin-bottom: 10px;">
+                            <label style="margin-top: 15px;">方式2：输入图片URL</label>
+                            <input type="text" id="cover-image-url" placeholder="https://example.com/cover-image.jpg" value="assets/default.jpg">
+                            <div class="tips" style="margin-top: 10px;">
+                                <strong>封面插图说明</strong><br>
+                                • 推荐横向图片，宽高比 2:1 效果最佳<br>
+                                • 图片高度为 270px<br>
+                                • 推荐上传本地图片，远程URL可能因跨域限制导出失败<br>
+                                • 上传的图片会自动压缩优化（最大宽度800px，质量85%）<br>
+                                • 留空则不显示封面插图
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ========== 正文选项卡 ========== -->
+                <div class="tab-panel" id="tab-content">
+                    <div class="editor-section">
+                        <div class="section-title">排版模式</div>
+                        <div class="input-group">
+                            <select id="input-content-mode">
+                                <option value="markdown">Markdown 模式（每个小标题一页）</option>
+                                <option value="article">长文模式（连续排版，自动分页）</option>
+                                <option value="html">HTML+CSS 模式（高级）</option>
+                            </select>
+                        </div>
+                        <div class="tips" id="markdown-mode-tips">
+                            <strong>Markdown 模式说明</strong><br>
+                            • 使用 <code>###</code> 创建小标题（每个小标题自动分页）<br>
+                            • 支持 <strong>**粗体**</strong>、<em>*斜体*</em>、列表、引用等格式<br>
+                            • 支持数学公式：行内 <code>$E=mc^2$</code>，块级 <code>$$\sum_{i=1}^n x_i$$</code><br>
+                            • 支持代码块：<code>```python</code> 开始，<code>```</code> 结束
+                        </div>
+                        <div class="tips" id="article-mode-tips" style="display: none;">
+                            <strong>长文模式说明</strong><br>
+                            • <strong>手动分页</strong>：使用分页标记控制换页位置<br>
+                            • <code>---</code> 接续分页（下一页首段不缩进，适合段落中间分页）<br>
+                            • <code>===</code> 新段落分页（下一页首段缩进，适合另起新段落）<br>
+                            • 使用 <code>#</code> 一级标题、<code>##</code> 二级标题、<code>###</code> 三级标题<br>
+                            • 支持图片、公式、代码块、引用、列表等 Markdown 语法<br>
+                            • 适合论文摘要、读书笔记、长篇思考等场景
+                        </div>
+                        <div class="tips" id="html-mode-tips" style="display: none;">
+                            <strong>HTML模式说明</strong><br>
+                            • 使用 <code>&lt;section&gt;</code> 标签分页，每个 section 生成一页<br>
+                            • 所有样式自动适配当前栏目主题色<br>
+                            • ⚠️ 正文页有 <strong>45px 左右页边距</strong>，50px 上边距，请注意内容宽度<br><br>
+                            <strong>📐 排版组件</strong><br>
+                            • <code>section-title</code> <code>section-subtitle</code> <code>accent-block</code> <code>pullquote</code><br>
+                            • <code>numbered-list</code> <code>phase-list</code> <code>takeaway-list</code> <code>closing-note</code><br>
+                            <strong>📊 数据展示</strong><br>
+                            • <code>big-number-gradient</code> <code>data-grid-2/3</code> <code>data-card</code> <code>progress-bar</code> <code>ring-accent</code>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">导言</div>
+                        <div class="input-group">
+                            <label>可选项，用于介绍背景信息（显示在单独的导言页）</label>
+                            <textarea id="input-introduction" rows="5" placeholder="留空则不生成导言页">在数字化时代，开源软件已成为推动技术创新的重要力量。从操作系统到编程语言，从数据库到人工智能框架，开源项目无处不在。
+但开源社区如何组织和管理？不同的治理模式会带来什么影响？本文通过经典文献《大教堂与集市》来探讨这些问题。</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">正文内容</div>
+                        <div class="input-group">
+                            <label id="content-mode-hint">支持 Markdown 语法，使用 ### 创建小标题（每个小标题自动分页）</label>
+                            <textarea id="input-content" rows="15">### 1. 大教堂模式 (The Cathedral)
+这是一种 **中心化、自上而下** 的治理模式。
+
+**核心特征**：
+- 由一小群核心开发者或权威人物主导
+- 软件发布周期长，版本经过精心策划
+- 代码在大部分开发时间内对公众不可见
+
+**典型案例**：
+- GNU Emacs 项目早期
+- 许多由单一公司主导的开源项目
+
+### 2. 集市模式 (The Bazaar)
+
+与大教堂相反，集市模式是 **去中心化、自下而上** 的。
+
+**核心特征**：
+- "Given enough eyeballs, all bugs are shallow."
+- 开发过程完全公开，任何人都可以参与
+- 快速迭代，频繁发布
+- 拥抱混乱，相信群体智慧
+
+**典型案例**：
+- **Linux 内核** 是集市模式最成功的典范
+- Apache 软件基金会旗下的大多数项目
+
+### 3. 混合模式与演化
+
+现实中，许多成功的项目是 **两种模式的混合体**。
+
+例如：
+1. 项目早期采用集市模式快速吸引贡献者
+2. 成熟后引入更严格的审查机制
+3. 在开放性与质量控制间取得平衡
+
+这种演化反映了开源社区的成熟过程。
+
+### 4. 关键启示
+
+**对研究者的启示**：
+- 治理模式应与项目阶段、社区文化相匹配
+- 开放性与控制权的平衡是关键
+- 没有绝对的好坏，只有是否适合
+
+**对实践者的建议**：
+- 了解你的社区文化和发展阶段
+- 灵活调整治理策略
+- 保持开放心态，持续学习</textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">参考资料</div>
+                        <div class="input-group">
+                            <label>可选项，每行一条参考资料（显示在单独的参考资料页）</label>
+                            <textarea id="input-references" rows="6" placeholder="留空则不生成参考资料页&#10;每行输入一条参考资料，例如：&#10;Raymond, E. S. (1999). The Cathedral and the Bazaar. O'Reilly Media.&#10;Torvalds, L., & Diamond, D. (2001). Just for Fun: The Story of an Accidental Revolutionary.">Raymond, E. S. (1999). The Cathedral and the Bazaar. O'Reilly Media.
+Torvalds, L., & Diamond, D. (2001). Just for Fun: The Story of an Accidental Revolutionary.
+Weber, S. (2004). The Success of Open Source. Harvard University Press.</textarea>
+                            <div class="tips" style="margin-top: 10px;">
+                                <strong>分页说明</strong><br>
+                                • 条目超过10条时自动分页<br>
+                                • 使用 <code>---</code> 手动标记换页位置
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ========== 图片选项卡 ========== -->
+                <div class="tab-panel" id="tab-images">
+                    <div class="editor-section">
+                        <div class="section-title">插入图片到正文</div>
+                        <div class="input-group">
+                            <label>方式1：上传本地图片</label>
+                            <input type="file" id="image-upload" accept="image/*" style="margin-bottom: 10px;">
+                            <label style="margin-top: 15px;">方式2：输入图片URL</label>
+                            <input type="text" id="image-url" placeholder="https://example.com/image.jpg">
+                            <label style="margin-top: 15px;">图片描述（可选）</label>
+                            <input type="text" id="image-alt" placeholder="图片描述文字">
+                            <button id="insert-image-btn" class="insert-btn">插入图片到正文</button>
+                        </div>
+                        <div class="tips" style="margin-top: 10px;">
+                            <strong>图片使用说明</strong><br>
+                            • 上传图片或输入URL后，点击"插入图片到正文"<br>
+                            • 上传的图片会显示为短标记 <code>{{img:ID}}</code>，便于编辑<br>
+                            • 支持 Markdown 模式和长文模式<br>
+                            • 图片会自动适配海报宽度<br>
+                            • 推荐上传本地图片，远程URL可能因跨域限制导出失败<br>
+                            • 上传的图片会自动压缩优化（最大宽度1200px，质量85%）
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ========== 设置选项卡 ========== -->
+                <div class="tab-panel" id="tab-settings">
+                    <div class="editor-section">
+                        <div class="section-title">海报尺寸</div>
+                        <div class="input-group">
+                            <label>选择海报比例</label>
+                            <select id="input-aspect-ratio">
+                                <option value="4-5" selected>4:5 比例 (1080x1350)</option>
+                                <option value="3-4">3:4 比例 (1080x1440)</option>
+                                <option value="9-16">9:16 比例 (1080x1920)</option>
+                            </select>
+                            <div class="tips" style="margin-top: 10px;">
+                                <strong>比例说明</strong><br>
+                                • <strong>4:5</strong> - 适合小红书、Instagram 等平台<br>
+                                • <strong>3:4</strong> - 适合微信公众号封面<br>
+                                • <strong>9:16</strong> - 适合手机全屏展示、抖音等短视频平台
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="editor-section">
+                        <div class="section-title">正文字号</div>
+                        <div class="input-group">
+                            <label>选择正文文字大小</label>
+                            <select id="input-font-size">
+                                <option value="15">15px（紧凑）</option>
+                                <option value="15.5">15.5px</option>
+                                <option value="16" selected>16px（推荐）</option>
+                                <option value="16.5">16.5px</option>
+                                <option value="17">17px</option>
+                                <option value="17.5">17.5px</option>
+                                <option value="18">18px（舒适）</option>
+                            </select>
+                            <div class="tips" style="margin-top: 10px;">
+                                <strong>字号建议</strong><br>
+                                • 内容较多时选择较小字号（15-16px）<br>
+                                • 内容精简时可选择较大字号（17-18px）<br>
+                                • 手机阅读建议 16px 及以上
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ========== 导出选项卡 ========== -->
+                <div class="tab-panel" id="tab-export">
+                    <div class="editor-section">
+                        <div class="section-title">导出海报</div>
+                        <div class="export-buttons">
+                            <button id="download-btn" class="download-btn">
+                                <span class="btn-icon">📦</span>
+                                <span class="btn-text">
+                                    <strong>生成并下载海报 (ZIP)</strong>
+                                    <small>每页单独保存为PNG图片</small>
+                                </span>
+                            </button>
+                            <button id="download-pdf-btn" class="download-btn pdf-btn">
+                                <span class="btn-icon">📄</span>
+                                <span class="btn-text">
+                                    <strong>导出为PDF</strong>
+                                    <small>所有页面合并为一个PDF文件</small>
+                                </span>
+                            </button>
+                        </div>
+                        <div class="tips" style="margin-top: 20px;">
+                            <strong>导出说明</strong><br>
+                            • <strong>ZIP包</strong>：包含所有海报页面的高清PNG图片（每张约2160x2700像素）<br>
+                            • <strong>PDF文件</strong>：适合打印或分享完整文档<br>
+                            • 导出前请确保预览效果正确<br>
+                            • 远程图片可能因跨域限制导致导出失败，建议使用本地上传
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 右侧预览栏 -->
+        <div class="preview-column">
+            <!-- 分页导航（移到上方） -->
+            <div class="pagination-nav">
+                <button id="prev-page-btn" title="上一页">◀</button>
+                <div class="pagination-dots" id="pagination-dots">
+                    <!-- 页码指示点将在这里动态生成 -->
+                </div>
+                <span class="pagination-info" id="pagination-info">1 / 1</span>
+                <button id="next-page-btn" title="下一页">▶</button>
+            </div>
+            
+            <div id="preview-container" class="poster-container">
+                <!-- 海报页面将在这里动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- 外部依赖库 -->
+    <script src="https://cdn.jsdmirror.com/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdmirror.com/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdmirror.com/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdmirror.com/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    
+    <!-- KaTeX 数学公式渲染 -->
+    <link rel="stylesheet" href="https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdmirror.com/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    
+    <!-- Highlight.js 代码语法高亮（完整版，包含所有常用语言） -->
+    <link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    
+    <!-- 应用主逻辑 -->
+    <script src="js/app.js"></script>
+</body>
+</html>

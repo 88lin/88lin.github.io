@@ -1,0 +1,5113 @@
+:root {
+    --poster-width: 540px;
+    --poster-height: 675px;
+}
+
+/* ==================== 全局样式 ==================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: #f5f7fa;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+
+/* ==================== 主容器布局 ==================== */
+.app-container {
+    display: flex;
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px;
+    min-height: 100vh;
+}
+
+/* ==================== 左右栏布局 ==================== */
+.editor-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-height: calc(100vh - 60px);
+    overflow: hidden;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    border: 1px solid #e8eaed;
+}
+
+.preview-column {
+    flex: 0 0 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    position: sticky;
+    top: 30px;
+    align-self: flex-start;
+    height: calc(100vh - 60px);
+}
+
+/* 滚动条样式 */
+.editor-column::-webkit-scrollbar {
+    width: 8px;
+}
+
+.editor-column::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.editor-column::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.editor-column::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* ==================== 编辑器区域 ==================== */
+.editor-header {
+    background: #1f2937;
+    padding: 12px 20px;
+    border-radius: 8px 8px 0 0;
+    flex-shrink: 0;
+}
+
+.editor-header h1 {
+    font-size: 18px;
+    font-weight: 600;
+    color: white;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+/* ==================== Ribbon选项卡样式 ==================== */
+.ribbon-tabs {
+    display: flex;
+    background: #f8fafc;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 0 10px;
+    flex-shrink: 0;
+}
+
+.ribbon-tab {
+    padding: 12px 20px;
+    border: none;
+    background: transparent;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+}
+
+.ribbon-tab:hover {
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.05);
+}
+
+.ribbon-tab.active {
+    color: #2563eb;
+    background: white;
+    border-bottom-color: #2563eb;
+}
+
+.ribbon-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.ribbon-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.ribbon-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.ribbon-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.ribbon-content::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+.tab-panel {
+    display: none;
+    padding: 20px;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.tips {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 4px;
+    padding: 15px;
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.8;
+    margin-top: 10px;
+}
+
+.tips strong {
+    color: #1e293b;
+    font-weight: 600;
+}
+
+.editor-section {
+    padding: 20px;
+    background: #fafbfc;
+    border-radius: 6px;
+    border: 1px solid #e8eaed;
+    margin-bottom: 15px;
+}
+
+.editor-section:last-child {
+    margin-bottom: 0;
+}
+
+/* ==================== 导出按钮样式 ==================== */
+.export-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.export-buttons .download-btn {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: left;
+    width: 100%;
+}
+
+.export-buttons .download-btn .btn-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+.export-buttons .download-btn .btn-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.export-buttons .download-btn .btn-text strong {
+    font-size: 15px;
+}
+
+.export-buttons .download-btn .btn-text small {
+    font-size: 12px;
+    opacity: 0.85;
+    font-weight: normal;
+}
+
+.section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.input-group input[type="text"],
+.input-group textarea,
+.input-group select {
+    width: 100%;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.input-group select {
+    cursor: pointer;
+    background: white;
+}
+
+.input-group input:focus,
+.input-group textarea:focus,
+.input-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* ==================== 预览区域 ==================== */
+.poster-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 分页模式下隐藏非当前页 */
+.poster-container .poster-page {
+    display: none;
+    transform-origin: center center;
+}
+
+.poster-container .poster-page.active {
+    display: flex;
+}
+
+/* 分页导航容器 */
+.pagination-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 15px;
+    background: #f8fafc;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.pagination-nav button {
+    width: 28px;
+    height: 28px;
+    border: none;
+    border-radius: 50%;
+    background: #e5e7eb;
+    color: #374151;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+
+.pagination-nav button:hover:not(:disabled) {
+    background: #1f2937;
+    color: white;
+}
+
+.pagination-nav button:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    font-size: 12px;
+    font-weight: 500;
+    color: #6b7280;
+    min-width: 50px;
+    text-align: center;
+}
+
+/* 页码指示点 */
+.pagination-dots {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.pagination-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #d1d5db;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pagination-dot:hover {
+    background: #9ca3af;
+}
+
+.pagination-dot.active {
+    background: #1f2937;
+    width: 16px;
+    border-radius: 3px;
+}
+
+/* ==================== 海报页面样式 ==================== */
+.poster-page {
+    width: var(--poster-width) !important;
+    height: var(--poster-height) !important;
+    min-width: var(--poster-width);
+    min-height: var(--poster-height);
+    max-width: var(--poster-width);
+    max-height: var(--poster-height);
+    background: #ffffff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    border-radius: 0;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+/* 尺寸比例类 (应用于 poster-container) */
+.poster-container.ratio-4-5 { --poster-height: 675px; }
+.poster-container.ratio-3-4 { --poster-height: 720px; }
+.poster-container.ratio-9-16 { --poster-height: 960px; }
+
+
+/* 页脚 */
+.page-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 45px;
+    padding: 0 24px;
+    background: #ffffff;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: #9ca3af;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+}
+
+.author-info {
+    color: #6b7280;
+}
+
+.page-number {
+    color: #9ca3af;
+}
+
+/* ==================== 封面页样式 ==================== */
+.poster-cover-page {
+    background: #f9fafb;
+    position: relative;
+    overflow: hidden;
+}
+
+/* 封面页几何装饰 - 矩形色块（默认右上角） */
+.poster-cover-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 160px;
+    height: 280px;
+    background: #e5e7eb;
+    z-index: 0;
+}
+
+/* 图片在顶部时，色块移到右下角 */
+.poster-cover-page.image-top::before {
+    top: auto;
+    bottom: 0;
+}
+
+/* 底部左侧色块默认隐藏（默认有图片） */
+.poster-cover-page::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 140px;
+    height: 270px;
+    background: #1f2937;
+    z-index: 0;
+    display: none;
+}
+
+/* 当没有图片时，显示色块 */
+.poster-cover-page:not(.has-cover-image)::after {
+    display: block;
+}
+
+/* 图片在顶部时，隐藏底部左侧色块（避免遮盖） */
+.poster-cover-page.image-top::after {
+    display: none;
+}
+
+/* 现代配色主题 */
+/* 论文分享 - 玫瑰粉（对应原樱花粉） */
+.poster-cover-page.theme-paper {
+    background: #fdf2f8;
+}
+
+.poster-cover-page.theme-paper::before {
+    background: rgba(252, 231, 243, 0.6);
+}
+
+.poster-cover-page.theme-paper::after {
+    background: #9f1239;
+}
+
+.theme-paper .poster-text strong {
+    color: #be123c !important;
+}
+
+.theme-paper .poster-text em {
+    color: #e11d48 !important;
+}
+
+.theme-paper .poster-text blockquote {
+    background-color: #fdf2f8;
+    border-left-color: #f43f5e;
+}
+
+/* 理论分享 - 青绿色（对应原薄荷绿） */
+.poster-cover-page.theme-theory {
+    background: #ecfdf5;
+}
+
+.poster-cover-page.theme-theory::before {
+    background: rgba(209, 250, 229, 0.6);
+}
+
+.poster-cover-page.theme-theory::after {
+    background: #065f46;
+}
+
+.theme-theory .poster-text strong {
+    color: #065f46 !important;
+}
+
+.theme-theory .poster-text em {
+    color: #059669 !important;
+}
+
+.theme-theory .poster-text blockquote {
+    background-color: #f0fdf4;
+    border-left-color: #10b981;
+}
+
+/* 方法学习 - 深蓝色（对应原天空蓝） */
+.poster-cover-page.theme-method {
+    background: #eff6ff;
+}
+
+.poster-cover-page.theme-method::before {
+    background: rgba(219, 234, 254, 0.6);
+}
+
+.poster-cover-page.theme-method::after {
+    background: #1e40af;
+}
+
+.theme-method .poster-text strong {
+    color: #1e3a8a !important;
+}
+
+.theme-method .poster-text em {
+    color: #2563eb !important;
+}
+
+.theme-method .poster-text blockquote {
+    background-color: #f0f9ff;
+    border-left-color: #3b82f6;
+}
+
+/* 工具分享 - 紫色（对应原薰衣草紫） */
+.poster-cover-page.theme-tool {
+    background: #faf5ff;
+}
+
+.poster-cover-page.theme-tool::before {
+    background: rgba(243, 232, 255, 0.6);
+}
+
+.poster-cover-page.theme-tool::after {
+    background: #6b21a8;
+}
+
+.theme-tool .poster-text strong {
+    color: #6b21a8 !important;
+}
+
+.theme-tool .poster-text em {
+    color: #9333ea !important;
+}
+
+.theme-tool .poster-text blockquote {
+    background-color: #f5f3ff;
+    border-left-color: #a855f7;
+}
+
+/* 思考随笔 - 琥珀橙（对应原蜜桃杏） */
+.poster-cover-page.theme-thinking {
+    background: #fffbeb;
+}
+
+.poster-cover-page.theme-thinking::before {
+    background: rgba(254, 243, 199, 0.6);
+}
+
+.poster-cover-page.theme-thinking::after {
+    background: #92400e;
+}
+
+.theme-thinking .poster-text strong {
+    color: #92400e !important;
+}
+
+.theme-thinking .poster-text em {
+    color: #d97706 !important;
+}
+
+.theme-thinking .poster-text blockquote {
+    background-color: #fef3c7;
+    border-left-color: #f59e0b;
+}
+
+/* 阅读笔记 - 红橙色（对应原珊瑚橙） */
+.poster-cover-page.theme-reading {
+    background: #fff7ed;
+}
+
+.poster-cover-page.theme-reading::before {
+    background: rgba(255, 237, 213, 0.6);
+}
+
+.poster-cover-page.theme-reading::after {
+    background: #9a3412;
+}
+
+.theme-reading .poster-text strong {
+    color: #9a3412 !important;
+}
+
+.theme-reading .poster-text em {
+    color: #ea580c !important;
+}
+
+.theme-reading .poster-text blockquote {
+    background-color: #ffedd5;
+    border-left-color: #f97316;
+}
+
+/* 自定义1 - 青色 */
+.poster-cover-page.theme-custom1 {
+    background: #ecfeff;
+}
+
+.poster-cover-page.theme-custom1::before {
+    background: rgba(207, 250, 254, 0.6);
+}
+
+.poster-cover-page.theme-custom1::after {
+    background: #164e63;
+}
+
+.theme-custom1 .poster-text strong {
+    color: #155e75 !important;
+}
+
+.theme-custom1 .poster-text em {
+    color: #06b6d4 !important;
+}
+
+.theme-custom1 .poster-text blockquote {
+    background-color: #f0fdfa;
+    border-left-color: #22d3ee;
+}
+
+.theme-custom1 .introduction-title {
+    color: #0e7490;
+    border-bottom-color: #0e7490;
+}
+
+/* 自定义2 - 靛蓝 */
+.poster-cover-page.theme-custom2 {
+    background: #eef2ff;
+}
+
+.poster-cover-page.theme-custom2::before {
+    background: rgba(224, 231, 255, 0.6);
+}
+
+.poster-cover-page.theme-custom2::after {
+    background: #3730a3;
+}
+
+.theme-custom2 .poster-text strong {
+    color: #4338ca !important;
+}
+
+.theme-custom2 .poster-text em {
+    color: #6366f1 !important;
+}
+
+.theme-custom2 .poster-text blockquote {
+    background-color: #f5f3ff;
+    border-left-color: #818cf8;
+}
+
+.theme-custom2 .introduction-title {
+    color: #4f46e5;
+    border-bottom-color: #4f46e5;
+}
+
+/* 自定义3 - 深灰 */
+.poster-cover-page.theme-custom3 {
+    background: #f9fafb;
+}
+
+.poster-cover-page.theme-custom3::before {
+    background: rgba(243, 244, 246, 0.6);
+}
+
+.poster-cover-page.theme-custom3::after {
+    background: #1f2937;
+}
+
+.theme-custom3 .poster-text strong {
+    color: #1f2937 !important;
+}
+
+.theme-custom3 .poster-text em {
+    color: #4b5563 !important;
+}
+
+.theme-custom3 .poster-text blockquote {
+    background-color: #f3f4f6;
+    border-left-color: #6b7280;
+}
+
+.theme-custom3 .introduction-title {
+    color: #374151;
+    border-bottom-color: #374151;
+}
+
+.cover-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+    padding: 55px 45px 40px 45px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 图片在顶部时，内容区域调整 */
+.poster-cover-page.image-top .cover-content {
+    padding-top: 320px;
+    padding-bottom: 55px;
+    justify-content: flex-start;
+}
+
+/* 去除装饰圆形 */
+.cover-content::before {
+    display: none;
+}
+
+.cover-content::after {
+    display: none;
+}
+
+.category-badge {
+    display: inline-block;
+    background: #1f2937;
+    color: #ffffff;
+    padding: 9px 22px;
+    border-radius: 0;
+    font-size: 12.5px;
+    font-weight: 700;
+    margin-bottom: 0;
+    box-shadow: none;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+/* 各主题栏目徽章颜色 */
+.theme-paper .category-badge {
+    background: #be123c;
+}
+.theme-theory .category-badge {
+    background: #047857;
+}
+.theme-method .category-badge {
+    background: #1e40af;
+}
+.theme-tool .category-badge {
+    background: #7e22ce;
+}
+.theme-thinking .category-badge {
+    background: #b45309;
+}
+.theme-reading .category-badge {
+    background: #c2410c;
+}
+.theme-custom1 .category-badge {
+    background: #0e7490;
+}
+.theme-custom2 .category-badge {
+    background: #4f46e5;
+}
+.theme-custom3 .category-badge {
+    background: #374151;
+}
+
+.cover-badges {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 35px;
+}
+
+/* 图片在顶部时，徽章区域调整间距 */
+.poster-cover-page.image-top .cover-badges {
+    margin-bottom: 30px;
+}
+
+.difficulty-badge {
+    display: inline-block;
+    background: transparent;
+    color: #4b5563;
+    padding: 9px 22px;
+    border-radius: 0;
+    border: 1.5px solid #d1d5db;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    box-shadow: none;
+}
+
+/* 各主题难度徽章颜色 */
+.theme-paper .difficulty-badge {
+    color: #be123c;
+    border-color: #be123c;
+}
+.theme-theory .difficulty-badge {
+    color: #047857;
+    border-color: #047857;
+}
+.theme-method .difficulty-badge {
+    color: #1e40af;
+    border-color: #1e40af;
+}
+.theme-tool .difficulty-badge {
+    color: #7e22ce;
+    border-color: #7e22ce;
+}
+.theme-thinking .difficulty-badge {
+    color: #b45309;
+    border-color: #b45309;
+}
+.theme-reading .difficulty-badge {
+    color: #c2410c;
+    border-color: #c2410c;
+}
+.theme-custom1 .difficulty-badge {
+    color: #0e7490;
+    border-color: #0e7490;
+}
+.theme-custom2 .difficulty-badge {
+    color: #4f46e5;
+    border-color: #4f46e5;
+}
+.theme-custom3 .difficulty-badge {
+    color: #374151;
+    border-color: #374151;
+}
+
+.cover-title {
+    font-size: 42px;
+    color: #111827;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    text-shadow: none;
+    word-wrap: break-word;
+    letter-spacing: -0.8px;
+}
+
+.cover-subtitle {
+    font-size: 19px;
+    color: #4b5563;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-bottom: 28px;
+    text-shadow: none;
+    word-wrap: break-word;
+    letter-spacing: -0.2px;
+}
+
+/* 各主题封面字体颜色 */
+.theme-paper .cover-title {
+    color: #9f1239;
+}
+.theme-paper .cover-subtitle {
+    color: #e11d48;
+}
+
+.theme-theory .cover-title {
+    color: #065f46;
+}
+.theme-theory .cover-subtitle {
+    color: #059669;
+}
+
+.theme-method .cover-title {
+    color: #1e40af;
+}
+.theme-method .cover-subtitle {
+    color: #2563eb;
+}
+
+.theme-tool .cover-title {
+    color: #6b21a8;
+}
+.theme-tool .cover-subtitle {
+    color: #9333ea;
+}
+
+.theme-thinking .cover-title {
+    color: #92400e;
+}
+.theme-thinking .cover-subtitle {
+    color: #d97706;
+}
+
+.theme-reading .cover-title {
+    color: #9a3412;
+}
+.theme-reading .cover-subtitle {
+    color: #ea580c;
+}
+
+.theme-custom1 .cover-title {
+    color: #155e75;
+}
+.theme-custom1 .cover-subtitle {
+    color: #06b6d4;
+}
+
+.theme-custom2 .cover-title {
+    color: #4338ca;
+}
+.theme-custom2 .cover-subtitle {
+    color: #6366f1;
+}
+
+.theme-custom3 .cover-title {
+    color: #111827;
+}
+.theme-custom3 .cover-subtitle {
+    color: #4b5563;
+}
+
+/* 封面图片 - 默认在底部 */
+.cover-image {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 270px;
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none;
+    border: none;
+    z-index: 0;
+}
+
+/* 图片在顶部时的样式 */
+.poster-cover-page.image-top .cover-image {
+    top: 0;
+    bottom: auto;
+}
+
+/* 图片在底部时：顶部渐变装饰线（靠近内容的一侧） */
+.poster-cover-page.image-bottom .cover-image::before,
+.poster-cover-page:not(.image-top) .cover-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1f2937 0%, #1f2937 30%, transparent 100%);
+    z-index: 1;
+}
+
+/* 图片在底部时：底部纯色边（不靠近内容的一侧） */
+.poster-cover-page.image-bottom .cover-image::after,
+.poster-cover-page:not(.image-top) .cover-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: #1f2937;
+    z-index: 1;
+}
+
+/* 图片在顶部时：底部渐变装饰线（靠近内容的一侧） */
+.poster-cover-page.image-top .cover-image::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1f2937 0%, #1f2937 30%, transparent 100%);
+    z-index: 1;
+}
+
+/* 图片在顶部时：顶部纯色边（不靠近内容的一侧） */
+.poster-cover-page.image-top .cover-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: #1f2937;
+    z-index: 1;
+}
+
+.cover-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ========== 各主题封面图片装饰线颜色 - 图片在底部 ========== */
+/* 顶部渐变装饰线（靠近内容） */
+.theme-paper.image-bottom .cover-image::before,
+.theme-paper:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #be123c 0%, #be123c 30%, transparent 100%);
+}
+.theme-theory.image-bottom .cover-image::before,
+.theme-theory:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #047857 0%, #047857 30%, transparent 100%);
+}
+.theme-method.image-bottom .cover-image::before,
+.theme-method:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #1e40af 0%, #1e40af 30%, transparent 100%);
+}
+.theme-tool.image-bottom .cover-image::before,
+.theme-tool:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #7e22ce 0%, #7e22ce 30%, transparent 100%);
+}
+.theme-thinking.image-bottom .cover-image::before,
+.theme-thinking:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #b45309 0%, #b45309 30%, transparent 100%);
+}
+.theme-reading.image-bottom .cover-image::before,
+.theme-reading:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #c2410c 0%, #c2410c 30%, transparent 100%);
+}
+.theme-custom1.image-bottom .cover-image::before,
+.theme-custom1:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #0e7490 0%, #0e7490 30%, transparent 100%);
+}
+.theme-custom2.image-bottom .cover-image::before,
+.theme-custom2:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #4f46e5 0%, #4f46e5 30%, transparent 100%);
+}
+.theme-custom3.image-bottom .cover-image::before,
+.theme-custom3:not(.image-top) .cover-image::before {
+    background: linear-gradient(90deg, #374151 0%, #374151 30%, transparent 100%);
+}
+
+/* 底部纯色边（不靠近内容） */
+.theme-paper.image-bottom .cover-image::after,
+.theme-paper:not(.image-top) .cover-image::after {
+    background: #be123c;
+}
+.theme-theory.image-bottom .cover-image::after,
+.theme-theory:not(.image-top) .cover-image::after {
+    background: #047857;
+}
+.theme-method.image-bottom .cover-image::after,
+.theme-method:not(.image-top) .cover-image::after {
+    background: #1e40af;
+}
+.theme-tool.image-bottom .cover-image::after,
+.theme-tool:not(.image-top) .cover-image::after {
+    background: #7e22ce;
+}
+.theme-thinking.image-bottom .cover-image::after,
+.theme-thinking:not(.image-top) .cover-image::after {
+    background: #b45309;
+}
+.theme-reading.image-bottom .cover-image::after,
+.theme-reading:not(.image-top) .cover-image::after {
+    background: #c2410c;
+}
+.theme-custom1.image-bottom .cover-image::after,
+.theme-custom1:not(.image-top) .cover-image::after {
+    background: #0e7490;
+}
+.theme-custom2.image-bottom .cover-image::after,
+.theme-custom2:not(.image-top) .cover-image::after {
+    background: #4f46e5;
+}
+.theme-custom3.image-bottom .cover-image::after,
+.theme-custom3:not(.image-top) .cover-image::after {
+    background: #374151;
+}
+
+/* ========== 各主题封面图片装饰线颜色 - 图片在顶部 ========== */
+/* 底部渐变装饰线（靠近内容） */
+.theme-paper.image-top .cover-image::before {
+    background: linear-gradient(90deg, #be123c 0%, #be123c 30%, transparent 100%);
+}
+.theme-theory.image-top .cover-image::before {
+    background: linear-gradient(90deg, #047857 0%, #047857 30%, transparent 100%);
+}
+.theme-method.image-top .cover-image::before {
+    background: linear-gradient(90deg, #1e40af 0%, #1e40af 30%, transparent 100%);
+}
+.theme-tool.image-top .cover-image::before {
+    background: linear-gradient(90deg, #7e22ce 0%, #7e22ce 30%, transparent 100%);
+}
+.theme-thinking.image-top .cover-image::before {
+    background: linear-gradient(90deg, #b45309 0%, #b45309 30%, transparent 100%);
+}
+.theme-reading.image-top .cover-image::before {
+    background: linear-gradient(90deg, #c2410c 0%, #c2410c 30%, transparent 100%);
+}
+.theme-custom1.image-top .cover-image::before {
+    background: linear-gradient(90deg, #0e7490 0%, #0e7490 30%, transparent 100%);
+}
+.theme-custom2.image-top .cover-image::before {
+    background: linear-gradient(90deg, #4f46e5 0%, #4f46e5 30%, transparent 100%);
+}
+.theme-custom3.image-top .cover-image::before {
+    background: linear-gradient(90deg, #374151 0%, #374151 30%, transparent 100%);
+}
+
+/* 顶部纯色边（不靠近内容） */
+.theme-paper.image-top .cover-image::after {
+    background: #be123c;
+}
+.theme-theory.image-top .cover-image::after {
+    background: #047857;
+}
+.theme-method.image-top .cover-image::after {
+    background: #1e40af;
+}
+.theme-tool.image-top .cover-image::after {
+    background: #7e22ce;
+}
+.theme-thinking.image-top .cover-image::after {
+    background: #b45309;
+}
+.theme-reading.image-top .cover-image::after {
+    background: #c2410c;
+}
+.theme-custom1.image-top .cover-image::after {
+    background: #0e7490;
+}
+.theme-custom2.image-top .cover-image::after {
+    background: #4f46e5;
+}
+.theme-custom3.image-top .cover-image::after {
+    background: #374151;
+}
+
+.cover-summary {
+    font-size: 14.5px;
+    color: #374151;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
+    line-height: 1.75;
+    max-width: 400px;
+    box-shadow: none;
+    margin-bottom: 14px;
+    border-left: 4px solid #1f2937;
+    padding-left: 18px;
+}
+
+/* 各主题摘要边框颜色 */
+.theme-paper .cover-summary {
+    border-left-color: #be123c;
+}
+.theme-theory .cover-summary {
+    border-left-color: #047857;
+}
+.theme-method .cover-summary {
+    border-left-color: #1e40af;
+}
+.theme-tool .cover-summary {
+    border-left-color: #7e22ce;
+}
+.theme-thinking .cover-summary {
+    border-left-color: #b45309;
+}
+.theme-reading .cover-summary {
+    border-left-color: #c2410c;
+}
+.theme-custom1 .cover-summary {
+    border-left-color: #0e7490;
+}
+.theme-custom2 .cover-summary {
+    border-left-color: #4f46e5;
+}
+.theme-custom3 .cover-summary {
+    border-left-color: #374151;
+}
+
+.cover-stats {
+    font-size: 10.5px;
+    color: #9ca3af;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+    background-color: transparent;
+    border-radius: 0;
+    letter-spacing: 0.8px;
+    backdrop-filter: none;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+/* 作者信息展示 - 放在字数统计右侧 */
+.cover-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.cover-author {
+    font-size: 10.5px;
+    color: #6b7280;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+
+.cover-author::before {
+    content: '·';
+    display: inline-block;
+    font-size: 16px;
+    line-height: 1;
+    color: #9ca3af;
+    margin-right: 0;
+}
+
+/* 各主题作者信息颜色 - 使用分隔点而非装饰线 */
+.theme-paper .cover-author {
+    color: #be123c;
+}
+.theme-theory .cover-author {
+    color: #047857;
+}
+.theme-method .cover-author {
+    color: #1e40af;
+}
+.theme-tool .cover-author {
+    color: #7e22ce;
+}
+.theme-thinking .cover-author {
+    color: #b45309;
+}
+.theme-reading .cover-author {
+    color: #c2410c;
+}
+.theme-custom1 .cover-author {
+    color: #0e7490;
+}
+.theme-custom2 .cover-author {
+    color: #4f46e5;
+}
+.theme-custom3 .cover-author {
+    color: #374151;
+}
+
+.poster-cover-page .page-footer {
+    display: none;
+}
+
+/* ==================== 导言页样式 ==================== */
+.poster-introduction-page {
+    padding: 60px 50px 65px 50px;
+    background: linear-gradient(135deg, #fafbfc 0%, #ffffff 50%, #fafbfc 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 导言页主题背景渐变 */
+.poster-introduction-page.theme-paper {
+    background: linear-gradient(135deg, #fef2f4 0%, #ffffff 50%, #fef2f4 100%);
+}
+.poster-introduction-page.theme-theory {
+    background: linear-gradient(135deg, #f0fdf5 0%, #ffffff 50%, #f0fdf5 100%);
+}
+.poster-introduction-page.theme-method {
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #eff6ff 100%);
+}
+.poster-introduction-page.theme-tool {
+    background: linear-gradient(135deg, #faf5ff 0%, #ffffff 50%, #faf5ff 100%);
+}
+.poster-introduction-page.theme-thinking {
+    background: linear-gradient(135deg, #fffbeb 0%, #ffffff 50%, #fffbeb 100%);
+}
+.poster-introduction-page.theme-reading {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffffff 50%, #fff7ed 100%);
+}
+.poster-introduction-page.theme-custom1 {
+    background: linear-gradient(135deg, #ecfeff 0%, #ffffff 50%, #ecfeff 100%);
+}
+.poster-introduction-page.theme-custom2 {
+    background: linear-gradient(135deg, #eef2ff 0%, #ffffff 50%, #eef2ff 100%);
+}
+.poster-introduction-page.theme-custom3 {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 50%, #f9fafb 100%);
+}
+
+/* 导言页大型装饰元素 - 对角线 */
+.poster-introduction-page::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border: 2px solid #f3f4f6;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.poster-introduction-page::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 250px;
+    height: 250px;
+    border: 2px solid #f3f4f6;
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+.introduction-content {
+    max-height: calc(var(--poster-height) - 125px);
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.introduction-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #111827;
+    text-align: center;
+    margin: 0 0 45px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    letter-spacing: -0.5px;
+    text-transform: none;
+    position: relative;
+    line-height: 1.3;
+}
+
+/* 导言页标题装饰 - 居中双线 */
+.introduction-title::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -20px;
+    width: 60px;
+    height: 4px;
+    background: #1f2937;
+    border-radius: 2px;
+}
+
+.introduction-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -28px;
+    width: 30px;
+    height: 2px;
+    background: #9ca3af;
+    border-radius: 1px;
+}
+
+/* 各栏目导言标题和装饰线颜色 */
+.theme-paper .introduction-title {
+    color: #9f1239;
+}
+.theme-paper .introduction-title::before {
+    background: linear-gradient(to right, #be123c 0%, #f87171 100%);
+}
+.theme-paper .poster-introduction-page::before,
+.theme-paper .poster-introduction-page::after {
+    border-color: rgba(190, 18, 60, 0.1);
+}
+
+.theme-theory .introduction-title {
+    color: #065f46;
+}
+.theme-theory .introduction-title::before {
+    background: linear-gradient(to right, #047857 0%, #34d399 100%);
+}
+.theme-theory .poster-introduction-page::before,
+.theme-theory .poster-introduction-page::after {
+    border-color: rgba(4, 120, 87, 0.1);
+}
+
+.theme-method .introduction-title {
+    color: #1e3a8a;
+}
+.theme-method .introduction-title::before {
+    background: linear-gradient(to right, #1e40af 0%, #60a5fa 100%);
+}
+.theme-method .poster-introduction-page::before,
+.theme-method .poster-introduction-page::after {
+    border-color: rgba(30, 64, 175, 0.1);
+}
+
+.theme-tool .introduction-title {
+    color: #6b21a8;
+}
+.theme-tool .introduction-title::before {
+    background: linear-gradient(to right, #7e22ce 0%, #a78bfa 100%);
+}
+.theme-tool .poster-introduction-page::before,
+.theme-tool .poster-introduction-page::after {
+    border-color: rgba(126, 34, 206, 0.1);
+}
+
+.theme-thinking .introduction-title {
+    color: #92400e;
+}
+.theme-thinking .introduction-title::before {
+    background: linear-gradient(to right, #b45309 0%, #fbbf24 100%);
+}
+.theme-thinking .poster-introduction-page::before,
+.theme-thinking .poster-introduction-page::after {
+    border-color: rgba(180, 83, 9, 0.1);
+}
+
+.theme-reading .introduction-title {
+    color: #9a3412;
+}
+.theme-reading .introduction-title::before {
+    background: linear-gradient(to right, #c2410c 0%, #fb923c 100%);
+}
+.theme-reading .poster-introduction-page::before,
+.theme-reading .poster-introduction-page::after {
+    border-color: rgba(194, 65, 12, 0.1);
+}
+
+.theme-custom1 .introduction-title {
+    color: #155e75;
+}
+.theme-custom1 .introduction-title::before {
+    background: linear-gradient(to right, #0e7490 0%, #22d3ee 100%);
+}
+.theme-custom1 .poster-introduction-page::before,
+.theme-custom1 .poster-introduction-page::after {
+    border-color: rgba(14, 116, 144, 0.1);
+}
+
+.theme-custom2 .introduction-title {
+    color: #4338ca;
+}
+.theme-custom2 .introduction-title::before {
+    background: linear-gradient(to right, #4f46e5 0%, #818cf8 100%);
+}
+.theme-custom2 .poster-introduction-page::before,
+.theme-custom2 .poster-introduction-page::after {
+    border-color: rgba(79, 70, 229, 0.1);
+}
+
+.theme-custom3 .introduction-title {
+    color: #1f2937;
+}
+.theme-custom3 .introduction-title::before {
+    background: linear-gradient(to right, #374151 0%, #9ca3af 100%);
+}
+.theme-custom3 .poster-introduction-page::before,
+.theme-custom3 .poster-introduction-page::after {
+    border-color: rgba(55, 65, 81, 0.1);
+}
+
+.introduction-content p {
+    font-size: 16.5px;
+    line-height: 1.9;
+    color: #4b5563;
+    margin-bottom: 24px;
+    text-align: center;
+    text-indent: 0;
+    max-width: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+
+.introduction-content p:last-child {
+    margin-bottom: 0;
+}
+
+/* 导言文本容器 */
+.introduction-text {
+    text-align: center;
+}
+
+.introduction-text p {
+    font-size: inherit;
+    line-height: 1.9;
+    color: #4b5563;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.introduction-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* 导言中的代码块样式 */
+.introduction-content pre {
+    margin: 14px 0;
+    padding: 0;
+    background: #f6f8fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    position: relative;
+    text-align: left;
+    border-left: 4px solid #3b82f6;
+}
+
+.introduction-content pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #ffffff;
+    background: #6b7280;
+    font-weight: 500;
+    border-bottom-left-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.introduction-content pre code {
+    display: block;
+    padding: 16px 18px;
+    padding-right: 70px;
+    background: transparent !important;
+    border: none !important;
+    color: #24292e;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    tab-size: 4;
+}
+
+/* ==================== 参考资料页样式 ==================== */
+.poster-reference-page {
+    padding: 50px 45px 65px 45px;
+    background: #f9fafb;
+    position: relative;
+}
+
+/* 参考资料页装饰 - 网格效果 */
+.poster-reference-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(0, 0, 0, .02) 25%, rgba(0, 0, 0, .02) 26%, transparent 27%, transparent 74%, rgba(0, 0, 0, .02) 75%, rgba(0, 0, 0, .02) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(0, 0, 0, .02) 25%, rgba(0, 0, 0, .02) 26%, transparent 27%, transparent 74%, rgba(0, 0, 0, .02) 75%, rgba(0, 0, 0, .02) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* 参考资料页顶部装饰条 */
+.poster-reference-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, transparent 0%, #1f2937 20%, #1f2937 80%, transparent 100%);
+}
+
+.reference-content {
+    max-height: calc(var(--poster-height) - 115px);
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.reference-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111827;
+    text-align: left;
+    margin: 0 0 30px 0;
+    padding: 0;
+    letter-spacing: -0.5px;
+    position: relative;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.reference-title::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 28px;
+    background: #1f2937;
+    flex-shrink: 0;
+}
+
+/* 参考资料列表 */
+.reference-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reference-item {
+    position: relative;
+    padding: 16px 20px 16px 52px;
+    margin-bottom: 12px;
+    background: #ffffff;
+    border-left: 3px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-radius: 2px;
+}
+
+.reference-number {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    width: 24px;
+    height: 24px;
+    background: #1f2937;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.reference-text {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #4b5563;
+    word-wrap: break-word;
+}
+
+/* 各主题参考资料页样式 */
+.theme-paper .reference-title::before,
+.theme-paper .reference-number {
+    background: #be123c;
+}
+.theme-paper .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #be123c 20%, #be123c 80%, transparent 100%);
+}
+
+.theme-theory .reference-title::before,
+.theme-theory .reference-number {
+    background: #047857;
+}
+.theme-theory .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #047857 20%, #047857 80%, transparent 100%);
+}
+
+.theme-method .reference-title::before,
+.theme-method .reference-number {
+    background: #1e40af;
+}
+.theme-method .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #1e40af 20%, #1e40af 80%, transparent 100%);
+}
+
+.theme-tool .reference-title::before,
+.theme-tool .reference-number {
+    background: #7e22ce;
+}
+.theme-tool .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #7e22ce 20%, #7e22ce 80%, transparent 100%);
+}
+
+.theme-thinking .reference-title::before,
+.theme-thinking .reference-number {
+    background: #b45309;
+}
+.theme-thinking .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #b45309 20%, #b45309 80%, transparent 100%);
+}
+
+.theme-reading .reference-title::before,
+.theme-reading .reference-number {
+    background: #c2410c;
+}
+.theme-reading .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #c2410c 20%, #c2410c 80%, transparent 100%);
+}
+
+.theme-custom1 .reference-title::before,
+.theme-custom1 .reference-number {
+    background: #0e7490;
+}
+.theme-custom1 .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #0e7490 20%, #0e7490 80%, transparent 100%);
+}
+
+.theme-custom2 .reference-title::before,
+.theme-custom2 .reference-number {
+    background: #4f46e5;
+}
+.theme-custom2 .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #4f46e5 20%, #4f46e5 80%, transparent 100%);
+}
+
+.theme-custom3 .reference-title::before,
+.theme-custom3 .reference-number {
+    background: #374151;
+}
+.theme-custom3 .poster-reference-page::after {
+    background: linear-gradient(90deg, transparent 0%, #374151 20%, #374151 80%, transparent 100%);
+}
+
+/* ==================== 内容页样式 ==================== */
+.poster-content-page {
+    padding: 50px 45px 65px 45px;
+    background: linear-gradient(to bottom, #fafbfc 0%, #ffffff 100%);
+    position: relative;
+}
+
+/* 内容页顶部装饰条 - Keynote风格 */
+.poster-content-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, #1f2937 0%, #1f2937 60%, transparent 100%);
+}
+
+/* 根据主题改变顶部装饰条颜色 */
+.poster-content-page.theme-paper::before {
+    background: linear-gradient(90deg, #be123c 0%, #be123c 60%, transparent 100%);
+}
+.poster-content-page.theme-theory::before {
+    background: linear-gradient(90deg, #047857 0%, #047857 60%, transparent 100%);
+}
+.poster-content-page.theme-method::before {
+    background: linear-gradient(90deg, #1e40af 0%, #1e40af 60%, transparent 100%);
+}
+.poster-content-page.theme-tool::before {
+    background: linear-gradient(90deg, #7e22ce 0%, #7e22ce 60%, transparent 100%);
+}
+.poster-content-page.theme-thinking::before {
+    background: linear-gradient(90deg, #b45309 0%, #b45309 60%, transparent 100%);
+}
+.poster-content-page.theme-reading::before {
+    background: linear-gradient(90deg, #c2410c 0%, #c2410c 60%, transparent 100%);
+}
+.poster-content-page.theme-custom1::before {
+    background: linear-gradient(90deg, #0e7490 0%, #0e7490 60%, transparent 100%);
+}
+.poster-content-page.theme-custom2::before {
+    background: linear-gradient(90deg, #4f46e5 0%, #4f46e5 60%, transparent 100%);
+}
+.poster-content-page.theme-custom3::before {
+    background: linear-gradient(90deg, #374151 0%, #374151 60%, transparent 100%);
+}
+
+/* 内容页右侧装饰元素 - Keynote风格 */
+.poster-content-page::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 160px;
+    height: 160px;
+    background: radial-gradient(circle at center, rgba(0,0,0,0.02) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.poster-text {
+    font-size: 16px; /* 默认字号，会被JS动态覆盖 */
+    line-height: 1.5;
+    color: #374151;
+    word-wrap: break-word;
+    overflow-y: auto;
+    max-height: calc(var(--poster-height) - 115px);
+    position: relative;
+}
+
+.poster-text::-webkit-scrollbar {
+    width: 4px;
+}
+
+.poster-text::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.poster-text::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 2px;
+}
+
+.poster-section-title {
+    font-size: 26px;
+    color: #111827;
+    margin: 0 0 18px 0;
+    padding: 0 0 14px 0;
+    border-left: none;
+    border-bottom: none;
+    font-weight: 800;
+    background: transparent;
+    border-radius: 0;
+    letter-spacing: -0.5px;
+    position: relative;
+    line-height: 1.3;
+}
+
+/* Keynote风格标题装饰 */
+.poster-section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(to bottom, #1f2937 0%, transparent 100%);
+    opacity: 0.15;
+}
+
+.poster-section-title::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 80px;
+    height: 4px;
+    background: #1f2937;
+    border-radius: 2px;
+}
+
+/* 根据主题改变标题装饰颜色 */
+.theme-paper .poster-section-title {
+    color: #9f1239 !important;
+}
+.theme-paper .poster-section-title::before {
+    background: linear-gradient(to bottom, #be123c 0%, transparent 100%) !important;
+}
+.theme-paper .poster-section-title::after {
+    background: linear-gradient(to right, #be123c 0%, #f87171 100%) !important;
+}
+
+.theme-theory .poster-section-title {
+    color: #065f46 !important;
+}
+.theme-theory .poster-section-title::before {
+    background: linear-gradient(to bottom, #047857 0%, transparent 100%) !important;
+}
+.theme-theory .poster-section-title::after {
+    background: linear-gradient(to right, #047857 0%, #34d399 100%) !important;
+}
+
+.theme-method .poster-section-title {
+    color: #1e3a8a !important;
+}
+.theme-method .poster-section-title::before {
+    background: linear-gradient(to bottom, #1e40af 0%, transparent 100%) !important;
+}
+.theme-method .poster-section-title::after {
+    background: linear-gradient(to right, #1e40af 0%, #60a5fa 100%) !important;
+}
+
+.theme-tool .poster-section-title {
+    color: #6b21a8 !important;
+}
+.theme-tool .poster-section-title::before {
+    background: linear-gradient(to bottom, #7e22ce 0%, transparent 100%) !important;
+}
+.theme-tool .poster-section-title::after {
+    background: linear-gradient(to right, #7e22ce 0%, #a78bfa 100%) !important;
+}
+
+.theme-thinking .poster-section-title {
+    color: #92400e !important;
+}
+.theme-thinking .poster-section-title::before {
+    background: linear-gradient(to bottom, #b45309 0%, transparent 100%) !important;
+}
+.theme-thinking .poster-section-title::after {
+    background: linear-gradient(to right, #b45309 0%, #fbbf24 100%) !important;
+}
+
+.theme-reading .poster-section-title {
+    color: #9a3412 !important;
+}
+.theme-reading .poster-section-title::before {
+    background: linear-gradient(to bottom, #c2410c 0%, transparent 100%) !important;
+}
+.theme-reading .poster-section-title::after {
+    background: linear-gradient(to right, #c2410c 0%, #fb923c 100%) !important;
+}
+
+.theme-custom1 .poster-section-title {
+    color: #155e75 !important;
+}
+.theme-custom1 .poster-section-title::before {
+    background: linear-gradient(to bottom, #0e7490 0%, transparent 100%) !important;
+}
+.theme-custom1 .poster-section-title::after {
+    background: linear-gradient(to right, #0e7490 0%, #22d3ee 100%) !important;
+}
+
+.theme-custom2 .poster-section-title {
+    color: #4338ca !important;
+}
+.theme-custom2 .poster-section-title::before {
+    background: linear-gradient(to bottom, #4f46e5 0%, transparent 100%) !important;
+}
+.theme-custom2 .poster-section-title::after {
+    background: linear-gradient(to right, #4f46e5 0%, #818cf8 100%) !important;
+}
+
+.theme-custom3 .poster-section-title {
+    color: #1f2937 !important;
+}
+.theme-custom3 .poster-section-title::before {
+    background: linear-gradient(to bottom, #374151 0%, transparent 100%) !important;
+}
+.theme-custom3 .poster-section-title::after {
+    background: linear-gradient(to right, #374151 0%, #9ca3af 100%) !important;
+}
+
+.poster-text p {
+    margin: 0 0 10px 0;
+    text-align: justify;
+    position: relative;
+}
+
+
+.poster-text ul,
+.poster-text ol {
+    margin: 0 0 10px 0;
+    padding-left: 30px;
+}
+
+.poster-text li {
+    margin-bottom: 5px;
+    line-height: 1.5;
+    position: relative;
+}
+
+.poster-text li::marker {
+    color: #9ca3af;
+    font-weight: 600;
+}
+
+/* 列表项更精致的样式 */
+.poster-text ul li {
+    padding-left: 4px;
+}
+
+.poster-text ol li {
+    padding-left: 4px;
+}
+
+.poster-text strong {
+    color: #111827;
+    font-weight: 700;
+    position: relative;
+    padding: 0 2px;
+}
+
+.poster-text em {
+    font-style: italic;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.poster-text code {
+    background: linear-gradient(to bottom, #f3f4f6 0%, #e5e7eb 100%);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 13.5px;
+    color: #be123c;
+    border: 1px solid #e5e7eb;
+}
+
+/* ==================== 代码块样式 ==================== */
+.poster-text pre {
+    margin: 14px 0;
+    padding: 0;
+    background: #f6f8fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border-left: 4px solid #3b82f6;
+}
+
+.poster-text pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #ffffff;
+    background: #6b7280;
+    font-weight: 500;
+    border-bottom-left-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.poster-text pre code {
+    display: block;
+    padding: 16px 18px;
+    padding-right: 70px;
+    background: transparent !important;
+    border: none !important;
+    color: #24292e;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    tab-size: 4;
+}
+
+.poster-text pre code::-webkit-scrollbar {
+    height: 6px;
+}
+
+.poster-text pre code::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+
+.poster-text pre code::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+/* Highlight.js 使用 GitHub 浅色主题，无需额外覆盖 */
+.poster-text pre code.hljs {
+    background: transparent !important;
+    padding: 16px 18px;
+}
+
+/* ==================== 数学公式样式 ==================== */
+/* 行内公式 */
+.poster-text .katex {
+    font-size: 1em;
+}
+
+/* 块级公式 */
+.poster-text .katex-display {
+    margin: 16px 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+}
+
+.poster-text .katex-display > .katex {
+    font-size: 1.1em;
+}
+
+.poster-text .katex-display::-webkit-scrollbar {
+    height: 4px;
+}
+
+.poster-text .katex-display::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.poster-text .katex-display::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+}
+
+/* 各主题公式块适配 */
+.theme-paper .poster-text .katex-display {
+    background: linear-gradient(135deg, #fef2f8 0%, #fce7f3 100%);
+    border-color: #fbcfe8;
+}
+
+.theme-theory .poster-text .katex-display {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-color: #a7f3d0;
+}
+
+.theme-method .poster-text .katex-display {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #bfdbfe;
+}
+
+.theme-tool .poster-text .katex-display {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border-color: #e9d5ff;
+}
+
+.theme-thinking .poster-text .katex-display {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fde68a;
+}
+
+.theme-reading .poster-text .katex-display {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border-color: #fed7aa;
+}
+
+.theme-custom1 .poster-text .katex-display {
+    background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+    border-color: #a5f3fc;
+}
+
+.theme-custom2 .poster-text .katex-display {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border-color: #c7d2fe;
+}
+
+.theme-custom3 .poster-text .katex-display {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-color: #e5e7eb;
+}
+
+/* 行内公式样式 */
+.poster-text .math-inline,
+.poster-text .math-inline .katex {
+    font-size: 1em;
+    vertical-align: baseline;
+}
+
+/* 块级公式容器样式 */
+.poster-text .math-block {
+    margin: 16px 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.poster-text .math-block .katex-display {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+/* 各主题块级公式容器适配 */
+.theme-paper .poster-text .math-block {
+    background: linear-gradient(135deg, #fef2f8 0%, #fce7f3 100%);
+    border-color: #fbcfe8;
+}
+
+.theme-theory .poster-text .math-block {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-color: #a7f3d0;
+}
+
+.theme-method .poster-text .math-block {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #bfdbfe;
+}
+
+.theme-tool .poster-text .math-block {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border-color: #e9d5ff;
+}
+
+.theme-thinking .poster-text .math-block {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fde68a;
+}
+
+.theme-reading .poster-text .math-block {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border-color: #fed7aa;
+}
+
+.theme-custom1 .poster-text .math-block {
+    background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+    border-color: #a5f3fc;
+}
+
+.theme-custom2 .poster-text .math-block {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border-color: #c7d2fe;
+}
+
+.theme-custom3 .poster-text .math-block {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-color: #e5e7eb;
+}
+
+/* ==================== 导言页公式和代码样式 ==================== */
+.introduction-content .katex {
+    font-size: 1em;
+}
+
+.introduction-content .katex-display {
+    margin: 16px 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+}
+
+.introduction-content .math-block {
+    margin: 16px 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.introduction-content code {
+    background: linear-gradient(to bottom, #f3f4f6 0%, #e5e7eb 100%);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #be123c;
+    border: 1px solid #e5e7eb;
+}
+
+/* 导言页各主题公式适配 */
+.theme-paper .introduction-content .katex-display,
+.theme-paper .introduction-content .math-block {
+    background: linear-gradient(135deg, #fef2f8 0%, #fce7f3 100%);
+    border-color: #fbcfe8;
+}
+
+.theme-theory .introduction-content .katex-display,
+.theme-theory .introduction-content .math-block {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-color: #a7f3d0;
+}
+
+.theme-method .introduction-content .katex-display,
+.theme-method .introduction-content .math-block {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #bfdbfe;
+}
+
+.theme-tool .introduction-content .katex-display,
+.theme-tool .introduction-content .math-block {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border-color: #e9d5ff;
+}
+
+.theme-thinking .introduction-content .katex-display,
+.theme-thinking .introduction-content .math-block {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fde68a;
+}
+
+.theme-reading .introduction-content .katex-display,
+.theme-reading .introduction-content .math-block {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border-color: #fed7aa;
+}
+
+.theme-custom1 .introduction-content .katex-display,
+.theme-custom1 .introduction-content .math-block {
+    background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+    border-color: #a5f3fc;
+}
+
+.theme-custom2 .introduction-content .katex-display,
+.theme-custom2 .introduction-content .math-block {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border-color: #c7d2fe;
+}
+
+.theme-custom3 .introduction-content .katex-display,
+.theme-custom3 .introduction-content .math-block {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-color: #e5e7eb;
+}
+
+/* 各主题代码块适配 - 使用浅色背景配合左边框主题色 */
+.theme-paper .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #e11d48;
+}
+
+.theme-theory .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #059669;
+}
+
+.theme-method .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #2563eb;
+}
+
+.theme-tool .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #9333ea;
+}
+
+.theme-thinking .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #d97706;
+}
+
+.theme-reading .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #ea580c;
+}
+
+.theme-custom1 .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #0891b2;
+}
+
+.theme-custom2 .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #4f46e5;
+}
+
+.theme-custom3 .poster-text pre {
+    background: #f6f8fa;
+    border-left-color: #6b7280;
+}
+
+.poster-text blockquote {
+    margin: 12px 0;
+    padding: 14px 18px;
+    background: linear-gradient(to right, #f9fafb 0%, #ffffff 100%);
+    border-left: 4px solid #1f2937;
+    color: #4b5563;
+    font-size: 14.5px;
+    line-height: 1.5;
+    font-style: italic;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.poster-text blockquote::before {
+    content: '"';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    font-size: 32px;
+    color: #e5e7eb;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.poster-text img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid #f3f4f6;
+}
+
+.poster-text p img {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+/* ==================== HTML模式样式 ==================== */
+/* HTML模式下保留用户的自定义样式，同时确保基础样式一致 */
+.poster-text.html-mode {
+    position: relative;
+}
+
+/* ========== 统一标题系统 ========== */
+.poster-text.html-mode .section-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    position: relative;
+    padding-left: 16px;
+}
+
+.poster-text.html-mode .section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    bottom: 4px;
+    width: 4px;
+    background: #1f2937;
+}
+
+.poster-text.html-mode .section-subtitle {
+    font-size: 14px;
+    font-weight: 500;
+    color: #9ca3af;
+    margin: 0 0 24px 0;
+    padding-left: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* 各主题标题适配 */
+.theme-paper .poster-text.html-mode .section-title { color: #9f1239; }
+.theme-paper .poster-text.html-mode .section-title::before { background: #be123c; }
+.theme-theory .poster-text.html-mode .section-title { color: #065f46; }
+.theme-theory .poster-text.html-mode .section-title::before { background: #047857; }
+.theme-method .poster-text.html-mode .section-title { color: #1e3a8a; }
+.theme-method .poster-text.html-mode .section-title::before { background: #1e40af; }
+.theme-tool .poster-text.html-mode .section-title { color: #6b21a8; }
+.theme-tool .poster-text.html-mode .section-title::before { background: #7e22ce; }
+.theme-thinking .poster-text.html-mode .section-title { color: #92400e; }
+.theme-thinking .poster-text.html-mode .section-title::before { background: #b45309; }
+.theme-reading .poster-text.html-mode .section-title { color: #9a3412; }
+.theme-reading .poster-text.html-mode .section-title::before { background: #c2410c; }
+.theme-custom1 .poster-text.html-mode .section-title { color: #155e75; }
+.theme-custom1 .poster-text.html-mode .section-title::before { background: #0e7490; }
+.theme-custom2 .poster-text.html-mode .section-title { color: #4338ca; }
+.theme-custom2 .poster-text.html-mode .section-title::before { background: #4f46e5; }
+.theme-custom3 .poster-text.html-mode .section-title { color: #1f2937; }
+.theme-custom3 .poster-text.html-mode .section-title::before { background: #374151; }
+
+/* ========== 强调块 ========== */
+.poster-text.html-mode .accent-block {
+    margin: 20px 0;
+    padding: 18px 22px;
+    background: transparent;
+    border-left: 2px solid #d1d5db;
+    position: relative;
+}
+
+.poster-text.html-mode .accent-block p {
+    margin: 0;
+    color: #4b5563;
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* 各主题强调块适配 */
+.theme-paper .poster-text.html-mode .accent-block { border-left-color: #fda4af; }
+.theme-theory .poster-text.html-mode .accent-block { border-left-color: #6ee7b7; }
+.theme-method .poster-text.html-mode .accent-block { border-left-color: #93c5fd; }
+.theme-tool .poster-text.html-mode .accent-block { border-left-color: #c4b5fd; }
+.theme-thinking .poster-text.html-mode .accent-block { border-left-color: #fcd34d; }
+.theme-reading .poster-text.html-mode .accent-block { border-left-color: #fdba74; }
+.theme-custom1 .poster-text.html-mode .accent-block { border-left-color: #67e8f9; }
+.theme-custom2 .poster-text.html-mode .accent-block { border-left-color: #a5b4fc; }
+.theme-custom3 .poster-text.html-mode .accent-block { border-left-color: #9ca3af; }
+
+/* ========== 精致引用块 ========== */
+.poster-text.html-mode .pullquote {
+    margin: 28px 20px;
+    padding: 24px 32px;
+    border-left: 2px solid #d1d5db;
+    background: linear-gradient(135deg, #fafafa 0%, #ffffff 100%);
+    position: relative;
+}
+
+.poster-text.html-mode .pullquote::before {
+    content: '"';
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    font-size: 36px;
+    font-family: Georgia, serif;
+    color: #e5e7eb;
+    line-height: 1;
+}
+
+.poster-text.html-mode .pullquote p {
+    margin: 0 0 12px 0;
+    font-size: 17px;
+    font-style: italic;
+    color: #4b5563;
+    line-height: 1.7;
+    letter-spacing: -0.1px;
+}
+
+.poster-text.html-mode .pullquote cite {
+    font-size: 13px;
+    font-style: normal;
+    color: #9ca3af;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+    margin-top: 10px;
+}
+
+.poster-text.html-mode .pullquote cite::before {
+    content: '— ';
+}
+
+/* 各主题引用块适配 */
+.theme-paper .poster-text.html-mode .pullquote { border-left-color: #f87171; background: linear-gradient(135deg, #fef2f2 0%, #ffffff 100%); }
+.theme-paper .poster-text.html-mode .pullquote::before { color: #fecdd3; }
+.theme-paper .poster-text.html-mode .pullquote p { color: #9f1239; }
+
+.theme-theory .poster-text.html-mode .pullquote { border-left-color: #34d399; background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 100%); }
+.theme-theory .poster-text.html-mode .pullquote::before { color: #a7f3d0; }
+.theme-theory .poster-text.html-mode .pullquote p { color: #065f46; }
+
+.theme-method .poster-text.html-mode .pullquote { border-left-color: #60a5fa; background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%); }
+.theme-method .poster-text.html-mode .pullquote::before { color: #bfdbfe; }
+.theme-method .poster-text.html-mode .pullquote p { color: #1e3a8a; }
+
+.theme-tool .poster-text.html-mode .pullquote { border-left-color: #a78bfa; background: linear-gradient(135deg, #faf5ff 0%, #ffffff 100%); }
+.theme-tool .poster-text.html-mode .pullquote::before { color: #ddd6fe; }
+.theme-tool .poster-text.html-mode .pullquote p { color: #6b21a8; }
+
+.theme-thinking .poster-text.html-mode .pullquote { border-left-color: #fbbf24; background: linear-gradient(135deg, #fffbeb 0%, #ffffff 100%); }
+.theme-thinking .poster-text.html-mode .pullquote::before { color: #fde68a; }
+.theme-thinking .poster-text.html-mode .pullquote p { color: #92400e; }
+
+.theme-reading .poster-text.html-mode .pullquote { border-left-color: #fb923c; background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%); }
+.theme-reading .poster-text.html-mode .pullquote::before { color: #fed7aa; }
+.theme-reading .poster-text.html-mode .pullquote p { color: #9a3412; }
+
+.theme-custom1 .poster-text.html-mode .pullquote { border-left-color: #22d3ee; background: linear-gradient(135deg, #ecfeff 0%, #ffffff 100%); }
+.theme-custom1 .poster-text.html-mode .pullquote::before { color: #a5f3fc; }
+.theme-custom1 .poster-text.html-mode .pullquote p { color: #155e75; }
+
+.theme-custom2 .poster-text.html-mode .pullquote { border-left-color: #818cf8; background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%); }
+.theme-custom2 .poster-text.html-mode .pullquote::before { color: #c7d2fe; }
+.theme-custom2 .poster-text.html-mode .pullquote p { color: #4338ca; }
+
+.theme-custom3 .poster-text.html-mode .pullquote { border-left-color: #6b7280; background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); }
+.theme-custom3 .poster-text.html-mode .pullquote::before { color: #d1d5db; }
+.theme-custom3 .poster-text.html-mode .pullquote p { color: #374151; }
+
+/* ========== 编号列表 ========== */
+.poster-text.html-mode .numbered-list {
+    margin: 20px 0;
+}
+
+.poster-text.html-mode .numbered-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.poster-text.html-mode .numbered-item .num {
+    font-size: 13px;
+    font-weight: 600;
+    color: #9ca3af;
+    min-width: 18px;
+}
+
+.poster-text.html-mode .numbered-item .text {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #374151;
+}
+
+/* 各主题编号列表适配 */
+.theme-paper .poster-text.html-mode .numbered-item .num { color: #f87171; }
+.theme-theory .poster-text.html-mode .numbered-item .num { color: #34d399; }
+.theme-method .poster-text.html-mode .numbered-item .num { color: #60a5fa; }
+.theme-tool .poster-text.html-mode .numbered-item .num { color: #a78bfa; }
+.theme-thinking .poster-text.html-mode .numbered-item .num { color: #fbbf24; }
+.theme-reading .poster-text.html-mode .numbered-item .num { color: #fb923c; }
+.theme-custom1 .poster-text.html-mode .numbered-item .num { color: #22d3ee; }
+.theme-custom2 .poster-text.html-mode .numbered-item .num { color: #818cf8; }
+.theme-custom3 .poster-text.html-mode .numbered-item .num { color: #6b7280; }
+
+/* ========== 阶段列表 ========== */
+.poster-text.html-mode .phase-list {
+    margin: 20px 0;
+}
+
+.poster-text.html-mode .phase-item {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+}
+
+.poster-text.html-mode .phase-item:last-child {
+    margin-bottom: 0;
+}
+
+.poster-text.html-mode .phase-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 52px;
+    padding-top: 3px;
+}
+
+.poster-text.html-mode .phase-content {
+    flex: 1;
+    padding-left: 16px;
+    border-left: 1px solid #e5e7eb;
+}
+
+.poster-text.html-mode .phase-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+.poster-text.html-mode .phase-content p {
+    margin: 0;
+    font-size: 15px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* 各主题阶段列表适配 */
+.theme-paper .poster-text.html-mode .phase-label { color: #f87171; }
+.theme-paper .poster-text.html-mode .phase-content { border-left-color: #fecdd3; }
+.theme-paper .poster-text.html-mode .phase-title { color: #9f1239; }
+.theme-theory .poster-text.html-mode .phase-label { color: #34d399; }
+.theme-theory .poster-text.html-mode .phase-content { border-left-color: #a7f3d0; }
+.theme-theory .poster-text.html-mode .phase-title { color: #065f46; }
+.theme-method .poster-text.html-mode .phase-label { color: #60a5fa; }
+.theme-method .poster-text.html-mode .phase-content { border-left-color: #bfdbfe; }
+.theme-method .poster-text.html-mode .phase-title { color: #1e3a8a; }
+.theme-tool .poster-text.html-mode .phase-label { color: #a78bfa; }
+.theme-tool .poster-text.html-mode .phase-content { border-left-color: #ddd6fe; }
+.theme-tool .poster-text.html-mode .phase-title { color: #6b21a8; }
+.theme-thinking .poster-text.html-mode .phase-label { color: #fbbf24; }
+.theme-thinking .poster-text.html-mode .phase-content { border-left-color: #fde68a; }
+.theme-thinking .poster-text.html-mode .phase-title { color: #92400e; }
+.theme-reading .poster-text.html-mode .phase-label { color: #fb923c; }
+.theme-reading .poster-text.html-mode .phase-content { border-left-color: #fed7aa; }
+.theme-reading .poster-text.html-mode .phase-title { color: #9a3412; }
+.theme-custom1 .poster-text.html-mode .phase-label { color: #22d3ee; }
+.theme-custom1 .poster-text.html-mode .phase-content { border-left-color: #a5f3fc; }
+.theme-custom1 .poster-text.html-mode .phase-title { color: #155e75; }
+.theme-custom2 .poster-text.html-mode .phase-label { color: #818cf8; }
+.theme-custom2 .poster-text.html-mode .phase-content { border-left-color: #c7d2fe; }
+.theme-custom2 .poster-text.html-mode .phase-title { color: #4338ca; }
+.theme-custom3 .poster-text.html-mode .phase-label { color: #6b7280; }
+.theme-custom3 .poster-text.html-mode .phase-content { border-left-color: #d1d5db; }
+.theme-custom3 .poster-text.html-mode .phase-title { color: #1f2937; }
+
+/* ========== 要点列表 ========== */
+.poster-text.html-mode .takeaway-list {
+    margin: 20px 0;
+}
+
+.poster-text.html-mode .takeaway-item {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.poster-text.html-mode .takeaway-item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.poster-text.html-mode .takeaway-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.poster-text.html-mode .takeaway-item p {
+    margin: 0;
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* 各主题要点列表适配 */
+.theme-paper .poster-text.html-mode .takeaway-item { border-bottom-color: #fef2f2; }
+.theme-paper .poster-text.html-mode .takeaway-title { color: #9f1239; }
+.theme-theory .poster-text.html-mode .takeaway-item { border-bottom-color: #ecfdf5; }
+.theme-theory .poster-text.html-mode .takeaway-title { color: #065f46; }
+.theme-method .poster-text.html-mode .takeaway-item { border-bottom-color: #eff6ff; }
+.theme-method .poster-text.html-mode .takeaway-title { color: #1e3a8a; }
+.theme-tool .poster-text.html-mode .takeaway-item { border-bottom-color: #faf5ff; }
+.theme-tool .poster-text.html-mode .takeaway-title { color: #6b21a8; }
+.theme-thinking .poster-text.html-mode .takeaway-item { border-bottom-color: #fffbeb; }
+.theme-thinking .poster-text.html-mode .takeaway-title { color: #92400e; }
+.theme-reading .poster-text.html-mode .takeaway-item { border-bottom-color: #fff7ed; }
+.theme-reading .poster-text.html-mode .takeaway-title { color: #9a3412; }
+.theme-custom1 .poster-text.html-mode .takeaway-item { border-bottom-color: #ecfeff; }
+.theme-custom1 .poster-text.html-mode .takeaway-title { color: #155e75; }
+.theme-custom2 .poster-text.html-mode .takeaway-item { border-bottom-color: #eef2ff; }
+.theme-custom2 .poster-text.html-mode .takeaway-title { color: #4338ca; }
+.theme-custom3 .poster-text.html-mode .takeaway-item { border-bottom-color: #f9fafb; }
+.theme-custom3 .poster-text.html-mode .takeaway-title { color: #1f2937; }
+
+/* ========== 结尾注释 ========== */
+.poster-text.html-mode .closing-note {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e7eb;
+    font-size: 13px;
+    color: #9ca3af;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+/* ==================== 高级数据展示组件 ==================== */
+
+/* ========== 数据卡片 ========== */
+.poster-text.html-mode .data-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-left: 3px solid #6366f1;
+    padding: 20px;
+    margin-bottom: 12px;
+}
+
+/* 各主题数据卡片适配 */
+.theme-paper .poster-text.html-mode .data-card { border-left-color: #f87171; }
+.theme-theory .poster-text.html-mode .data-card { border-left-color: #34d399; }
+.theme-method .poster-text.html-mode .data-card { border-left-color: #60a5fa; }
+.theme-tool .poster-text.html-mode .data-card { border-left-color: #a78bfa; }
+.theme-thinking .poster-text.html-mode .data-card { border-left-color: #fbbf24; }
+.theme-reading .poster-text.html-mode .data-card { border-left-color: #fb923c; }
+.theme-custom1 .poster-text.html-mode .data-card { border-left-color: #22d3ee; }
+.theme-custom2 .poster-text.html-mode .data-card { border-left-color: #818cf8; }
+.theme-custom3 .poster-text.html-mode .data-card { border-left-color: #6b7280; }
+
+.poster-text.html-mode .data-card-dark {
+    background: #111827;
+    color: #f9fafb;
+    padding: 24px;
+    margin-bottom: 12px;
+}
+
+/* ========== 大数字展示 ========== */
+.poster-text.html-mode .big-number {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    color: #111827;
+}
+
+.poster-text.html-mode .big-number-gradient {
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -2px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 各主题大数字适配 */
+.theme-paper .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-theory .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-method .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-tool .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-thinking .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-reading .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-custom1 .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-custom2 .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+.theme-custom3 .poster-text.html-mode .big-number-gradient {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+    -webkit-background-clip: text; background-clip: text;
+}
+
+.poster-text.html-mode .number-unit {
+    font-size: 22px;
+    font-weight: 600;
+    color: #6b7280;
+    margin-left: 4px;
+}
+
+.poster-text.html-mode .number-label {
+    font-size: 14px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
+/* ========== 进度条 ========== */
+.poster-text.html-mode .progress-bar {
+    height: 8px;
+    background: #e5e7eb;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 8px 0;
+}
+
+.poster-text.html-mode .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+/* 各主题进度条适配 */
+.theme-paper .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #be123c 0%, #f43f5e 100%); }
+.theme-theory .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #047857 0%, #10b981 100%); }
+.theme-method .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%); }
+.theme-tool .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #7e22ce 0%, #a855f7 100%); }
+.theme-thinking .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #b45309 0%, #f59e0b 100%); }
+.theme-reading .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #c2410c 0%, #f97316 100%); }
+.theme-custom1 .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #0e7490 0%, #22d3ee 100%); }
+.theme-custom2 .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #4f46e5 0%, #818cf8 100%); }
+.theme-custom3 .poster-text.html-mode .progress-fill { background: linear-gradient(90deg, #374151 0%, #6b7280 100%); }
+
+/* ========== 数据网格 ========== */
+.poster-text.html-mode .data-grid {
+    display: grid;
+    gap: 12px;
+}
+
+.poster-text.html-mode .data-grid-2 { grid-template-columns: 1fr 1fr; }
+.poster-text.html-mode .data-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.poster-text.html-mode .data-grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+/* ========== 全屏居中布局 ========== */
+.poster-text.html-mode .full-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    text-align: center;
+}
+
+/* ========== 深色主题容器 ========== */
+.poster-text.html-mode .dark-theme {
+    background: #0f172a;
+    color: #f1f5f9;
+    padding: 30px;
+    margin: -50px -45px -65px -45px;
+    min-height: calc(100% + 115px);
+}
+
+.poster-text.html-mode .dark-theme .section-title {
+    color: #f1f5f9;
+}
+
+.poster-text.html-mode .dark-theme .section-title::before {
+    background: #6366f1;
+}
+
+.poster-text.html-mode .dark-theme .section-subtitle {
+    color: #64748b;
+}
+
+/* ========== 渐变背景 ========== */
+.poster-text.html-mode .gradient-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    margin: -50px -45px -65px -45px;
+    min-height: calc(100% + 115px);
+}
+
+/* 各主题渐变背景 */
+.theme-paper .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%); }
+.theme-theory .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #047857 0%, #10b981 100%); }
+.theme-method .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+.theme-tool .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%); }
+.theme-thinking .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%); }
+.theme-reading .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #c2410c 0%, #f97316 100%); }
+.theme-custom1 .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%); }
+.theme-custom2 .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%); }
+.theme-custom3 .poster-text.html-mode .gradient-bg { background: linear-gradient(135deg, #374151 0%, #6b7280 100%); }
+
+/* ========== 标签/徽章 ========== */
+.poster-text.html-mode .tag-sm {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+.poster-text.html-mode .tag-outline {
+    display: inline-block;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 600;
+    border-radius: 4px;
+    background: transparent;
+    border: 1px solid currentColor;
+}
+
+/* ========== 分隔符 ========== */
+.poster-text.html-mode .sep {
+    width: 40px;
+    height: 2px;
+    background: #e5e7eb;
+    margin: 20px 0;
+}
+
+.poster-text.html-mode .sep-center {
+    width: 40px;
+    height: 2px;
+    background: #e5e7eb;
+    margin: 20px auto;
+}
+
+/* 各主题分隔符适配 */
+.theme-paper .poster-text.html-mode .sep, .theme-paper .poster-text.html-mode .sep-center { background: #fda4af; }
+.theme-theory .poster-text.html-mode .sep, .theme-theory .poster-text.html-mode .sep-center { background: #6ee7b7; }
+.theme-method .poster-text.html-mode .sep, .theme-method .poster-text.html-mode .sep-center { background: #93c5fd; }
+.theme-tool .poster-text.html-mode .sep, .theme-tool .poster-text.html-mode .sep-center { background: #c4b5fd; }
+.theme-thinking .poster-text.html-mode .sep, .theme-thinking .poster-text.html-mode .sep-center { background: #fcd34d; }
+.theme-reading .poster-text.html-mode .sep, .theme-reading .poster-text.html-mode .sep-center { background: #fdba74; }
+.theme-custom1 .poster-text.html-mode .sep, .theme-custom1 .poster-text.html-mode .sep-center { background: #67e8f9; }
+.theme-custom2 .poster-text.html-mode .sep, .theme-custom2 .poster-text.html-mode .sep-center { background: #a5b4fc; }
+.theme-custom3 .poster-text.html-mode .sep, .theme-custom3 .poster-text.html-mode .sep-center { background: #9ca3af; }
+
+/* ========== 装饰圆环 ========== */
+.poster-text.html-mode .ring {
+    width: 120px;
+    height: 120px;
+    border: 8px solid #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.poster-text.html-mode .ring-accent {
+    width: 120px;
+    height: 120px;
+    border: 8px solid;
+    border-color: #6366f1 #e5e7eb #e5e7eb #e5e7eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* 各主题圆环适配 */
+.theme-paper .poster-text.html-mode .ring-accent { border-color: #f87171 #fecdd3 #fecdd3 #fecdd3; }
+.theme-theory .poster-text.html-mode .ring-accent { border-color: #34d399 #a7f3d0 #a7f3d0 #a7f3d0; }
+.theme-method .poster-text.html-mode .ring-accent { border-color: #60a5fa #bfdbfe #bfdbfe #bfdbfe; }
+.theme-tool .poster-text.html-mode .ring-accent { border-color: #a78bfa #ddd6fe #ddd6fe #ddd6fe; }
+.theme-thinking .poster-text.html-mode .ring-accent { border-color: #fbbf24 #fde68a #fde68a #fde68a; }
+.theme-reading .poster-text.html-mode .ring-accent { border-color: #fb923c #fed7aa #fed7aa #fed7aa; }
+.theme-custom1 .poster-text.html-mode .ring-accent { border-color: #22d3ee #a5f3fc #a5f3fc #a5f3fc; }
+.theme-custom2 .poster-text.html-mode .ring-accent { border-color: #818cf8 #c7d2fe #c7d2fe #c7d2fe; }
+.theme-custom3 .poster-text.html-mode .ring-accent { border-color: #6b7280 #d1d5db #d1d5db #d1d5db; }
+
+/* ========== 文字工具类扩展 ========== */
+.poster-text.html-mode .text-hero { font-size: 52px; font-weight: 800; line-height: 1.1; letter-spacing: -1px; }
+.poster-text.html-mode .text-display { font-size: 40px; font-weight: 700; line-height: 1.2; }
+.poster-text.html-mode .text-headline { font-size: 28px; font-weight: 700; line-height: 1.3; }
+.poster-text.html-mode .text-title { font-size: 22px; font-weight: 600; line-height: 1.4; }
+.poster-text.html-mode .text-body { font-size: 16px; line-height: 1.6; }
+.poster-text.html-mode .text-caption { font-size: 14px; color: #6b7280; line-height: 1.55; }
+.poster-text.html-mode .text-overline { font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: #9ca3af; font-weight: 600; }
+
+/* ========== 间距工具类 ========== */
+.poster-text.html-mode .space-y-1 > * + * { margin-top: 8px; }
+.poster-text.html-mode .space-y-2 > * + * { margin-top: 16px; }
+.poster-text.html-mode .space-y-3 > * + * { margin-top: 24px; }
+.poster-text.html-mode .space-y-4 > * + * { margin-top: 32px; }
+
+/* ========== 辅助文本 ========== */
+.poster-text.html-mode .text-secondary {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* HTML模式下的基础元素样式（用户可以通过内联样式覆盖） */
+.poster-text.html-mode h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 16px 0;
+    line-height: 1.3;
+}
+
+.poster-text.html-mode h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 14px 0;
+    line-height: 1.3;
+}
+
+.poster-text.html-mode h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #374151;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.poster-text.html-mode p {
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+    font-size: 16px;
+    color: #374151;
+}
+
+.poster-text.html-mode ul,
+.poster-text.html-mode ol {
+    margin: 0 0 16px 0;
+    padding-left: 24px;
+}
+
+.poster-text.html-mode li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+.poster-text.html-mode strong {
+    color: #111827;
+    font-weight: 600;
+}
+
+.poster-text.html-mode em {
+    font-style: italic;
+    color: #4b5563;
+}
+
+/* ========== 工具类 ========== */
+.poster-text.html-mode .text-center { text-align: center; }
+.poster-text.html-mode .text-right { text-align: right; }
+.poster-text.html-mode .text-left { text-align: left; }
+.poster-text.html-mode .text-large { font-size: 1.25em; }
+.poster-text.html-mode .text-small { font-size: 0.875em; }
+.poster-text.html-mode .text-xs { font-size: 0.75em; }
+.poster-text.html-mode .text-muted { color: #6b7280; }
+.poster-text.html-mode .text-white { color: #ffffff; }
+.poster-text.html-mode .font-bold { font-weight: 700; }
+.poster-text.html-mode .font-medium { font-weight: 500; }
+.poster-text.html-mode .uppercase { text-transform: uppercase; letter-spacing: 0.05em; }
+
+.poster-text.html-mode .mt-1 { margin-top: 8px; }
+.poster-text.html-mode .mt-2 { margin-top: 16px; }
+.poster-text.html-mode .mt-3 { margin-top: 24px; }
+.poster-text.html-mode .mt-4 { margin-top: 32px; }
+.poster-text.html-mode .mb-1 { margin-bottom: 8px; }
+.poster-text.html-mode .mb-2 { margin-bottom: 16px; }
+.poster-text.html-mode .mb-3 { margin-bottom: 24px; }
+.poster-text.html-mode .mb-4 { margin-bottom: 32px; }
+.poster-text.html-mode .p-1 { padding: 8px; }
+.poster-text.html-mode .p-2 { padding: 16px; }
+.poster-text.html-mode .p-3 { padding: 24px; }
+
+.poster-text.html-mode .flex { display: flex; }
+.poster-text.html-mode .flex-col { flex-direction: column; }
+.poster-text.html-mode .flex-wrap { flex-wrap: wrap; }
+.poster-text.html-mode .items-center { align-items: center; }
+.poster-text.html-mode .items-start { align-items: flex-start; }
+.poster-text.html-mode .justify-center { justify-content: center; }
+.poster-text.html-mode .justify-between { justify-content: space-between; }
+.poster-text.html-mode .gap-1 { gap: 8px; }
+.poster-text.html-mode .gap-2 { gap: 16px; }
+.poster-text.html-mode .gap-3 { gap: 24px; }
+
+.poster-text.html-mode .w-full { width: 100%; }
+.poster-text.html-mode .h-full { height: 100%; }
+
+/* ========== 渐变标题（自动适配主题色） ========== */
+.poster-text.html-mode .title-gradient {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* 各主题自动适配渐变标题 */
+.theme-paper .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-theory .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-method .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-tool .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-thinking .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-reading .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-custom1 .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-custom2 .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-custom3 .poster-text.html-mode .title-gradient {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.poster-text.html-mode .title-gradient-rose {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.poster-text.html-mode .title-gradient-ocean {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.poster-text.html-mode .title-gradient-sunset {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.poster-text.html-mode .title-gradient-forest {
+    font-size: 32px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+/* ========== 带装饰的标题（自动适配主题色） ========== */
+.poster-text.html-mode .title-decorated {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1f2937;
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.poster-text.html-mode .title-decorated::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #6366f1 0%, #a855f7 100%);
+    border-radius: 3px;
+}
+
+/* 各主题装饰标题适配 */
+.theme-paper .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #be123c 0%, #f43f5e 100%);
+}
+.theme-theory .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #047857 0%, #10b981 100%);
+}
+.theme-method .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #1e40af 0%, #3b82f6 100%);
+}
+.theme-tool .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #7e22ce 0%, #a855f7 100%);
+}
+.theme-thinking .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #b45309 0%, #f59e0b 100%);
+}
+.theme-reading .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #c2410c 0%, #f97316 100%);
+}
+.theme-custom1 .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #0e7490 0%, #22d3ee 100%);
+}
+.theme-custom2 .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #4f46e5 0%, #818cf8 100%);
+}
+.theme-custom3 .poster-text.html-mode .title-decorated::before {
+    background: linear-gradient(180deg, #374151 0%, #6b7280 100%);
+}
+
+.poster-text.html-mode .title-underline {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1f2937;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.poster-text.html-mode .title-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1 0%, transparent 100%);
+    border-radius: 2px;
+}
+
+/* 各主题下划线标题适配 */
+.theme-paper .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #be123c 0%, transparent 100%);
+}
+.theme-theory .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #047857 0%, transparent 100%);
+}
+.theme-method .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #1e40af 0%, transparent 100%);
+}
+.theme-tool .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #7e22ce 0%, transparent 100%);
+}
+.theme-thinking .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #b45309 0%, transparent 100%);
+}
+.theme-reading .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #c2410c 0%, transparent 100%);
+}
+.theme-custom1 .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #0e7490 0%, transparent 100%);
+}
+.theme-custom2 .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #4f46e5 0%, transparent 100%);
+}
+.theme-custom3 .poster-text.html-mode .title-underline::after {
+    background: linear-gradient(90deg, #374151 0%, transparent 100%);
+}
+
+/* ========== 高亮文字 ========== */
+.poster-text.html-mode .highlight {
+    background: linear-gradient(180deg, transparent 60%, #fde68a 60%);
+    padding: 0 4px;
+}
+
+.poster-text.html-mode .highlight-pink {
+    background: linear-gradient(180deg, transparent 60%, #fbcfe8 60%);
+    padding: 0 4px;
+}
+
+.poster-text.html-mode .highlight-blue {
+    background: linear-gradient(180deg, transparent 60%, #bfdbfe 60%);
+    padding: 0 4px;
+}
+
+.poster-text.html-mode .highlight-green {
+    background: linear-gradient(180deg, transparent 60%, #bbf7d0 60%);
+    padding: 0 4px;
+}
+
+.poster-text.html-mode .mark {
+    background: #fef3c7;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+/* ========== 精美引用框 ========== */
+.poster-text.html-mode .quote-elegant {
+    position: relative;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-left: 4px solid #6366f1;
+    margin: 20px 0;
+    font-style: italic;
+    color: #475569;
+    line-height: 1.7;
+}
+
+.poster-text.html-mode .quote-elegant::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 12px;
+    font-size: 48px;
+    color: #c7d2fe;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+/* 各主题优雅引用适配 */
+.theme-paper .poster-text.html-mode .quote-elegant {
+    border-left-color: #be123c;
+}
+.theme-paper .poster-text.html-mode .quote-elegant::before {
+    color: #fecdd3;
+}
+.theme-theory .poster-text.html-mode .quote-elegant {
+    border-left-color: #047857;
+}
+.theme-theory .poster-text.html-mode .quote-elegant::before {
+    color: #a7f3d0;
+}
+.theme-method .poster-text.html-mode .quote-elegant {
+    border-left-color: #1e40af;
+}
+.theme-method .poster-text.html-mode .quote-elegant::before {
+    color: #bfdbfe;
+}
+.theme-tool .poster-text.html-mode .quote-elegant {
+    border-left-color: #7e22ce;
+}
+.theme-tool .poster-text.html-mode .quote-elegant::before {
+    color: #ddd6fe;
+}
+.theme-thinking .poster-text.html-mode .quote-elegant {
+    border-left-color: #b45309;
+}
+.theme-thinking .poster-text.html-mode .quote-elegant::before {
+    color: #fde68a;
+}
+.theme-reading .poster-text.html-mode .quote-elegant {
+    border-left-color: #c2410c;
+}
+.theme-reading .poster-text.html-mode .quote-elegant::before {
+    color: #fed7aa;
+}
+.theme-custom1 .poster-text.html-mode .quote-elegant {
+    border-left-color: #0e7490;
+}
+.theme-custom1 .poster-text.html-mode .quote-elegant::before {
+    color: #a5f3fc;
+}
+.theme-custom2 .poster-text.html-mode .quote-elegant {
+    border-left-color: #4f46e5;
+}
+.theme-custom2 .poster-text.html-mode .quote-elegant::before {
+    color: #c7d2fe;
+}
+.theme-custom3 .poster-text.html-mode .quote-elegant {
+    border-left-color: #374151;
+}
+.theme-custom3 .poster-text.html-mode .quote-elegant::before {
+    color: #d1d5db;
+}
+
+.poster-text.html-mode .quote-modern {
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%);
+    border-radius: 12px;
+    color: #e0e7ff;
+    margin: 20px 0;
+    line-height: 1.7;
+    position: relative;
+    overflow: hidden;
+}
+
+.poster-text.html-mode .quote-modern::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+}
+
+.poster-text.html-mode .quote-minimal {
+    padding: 16px 0 16px 24px;
+    border-left: 3px solid #d1d5db;
+    color: #6b7280;
+    font-style: italic;
+    margin: 16px 0;
+}
+
+/* ========== 卡片组件 ========== */
+.poster-text.html-mode .card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.poster-text.html-mode .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 10px;
+}
+
+.poster-text.html-mode .card-glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+}
+
+/* 各主题渐变卡片适配 */
+.theme-paper .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+    box-shadow: 0 10px 40px rgba(190, 18, 60, 0.3);
+}
+.theme-theory .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+    box-shadow: 0 10px 40px rgba(4, 120, 87, 0.3);
+}
+.theme-method .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    box-shadow: 0 10px 40px rgba(30, 64, 175, 0.3);
+}
+.theme-tool .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+    box-shadow: 0 10px 40px rgba(126, 34, 206, 0.3);
+}
+.theme-thinking .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+    box-shadow: 0 10px 40px rgba(180, 83, 9, 0.3);
+}
+.theme-reading .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+    box-shadow: 0 10px 40px rgba(194, 65, 12, 0.3);
+}
+.theme-custom1 .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+    box-shadow: 0 10px 40px rgba(14, 116, 144, 0.3);
+}
+.theme-custom2 .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+    box-shadow: 0 10px 40px rgba(79, 70, 229, 0.3);
+}
+.theme-custom3 .poster-text.html-mode .card-gradient {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+    box-shadow: 0 10px 40px rgba(55, 65, 81, 0.3);
+}
+
+.poster-text.html-mode .card-gradient-rose {
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(244, 63, 94, 0.3);
+}
+
+.poster-text.html-mode .card-gradient-ocean {
+    background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(14, 165, 233, 0.3);
+}
+
+.poster-text.html-mode .card-dark {
+    background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+    color: #f3f4f6;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.poster-text.html-mode .card-bordered {
+    background: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.poster-text.html-mode .card-bordered::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: 20px;
+    right: 20px;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+    border-radius: 2px;
+}
+
+/* 各主题边框卡片适配 */
+.theme-paper .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #be123c 0%, #f43f5e 100%);
+}
+.theme-theory .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #047857 0%, #10b981 100%);
+}
+.theme-method .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #1e40af 0%, #3b82f6 100%);
+}
+.theme-tool .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #7e22ce 0%, #a855f7 100%);
+}
+.theme-thinking .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #b45309 0%, #f59e0b 100%);
+}
+.theme-reading .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #c2410c 0%, #f97316 100%);
+}
+.theme-custom1 .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #0e7490 0%, #22d3ee 100%);
+}
+.theme-custom2 .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #4f46e5 0%, #818cf8 100%);
+}
+.theme-custom3 .poster-text.html-mode .card-bordered::before {
+    background: linear-gradient(90deg, #374151 0%, #6b7280 100%);
+}
+
+/* ========== 徽章样式 ========== */
+.poster-text.html-mode .badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+}
+
+/* 各主题主要徽章适配 */
+.theme-paper .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+}
+.theme-theory .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+}
+.theme-method .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+.theme-tool .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+}
+.theme-thinking .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+}
+.theme-reading .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+}
+.theme-custom1 .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+}
+.theme-custom2 .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+}
+.theme-custom3 .poster-text.html-mode .badge-primary {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+}
+
+.poster-text.html-mode .badge-success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.poster-text.html-mode .badge-warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.poster-text.html-mode .badge-danger {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.poster-text.html-mode .badge-outline {
+    background: transparent;
+    border: 2px solid #6366f1;
+    color: #6366f1;
+}
+
+/* 各主题描边徽章适配 */
+.theme-paper .poster-text.html-mode .badge-outline {
+    border-color: #be123c;
+    color: #be123c;
+}
+.theme-theory .poster-text.html-mode .badge-outline {
+    border-color: #047857;
+    color: #047857;
+}
+.theme-method .poster-text.html-mode .badge-outline {
+    border-color: #1e40af;
+    color: #1e40af;
+}
+.theme-tool .poster-text.html-mode .badge-outline {
+    border-color: #7e22ce;
+    color: #7e22ce;
+}
+.theme-thinking .poster-text.html-mode .badge-outline {
+    border-color: #b45309;
+    color: #b45309;
+}
+.theme-reading .poster-text.html-mode .badge-outline {
+    border-color: #c2410c;
+    color: #c2410c;
+}
+.theme-custom1 .poster-text.html-mode .badge-outline {
+    border-color: #0e7490;
+    color: #0e7490;
+}
+.theme-custom2 .poster-text.html-mode .badge-outline {
+    border-color: #4f46e5;
+    color: #4f46e5;
+}
+.theme-custom3 .poster-text.html-mode .badge-outline {
+    border-color: #374151;
+    color: #374151;
+}
+
+.poster-text.html-mode .badge-dark {
+    background: #1f2937;
+    color: white;
+}
+
+/* ========== 数字展示 ========== */
+.poster-text.html-mode .number-highlight {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.poster-text.html-mode .number-highlight .num {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+/* 各主题数字高亮适配 */
+.theme-paper .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-theory .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-method .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-tool .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-thinking .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-reading .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-custom1 .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-custom2 .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+.theme-custom3 .poster-text.html-mode .number-highlight .num {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.poster-text.html-mode .number-highlight .unit {
+    font-size: 16px;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.poster-text.html-mode .stat-box {
+    text-align: center;
+    padding: 20px;
+}
+
+.poster-text.html-mode .stat-box .stat-num {
+    font-size: 42px;
+    font-weight: 800;
+    color: #1f2937;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.poster-text.html-mode .stat-box .stat-label {
+    font-size: 13px;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ========== 步骤指示器 ========== */
+.poster-text.html-mode .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.poster-text.html-mode .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.poster-text.html-mode .step-num {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+
+/* 各主题步骤数字适配 */
+.theme-paper .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+}
+.theme-theory .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+}
+.theme-method .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+.theme-tool .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+}
+.theme-thinking .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+}
+.theme-reading .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+}
+.theme-custom1 .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+}
+.theme-custom2 .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+}
+.theme-custom3 .poster-text.html-mode .step-num {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+}
+
+.poster-text.html-mode .step-content {
+    flex: 1;
+    padding-top: 6px;
+}
+
+.poster-text.html-mode .step-title {
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 4px;
+}
+
+.poster-text.html-mode .step-desc {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* ========== 列表样式 ========== */
+.poster-text.html-mode .list-check {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.poster-text.html-mode .list-check li {
+    position: relative;
+    padding-left: 32px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.poster-text.html-mode .list-check li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 22px;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.poster-text.html-mode .list-arrow {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.poster-text.html-mode .list-arrow li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.poster-text.html-mode .list-arrow li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #6366f1;
+    font-weight: 700;
+}
+
+/* 各主题箭头列表适配 */
+.theme-paper .poster-text.html-mode .list-arrow li::before { color: #be123c; }
+.theme-theory .poster-text.html-mode .list-arrow li::before { color: #047857; }
+.theme-method .poster-text.html-mode .list-arrow li::before { color: #1e40af; }
+.theme-tool .poster-text.html-mode .list-arrow li::before { color: #7e22ce; }
+.theme-thinking .poster-text.html-mode .list-arrow li::before { color: #b45309; }
+.theme-reading .poster-text.html-mode .list-arrow li::before { color: #c2410c; }
+.theme-custom1 .poster-text.html-mode .list-arrow li::before { color: #0e7490; }
+.theme-custom2 .poster-text.html-mode .list-arrow li::before { color: #4f46e5; }
+.theme-custom3 .poster-text.html-mode .list-arrow li::before { color: #374151; }
+
+.poster-text.html-mode .list-dot {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.poster-text.html-mode .list-dot li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.poster-text.html-mode .list-dot li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 8px;
+    height: 8px;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    border-radius: 50%;
+}
+
+/* 各主题圆点列表适配 */
+.theme-paper .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+}
+.theme-theory .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+}
+.theme-method .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+.theme-tool .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+}
+.theme-thinking .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+}
+.theme-reading .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+}
+.theme-custom1 .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+}
+.theme-custom2 .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+}
+.theme-custom3 .poster-text.html-mode .list-dot li::before {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+}
+
+/* ========== 分隔线 ========== */
+.poster-text.html-mode .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, #e5e7eb 20%, #e5e7eb 80%, transparent 100%);
+    margin: 24px 0;
+}
+
+.poster-text.html-mode .divider-gradient {
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+    border-radius: 2px;
+    margin: 24px 0;
+}
+
+/* 各主题渐变分隔线适配 */
+.theme-paper .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #be123c 0%, #f43f5e 50%, #fda4af 100%);
+}
+.theme-theory .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #047857 0%, #10b981 50%, #6ee7b7 100%);
+}
+.theme-method .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #1e40af 0%, #3b82f6 50%, #93c5fd 100%);
+}
+.theme-tool .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #7e22ce 0%, #a855f7 50%, #c4b5fd 100%);
+}
+.theme-thinking .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #b45309 0%, #f59e0b 50%, #fcd34d 100%);
+}
+.theme-reading .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #c2410c 0%, #f97316 50%, #fdba74 100%);
+}
+.theme-custom1 .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #0e7490 0%, #06b6d4 50%, #67e8f9 100%);
+}
+.theme-custom2 .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #4f46e5 0%, #6366f1 50%, #a5b4fc 100%);
+}
+.theme-custom3 .poster-text.html-mode .divider-gradient {
+    background: linear-gradient(90deg, #374151 0%, #6b7280 50%, #9ca3af 100%);
+}
+
+.poster-text.html-mode .divider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin: 24px 0;
+}
+
+.poster-text.html-mode .divider-dots::before,
+.poster-text.html-mode .divider-dots::after {
+    content: '•••';
+    color: #d1d5db;
+    letter-spacing: 4px;
+}
+
+/* ========== 特色盒子 ========== */
+.poster-text.html-mode .box-tip {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-left: 4px solid #10b981;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    color: #065f46;
+}
+
+.poster-text.html-mode .box-warning {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-left: 4px solid #f59e0b;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    color: #92400e;
+}
+
+.poster-text.html-mode .box-info {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-left: 4px solid #3b82f6;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    color: #1e40af;
+}
+
+.poster-text.html-mode .box-danger {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+    border-left: 4px solid #ef4444;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0;
+    color: #991b1b;
+}
+
+/* ========== 标签组 ========== */
+.poster-text.html-mode .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.poster-text.html-mode .tag {
+    padding: 6px 14px;
+    background: #f3f4f6;
+    border-radius: 20px;
+    font-size: 13px;
+    color: #4b5563;
+    transition: all 0.2s;
+}
+
+.poster-text.html-mode .tag-purple {
+    background: #ede9fe;
+    color: #6d28d9;
+}
+
+.poster-text.html-mode .tag-blue {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.poster-text.html-mode .tag-green {
+    background: #d1fae5;
+    color: #047857;
+}
+
+.poster-text.html-mode .tag-pink {
+    background: #fce7f3;
+    color: #be185d;
+}
+
+.poster-text.html-mode .tag-orange {
+    background: #ffedd5;
+    color: #c2410c;
+}
+
+/* ========== 图片框 ========== */
+.poster-text.html-mode .img-rounded {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.poster-text.html-mode .img-shadow {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.poster-text.html-mode .img-border {
+    border: 4px solid white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== 两栏布局 ========== */
+.poster-text.html-mode .two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.poster-text.html-mode .three-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+}
+
+/* ========== 居中容器 ========== */
+.poster-text.html-mode .center-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+}
+
+/* ========== 装饰元素 ========== */
+.poster-text.html-mode .icon-circle {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+/* 各主题图标圆圈适配 */
+.theme-paper .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #be123c 0%, #f43f5e 100%);
+}
+.theme-theory .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+}
+.theme-method .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+.theme-tool .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #7e22ce 0%, #a855f7 100%);
+}
+.theme-thinking .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
+}
+.theme-reading .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #c2410c 0%, #f97316 100%);
+}
+.theme-custom1 .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #0e7490 0%, #22d3ee 100%);
+}
+.theme-custom2 .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #4f46e5 0%, #818cf8 100%);
+}
+.theme-custom3 .poster-text.html-mode .icon-circle {
+    background: linear-gradient(135deg, #374151 0%, #6b7280 100%);
+}
+
+.poster-text.html-mode .icon-square {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+}
+
+/* ========== 代码块 ========== */
+.poster-text.html-mode .code-block {
+    background: #1f2937;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 13px;
+    color: #e5e7eb;
+    overflow-x: auto;
+    margin: 16px 0;
+}
+
+.poster-text.html-mode .code-inline {
+    background: #f3f4f6;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #be185d;
+}
+
+/* ==================== 按钮样式 ==================== */
+.download-btn,
+.insert-btn {
+    width: 100%;
+    background: #1f2937;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pdf-btn {
+    background: #374151;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.insert-btn {
+    margin-top: 15px;
+    font-size: 13px;
+    padding: 10px 20px;
+}
+
+.download-btn:hover,
+.insert-btn:hover {
+    background: #111827;
+    transform: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.pdf-btn:hover {
+    background: #1f2937;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.download-btn:active,
+.insert-btn:active {
+    transform: translateY(1px);
+}
+
+.download-btn:disabled,
+.insert-btn:disabled {
+    background: #d1d5db;
+    color: #9ca3af;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* ==================== 长文模式样式 ==================== */
+/* 长文模式内容页 */
+.poster-article-page {
+    padding: 50px 45px 65px 45px;
+    background: linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%);
+    position: relative;
+}
+
+/* 长文模式顶部装饰条 - 更细腻的书籍风格 */
+.poster-article-page::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #1f2937 0%, #6b7280 50%, transparent 100%);
+}
+
+/* 根据主题改变顶部装饰条颜色 */
+.poster-article-page.theme-paper::before {
+    background: linear-gradient(90deg, #be123c 0%, #f87171 50%, transparent 100%);
+}
+.poster-article-page.theme-theory::before {
+    background: linear-gradient(90deg, #047857 0%, #34d399 50%, transparent 100%);
+}
+.poster-article-page.theme-method::before {
+    background: linear-gradient(90deg, #1e40af 0%, #60a5fa 50%, transparent 100%);
+}
+.poster-article-page.theme-tool::before {
+    background: linear-gradient(90deg, #7e22ce 0%, #a78bfa 50%, transparent 100%);
+}
+.poster-article-page.theme-thinking::before {
+    background: linear-gradient(90deg, #b45309 0%, #fbbf24 50%, transparent 100%);
+}
+.poster-article-page.theme-reading::before {
+    background: linear-gradient(90deg, #c2410c 0%, #fb923c 50%, transparent 100%);
+}
+.poster-article-page.theme-custom1::before {
+    background: linear-gradient(90deg, #0e7490 0%, #22d3ee 50%, transparent 100%);
+}
+.poster-article-page.theme-custom2::before {
+    background: linear-gradient(90deg, #4f46e5 0%, #818cf8 50%, transparent 100%);
+}
+.poster-article-page.theme-custom3::before {
+    background: linear-gradient(90deg, #374151 0%, #9ca3af 50%, transparent 100%);
+}
+
+/* 长文模式文本容器 */
+.article-text {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #374151;
+    word-wrap: break-word;
+    overflow-y: auto;
+    max-height: calc(var(--poster-height) - 115px);
+    position: relative;
+}
+
+.article-text::-webkit-scrollbar {
+    width: 4px;
+}
+
+.article-text::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.article-text::-webkit-scrollbar-thumb {
+    background: #ddd;
+    border-radius: 2px;
+}
+
+/* ========== 长文模式标题层级样式 ========== */
+/* 一级标题 - 大标题，章节级别 */
+.article-text h1 {
+    font-size: 24px;
+    color: #111827;
+    font-weight: 800;
+    margin: 0 0 22px 0;
+    padding: 0 0 14px 0;
+    border-bottom: 3px solid #1f2937;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    text-align: left;
+    position: relative;
+}
+
+/* 一级标题左侧装饰 */
+.article-text h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    height: calc(100% - 14px);
+    background: #1f2937;
+    border-radius: 3px;
+}
+
+.article-text h1 {
+    padding-left: 16px;
+}
+
+/* 二级标题 - 节标题 */
+.article-text h2 {
+    font-size: 20px;
+    color: #1f2937;
+    font-weight: 700;
+    margin: 24px 0 16px 0;
+    padding: 0 0 10px 0;
+    border-bottom: 2px solid #e5e7eb;
+    letter-spacing: -0.3px;
+    line-height: 1.35;
+    position: relative;
+}
+
+/* 二级标题装饰线 */
+.article-text h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 60px;
+    height: 2px;
+    background: #1f2937;
+}
+
+/* 三级标题 - 小节标题 */
+.article-text h3 {
+    font-size: 17px;
+    color: #374151;
+    font-weight: 700;
+    margin: 20px 0 12px 0;
+    padding-left: 12px;
+    border-left: 4px solid #9ca3af;
+    letter-spacing: -0.2px;
+    line-height: 1.4;
+}
+
+/* 各主题标题颜色适配 */
+/* Paper 主题 */
+.theme-paper .article-text h1 {
+    color: #9f1239;
+    border-bottom-color: #be123c;
+}
+.theme-paper .article-text h1::before {
+    background: #be123c;
+}
+.theme-paper .article-text h2 {
+    color: #9f1239;
+}
+.theme-paper .article-text h2::after {
+    background: #be123c;
+}
+.theme-paper .article-text h3 {
+    color: #be123c;
+    border-left-color: #f43f5e;
+}
+
+/* Theory 主题 */
+.theme-theory .article-text h1 {
+    color: #065f46;
+    border-bottom-color: #047857;
+}
+.theme-theory .article-text h1::before {
+    background: #047857;
+}
+.theme-theory .article-text h2 {
+    color: #065f46;
+}
+.theme-theory .article-text h2::after {
+    background: #047857;
+}
+.theme-theory .article-text h3 {
+    color: #047857;
+    border-left-color: #10b981;
+}
+
+/* Method 主题 */
+.theme-method .article-text h1 {
+    color: #1e3a8a;
+    border-bottom-color: #1e40af;
+}
+.theme-method .article-text h1::before {
+    background: #1e40af;
+}
+.theme-method .article-text h2 {
+    color: #1e3a8a;
+}
+.theme-method .article-text h2::after {
+    background: #1e40af;
+}
+.theme-method .article-text h3 {
+    color: #1e40af;
+    border-left-color: #3b82f6;
+}
+
+/* Tool 主题 */
+.theme-tool .article-text h1 {
+    color: #6b21a8;
+    border-bottom-color: #7e22ce;
+}
+.theme-tool .article-text h1::before {
+    background: #7e22ce;
+}
+.theme-tool .article-text h2 {
+    color: #6b21a8;
+}
+.theme-tool .article-text h2::after {
+    background: #7e22ce;
+}
+.theme-tool .article-text h3 {
+    color: #7e22ce;
+    border-left-color: #a855f7;
+}
+
+/* Thinking 主题 */
+.theme-thinking .article-text h1 {
+    color: #92400e;
+    border-bottom-color: #b45309;
+}
+.theme-thinking .article-text h1::before {
+    background: #b45309;
+}
+.theme-thinking .article-text h2 {
+    color: #92400e;
+}
+.theme-thinking .article-text h2::after {
+    background: #b45309;
+}
+.theme-thinking .article-text h3 {
+    color: #b45309;
+    border-left-color: #f59e0b;
+}
+
+/* Reading 主题 */
+.theme-reading .article-text h1 {
+    color: #9a3412;
+    border-bottom-color: #c2410c;
+}
+.theme-reading .article-text h1::before {
+    background: #c2410c;
+}
+.theme-reading .article-text h2 {
+    color: #9a3412;
+}
+.theme-reading .article-text h2::after {
+    background: #c2410c;
+}
+.theme-reading .article-text h3 {
+    color: #c2410c;
+    border-left-color: #f97316;
+}
+
+/* Custom1 主题 */
+.theme-custom1 .article-text h1 {
+    color: #155e75;
+    border-bottom-color: #0e7490;
+}
+.theme-custom1 .article-text h1::before {
+    background: #0e7490;
+}
+.theme-custom1 .article-text h2 {
+    color: #155e75;
+}
+.theme-custom1 .article-text h2::after {
+    background: #0e7490;
+}
+.theme-custom1 .article-text h3 {
+    color: #0e7490;
+    border-left-color: #22d3ee;
+}
+
+/* Custom2 主题 */
+.theme-custom2 .article-text h1 {
+    color: #4338ca;
+    border-bottom-color: #4f46e5;
+}
+.theme-custom2 .article-text h1::before {
+    background: #4f46e5;
+}
+.theme-custom2 .article-text h2 {
+    color: #4338ca;
+}
+.theme-custom2 .article-text h2::after {
+    background: #4f46e5;
+}
+.theme-custom2 .article-text h3 {
+    color: #4f46e5;
+    border-left-color: #818cf8;
+}
+
+/* Custom3 主题 */
+.theme-custom3 .article-text h1 {
+    color: #1f2937;
+    border-bottom-color: #374151;
+}
+.theme-custom3 .article-text h1::before {
+    background: #374151;
+}
+.theme-custom3 .article-text h2 {
+    color: #1f2937;
+}
+.theme-custom3 .article-text h2::after {
+    background: #374151;
+}
+.theme-custom3 .article-text h3 {
+    color: #374151;
+    border-left-color: #6b7280;
+}
+
+/* ========== 长文模式段落样式 - 首行缩进 ========== */
+.article-text p {
+    margin: 0 0 14px 0;
+    text-align: justify;
+    text-indent: 2em;
+    position: relative;
+}
+
+/* 接续分页：首段不缩进（从上一页接续的内容） */
+.poster-article-page.continue-page .article-text > p:first-child {
+    text-indent: 0;
+}
+
+/* 新段落分页：首段保持缩进（默认行为，无需额外样式） */
+/* .poster-article-page.new-paragraph-page 保持默认样式 */
+
+/* ========== 长文模式列表样式 ========== */
+.article-text ul,
+.article-text ol {
+    margin: 0 0 14px 0;
+    padding-left: 2em;
+}
+
+.article-text li {
+    margin-bottom: 6px;
+    line-height: 1.7;
+    position: relative;
+}
+
+.article-text li::marker {
+    color: #6b7280;
+    font-weight: 600;
+}
+
+/* 嵌套列表 */
+.article-text ul ul,
+.article-text ol ol,
+.article-text ul ol,
+.article-text ol ul {
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+/* ========== 长文模式引用样式 ========== */
+.article-text blockquote {
+    margin: 16px 0;
+    padding: 16px 20px;
+    background: linear-gradient(to right, #f9fafb 0%, #ffffff 100%);
+    border-left: 4px solid #1f2937;
+    color: #4b5563;
+    font-size: 15px;
+    line-height: 1.7;
+    font-style: italic;
+    position: relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    border-radius: 0 4px 4px 0;
+}
+
+.article-text blockquote::before {
+    content: '"';
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    font-size: 40px;
+    color: #d1d5db;
+    font-family: Georgia, serif;
+    line-height: 1;
+}
+
+.article-text blockquote p {
+    text-indent: 0;
+    margin-bottom: 8px;
+}
+
+.article-text blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* 各主题引用样式 */
+.theme-paper .article-text blockquote {
+    border-left-color: #be123c;
+    background: linear-gradient(to right, #fef2f8 0%, #ffffff 100%);
+}
+.theme-paper .article-text blockquote::before {
+    color: #fda4af;
+}
+
+.theme-theory .article-text blockquote {
+    border-left-color: #047857;
+    background: linear-gradient(to right, #ecfdf5 0%, #ffffff 100%);
+}
+.theme-theory .article-text blockquote::before {
+    color: #6ee7b7;
+}
+
+.theme-method .article-text blockquote {
+    border-left-color: #1e40af;
+    background: linear-gradient(to right, #eff6ff 0%, #ffffff 100%);
+}
+.theme-method .article-text blockquote::before {
+    color: #93c5fd;
+}
+
+.theme-tool .article-text blockquote {
+    border-left-color: #7e22ce;
+    background: linear-gradient(to right, #faf5ff 0%, #ffffff 100%);
+}
+.theme-tool .article-text blockquote::before {
+    color: #d8b4fe;
+}
+
+.theme-thinking .article-text blockquote {
+    border-left-color: #b45309;
+    background: linear-gradient(to right, #fffbeb 0%, #ffffff 100%);
+}
+.theme-thinking .article-text blockquote::before {
+    color: #fcd34d;
+}
+
+.theme-reading .article-text blockquote {
+    border-left-color: #c2410c;
+    background: linear-gradient(to right, #fff7ed 0%, #ffffff 100%);
+}
+.theme-reading .article-text blockquote::before {
+    color: #fdba74;
+}
+
+.theme-custom1 .article-text blockquote {
+    border-left-color: #0e7490;
+    background: linear-gradient(to right, #ecfeff 0%, #ffffff 100%);
+}
+.theme-custom1 .article-text blockquote::before {
+    color: #67e8f9;
+}
+
+.theme-custom2 .article-text blockquote {
+    border-left-color: #4f46e5;
+    background: linear-gradient(to right, #eef2ff 0%, #ffffff 100%);
+}
+.theme-custom2 .article-text blockquote::before {
+    color: #a5b4fc;
+}
+
+.theme-custom3 .article-text blockquote {
+    border-left-color: #374151;
+    background: linear-gradient(to right, #f9fafb 0%, #ffffff 100%);
+}
+.theme-custom3 .article-text blockquote::before {
+    color: #d1d5db;
+}
+
+/* ========== 长文模式行内样式 ========== */
+.article-text strong {
+    color: #111827;
+    font-weight: 700;
+}
+
+.article-text em {
+    font-style: italic;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.article-text code {
+    background: linear-gradient(to bottom, #f3f4f6 0%, #e5e7eb 100%);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: #be123c;
+    border: 1px solid #e5e7eb;
+}
+
+/* ========== 长文模式代码块样式 ========== */
+.article-text pre {
+    margin: 16px 0;
+    padding: 0;
+    background: #f6f8fa;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    position: relative;
+    border-left: 4px solid #3b82f6;
+}
+
+.article-text pre::before {
+    content: attr(data-language);
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #ffffff;
+    background: #6b7280;
+    font-weight: 500;
+    border-bottom-left-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.article-text pre code {
+    display: block;
+    padding: 16px 18px;
+    padding-right: 70px;
+    background: transparent !important;
+    border: none !important;
+    color: #24292e;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Menlo', 'Monaco', 'Courier New', monospace;
+    font-size: 12.5px;
+    line-height: 1.6;
+    overflow-x: auto;
+    white-space: pre;
+    tab-size: 4;
+    text-indent: 0;
+}
+
+/* 各主题代码块适配 - 使用浅色背景配合左边框主题色 */
+.theme-paper .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #e11d48;
+}
+.theme-theory .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #059669;
+}
+.theme-method .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #2563eb;
+}
+.theme-tool .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #9333ea;
+}
+.theme-thinking .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #d97706;
+}
+.theme-reading .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #ea580c;
+}
+.theme-custom1 .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #0891b2;
+}
+.theme-custom2 .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #4f46e5;
+}
+.theme-custom3 .article-text pre {
+    background: #f6f8fa;
+    border-left-color: #6b7280;
+}
+
+/* ========== 长文模式公式样式 ========== */
+.article-text .katex {
+    font-size: 1em;
+}
+
+.article-text .katex-display {
+    margin: 16px 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+}
+
+.article-text .math-block {
+    margin: 16px 0;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow-x: auto;
+    text-align: center;
+}
+
+.article-text .math-block .katex-display {
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+/* 各主题公式块适配 */
+.theme-paper .article-text .katex-display,
+.theme-paper .article-text .math-block {
+    background: linear-gradient(135deg, #fef2f8 0%, #fce7f3 100%);
+    border-color: #fbcfe8;
+}
+.theme-theory .article-text .katex-display,
+.theme-theory .article-text .math-block {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border-color: #a7f3d0;
+}
+.theme-method .article-text .katex-display,
+.theme-method .article-text .math-block {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-color: #bfdbfe;
+}
+.theme-tool .article-text .katex-display,
+.theme-tool .article-text .math-block {
+    background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+    border-color: #e9d5ff;
+}
+.theme-thinking .article-text .katex-display,
+.theme-thinking .article-text .math-block {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-color: #fde68a;
+}
+.theme-reading .article-text .katex-display,
+.theme-reading .article-text .math-block {
+    background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+    border-color: #fed7aa;
+}
+.theme-custom1 .article-text .katex-display,
+.theme-custom1 .article-text .math-block {
+    background: linear-gradient(135deg, #ecfeff 0%, #cffafe 100%);
+    border-color: #a5f3fc;
+}
+.theme-custom2 .article-text .katex-display,
+.theme-custom2 .article-text .math-block {
+    background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+    border-color: #c7d2fe;
+}
+.theme-custom3 .article-text .katex-display,
+.theme-custom3 .article-text .math-block {
+    background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+    border-color: #e5e7eb;
+}
+
+/* ========== 长文模式图片样式 ========== */
+.article-text img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 16px auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== 长文模式分页指示器 ========== */
+.article-page-indicator {
+    position: absolute;
+    top: 18px;
+    right: 45px;
+    font-size: 11px;
+    color: #9ca3af;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media (max-width: 1200px) {
+    .app-container {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .preview-column {
+        flex: none;
+        width: 100%;
+        position: relative;
+        top: 0;
+        height: auto;
+        min-height: 500px;
+    }
+    
+    .poster-container {
+        min-height: 400px;
+    }
+    
+    .editor-column {
+        max-height: none;
+        height: auto;
+    }
+    
+    .ribbon-content {
+        max-height: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-container {
+        padding: 10px;
+    }
+    
+    .editor-section {
+        padding: 15px;
+    }
+    
+    .section-title {
+        font-size: 14px;
+    }
+    
+    .tips {
+        padding: 12px;
+        font-size: 12px;
+    }
+    
+    /* Ribbon选项卡小屏适配 */
+    .ribbon-tabs {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+    
+    .ribbon-tabs::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .ribbon-tab {
+        padding: 10px 15px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+    
+    .tab-panel {
+        padding: 15px;
+    }
+    
+    .editor-header {
+        padding: 12px 15px;
+    }
+    
+    .editor-header h2 {
+        font-size: 16px;
+    }
+    
+    .export-buttons .download-btn {
+        padding: 15px;
+    }
+    
+    .export-buttons .download-btn .btn-icon {
+        font-size: 24px;
+    }
+    
+    .export-buttons .download-btn .btn-text strong {
+        font-size: 14px;
+    }
+    
+    /* 小屏幕时由JS动态计算缩放 */
+    .poster-container {
+        min-height: 300px;
+    }
+    
+    .pagination-nav {
+        padding: 6px 10px;
+        gap: 8px;
+    }
+    
+    .pagination-nav button {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+    }
+    
+    .pagination-info {
+        font-size: 11px;
+        min-width: 40px;
+    }
+    
+    .pagination-dot {
+        width: 5px;
+        height: 5px;
+    }
+    
+    .pagination-dot.active {
+        width: 12px;
+    }
+    
+    .cover-title {
+        font-size: 32px;
+    }
+    
+    .cover-subtitle {
+        font-size: 22px;
+    }
+    
+    .cover-image {
+        max-width: 90%;
+        margin: 12px auto;
+    }
+    
+    .cover-image img {
+        max-height: 140px;
+    }
+    
+    .cover-summary {
+        font-size: 14px;
+        padding: 16px 22px;
+    }
+    
+    .cover-stats {
+        font-size: 11px;
+        padding: 6px 16px;
+    }
+    
+    .category-badge {
+        font-size: 13px;
+        padding: 7px 18px;
+    }
+}
