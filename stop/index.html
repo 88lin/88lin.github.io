@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>延迟回放｜STFU外放干扰小工具</title>
+    <meta name="description" content="延迟回放是一款延迟听觉反馈小工具：把听到的声音延迟 0.5–5 秒回放，用于打断外放、持续大声说话等噪声干扰。打开即用，支持添加到主屏幕（PWA）。">
+    <meta name="keywords" content="延迟回放, 延迟听觉反馈, stfu, 外放克星, 外放干扰, 公共场所降噪, 语音干扰, 候机厅外放, 地铁外放">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <link rel="canonical" href="https://lite.cc.cd/stop">
+
+    <meta http-equiv="content-language" content="zh-CN">
+    <meta name="language" content="zh-CN">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="延迟回放｜STFU外放干扰小工具">
+    <meta property="og:description" content="把声音延迟 0.5–5 秒回放，打断外放与大声说话的节奏，减少噪声干扰。打开即用，支持 PWA。">
+    <meta property="og:url" content="https://lite.cc.cd/stop">
+    <meta property="og:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2026-01-20_13-36-24.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="STFU｜make-it-stop">
+    <meta name="twitter:description" content="延迟回放声音 0.5–5 秒，打断外放与噪声干扰。打开即用，支持 PWA。">
+    <meta name="twitter:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2026-01-20_13-36-24.png">
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Delayed auditory feedback tool to disrupt speech">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="闭嘴">
+
+    <!-- Manifest & Icons -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🤫</text></svg>">
+
+    <!-- 结构化数据：让搜索引擎理解这是工具/应用 -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "延迟回放",
+    "alternateName": "STFU外放干扰小工具",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "url": "https://lite.cc.cd/stop",
+    "description": "把环境声音延迟 0.5–5 秒回放的延迟听觉反馈工具，用于打断外放、持续大声说话等噪声干扰。",
+    "inLanguage": "zh-Hans",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "CNY" }
+    }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            font-family: monospace;
+            color: #fff;
+            cursor: default;
+        }
+
+        .status {
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .emoji {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .text {
+            font-size: 48px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hint {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+         .status {
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #222;
+        }
+
+        .wave-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 40px;
+        }
+
+        .wave-bar {
+            width: 4px;
+            background: #f87171;
+            border-radius: 2px;
+            transition: background 0.3s;
+        }
+
+        .status.listening .wave-bar {
+            background: #4ade80;
+            animation: wave 0.8s ease-in-out infinite;
+        }
+
+        .wave-bar:nth-child(1) { height: 8px; animation-delay: 0s; }
+        .wave-bar:nth-child(2) { height: 12px; animation-delay: 0.1s; }
+        .wave-bar:nth-child(3) { height: 20px; animation-delay: 0.2s; }
+        .wave-bar:nth-child(4) { height: 16px; animation-delay: 0.3s; }
+        .wave-bar:nth-child(5) { height: 24px; animation-delay: 0.4s; }
+        .wave-bar:nth-child(6) { height: 16px; animation-delay: 0.5s; }
+        .wave-bar:nth-child(7) { height: 20px; animation-delay: 0.6s; }
+        .wave-bar:nth-child(8) { height: 12px; animation-delay: 0.7s; }
+        .wave-bar:nth-child(9) { height: 8px; animation-delay: 0.8s; }
+
+        @keyframes wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.8); }
+        }
+
+        .controls {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-top: 20px;
+            cursor: default;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .slider-label {
+            font-size: 16px;
+            color: #999;
+        }
+
+        input[type="range"] {
+            width: 200px;
+            cursor: pointer;
+        }
+
+        .delay-value {
+            font-size: 18px;
+            color: #fff;
+            min-width: 60px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="emoji">🤫</div>
+    <div class="text">闭嘴</div>
+    <div class="hint">tap to shut them up</div>
+    <div class="status paused" id="toggleStatus">
+        <div class="wave-container">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+        </div>
+    </div>
+    <div class="controls" onclick="event.stopPropagation()">
+        <div class="slider-container">
+            <span class="slider-label">延迟:</span>
+            <input type="range" id="delaySlider" min="0.5" max="5" step="0.5" value="2">
+            <span class="delay-value"><span id="delayDisplay">2.0</span>s</span>
+        </div>
+    </div>
+    <script>
+        let audioContext = null;
+        let mediaStream = null;
+        let delayNode = null;
+        let isListening = false;
+        const statusEl = document.querySelector('.status');
+        const delaySlider = document.getElementById('delaySlider');
+        const delayDisplay = document.getElementById('delayDisplay');
+        // Update delay display when slider changes
+        delaySlider.addEventListener('input', (e) => {
+            const value = parseFloat(e.target.value);
+            delayDisplay.textContent = value.toFixed(1);
+            if (delayNode) {
+                delayNode.delayTime.value = value;
+            }
+        });
+        async function startAudio() {
+            audioContext = new AudioContext();
+            await audioContext.resume();
+            mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            const source = audioContext.createMediaStreamSource(mediaStream);
+            delayNode = audioContext.createDelay(5);
+            const gainNode = audioContext.createGain();
+            delayNode.delayTime.value = parseFloat(delaySlider.value);
+            gainNode.gain.value = 1.0;
+            source.connect(delayNode);
+            delayNode.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            isListening = true;
+            statusEl.className = 'status listening';
+            }
+            function stopAudio() {
+            mediaStream?.getTracks().forEach(track => track.stop());
+            audioContext?.close();
+            mediaStream = null;
+            audioContext = null;
+            delayNode = null;
+            isListening = false;
+            statusEl.className = 'status paused';
+        }
+        // Toggle listening on body click
+        const statusBtn = document.getElementById('toggleStatus');
+        statusBtn.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            document.querySelector('.hint').style.display = 'none';
+            if (!isListening) {
+                await startAudio();
+            } else {
+                stopAudio();
+            }
+        });
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js')
+                .then(() => console.log('SW registered'))
+                .catch((err) => console.log('SW registration failed:', err));
+        }
+    </script>
+</body>
+</html>
