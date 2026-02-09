@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>深度房贷计算器｜茉灵智库</title>
+    <meta name="description" content="深度房贷计算器，支持LPR利率变动、提前还款对比（减月供/减年限）、组合贷并行计算，直观展示利息差异、还款周期与剩余本金趋势，帮助你提前预演最优房贷方案。">
+    <meta name="keywords" content="房贷计算器,LPR房贷计算器,提前还款计算器,组合贷款计算器,商贷公积金组合贷,房贷还款计划,减月供,减年限">
+    <link rel="canonical" href="https://lite.cc.cd/fangdai/">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:site_name" content="深度房贷计算器">
+    <meta property="og:title" content="深度房贷计算器 - LPR与提前还款对比">
+    <meta property="og:description" content="支持LPR利率变动、提前还款（减月供/减年限）与组合贷并行模拟的深度房贷计算器，可输出趋势图与全量计划表。">
+    <meta property="og:url" content="https://lite.cc.cd/fangdai/">
+    <meta property="og:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-02-10_020915_520.webp">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="深度房贷计算器 - LPR与提前还款对比" />
+    <meta name="twitter:description" content="支持LPR利率变动、提前还款（减月供/减年限）与组合贷并行模拟的深度房贷计算器，可输出趋势图与全量计划表。" />
+    <meta name="twitter:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-02-10_020915_520.webp" />
+    <link rel="icon" href="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/favicon.67xwxgc03y.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "深度房贷计算器",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web",
+        "url": "https://lite.cc.cd/fangdai/",
+        "description": "支持LPR利率变动、提前还款策略对比与组合贷并行模拟的深度房贷计算器",
+        "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+        }
+    }
+    </script>
+</head>
+<body>
+
+<div class="app-container">
+    <!-- 头部 -->
+    <header class="app-header">
+        <div class="header-content">
+            <button class="help-btn" type="button" onclick="openHelpModal()" aria-label="计算方式说明" title="计算方式说明">
+                <i class="fas fa-circle-question"></i>
+            </button>
+
+            <h1 class="logo">
+                <i class="fas fa-building-columns"></i>
+                <span>深度房贷计算器</span>
+            </h1>
+            <p class="tagline">智能分析 · 精准计算 · 科学决策</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- 起始日期 -->
+        <div class="date-selector">
+            <div class="date-card">
+                <i class="fas fa-calendar-alt"></i>
+                <div class="date-input-wrap">
+                    <label>首次还款年月</label>
+                    <input type="month" id="startDate" value="2026-01" onchange="updateAllDates()">
+                </div>
+            </div>
+        </div>
+
+        <!-- 贷款信息卡片 -->
+        <div class="loan-cards">
+            <div class="loan-card commercial">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-landmark"></i>
+                    </div>
+                    <h3>商业贷款</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>贷款金额</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="comAmount" value="100" inputmode="decimal">
+                            <span class="unit">万元</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>年利率</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="comRate" value="3.1" step="0.01" inputmode="decimal">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>贷款期限</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="comYear" value="30" inputmode="numeric">
+                                <span class="unit">年</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>还款方式</label>
+                            <select id="comMethod">
+                                <option value="1">等额本息</option>
+                                <option value="2">等额本金</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="loan-card fund">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <h3>公积金贷款</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>贷款金额</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="fundAmount" value="100" inputmode="decimal">
+                            <span class="unit">万元</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>年利率</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="fundRate" value="2.85" step="0.01" inputmode="decimal">
+                            <span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>贷款期限</label>
+                            <div class="input-with-unit">
+                                <input type="number" id="fundYear" value="30" inputmode="numeric">
+                                <span class="unit">年</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>还款方式</label>
+                            <select id="fundMethod">
+                                <option value="1">等额本息</option>
+                                <option value="2">等额本金</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 事件管理 -->
+        <div class="events-section">
+            <div class="event-card">
+                <div class="event-header">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>利率调整</h4>
+                </div>
+                <div id="rateList" class="event-list"></div>
+                <button class="btn-add" onclick="addRateRow()">
+                    <i class="fas fa-plus"></i>
+                    添加利率调整
+                </button>
+            </div>
+
+            <div class="event-card">
+                <div class="event-header">
+                    <i class="fas fa-hand-holding-dollar"></i>
+                    <h4>提前还款</h4>
+                </div>
+                <div id="prepayList" class="event-list"></div>
+                <button class="btn-add" onclick="addPrepayRow()">
+                    <i class="fas fa-plus"></i>
+                    添加提前还款
+                </button>
+            </div>
+        </div>
+
+        <!-- 提示信息 -->
+        <div class="tip-card">
+            <div class="tip-icon">
+                <i class="fas fa-lightbulb"></i>
+            </div>
+            <div class="tip-content">
+                <strong>智能建议</strong>
+                <p>缩短年限通常比减少月供能节省更多利息，但减少月供能降低每月还款压力。请根据自身现金流情况合理选择。</p>
+            </div>
+        </div>
+
+        <!-- 计算按钮 -->
+        <button class="btn-calculate" onclick="calculateAll()">
+            <i class="fas fa-calculator"></i>
+            生成还款计划
+        </button>
+
+        <!-- 分析面板 -->
+        <div id="analysisArea" class="analysis-panel">
+            <div class="panel-header">
+                <i class="fas fa-chart-pie"></i>
+                <h3>变动影响分析</h3>
+                <span class="badge">对比原计划</span>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card savings">
+                    <div class="stat-icon">
+                        <i class="fas fa-coins"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">累计节省</span>
+                        <strong id="diffInterest">¥0</strong>
+                    </div>
+                </div>
+                <div class="stat-card time">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-label">周期变化</span>
+                        <strong id="diffTime">0 个月</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h5><i class="fas fa-chart-area"></i> 本金剩余趋势对比</h5>
+                <div class="chart-container">
+                    <canvas id="loanChart"></canvas>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item old"><span class="line dashed"></span>原计划</span>
+                    <span class="legend-item new"><span class="line solid"></span>新计划</span>
+                </div>
+            </div>
+
+            <div class="detail-card">
+                <h5><i class="fas fa-list-check"></i> 变动收益明细</h5>
+                <div class="table-wrap">
+                    <table class="detail-table">
+                        <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>事件</th>
+                                <th>利息变动</th>
+                                <th>时间变动</th>
+                            </tr>
+                        </thead>
+                        <tbody id="analysisDetailBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 结果区域 -->
+        <div id="resultArea" class="result-panel">
+            <div class="panel-header">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <h3>还款计划表</h3>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-card total">
+                    <i class="fas fa-wallet"></i>
+                    <div>
+                        <span>还款总额</span>
+                        <strong id="resTotal">¥0</strong>
+                    </div>
+                </div>
+                <div class="summary-card interest">
+                    <i class="fas fa-percent"></i>
+                    <div>
+                        <span>利息总额</span>
+                        <strong id="resInterest">¥0</strong>
+                    </div>
+                </div>
+                <div class="summary-card commercial">
+                    <i class="fas fa-landmark"></i>
+                    <div>
+                        <span>商贷利息</span>
+                        <strong id="resComInt">¥0</strong>
+                    </div>
+                </div>
+                <div class="summary-card fund">
+                    <i class="fas fa-piggy-bank"></i>
+                    <div>
+                        <span>公积金利息</span>
+                        <strong id="resFundInt">¥0</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="schedule-card">
+                <div class="table-wrap">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>期数</th>
+                                <th>日期</th>
+                                <th>月供合计</th>
+                                <th>商贷</th>
+                                <th>公积金</th>
+                                <th>剩余本金</th>
+                                <th>备注</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="app-footer">
+        <p>© 2026 深度房贷计算器 · 仅供参考，请以实际为准</p>
+    </footer>
+</div>
+
+<!-- 模板 -->
+<template id="tpl-rate">
+    <div class="event-row" onchange="updateRowColor(this)">
+        <div class="event-row-content">
+            <select class="evt-type">
+                <option value="com">商贷</option>
+                <option value="fund">公积金</option>
+            </select>
+            <div class="input-group">
+                <input type="number" class="evt-month" placeholder="期数" inputmode="numeric" oninput="updateDatePreview(this)">
+                <span class="date-badge">---</span>
+            </div>
+            <div class="input-with-unit small">
+                <input type="number" class="evt-val" placeholder="利率" step="0.01" inputmode="decimal">
+                <span class="unit">%</span>
+            </div>
+            <button class="btn-del" onclick="this.closest('.event-row').remove()">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+    </div>
+</template>
+
+<template id="tpl-prepay">
+    <div class="event-row" onchange="updateRowColor(this)">
+        <div class="event-row-content">
+            <select class="evt-type">
+                <option value="com">商贷</option>
+                <option value="fund">公积金</option>
+            </select>
+            <div class="input-group">
+                <input type="number" class="evt-month" placeholder="期数" inputmode="numeric" oninput="updateDatePreview(this)">
+                <span class="date-badge">---</span>
+            </div>
+            <div class="input-with-unit small">
+                <input type="number" class="evt-val" placeholder="金额" inputmode="decimal">
+                <span class="unit">万</span>
+            </div>
+            <select class="evt-strat">
+                <option value="1">减月供</option>
+                <option value="2">减年限</option>
+            </select>
+            <button class="btn-del" onclick="this.closest('.event-row').remove()">
+                <i class="fas fa-trash-alt"></i>
+            </button>
+        </div>
+    </div>
+</template>
+
+<!-- 计算说明弹窗 -->
+<div id="helpModal" class="modal-overlay" aria-hidden="true" style="display:none;">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+        <div class="modal-header">
+            <h3 id="helpTitle"><i class="fas fa-circle-info"></i> 计算方式说明</h3>
+            <button class="modal-close" type="button" onclick="closeHelpModal()" aria-label="关闭">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <p style="margin-bottom:10px;">
+                本工具用于模拟组合贷（商贷/公积金）在<strong>利率调整</strong>与<strong>提前还款</strong>情况下的还款计划变化，帮助对比“减月供/减年限”策略。
+            </p>
+
+            <div class="modal-section">
+                <h4>核心规则</h4>
+                <ul>
+                    <li>按<strong>月</strong>进行迭代；每月利息约为：剩余本金 × (年利率/12)。</li>
+                    <li>等额本息：使用按剩余期数重算的月供公式；等额本金：本金按剩余期数均摊。</li>
+                    <li>利率调整：在指定“期数”起生效（从该期开始使用新年利率）。</li>
+                    <li>提前还款：在指定“期数”发生，支持“减月供 / 减年限”。</li>
+                </ul>
+            </div>
+
+            <div class="modal-section">
+                <h4>与实际可能存在轻微差异（重要）</h4>
+                <ul>
+                    <li>银行计息口径、扣款顺序（先扣月供还是先扣提前还款）、重定价日规则、日息/按月计息等细节可能不同。</li>
+                    <li>四舍五入与金额精度处理（元/分）会带来末期微小差异。</li>
+                    <li>罚息、违约金、最低提前还款额、次数限制等政策不在模拟范围内。</li>
+                </ul>
+                <p style="color:var(--gray-600); font-size:0.9em; margin-top:8px;">
+                    结论请以贷款合同与银行实际扣款为准。本工具仅供参考与方案对比。
+                </p>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="modal-btn" type="button" onclick="closeHelpModal()">我知道了</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
