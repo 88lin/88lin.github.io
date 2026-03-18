@@ -80,7 +80,7 @@ body::after {
   font-size: clamp(24px, 5vw, 32px);
   font-weight: 700;
   color: #1e293b;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
@@ -92,7 +92,7 @@ body::after {
   background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border-radius: 12px;
+  border-radius: 36px;
   border: 1px solid rgba(99, 102, 241, 0.2);
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
   display: inline-block;
@@ -129,7 +129,7 @@ body::after {
   -webkit-backdrop-filter: blur(20px);
   width: 100%;
   max-width: 480px;
-  border-radius: 20px;
+  border-radius: 36px;
   padding: clamp(24px, 5vw, 40px);
   display: flex;
   flex-direction: column;
@@ -149,7 +149,6 @@ body::after {
   right: -2px;
   bottom: -2px;
   background: linear-gradient(45deg, #6366f1, #8b5cf6, #a855f7, #d946ef);
-  border-radius: 20px;
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -171,7 +170,7 @@ body::after {
 .qrcode {
   width: clamp(220px, 55vw, 280px);
   height: clamp(220px, 55vw, 280px);
-  border-radius: 12px;
+  border-radius: 28px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transition: transform 0.3s ease;
 }
@@ -194,20 +193,28 @@ body::after {
 .wechatOA-card {
   width: 100%;
   display: flex;
-  background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
-  padding: clamp(16px, 3.5vw, 20px);
-  border-radius: 16px;
   align-items: center;
   gap: 16px;
+  padding: clamp(16px, 3.5vw, 20px);
+  border-radius: 28px;
+  background: linear-gradient(
+    135deg,
+    rgba(173, 216, 250, 0.15) 0%,
+    rgba(135, 206, 250, 0.15) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(173, 216, 250, 0.5);
   transition: all 0.3s ease;
-  border: 2px solid transparent;
   margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(173, 216, 250, 0.2);
 }
 
-.wechatOA-card:hover {
+.wechatOA-card:hover,
+.wechatOA-card:focus {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.15);
-  border-color: #6366f1;
+  border-color: rgba(99, 102, 241, 0.7);
+  box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
 }
 
 .wechatOA-head {
@@ -252,7 +259,7 @@ body::after {
   gap: 8px;
   flex: 1;
   padding: 16px 12px;
-  border-radius: 12px;
+  border-radius: 28px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
