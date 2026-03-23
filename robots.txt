@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemapp: https://lite.cc.cd/sitemap.xml
+Sitemapp: https://go.88lin.eu.org/sitemap.xml
