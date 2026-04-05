@@ -888,6 +888,148 @@
                 justify-content: center;
                 gap: 16px;
             }
+
+            /* 通知横幅样式 */
+            .notice-banner {
+                background: rgba(0, 159, 247, 0.08);
+                border: 1px solid rgba(0, 159, 247, 0.2);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-radius: 20px;
+                padding: 12px 20px;
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                position: relative;
+                color: var(--dark);
+                overflow: hidden;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+            }
+
+            .notice-icon {
+                flex-shrink: 0;
+                font-size: 1.1rem;
+                margin-right: 15px;
+                z-index: 2;
+                background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+                color: #fff;
+                width: 36px;
+                height: 36px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                box-shadow: 0 3px 10px rgba(0, 159, 247, 0.3);
+            }
+
+            .notice-content {
+                flex-grow: 1;
+                overflow: hidden;
+                white-space: nowrap;
+                position: relative;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+            }
+
+            .notice-text {
+                display: inline-block;
+                padding-left: 100%;
+                animation: notice-scroll 28s linear infinite;
+                font-weight: 600;
+                font-size: 0.95rem;
+                letter-spacing: 0.5px;
+                display: flex;
+                align-items: center;
+            }
+
+            .notice-text b {
+                color: var(--primary);
+                margin-right: 4px;
+            }
+
+            .notice-text a {
+                color: #fff;
+                background: var(--primary);
+                text-decoration: none;
+                font-weight: 600;
+                padding: 3px 14px;
+                border-radius: 20px;
+                margin-left: 10px;
+                transition: var(--transition);
+                box-shadow: 0 2px 8px rgba(0, 159, 247, 0.3);
+                display: inline-block;
+                font-size: 0.9rem;
+            }
+
+            .notice-text a:hover {
+                background: var(--accent);
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(0, 159, 247, 0.4);
+                color: #fff;
+            }
+
+            .notice-close {
+                flex-shrink: 0;
+                background: rgba(0, 0, 0, 0.05);
+                border: none;
+                color: #666;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                z-index: 2;
+                margin-left: 15px;
+                font-size: 1rem;
+            }
+
+            .notice-close:hover {
+                background: rgba(255, 71, 87, 0.1);
+                color: #ff4757;
+                transform: rotate(90deg);
+            }
+
+            @keyframes notice-scroll {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-100%); }
+            }
+
+            .notice-content:hover .notice-text {
+                animation-play-state: paused;
+            }
+            
+            /* 手机端适配 */
+            @media (max-width: 768px) {
+                .notice-banner {
+                    padding: 10px 15px;
+                    border-radius: 18px;
+                    margin-bottom: 15px;
+                }
+                .notice-icon {
+                    width: 28px;
+                    height: 28px;
+                    font-size: 0.9rem;
+                    margin-right: 10px;
+                }
+                .notice-close {
+                    width: 26px;
+                    height: 26px;
+                    margin-left: 10px;
+                    font-size: 0.9rem;
+                }
+                .notice-text {
+                    font-size: 0.85rem;
+                    animation: notice-scroll 18s linear infinite;
+                }
+                .notice-text a {
+                    padding: 2px 10px;
+                    font-size: 0.8rem;
+                }
+            }
         </style>
     </head>
     <body class="bg-grid-aurora">
@@ -897,6 +1039,16 @@
         <i class="fas fa-play-circle film-icon film-3"></i>
         <i class="fas fa-play-circle film-icon film-4"></i>
         <div class="container">
+            <!-- 通知横幅 -->
+            <div id="notice-banner" class="notice-banner" style="display: none;">
+                <div class="notice-icon"><i class="fas fa-bell"></i></div>
+                <div class="notice-content">
+                    <div class="notice-text">
+                        <span>旧域名即将失效，请尽快转移并收藏新域名<a href="https://go.88lin.eu.org/vip" target="_blank">立即前往🚀</a></span>
+                    </div>
+                </div>
+                <button class="notice-close" id="notice-close" aria-label="关闭通知"><i class="fas fa-times"></i></button>
+            </div>
             <header>
                 <div class="logo" onclick="location.href='/vip/index.html'">全网VIP视频免费解析</div>
                 <div class="nav-group">
@@ -1513,6 +1665,25 @@
                     const apiUrl = videoHistory[0].apiUrl || ''
                     if (apiUrl && apiList.some(e => e.value === apiUrl)) {
                         apiSelect.value = apiUrl
+                    }
+                }
+
+                // 横幅通知逻辑
+                const noticeBanner = document.getElementById('notice-banner');
+                const noticeClose = document.getElementById('notice-close');
+                
+                if (noticeBanner) {
+                    // 检查是否已关闭，如果没有则显示
+                    if (!localStorage.getItem('vip_notice_closed')) {
+                        noticeBanner.style.display = 'flex';
+                    }
+                    
+                    // 点击关闭按钮事件
+                    if (noticeClose) {
+                        noticeClose.addEventListener('click', function() {
+                            noticeBanner.style.display = 'none';
+                            localStorage.setItem('vip_notice_closed', 'true');
+                        });
                     }
                 }
             });
