@@ -58,6 +58,12 @@ input {
   font: inherit;
 }
 
+a,
+button,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .page-shell {
   position: relative;
   width: var(--container);
@@ -978,6 +984,10 @@ input {
 
 .is-hidden {
   display: none !important;
+}
+
+.ctrm-title { 
+    background: linear-gradient(90deg, #ffdee9, #b5fffc)!important; /* 标题背景渐变色 */
 }
 
 @keyframes reveal-up {
