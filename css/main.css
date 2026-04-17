@@ -27,11 +27,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: clip;
   color: var(--text);
   font-family: "LXGW WenKai Screen", "Noto Serif SC", serif;
   background:
@@ -67,6 +69,7 @@ button,
 .page-shell {
   position: relative;
   width: var(--container);
+  max-width: 100%;
   margin: 0 auto;
   padding: 1.25rem 0 3rem;
 }
@@ -1049,11 +1052,11 @@ button,
   }
 
   .header-nav {
-    width: calc(100% + 0.5rem);
+    width: 100%;
     flex-wrap: nowrap;
     justify-content: flex-start;
     overflow-x: auto;
-    padding: 0 0.5rem 0.25rem 0;
+    padding: 0 0 0.25rem 0;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
