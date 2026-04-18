@@ -251,7 +251,10 @@ function setEmptyState(title, copy) {
 }
 
 function setCollectionNote(text) {
-  sel('.collection-note').textContent = text;
+  const note = sel('.collection-note');
+  if (note) {
+    note.textContent = text;
+  }
 }
 
 function updateActionAvailability(loading) {
