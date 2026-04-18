@@ -725,10 +725,22 @@ button,
     linear-gradient(160deg, rgba(245, 252, 249, 0.95), rgba(239, 247, 243, 0.86));
 }
 
+.collection-card-notion {
+  background:
+    radial-gradient(circle at top left, rgba(139, 170, 201, 0.18), transparent 30%),
+    linear-gradient(160deg, rgba(247, 250, 253, 0.95), rgba(240, 246, 250, 0.86));
+}
+
 .collection-card-study {
   background:
     radial-gradient(circle at top right, rgba(234, 192, 104, 0.16), transparent 28%),
     linear-gradient(160deg, rgba(252, 250, 245, 0.95), rgba(245, 248, 243, 0.84));
+}
+
+.collection-card-other {
+  background:
+    radial-gradient(circle at top right, rgba(198, 170, 126, 0.16), transparent 30%),
+    linear-gradient(160deg, rgba(252, 249, 245, 0.95), rgba(245, 242, 237, 0.86));
 }
 
 .collection-header {
