@@ -612,24 +612,18 @@ body {
         padding: 0.42rem 0.78rem;
     }
 
-    .name-main {
+    .name-order,
+    .name-value {
         padding-right: 5rem;
     }
 
     .name-source {
-        margin-top: 0.48rem;
-        padding: 0.26rem 0.58rem;
+        margin-top: 0.45rem;
         max-width: 100%;
-        font-size: 0.76rem;
     }
 
     .sentence {
-        margin-top: 0.58rem;
-        line-height: 1.7;
-    }
-
-    .sentence .quote {
-        font-size: 1rem;
+        margin-top: 0.5rem;
     }
 
     .source-row {
