@@ -599,12 +599,42 @@ body {
 
 @include phone {
     .name-head {
-        flex-direction: column;
-        align-items: stretch;
+        position: relative;
+        display: block;
     }
 
     .copy-btn {
-        align-self: flex-start;
+        position: absolute;
+        top: 0;
+        right: 0;
+        min-width: 3.85rem;
+        min-height: 2.2rem;
+        padding: 0.42rem 0.78rem;
+    }
+
+    .name-main {
+        padding-right: 5rem;
+    }
+
+    .name-source {
+        max-width: 100%;
+    }
+
+    .source-row {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.45rem 0.85rem;
+    }
+
+    .book {
+        flex: 1 1 12rem;
+    }
+
+    .author {
+        flex: 0 1 auto;
+        text-align: right;
     }
 }
 
