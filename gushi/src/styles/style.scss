@@ -617,7 +617,19 @@ body {
     }
 
     .name-source {
+        margin-top: 0.48rem;
+        padding: 0.26rem 0.58rem;
         max-width: 100%;
+        font-size: 0.76rem;
+    }
+
+    .sentence {
+        margin-top: 0.58rem;
+        line-height: 1.7;
+    }
+
+    .sentence .quote {
+        font-size: 1rem;
     }
 
     .source-row {
