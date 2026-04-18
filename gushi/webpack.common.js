@@ -1,13 +1,11 @@
 const path = require('path');
-// const webpack = require('webpack');
-// const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const srcPath = path.resolve(__dirname, 'src');
+const rootFavicon = path.resolve(__dirname, '../favicon.svg');
 const dir = {
   js: `${srcPath}/scripts`,
   style: `${srcPath}/styles`,
@@ -20,9 +18,6 @@ module.exports = {
       `${dir.js}/index.js`,
     ],
   },
-  // externals: {
-  //   jquery: 'jQuery',
-  // },
   plugins: [
     new CopyWebpackPlugin([{
       from: `${dir.js}/json`,
@@ -31,7 +26,7 @@ module.exports = {
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       template: `${srcPath}/index.html`,
-      favicon: `${dir.imgs}/favicon.png`,
+      favicon: rootFavicon,
       minify: {
         collapseWhitespace: true,
         removeComments: true,
@@ -49,13 +44,7 @@ module.exports = {
           fallback: 'style-loader',
           use: ['css-loader', 'sass-loader'],
         }),
-        // use: [
-        //   'style-loader',
-        //   'css-loader',
-        //   'sass-loader',
-        // ],
       },
-
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,

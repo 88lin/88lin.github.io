@@ -5,57 +5,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="description" content="你的名字-用诗经 楚辞 唐诗 宋词起名字">
-  <meta name="keywords" content="起名,诗经,楚辞,唐诗,宋词">
-  <title>你的名字-用诗经 楚辞 唐诗 宋词起名字</title>
+  <meta name="description" content="从诗经、楚辞、唐诗、宋词中汲取灵感，为你的中文名字找到更有出处的诗意表达。">
+  <meta name="keywords" content="起名,诗经,楚辞,唐诗,宋词,古诗词,中文名">
+  <title>你的名字 · 古诗文起名</title>
 </head>
 
 <body>
-  <div class="wrapper">
-    <div class="input-container">
-      <h3 class="title">你的名字<small> 古诗文起名V2.0</small></h3>
-      <p>
-      <div>
-      
-      </div>
-      <a target='_blank' href='https://blog.88lin.eu.org/' alt='茉灵智库'>
-        茉灵智库
-      </a>
-      </p>
-      <div class="book-selector">
-      </div>
-      <p class="family">
-        <label for='family-name'>姓氏 </label>
-        <input type="text" name="family-name" value="李" placeholder="输入姓氏">
-      </p>
-      <button class='btn-go'>起名</button>
-    </div>
-
-    <div class="result">
-      <ul class="result-container">
-        <!-- <li class="name-box">
-          <h3>李四斤</h3>
-          <p class="sentence">
-            <span>「</span>自彼成康，奄有<i>四</i>方，<i>斤</i><i>斤</i>其明。<span>」</span>
+  <div class="page-shell">
+    <div class="page-grain" aria-hidden="true"></div>
+    <main class="wrapper">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">GUSHI NAMING ATELIER</p>
+          <h1>你的名字，从诗意里生长。</h1>
+          <p class="hero-text">
+            从《诗经》《楚辞》到唐诗宋词，挑一部你喜欢的典籍，让页面随机生成一组更有出处感的中文名字。
           </p>
-          <p class="book">诗经•执竞</p>
-          <p class="author">[春秋]佚名</p>
-        </li> -->
-      </ul>
+          <div class="hero-meta">
+            <span>7 部典籍可选</span>
+            <span>随机生成 6 个候选</span>
+            <span>适合反复刷新找灵感</span>
+          </div>
+        </div>
+        <div class="hero-side">
+          <p class="hero-note">适合给孩子、笔名、项目代号寻找更温润的中文命名气质。</p>
+          <a class="hero-link" target="_blank" rel="noreferrer" href="https://blog.88lin.eu.org/">
+            访问茉灵智库
+          </a>
+        </div>
+      </section>
 
-    </div>
-    <div class="loader">
-      <svg version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-        y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
-        <rect fill="none" stroke="#f8f8f4" stroke-width="4" x="25" y="25" width="50" height="50">
-          <animateTransform attributeName="transform" dur="0.5s" from="0 50 50" to="180 50 50" type="rotate"
-            id="strokeBox" attributeType="XML" begin="rectBox.end" />
-        </rect>
-        <rect x="27" y="27" fill="#f8f8f4" width="46" height="50">
-          <animate attributeName="height" dur="1.3s" attributeType="XML" from="50" to="0" id="rectBox" fill="freeze"
-            begin="0s;strokeBox.end" />
-        </rect>
-      </svg>
+      <section class="workspace">
+        <aside class="panel controls-panel">
+          <div class="panel-heading">
+            <p class="eyebrow">STEP 01</p>
+            <h2>挑选典籍与姓氏</h2>
+            <p class="panel-text">先确定灵感来源，再输入姓氏。复姓也可以直接输入。</p>
+          </div>
+
+          <form class="naming-form">
+            <div class="book-selector"></div>
+
+            <label class="family-field" for="family-name">
+              <span class="field-label">姓氏</span>
+              <input id="family-name" type="text" name="family-name" value="李" maxlength="4" inputmode="text"
+                autocomplete="off" placeholder="输入姓氏" aria-describedby="family-tip">
+            </label>
+            <p class="field-tip" id="family-tip">支持复姓，最多 4 个字；留空时默认使用“李”。</p>
+
+            <div class="controls-footer">
+              <div class="action-row">
+                <button class="btn-go" type="submit">生成 6 个名字</button>
+                <button class="btn-secondary btn-refresh" type="button">换一组</button>
+              </div>
+              <button class="btn-secondary btn-retry" type="button" hidden>重新载入典籍</button>
+              <p class="collection-note" aria-live="polite">正在装载典籍内容…</p>
+            </div>
+          </form>
+        </aside>
+
+        <section class="result panel" aria-live="polite">
+          <div class="result-header">
+            <div>
+              <p class="eyebrow">STEP 02</p>
+              <h2>诗意候选</h2>
+            </div>
+            <p class="result-summary">选择一部典籍后，即可开始生成名字。</p>
+          </div>
+
+          <div class="result-empty">
+            <p class="result-empty-tag">尚未生成</p>
+            <h3 class="result-empty-title">先选一部诗集，再点一次“生成名字”。</h3>
+            <p class="result-empty-copy">
+              系统会从句子中抽取适合入名的字词，并为每个候选附上原诗句出处。
+            </p>
+          </div>
+
+          <ul class="result-container"></ul>
+        </section>
+      </section>
+    </main>
+
+    <div class="loader" aria-hidden="true">
+      <div class="loader-inner">
+        <svg version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+          y="0px" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+          <rect fill="none" stroke="#f7f1e7" stroke-width="4" x="25" y="25" width="50" height="50">
+            <animateTransform attributeName="transform" dur="0.5s" from="0 50 50" to="180 50 50" type="rotate"
+              id="strokeBox" attributeType="XML" begin="rectBox.end" />
+          </rect>
+          <rect x="27" y="27" fill="#f7f1e7" width="46" height="50">
+            <animate attributeName="height" dur="1.3s" attributeType="XML" from="50" to="0" id="rectBox" fill="freeze"
+              begin="0s;strokeBox.end" />
+          </rect>
+        </svg>
+        <p>正在翻检诗卷…</p>
+      </div>
     </div>
   </div>
 </body>

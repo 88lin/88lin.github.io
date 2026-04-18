@@ -10,6 +10,16 @@ class Namer {
     this.book = null;
   }
 
+  splitByDelimiters(content, delimiters) {
+    let str = content;
+    delimiters.forEach((delimiter) => {
+      const reg = new RegExp(delimiter, 'g');
+      str = str.replace(reg, match => `${match}|`);
+    });
+    str = str.replace(/\|+/g, '|').replace(/^\||\|$/g, '');
+    return str.split('|').map(item => item.trim()).filter(Boolean);
+  }
+
   // TODO
   formatStr(str) {
     // const res = str.replace(/[\s　 ]/g, '');
@@ -22,12 +32,37 @@ class Namer {
     if (!content) {
       return [];
     }
-    let str = this.formatStr(content);
-    str = str.replace(/！|。|？|；/g, s => `${s}|`);
-    str = str.replace(/\|$/g, '');
-    let arr = str.split('|');
-    arr = arr.filter(item => item.length >= 2);
-    return arr;
+    const str = this.formatStr(content);
+    const primary = this.splitByDelimiters(str, ['，', '。', '！', '？', '；', '：']);
+    let arr = [];
+
+    primary.forEach((item) => {
+      if (item.length > 18 && item.indexOf('兮') > -1) {
+        arr = arr.concat(this.splitByDelimiters(item, ['兮', '、']));
+        return;
+      }
+      if (item.length > 22 && item.indexOf('、') > -1) {
+        arr = arr.concat(this.splitByDelimiters(item, ['、']));
+        return;
+      }
+      arr.push(item);
+    });
+
+    const normalized = arr
+      .map(item => item.replace(/^[，。！？；：、]+|[，。！？；：、]+$/g, ''))
+      .filter((item) => {
+        const clean = this.cleanBadChar(this.cleanPunctuation(item));
+        return clean.length >= 3 && clean.length <= 14;
+      });
+
+    if (normalized.length > 0) {
+      return normalized;
+    }
+
+    return primary.filter((item) => {
+      const clean = this.cleanBadChar(this.cleanPunctuation(item));
+      return clean.length >= 3 && clean.length <= 18;
+    });
   }
 
   // 清除标点符号
@@ -106,7 +141,7 @@ class Namer {
     return first <= second ? `${arr[first]}${arr[second]}` : `${arr[second]}${arr[first]}`;
   }
 
-  loadBook(book, cb) {
+  loadBook(book, cb, errorCb) {
     const url = `./json/${book}.json`;
     this.loading = true;
     $.ajax({
@@ -119,7 +154,13 @@ class Namer {
           cb(data);
         }
       },
-      fail: err => log(err),
+      error: (err) => {
+        this.loading = false;
+        log(err);
+        if (typeof errorCb === 'function') {
+          errorCb(err);
+        }
+      },
     });
   }
 }
