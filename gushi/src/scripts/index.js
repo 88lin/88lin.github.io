@@ -150,16 +150,13 @@ function setButtonLoading(loading) {
 }
 
 function setLoading(loading) {
+  sel('.controls-panel').classList.toggle('is-loading', loading);
   if (loading) {
     setButtonLoading(true);
-    timer = setTimeout(() => {
-      $('.loader').css({ display: 'block' });
-    }, 220);
     return;
   }
 
   clearTimeout(timer);
-  $('.loader').css({ display: 'none' });
   setButtonLoading(false);
 }
 

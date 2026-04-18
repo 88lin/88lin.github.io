@@ -268,16 +268,13 @@ function setButtonLoading(loading) {
 }
 
 function setLoading(loading) {
+  sel('.controls-panel').classList.toggle('is-loading', loading);
   if (loading) {
     setButtonLoading(true);
-    timer = setTimeout(() => {
-      sel('.loader').style.display = 'block';
-    }, 220);
     return;
   }
 
   clearTimeout(timer);
-  sel('.loader').style.display = 'none';
   setButtonLoading(false);
 }
 
