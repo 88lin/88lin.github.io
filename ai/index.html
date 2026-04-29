@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>《春望》课堂AI资源包</title>
+  <style>
+    :root {
+      --paper: #f3ead9;
+      --panel: #fffaf0;
+      --ink: #221b15;
+      --muted: #6d6256;
+      --line: rgba(58, 43, 29, .16);
+      --red: #8d241d;
+      --red-dark: #541b17;
+      --gold: #b9843f;
+      --green: #52654c;
+      --shadow: 0 18px 50px rgba(42, 30, 18, .14);
+      --nav-w: 260px;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      color: var(--ink);
+      background: var(--paper);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(84, 27, 23, .05) 1px, transparent 1px),
+        linear-gradient(rgba(84, 27, 23, .035) 1px, transparent 1px),
+        radial-gradient(circle at 70% 10%, rgba(185, 132, 63, .18), transparent 34vw);
+      background-size: 28px 28px, 28px 28px, auto;
+    }
+
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .app {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      height: 100vh;
+      height: 100dvh;
+      display: grid;
+      grid-template-columns: var(--nav-w) minmax(0, 1fr);
+    }
+
+    .side {
+      min-height: 0;
+      padding: 22px 18px;
+      color: #f9efe0;
+      background: #2d251f;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 20px;
+    }
+
+    .brand {
+      border-bottom: 1px solid rgba(249, 239, 224, .2);
+      padding-bottom: 18px;
+    }
+
+    .brand .eyebrow {
+      font-size: 13px;
+      color: rgba(249, 239, 224, .7);
+      letter-spacing: .08em;
+    }
+
+    .brand h1 {
+      margin: 6px 0 0;
+      font-size: 54px;
+      line-height: 1;
+      font-family: "STSong", "SimSun", serif;
+      font-weight: 900;
+    }
+
+    .nav {
+      min-height: 0;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .nav button {
+      width: 100%;
+      min-height: 58px;
+      padding: 10px 12px;
+      border: 1px solid rgba(249, 239, 224, .12);
+      border-radius: 8px;
+      color: rgba(249, 239, 224, .78);
+      background: transparent;
+      text-align: left;
+    }
+
+    .nav button b {
+      display: block;
+      font-size: 16px;
+    }
+
+    .nav button span {
+      display: block;
+      margin-top: 3px;
+      font-size: 12px;
+      color: rgba(249, 239, 224, .56);
+    }
+
+    .nav button.active {
+      color: #fff8ec;
+      background: var(--red-dark);
+      border-color: rgba(249, 239, 224, .36);
+    }
+
+    .hint {
+      margin: 0;
+      color: rgba(249, 239, 224, .68);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .main {
+      height: 100vh;
+      min-width: 0;
+      min-height: 0;
+      padding: 22px;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--red-dark);
+      font-weight: 800;
+    }
+
+    .section-label::before {
+      content: "";
+      width: 42px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .actions button,
+    .chip,
+    .emotion-btn,
+    .timeline button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 250, 240, .75);
+      color: var(--ink);
+    }
+
+    .actions button {
+      min-width: 88px;
+      min-height: 42px;
+      padding: 0 14px;
+    }
+
+    .actions button:hover,
+    .chip:hover,
+    .emotion-btn:hover,
+    .timeline button:hover {
+      border-color: rgba(141, 36, 29, .42);
+      background: #fffaf0;
+    }
+
+    .deck {
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .72);
+      box-shadow: var(--shadow);
+    }
+
+    .slide {
+      height: 100%;
+      min-height: 0;
+      display: none;
+      grid-template-rows: auto minmax(0, 1fr);
+      gap: 14px;
+      padding: 20px;
+    }
+
+    .slide.active { display: grid; }
+
+    .slide-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      min-height: 0;
+    }
+
+    .slide h2 {
+      margin: 0;
+      font-size: clamp(30px, 3.45vw, 52px);
+      line-height: 1.05;
+      font-family: "STSong", "SimSun", serif;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-wrap: balance;
+    }
+
+    .slide-head p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.25vw, 20px);
+      line-height: 1.65;
+    }
+
+    .stage {
+      min-height: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .panel {
+      min-height: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .82);
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: minmax(0, 1fr) auto;
+    }
+
+    .image-frame {
+      min-height: 0;
+      position: relative;
+      overflow: hidden;
+      background: #efe4d1;
+    }
+
+    .image-frame img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .image-frame.contain img { object-fit: contain; }
+
+    .intro .image-frame.contain img { object-fit: cover; }
+
+    .caption {
+      padding: 12px 14px 13px;
+      border-top: 1px solid var(--line);
+    }
+
+    .caption strong {
+      display: block;
+      color: var(--red-dark);
+      font-size: clamp(18px, 1.55vw, 25px);
+      line-height: 1.3;
+      font-family: "STSong", "SimSun", serif;
+    }
+
+    .caption span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .quote-mark {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(34, 27, 21, .88);
+      color: #fff4df;
+      font-size: 36px;
+      font-family: "STSong", "SimSun", serif;
+      z-index: 4;
+    }
+
+    .cloud-stage {
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+      min-height: 0;
+    }
+
+    .cloud {
+      position: relative;
+      min-height: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background:
+        radial-gradient(circle at 45% 42%, rgba(226, 169, 82, .2), transparent 28%),
+        linear-gradient(135deg, rgba(255, 250, 240, .94), rgba(232, 221, 196, .74));
+      overflow: hidden;
+    }
+
+    .word {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      transform: translate(-50%, -50%) rotate(var(--r));
+      color: var(--green);
+      font-size: var(--s);
+      font-weight: 900;
+      white-space: nowrap;
+      font-family: "STSong", "SimSun", serif;
+    }
+
+    .contrast-list {
+      min-height: 0;
+      display: grid;
+      align-content: center;
+      gap: 12px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .84);
+    }
+
+    .chip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 52px;
+      padding: 0 16px;
+      font-size: clamp(17px, 1.5vw, 24px);
+      font-weight: 800;
+    }
+
+    .chip em {
+      color: var(--red-dark);
+      font-style: normal;
+      font-family: "STSong", "SimSun", serif;
+    }
+
+    .map-layout {
+      grid-template-columns: minmax(0, 1fr) 310px;
+      min-height: 0;
+    }
+
+    .map-view {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #171511;
+    }
+
+    .map-view img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity .5s ease, filter .5s ease;
+    }
+
+    .map-view .natural { opacity: 1; }
+    .map-view .human { opacity: var(--human-opacity, .82); mix-blend-mode: normal; }
+    .map-view::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.48), transparent 38%, rgba(0,0,0,.28));
+      pointer-events: none;
+    }
+
+    .map-badge {
+      position: absolute;
+      z-index: 2;
+      left: 18px;
+      top: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .map-badge span {
+      width: max-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: #fff8ec;
+      background: rgba(34, 27, 21, .76);
+      border: 1px solid rgba(255, 250, 240, .22);
+      font-weight: 800;
+    }
+
+    .control-card {
+      min-height: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .86);
+      display: grid;
+      grid-template-rows: auto auto auto 1fr;
+      gap: 14px;
+    }
+
+    .big-year {
+      color: var(--red-dark);
+      font-size: clamp(32px, 3.2vw, 46px);
+      line-height: 1;
+      font-family: "STSong", "SimSun", serif;
+      font-weight: 900;
+    }
+
+    .range {
+      width: 100%;
+      accent-color: var(--red);
+    }
+
+    .labels {
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .explain {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(15px, 1.2vw, 18px);
+      line-height: 1.75;
+    }
+
+    .emotion-layout {
+      grid-template-columns: 100px minmax(0, 1fr) 100px;
+      min-height: 0;
+      align-items: stretch;
+    }
+
+    .emotion-col {
+      min-height: 0;
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .emotion-btn {
+      min-height: 86px;
+      padding: 10px;
+      writing-mode: vertical-rl;
+      font-size: clamp(22px, 2vw, 30px);
+      font-weight: 900;
+      font-family: "STSong", "SimSun", serif;
+    }
+
+    .emotion-btn.active {
+      color: #fff8ec;
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+    }
+
+    .flower-box {
+      --filter: none;
+      --tone: rgba(255,255,255,0);
+      --grain: 0;
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #1d1a15;
+    }
+
+    .flower-box img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      filter: var(--filter);
+      transform: scale(var(--scale, 1));
+      transition: filter 1.8s cubic-bezier(.2,.8,.2,1), transform 1.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .flower-box::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, transparent, var(--tone)),
+        repeating-radial-gradient(circle at 22% 35%, rgba(28, 22, 17, var(--grain)) 0 1px, transparent 1px 6px);
+      mix-blend-mode: multiply;
+      transition: background 1.8s cubic-bezier(.2,.8,.2,1);
+    }
+
+    .emotion-copy {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      color: #fff8ec;
+    }
+
+    .emotion-copy strong {
+      flex: 0 0 auto;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: rgba(34, 27, 21, .78);
+      font-size: clamp(26px, 3vw, 48px);
+      font-family: "STSong", "SimSun", serif;
+    }
+
+    .emotion-copy p {
+      max-width: 560px;
+      margin: 0;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: rgba(34, 27, 21, .72);
+      font-size: clamp(15px, 1.25vw, 19px);
+      line-height: 1.65;
+    }
+
+    .portrait-layout {
+      grid-template-columns: minmax(0, 1fr) 330px;
+      min-height: 0;
+    }
+
+    .portrait-compare {
+      --split: 50%;
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #28221c;
+    }
+
+    .portrait-compare img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #efe2cc;
+    }
+
+    .portrait-compare .old {
+      clip-path: inset(0 calc(100% - var(--split)) 0 0);
+    }
+
+    .portrait-compare::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--split);
+      width: 3px;
+      background: var(--red);
+      box-shadow: 0 0 0 999px rgba(0,0,0,0);
+    }
+
+    .portrait-compare input {
+      position: absolute;
+      z-index: 3;
+      left: 8%;
+      right: 8%;
+      bottom: 18px;
+      width: 84%;
+      accent-color: var(--red);
+    }
+
+    .question-card {
+      min-height: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 250, 240, .86);
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .question-card h3 {
+      margin: 0;
+      color: var(--red-dark);
+      font-size: 30px;
+      font-family: "STSong", "SimSun", serif;
+    }
+
+    .question-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.3vw, 20px);
+      line-height: 1.8;
+    }
+
+    .timeline-stage {
+      grid-template-rows: minmax(0, 1fr) auto;
+      min-height: 0;
+    }
+
+    .timeline-detail {
+      min-height: 0;
+      padding: 32px;
+      display: grid;
+      align-content: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background:
+        linear-gradient(115deg, rgba(255,250,240,.92), rgba(232,221,196,.74)),
+        radial-gradient(circle at 10% 20%, rgba(141,36,29,.12), transparent 32%);
+    }
+
+    .timeline-detail strong {
+      color: var(--red-dark);
+      font-size: clamp(46px, 7vw, 110px);
+      line-height: .95;
+      font-family: "STSong", "SimSun", serif;
+    }
+
+    .timeline-detail p {
+      max-width: 880px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: clamp(20px, 2vw, 32px);
+      line-height: 1.6;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .timeline button {
+      min-height: 78px;
+      padding: 10px;
+      text-align: left;
+      font-weight: 800;
+    }
+
+    .timeline button.active {
+      color: #fff8ec;
+      background: var(--red-dark);
+      border-color: var(--red-dark);
+    }
+
+    .app:fullscreen {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: var(--paper);
+    }
+
+    .app:fullscreen .main {
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    .app:fullscreen .deck,
+    .deck:fullscreen {
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      border: 0;
+      border-radius: 0;
+      background: var(--paper);
+    }
+
+    .app:fullscreen .deck {
+      width: auto;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+
+    .app:fullscreen .side {
+      height: 100vh;
+      height: 100dvh;
+    }
+
+    .app:fullscreen .toolbar {
+      min-height: 48px;
+    }
+
+    .app:fullscreen .slide,
+    .deck:fullscreen .slide {
+      padding: min(2.3vh, 22px);
+    }
+
+    .app:fullscreen .slide-head,
+    .deck:fullscreen .slide-head {
+      min-height: 0;
+    }
+
+    .app:fullscreen .slide h2,
+    .deck:fullscreen .slide h2 {
+      font-size: clamp(28px, 5.8vh, 62px);
+    }
+
+    .app:fullscreen .slide-head p,
+    .deck:fullscreen .slide-head p {
+      font-size: clamp(14px, 1.8vh, 20px);
+    }
+
+    @media (max-width: 1050px) {
+      :root { --nav-w: 0px; }
+      .app { grid-template-columns: 1fr; }
+      .side { display: none; }
+      .main { padding: 12px; }
+      .grid-2,
+      .cloud-stage,
+      .map-layout,
+      .emotion-layout,
+      .portrait-layout { grid-template-columns: 1fr; }
+      .emotion-col { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .emotion-btn {
+        writing-mode: horizontal-tb;
+        min-height: 48px;
+        font-size: 18px;
+      }
+      .timeline { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .quote-mark { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="side">
+      <div class="brand">
+        <div class="eyebrow">AI CLASSROOM RESOURCE</div>
+        <h1>春望</h1>
+      </div>
+      <nav class="nav" aria-label="课堂章节">
+        <button class="active" data-go="0"><b>情境导入</b><span>《望岳》到《春望》</span></button>
+        <button data-go="1"><b>任务一</b><span>破碎的春天</span></button>
+        <button data-go="2"><b>任务二 A</b><span>国破山河在</span></button>
+        <button data-go="3"><b>任务二 B</b><span>花鸟情绪滤镜</span></button>
+        <button data-go="4"><b>任务二 C</b><span>白头不胜簪</span></button>
+        <button data-go="5"><b>任务三</b><span>诗史与诗圣</span></button>
+      </nav>
+      <p class="hint">左右方向键翻页。全屏会进入当前课件舞台，所有内容限制在一屏内。</p>
+    </aside>
+
+    <main class="main">
+      <div class="toolbar">
+        <div class="section-label" id="sectionLabel">情境导入</div>
+        <div class="actions">
+          <button id="prevBtn" type="button">上一页</button>
+          <button id="nextBtn" type="button">下一页</button>
+          <button id="fullBtn" type="button">全屏</button>
+        </div>
+      </div>
+
+      <section class="deck" id="deck">
+        <article class="slide active intro" data-title="情境导入">
+          <header class="slide-head">
+            <h2>从《望岳》到《春望》</h2>
+            <p>同一个“望”字，从仰望泰山之巅到俯看破碎都城，呈现诗人精神世界的位移。</p>
+          </header>
+          <div class="stage grid-2" style="position:relative;">
+            <div class="panel">
+              <div class="image-frame contain"><img src="image/intro-mountain.jpg" alt="泰山雄伟图"></div>
+              <div class="caption"><strong>会当凌绝顶，一览众山小。</strong><span>青年杜甫的豪情与抱负</span></div>
+            </div>
+            <div class="quote-mark">望</div>
+            <div class="panel">
+              <div class="image-frame contain"><img src="image/intro-ruins.jpg" alt="长安残破图"></div>
+              <div class="caption"><strong>国破山河在，城春草木深。</strong><span>中年杜甫直面现实的沉痛与悲悯</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-title="任务一：感“望”中之象">
+          <header class="slide-head">
+            <h2>破碎的春天</h2>
+            <p>先呈现学生对春天的常规认知，再反转到诗中的“破、深、溅泪、惊心”。</p>
+          </header>
+          <div class="stage cloud-stage">
+            <div class="cloud" aria-label="常规春天关键词云">
+              <span class="word" style="--x:50%;--y:40%;--s:clamp(54px,7vw,104px);--r:0deg;">明媚</span>
+              <span class="word" style="--x:32%;--y:30%;--s:clamp(34px,4.2vw,66px);--r:-8deg;">生机</span>
+              <span class="word" style="--x:70%;--y:34%;--s:clamp(32px,4vw,62px);--r:6deg;">繁花</span>
+              <span class="word" style="--x:28%;--y:60%;--s:clamp(28px,3.4vw,54px);--r:7deg;">温暖</span>
+              <span class="word" style="--x:68%;--y:63%;--s:clamp(30px,3.8vw,58px);--r:-7deg;">希望</span>
+              <span class="word" style="--x:49%;--y:74%;--s:clamp(26px,3vw,48px);--r:1deg;">美丽</span>
+              <span class="word" style="--x:18%;--y:44%;--s:clamp(20px,2.5vw,36px);--r:-12deg;">鸟鸣</span>
+              <span class="word" style="--x:82%;--y:49%;--s:clamp(20px,2.5vw,36px);--r:12deg;">新绿</span>
+            </div>
+            <div class="contrast-list">
+              <div class="chip">国 <em>破</em></div>
+              <div class="chip">草木 <em>深</em></div>
+              <div class="chip">花 <em>溅泪</em></div>
+              <div class="chip">鸟 <em>惊心</em></div>
+              <div class="chip">烽火 <em>连</em></div>
+              <div class="chip">白头 <em>更短</em></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-title="任务二：自然与社会的断裂">
+          <header class="slide-head">
+            <h2>国破山河在</h2>
+            <p>拖动滑块观察：自然山河稳定存在，人文秩序却从繁华走向破碎。</p>
+          </header>
+          <div class="stage map-layout">
+            <div class="map-view" id="mapView">
+              <img class="natural" id="naturalImg" src="image/map-natural-1.png" alt="长安周边自然山河">
+              <img class="human" id="humanImg" src="image/map-human-1.png" alt="长安人文图层">
+              <div class="map-badge">
+                <span>底层：山河在</span>
+                <span id="humanBadge">上层：盛唐长安</span>
+              </div>
+            </div>
+            <div class="control-card">
+              <div class="big-year" id="mapYear">755年前</div>
+              <input class="range" id="mapRange" type="range" min="0" max="100" value="0" aria-label="长安时间滑块">
+              <div class="labels"><span>繁华</span><span>侵蚀</span><span>国破</span></div>
+              <p class="explain" id="mapText">宫殿、坊市、街道与人群共同构成盛唐秩序；山川河流作为底层图像保持不变。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-title="任务二：情感与景物的断裂">
+          <header class="slide-head">
+            <h2>感时花溅泪，恨别鸟惊心</h2>
+            <p>只使用同一张标准花鸟图。点击关键词，图像缓慢变化，呈现“心境滤镜”。</p>
+          </header>
+          <div class="stage emotion-layout">
+            <div class="emotion-col">
+              <button class="emotion-btn" data-emotion="sorrow" type="button">深悲</button>
+              <button class="emotion-btn" data-emotion="fear" type="button">惊惧</button>
+            </div>
+            <div class="flower-box" id="flowerBox">
+              <img src="image/flower-birds.png" alt="标准春日花鸟图">
+              <div class="emotion-copy">
+                <strong id="emotionTitle">标准图</strong>
+                <p id="emotionText">花鸟本身没有泪，也没有惊；变化来自观看者的心境。</p>
+              </div>
+            </div>
+            <div class="emotion-col">
+              <button class="emotion-btn" data-emotion="anxiety" type="button">焦虑</button>
+              <button class="emotion-btn" data-emotion="lonely" type="button">孤寂</button>
+              <button class="emotion-btn" data-emotion="neutral" type="button">复原</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-title="任务二：个人与时代的断裂">
+          <header class="slide-head">
+            <h2>白头搔更短</h2>
+            <p>拖动滑杆对比杜甫中年形象与衰老状态，追问：什么被时代消耗了？</p>
+          </header>
+          <div class="stage portrait-layout">
+            <div class="portrait-compare" id="portraitCompare">
+              <img src="image/dufu-middle.jpg" alt="杜甫中年肖像">
+              <img class="old" src="image/dufu-aged.jpg" alt="杜甫衰老肖像">
+              <input id="portraitRange" type="range" min="0" max="100" value="50" aria-label="杜甫肖像对比滑块">
+            </div>
+            <div class="question-card">
+              <h3>课堂追问</h3>
+              <p>你看到什么被“偷”走了？生命力、健康、时间，怎样从一张脸落到“白头搔更短”的诗句里？</p>
+              <p>宏大的战乱最后压到一个具体的人身上，这就是个人与时代的断裂。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="slide" data-title="任务三：悟“望”中之史">
+          <header class="slide-head">
+            <h2>从“诗史”到“诗圣”</h2>
+            <p>《春望》是杜甫精神世界的关键转折：个人抱负转向家国天下。</p>
+          </header>
+          <div class="stage timeline-stage">
+            <div class="timeline-detail">
+              <strong id="timeYear">755</strong>
+              <p id="timeText">安史之乱爆发。盛世秩序开始塌陷，杜甫的诗歌视野被迫转向历史灾难。</p>
+            </div>
+            <div class="timeline">
+              <button class="active" data-year="755" data-text="安史之乱爆发。盛世秩序开始塌陷，杜甫的诗歌视野被迫转向历史灾难。">755 安史之乱</button>
+              <button data-year="756" data-text="长安陷落。都城从文明中心变成破碎现场，“国破”的现实进入诗人视野。">756 长安陷落</button>
+              <button data-year="被俘" data-text="杜甫被俘并困居长安。诗人不是旁观战乱，而是被卷入其中的具体生命。">被俘 困居长安</button>
+              <button data-year="家散" data-text="战火持续，家人离散，音讯难通。“烽火连三月，家书抵万金”把国恨和家愁压缩到一联中。">家散 家书断绝</button>
+              <button data-year="757春" data-text="《春望》的情境形成：春色仍来，人间已破，诗人把时代痛感凝成五言律诗。">757春 春望语境</button>
+              <button data-year="诗史" data-text="从《春望》开始，杜甫更成熟地以诗为历史存照，也以诗保存具体生命的痛感。">诗史 成熟</button>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const slides = [...document.querySelectorAll(".slide")];
+    const nav = [...document.querySelectorAll(".nav button")];
+    const sectionLabel = document.getElementById("sectionLabel");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const fullBtn = document.getElementById("fullBtn");
+    const app = document.querySelector(".app");
+    let current = 0;
+
+    function show(index) {
+      current = Math.max(0, Math.min(slides.length - 1, index));
+      slides.forEach((slide, i) => slide.classList.toggle("active", i === current));
+      nav.forEach((button, i) => button.classList.toggle("active", i === current));
+      sectionLabel.textContent = slides[current].dataset.title;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === slides.length - 1;
+      if (location.hash !== `#${current}`) {
+        history.replaceState(null, "", `#${current}`);
+      }
+    }
+
+    nav.forEach((button) => {
+      button.addEventListener("click", () => show(Number(button.dataset.go)));
+    });
+
+    prevBtn.addEventListener("click", () => show(current - 1));
+    nextBtn.addEventListener("click", () => show(current + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.key === "ArrowRight") show(current + 1);
+      if (event.key.toLowerCase() === "f") toggleFull();
+    });
+
+    async function toggleFull() {
+      if (!document.fullscreenElement) {
+        await app.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
+      }
+    }
+
+    fullBtn.addEventListener("click", toggleFull);
+
+    const mapRange = document.getElementById("mapRange");
+    const naturalImg = document.getElementById("naturalImg");
+    const humanImg = document.getElementById("humanImg");
+    const mapView = document.getElementById("mapView");
+    const mapYear = document.getElementById("mapYear");
+    const mapText = document.getElementById("mapText");
+    const humanBadge = document.getElementById("humanBadge");
+    const naturalFrames = [
+      "image/map-natural-1.png",
+      "image/map-natural-2.png",
+      "image/map-natural-3.png"
+    ];
+    const humanFrames = [
+      "image/map-human-1.png",
+      "image/map-human-2.png",
+      "image/map-human-3.png"
+    ];
+
+    function updateMap(value) {
+      const n = Number(value);
+      const stage = n < 34 ? 0 : n < 67 ? 1 : 2;
+      naturalImg.src = naturalFrames[stage];
+      humanImg.src = humanFrames[stage];
+      mapView.style.setProperty("--human-opacity", stage === 0 ? ".86" : stage === 1 ? ".8" : ".9");
+      if (stage === 0) {
+        mapYear.textContent = "755年前";
+        humanBadge.textContent = "上层：盛唐长安";
+        mapText.textContent = "宫殿、坊市、街道与人群共同构成盛唐秩序；山川河流作为底层图像保持不变。";
+      } else if (stage === 1) {
+        mapYear.textContent = "756年";
+        humanBadge.textContent = "上层：战火侵蚀";
+        mapText.textContent = "人文图层开始变暗，生活秩序被战火撕开；自然山河仍然冷静地铺在下方。";
+      } else {
+        mapYear.textContent = "757年春";
+        humanBadge.textContent = "上层：国破城荒";
+        mapText.textContent = "城池破损、街市荒芜，人的世界坍塌；“山河在”反衬“国破”的痛感。";
+      }
+    }
+
+    mapRange.addEventListener("input", (event) => updateMap(event.target.value));
+    updateMap(mapRange.value);
+
+    const flowerBox = document.getElementById("flowerBox");
+    const emotionButtons = [...document.querySelectorAll(".emotion-btn")];
+    const emotionTitle = document.getElementById("emotionTitle");
+    const emotionText = document.getElementById("emotionText");
+    const emotions = {
+      neutral: {
+        title: "标准图",
+        text: "花鸟本身没有泪，也没有惊；变化来自观看者的心境。",
+        filter: "none",
+        tone: "rgba(255,255,255,0)",
+        grain: "0",
+        scale: "1"
+      },
+      sorrow: {
+        title: "深悲",
+        text: "色彩沉下去，明媚被压低，花鸟像被泪水浸湿。",
+        filter: "saturate(.55) brightness(.78) contrast(1.08) hue-rotate(-14deg)",
+        tone: "rgba(41,57,74,.34)",
+        grain: ".18",
+        scale: "1.015"
+      },
+      fear: {
+        title: "惊惧",
+        text: "对比变硬，阴影变重，飞鸟的动势转成不安。",
+        filter: "saturate(.7) brightness(.7) contrast(1.35) hue-rotate(135deg)",
+        tone: "rgba(16,25,21,.42)",
+        grain: ".24",
+        scale: "1.025"
+      },
+      anxiety: {
+        title: "焦虑",
+        text: "色温升高，颗粒加重，画面有被战火逼近的急促感。",
+        filter: "saturate(1.22) brightness(.86) contrast(1.2) hue-rotate(20deg)",
+        tone: "rgba(141,36,29,.32)",
+        grain: ".22",
+        scale: "1.02"
+      },
+      lonely: {
+        title: "孤寂",
+        text: "绿色被抽离，空间变冷变空，花鸟仍在却不再亲近。",
+        filter: "saturate(.42) brightness(.84) contrast(.98) hue-rotate(190deg)",
+        tone: "rgba(67,83,100,.36)",
+        grain: ".14",
+        scale: "1.012"
+      }
+    };
+
+    function setEmotion(name) {
+      const item = emotions[name] || emotions.neutral;
+      flowerBox.style.setProperty("--filter", item.filter);
+      flowerBox.style.setProperty("--tone", item.tone);
+      flowerBox.style.setProperty("--grain", item.grain);
+      flowerBox.style.setProperty("--scale", item.scale);
+      emotionTitle.textContent = item.title;
+      emotionText.textContent = item.text;
+      emotionButtons.forEach((button) => button.classList.toggle("active", button.dataset.emotion === name));
+    }
+
+    emotionButtons.forEach((button) => {
+      button.addEventListener("click", () => setEmotion(button.dataset.emotion));
+    });
+
+    const portraitCompare = document.getElementById("portraitCompare");
+    const portraitRange = document.getElementById("portraitRange");
+    portraitRange.addEventListener("input", (event) => {
+      portraitCompare.style.setProperty("--split", `${event.target.value}%`);
+    });
+
+    const timeYear = document.getElementById("timeYear");
+    const timeText = document.getElementById("timeText");
+    const timelineButtons = [...document.querySelectorAll(".timeline button")];
+    timelineButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        timelineButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        timeYear.textContent = button.dataset.year;
+        timeText.textContent = button.dataset.text;
+      });
+    });
+
+    const initial = Number(location.hash.replace("#", ""));
+    show(Number.isFinite(initial) ? initial : 0);
+  </script>
+</body>
+</html>
