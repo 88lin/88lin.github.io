@@ -107,7 +107,7 @@
     <section class="hero">
       <div class="hero-copy reveal">
         <p class="hero-kicker">收集有用的，也保留有趣的。</p>
-        <h1>把零散工具、创意页面和节日特效，整理成一页就能直达的中文导航。</h1>
+        <h1>把零散工具、创意页面和节日特效，整理成<span class="accent-text">一页就能直达</span>的中文导航。</h1>
         <p class="hero-summary">
           这里收录了茉灵做过和整理过的一批实用站点、轻工具与趣味项目。
           你可以从常用入口直接出发，也可以按分类慢慢逛，手机和电脑都能顺畅访问。
@@ -523,7 +523,7 @@
     <div class="footer-grid">
       <div>
         <p class="footer-label">联系与反馈</p>
-        <h2>如果你想定制页面、获取源码，或者只是来打个招呼，都欢迎联系我。</h2>
+        <h2>如果你想<span class="accent-text">定制页面</span>、获取源码，或者只是来打个招呼，都欢迎联系我。</h2>
       </div>
       <div class="footer-actions">
         <a class="footer-link" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">QQ：2528251483</a>
@@ -536,6 +536,8 @@
     </div>
   </footer>
 </div>
+
+<button id="backToTop" class="back-to-top" type="button" aria-label="回到顶部" title="回到顶部"></button>
 
 <aside id="welcomeToast" class="welcome-toast is-hidden" aria-live="polite" aria-atomic="true">
   <div class="welcome-toast-inner">
@@ -630,6 +632,24 @@ function getClientSummary() {
   return { browser, os };
 }
 
+function cleanApiText(value) {
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function getVisitorLocationLabel(data, fallbackLabel) {
+  const location = cleanApiText(data.location);
+  const region = [
+    cleanApiText(data.country),
+    cleanApiText(data.addr),
+    cleanApiText(data.city),
+    cleanApiText(data.district)
+  ].filter(Boolean).join(" ");
+  const network = cleanApiText(data.isp) || cleanApiText(data.area);
+  const summary = location || region || network;
+
+  return summary ? "来自 " + summary + " 的朋友" : fallbackLabel;
+}
+
 async function getVisitorMessage() {
   const greeting = getTimeGreeting();
   const referrer = getReferrerLabel();
@@ -638,7 +658,7 @@ async function getVisitorMessage() {
   try {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 2500);
-    const response = await fetch("https://api.cenguigui.cn/api/UserInfo/?type=json", {
+    const response = await fetch("https://api-v2.cenguigui.cn/api/UserInfo/?", {
       method: "GET",
       signal: controller.signal
     });
@@ -649,14 +669,14 @@ async function getVisitorMessage() {
     }
 
     const payload = await response.json();
-    const data = payload && payload.data ? payload.data : {};
-    const location = data.location ? "来自 " + data.location + " 的朋友" : referrer;
-    const browser = data.browser || fallbackClient.browser;
-    const os = data.os || fallbackClient.os;
+    const data = payload && payload.code === 200 && payload.data ? payload.data : {};
+    const location = getVisitorLocationLabel(data, referrer);
+    const browser = cleanApiText(data.browser) || fallbackClient.browser;
+    const os = cleanApiText(data.os) || fallbackClient.os;
 
     return {
       eyebrow: location,
-      message: referrer + "，使用 " + os + " · " + browser + " 访问本站。" + greeting
+      message: "使用 " + os + " · " + browser + " 访问本站。" + greeting
     };
   } catch (error) {
     return {
@@ -787,6 +807,55 @@ updateCounts(totalProjects);
 updateCollectionCounts();
 revealOnLoad();
 setTimeout(showWelcomeToast, 700);
+
+/* ===== 新增交互 ===== */
+
+// 1. 回到顶部按钮显隐
+const backToTop = document.getElementById("backToTop");
+
+function onScroll() {
+  const doc = document.documentElement;
+  const scrollTop = window.scrollY || doc.scrollTop || 0;
+  if (backToTop) {
+    backToTop.classList.toggle("is-visible", scrollTop > 320);
+  }
+}
+
+let scrollTicking = false;
+window.addEventListener("scroll", () => {
+  if (!scrollTicking) {
+    requestAnimationFrame(() => {
+      onScroll();
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
+onScroll();
+
+// 2. 回到顶部
+if (backToTop) {
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+}
+
+// 3. spotlight 跟随：精选卡 + 分类卡
+const spotlightTargets = document.querySelectorAll(".featured-card, .collection-card");
+spotlightTargets.forEach((el) => {
+  el.addEventListener("pointermove", (e) => {
+    const rect = el.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    el.style.setProperty("--spotlight-x", x + "%");
+    el.style.setProperty("--spotlight-y", y + "%");
+  });
+  el.addEventListener("pointerleave", () => {
+    el.style.removeProperty("--spotlight-x");
+    el.style.removeProperty("--spotlight-y");
+  });
+});
+
 </script>
 <!-- <script src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/cdn/china-lantern.js"></script> -->
 <!-- <script src="https://dh.z-l.top/chat.js" async="async" fold></script> -->
