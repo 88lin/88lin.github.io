@@ -650,6 +650,32 @@ function getVisitorLocationLabel(data, fallbackLabel) {
   return summary ? "来自 " + summary + " 的朋友" : fallbackLabel;
 }
 
+async function getVisitorIp(signal) {
+  const url = new URL("https://www.kevio.cn/api/ip");
+  url.searchParams.set("fields", "ip");
+
+  const response = await fetch(url, {
+    method: "GET",
+    headers: {
+      "X-API-Key": "sk-ClfVvpe9QR7HhgXi.gV9f07OBavLycfOZ6FWdOIb83GdWboLW"
+    },
+    signal
+  });
+
+  if (!response.ok) {
+    throw new Error("bad ip response");
+  }
+
+  const result = await response.json();
+  const ip = result && result.code === 0 && result.data ? cleanApiText(result.data.ip) : "";
+
+  if (!ip) {
+    throw new Error("missing visitor ip");
+  }
+
+  return ip;
+}
+
 async function getVisitorMessage() {
   const greeting = getTimeGreeting();
   const referrer = getReferrerLabel();
@@ -657,8 +683,9 @@ async function getVisitorMessage() {
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2500);
-    const response = await fetch("https://api-v2.cenguigui.cn/api/UserInfo/?", {
+    const timeoutId = setTimeout(() => controller.abort(), 4500);
+    const visitorIp = await getVisitorIp(controller.signal);
+    const response = await fetch("https://api-v2.cenguigui.cn/api/UserInfo/?ip=" + encodeURIComponent(visitorIp), {
       method: "GET",
       signal: controller.signal
     });
@@ -705,7 +732,7 @@ async function showWelcomeToast() {
   requestAnimationFrame(() => {
     welcomeToast.classList.add("is-visible");
   });
-  welcomeToastTimer = setTimeout(dismissWelcomeToast, 3000);
+  welcomeToastTimer = setTimeout(dismissWelcomeToast, 3600);
 }
 
 function updateRuntime() {
@@ -806,7 +833,7 @@ setInterval(updateRuntime, 1000);
 updateCounts(totalProjects);
 updateCollectionCounts();
 revealOnLoad();
-setTimeout(showWelcomeToast, 700);
+setTimeout(showWelcomeToast, 500);
 
 /* ===== 新增交互 ===== */
 
