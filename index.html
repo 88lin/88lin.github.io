@@ -13,6 +13,7 @@
 <link rel="canonical" href="https://go.88lin.eu.org/">
 <link rel="alternate" hreflang="zh-CN" href="https://go.88lin.eu.org/">
 <link rel="alternate" hreflang="x-default" href="https://go.88lin.eu.org/">
+<meta name="author" content="茉灵智库">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="免费在线工具导航｜发现优质工具与趣味项目">
 <meta property="og:url" content="https://go.88lin.eu.org/">
@@ -38,23 +39,46 @@
   "@context": "https://schema.org",
   "@graph": [
     {
+      "@type": "Organization",
+      "@id": "https://go.88lin.eu.org/#organization",
+      "name": "茉灵智库",
+      "url": "https://go.88lin.eu.org/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://go.88lin.eu.org/favicon.svg"
+      },
+      "sameAs": [
+        "https://blog.88lin.eu.org/"
+      ]
+    },
+    {
       "@type": "WebSite",
+      "@id": "https://go.88lin.eu.org/#website",
       "name": "免费在线工具导航｜发现优质工具与趣味项目",
       "url": "https://go.88lin.eu.org/",
       "inLanguage": "zh-CN",
       "description": "精选免费影视、免费短剧、音乐工具、烟花特效、学习与效率站点等优质资源，一键直达，安全快速、免登录、适配移动端。",
-      "publisher": {
-        "@type": "Organization",
-        "name": "茉灵智库",
-        "url": "https://go.88lin.eu.org/",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://go.88lin.eu.org/favicon.svg"
-        }
+      "publisher": { "@id": "https://go.88lin.eu.org/#organization" },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://go.88lin.eu.org/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
       }
     },
     {
+      "@type": "WebPage",
+      "@id": "https://go.88lin.eu.org/#webpage",
+      "url": "https://go.88lin.eu.org/",
+      "name": "免费在线工具导航｜发现优质工具与趣味项目",
+      "isPartOf": { "@id": "https://go.88lin.eu.org/#website" },
+      "about": { "@id": "https://go.88lin.eu.org/#organization" },
+      "inLanguage": "zh-CN",
+      "dateModified": "2026-05-30",
+      "description": "茉灵智库工具导航是一个中文免费在线工具与趣味项目导航站，收录 AI 模型检测、古诗起名、房贷计算、图像设计、时间专注、Notion 组件和节日特效等入口。"
+    },
+    {
       "@type": "ItemList",
+      "@id": "https://go.88lin.eu.org/#tool-list",
       "name": "免费在线工具导航目录",
       "itemListOrder": "http://schema.org/ItemListOrderAscending",
       "itemListElement": [
@@ -63,7 +87,11 @@
         { "@type": "ListItem", "position": 3, "name": "免费短剧", "url": "https://go.88lin.eu.org/duanju/index.html" },
         { "@type": "ListItem", "position": 4, "name": "跨年烟花", "url": "https://go.88lin.eu.org/fireworks/index.html" },
         { "@type": "ListItem", "position": 5, "name": "瀑布流图片浏览器", "url": "https://go.88lin.eu.org/bbl/index.html" },
-        { "@type": "ListItem", "position": 6, "name": "古诗起名", "url": "https://go.88lin.eu.org/gushi/dist/index.html" }
+        { "@type": "ListItem", "position": 6, "name": "古诗起名", "url": "https://go.88lin.eu.org/gushi/dist/index.html" },
+        { "@type": "ListItem", "position": 7, "name": "AI模型检测", "url": "https://go.88lin.eu.org/ai-model-checker.html" },
+        { "@type": "ListItem", "position": 8, "name": "房贷计算器", "url": "https://go.88lin.eu.org/fangdai/index.html" },
+        { "@type": "ListItem", "position": 9, "name": "延迟回放", "url": "https://go.88lin.eu.org/stop/index.html" },
+        { "@type": "ListItem", "position": 10, "name": "论文降重", "url": "https://go.88lin.eu.org/jiangchong/index.html" }
       ]
     }
   ]
@@ -768,6 +796,14 @@ function updateCollectionCounts() {
   });
 }
 
+function getInitialSearchQuery() {
+  try {
+    return new URLSearchParams(window.location.search).get("q") || "";
+  } catch (error) {
+    return "";
+  }
+}
+
 function filterLinks() {
   const query = searchInput.value.trim().toLowerCase();
   const visibleTargets = new Set();
@@ -830,8 +866,9 @@ shortcutChips.forEach((button) => {
 
 updateRuntime();
 setInterval(updateRuntime, 1000);
-updateCounts(totalProjects);
 updateCollectionCounts();
+searchInput.value = getInitialSearchQuery();
+filterLinks();
 revealOnLoad();
 setTimeout(showWelcomeToast, 500);
 

@@ -7,6 +7,20 @@
 >
 
 <url>
+ <loc>https://go.88lin.eu.org/</loc>
+ <priority>1.0</priority>
+ <lastmod>2026-05-30</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/ai-model-checker.html</loc>
+ <priority>0.8</priority>
+ <lastmod>2026-05-30</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+
+<url>
  <loc>https://go.88lin.eu.org/fireworks/index.html</loc>
  <priority>0.7</priority>
  <lastmod>2026-04-22</lastmod>
@@ -246,13 +260,6 @@
 
 <url>
  <loc>https://go.88lin.eu.org/fireworks/1.html</loc>
- <priority>0.7</priority>
- <lastmod>2026-04-22</lastmod>
- <changefreq>weekly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org</loc>
  <priority>0.7</priority>
  <lastmod>2026-04-22</lastmod>
  <changefreq>weekly</changefreq>
