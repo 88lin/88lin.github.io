@@ -1205,6 +1205,13 @@
               },
               {
                 "type": "link",
+                "addDate": 1782286855014,
+                "title": "开发者空间-华为云",
+                "icon": "https://logo.clearbit.com/developer.huaweicloud.com",
+                "url": "https://developer.huaweicloud.com/space/devportal/platform/devEnvironment?tab=cloud_desktop"
+              },
+              {
+                "type": "link",
                 "addDate": 1749391966461,
                 "title": "NoCode-零代码应用生成平台",
                 "icon": "https://logo.clearbit.com/nocode.cn",
@@ -1641,34 +1648,6 @@
           },
           {
             "type": "link",
-            "addDate": 1776622445794,
-            "title": "夸克网盘分享",
-            "icon": "https://logo.clearbit.com/pan.quark.cn",
-            "url": "https://pan.quark.cn/s/3776eede34a1#/list/share/75eb6d09ccc244138bd5c5c394a2e01a"
-          },
-          {
-            "type": "link",
-            "addDate": 1776846623000,
-            "title": "AI 产品从入门到精通 · 洛小山 AI 产品经理培训课程 | xueai.app",
-            "icon": "https://logo.clearbit.com/xueai.app",
-            "url": "https://xueai.app/slides/index.html"
-          },
-          {
-            "type": "link",
-            "addDate": 1776846996674,
-            "title": "产品经理全流程作战地图",
-            "icon": "https://logo.clearbit.com/liyanlong123456dsf.github.io",
-            "url": "https://liyanlong123456dsf.github.io/ai-pm-qieman-academy/"
-          },
-          {
-            "type": "link",
-            "addDate": 1776847015285,
-            "title": "AI 岗位全景分析",
-            "icon": "https://logo.clearbit.com/liyanlong123456dsf.github.io",
-            "url": "https://liyanlong123456dsf.github.io/ai-pm-job-dashboard/job_dashboard.html?v=1776846599859#hero"
-          },
-          {
-            "type": "link",
             "addDate": 1779721612606,
             "title": "ChatGPT共享账号",
             "icon": "https://logo.clearbit.com/terobox.com",
@@ -1769,22 +1748,15 @@
                 "title": "前端开发 |自2009年以来激发网络创意",
                 "icon": "https://logo.clearbit.com/tympanus.net",
                 "url": "https://tympanus.net/codrops/"
+              },
+              {
+                "type": "link",
+                "addDate": 1782468879273,
+                "title": "60fps - UI/UX animation inspiration for mobile & web apps",
+                "icon": "https://logo.clearbit.com/60fps.design",
+                "url": "https://60fps.design/"
               }
             ]
-          },
-          {
-            "type": "link",
-            "addDate": 1781283843541,
-            "title": "Life Windows",
-            "icon": "https://logo.clearbit.com/lw.dlidli.wang",
-            "url": "https://lw.dlidli.wang/windows.html?age=24"
-          },
-          {
-            "type": "link",
-            "addDate": 1781396674406,
-            "title": "nthLink",
-            "icon": "https://logo.clearbit.com/nthlink.com",
-            "url": "https://nthlink.com/zh/"
           },
           {
             "type": "folder",
@@ -1851,10 +1823,17 @@
           },
           {
             "type": "link",
-            "addDate": 1782020143623,
-            "title": "无限的人工智能",
-            "icon": "https://logo.clearbit.com/unlimited.surf",
-            "url": "https://unlimited.surf/"
+            "addDate": 1782635912232,
+            "title": "Beautiful Web Template — 精选 HTML 模板画廊",
+            "icon": "https://logo.clearbit.com/luoqianshi.github.io",
+            "url": "https://luoqianshi.github.io/beautiful_web_template/"
+          },
+          {
+            "type": "link",
+            "addDate": 1783099913257,
+            "title": "MonoKelvin/Wanwu: 万物（Wanwu）是一款用来分类浏览、收藏和阅读各类「事物」的桌面应用软件",
+            "icon": "https://logo.clearbit.com/github.com",
+            "url": "https://github.com/MonoKelvin/Wanwu"
           }
         ]
       },
@@ -2611,6 +2590,20 @@
             "title": "GOLD MINER | Business Intelligence Radar for Indie Hackers",
             "icon": "https://logo.clearbit.com/goldminer.makestuff.top",
             "url": "https://goldminer.makestuff.top/"
+          },
+          {
+            "type": "link",
+            "addDate": 1782278198612,
+            "title": "FiNews 美股日报 · 2026-06-23",
+            "icon": "https://logo.clearbit.com/finews.elsetech.app",
+            "url": "https://finews.elsetech.app/"
+          },
+          {
+            "type": "link",
+            "addDate": 1782469226682,
+            "title": "AI 产品商业化案例库",
+            "icon": "https://logo.clearbit.com/product.ferryman.app",
+            "url": "https://product.ferryman.app/zh/"
           }
         ]
       },
@@ -2948,10 +2941,10 @@
             "children": [
               {
                 "type": "link",
-                "addDate": 1726931899832,
-                "title": "GitHub 加速下载",
-                "icon": "https://logo.clearbit.com/tool.mintimate.cn",
-                "url": "https://tool.mintimate.cn/gh"
+                "addDate": 1742983254460,
+                "title": "GitHub 文件加速",
+                "icon": "https://logo.clearbit.com/github.akams.cn",
+                "url": "https://github.akams.cn/"
               },
               {
                 "type": "link",
@@ -2959,13 +2952,6 @@
                 "title": "文件加速下载",
                 "icon": "https://logo.clearbit.com/b.dalao.ru",
                 "url": "https://b.dalao.ru/g/"
-              },
-              {
-                "type": "link",
-                "addDate": 1742983254460,
-                "title": "GitHub 文件加速",
-                "icon": "https://logo.clearbit.com/github.akams.cn",
-                "url": "https://github.akams.cn/"
               },
               {
                 "type": "link",
@@ -2994,6 +2980,13 @@
                 "title": "GitHub 文件加速",
                 "icon": "https://logo.clearbit.com/ghfile.geekertao.top",
                 "url": "https://ghfile.geekertao.top/"
+              },
+              {
+                "type": "link",
+                "addDate": 1726931899832,
+                "title": "GitHub 加速下载",
+                "icon": "https://logo.clearbit.com/tool.mintimate.cn",
+                "url": "https://tool.mintimate.cn/gh"
               }
             ]
           },
@@ -5570,6 +5563,13 @@
                 "title": "临时工具 |免费临时号码和电子邮件",
                 "icon": "https://logo.clearbit.com/temp.bbinl.site",
                 "url": "https://temp.bbinl.site/"
+              },
+              {
+                "type": "link",
+                "addDate": 1782811190552,
+                "title": "Free Temporary & Disposable Email Inbox | tmail.io",
+                "icon": "https://logo.clearbit.com/tmail.io",
+                "url": "https://tmail.io/"
               }
             ]
           },
@@ -6986,6 +6986,34 @@
             "title": "生成你的第一批专属贴纸！",
             "icon": "https://logo.clearbit.com/sticker.guantou.site",
             "url": "https://sticker.guantou.site/"
+          },
+          {
+            "type": "link",
+            "addDate": 1782469865338,
+            "title": "免费前后对比照片制作工具 - 在线图片对比编辑器 | BAGen",
+            "icon": "https://logo.clearbit.com/beforeafterphotomaker.com",
+            "url": "https://beforeafterphotomaker.com/zh"
+          },
+          {
+            "type": "link",
+            "addDate": 1782558456549,
+            "title": "解说猫 - AI影视解说自动生成工具 | 一键生成抖音/B站/西瓜/短视频解说",
+            "icon": "https://logo.clearbit.com/jieshuomao.com",
+            "url": "https://jieshuomao.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1782810832291,
+            "title": "计算器3000 · 免费在线计算器",
+            "icon": "https://logo.clearbit.com/jsq3000.com",
+            "url": "https://jsq3000.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1783096760914,
+            "title": "免费浏览器人脸模糊工具 | Blur Face",
+            "icon": "https://logo.clearbit.com/blur-face.com",
+            "url": "https://blur-face.com/zh-CN/"
           }
         ]
       },
@@ -7411,6 +7439,13 @@
                 "title": "AI 订阅与模型 API 获取成本雷达",
                 "icon": "https://logo.clearbit.com/priceai.cc",
                 "url": "https://priceai.cc/"
+              },
+              {
+                "type": "link",
+                "addDate": 1779951340831,
+                "title": "NodeBits | 发现便宜的 AI 会员",
+                "icon": "https://logo.clearbit.com/www.nodebits.xyz",
+                "url": "https://www.nodebits.xyz/products"
               }
             ]
           },
@@ -7508,7 +7543,7 @@
           {
             "type": "link",
             "addDate": 1779696185942,
-            "title": "HidenCloud 管理面板621",
+            "title": "HidenCloud 管理面板705",
             "icon": "https://logo.clearbit.com/dash.hidencloud.com",
             "url": "https://dash.hidencloud.com/service/215464/manage"
           },
@@ -7518,13 +7553,6 @@
             "title": "大模型 API 导航",
             "icon": "https://logo.clearbit.com/link.hcnsec.cn",
             "url": "https://link.hcnsec.cn/"
-          },
-          {
-            "type": "link",
-            "addDate": 1779951340831,
-            "title": "NodeBits | 发现便宜的 AI 会员",
-            "icon": "https://logo.clearbit.com/www.nodebits.xyz",
-            "url": "https://www.nodebits.xyz/products"
           },
           {
             "type": "link",
@@ -7542,20 +7570,6 @@
           },
           {
             "type": "link",
-            "addDate": 1781281534917,
-            "title": "dc.hhhl.cc 社区公益节点",
-            "icon": "https://logo.clearbit.com/beefjerky.wujiezhidi.moe",
-            "url": "https://beefjerky.wujiezhidi.moe:32768/console/token"
-          },
-          {
-            "type": "link",
-            "addDate": 1781281545084,
-            "title": "老刀自用API中转",
-            "icon": "https://logo.clearbit.com/api.twgom.com",
-            "url": "https://api.twgom.com/keys"
-          },
-          {
-            "type": "link",
             "addDate": 1780971895867,
             "title": "API 密钥 - Sub2API",
             "icon": "https://logo.clearbit.com/zara.hidencloud.com",
@@ -7567,15 +7581,36 @@
             "title": "StackAI · The Platform for Enterprise AI",
             "icon": "https://logo.clearbit.com/www.stackai.com",
             "url": "https://www.stackai.com/project/6a2d8fbc9b522fbf3efe2847/export"
+          },
+          {
+            "type": "link",
+            "addDate": 1782470584296,
+            "title": "ZCode - 简单、迅捷、氛围十足 | GLM-5.2 官方适配开发工具",
+            "icon": "https://logo.clearbit.com/zcode.z.ai",
+            "url": "https://zcode.z.ai/cn"
+          },
+          {
+            "type": "link",
+            "addDate": 1782469199970,
+            "title": "Agnes",
+            "icon": "https://logo.clearbit.com/platform.agnes-ai.com",
+            "url": "https://platform.agnes-ai.com/settings/apiKeys"
+          },
+          {
+            "type": "link",
+            "addDate": 1782020143623,
+            "title": "无限的人工智能",
+            "icon": "https://logo.clearbit.com/unlimited.surf",
+            "url": "https://unlimited.surf/"
+          },
+          {
+            "type": "link",
+            "addDate": 1782975428975,
+            "title": "API 密钥 - MagicAI",
+            "icon": "https://logo.clearbit.com/sky.gptstore.club",
+            "url": "https://sky.gptstore.club/keys"
           }
         ]
-      },
-      {
-        "type": "link",
-        "addDate": 1757475801787,
-        "title": "Qwen",
-        "icon": "https://logo.clearbit.com/chat.qwen.ai",
-        "url": "https://chat.qwen.ai/"
       },
       {
         "type": "folder",
@@ -7875,6 +7910,13 @@
             "title": "Kimi Agent",
             "icon": "https://logo.clearbit.com/www.kimi.com",
             "url": "https://www.kimi.com/agent"
+          },
+          {
+            "type": "link",
+            "addDate": 1757475801787,
+            "title": "Qwen",
+            "icon": "https://logo.clearbit.com/chat.qwen.ai",
+            "url": "https://chat.qwen.ai/"
           },
           {
             "type": "link",
@@ -8862,6 +8904,76 @@
             "title": "OpenAI Plugins 中文索引",
             "icon": "https://logo.clearbit.com/caoling2010.github.io",
             "url": "https://caoling2010.github.io/openai-plugins-zh/"
+          },
+          {
+            "type": "link",
+            "addDate": 1782223522450,
+            "title": "AI Prompt Library — 30,000+ Prompts for ChatGPT, Claude, Gemini & Midjourney | God of Prompt",
+            "icon": "https://logo.clearbit.com/godofprompt.ai",
+            "url": "https://godofprompt.ai/prompt-library"
+          },
+          {
+            "type": "link",
+            "addDate": 1782281094969,
+            "title": "一人企业",
+            "icon": "https://logo.clearbit.com/ft07.com",
+            "url": "https://ft07.com/opb-quick-start/?mtm_campaign=github&mtm_kwd=opbmv2"
+          },
+          {
+            "type": "link",
+            "addDate": 1782470116475,
+            "title": "Dola 一款由字节体系提供的海外 AI 助手",
+            "icon": "https://logo.clearbit.com/www.dola.com",
+            "url": "https://www.dola.com/chat/38415240551287057"
+          },
+          {
+            "type": "link",
+            "addDate": 1782637140045,
+            "title": "Agent Mail — QQ 邮箱为 Agent 打造的专属邮箱",
+            "icon": "https://logo.clearbit.com/agent.qq.com",
+            "url": "https://agent.qq.com/page/setting"
+          },
+          {
+            "type": "link",
+            "addDate": 1782811617565,
+            "title": "中国GEO实践者画像｜GEO单篇内容标注教学页",
+            "icon": "https://logo.clearbit.com/doc.laoyao.cn",
+            "url": "https://doc.laoyao.cn/00j3ps"
+          },
+          {
+            "type": "link",
+            "addDate": 1776846623000,
+            "title": "AI 产品从入门到精通 · 洛小山 AI 产品经理培训课程 | xueai.app",
+            "icon": "https://logo.clearbit.com/xueai.app",
+            "url": "https://xueai.app/slides/index.html"
+          },
+          {
+            "type": "link",
+            "addDate": 1782978808723,
+            "title": "产品经理全流程作战地图",
+            "icon": "https://logo.clearbit.com/liyanlong123456dsf.github.io",
+            "url": "https://liyanlong123456dsf.github.io/ai-pm-qieman-academy/"
+          },
+          {
+            "type": "link",
+            "addDate": 1783091187401,
+            "title": "OpenAI Codex 从入门到精通 | AI编程橙皮书 | 花叔",
+            "icon": "https://logo.clearbit.com/www.huasheng.ai",
+            "url": "https://www.huasheng.ai/orange-books/codex/"
+          },
+          {
+            "type": "link",
+            "addDate": 1783096677084,
+            "title": "OpenClaw升级版 - 真正能做事的AI龙虾 | 基于OpenClaw深度升级 杭州趣猿人工智能有限公司",
+            "icon": "https://logo.clearbit.com/www.theopenclaw.cn",
+            "url": "https://www.theopenclaw.cn/"
+          },
+          {
+            "type": "link",
+            "addDate": 1780295872742,
+            "title": "AI 影视解说创作平台",
+            "icon": "https://logo.clearbit.com/agions.github.io",
+            "url": "https://agions.github.io/story-fab/"
           }
         ]
       },
@@ -9597,6 +9709,20 @@
             "title": "Showpaw — 海外影视网盘资源搜索 · 美剧 英剧 电影 一键找资源",
             "icon": "https://logo.clearbit.com/www.showpaw.xyz",
             "url": "https://www.showpaw.xyz/"
+          },
+          {
+            "type": "link",
+            "addDate": 1782811872714,
+            "title": "丫丫资源网",
+            "icon": "https://logo.clearbit.com/yayazy3.com",
+            "url": "https://yayazy3.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1783094595646,
+            "title": "资源站_最新影视采集站大全_播放源视频源接口实时测速监控平台 - 资源组",
+            "icon": "https://logo.clearbit.com/www.ziyuanzu.com",
+            "url": "https://www.ziyuanzu.com/"
           }
         ]
       },
@@ -9782,13 +9908,6 @@
           },
           {
             "type": "link",
-            "addDate": 1670073203812,
-            "title": "善用 GitHub",
-            "icon": "https://logo.clearbit.com/www.bmpi.dev",
-            "url": "https://www.bmpi.dev/self/use-github-better/"
-          },
-          {
-            "type": "link",
             "addDate": 1670644514525,
             "title": "新冠居家治疗指南",
             "icon": "https://logo.clearbit.com/docs.qq.com",
@@ -9814,13 +9933,6 @@
             "title": "Dennis个人成长",
             "icon": "https://logo.clearbit.com/www.domon.cn",
             "url": "https://www.domon.cn/"
-          },
-          {
-            "type": "link",
-            "addDate": 1671463531116,
-            "title": "下厨房",
-            "icon": "https://logo.clearbit.com/www.xiachufang.com",
-            "url": "https://www.xiachufang.com/"
           },
           {
             "type": "link",
@@ -9880,24 +9992,17 @@
           },
           {
             "type": "link",
-            "addDate": 1684428198448,
-            "title": "飞跃重洋 AdvancedEdu",
-            "icon": "https://logo.clearbit.com/bbs.pku.edu.cn",
-            "url": "https://bbs.pku.edu.cn/v2/thread.php?bid=41&type=1&mode=single"
-          },
-          {
-            "type": "link",
-            "addDate": 1690129663350,
-            "title": "盐选文库",
-            "icon": "https://logo.clearbit.com/www.xiaoheiwoo.com",
-            "url": "https://www.xiaoheiwoo.com/yanxuan/"
-          },
-          {
-            "type": "link",
             "addDate": 1690474629846,
             "title": "CarOBook车主手册",
             "icon": "https://logo.clearbit.com/www.carobook.com",
             "url": "https://www.carobook.com/"
+          },
+          {
+            "type": "link",
+            "addDate": 1684428198448,
+            "title": "飞跃重洋 AdvancedEdu",
+            "icon": "https://logo.clearbit.com/bbs.pku.edu.cn",
+            "url": "https://bbs.pku.edu.cn/v2/thread.php?bid=41&type=1&mode=single"
           },
           {
             "type": "link",
@@ -9929,13 +10034,6 @@
           },
           {
             "type": "link",
-            "addDate": 1696006126834,
-            "title": "深圳美食推荐",
-            "icon": "https://logo.clearbit.com/n9t57r5j6e.feishu.cn",
-            "url": "https://n9t57r5j6e.feishu.cn/base/TsmNbafKmaXSYAsaOzGcp3J9n7L?table=tblQpC6kaC95j8XQ&view=vewgUyhxb9"
-          },
-          {
-            "type": "link",
             "addDate": 1698505675427,
             "title": "全国12315消费投诉信息公示平台",
             "icon": "https://logo.clearbit.com/tsgs.12315.cn",
@@ -9957,24 +10055,10 @@
           },
           {
             "type": "link",
-            "addDate": 1712757834582,
-            "title": "梅花网营销作品",
-            "icon": "https://logo.clearbit.com/www.meihua.info",
-            "url": "https://www.meihua.info/"
-          },
-          {
-            "type": "link",
             "addDate": 1712757883984,
             "title": "TOPYS创意平台",
             "icon": "https://logo.clearbit.com/www.topys.cn",
             "url": "https://www.topys.cn/"
-          },
-          {
-            "type": "link",
-            "addDate": 1712757938739,
-            "title": "运营派学习平台",
-            "icon": "https://logo.clearbit.com/www.yunyingpai.com",
-            "url": "https://www.yunyingpai.com/"
           },
           {
             "type": "link",
@@ -10050,6 +10134,13 @@
                 "title": "数智法度-法律法规数据库",
                 "icon": "https://logo.clearbit.com/laws.szsyw.cn",
                 "url": "https://laws.szsyw.cn/"
+              },
+              {
+                "type": "link",
+                "addDate": 1727192392570,
+                "title": "要去法院起诉了却不会写起诉状？别慌，进来看看（建议收藏） - 原阳县法院网",
+                "icon": "https://logo.clearbit.com/hnyyxfy.hncourt.gov.cn",
+                "url": "https://hnyyxfy.hncourt.gov.cn/public/detail.php?id=2410"
               }
             ]
           },
@@ -10066,13 +10157,6 @@
             "title": "视频号直播私域指南",
             "icon": "https://logo.clearbit.com/docs.qq.com",
             "url": "https://docs.qq.com/doc/p/e06f4f5d2c7e88e8ad522687cdeb62ebd82c41fb"
-          },
-          {
-            "type": "link",
-            "addDate": 1727192392570,
-            "title": "要去法院起诉了却不会写起诉状？别慌，进来看看（建议收藏） - 原阳县法院网",
-            "icon": "https://logo.clearbit.com/hnyyxfy.hncourt.gov.cn",
-            "url": "https://hnyyxfy.hncourt.gov.cn/public/detail.php?id=2410"
           },
           {
             "type": "link",
@@ -10195,20 +10279,6 @@
           },
           {
             "type": "link",
-            "addDate": 1720800491182,
-            "title": "厨艺大增",
-            "icon": "https://logo.clearbit.com/daily.zhihu.com",
-            "url": "https://daily.zhihu.com/story/9763007"
-          },
-          {
-            "type": "link",
-            "addDate": 1742478220369,
-            "title": "烤肉工具準備",
-            "icon": "https://logo.clearbit.com/bbqnotes.tw",
-            "url": "https://bbqnotes.tw/toolsprepare"
-          },
-          {
-            "type": "link",
             "addDate": 1743486997900,
             "title": "BeddyStories 睡前故事库",
             "icon": "https://logo.clearbit.com/beddystories.com",
@@ -10244,13 +10314,6 @@
           },
           {
             "type": "link",
-            "addDate": 1748525879299,
-            "title": "做饭指南",
-            "icon": "https://logo.clearbit.com/cook.aiursoft.cn",
-            "url": "https://cook.aiursoft.cn/"
-          },
-          {
-            "type": "link",
             "addDate": 1748670298846,
             "title": "‌‍‬‌​​​​‌​​​​​​​​​⁠‌​​​​‬⁠​​‌​​﻿‍⁠‍﻿​‌​‍​‌﻿⁠‬​‬‍﻿​李一舟的100条创业思考【附流量工具】LYZCY100",
             "icon": "https://logo.clearbit.com/zz4ittwxqo.feishu.cn",
@@ -10278,17 +10341,17 @@
             "url": "https://notionchina.co/"
           },
           {
-            "type": "link",
-            "addDate": 1755065070936,
-            "title": "一饭封神 AI菜谱",
-            "icon": "https://logo.clearbit.com/eat.lz-t.top",
-            "url": "https://eat.lz-t.top/"
-          },
-          {
             "type": "folder",
             "addDate": 1757476593394,
             "title": "厨艺",
             "children": [
+              {
+                "type": "link",
+                "addDate": 1755065070936,
+                "title": "一饭封神 AI菜谱",
+                "icon": "https://logo.clearbit.com/eat.lz-t.top",
+                "url": "https://eat.lz-t.top/"
+              },
               {
                 "type": "link",
                 "addDate": 1757132343933,
@@ -10309,6 +10372,55 @@
                 "title": "大青龙经方学习录",
                 "icon": "https://logo.clearbit.com/www.daqinglong.com",
                 "url": "https://www.daqinglong.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1778087182550,
+                "title": "中国菜系大全 - 传承中华美食文化",
+                "icon": "https://logo.clearbit.com/food.zorezoro.com",
+                "url": "https://food.zorezoro.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1762822124563,
+                "title": "素食烹饪指南",
+                "icon": "https://logo.clearbit.com/huggypig.com",
+                "url": "https://huggypig.com/docs/"
+              },
+              {
+                "type": "link",
+                "addDate": 1748525879299,
+                "title": "做饭指南",
+                "icon": "https://logo.clearbit.com/cook.aiursoft.cn",
+                "url": "https://cook.aiursoft.cn/"
+              },
+              {
+                "type": "link",
+                "addDate": 1720800491182,
+                "title": "厨艺大增",
+                "icon": "https://logo.clearbit.com/daily.zhihu.com",
+                "url": "https://daily.zhihu.com/story/9763007"
+              },
+              {
+                "type": "link",
+                "addDate": 1783154159113,
+                "title": "烤肉？ 专业喔！ |美味烤肉指南、烤肉技巧",
+                "icon": "https://logo.clearbit.com/bbqnotes.tw",
+                "url": "https://bbqnotes.tw/unit"
+              },
+              {
+                "type": "link",
+                "addDate": 1671463531116,
+                "title": "下厨房",
+                "icon": "https://logo.clearbit.com/www.xiachufang.com",
+                "url": "https://www.xiachufang.com/"
+              },
+              {
+                "type": "link",
+                "addDate": 1762822079802,
+                "title": "像老乡鸡那样做饭",
+                "icon": "https://logo.clearbit.com/cooklikehoc.soilzhu.su",
+                "url": "https://cooklikehoc.soilzhu.su/"
               }
             ]
           },
@@ -10328,27 +10440,6 @@
           },
           {
             "type": "link",
-            "addDate": 1761740398758,
-            "title": "ReadCover资源管理",
-            "icon": "https://logo.clearbit.com/www.readcover.cn",
-            "url": "https://www.readcover.cn/content"
-          },
-          {
-            "type": "link",
-            "addDate": 1762822079802,
-            "title": "CookLikeHOC",
-            "icon": "https://logo.clearbit.com/cooklikehoc.soilzhu.su",
-            "url": "https://cooklikehoc.soilzhu.su/"
-          },
-          {
-            "type": "link",
-            "addDate": 1762822124563,
-            "title": "素食烹饪指南",
-            "icon": "https://logo.clearbit.com/huggypig.com",
-            "url": "https://huggypig.com/docs/"
-          },
-          {
-            "type": "link",
             "addDate": 1767461722494,
             "title": "个人行动手册",
             "icon": "https://logo.clearbit.com/www.indigox.me",
@@ -10360,13 +10451,6 @@
             "title": "后人类超级智能体报告：我的2026 新趋势与个人行动手册",
             "icon": "https://logo.clearbit.com/x.com",
             "url": "https://x.com/KKaWSB/article/2006490580277248328"
-          },
-          {
-            "type": "link",
-            "addDate": 1773850608065,
-            "title": "为人处世忠告",
-            "icon": "https://logo.clearbit.com/pan.quark.cn",
-            "url": "https://pan.quark.cn/s/42755c4eb12b#/list/share"
           },
           {
             "type": "link",
@@ -10388,13 +10472,6 @@
             "title": "巴菲特股东信",
             "icon": "https://logo.clearbit.com/buffett-letters-eir.pages.dev",
             "url": "https://buffett-letters-eir.pages.dev/"
-          },
-          {
-            "type": "link",
-            "addDate": 1778087182550,
-            "title": "中国菜系大全 - 传承中华美食文化",
-            "icon": "https://logo.clearbit.com/food.zorezoro.com",
-            "url": "https://food.zorezoro.com/"
           },
           {
             "type": "link",
@@ -10423,13 +10500,6 @@
             "title": "QuestTree — 家庭与学生的学习资源",
             "icon": "https://logo.clearbit.com/www.questtree.net",
             "url": "https://www.questtree.net/zh"
-          },
-          {
-            "type": "link",
-            "addDate": 1780295872742,
-            "title": "AI 影视解说创作平台",
-            "icon": "https://logo.clearbit.com/agions.github.io",
-            "url": "https://agions.github.io/story-fab/"
           }
         ]
       },
@@ -11475,6 +11545,13 @@
         "title": "DiscordHunt - 发现精彩的 Discord 服务器",
         "icon": "https://logo.clearbit.com/discordhunt.com",
         "url": "https://discordhunt.com/zh"
+      },
+      {
+        "type": "link",
+        "addDate": 1781396674406,
+        "title": "nthLink",
+        "icon": "https://logo.clearbit.com/nthlink.com",
+        "url": "https://nthlink.com/zh/"
       }
     ]
   },
@@ -11769,6 +11846,27 @@
         "title": "古人早就说过｜热梗古诗文反查",
         "icon": "https://logo.clearbit.com/gurensaid.com",
         "url": "https://gurensaid.com/"
+      },
+      {
+        "type": "link",
+        "addDate": 1782468313226,
+        "title": "舒尔特方格 – 免费在线专注力与速度训练 | Schulte Table",
+        "icon": "https://logo.clearbit.com/schulte-table.org",
+        "url": "https://schulte-table.org/zh"
+      },
+      {
+        "type": "link",
+        "addDate": 1781283843541,
+        "title": "Life Windows",
+        "icon": "https://logo.clearbit.com/lw.dlidli.wang",
+        "url": "https://lw.dlidli.wang/windows.html?age=24"
+      },
+      {
+        "type": "link",
+        "addDate": 1782963543105,
+        "title": "高考志愿填报模拟器 | 填分数看冲稳保",
+        "icon": "https://logo.clearbit.com/agentsfeed.org",
+        "url": "https://agentsfeed.org/app-demo/gaokao/index.html"
       }
     ]
   }
