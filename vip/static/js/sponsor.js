@@ -1,6 +1,4 @@
 /* ==========================================================================
- *  赞助商展示位  ——  /vip 页面
- * --------------------------------------------------------------------------
  *  五种形态，互相独立，各自一个开关：
  *    marquee   顶部滚动横幅（复用页面既有 .notice-banner 视觉）
  *    carousel  播放器下方轮播卡（主力位）
@@ -35,18 +33,18 @@
         enabled: true,
 
         // 广告标识文字，置为 '' 则隐藏角标（建议保留，便于区分编辑内容与付费内容）
-        label: '赞助',
+        label: '推荐',
 
         // 「想在这里投放广告」的联系入口
-        contact: 'https://go.88lin.eu.org/gzh',
+        contact: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/weixin.jpg',
         contactText: '想在这里投放广告？联系我',
 
         layouts: {
             // ① 顶部滚动横幅
             marquee: {
                 enabled: true,
-                showLabel: false, // 是否在横幅最左边显示「赞助」角标（横幅太窄，默认不显示）
-                duration: 32,     // 三家轮完一遍的秒数，越大越慢。内容无缝首尾相接，不会滚出空白
+                showLabel: false, // 是否在横幅最左边显示「推荐」角标（横幅太窄，默认不显示）
+                duration: 42,     // 三家轮完一遍的秒数，越大越慢。内容无缝首尾相接，不会滚出空白
                 // 用户点 × 关闭后，多久才会再出现：
                 //   'session'  当前标签页内不再出现，重新访问网站就恢复（默认）
                 //   'reload'   刷新页面就恢复（最激进）
@@ -72,7 +70,7 @@
             // ③ 「赞助商」标签页
             tab: {
                 enabled: true,
-                title: '赞助商'
+                title: '推荐广告'
             },
             // ④ 延迟弹窗（默认关闭：对工具站体验伤害明显，按需临时开）
             modal: {
@@ -118,19 +116,30 @@
                 name: 'WorkBuddy',
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
                 url: 'https://www.workbuddy.cn/events/invite?inviteCode=w0x2ic45z',
-                tagline: '腾讯出品的全能 AI 工作台，说出要求即可交付完整成果',
+                tagline: '是腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说需求、执行任务、交付完整成果，可用国产顶级模型。',
                 desc: '腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy3 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.2 等模型。',
-                highlights: ['Hy3 限时免费', '注册送 2000 积分', '每月再送 500'],
+                highlights: ['Hy3 模型限时免费', '注册送 2000 积分', '每月再送 500积分', 'Kimi-K3、GLM-5.2 等模型'],
                 cta: '立即体验',
                 accent: '#0052d9'
+            },
+            {
+                id: 'seekai',
+                name: 'SeekAI',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-07-31_213220_778.webp',
+                url: 'https://seekai.cc/sign-up?aff=Plh5',
+                tagline: '是免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。',
+                desc: '免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。目前较稳定。注册送 $70，每日签到得 $10 左右，支持 GitHub 登录。',
+                highlights: ['注册送 $200', '每日签到 $20', 'GitHub 登录', '免费稳定'],
+                cta: '免费领取',
+                accent: '#1e88e5'
             },
             {
                 id: 'gorouter',
                 name: 'GoRouter',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-07-31_200922_732.webp',
                 url: 'https://gorouter.app/sign-up?aff=hfcV',
-                tagline: '免费公益大模型 API 平台，可用 Claude Opus 5',
-                desc: '免费公益大模型 API 平台，可用 Claude Opus 5 模型，目前较稳定。注册送 $70，每日签到得 $10 左右，支持 GitHub 登录。',
+                tagline: '是免费公益大模型 API 平台，可用 Claude-Opus-5',
+                desc: '免费公益大模型 API 平台，可用 Claude-Opus-5 模型，目前较稳定。注册送 $70，每日签到得 $10 左右，支持 GitHub 登录。',
                 highlights: ['注册送 $70', '每日签到 $10', 'GitHub 登录'],
                 cta: '免费领取',
                 accent: '#1e88e5'
@@ -140,18 +149,15 @@
                 name: 'Agent Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
                 url: 'https://agentrouter.org/register?aff=ugVO',
-                tagline: '免费公益大模型 API 平台，国内直连不折腾',
+                tagline: '是免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连不折腾。',
                 desc: '免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
-                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50'],
+                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
                 cta: '免费领取',
                 accent: '#7c4dff'
             }
         ]
     };
 
-    /* ======================================================================
-     *  工具函数
-     * ==================================================================== */
     var LINK_REL = 'nofollow sponsored noopener noreferrer';
     var DAY = 86400000;
 
@@ -186,11 +192,6 @@
         try { var s = store(session); if (s) { s.setItem(key, value); } } catch (e) { /* 隐私模式忽略 */ }
     }
 
-    /* 关闭后的静默策略，dismiss 取值见配置区注释：
-         'reload'   完全不落盘，刷新就恢复
-         'session'  写 sessionStorage，关掉标签页重新访问就恢复（广告场景的默认）
-         数字        写 localStorage 存过期时间戳，静默指定天数
-       返回 true 表示仍在静默期内。 */
     function muted(key, dismiss) {
         if (dismiss === 'reload') { return false; }
         if (dismiss === 'session') { return storeGet(key, true) === '1'; }
@@ -260,9 +261,6 @@
         return node;
     }
 
-    /* 解析整图配置。返回 null 表示这家没配 banner，走信息卡。
-       用「最大高度 × 宽高比」反推出最大宽度，图片就能永远完整显示 ——
-       既不会被裁掉边角，也不会出现黑边，只是在超宽屏上不铺满整行。 */
     function bannerSpec(sponsor, carouselConf) {
         var b = sponsor.banner;
         if (!b || !b.src) { return null; }
@@ -276,8 +274,6 @@
         }
 
         var ratio = b.ratio || g.ratio || '1200 / 160';
-        // 手机端换了图往往也换了比例（横条 -> 方一点的图），所以比例要能单独配；
-        // 没配就沿用桌面比例。
         var ratioM = b.ratioMobile || g.ratioMobile || ratio;
         return {
             src: b.src,
@@ -300,9 +296,6 @@
         return tag;
     }
 
-    /* ======================================================================
-     *  ① 顶部滚动横幅
-     * ==================================================================== */
     function renderMarquee(list, container) {
         var conf = SPONSOR_CONFIG.layouts.marquee;
         var KEY = 'vip_sp_marquee_until';
@@ -313,10 +306,6 @@
         strip.setAttribute('role', 'complementary');
         strip.setAttribute('aria-label', '赞助商');
 
-        // 这里刻意不渲染页面原有的 .notice-icon 圆形图标：
-        // 圆图标 + 「赞助」角标两个标识挨在一起既重复又占位置（桌面吃掉 51px、
-        // 手机 38px），横幅本来就是最窄的一条。角标也默认关掉了，见 showLabel。
-        // 广告披露靠链接上的 rel="sponsored" 与「赞助商」标签页承担。
         if (conf.showLabel) {
             var tag = tagBox();
             if (tag) { strip.appendChild(tag); }
@@ -325,10 +314,6 @@
         var content = el('div', 'notice-content');
         var text = el('div', 'notice-text');
 
-        /* 追加一份完整内容。每条后面都跟一个分隔符（而不是只在条目之间加），
-           这样首尾相接处读起来是「…免费领取 · WorkBuddy…」，接缝看不出来。
-           clone=true 的那几份纯粹为了填满视口，读屏和 Tab 键都要跳过，
-           否则同一个链接会被念三遍、Tab 也要按三遍才能走完。 */
         function appendCopy(clone) {
             list.forEach(function (sponsor) {
                 var item = el('span', 'sp-strip-item');
@@ -373,14 +358,6 @@
 
         container.insertBefore(strip, container.firstChild);
 
-        /* ── 无缝循环 ──────────────────────────────────────────────────────
-           页面原版是 `padding-left: 100%` 配 `translateX(-100%)`：内容先被推到
-           视口右侧外面，再整体左移自身宽度。结果每一轮的开头和结尾都必然有一段
-           空白（合计约两个视口宽），三条滚完就"掉进空白里"。
-           无缝的做法是复制内容、去掉 padding，只位移「一份」的宽度：位移结束时
-           第 2 份正好停在第 1 份的起始位置，视觉上完全连续。
-           复制份数要保证「除第一份之外的部分」能盖满视口，否则位移到底时右边
-           还是会露白 —— 所以按实测宽度算，而不是写死 2 份。 */
         if (!reduceMotion) {
             var copyW = text.getBoundingClientRect().width;
             var viewW = content.getBoundingClientRect().width;
@@ -390,21 +367,14 @@
             }
             for (var c = 1; c < copies; c++) { appendCopy(true); }
             text.style.setProperty('--sp-marquee-shift', (-100 / copies) + '%');
-            // duration 的语义是「一份内容滚完」，和复制了几份无关，速度恒定
             if (conf.duration) { text.style.animationDuration = conf.duration + 's'; }
 
-            /* 兜底：CSS 那边用 overflow: clip 挡掉了「Tab 到视口外的链接会把
-               容器滚走」的问题，但 Safari 16 以前不认 clip。滚动一旦发生就把
-               它按回去，否则跑马灯会被永久错位、露出空白。 */
             content.addEventListener('scroll', function () {
                 if (content.scrollLeft) { content.scrollLeft = 0; }
             });
         }
     }
 
-    /* ======================================================================
-     *  ② 播放器下方轮播卡
-     * ==================================================================== */
     function renderCarousel(list, container) {
         var conf = SPONSOR_CONFIG.layouts.carousel;
         if (!conf.enabled) { return; }
@@ -439,9 +409,6 @@
         // 整图形态：一张 banner 铺满，点击整块跳转
         function fillAsBanner(slide, sponsor, spec, eager) {
             slide.classList.add('sp-slide--img');
-
-            // 比例走 CSS 变量而不是内联 aspect-ratio：手机端要在媒体查询里换成
-            // ratioMobile，内联样式没法响应媒体查询。
             var frame = el('span', 'sp-media');
             frame.style.setProperty('--sp-media-ratio', spec.ratio);
             frame.style.setProperty('--sp-media-ratio-m', spec.ratioMobile);
@@ -544,7 +511,6 @@
         }
 
         if (slides.length > 1) {
-            // 控制条：[‹] ●●● [›]，统一放在卡片下缘，不与右侧 CTA 抢位置
             var controls = el('div', 'sp-controls');
 
             function navButton(className, label, step, iconName) {
@@ -616,9 +582,6 @@
         start();
     }
 
-    /* ======================================================================
-     *  ③ 「赞助商」标签页
-     * ==================================================================== */
     function renderTab(list, container) {
         var conf = SPONSOR_CONFIG.layouts.tab;
         if (!conf.enabled) { return; }
@@ -627,8 +590,6 @@
         var panels = container.querySelectorAll('.tab-content');
         if (!tabBar || !panels.length) { return; }
 
-        // data-tab 值 partners 对应面板 id partners-content，
-        // 与内联脚本的 `${tabId}-content` 约定保持一致。
         var tabButton = el('div', 'tab', conf.title);
         tabButton.setAttribute('data-tab', 'partners');
         tabBar.appendChild(tabButton);
@@ -653,8 +614,6 @@
             row.appendChild(logoBox(sponsor, 152, 52));
 
             var body = el('div', 'sp-row-body');
-            // 这里不再给每行加「赞助」角标：面板标题已经写明「赞助商」，
-            // 逐行重复三次反而显得吵。轮播卡和弹窗仍保留角标。
             var name = el('div', 'sp-row-name', sponsor.name);
             body.appendChild(name);
             body.appendChild(el('div', 'sp-row-desc', sponsor.desc));
@@ -679,9 +638,6 @@
 
         panel.appendChild(wrap);
         panels[panels.length - 1].insertAdjacentElement('afterend', panel);
-
-        // 兜底的幂等切换逻辑。内联脚本正常工作时两者结果一致，互不干扰；
-        // 万一内联脚本因反调试守卫抛错而未注册，这里仍能切换。
         tabButton.addEventListener('click', function () {
             var allTabs = document.querySelectorAll('.tab');
             var allPanels = document.querySelectorAll('.tab-content');
@@ -693,9 +649,6 @@
         });
     }
 
-    /* ======================================================================
-     *  ④ 延迟弹窗
-     * ==================================================================== */
     function renderModal(list) {
         var conf = SPONSOR_CONFIG.layouts.modal;
         var KEY = 'vip_sp_modal_until';
@@ -771,9 +724,6 @@
         }, Math.max(0, conf.delay || 0));
     }
 
-    /* ======================================================================
-     *  ⑤ 纯文字位
-     * ==================================================================== */
     function renderText(list, container) {
         if (!SPONSOR_CONFIG.layouts.text.enabled) { return; }
 
@@ -797,9 +747,6 @@
         container.insertBefore(line, anchor);
     }
 
-    /* ======================================================================
-     *  启动
-     * ==================================================================== */
     function init() {
         if (!SPONSOR_CONFIG.enabled) { return; }
 
@@ -818,8 +765,6 @@
         renderModal(list);
     }
 
-    // 正常情况下本文件已在 .container 之后同步执行，可以立即渲染；
-    // 若被误挪到 <head>，退化为等 DOM 就绪后再渲染。
     if (document.querySelector('.container')) {
         init();
     } else {
