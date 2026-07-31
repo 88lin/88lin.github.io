@@ -45,14 +45,28 @@
             // ① 顶部滚动横幅
             marquee: {
                 enabled: true,
-                dismissDays: 7,   // 用户点关闭后，多少天内不再出现
-                duration: 32      // 跑马灯滚动一轮的秒数，越大越慢
+                duration: 32,     // 跑马灯滚动一轮的秒数，越大越慢
+                // 用户点 × 关闭后，多久才会再出现：
+                //   'session'  当前标签页内不再出现，重新访问网站就恢复（默认）
+                //   'reload'   刷新页面就恢复（最激进）
+                //   数字        静默的天数，例如 7
+                dismiss: 'session'
             },
             // ② 播放器下方轮播卡
             carousel: {
                 enabled: true,
                 interval: 6000,   // 自动切换间隔（毫秒），设 0 关闭自动切换
-                pauseOnHover: true
+                pauseOnHover: true,
+                // 'auto'：赞助商配了 banner 就渲染整张大图，没配就渲染信息卡，两种可混用
+                // 'card'：全部走信息卡，忽略 banner 配置
+                mode: 'auto',
+                // 整图模式的默认约束，单个 banner 可以各自覆盖
+                banner: {
+                    ratio: '1200 / 160',    // 图片宽高比，必须和实际图一致，否则会裁切
+                    ratioMobile: '',        // 手机端换图时填它，留空表示和 ratio 一样
+                    maxHeight: 180,         // 桌面端最大高度(px)
+                    maxHeightMobile: 120    // 手机端最大高度(px)
+                }
             },
             // ③ 「赞助商」标签页
             tab: {
@@ -63,7 +77,7 @@
             modal: {
                 enabled: false,
                 delay: 10000,     // 打开页面后多久弹出（毫秒）
-                dismissDays: 1,   // 勾选「今日不再提示」后的静默天数
+                dismiss: 1,       // 勾选「今日不再提示」后静默几天（同样支持 'session'）
                 pick: 'random'    // 'random' 随机一家 | 'first' 固定第一家
             },
             // ⑤ 纯文字位（默认关闭：与轮播卡内容重复）
@@ -78,8 +92,25 @@
         //   desc                          标签页与弹窗用的完整介绍
         //   highlights[]                  卖点小徽章，建议 2~3 条
         //   cta / accent                  按钮文字 / 品牌色（用于光晕）
+        //   banner                        可选。配了就在轮播卡里渲染整张大图，见下方示例
+        //
         // logo 建议用「深色字 + 透明底 / 浅底」的横版图，会被放进 152×52 的白色托盘里；
         // 加载失败时自动退化成品牌名文字，不会留空白。
+        //
+        // 整图（纯图片轮播）示例 —— 把 banner 加进任意一家即可，可以只给部分赞助商配，
+        // 整图和信息卡能混在同一个轮播里；三家都配了整图，卡片就自动进满幅模式（图顶到边框）。
+        //   banner: {
+        //       src:         'https://.../banner-1200x160.jpg',
+        //       ratio:       '1200 / 160',   // 必须和 src 的实际像素比一致，否则会裁切
+        //       srcMobile:   'https://.../banner-750x260.jpg',  // 可选，手机端换一张
+        //       ratioMobile: '750 / 260',    // 配了 srcMobile 且比例不同就必须填
+        //       maxHeight:       180,        // 可选，桌面端最大高度(px)
+        //       maxHeightMobile: 120,        // 可选，手机端最大高度(px)
+        //       alt:         '双十一大促 5 折起'  // 可选，默认用品牌名
+        //   }
+        // 尺寸建议：桌面 1200×160（约 7.5:1），手机另配一张 750×260（约 2.9:1）。
+        // 直接把桌面横条塞到 390px 的手机屏上只有 ~46px 高，字会糊，务必配 srcMobile。
+        // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
                 id: 'workbuddy',
@@ -142,22 +173,34 @@
         return i;
     }
 
-    function storeGet(key) {
-        try { return window.localStorage.getItem(key); } catch (e) { return null; }
+    function store(session) {
+        try { return session ? window.sessionStorage : window.localStorage; } catch (e) { return null; }
     }
 
-    function storeSet(key, value) {
-        try { window.localStorage.setItem(key, value); } catch (e) { /* 隐私模式忽略 */ }
+    function storeGet(key, session) {
+        try { var s = store(session); return s ? s.getItem(key) : null; } catch (e) { return null; }
     }
 
-    // 返回 true 表示仍在静默期内
-    function muted(key) {
+    function storeSet(key, value, session) {
+        try { var s = store(session); if (s) { s.setItem(key, value); } } catch (e) { /* 隐私模式忽略 */ }
+    }
+
+    /* 关闭后的静默策略，dismiss 取值见配置区注释：
+         'reload'   完全不落盘，刷新就恢复
+         'session'  写 sessionStorage，关掉标签页重新访问就恢复（广告场景的默认）
+         数字        写 localStorage 存过期时间戳，静默指定天数
+       返回 true 表示仍在静默期内。 */
+    function muted(key, dismiss) {
+        if (dismiss === 'reload') { return false; }
+        if (dismiss === 'session') { return storeGet(key, true) === '1'; }
         var until = parseInt(storeGet(key) || '0', 10);
         return !!until && Date.now() < until;
     }
 
-    function mute(key, days) {
-        storeSet(key, String(Date.now() + Math.max(0, days || 0) * DAY));
+    function mute(key, dismiss) {
+        if (dismiss === 'reload') { return; }
+        if (dismiss === 'session') { storeSet(key, '1', true); return; }
+        storeSet(key, String(Date.now() + Math.max(0, parseFloat(dismiss) || 0) * DAY));
     }
 
     // #rrggbb -> rgba(r,g,b,a)，用于 logo 托盘的品牌色柔光
@@ -216,6 +259,38 @@
         return node;
     }
 
+    /* 解析整图配置。返回 null 表示这家没配 banner，走信息卡。
+       用「最大高度 × 宽高比」反推出最大宽度，图片就能永远完整显示 ——
+       既不会被裁掉边角，也不会出现黑边，只是在超宽屏上不铺满整行。 */
+    function bannerSpec(sponsor, carouselConf) {
+        var b = sponsor.banner;
+        if (!b || !b.src) { return null; }
+        var g = carouselConf.banner || {};
+
+        function ar(ratio) {
+            var parts = String(ratio).split('/');
+            var w = parseFloat(parts[0]);
+            var h = parseFloat(parts[1] || '1');
+            return (w > 0 && h > 0) ? (w / h) : 7.5;
+        }
+
+        var ratio = b.ratio || g.ratio || '1200 / 160';
+        // 手机端换了图往往也换了比例（横条 -> 方一点的图），所以比例要能单独配；
+        // 没配就沿用桌面比例。
+        var ratioM = b.ratioMobile || g.ratioMobile || ratio;
+        return {
+            src: b.src,
+            srcMobile: b.srcMobile || '',
+            alt: b.alt || sponsor.name,
+            ratio: ratio,
+            ratioMobile: ratioM,
+            ar: ar(ratio),
+            arMobile: ar(ratioM),
+            maxHeight: b.maxHeight || g.maxHeight || 180,
+            maxHeightMobile: b.maxHeightMobile || g.maxHeightMobile || 120
+        };
+    }
+
     function tagBox(labelIcon) {
         if (!SPONSOR_CONFIG.label) { return null; }
         var tag = el('span', 'sp-tag');
@@ -230,17 +305,16 @@
     function renderMarquee(list, container) {
         var conf = SPONSOR_CONFIG.layouts.marquee;
         var KEY = 'vip_sp_marquee_until';
-        if (!conf.enabled || muted(KEY)) { return; }
+        if (!conf.enabled || muted(KEY, conf.dismiss)) { return; }
 
         var strip = el('div', 'notice-banner sp-strip');
         strip.id = 'sp-strip';
         strip.setAttribute('role', 'complementary');
         strip.setAttribute('aria-label', '赞助商');
 
-        var round = el('div', 'notice-icon');
-        round.appendChild(icon('fas fa-heart'));
-        strip.appendChild(round);
-
+        // 这里刻意不渲染页面原有的 .notice-icon 圆形图标：
+        // 圆图标 + 「赞助」角标两个标识挨在一起既重复又占位置（桌面吃掉 51px、
+        // 手机 38px），横幅本来就是最窄的一条，留一个标识就够了。
         var tag = tagBox();
         if (tag) { strip.appendChild(tag); }
 
@@ -278,7 +352,7 @@
         close.appendChild(icon('fas fa-times'));
         close.addEventListener('click', function () {
             strip.style.display = 'none';
-            mute(KEY, conf.dismissDays);
+            mute(KEY, conf.dismiss);
         });
         strip.appendChild(close);
 
@@ -307,6 +381,69 @@
         var track = el('div', 'sp-track');
         var slides = [];
 
+        // 信息卡形态：logo + 品牌名 + 一句话 + 卖点徽章 + 按钮
+        function fillAsCard(slide, sponsor) {
+            slide.appendChild(logoBox(sponsor, 152, 52));
+            var body = el('span', 'sp-body');
+            body.appendChild(el('span', 'sp-name', sponsor.name));
+            body.appendChild(el('span', 'sp-tagline', sponsor.tagline));
+            var chip = chips(sponsor);
+            if (chip) { body.appendChild(chip); }
+            slide.appendChild(body);
+            slide.appendChild(ctaBox(sponsor));
+        }
+
+        // 整图形态：一张 banner 铺满，点击整块跳转
+        function fillAsBanner(slide, sponsor, spec, eager) {
+            slide.classList.add('sp-slide--img');
+
+            // 比例走 CSS 变量而不是内联 aspect-ratio：手机端要在媒体查询里换成
+            // ratioMobile，内联样式没法响应媒体查询。
+            var frame = el('span', 'sp-banner');
+            frame.style.setProperty('--sp-banner-ratio', spec.ratio);
+            frame.style.setProperty('--sp-banner-ratio-m', spec.ratioMobile);
+            frame.style.setProperty('--sp-banner-ar', String(spec.ar));
+            frame.style.setProperty('--sp-banner-ar-m', String(spec.arMobile));
+            frame.style.setProperty('--sp-banner-max-h', spec.maxHeight + 'px');
+            frame.style.setProperty('--sp-banner-max-h-m', spec.maxHeightMobile + 'px');
+
+            var img = document.createElement('img');
+            img.src = spec.src;
+            img.alt = spec.alt;
+            img.loading = eager ? 'eager' : 'lazy';
+            img.decoding = 'async';
+
+            // 图挂了就退回信息卡，不留白块
+            img.addEventListener('error', function () {
+                slide.textContent = '';
+                slide.classList.remove('sp-slide--img');
+                fillAsCard(slide, sponsor);
+                syncCardMode();
+            });
+
+            if (spec.srcMobile) {
+                var pic = document.createElement('picture');
+                var alt = document.createElement('source');
+                alt.media = '(max-width: 768px)';
+                alt.srcset = spec.srcMobile;
+                pic.appendChild(alt);
+                pic.appendChild(img);
+                frame.appendChild(pic);
+            } else {
+                frame.appendChild(img);
+            }
+            slide.appendChild(frame);
+        }
+
+        // 三张图都是整图时，卡片进入满幅模式：去掉内边距和白色内衬，图片顶到边
+        function syncCardMode() {
+            var imgs = 0;
+            slides.forEach(function (s) {
+                if (s.classList.contains('sp-slide--img')) { imgs++; }
+            });
+            card.classList.toggle('sp-card--img', imgs > 0 && imgs === slides.length);
+        }
+
         list.forEach(function (sponsor, i) {
             var slide = link(sponsor, 'sp-slide' + (i === 0 ? ' is-active' : ''));
             if (sponsor.accent) {
@@ -316,20 +453,18 @@
             slide.setAttribute('aria-hidden', i === 0 ? 'false' : 'true');
             if (i !== 0) { slide.tabIndex = -1; }
 
-            slide.appendChild(logoBox(sponsor, 152, 52));
+            var spec = conf.mode === 'card' ? null : bannerSpec(sponsor, conf);
+            if (spec) {
+                fillAsBanner(slide, sponsor, spec, i === 0);
+            } else {
+                fillAsCard(slide, sponsor);
+            }
 
-            var body = el('span', 'sp-body');
-            body.appendChild(el('span', 'sp-name', sponsor.name));
-            body.appendChild(el('span', 'sp-tagline', sponsor.tagline));
-            var chip = chips(sponsor);
-            if (chip) { body.appendChild(chip); }
-            slide.appendChild(body);
-
-            slide.appendChild(ctaBox(sponsor));
             track.appendChild(slide);
             slides.push(slide);
         });
 
+        syncCardMode();
         inner.appendChild(track);
         card.appendChild(inner);
 
@@ -521,7 +656,7 @@
     function renderModal(list) {
         var conf = SPONSOR_CONFIG.layouts.modal;
         var KEY = 'vip_sp_modal_until';
-        if (!conf.enabled || muted(KEY)) { return; }
+        if (!conf.enabled || muted(KEY, conf.dismiss)) { return; }
 
         var sponsor = conf.pick === 'first'
             ? list[0]
@@ -566,7 +701,7 @@
             overlay.appendChild(card);
 
             function dismiss() {
-                if (box.checked) { mute(KEY, conf.dismissDays); }
+                if (box.checked) { mute(KEY, conf.dismiss); }
                 overlay.classList.remove('is-open');
                 window.setTimeout(function () {
                     if (overlay.parentNode) { overlay.parentNode.removeChild(overlay); }
@@ -582,7 +717,7 @@
             overlay.addEventListener('click', function (e) {
                 if (e.target === overlay) { dismiss(); }
             });
-            cta.addEventListener('click', function () { mute(KEY, conf.dismissDays); });
+            cta.addEventListener('click', function () { mute(KEY, conf.dismiss); });
             document.addEventListener('keydown', onKey);
 
             document.body.appendChild(overlay);

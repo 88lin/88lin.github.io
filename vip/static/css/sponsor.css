@@ -23,21 +23,21 @@
 .sp-tag {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    font-size: .68rem;
-    font-weight: 700;
-    letter-spacing: .08em;
+    gap: 6px;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .12em;
     line-height: 1;
-    padding: 4px 10px;
+    padding: 6px 13px;
     border-radius: 999px;
     color: #0b7fbe;
     background: rgba(0, 159, 247, .1);
-    border: 1px solid rgba(0, 159, 247, .16);
+    border: 1px solid rgba(0, 159, 247, .18);
     white-space: nowrap;
 }
 
 .sp-tag i {
-    font-size: .62rem;
+    font-size: .7rem;
     color: #ff6b9d;
 }
 
@@ -130,18 +130,25 @@
    结构上复用页面既有的 .notice-banner / .notice-icon / .notice-content /
    .notice-text / .notice-close，这里只做赞助场景的少量补充。
    ========================================================================= */
-.sp-strip .notice-icon {
-    background: linear-gradient(135deg, #ff6b9d 0%, var(--primary, #009ff7) 100%);
-    box-shadow: 0 3px 10px rgba(255, 107, 157, .3);
+/* 横幅上不渲染页面原有的 .notice-icon 圆形图标（见 sponsor.js 里的说明）：
+   圆图标 + 「赞助」角标两个标识并排既重复又占位置。角标在这里适当收一点，
+   毕竟横幅是整页最窄的一条。 */
+.sp-strip > .sp-tag {
+    font-size: .72rem;
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, .72);
+    border-color: rgba(0, 159, 247, .24);
 }
 
-/* 跑马灯左右两端加淡出遮罩：不然滚动内容会在「赞助」角标旁被硬切断，
-   经常正好切在 CTA 药丸中间，看起来像渲染坏了。 */
+/* 跑马灯左右两端加淡出遮罩：不然滚动内容会在「赞助」角标旁被硬切断。
+   渐变带必须明显窄于滚动内容里最宽的元素（CTA 药丸约 90px）——
+   否则整颗药丸会一起处在半透明区，实心色块半透明看着像渲染坏了，
+   而不像淡出。窄渐变只软化边缘那一小条，读起来才是「擦入擦出」。 */
 .sp-strip .notice-content {
-    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 58px,
-                                        #000 calc(100% - 42px), transparent 100%);
-    mask-image: linear-gradient(90deg, transparent 0, #000 58px,
-                                #000 calc(100% - 42px), transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px,
+                                        #000 calc(100% - 20px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 24px,
+                                #000 calc(100% - 20px), transparent 100%);
 }
 
 .sp-strip .notice-text {
@@ -223,15 +230,19 @@
     z-index: 1;
 }
 
-/* 角标做成骑在卡片上边缘的小吊牌，既不挤占内容行，也是个刻意的设计点 */
+/* 角标嵌在卡片左上角：下半截压在卡片上边框里、上半截凸出来，看起来是从边框上
+   长出来的一块，而不是浮在卡片外面的贴纸。放左上是因为视线落点在左上角，
+   而且右上留给未来可能加的关闭按钮。绝对定位，不占内容高度。 */
 .sp-card > .sp-tag {
     position: absolute;
-    top: -11px;
-    right: 22px;
+    top: -13px;
+    /* 24px = 卡片 padding-left 22 + slide padding-left 2，正好和 logo 托盘左边缘齐 */
+    left: 24px;
     z-index: 3;
-    background: #fff;
-    border-color: rgba(0, 159, 247, .22);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, .08);
+    background: linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%);
+    border-color: rgba(0, 159, 247, .3);
+    box-shadow: 0 4px 12px rgba(0, 90, 160, .12),
+                inset 0 1px 0 #fff;
 }
 
 /* 所有 slide 用 grid 堆叠在同一格：高度自动取最高一张，切换时可交叉淡入，
@@ -252,13 +263,17 @@
     opacity: 0;
     transform: translateX(16px);
     pointer-events: none;
-    transition: opacity .45s ease, transform .45s var(--sp-ease);
+    /* 交叉淡入淡出要错开，不能对称：两张 slide 叠在同一个网格格子里，
+       等时长对淡时中间会有一段两张都是半透明的时刻，两段文案糊在一起像重影。
+       这里让旧的先快速退场(.24s)，新的延迟 .14s 再进场，重叠区就基本没了。 */
+    transition: opacity .24s ease, transform .42s var(--sp-ease);
 }
 
 .sp-slide.is-active {
     opacity: 1;
     transform: none;
     pointer-events: auto;
+    transition: opacity .3s ease .14s, transform .42s var(--sp-ease) .04s;
 }
 
 .sp-body {
@@ -356,6 +371,77 @@
 .sp-dots button[aria-selected="true"] {
     width: 22px;
     background: linear-gradient(90deg, var(--primary, #009ff7), var(--secondary, #78fadc));
+}
+
+/* ── ②-b 整图轮播（纯图片 banner） ──────────────────────────────────────
+   给赞助商配了 banner 就走这套，和信息卡可以混在同一个轮播里。
+   高度控制思路：不裁图、不留黑边 —— 用「最大高度 × 宽高比」反推最大宽度，
+   超宽屏上图片就居中留白，而不是被拉高占掉半个首屏。
+   ────────────────────────────────────────────────────────────────────── */
+.sp-slide--img {
+    display: block;
+    gap: 0;
+    padding: 0;
+}
+
+.sp-banner {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--sp-banner-ratio, 1200 / 160);
+    max-width: calc(var(--sp-banner-max-h, 180px) * var(--sp-banner-ar, 7.5));
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 14px;
+    background: rgba(0, 159, 247, .06);
+}
+
+.sp-banner picture,
+.sp-banner img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 轮播里每一张都是整图时，卡片进入满幅模式：去掉内边距和白色内衬，图顶到边框 */
+.sp-card--img {
+    padding: 0;
+    overflow: hidden;
+}
+
+.sp-card--img::before {
+    display: none;
+}
+
+.sp-card--img .sp-track {
+    border-radius: calc(var(--sp-radius) - 2px);
+    overflow: hidden;
+}
+
+.sp-card--img .sp-banner {
+    max-width: none;
+    max-height: var(--sp-banner-max-h, 180px);
+    border-radius: 0;
+}
+
+/* 满幅模式下角标和控制条都浮在图片上，得自带底衬才看得清 */
+.sp-card--img > .sp-tag {
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+}
+
+.sp-card--img > .sp-controls {
+    bottom: 12px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .9);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
 }
 
 /* =========================================================================
@@ -665,10 +751,6 @@
         gap: 10px 12px;
         padding: 4px 0 2px;
     }
-    .sp-card > .sp-tag {
-        top: -10px;
-        right: 16px;
-    }
     .sp-logo {
         width: 138px;
         height: 46px;
@@ -702,6 +784,54 @@
     }
     .sp-card > .sp-controls {
         bottom: 5px;
+    }
+    /* 手机端横幅只剩「赞助」一个标识，再压紧一点给正文让位 */
+    .sp-strip > .sp-tag {
+        font-size: .66rem;
+        letter-spacing: .06em;
+        padding: 4px 9px;
+        gap: 4px;
+        margin-right: 9px;
+    }
+    .sp-strip > .sp-tag i {
+        font-size: .62rem;
+    }
+    .sp-card > .sp-tag {
+        top: -12px;
+        left: 16px;   /* 手机端 padding-left 16 + slide padding-left 0，同样对齐 logo */
+        font-size: .72rem;
+        padding: 5px 11px;
+    }
+    /* 整图在手机上换用 maxHeightMobile，并且允许铺满整行。
+       注意 display:block 必须在这里重申一次 —— 上面 .sp-slide 在手机端被改成了
+       grid（logo/name/tag/cta 四个具名区域），整图 slide 只有一个子元素，
+       落进 grid 会被塞进 logo 那一格，宽度只剩 138px。 */
+    .sp-slide--img {
+        display: block;
+        padding: 0;
+        gap: 0;
+    }
+    .sp-banner {
+        aspect-ratio: var(--sp-banner-ratio-m, var(--sp-banner-ratio, 1200 / 160));
+        max-width: calc(var(--sp-banner-max-h-m, 120px) * var(--sp-banner-ar-m, 7.5));
+        border-radius: 10px;
+    }
+    /* 满幅模式：这两条也得在媒体查询里重申，否则会被上面的 .sp-card 覆盖回去 */
+    .sp-card--img {
+        padding: 0;
+    }
+    .sp-card--img .sp-track {
+        border-radius: calc(var(--sp-radius-sm) - 2px);
+    }
+    .sp-card--img .sp-banner {
+        max-height: var(--sp-banner-max-h-m, 120px);
+    }
+    .sp-card--img > .sp-tag {
+        top: 9px;
+        left: 9px;
+    }
+    .sp-card--img > .sp-controls {
+        bottom: 9px;
     }
     .sp-row {
         flex-direction: column;
