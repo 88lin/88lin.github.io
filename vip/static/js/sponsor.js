@@ -308,7 +308,7 @@
         var KEY = 'vip_sp_marquee_until';
         if (!conf.enabled || muted(KEY, conf.dismiss)) { return; }
 
-        var strip = el('div', 'notice-banner sp-strip');
+        var strip = el('div', 'sp-strip');
         strip.id = 'sp-strip';
         strip.setAttribute('role', 'complementary');
         strip.setAttribute('aria-label', '赞助商');
@@ -442,13 +442,13 @@
 
             // 比例走 CSS 变量而不是内联 aspect-ratio：手机端要在媒体查询里换成
             // ratioMobile，内联样式没法响应媒体查询。
-            var frame = el('span', 'sp-banner');
-            frame.style.setProperty('--sp-banner-ratio', spec.ratio);
-            frame.style.setProperty('--sp-banner-ratio-m', spec.ratioMobile);
-            frame.style.setProperty('--sp-banner-ar', String(spec.ar));
-            frame.style.setProperty('--sp-banner-ar-m', String(spec.arMobile));
-            frame.style.setProperty('--sp-banner-max-h', spec.maxHeight + 'px');
-            frame.style.setProperty('--sp-banner-max-h-m', spec.maxHeightMobile + 'px');
+            var frame = el('span', 'sp-media');
+            frame.style.setProperty('--sp-media-ratio', spec.ratio);
+            frame.style.setProperty('--sp-media-ratio-m', spec.ratioMobile);
+            frame.style.setProperty('--sp-media-ar', String(spec.ar));
+            frame.style.setProperty('--sp-media-ar-m', String(spec.arMobile));
+            frame.style.setProperty('--sp-media-max-h', spec.maxHeight + 'px');
+            frame.style.setProperty('--sp-media-max-h-m', spec.maxHeightMobile + 'px');
 
             var img = document.createElement('img');
             img.src = spec.src;
