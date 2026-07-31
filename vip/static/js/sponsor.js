@@ -45,7 +45,8 @@
             // ① 顶部滚动横幅
             marquee: {
                 enabled: true,
-                duration: 32,     // 跑马灯滚动一轮的秒数，越大越慢
+                showLabel: false, // 是否在横幅最左边显示「赞助」角标（横幅太窄，默认不显示）
+                duration: 32,     // 三家轮完一遍的秒数，越大越慢。内容无缝首尾相接，不会滚出空白
                 // 用户点 × 关闭后，多久才会再出现：
                 //   'session'  当前标签页内不再出现，重新访问网站就恢复（默认）
                 //   'reload'   刷新页面就恢复（最激进）
@@ -314,34 +315,48 @@
 
         // 这里刻意不渲染页面原有的 .notice-icon 圆形图标：
         // 圆图标 + 「赞助」角标两个标识挨在一起既重复又占位置（桌面吃掉 51px、
-        // 手机 38px），横幅本来就是最窄的一条，留一个标识就够了。
-        var tag = tagBox();
-        if (tag) { strip.appendChild(tag); }
+        // 手机 38px），横幅本来就是最窄的一条。角标也默认关掉了，见 showLabel。
+        // 广告披露靠链接上的 rel="sponsored" 与「赞助商」标签页承担。
+        if (conf.showLabel) {
+            var tag = tagBox();
+            if (tag) { strip.appendChild(tag); }
+        }
 
         var content = el('div', 'notice-content');
         var text = el('div', 'notice-text');
-        if (!reduceMotion && conf.duration) {
-            text.style.animationDuration = conf.duration + 's';
+
+        /* 追加一份完整内容。每条后面都跟一个分隔符（而不是只在条目之间加），
+           这样首尾相接处读起来是「…免费领取 · WorkBuddy…」，接缝看不出来。
+           clone=true 的那几份纯粹为了填满视口，读屏和 Tab 键都要跳过，
+           否则同一个链接会被念三遍、Tab 也要按三遍才能走完。 */
+        function appendCopy(clone) {
+            list.forEach(function (sponsor) {
+                var item = el('span', 'sp-strip-item');
+
+                var name = link(sponsor, 'sp-strip-name');
+                name.textContent = sponsor.name;
+                item.appendChild(name);
+
+                item.appendChild(el('span', 'sp-strip-desc', sponsor.tagline));
+
+                var go = link(sponsor, 'sp-strip-go');
+                go.textContent = sponsor.cta || '了解更多';
+                item.appendChild(go);
+
+                if (clone) {
+                    item.setAttribute('aria-hidden', 'true');
+                    name.tabIndex = -1;
+                    go.tabIndex = -1;
+                }
+
+                text.appendChild(item);
+                text.appendChild(el('span', 'sp-strip-sep', '·'));
+            });
         }
 
-        list.forEach(function (sponsor, i) {
-            if (i > 0) {
-                text.appendChild(el('span', 'sp-strip-sep', '·'));
-            }
-            var item = el('span', 'sp-strip-item');
-
-            var name = link(sponsor, 'sp-strip-name');
-            name.textContent = sponsor.name;
-            item.appendChild(name);
-
-            item.appendChild(el('span', 'sp-strip-desc', sponsor.tagline));
-
-            var go = link(sponsor, 'sp-strip-go');
-            go.textContent = sponsor.cta || '了解更多';
-            item.appendChild(go);
-
-            text.appendChild(item);
-        });
+        appendCopy(false);
+        // 不滚动时不需要副本，末尾那个分隔符也得去掉
+        if (reduceMotion) { text.removeChild(text.lastChild); }
 
         content.appendChild(text);
         strip.appendChild(content);
@@ -357,6 +372,34 @@
         strip.appendChild(close);
 
         container.insertBefore(strip, container.firstChild);
+
+        /* ── 无缝循环 ──────────────────────────────────────────────────────
+           页面原版是 `padding-left: 100%` 配 `translateX(-100%)`：内容先被推到
+           视口右侧外面，再整体左移自身宽度。结果每一轮的开头和结尾都必然有一段
+           空白（合计约两个视口宽），三条滚完就"掉进空白里"。
+           无缝的做法是复制内容、去掉 padding，只位移「一份」的宽度：位移结束时
+           第 2 份正好停在第 1 份的起始位置，视觉上完全连续。
+           复制份数要保证「除第一份之外的部分」能盖满视口，否则位移到底时右边
+           还是会露白 —— 所以按实测宽度算，而不是写死 2 份。 */
+        if (!reduceMotion) {
+            var copyW = text.getBoundingClientRect().width;
+            var viewW = content.getBoundingClientRect().width;
+            var copies = 2;
+            if (copyW > 0) {
+                copies = Math.max(2, Math.ceil(viewW / copyW) + 1);
+            }
+            for (var c = 1; c < copies; c++) { appendCopy(true); }
+            text.style.setProperty('--sp-marquee-shift', (-100 / copies) + '%');
+            // duration 的语义是「一份内容滚完」，和复制了几份无关，速度恒定
+            if (conf.duration) { text.style.animationDuration = conf.duration + 's'; }
+
+            /* 兜底：CSS 那边用 overflow: clip 挡掉了「Tab 到视口外的链接会把
+               容器滚走」的问题，但 Safari 16 以前不认 clip。滚动一旦发生就把
+               它按回去，否则跑马灯会被永久错位、露出空白。 */
+            content.addEventListener('scroll', function () {
+                if (content.scrollLeft) { content.scrollLeft = 0; }
+            });
+        }
     }
 
     /* ======================================================================
@@ -738,6 +781,7 @@
         if (!anchor) { return; }
 
         var line = el('div', 'sp-line');
+        line.id = 'sp-line';          // 和 sp-strip / sp-card / sp-dialog 保持一致，方便外部定位
         line.setAttribute('role', 'complementary');
         line.setAttribute('aria-label', '赞助商');
         line.appendChild(el('span', 'sp-line-label', (SPONSOR_CONFIG.label || '赞助') + '商：'));

@@ -130,9 +130,9 @@
    结构上复用页面既有的 .notice-banner / .notice-icon / .notice-content /
    .notice-text / .notice-close，这里只做赞助场景的少量补充。
    ========================================================================= */
-/* 横幅上不渲染页面原有的 .notice-icon 圆形图标（见 sponsor.js 里的说明）：
-   圆图标 + 「赞助」角标两个标识并排既重复又占位置。角标在这里适当收一点，
-   毕竟横幅是整页最窄的一条。 */
+/* 横幅上既不渲染页面原有的 .notice-icon 圆形图标，默认也不渲染「赞助」角标
+   （见 sponsor.js 的 showLabel）：横幅是整页最窄的一条，标识很吃宽度。
+   下面这条留着是给 showLabel: true 时用的 —— 角标要比别处收一点。 */
 .sp-strip > .sp-tag {
     font-size: .72rem;
     padding: 5px 12px;
@@ -149,10 +149,38 @@
                                         #000 calc(100% - 20px), transparent 100%);
     mask-image: linear-gradient(90deg, transparent 0, #000 24px,
                                 #000 calc(100% - 20px), transparent 100%);
+    /* overflow: hidden 会生成一个可滚动盒子：Tab 键走到当前不在视口里的赞助
+       链接时，浏览器会设 scrollLeft 把它「滚」进来（实测桌面 1046px、手机
+       1278px）。跑马灯是靠 transform 走的，容器一旦被滚动，位移量就和循环
+       数学对不上，右边立刻露出一大片空白，而且不会自己恢复。
+       overflow: clip 只裁剪、不生成滚动盒子，scrollLeft 恒为 0。
+       不支持 clip 的旧浏览器会忽略这行、退回上面的 hidden，
+       由 sponsor.js 里的 scroll 兜底监听归零。
+       min-width: 0 是配套的：overflow: hidden 的盒子是滚动容器，作为 flex 子项
+       自动最小尺寸按 0 算；换成 clip 就不是滚动容器了，min-width: auto 会退回
+       「按内容算」，容器会被撑到整条跑马灯那么宽（实测 1113px → 3640px），
+       淡出遮罩和循环测量全跟着废掉。 */
+    overflow: hidden;
+    overflow: clip;
+    min-width: 0;
 }
 
+/* 无缝循环：去掉原版的 padding-left: 100%（它把内容推到视口右侧外面，每轮
+   开头结尾必然留空白），改成只位移「一份内容」的宽度。份数由 JS 按实测宽度
+   决定并写进 --sp-marquee-shift，所以这里的 -50% 只是 2 份时的兜底值。
+   flex: 0 0 auto 是必需的：.notice-text 是 .notice-content 的 flex 子项，
+   默认会被压缩，复制出来的份数越多压得越狠，位移距离就对不上了。 */
 .sp-strip .notice-text {
     gap: 0;
+    flex: 0 0 auto;
+    padding-left: 0;
+    animation-name: sp-marquee-loop;
+    will-change: transform;
+}
+
+@keyframes sp-marquee-loop {
+    from { transform: translateX(0); }
+    to   { transform: translateX(var(--sp-marquee-shift, -50%)); }
 }
 
 .sp-strip .notice-text .sp-strip-item {
@@ -785,7 +813,11 @@
     .sp-card > .sp-controls {
         bottom: 5px;
     }
-    /* 手机端横幅只剩「赞助」一个标识，再压紧一点给正文让位 */
+    /* 分隔符两侧各 30px 在 282px 的可视窗口里占掉 21%，滚过来像断了一截 */
+    .sp-strip .notice-text .sp-strip-sep {
+        margin: 0 14px;
+    }
+    /* showLabel: true 时手机端角标再压紧一点给正文让位 */
     .sp-strip > .sp-tag {
         font-size: .66rem;
         letter-spacing: .06em;
