@@ -41,6 +41,7 @@
         <link rel="stylesheet" href="https://sf.akass.cn/font-awesome/7.0.0/css/all.min.css">
         <link rel="icon" href="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/favicon.67xwxgc03y.svg" type="image/svg+xml" />
         <link href="static/css/duck.css" rel="stylesheet">
+        <link href="static/css/sponsor.css" rel="stylesheet">
         <style>
              :root {
             --primary: #009ff7;
@@ -1345,6 +1346,11 @@
             <i class="fas fa-check-circle"></i>
             <span id="toast-message">操作成功</span>
         </div>
+        <!-- 赞助商展示位：必须是普通同步 script，且必须留在下面那个内联脚本之前。
+             内联脚本会在 DOMContentLoaded 时缓存 .tab / .tab-content 的 NodeList，
+             本文件注入的「赞助商」标签页要早于那次缓存才能被正确纳管。
+             不要改成 defer / async，也不要挪到内联脚本后面。 -->
+        <script src="static/js/sponsor.js"></script>
         <script>
             !function(){var e=(window.location&&window.location.hostname||"").toLowerCase(),n=new Set(["nuaa.tech","88lin.eu.org","88lin.github.io"]),t=n.has(e)||e.endsWith(".nuaa.tech")||e.endsWith(".88lin.eu.org");if(!t)throw new Error;var o=!1,a=[];function i(e,n,t,o){if(!e||!e.addEventListener)return function(){};e.addEventListener(n,t,o);var i=function(){try{e.removeEventListener(n,t,o)}catch(e){}};return a.push(i),i}function r(){if(o)return;o=!0;try{a.forEach(function(e){e()})}catch(e){}try{window.setTimeout=function(){} }catch(e){}try{window.setInterval=function(){} }catch(e){}try{window.requestAnimationFrame=function(){} }catch(e){}try{window.queueMicrotask=function(){} }catch(e){}try{var n=function(e){return e&&e.preventDefault&&e.preventDefault(),e&&e.stopImmediatePropagation&&e.stopImmediatePropagation(),!1};["click","mousedown","mouseup","keydown","keyup","keypress","contextmenu","touchstart","touchend","pointerdown","pointerup","wheel"].forEach(function(t){i(window,t,n,{capture:!0}),i(document,t,n,{capture:!0})})}catch(e){}}i(window,"keydown",function(e){var n=(e.key||"").toLowerCase(),t=e.keyCode||e.which,a=/mac/i.test(navigator.platform);if("f12"===n||123===t)return e.preventDefault(),e.stopImmediatePropagation&&e.stopImmediatePropagation(),void r();if((e.ctrlKey||a&&e.metaKey)&&e.shiftKey&&("i"===n||"j"===n||"c"===n||73===t||74===t||67===t))return e.preventDefault(),e.stopImmediatePropagation&&e.stopImmediatePropagation(),void r();if((e.ctrlKey||a&&e.metaKey)&&("u"===n||85===t))return e.preventDefault(),e.stopImmediatePropagation&&e.stopImmediatePropagation(),void r()},{capture:!0}),i(window,"contextmenu",function(e){var n=e.target,t=(n&&n.tagName||"").toLowerCase(),o="input"===t||"textarea"===t||"select"===t||n&&n.isContentEditable,a=!!(window.getSelection&&window.getSelection().toString());o||a||(e.preventDefault(),e.stopPropagation&&e.stopPropagation())},{capture:!0});var c=160,d=setInterval(function(){if(o)return void clearInterval(d);var e=performance.now();try{debugger}catch(e){}performance.now()-e>c&&(clearInterval(d),r())},1e3);i(document,"visibilitychange",function(){document.hidden?function(){try{clearInterval(d)}catch(e){}}():o||(function(){try{clearInterval(d)}catch(e){}d=setInterval(function(){if(o)return void clearInterval(d);var e=performance.now();try{debugger}catch(e){}performance.now()-e>c&&(clearInterval(d),r())},1e3)}())})}();
             document.addEventListener('DOMContentLoaded', function() {

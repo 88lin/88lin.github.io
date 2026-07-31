@@ -1,0 +1,944 @@
+/* ==========================================================================
+   赞助商展示位样式  ——  与 /vip 页面的青蓝新拟态主题保持一致
+   --------------------------------------------------------------------------
+   命名说明：统一使用 sp- 前缀（sponsor placement），刻意避开 ad / ads /
+   advert / banner 等词根。EasyList 等过滤规则里有大量针对这些词根的通用
+   隐藏规则，用了会被浏览器插件整块隐藏，务必不要改名。
+   --------------------------------------------------------------------------
+   设计取值全部沿用页面既有卡片：
+     卡面   linear-gradient(145deg,#f5f7fa,#e4edf5)
+     内衬   inset 8px 的 linear-gradient(145deg,#fff,#f0f4f9)
+     圆角   24px / 18px      描边 2px rgba(255,255,255,.8)
+     投影   inset 0 -8px 25px rgba(0,0,0,.05), 0 15px 40px rgba(0,0,0,.1)
+     信息块 #e2f6ff + border-left 4px + radius 9px 18px 18px 9px
+   ========================================================================== */
+
+:root {
+    --sp-radius: 24px;
+    --sp-radius-sm: 18px;
+    --sp-ease: cubic-bezier(.175, .885, .32, 1.1);
+}
+
+/* ── 通用：赞助角标 ────────────────────────────────────────────────────── */
+.sp-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: .78rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+    line-height: 1;
+    padding: 6px 13px;
+    border-radius: 999px;
+    color: #0b7fbe;
+    background: rgba(0, 159, 247, .1);
+    border: 1px solid rgba(0, 159, 247, .18);
+    white-space: nowrap;
+}
+
+.sp-tag i {
+    font-size: .7rem;
+    color: #ff6b9d;
+}
+
+/* ── 通用：logo 托盘 ──────────────────────────────────────────────────── */
+/* 三家 logo 有的是透明 PNG、有的是不透明浅色底 webp，统一放进白色托盘里
+   才能视觉对齐，也避免不透明底在渐变卡上露出色块。 */
+.sp-logo {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 152px;
+    height: 52px;
+    padding: 6px 10px;
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .05),
+                0 6px 18px -8px var(--sp-accent, rgba(0, 0, 0, .25));
+    overflow: hidden;
+}
+
+.sp-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    /* GoRouter / Agent Router 的 webp 自带不透明浅色底（浅蓝白、淡紫渐变），
+       在白托盘上会露出一块方形色底。这里给图片本身加圆角，让那块底色看起来
+       像 logo 自带的底板而不是渲染瑕疵。
+       （试过 mix-blend-mode: multiply —— 白色背景下 multiply 是恒等运算，
+       对这种情况完全无效，别再往回改。） */
+    border-radius: 10px;
+}
+
+/* logo 加载失败时的兜底：显示品牌名文字 */
+.sp-logo .sp-logo-fallback {
+    font-size: .95rem;
+    font-weight: 800;
+    color: #0b7fbe;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* ── 通用：卖点小徽章 ─────────────────────────────────────────────────── */
+.sp-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.sp-chips em {
+    font-style: normal;
+    font-size: .72rem;
+    font-weight: 700;
+    line-height: 1;
+    padding: 4px 9px;
+    border-radius: 999px;
+    color: #0b7fbe;
+    background: rgba(0, 159, 247, .09);
+    border: 1px solid rgba(0, 159, 247, .14);
+    white-space: nowrap;
+}
+
+/* ── 通用：CTA 按钮（沿用 .notice-text a 的实心青色药丸） ─────────────── */
+.sp-cta {
+    flex: 0 0 auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: .95rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary, #009ff7), var(--accent, #1eb6ff));
+    box-shadow: 0 4px 14px rgba(0, 159, 247, .32);
+    transition: transform .3s var(--sp-ease), box-shadow .3s ease, filter .3s ease;
+    white-space: nowrap;
+}
+
+.sp-cta i {
+    font-size: .8rem;
+    transition: transform .3s var(--sp-ease);
+}
+
+/* =========================================================================
+   ① 顶部滚动横幅
+   结构上复用页面既有的 .notice-banner / .notice-icon / .notice-content /
+   .notice-text / .notice-close，这里只做赞助场景的少量补充。
+   ========================================================================= */
+/* 横幅上既不渲染页面原有的 .notice-icon 圆形图标，默认也不渲染「赞助」角标
+   （见 sponsor.js 的 showLabel）：横幅是整页最窄的一条，标识很吃宽度。
+   下面这条留着是给 showLabel: true 时用的 —— 角标要比别处收一点。 */
+.sp-strip {
+    background: rgba(0, 159, 247, .08);
+    border: 1px solid rgba(0, 159, 247, .2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    position: relative;
+    color: var(--dark, #06000cf0);
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .03);
+}
+
+.sp-strip > .sp-tag {
+    font-size: .72rem;
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, .72);
+    border-color: rgba(0, 159, 247, .24);
+}
+
+/* 跑马灯左右两端加淡出遮罩：不然滚动内容会在「赞助」角标旁被硬切断。
+   渐变带必须明显窄于滚动内容里最宽的元素（CTA 药丸约 90px）——
+   否则整颗药丸会一起处在半透明区，实心色块半透明看着像渲染坏了，
+   而不像淡出。窄渐变只软化边缘那一小条，读起来才是「擦入擦出」。 */
+.sp-strip .notice-content {
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 24px,
+                                        #000 calc(100% - 20px), transparent 100%);
+    mask-image: linear-gradient(90deg, transparent 0, #000 24px,
+                                #000 calc(100% - 20px), transparent 100%);
+    /* overflow: hidden 会生成一个可滚动盒子：Tab 键走到当前不在视口里的赞助
+       链接时，浏览器会设 scrollLeft 把它「滚」进来（实测桌面 1046px、手机
+       1278px）。跑马灯是靠 transform 走的，容器一旦被滚动，位移量就和循环
+       数学对不上，右边立刻露出一大片空白，而且不会自己恢复。
+       overflow: clip 只裁剪、不生成滚动盒子，scrollLeft 恒为 0。
+       不支持 clip 的旧浏览器会忽略这行、退回上面的 hidden，
+       由 sponsor.js 里的 scroll 兜底监听归零。
+       min-width: 0 是配套的：overflow: hidden 的盒子是滚动容器，作为 flex 子项
+       自动最小尺寸按 0 算；换成 clip 就不是滚动容器了，min-width: auto 会退回
+       「按内容算」，容器会被撑到整条跑马灯那么宽（实测 1113px → 3640px），
+       淡出遮罩和循环测量全跟着废掉。 */
+    overflow: hidden;
+    overflow: clip;
+    min-width: 0;
+}
+
+/* 无缝循环：去掉原版的 padding-left: 100%（它把内容推到视口右侧外面，每轮
+   开头结尾必然留空白），改成只位移「一份内容」的宽度。份数由 JS 按实测宽度
+   决定并写进 --sp-marquee-shift，所以这里的 -50% 只是 2 份时的兜底值。
+   flex: 0 0 auto 是必需的：.notice-text 是 .notice-content 的 flex 子项，
+   默认会被压缩，复制出来的份数越多压得越狠，位移距离就对不上了。 */
+.sp-strip .notice-text {
+    gap: 0;
+    flex: 0 0 auto;
+    padding-left: 0;
+    animation-name: sp-marquee-loop;
+    will-change: transform;
+}
+
+@keyframes sp-marquee-loop {
+    from { transform: translateX(0); }
+    to   { transform: translateX(var(--sp-marquee-shift, -50%)); }
+}
+
+.sp-strip .notice-text .sp-strip-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sp-strip .notice-text .sp-strip-sep {
+    display: inline-block;
+    margin: 0 30px;
+    color: rgba(0, 159, 247, .45);
+    font-weight: 700;
+}
+
+/* 页面既有的 .notice-text a 是实心青色药丸，赞助商名称要退回成普通文字，
+   只有末尾的 CTA 链接沿用那个药丸样式。 */
+.sp-strip .notice-text .sp-strip-name {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    margin-left: 0;
+    color: var(--primary, #009ff7);
+    font-weight: 800;
+    font-size: inherit;
+    text-decoration: none;
+}
+
+.sp-strip .notice-text .sp-strip-name:hover {
+    background: none;
+    box-shadow: none;
+    transform: none;
+    color: #0b7fbe;
+    text-decoration: underline;
+}
+
+.sp-strip .notice-text .sp-strip-desc {
+    font-weight: 600;
+    opacity: .82;
+}
+
+.sp-strip .sp-tag {
+    flex-shrink: 0;
+    margin-right: 12px;
+    z-index: 2;
+}
+
+/* =========================================================================
+   ② 播放器下方轮播卡（主力位）
+   ========================================================================= */
+.sp-card {
+    position: relative;
+    z-index: 1;
+    margin: 0 0 20px;
+    padding: 16px 22px 26px;
+    background: linear-gradient(145deg, #f5f7fa, #e4edf5);
+    border: 2px solid rgba(255, 255, 255, .8);
+    border-radius: var(--sp-radius);
+    box-shadow: inset 0 -8px 25px rgba(0, 0, 0, .05), 0 15px 40px rgba(0, 0, 0, .1);
+}
+
+/* 与 .tab-content / .status-bar 同款的 8px 内衬白层 */
+.sp-card::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border-radius: var(--sp-radius);
+    background: linear-gradient(145deg, #ffffff, #f0f4f9);
+    box-shadow: inset 0 3px 10px rgba(0, 0, 0, .05), 0 5px 15px rgba(0, 0, 0, .05);
+    z-index: 0;
+}
+
+.sp-card-inner {
+    position: relative;
+    z-index: 1;
+}
+
+/* 角标嵌在卡片左上角：下半截压在卡片上边框里、上半截凸出来，看起来是从边框上
+   长出来的一块，而不是浮在卡片外面的贴纸。放左上是因为视线落点在左上角，
+   而且右上留给未来可能加的关闭按钮。绝对定位，不占内容高度。 */
+.sp-card > .sp-tag {
+    position: absolute;
+    top: -13px;
+    /* 24px = 卡片 padding-left 22 + slide padding-left 2，正好和 logo 托盘左边缘齐 */
+    left: 24px;
+    z-index: 3;
+    background: linear-gradient(180deg, #ffffff 0%, #f3f9ff 100%);
+    border-color: rgba(0, 159, 247, .3);
+    box-shadow: 0 4px 12px rgba(0, 90, 160, .12),
+                inset 0 1px 0 #fff;
+}
+
+/* 所有 slide 用 grid 堆叠在同一格：高度自动取最高一张，切换时可交叉淡入，
+   不需要写死高度，文案长度变化也不会跳动。 */
+.sp-track {
+    display: grid;
+    grid-template-areas: "slide";
+}
+
+.sp-slide {
+    grid-area: slide;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 4px 2px;
+    text-decoration: none;
+    color: var(--dark, #06000cf0);
+    opacity: 0;
+    transform: translateX(16px);
+    pointer-events: none;
+    /* 交叉淡入淡出要错开，不能对称：两张 slide 叠在同一个网格格子里，
+       等时长对淡时中间会有一段两张都是半透明的时刻，两段文案糊在一起像重影。
+       这里让旧的先快速退场(.24s)，新的延迟 .14s 再进场，重叠区就基本没了。 */
+    transition: opacity .24s ease, transform .42s var(--sp-ease);
+}
+
+.sp-slide.is-active {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    transition: opacity .3s ease .14s, transform .42s var(--sp-ease) .04s;
+}
+
+.sp-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sp-name {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.05rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--dark, #06000cf0);
+}
+
+.sp-tagline {
+    font-size: .9rem;
+    font-weight: 600;
+    line-height: 1.45;
+    opacity: .72;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.sp-slide:hover .sp-cta {
+    transform: translateY(-2px);
+    filter: brightness(1.06);
+    box-shadow: 0 8px 22px rgba(0, 159, 247, .4);
+}
+
+.sp-slide:hover .sp-cta i {
+    transform: translateX(3px);
+}
+
+/* 控制条：[‹] ●●● [›] 一并放在卡片下缘的 padding 里，
+   既不额外增加卡片高度，也绝不会和右侧 CTA 按钮重叠。 */
+.sp-card > .sp-controls {
+    position: absolute;
+    left: 50%;
+    bottom: 6px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 4;
+}
+
+.sp-nav {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: none;
+    color: rgba(0, 0, 0, .26);
+    font-size: .72rem;
+    cursor: pointer;
+    transition: color .3s ease, transform .3s var(--sp-ease);
+}
+
+.sp-nav:hover,
+.sp-nav:focus-visible {
+    color: var(--primary, #009ff7);
+    transform: scale(1.18);
+}
+
+.sp-dots {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.sp-dots button {
+    width: 7px;
+    height: 7px;
+    padding: 0;
+    border: none;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, .16);
+    cursor: pointer;
+    transition: width .35s var(--sp-ease), background .35s ease;
+}
+
+.sp-dots button[aria-selected="true"] {
+    width: 22px;
+    background: linear-gradient(90deg, var(--primary, #009ff7), var(--secondary, #78fadc));
+}
+
+/* ── ②-b 整图轮播（纯图片 banner） ──────────────────────────────────────
+   给赞助商配了 banner 就走这套，和信息卡可以混在同一个轮播里。
+   高度控制思路：不裁图、不留黑边 —— 用「最大高度 × 宽高比」反推最大宽度，
+   超宽屏上图片就居中留白，而不是被拉高占掉半个首屏。
+   ────────────────────────────────────────────────────────────────────── */
+.sp-slide--img {
+    display: block;
+    gap: 0;
+    padding: 0;
+}
+
+.sp-media {
+    display: block;
+    width: 100%;
+    aspect-ratio: var(--sp-media-ratio, 1200 / 160);
+    max-width: calc(var(--sp-media-max-h, 180px) * var(--sp-media-ar, 7.5));
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 14px;
+    background: rgba(0, 159, 247, .06);
+}
+
+.sp-media picture,
+.sp-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 轮播里每一张都是整图时，卡片进入满幅模式：去掉内边距和白色内衬，图顶到边框 */
+.sp-card--img {
+    padding: 0;
+    overflow: hidden;
+}
+
+.sp-card--img::before {
+    display: none;
+}
+
+.sp-card--img .sp-track {
+    border-radius: calc(var(--sp-radius) - 2px);
+    overflow: hidden;
+}
+
+.sp-card--img .sp-media {
+    max-width: none;
+    max-height: var(--sp-media-max-h, 180px);
+    border-radius: 0;
+}
+
+/* 满幅模式下角标和控制条都浮在图片上，得自带底衬才看得清 */
+.sp-card--img > .sp-tag {
+    top: 12px;
+    left: 12px;
+    background: rgba(255, 255, 255, .92);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+}
+
+.sp-card--img > .sp-controls {
+    bottom: 12px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .9);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .18);
+}
+
+/* =========================================================================
+   ③ 「赞助商」Tab 面板
+   ========================================================================= */
+.sp-list {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 4px;
+}
+
+.sp-list-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.sp-list-head h3 {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--dark, #06000cf0);
+}
+
+.sp-list-head h3 i {
+    color: #ff6b9d;
+}
+
+.sp-list-head p {
+    font-size: .85rem;
+    opacity: .65;
+}
+
+/* 与页面 .disclaimer / .history-list li 同款的信息块样式 */
+.sp-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px;
+    background: #e2f6ff;
+    border-left: 4px solid var(--sp-accent, var(--accent, #1eb6ff));
+    border-radius: 9px 18px 18px 9px;
+    text-decoration: none;
+    color: var(--dark, #06000cf0);
+    transition: transform .3s var(--sp-ease), box-shadow .3s ease;
+}
+
+.sp-row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, .1);
+}
+
+.sp-row-body {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sp-row-name {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 1.05rem;
+    font-weight: 800;
+}
+
+.sp-row-desc {
+    font-size: .88rem;
+    line-height: 1.7;
+    opacity: .8;
+}
+
+/* 广告合作入口 */
+.sp-invite {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    border: 2px dashed rgba(0, 159, 247, .3);
+    border-radius: var(--sp-radius-sm);
+    font-size: .92rem;
+    font-weight: 700;
+    color: #0b7fbe;
+    text-decoration: none;
+    transition: var(--transition, all .3s ease);
+}
+
+.sp-invite:hover {
+    background: rgba(0, 159, 247, .06);
+    border-color: rgba(0, 159, 247, .55);
+    transform: translateY(-2px);
+}
+
+.sp-invite i:last-child {
+    transition: transform .3s var(--sp-ease);
+}
+
+.sp-invite:hover i:last-child {
+    transform: translateX(4px);
+}
+
+/* =========================================================================
+   ④ 延迟弹窗
+   ========================================================================= */
+.sp-dialog {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(6, 0, 12, .45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity .35s ease;
+}
+
+.sp-dialog.is-open {
+    opacity: 1;
+}
+
+.sp-dialog-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    padding: 28px 26px 24px;
+    text-align: center;
+    background: linear-gradient(145deg, #f7f9fc, #e9f1f8);
+    border: 2px solid rgba(255, 255, 255, .85);
+    border-radius: var(--sp-radius);
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .3);
+    transform: scale(.94) translateY(10px);
+    transition: transform .4s var(--sp-ease);
+}
+
+.sp-dialog.is-open .sp-dialog-card {
+    transform: none;
+}
+
+.sp-dialog-card .sp-tag {
+    margin-bottom: 16px;
+}
+
+.sp-dialog-card .sp-logo {
+    width: 190px;
+    height: 62px;
+    margin: 0 auto 16px;
+}
+
+.sp-dialog-card .sp-chips {
+    justify-content: center;
+    margin-bottom: 18px;
+}
+
+.sp-dialog-name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--dark, #06000cf0);
+}
+
+.sp-dialog-desc {
+    font-size: .88rem;
+    line-height: 1.75;
+    opacity: .78;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.sp-dialog-card .sp-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+.sp-dialog-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, .06);
+    color: #666;
+    cursor: pointer;
+    transition: var(--transition, all .3s ease);
+}
+
+.sp-dialog-close:hover {
+    background: rgba(255, 71, 87, .12);
+    color: #ff4757;
+    transform: rotate(90deg);
+}
+
+.sp-dialog-mute {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 14px;
+    font-size: .8rem;
+    opacity: .6;
+    cursor: pointer;
+    user-select: none;
+    /* inline-flex 对中文文本算出的 max-content 宽度会比实际排版少几像素，
+       不锁一行的话「今日不再提示」会折成「今日不 / 再提示」两行。 */
+    white-space: nowrap;
+}
+
+.sp-dialog-mute input {
+    accent-color: var(--primary, #009ff7);
+    cursor: pointer;
+}
+
+/* =========================================================================
+   ⑤ 纯文字位
+   ========================================================================= */
+.sp-line {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    margin: 4px 0 14px;
+    font-size: .88rem;
+    color: var(--dark, #06000cf0);
+}
+
+.sp-line-label {
+    font-weight: 700;
+    opacity: .55;
+}
+
+.sp-line a {
+    color: var(--primary, #009ff7);
+    font-weight: 700;
+    text-decoration: none;
+    transition: var(--transition, all .3s ease);
+}
+
+.sp-line a:hover {
+    color: #0b7fbe;
+    text-decoration: underline;
+}
+
+.sp-line .sp-line-sep {
+    opacity: .3;
+}
+
+/* =========================================================================
+   响应式
+   ========================================================================= */
+@media (max-width: 900px) {
+    .sp-card > .sp-controls {
+        gap: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sp-card {
+        padding: 14px 16px 24px;
+        border-radius: var(--sp-radius-sm);
+        margin-bottom: 15px;
+    }
+    .sp-card::before {
+        border-radius: var(--sp-radius-sm);
+        inset: 6px;
+    }
+    /* 移动端重排轮播卡：
+         第 1 行  logo + 品牌名并排
+         第 2 行  一句话介绍占满整宽
+         第 3 行  CTA 占满整宽
+       关键是别让 logo 和正文并排 —— 390px 宽的屏上 logo 会吃掉一半行宽，
+       正文被挤到 162px，卖点徽章直接折成三行，卡片高度飙到 255px。
+       用 display:contents 把 .sp-body 摊平成 slide 自己的网格项即可，
+       无需改 DOM 结构（桌面端 .sp-body 仍是普通 flex 容器）。
+       注意：.sp-slide 自身的 grid-area: slide 是它在 .sp-track 里的定位，
+       这里声明 grid-template-areas 是给它的子元素用的，两者不冲突。 */
+    .sp-slide {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        grid-template-areas:
+            "logo name"
+            "tag  tag"
+            "cta  cta";
+        align-items: center;
+        gap: 10px 12px;
+        padding: 4px 0 2px;
+    }
+    .sp-logo {
+        width: 138px;
+        height: 46px;
+    }
+    .sp-slide > .sp-logo {
+        grid-area: logo;
+    }
+    .sp-slide > .sp-body {
+        display: contents;
+    }
+    /* 三家 logo 都是含品牌名的横版字标，手机上 logo 和名字并排会出现
+       「GoRouter GoRouter」这种重复。这里隐藏名字，只留 logo。
+       名字仍留在 DOM 里（读屏可读到，logo 加载失败时托盘也会退化成文字）。 */
+    .sp-slide .sp-name {
+        grid-area: name;
+        display: none;
+    }
+    .sp-slide .sp-tagline {
+        grid-area: tag;
+    }
+    /* 卖点徽章在「赞助商」标签页和弹窗里都有，轮播卡上省掉，换 55px 高度 */
+    .sp-slide .sp-chips {
+        display: none;
+    }
+    .sp-slide > .sp-cta {
+        grid-area: cta;
+    }
+    .sp-cta {
+        width: 100%;
+        justify-content: center;
+    }
+    .sp-card > .sp-controls {
+        bottom: 5px;
+    }
+    /* 分隔符两侧各 30px 在 282px 的可视窗口里占掉 21%，滚过来像断了一截 */
+    .sp-strip .notice-text .sp-strip-sep {
+        margin: 0 14px;
+    }
+    /* showLabel: true 时手机端角标再压紧一点给正文让位 */
+    .sp-strip > .sp-tag {
+        font-size: .66rem;
+        letter-spacing: .06em;
+        padding: 4px 9px;
+        gap: 4px;
+        margin-right: 9px;
+    }
+    .sp-strip > .sp-tag i {
+        font-size: .62rem;
+    }
+    .sp-card > .sp-tag {
+        top: -12px;
+        left: 16px;   /* 手机端 padding-left 16 + slide padding-left 0，同样对齐 logo */
+        font-size: .72rem;
+        padding: 5px 11px;
+    }
+    /* 整图在手机上换用 maxHeightMobile，并且允许铺满整行。
+       注意 display:block 必须在这里重申一次 —— 上面 .sp-slide 在手机端被改成了
+       grid（logo/name/tag/cta 四个具名区域），整图 slide 只有一个子元素，
+       落进 grid 会被塞进 logo 那一格，宽度只剩 138px。 */
+    .sp-slide--img {
+        display: block;
+        padding: 0;
+        gap: 0;
+    }
+    .sp-strip {
+        padding: 10px 15px;
+        border-radius: 18px;
+        margin-bottom: 15px;
+    }
+    .sp-media {
+        aspect-ratio: var(--sp-media-ratio-m, var(--sp-media-ratio, 1200 / 160));
+        max-width: calc(var(--sp-media-max-h-m, 120px) * var(--sp-media-ar-m, 7.5));
+        border-radius: 10px;
+    }
+    /* 满幅模式：这两条也得在媒体查询里重申，否则会被上面的 .sp-card 覆盖回去 */
+    .sp-card--img {
+        padding: 0;
+    }
+    .sp-card--img .sp-track {
+        border-radius: calc(var(--sp-radius-sm) - 2px);
+    }
+    .sp-card--img .sp-media {
+        max-height: var(--sp-media-max-h-m, 120px);
+    }
+    .sp-card--img > .sp-tag {
+        top: 9px;
+        left: 9px;
+    }
+    .sp-card--img > .sp-controls {
+        bottom: 9px;
+    }
+    .sp-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .sp-row .sp-cta {
+        width: 100%;
+    }
+    .sp-dialog-card {
+        padding: 24px 18px 20px;
+    }
+}
+
+/* =========================================================================
+   深色模式
+   页面本身的 prefers-color-scheme 规则只替换了 body::before 背景层，卡片
+   仍是浅色；这里只做轻微描边/投影加强，避免浅卡在深背景上发虚。
+   ========================================================================= */
+@media (prefers-color-scheme: dark) {
+    .sp-card {
+        border-color: rgba(255, 255, 255, .5);
+        box-shadow: inset 0 -8px 25px rgba(0, 0, 0, .06), 0 18px 45px rgba(0, 0, 0, .45);
+    }
+    .sp-strip {
+        background: rgba(0, 159, 247, .14);
+        border-color: rgba(120, 250, 220, .28);
+    }
+    .sp-line {
+        color: #dbe7f2;
+    }
+    .sp-line-label {
+        opacity: .7;
+    }
+}
+
+/* =========================================================================
+   降低动态效果偏好
+   ========================================================================= */
+@media (prefers-reduced-motion: reduce) {
+    .sp-strip .notice-text {
+        animation: none !important;
+        padding-left: 0;
+    }
+    .sp-slide,
+    .sp-cta,
+    .sp-cta i,
+    .sp-row,
+    .sp-nav,
+    .sp-dots button,
+    .sp-dialog,
+    .sp-dialog-card {
+        transition: none !important;
+    }
+    .sp-slide {
+        transform: none;
+    }
+}
