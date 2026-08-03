@@ -5,10 +5,26 @@
 
 // ==================== 初始化 ====================
 
+const SCENARIO_STORAGE_KEY = 'deep-mortgage-calculator:scenario:v2';
+let lastCalculation = null;
+let autosaveTimer = null;
+let activeScheduleFilter = 'key';
+let shareReturnFocus = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-    addRateRow('com', 6, 3.0);
-    addRateRow('fund', 13, 2.6);
+    const sharedScenario = readScenarioFromUrl();
+    if (sharedScenario) {
+        applyScenario(sharedScenario, false);
+        showToast('已载入分享方案');
+    } else {
+        addRateRow('com', 6, 3.0);
+        addRateRow('fund', 13, 2.6);
+    }
+
     updateAllDates();
+    toggleLoanCard('com');
+    toggleLoanCard('fund');
+    bindScenarioAutosave();
 });
 
 // ==================== 动态行管理 ====================
@@ -19,8 +35,8 @@ function addRateRow(type, month, val) {
     const div = node.querySelector('.event-row');
 
     if (type) div.querySelector('.evt-type').value = type;
-    if (month) div.querySelector('.evt-month').value = month;
-    if (val) div.querySelector('.evt-val').value = val;
+    if (month !== undefined && month !== null && month !== '') div.querySelector('.evt-month').value = month;
+    if (val !== undefined && val !== null && val !== '') div.querySelector('.evt-val').value = val;
 
     document.getElementById('rateList').appendChild(node);
     const addedRow = document.getElementById('rateList').lastElementChild;
@@ -34,8 +50,8 @@ function addPrepayRow(type, month, val, strat) {
     const div = node.querySelector('.event-row');
 
     if (type) div.querySelector('.evt-type').value = type;
-    if (month) div.querySelector('.evt-month').value = month;
-    if (val) div.querySelector('.evt-val').value = val;
+    if (month !== undefined && month !== null && month !== '') div.querySelector('.evt-month').value = month;
+    if (val !== undefined && val !== null && val !== '') div.querySelector('.evt-val').value = val;
     if (strat) div.querySelector('.evt-strat').value = strat;
 
     document.getElementById('prepayList').appendChild(node);
@@ -71,46 +87,397 @@ function updateAllDates() {
     document.querySelectorAll('.evt-month').forEach(el => updateDatePreview(el));
 }
 
+// ==================== 场景工具 ====================
+
+function loanIsEnabled(type) {
+    const checkbox = document.getElementById(type + 'Enabled');
+    return !checkbox || checkbox.checked;
+}
+
+function toggleLoanCard(type) {
+    const checkbox = document.getElementById(type + 'Enabled');
+    const card = checkbox ? checkbox.closest('.loan-card') : null;
+    if (!checkbox || !card) return;
+
+    card.classList.toggle('is-disabled', !checkbox.checked);
+    card.querySelectorAll('.card-body input, .card-body select').forEach((field) => {
+        field.disabled = !checkbox.checked;
+    });
+}
+
+function defaultScenario() {
+    return {
+        version: 2,
+        startDate: '2026-01',
+        loans: {
+            com: { enabled: true, amount: 100, rate: 3.1, years: 30, method: '1' },
+            fund: { enabled: true, amount: 100, rate: 2.85, years: 30, method: '1' }
+        },
+        rateEvents: [
+            { loanType: 'com', month: 6, value: 3.0 },
+            { loanType: 'fund', month: 13, value: 2.6 }
+        ],
+        prepayments: []
+    };
+}
+
+function readScenario() {
+    const readLoan = (type) => ({
+        enabled: loanIsEnabled(type),
+        amount: document.getElementById(type + 'Amount').value,
+        rate: document.getElementById(type + 'Rate').value,
+        years: document.getElementById(type + 'Year').value,
+        method: document.getElementById(type + 'Method').value
+    });
+
+    return {
+        version: 2,
+        startDate: document.getElementById('startDate').value,
+        loans: { com: readLoan('com'), fund: readLoan('fund') },
+        rateEvents: Array.from(document.querySelectorAll('#rateList .event-row')).map(row => ({
+            loanType: row.querySelector('.evt-type').value,
+            month: row.querySelector('.evt-month').value,
+            value: row.querySelector('.evt-val').value
+        })),
+        prepayments: Array.from(document.querySelectorAll('#prepayList .event-row')).map(row => ({
+            loanType: row.querySelector('.evt-type').value,
+            month: row.querySelector('.evt-month').value,
+            value: row.querySelector('.evt-val').value,
+            strategy: row.querySelector('.evt-strat').value
+        }))
+    };
+}
+
+function applyScenario(scenario, notify = true) {
+    const safe = scenario || defaultScenario();
+    const loans = safe.loans || {};
+    const setValue = (id, value) => {
+        const field = document.getElementById(id);
+        if (field && value !== undefined && value !== null) field.value = value;
+    };
+
+    setValue('startDate', safe.startDate || '2026-01');
+    ['com', 'fund'].forEach(type => {
+        const loan = loans[type] || {};
+        const enabled = loan.enabled !== false;
+        const checkbox = document.getElementById(type + 'Enabled');
+        if (checkbox) checkbox.checked = enabled;
+        setValue(type + 'Amount', loan.amount ?? (type === 'com' ? 100 : 100));
+        setValue(type + 'Rate', loan.rate ?? (type === 'com' ? 3.1 : 2.85));
+        setValue(type + 'Year', loan.years ?? 30);
+        setValue(type + 'Method', loan.method ?? '1');
+    });
+
+    document.getElementById('rateList').innerHTML = '';
+    document.getElementById('prepayList').innerHTML = '';
+    (safe.rateEvents || []).forEach(event => addRateRow(event.loanType, event.month, event.value ?? event.ratePercent));
+    (safe.prepayments || []).forEach(event => addPrepayRow(event.loanType, event.month, event.value ?? event.amountWan, event.strategy));
+
+    updateAllDates();
+    toggleLoanCard('com');
+    toggleLoanCard('fund');
+    clearValidationErrors();
+    document.getElementById('analysisArea').style.display = 'none';
+    document.getElementById('resultArea').style.display = 'none';
+    lastCalculation = null;
+    setScenarioStatus(notify ? '已载入方案' : '已从链接载入');
+    if (notify) showToast('方案已载入');
+}
+
+function encodeScenario(scenario) {
+    const bytes = new TextEncoder().encode(JSON.stringify(scenario));
+    let binary = '';
+    bytes.forEach(byte => { binary += String.fromCharCode(byte); });
+    return btoa(binary);
+}
+
+function decodeScenario(encoded) {
+    const binary = atob(encoded);
+    const bytes = Uint8Array.from(binary, char => char.charCodeAt(0));
+    return JSON.parse(new TextDecoder().decode(bytes));
+}
+
+function readScenarioFromUrl() {
+    try {
+        const encoded = new URLSearchParams(window.location.search).get('scenario');
+        return encoded ? decodeScenario(encoded) : null;
+    } catch (error) {
+        return null;
+    }
+}
+
+function setScenarioStatus(text) {
+    const status = document.getElementById('scenarioStatus');
+    if (status) status.innerText = text;
+}
+
+function saveScenario(showMessage = true) {
+    try {
+        localStorage.setItem(SCENARIO_STORAGE_KEY, JSON.stringify(readScenario()));
+        setScenarioStatus('已保存到本机');
+        if (showMessage) showToast('方案已保存到当前浏览器');
+    } catch (error) {
+        setScenarioStatus('保存失败');
+        showToast('浏览器不允许保存方案');
+    }
+}
+
+function loadScenario() {
+    try {
+        const saved = localStorage.getItem(SCENARIO_STORAGE_KEY);
+        if (!saved) {
+            showToast('还没有保存过方案');
+            return;
+        }
+        applyScenario(JSON.parse(saved));
+    } catch (error) {
+        showToast('保存的方案无法读取');
+    }
+}
+
+function loadExampleScenario() {
+    const example = defaultScenario();
+    example.rateEvents.push({ loanType: 'com', month: 61, value: 2.85 });
+    example.prepayments = [
+        { loanType: 'com', month: 60, value: 20, strategy: '2' },
+        { loanType: 'fund', month: 120, value: 10, strategy: '1' }
+    ];
+    applyScenario(example, false);
+    setScenarioStatus('示例方案已载入');
+    showToast('示例方案已载入');
+}
+
+function resetScenario() {
+    localStorage.removeItem(SCENARIO_STORAGE_KEY);
+    applyScenario(defaultScenario(), false);
+    setScenarioStatus('已恢复默认');
+    showToast('已恢复默认方案');
+}
+
+function bindScenarioAutosave() {
+    const markEdited = () => {
+        setScenarioStatus('有未保存修改');
+        clearTimeout(autosaveTimer);
+        autosaveTimer = setTimeout(() => saveScenario(false), 900);
+    };
+    document.addEventListener('input', event => {
+        if (event.target.closest('.main-content')) markEdited();
+    });
+    document.addEventListener('change', event => {
+        if (event.target.closest('.main-content')) markEdited();
+    });
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.innerText = message;
+    toast.classList.add('is-visible');
+    clearTimeout(showToast.timer);
+    showToast.timer = setTimeout(() => toast.classList.remove('is-visible'), 2600);
+}
+
+function clearValidationErrors() {
+    const summary = document.getElementById('validationSummary');
+    if (summary) {
+        summary.hidden = true;
+        summary.innerHTML = '';
+    }
+    document.querySelectorAll('.is-invalid').forEach(element => element.classList.remove('is-invalid'));
+    document.querySelectorAll('[aria-invalid="true"]').forEach(element => element.removeAttribute('aria-invalid'));
+}
+
+function renderValidationErrors(errors) {
+    const summary = document.getElementById('validationSummary');
+    if (!summary || !errors.length) return;
+    summary.innerHTML = `<strong>请先修正 ${errors.length} 个输入问题</strong><ul>${errors.map(error => `<li>${error.message}</li>`).join('')}</ul>`;
+    summary.hidden = false;
+    errors.forEach(error => {
+        if (error.field) {
+            error.field.classList.add('is-invalid');
+            error.field.setAttribute('aria-invalid', 'true');
+        }
+    });
+    errors[0].field?.focus();
+    summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function collectScenarioEvents() {
+    const events = [];
+    const errors = [];
+    const duplicateKeys = { rate: new Set(), pay: new Set() };
+    const loanTypes = ['com', 'fund'];
+
+    loanTypes.forEach(type => {
+        if (!loanIsEnabled(type)) return;
+        const amountField = document.getElementById(type + 'Amount');
+        const rateField = document.getElementById(type + 'Rate');
+        const yearsField = document.getElementById(type + 'Year');
+        const amount = Number(amountField.value);
+        const rate = Number(rateField.value);
+        const years = Number(yearsField.value);
+        if (!Number.isFinite(amount) || amount <= 0) errors.push({ field: amountField, message: `${type === 'com' ? '商业贷款' : '公积金贷款'}金额必须大于 0。` });
+        if (!Number.isFinite(rate) || rate < 0 || rate > 30) errors.push({ field: rateField, message: `${type === 'com' ? '商业贷款' : '公积金贷款'}年利率应在 0% 到 30% 之间。` });
+        if (!Number.isInteger(years) || years < 1 || years > 50) errors.push({ field: yearsField, message: '贷款期限应为 1 到 50 年的整数。' });
+    });
+
+    if (!loanTypes.some(loanIsEnabled)) {
+        errors.push({ field: document.getElementById('comEnabled'), message: '请至少启用一种贷款。' });
+    }
+
+    const inspectRows = (selector, kind) => {
+        document.querySelectorAll(selector).forEach(row => {
+            row.classList.remove('is-invalid');
+            const type = row.querySelector('.evt-type').value;
+            if (!loanIsEnabled(type)) return;
+            const monthField = row.querySelector('.evt-month');
+            const valueField = row.querySelector('.evt-val');
+            const monthRaw = monthField.value.trim();
+            const valueRaw = valueField.value.trim();
+            if (!monthRaw && !valueRaw) {
+                errors.push({ field: monthField, message: '事件行尚未填写，填写完整后再计算，或删除空行。' });
+                return;
+            }
+            const month = Number(monthRaw);
+            const value = Number(valueRaw);
+            const years = Number(document.getElementById(type + 'Year').value);
+            const maxMonths = Number.isInteger(years) ? years * 12 : 0;
+            if (!Number.isInteger(month) || month < 1 || month > maxMonths) {
+                errors.push({ field: monthField, message: `${kind === 'rate' ? '利率调整' : '提前还款'}期数应在 1 到 ${maxMonths || '贷款期限'} 之间。` });
+            }
+            if (!Number.isFinite(value) || value < 0 || (kind === 'pay' && value <= 0) || (kind === 'rate' && value > 30)) {
+                errors.push({ field: valueField, message: kind === 'rate' ? '调整后年利率应在 0% 到 30% 之间。' : '提前还款金额必须大于 0。' });
+            }
+            const duplicateKey = `${type}-${month}`;
+            if (duplicateKeys[kind].has(duplicateKey)) {
+                errors.push({ field: monthField, message: `同一种贷款在第 ${month} 期不能重复添加${kind === 'rate' ? '利率调整' : '提前还款'}。` });
+            }
+            duplicateKeys[kind].add(duplicateKey);
+            if (!Number.isInteger(month) || !Number.isFinite(value) || month < 1) return;
+
+            const event = {
+                type: kind,
+                loanType: type,
+                month,
+                val: kind === 'rate' ? value / 100 : value * 10000,
+                desc: kind === 'rate'
+                    ? `${type === 'com' ? '商贷' : '公积金'}利率调为${value}%`
+                    : `${type === 'com' ? '商' : '公'}提前还${value}万(${row.querySelector('.evt-strat').value === '1' ? '减月供' : '减年限'})`,
+                strategy: kind === 'pay' ? row.querySelector('.evt-strat').value : undefined
+            };
+            events.push(event);
+        });
+    };
+
+    inspectRows('#rateList .event-row', 'rate');
+    inspectRows('#prepayList .event-row', 'pay');
+    return { events, errors };
+}
+
+function openShareModal() {
+    const modal = document.getElementById('shareModal');
+    const input = document.getElementById('shareLinkInput');
+    if (!modal || !input) return;
+    shareReturnFocus = document.activeElement;
+    input.value = `${window.location.href.split('?')[0]}?scenario=${encodeScenario(readScenario())}`;
+    modal.style.display = 'flex';
+    modal.setAttribute('aria-hidden', 'false');
+    input.focus();
+    input.select();
+    document.addEventListener('keydown', onShareEsc);
+}
+
+function closeShareModal() {
+    const modal = document.getElementById('shareModal');
+    if (!modal) return;
+    modal.style.display = 'none';
+    modal.setAttribute('aria-hidden', 'true');
+    document.removeEventListener('keydown', onShareEsc);
+    shareReturnFocus?.focus();
+}
+
+function onShareEsc(event) {
+    if (event.key === 'Escape') closeShareModal();
+}
+
+function copyShareLink() {
+    const input = document.getElementById('shareLinkInput');
+    if (!input) return;
+    input.select();
+    const copy = navigator.clipboard?.writeText(input.value);
+    if (copy) copy.then(() => showToast('分享链接已复制')).catch(() => {
+        document.execCommand('copy');
+        showToast('分享链接已复制');
+    });
+    else {
+        document.execCommand('copy');
+        showToast('分享链接已复制');
+    }
+}
+
+function setScheduleFilter(filter) {
+    activeScheduleFilter = filter;
+    document.querySelectorAll('[data-table-filter]').forEach(button => {
+        const isActive = button.dataset.tableFilter === filter;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+    });
+    const rows = Array.from(document.querySelectorAll('#resultBody tr'));
+    rows.forEach(row => {
+        const month = Number(row.dataset.monthIndex);
+        const isEvent = row.dataset.event === 'true';
+        const isFinal = row.dataset.final === 'true';
+        const visible = filter === 'all'
+            || (filter === 'year' && (month === 1 || month % 12 === 0 || isFinal))
+            || (filter === 'key' && (month === 1 || month <= 12 || isEvent || isFinal));
+        row.style.display = visible ? '' : 'none';
+    });
+    const count = rows.filter(row => row.style.display !== 'none').length;
+    const total = rows.length;
+    const label = filter === 'all' ? '全部期数' : filter === 'year' ? '年度节点' : '关键期数';
+    const countEl = document.getElementById('tableCount');
+    if (countEl) countEl.innerText = `${label} · 显示 ${count} / ${total} 期`;
+}
+
+function exportScheduleCsv() {
+    if (!lastCalculation) {
+        showToast('请先生成还款计划');
+        return;
+    }
+    const { com, fund, startYear, startMonth } = lastCalculation;
+    const maxLen = Math.max(com.schedule.length, fund.schedule.length);
+    const escapeCsv = value => `"${String(value ?? '').replace(/"/g, '""')}"`;
+    const rows = [['期数', '日期', '月供合计', '商贷月供', '公积金月供', '剩余本金', '备注']];
+    for (let i = 0; i < maxLen; i++) {
+        const c = com.schedule[i] || { pay: 0, balance: 0, note: '' };
+        const f = fund.schedule[i] || { pay: 0, balance: 0, note: '' };
+        const date = new Date(startYear, startMonth - 1 + i);
+        const dateText = `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, '0')}`;
+        rows.push([i + 1, dateText, Math.round(c.pay + f.pay), Math.round(c.pay), Math.round(f.pay), Math.round(c.balance + f.balance), `${c.note}${c.note && f.note ? '；' : ''}${f.note}`]);
+    }
+    const blob = new Blob(['\ufeff' + rows.map(row => row.map(escapeCsv).join(',')).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = '房贷还款计划.csv';
+    link.click();
+    URL.revokeObjectURL(url);
+    showToast('CSV 已开始下载');
+}
+
 // ==================== 核心计算 ====================
 
 function calculateAll() {
+    clearValidationErrors();
+    const collected = collectScenarioEvents();
+    if (collected.errors.length) {
+        renderValidationErrors(collected.errors);
+        return;
+    }
+
     const startStr = document.getElementById('startDate').value;
     const [startYear, startMonth] = startStr.split('-').map(Number);
-
-    let rawEvents = [];
-
-    document.querySelectorAll('#rateList .event-row').forEach(row => {
-        let m = parseInt(row.querySelector('.evt-month').value);
-        let r = parseFloat(row.querySelector('.evt-val').value);
-        let t = row.querySelector('.evt-type').value;
-        if (m && !isNaN(r)) {
-            rawEvents.push({
-                type: 'rate',
-                loanType: t,
-                month: m,
-                val: r / 100,
-                desc: `${t === 'com' ? '商贷' : '公积金'}利率调为${r}%`
-            });
-        }
-    });
-
-    document.querySelectorAll('#prepayList .event-row').forEach(row => {
-        let m = parseInt(row.querySelector('.evt-month').value);
-        let amt = parseFloat(row.querySelector('.evt-val').value);
-        let strat = row.querySelector('.evt-strat').value;
-        let t = row.querySelector('.evt-type').value;
-        let stratName = strat === '1' ? '减月供' : '减年限';
-        if (m && !isNaN(amt)) {
-            rawEvents.push({
-                type: 'pay',
-                loanType: t,
-                month: m,
-                val: amt * 10000,
-                strategy: strat,
-                desc: `${t === 'com' ? '商' : '公'}提前还${amt}万(${stratName})`
-            });
-        }
-    });
+    const rawEvents = collected.events;
 
     const getParams = (events) => {
         const comRates = events.filter(e => e.type === 'rate' && e.loanType === 'com')
@@ -123,7 +490,7 @@ function calculateAll() {
             .map(e => ({ month: e.month, amount: e.val, strategy: e.strategy }));
 
         const p = (type, r, pay) => ({
-            principal: parseFloat(document.getElementById(type + 'Amount').value) * 10000,
+            principal: loanIsEnabled(type) ? parseFloat(document.getElementById(type + 'Amount').value) * 10000 : 0,
             rate: parseFloat(document.getElementById(type + 'Rate').value) / 100,
             months: parseInt(document.getElementById(type + 'Year').value) * 12,
             method: document.getElementById(type + 'Method').value,
@@ -195,6 +562,12 @@ function calculateAll() {
         drawChart(baseRes, finalCom, finalFund, startYear, startMonth);
     }, 50);
 
+    lastCalculation = {
+        com: finalCom,
+        fund: finalFund,
+        startYear,
+        startMonth
+    };
     renderTable(finalCom, finalFund, startYear, startMonth);
 
     document.getElementById('analysisArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -237,7 +610,9 @@ function calculateLoan(params) {
                 currentBasePmt = schedule[schedule.length - 1].basePay;
             } else {
                 if (method === '1') {
-                    currentBasePmt = (balance * currentRate * Math.pow(1 + currentRate, totalMonths)) /
+                    currentBasePmt = currentRate === 0
+                        ? balance / Math.max(totalMonths, 1)
+                        : (balance * currentRate * Math.pow(1 + currentRate, totalMonths)) /
                         (Math.pow(1 + currentRate, totalMonths) - 1);
                 } else {
                     currentBasePmt = (balance / totalMonths) + (balance * currentRate);
@@ -263,7 +638,9 @@ function calculateLoan(params) {
                     let targetPmt = currentBasePmt;
                     let monthlyInterest = balance * currentRate;
 
-                    if (monthlyInterest >= targetPmt) {
+                    if (currentRate === 0) {
+                        newRemainMonths = Math.ceil(balance / Math.max(targetPmt, 0.01));
+                    } else if (monthlyInterest >= targetPmt) {
                         newRemainMonths = 1;
                     } else {
                         let n = Math.log(targetPmt / (targetPmt - monthlyInterest)) / Math.log(1 + currentRate);
@@ -295,6 +672,9 @@ function calculateLoan(params) {
                 if (remainMonths === 1) {
                     monthPrincipal = balance;
                     monthPayment = monthPrincipal + monthInterest;
+                } else if (currentRate === 0) {
+                    monthPrincipal = balance / remainMonths;
+                    monthPayment = monthPrincipal;
                 } else {
                     monthPayment = (balance * currentRate * Math.pow(1 + currentRate, remainMonths)) /
                         (Math.pow(1 + currentRate, remainMonths) - 1);
@@ -424,6 +804,10 @@ function renderTable(comData, fundData, startYear, startMonth) {
         let tr = document.createElement('tr');
         if (c.note.includes('还') || f.note.includes('还')) tr.classList.add('row-prepay');
         else if (c.note.includes('利率') || f.note.includes('利率')) tr.classList.add('row-rate-change');
+        tr.dataset.monthIndex = String(i + 1);
+        tr.dataset.year = String(d.getFullYear());
+        tr.dataset.event = String(Boolean(c.note || f.note));
+        tr.dataset.final = String(i === maxLen - 1);
 
         let noteHtml = '';
         if (c.note) noteHtml += `<span class="note-tag bg-com">商</span>${c.note}<br>`;
@@ -445,6 +829,7 @@ function renderTable(comData, fundData, startYear, startMonth) {
     document.getElementById('resInterest').innerText = '¥' + totalInt.toLocaleString(undefined, { maximumFractionDigits: 0 });
     document.getElementById('resComInt').innerText = '¥' + comData.totalInterest.toLocaleString(undefined, { maximumFractionDigits: 0 });
     document.getElementById('resFundInt').innerText = '¥' + fundData.totalInterest.toLocaleString(undefined, { maximumFractionDigits: 0 });
+    setScheduleFilter(activeScheduleFilter);
 }
 
 // ==================== 图表绘制 ====================
@@ -474,8 +859,8 @@ function drawChart(baseRes, finalCom, finalFund, startYear, startMonth) {
             let b2 = i < fSched.length ? fSched[i].balance : 0;
             arr.push(b1 + b2);
         }
-        const initialTotal = (parseFloat(document.getElementById('comAmount').value) +
-            parseFloat(document.getElementById('fundAmount').value)) * 10000;
+        const initialTotal = ((loanIsEnabled('com') ? parseFloat(document.getElementById('comAmount').value) : 0) +
+            (loanIsEnabled('fund') ? parseFloat(document.getElementById('fundAmount').value) : 0)) * 10000;
         return [initialTotal, ...arr];
     };
 
@@ -577,12 +962,14 @@ function drawChart(baseRes, finalCom, finalFund, startYear, startMonth) {
 
 window.addEventListener('resize', () => {
     const area = document.getElementById('analysisArea');
-    if (area.style.display !== 'none') {
-        // 重绘图表
-        const startStr = document.getElementById('startDate').value;
-        if (startStr) {
-            // 触发重新计算以更新图表
-        }
+    if (area.style.display !== 'none' && lastCalculation) {
+        window.requestAnimationFrame(() => drawChart(
+            { com: lastCalculation.com, fund: lastCalculation.fund },
+            lastCalculation.com,
+            lastCalculation.fund,
+            lastCalculation.startYear,
+            lastCalculation.startMonth
+        ));
     }
 });
 

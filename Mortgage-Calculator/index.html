@@ -71,6 +71,34 @@
             </div>
         </div>
 
+        <!-- 场景工作台 -->
+        <section class="scenario-toolbar" aria-label="方案工作台">
+            <div class="scenario-info">
+                <span class="scenario-kicker">方案工作台</span>
+                <strong>把这次测算保存下来</strong>
+                <span id="scenarioStatus" class="scenario-status">尚未保存</span>
+            </div>
+            <div class="scenario-actions">
+                <button id="loadExampleButton" class="tool-btn" type="button" onclick="loadExampleScenario()" title="载入一个包含利率调整和提前还款的示例方案">
+                    <i class="fas fa-wand-magic-sparkles"></i><span>示例方案</span>
+                </button>
+                <button id="saveScenarioButton" class="tool-btn" type="button" onclick="saveScenario()" title="保存到当前浏览器">
+                    <i class="fas fa-bookmark"></i><span>保存</span>
+                </button>
+                <button id="loadScenarioButton" class="tool-btn" type="button" onclick="loadScenario()" title="载入上次保存的方案">
+                    <i class="fas fa-rotate-left"></i><span>载入</span>
+                </button>
+                <button id="shareScenarioButton" class="tool-btn" type="button" onclick="openShareModal()" title="生成可分享的方案链接">
+                    <i class="fas fa-link"></i><span>分享</span>
+                </button>
+                <button id="resetScenarioButton" class="tool-btn danger" type="button" onclick="resetScenario()" title="恢复默认方案">
+                    <i class="fas fa-arrow-rotate-left"></i><span>重置</span>
+                </button>
+            </div>
+        </section>
+
+        <div id="validationSummary" class="validation-summary" role="alert" aria-live="polite" hidden></div>
+
         <!-- 贷款信息卡片 -->
         <div class="loan-cards">
             <div class="loan-card commercial">
@@ -79,6 +107,10 @@
                         <i class="fas fa-landmark"></i>
                     </div>
                     <h3>商业贷款</h3>
+                    <label class="loan-toggle" title="是否计入商业贷款">
+                        <input type="checkbox" id="comEnabled" checked onchange="toggleLoanCard('com')">
+                        <span>启用</span>
+                    </label>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -120,6 +152,10 @@
                         <i class="fas fa-piggy-bank"></i>
                     </div>
                     <h3>公积金贷款</h3>
+                    <label class="loan-toggle" title="是否计入公积金贷款">
+                        <input type="checkbox" id="fundEnabled" checked onchange="toggleLoanCard('fund')">
+                        <span>启用</span>
+                    </label>
                 </div>
                 <div class="card-body">
                     <div class="form-group">
@@ -263,6 +299,23 @@
             <div class="panel-header">
                 <i class="fas fa-file-invoice-dollar"></i>
                 <h3>还款计划表</h3>
+            </div>
+
+            <div class="results-toolbar" aria-label="计划表工具">
+                <div class="table-view-copy">
+                    <strong>还款明细</strong>
+                    <span id="tableCount">尚未生成</span>
+                </div>
+                <div class="table-view-actions">
+                    <div class="table-filters" role="group" aria-label="计划表筛选">
+                        <button class="table-filter is-active" type="button" data-table-filter="key" aria-pressed="true" onclick="setScheduleFilter('key')">关键期数</button>
+                        <button class="table-filter" type="button" data-table-filter="year" aria-pressed="false" onclick="setScheduleFilter('year')">按年度</button>
+                        <button class="table-filter" type="button" data-table-filter="all" aria-pressed="false" onclick="setScheduleFilter('all')">全部</button>
+                    </div>
+                    <button class="tool-btn export-btn" type="button" onclick="exportScheduleCsv()" title="导出当前方案的完整还款计划">
+                        <i class="fas fa-file-arrow-down"></i><span>导出 CSV</span>
+                    </button>
+                </div>
             </div>
 
             <div class="summary-grid">
@@ -414,6 +467,30 @@
         </div>
     </div>
 </div>
+
+<!-- 分享方案弹窗 -->
+<div id="shareModal" class="modal-overlay" aria-hidden="true" style="display:none;">
+    <div class="modal-card share-card" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+        <div class="modal-header">
+            <h3 id="shareTitle"><i class="fas fa-link"></i> 分享当前方案</h3>
+            <button class="modal-close" type="button" onclick="closeShareModal()" aria-label="关闭">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+        <div class="modal-body share-body">
+            <p>链接包含当前输入参数和事件设置，不会上传到服务器。</p>
+            <div class="share-link-row">
+                <input id="shareLinkInput" type="text" readonly aria-label="方案分享链接">
+                <button class="modal-btn share-copy-btn" type="button" onclick="copyShareLink()"><i class="fas fa-copy"></i> 复制</button>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn" type="button" onclick="closeShareModal()">完成</button>
+        </div>
+    </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <script src="script.js"></script>
 
