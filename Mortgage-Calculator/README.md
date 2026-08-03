@@ -7,10 +7,6 @@
     纯前端零依赖：打开浏览器即可使用，手机/PC 皆友好。
   </p>
 
-  <h3>
-    👉 <a href="https://SeanWong17.github.io/Deep-Mortgage-Calculator/">点击进入在线演示 (Live Demo)</a> 👈
-  </h3>
-
   <p>
     <img alt="HTML5" src="https://img.shields.io/badge/html5-%23E34F26.svg?style=flat&logo=html5&logoColor=white">
     <img alt="JavaScript" src="https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E">
@@ -112,36 +108,3 @@ Deep-Mortgage-Calculator/
    - “提前还款”：设置发生期数、金额与策略（减月供/减年限）
 4. 点击 **生成还款计划**：查看分析面板与计划表
 
----
-
-## 📸 截图
-
-![示例截图](example.jpg)
-
-
----
-
-## 🤝 贡献 (Contributing)
-
-欢迎提交 Issue / Pull Request：
-- 修复边界条件（如同月多事件、极端利率等）
-- UI/UX 优化（更强的移动端体验）
-- 新增功能（导出 CSV、保存方案、对比多方案等）
-
----
-
-## 📄 版权与许可 (License)
-
-本作品采用 **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International** 许可：
-
-- ✅ 允许分享与修改
-- ❌ 不可用于商业用途
-- 📝 转载或修改请注明作者并以相同协议开源
-
-协议链接：<https://creativecommons.org/licenses/by-nc-sa/4.0/>
-
----
-<div align="center">
-  <br>
-  Made with ❤️ by <a href="https://github.com/seanwong17">seanwong17</a>
-</div>
