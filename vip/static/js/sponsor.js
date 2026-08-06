@@ -112,6 +112,17 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
+                id: 'sheapi',
+                name: 'SheApi',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
+                url: 'https://www.sheapi.top/sign-up?aff=MvcR',
+                tagline: '是一家可靠高效的 API 中转服务提供商，主要提供 Claude Code、Codex 等主流模型的高稳定中转能力，Codex 倍率补贴低至 0.06，GPT-Image-2生图每张0.04。受邀注册送$1 体验金，每日签到还可领取专属免费额度。',
+                desc: '是一家可靠高效的 API 中转服务提供商，主要提供 Claude Code、Codex 等主流模型的高稳定中转能力，Codex 倍率补贴低至 0.06，GPT-Image-2生图每张0.04。受邀注册送$1 体验金，每日签到还可领取专属免费额度。',
+                highlights: ['Codex 倍率补贴低至 0.06', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
+                cta: '立即体验',
+                accent: '#1e88e5'
+            },
+            {
                 id: 'workbuddy',
                 name: 'WorkBuddy',
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
@@ -256,6 +267,7 @@
 
     function ctaBox(sponsor, tag) {
         var node = el(tag || 'span', 'sp-cta');
+        if (sponsor.accent) { node.style.setProperty('--sp-cta-accent', sponsor.accent); }
         node.appendChild(document.createTextNode(sponsor.cta || '了解更多'));
         node.appendChild(icon('fas fa-arrow-right'));
         return node;

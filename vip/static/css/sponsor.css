@@ -114,7 +114,7 @@
     font-size: .95rem;
     font-weight: 700;
     color: #fff;
-    background: linear-gradient(135deg, var(--primary, #009ff7), var(--accent, #1eb6ff));
+    background: linear-gradient(135deg, var(--sp-cta-accent, var(--primary, #009ff7)), var(--accent, #1eb6ff));
     box-shadow: 0 4px 14px rgba(0, 159, 247, .32);
     transition: transform .3s var(--sp-ease), box-shadow .3s ease, filter .3s ease;
     white-space: nowrap;
