@@ -164,21 +164,15 @@
     </div>
     <script>
         const CONFIG = {
-            API_KEY: 'sk-ClfVvpe9QR7HhgXi.gV9f07OBavLycfOZ6FWdOIb83GdWboLW',
-            API_ENDPOINT: 'https://www.kevio.cn/api/ip',
-            BLOG_LOCATION: { lng: 106.629681, lat: 29.727659},
+            // 中转代理：服务端调用 kEvio（失败自动降级 ip35），返回中文地名 + 经纬度，
+            // 已带 CORS 头，浏览器可直连。真实访客 IP 由代理从请求中读取并传给接口。
+            API_ENDPOINT: 'https://nbr5n3s9.qwenwork.host/api/ip',
+            BLOG_LOCATION: { lng: 119.38507, lat: 25.72086},
         };
 
         const fetchIpData = async () => {
             try {
-                const url = new URL(CONFIG.API_ENDPOINT);
-                url.searchParams.set('fields', 'ip,country,province,city,longitude,latitude');
-
-                const response = await fetch(url, {
-                    headers: {
-                        'X-API-Key': CONFIG.API_KEY,
-                    },
-                });
+                const response = await fetch(CONFIG.API_ENDPOINT);
                 if (!response.ok) {
                     throw new Error('网络错误，无法获取IP信息');
                 }
