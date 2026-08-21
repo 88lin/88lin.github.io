@@ -112,6 +112,17 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
+                id: 'agentrouter',
+                name: 'Agent Router',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
+                url: 'https://agentrouter.org/register?aff=ugVO',
+                tagline: '是免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连不折腾。',
+                desc: '免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
+                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
+                cta: '免费领取',
+                accent: '#7c4dff'
+            },
+            {
                 id: 'sheapi',
                 name: 'SheApi',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
@@ -154,17 +165,6 @@
                 highlights: ['注册送 $70', '每日签到 $10', 'GitHub 登录'],
                 cta: '免费领取',
                 accent: '#1e88e5'
-            },
-            {
-                id: 'agentrouter',
-                name: 'Agent Router',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
-                url: 'https://agentrouter.org/register?aff=ugVO',
-                tagline: '是免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连不折腾。',
-                desc: '免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
-                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
-                cta: '免费领取',
-                accent: '#7c4dff'
             }
         ]
     };
