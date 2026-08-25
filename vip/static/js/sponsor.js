@@ -42,9 +42,9 @@
         layouts: {
             // ① 顶部滚动横幅
             marquee: {
-                enabled: true,
+                enabled: false,
                 showLabel: false, // 是否在横幅最左边显示「推荐」角标（横幅太窄，默认不显示）
-                duration: 88,     // 三家轮完一遍的秒数，越大越慢。内容无缝首尾相接，不会滚出空白
+                duration: 80,     // 三家轮完一遍的秒数，越大越慢。内容无缝首尾相接，不会滚出空白
                 // 用户点 × 关闭后，多久才会再出现：
                 //   'session'  当前标签页内不再出现，重新访问网站就恢复（默认）
                 //   'reload'   刷新页面就恢复（最激进）
@@ -152,17 +152,6 @@
                 tagline: '是免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。',
                 desc: '免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。目前较稳定。注册送 $70，每日签到得 $10 左右，支持 GitHub 登录。',
                 highlights: ['注册送 $200', '每日签到 $20', 'GitHub 登录', '免费稳定'],
-                cta: '免费领取',
-                accent: '#1e88e5'
-            },
-            {
-                id: 'gorouter',
-                name: 'GoRouter',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-07-31_200922_732.webp',
-                url: 'https://gorouter.app/sign-up?aff=hfcV',
-                tagline: '是免费公益大模型 API 平台，可用 Claude-Opus-5',
-                desc: '免费公益大模型 API 平台，可用 Claude-Opus-5 模型，目前较稳定。注册送 $70，每日签到得 $10 左右，支持 GitHub 登录。',
-                highlights: ['注册送 $70', '每日签到 $10', 'GitHub 登录'],
                 cta: '免费领取',
                 accent: '#1e88e5'
             }
