@@ -6,61 +6,73 @@
     <title>欢迎页面 | 茉灵智库</title>
     <script async src="https://019b9894-1861-76d6-9948-7ad2739a9eb8.spst2.com/ustat.js"></script>
     <style>
-        /* 全局样式 */
+        /* 全局样式：Notion 小组件场景，压缩留白、自适应适配（布局对齐参考版 v2） */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        body, html {
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(145deg, #e8f6ff, #eef9fc);
+        html, body {
+            width: 100%;
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "PingFang SC",
+                         "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
             color: #34495e;
+        }
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #e8f6ff, #eef9fc);
             display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 4px;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
-        /* 主容器 */
+        /* 隐藏托管平台注入的品牌栏与悬浮角标（遮挡嵌入内容），
+           并压掉启动脚本为顶栏预留的 body 上边距 */
+        #mulepage-bar,
+        #mulepage-footer {
+            display: none !important;
+        }
+        body {
+            padding: 4px !important;
+        }
+
+        /* 主容器：撑满组件宽高，内容居中，大圆角 */
         #main-container {
+            width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-            max-width: 700px;
-            padding: 40px;
+            justify-content: center;
+            gap: clamp(8px, 2vh, 18px);
+            padding: clamp(16px, 3vh, 28px) clamp(12px, 3vw, 28px);
             background: #ffffff;
-            border-radius: 20px;
-            transition: transform 0.3s ease;
+            border-radius: clamp(22px, 5vw, 32px);
+            box-shadow: 0 6px 24px rgba(66, 165, 245, 0.12);
             text-align: center;
         }
 
-        #main-container:hover {
-            transform: translateY(-5px);
-        }
-
-        /* 标题样式 */
+        /* 标题样式：更鲜亮的渐变配色（字号保持原样，仅在小屏自适应缩小） */
         .welcome-header {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: clamp(1.7rem, 6vw, 2.5rem);
             font-weight: 800;
-            background: -webkit-linear-gradient(45deg, #ff6b6b, #ffd66b, #4dd4b0, #42a5f5);
+            background: linear-gradient(100deg, #ff6b81 0%, #ff9f43 28%, #ffd43b 50%, #3ddc97 72%, #4facfe 100%);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
+            margin-bottom: 0;
         }
 
         /* 加载动画 */
         .loading-spinner {
-            width: 60px;
-            height: 60px;
+            width: clamp(44px, 10vw, 60px);
+            height: clamp(44px, 10vw, 60px);
             border: 5px solid rgba(52, 73, 94, 0.2);
             border-top: 5px solid #3498db;
             border-radius: 50%;
             animation: spin 1.2s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
-            margin-bottom: 20px;
+            margin: 0;
         }
 
         @keyframes spin {
@@ -68,11 +80,15 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* 欢迎信息样式 */
+        /* 欢迎信息样式（字号保持原样，仅在小屏自适应缩小） */
         .welcome-message {
-            font-size: 1.5rem;
+            font-size: clamp(1.1rem, 3.5vw, 1.5rem);
             line-height: 1.8;
-            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .welcome-message p {
+            margin: 2px 0;
+            word-break: break-word;
         }
 
         .welcome-message b {
@@ -82,63 +98,48 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
-        /* IP 地址样式 */
+        /* IP 地址样式：hover 或点击均可显示 */
         .ip-address {
-            filter: blur(8px);
-            transition: filter 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            filter: blur(6px);
+            transition: filter 0.3s ease, color 0.3s ease;
             cursor: pointer;
             color: #ff1900;
         }
 
-        .ip-address:hover {
+        .ip-address:hover,
+        .ip-address.revealed {
             filter: blur(0);
             color: #ff1900;
-            transform: scale(1.05);
         }
 
         /* 错误信息 */
         .error-message {
             font-family: 'Roboto', sans-serif;
             color: #ff1900;
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 3.5vw, 1.2rem);
             font-weight: bold;
         }
 
         /* 按钮样式 */
         .refresh-button {
-            margin-top: 20px;
-            padding: 10px 25px;
+            margin-top: 0;
+            padding: 8px 24px;
             font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
+            font-size: clamp(0.95rem, 2.8vw, 1rem);
             font-weight: 600;
             color: #fff;
             background: linear-gradient(45deg,#0ecffe 50%,#07a6f1);
             border: none;
-            border-radius: 50px;
+            border-radius: 999px;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .refresh-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 媒体查询 */
-        @media (max-width: 768px) {
-            #main-container {
-                padding: 20px;
-            }
-            .welcome-header {
-                font-size: 2rem;
-            }
-            .welcome-message {
-                font-size: 1rem;
-            }
-            .loading-spinner {
-                width: 50px;
-                height: 50px;
-                border-width: 4px;
+        /* 仅在支持 hover 的设备（桌面）上启用悬浮效果，避免移动端误触位移 */
+        @media (hover: hover) {
+            .refresh-button:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
             }
         }
     </style>
@@ -164,15 +165,42 @@
     </div>
     <script>
         const CONFIG = {
-            // 中转代理：服务端调用 kEvio（失败自动降级 ip35），返回中文地名 + 经纬度，
-            // 已带 CORS 头，浏览器可直连。真实访客 IP 由代理从请求中读取并传给接口。
+            // 中转服务：服务端调用 kEvio（失败自动降级 ip35），已带 CORS 头可跨域直连。
+            // 服务端调用 kEvio（失败自动降级 ip35），返回中文地名 + 经纬度。
             API_ENDPOINT: 'https://nbr5n3s9.qwenwork.host/api/ip',
             BLOG_LOCATION: { lng: 119.38507, lat: 25.72086},
         };
 
+        // 获取访客真实出口 IP（这两个接口支持浏览器跨域），
+        // 通过 ?ip= 传给服务端：平台能识别访客头时以服务端为准，
+        // 识别不到时用这里上报的 IP，双保险保证归属地准确
+        const sourceFetch = (url, ms) => fetch(url, { cache: 'no-store', signal: AbortSignal.timeout(ms) });
+
+        const fetchVisitorIp = async () => {
+            try {
+                const r = await sourceFetch('https://api.ip.sb/ip', 6000);
+                if (r.ok) {
+                    const text = (await r.text()).trim();
+                    if (/^[0-9A-Fa-f:.]{7,45}$/.test(text)) return text;
+                }
+            } catch (e) { console.warn('ip.sb 获取失败：', e.message); }
+            try {
+                const r = await sourceFetch('https://ipinfo.io/json', 6000);
+                if (r.ok) {
+                    const json = await r.json();
+                    if (json.ip) return json.ip;
+                }
+            } catch (e) { console.warn('ipinfo 获取失败：', e.message); }
+            return null;
+        };
+
         const fetchIpData = async () => {
             try {
-                const response = await fetch(CONFIG.API_ENDPOINT);
+                const visitorIp = await fetchVisitorIp();
+                const url = new URL(CONFIG.API_ENDPOINT, window.location.href);
+                if (visitorIp) url.searchParams.set('ip', visitorIp);
+
+                const response = await fetch(url, { signal: AbortSignal.timeout(10000) });
                 if (!response.ok) {
                     throw new Error('网络错误，无法获取IP信息');
                 }
@@ -254,7 +282,36 @@
             }
         };
 
-        document.addEventListener('DOMContentLoaded', initialize);
+        document.addEventListener('DOMContentLoaded', () => {
+            // 移动端无 hover，点击 IP 也可切换显示
+            const ipEl = document.getElementById('visitor-ip');
+            ipEl.addEventListener('click', () => ipEl.classList.toggle('revealed'));
+            initialize();
+        });
+
+        // 移除托管平台注入的品牌栏/悬浮角标（CSS 之外的双保险），
+        // 并强制还原 body 边距（启动脚本会为顶栏偷偷加 padding-top 占位）
+        const stripInjectedBars = () => {
+            document.body.style.setProperty('padding', '4px', 'important');
+            ['mulepage-bar', 'mulepage-footer'].forEach((id) => {
+                const el = document.getElementById(id);
+                if (el) el.remove();
+            });
+        };
+        stripInjectedBars();
+        document.addEventListener('DOMContentLoaded', stripInjectedBars);
+        window.addEventListener('load', stripInjectedBars);
+        setTimeout(stripInjectedBars, 500);
+        new MutationObserver((mutations) => {
+            for (const m of mutations) {
+                for (const node of m.addedNodes) {
+                    if (node.nodeType === 1 && (node.id === 'mulepage-bar' || node.id === 'mulepage-footer')) {
+                        node.remove();
+                        document.body.style.setProperty('padding', '4px', 'important');
+                    }
+                }
+            }
+        }).observe(document.documentElement, { childList: true, subtree: true });
     </script>
 </body>
 </html>
