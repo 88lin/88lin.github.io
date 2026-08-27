@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - 这页走丢了 | 88lin · 茉灵智库</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cream: #fefcf6;
+  --ink: #1A1A2E;
+  --ink-light: #4A4A5A;
+  --blue: #2B7FD8;
+  --yellow: #F4D758;
+  --term-green: #4ade80;
+}
+::selection { background: var(--yellow); color: var(--ink); }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'PingFang SC', 'HarmonyOS Sans SC', 'Helvetica Neue', 'Noto Sans SC', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-image: radial-gradient(circle at 80% 20%, rgba(43,127,216,0.10), transparent 42%);
+}
+.wrap { text-align: left; max-width: 560px; position: relative; }
+.big404 {
+  font-family: 'Fira Code', monospace;
+  font-weight: 500;
+  font-size: clamp(6rem, 20vw, 12rem);
+  line-height: 1;
+  color: var(--blue);
+  opacity: 0.14;
+  position: absolute;
+  top: -0.55em;
+  right: -0.1em;
+  z-index: 0;
+  user-select: none;
+}
+h1 {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'PingFang SC', 'Noto Sans SC', sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  position: relative;
+  z-index: 1;
+}
+h1 mark { background: linear-gradient(transparent 62%, var(--yellow) 62%); color: inherit; }
+.note {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.95rem;
+  color: var(--term-green);
+  background: #151821;
+  display: inline-block;
+  padding: 7px 14px;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+p.desc { color: var(--ink-light); margin-top: 18px; font-size: 0.95rem; line-height: 1.8; }
+a.home {
+  display: inline-block;
+  margin-top: 32px;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 3px solid var(--yellow);
+  padding-bottom: 2px;
+}
+a.home:hover { background: var(--yellow); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="big404">404</div>
+  <h1>这一页<mark>走丢了</mark></h1>
+  <div class="note">$ error: page not found in ~/garden</div>
+  <p class="desc">你要找的页面不在这里。可能是链接旧了，也可能是我把它搬走了。</p>
+  <a class="home" href="/">← 回到 88lin 的主页</a>
+</div>
+</body>
+</html>
