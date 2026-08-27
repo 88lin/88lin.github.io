@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>关于我 · 88lin — AI 研究者 / Agent 工程实践者</title>
+<meta name="description" content="关于 88lin：AI 研究者与 Agent 工程实践者，茉灵智库主理人。收集有用的，也保留有趣的。">
+<meta name="author" content="88lin">
+<meta property="og:type" content="website">
+<meta property="og:title" content="关于我 · 88lin — AI 研究者 / Agent 工程实践者">
+<meta property="og:description" content="AI 研究者与 Agent 工程实践者，茉灵智库主理人。">
+<meta property="og:locale" content="zh_CN">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,900;1,600;1,900&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../icon.png">
+<style>
+/* 屏蔽预览平台注入的品牌栏/角标（正式域名下不存在，无副作用） */
+#mulepage-bar, #mulepage-footer, [class*="mulepage"], [id*="mulepage"] {
+  display: none !important; visibility: hidden !important; opacity: 0 !important;
+  pointer-events: none !important; height: 0 !important;
+}
+/* ============================================
+   TOKENS — 与首页一致
+   ============================================ */
+:root {
+  --brand: #2B7FD8; --brand-text: #1E63B0; --brand-deep: #1E5BA8;
+  --brand-tint: rgba(43,127,216,0.10);
+  --highlight: #F4D758; --highlight-soft: rgba(244,215,88,0.18);
+  --pop: #E84A5F; --pop-text: #C73E51;
+  --cream: #FAF7F0; --cream-dark: #F3EEE2;
+  --ink: #1C1C1E; --ink-light: #48484A; --ink-faint: #6B6B70;
+  --border: rgba(28,28,30,0.10); --hairline: rgba(28,28,30,0.06);
+  --card-bg: #FFFFFF;
+  --p-cream:#F6EDD3; --p-blue:#DEE7F0; --p-rose:#F3E3DC; --p-sage:#E3E8E2; --p-lav:#E7E4EC; --p-peach:#F8E8DA;
+  --shadow-soft: 0 1px 3px rgba(28,28,30,0.04), 0 16px 36px rgba(28,28,30,0.06);
+  --shadow-lift: 0 2px 6px rgba(28,28,30,0.05), 0 22px 48px rgba(28,28,30,0.10);
+  --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "HarmonyOS Sans SC", "Helvetica Neue", "Noto Sans SC", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "HarmonyOS Sans SC", "Helvetica Neue", "Noto Sans SC", sans-serif;
+  --font-serif: "Fraunces", "Noto Serif SC", "Songti SC", serif;
+  --font-mono: ui-monospace, "SF Mono", "Fira Code", "JetBrains Mono", Menlo, monospace;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(1100px 520px at 12% -2%, rgba(244,215,88,0.13), transparent 62%),
+    radial-gradient(900px 480px at 100% 4%, rgba(43,127,216,0.06), transparent 58%);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection { background: var(--highlight); color: var(--ink); }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+.container { width: min(1120px, 92vw); margin: 0 auto; }
+section { scroll-margin-top: 88px; }
+
+/* ============================================
+   NAV
+   ============================================ */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: center;
+  padding: 14px 20px; pointer-events: none;
+}
+.nav-inner {
+  pointer-events: auto; display: flex; align-items: center; gap: 4px;
+  background: rgba(250,247,240,0.72);
+  backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border: 1px solid rgba(28,28,30,0.07); border-radius: 999px; padding: 6px;
+  box-shadow: 0 8px 30px rgba(28,28,30,0.08);
+}
+.nav-logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--ink); padding: 7px 14px 7px 10px; }
+.nav-logo img { width: 24px; height: 24px; border-radius: 50%; }
+.nav a.nlink { font-size: 0.86rem; font-weight: 500; color: var(--ink-light); padding: 8px 15px; border-radius: 999px; transition: all 0.25s ease; white-space: nowrap; }
+.nav a.nlink:hover { color: var(--ink); background: rgba(28,28,30,0.05); }
+.nav a.nlink.active { color: var(--ink); background: var(--highlight); box-shadow: 0 2px 8px rgba(244,215,88,0.5); }
+.nav a.nlink-cta { background: var(--ink); color: #fff; margin-left: 2px; }
+.nav a.nlink-cta:hover { background: var(--brand-deep); color: #fff; }
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero { padding: 150px 0 90px; text-align: center; position: relative; }
+.avatar { width: 96px; height: 96px; border-radius: 50%; margin: 0 auto 26px; box-shadow: 0 10px 30px rgba(28,28,30,0.12); border: 4px solid #fff; }
+.sec-label { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.12em; text-transform: lowercase; padding: 7px 16px; border-radius: 999px; background: var(--highlight-soft); border: 1px solid rgba(244,215,88,0.55); color: #8A6D00; margin-bottom: 20px; }
+.sec-label::before { content: '✦'; color: var(--pop-text); }
+.hero h1 { font-family: var(--font-serif); font-weight: 900; font-size: clamp(2.4rem, 6vw, 4rem); line-height: 1.15; letter-spacing: 0.01em; }
+.hero h1 .hl { background: linear-gradient(transparent 60%, rgba(244,215,88,0.9) 60%, rgba(244,215,88,0.9) 94%, transparent 94%); padding: 0 0.06em; }
+.hero-sub { margin: 22px auto 0; max-width: 640px; color: var(--ink-light); font-size: clamp(0.98rem, 1.4vw, 1.1rem); line-height: 2; }
+.hero-sub b { color: var(--ink); font-weight: 600; }
+.hero-tags { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 26px; }
+.hero-tags span { font-size: 0.82rem; font-weight: 500; color: var(--ink-light); background: rgba(255,255,255,0.7); border: 1px solid var(--hairline); border-radius: 999px; padding: 7px 15px; }
+
+/* ============================================
+   通用 section
+   ============================================ */
+.section { padding: 70px 0; }
+.section-head { margin-bottom: 38px; }
+.section-title { font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.7rem, 3.6vw, 2.5rem); line-height: 1.25; letter-spacing: 0.01em; }
+.section-desc { margin-top: 12px; color: var(--ink-light); font-size: 1rem; line-height: 1.85; max-width: 620px; }
+
+/* 介绍段 */
+.intro { font-family: var(--font-serif); font-weight: 700; font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.7; max-width: 820px; }
+.intro .hl { background: linear-gradient(transparent 60%, rgba(244,215,88,0.9) 60%, rgba(244,215,88,0.9) 94%, transparent 94%); padding: 0 0.05em; }
+.intro-more { margin-top: 22px; color: var(--ink-light); font-size: 1rem; line-height: 1.95; max-width: 760px; }
+.intro-more b { color: var(--ink); }
+
+/* 粉彩焦点卡 */
+.focus-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.focus-card { border-radius: 22px; padding: 28px 26px; background: var(--p-blue); box-shadow: none; transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease); }
+.focus-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); }
+.focus-card.p-cream { background: var(--p-cream); }
+.focus-card.p-rose { background: var(--p-rose); }
+.focus-card.p-sage { background: var(--p-sage); }
+.focus-card.p-lav { background: var(--p-lav); }
+.focus-card .fc-icon { font-size: 1.6rem; line-height: 1; margin-bottom: 14px; }
+.focus-card h3 { font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; color: #1F1F22; margin-bottom: 8px; }
+.focus-card p { font-size: 0.86rem; color: #4A4A4E; line-height: 1.7; }
+
+/* 时间线 */
+.timeline { position: relative; padding-left: 34px; max-width: 720px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, var(--brand), var(--highlight), var(--pop)); border-radius: 2px; opacity: 0.5; }
+.tl-item { position: relative; padding: 0 0 34px; }
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before { content: ''; position: absolute; left: -31px; top: 4px; width: 13px; height: 13px; border-radius: 50%; background: var(--brand); border: 3px solid var(--cream); box-shadow: 0 0 0 2px var(--brand); }
+.tl-item:nth-child(2)::before { background: var(--highlight); box-shadow: 0 0 0 2px #d9b824; }
+.tl-item:nth-child(3)::before { background: var(--pop); box-shadow: 0 0 0 2px var(--pop); }
+.tl-item:nth-child(4)::before { background: var(--brand); box-shadow: 0 0 0 2px var(--brand); }
+.tl-year { font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faint); margin-bottom: 6px; }
+.tl-title { font-size: 1.08rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 6px; }
+.tl-desc { font-size: 0.92rem; color: var(--ink-light); line-height: 1.75; }
+
+/* 信条引用 */
+.beliefs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.belief-card { background: var(--card-bg); border-radius: 22px; padding: 34px 30px; box-shadow: var(--shadow-soft); position: relative; text-align: left; }
+.belief-card::before { content: '”'; position: absolute; top: 6px; right: 22px; font-family: var(--font-serif); font-size: 3.4rem; color: rgba(244,215,88,0.55); line-height: 1; }
+.belief-card p { font-family: var(--font-serif); font-weight: 700; font-size: 1.08rem; line-height: 1.6; color: var(--ink); }
+.belief-card span { display: block; margin-top: 14px; font-family: var(--font-mono); font-size: 0.72rem; color: var(--ink-faint); }
+
+/* 技能胶囊 */
+.skills { display: flex; flex-wrap: wrap; gap: 12px; max-width: 820px; }
+.skills span { font-size: 0.9rem; font-weight: 500; color: var(--ink-light); background: var(--cream-dark); border: 1px solid var(--hairline); border-radius: 999px; padding: 9px 18px; transition: all 0.25s ease; }
+.skills span:hover { background: var(--highlight-soft); border-color: rgba(244,215,88,0.6); color: var(--ink); transform: translateY(-2px); }
+.skills span.hot { background: var(--brand-tint); color: var(--brand-text); border-color: transparent; }
+
+/* 联系卡 */
+.contact-card { background: linear-gradient(150deg, #EAF3FE 0%, #FBF8EC 58%, #FEF4F5 100%); border: 1px solid var(--hairline); border-radius: 30px; padding: 60px 40px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(26,26,46,0.05); }
+.contact-card::after { content: '✦'; position: absolute; top: 24px; right: 32px; font-size: 22px; color: rgba(244,215,88,0.95); animation: twinkle 3.2s ease-in-out infinite; }
+@keyframes twinkle { 0%,100% { opacity: 0.95; transform: scale(1) rotate(0deg);} 50% { opacity: 0.55; transform: scale(0.88) rotate(10deg);} }
+.contact-card h2 { font-family: var(--font-serif); font-weight: 900; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.25; }
+.contact-card h2 .hl { background: linear-gradient(transparent 60%, rgba(244,215,88,0.9) 60%, rgba(244,215,88,0.9) 94%, transparent 94%); padding: 0 0.05em; }
+.contact-card .cc-desc { margin: 16px auto 0; max-width: 520px; color: var(--ink-light); line-height: 1.85; }
+.contact-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; position: relative; }
+.c-pill { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 500; color: var(--ink); background: rgba(255,255,255,0.85); border: 1px solid var(--hairline); border-radius: 999px; padding: 12px 22px; transition: all 0.3s var(--ease); }
+.c-pill:hover { transform: translateY(-3px); border-color: var(--brand); color: var(--brand-text); box-shadow: 0 12px 26px rgba(43,127,216,0.12); }
+
+/* 页脚 */
+.footer { padding: 56px 0 44px; text-align: center; }
+.footer .f-brand { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-light); }
+.footer .f-line { margin-top: 12px; font-size: 0.8rem; color: var(--ink-faint); line-height: 2.2; }
+.footer .f-line a { color: var(--ink-faint); transition: color 0.2s; }
+.footer .f-line a:hover { color: var(--brand-text); }
+
+/* 渐显 + 响应式 */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s var(--ease); transition-delay: var(--delay, 0ms); }
+.reveal.in { opacity: 1; transform: none; }
+@media (max-width: 960px) {
+  .focus-grid { grid-template-columns: repeat(2, 1fr); }
+  .beliefs { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .nav a.nlink:not(.active):not(.nlink-cta) { display: none; }
+  .focus-grid { grid-template-columns: 1fr; }
+  .hero { padding: 130px 0 70px; }
+  .contact-card { padding: 48px 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .contact-card::after { animation: none; opacity: 0.7; }
+}
+</style>
+</head>
+<body>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="nav-logo" href="../index.html"><img src="../icon.png" alt="88lin"><span>88lin</span></a>
+    <a class="nlink" href="../index.html">首页</a>
+    <a class="nlink" href="../index.html#works">项目</a>
+    <a class="nlink" href="../index.html#sites">站点</a>
+    <a class="nlink" href="../index.html#writing">文章</a>
+    <a class="nlink active" href="index.html">关于</a>
+    <a class="nlink nlink-cta" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">博客 ↗</a>
+  </div>
+</header>
+<section class="hero" id="top">
+  <div class="container">
+    <img class="avatar reveal" src="../icon.png" alt="88lin 头像">
+    <div class="sec-label reveal" style="--delay:60ms">about me</div>
+    <h1 class="reveal" style="--delay:120ms">你好，我是 <span class="hl">88lin</span></h1>
+    <p class="hero-sub reveal" style="--delay:180ms">AI 研究者与 Agent 工程实践者，<b>茉灵智库</b>主理人。<br>追踪前沿，但更在意落地——把复杂需求拆成可交付、可维护的工程结果。</p>
+    <div class="hero-tags reveal" style="--delay:240ms">
+      <span>🤖 AI Agent 工程化</span>
+      <span>🔌 MCP 工具链</span>
+      <span>📚 RAG 知识库</span>
+      <span>✦ 开源信仰者</span>
+    </div>
+  </div>
+</section>
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sec-label">who i am</div>
+      <h2 class="section-title">把想法跑通，把经验留下</h2>
+    </div>
+    <p class="intro reveal">我追踪 AI 领域的最新进展，但更在意它们<span class="hl">能不能落地</span>——用 Agent 工作流把复杂需求拆成可交付、可维护、可复盘的工程结果。</p>
+    <p class="intro-more reveal" style="--delay:100ms">比起停留在概念，我更愿意动手把想法跑通：<b>读源码、搭原型、踩坑、复盘</b>，让每一次实践都留下能复用的东西。这些过程里的观察与方法，我会整理成文章，分享在茉灵智库。<b>前沿跑得快，地基更要稳</b>——算法与计算机科学的核心基础，是我同步打磨的另一条主线。</p>
+  </div>
+</section>
+<section class="section" id="focus">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sec-label">what i do</div>
+      <h2 class="section-title">我正在做的事</h2>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card p-blue reveal">
+        <div class="fc-icon">🤖</div>
+        <h3>AI Agent 工程化</h3>
+        <p>以 Codex / Claude Code 多智能体协同贯穿开发与科研全流程：代码阅读、开发实现、测试验证与 GitHub 维护。</p>
+      </div>
+      <div class="focus-card p-rose reveal" style="--delay:70ms">
+        <div class="fc-icon">🔌</div>
+        <h3>MCP 与工具链</h3>
+        <p>用 MCP 打通浏览器、GitHub、Notion 与部署工具，让 Agent 直接触达真实项目上下文，而非在真空里猜测。</p>
+      </div>
+      <div class="focus-card p-sage reveal" style="--delay:140ms">
+        <div class="fc-icon">📚</div>
+        <h3>知识库与 RAG</h3>
+        <p>把项目文档、Issue、FAQ 与设计规范沉淀为可检索的知识库，让经验成为可持续复用的工程记忆。</p>
+      </div>
+      <div class="focus-card p-cream reveal" style="--delay:210ms">
+        <div class="fc-icon">🌱</div>
+        <h3>基础与成长</h3>
+        <p>持续打磨算法与计算机科学的核心基础，在解决真实问题中学习，在动手构建中成长。</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="journey">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sec-label">journey</div>
+      <h2 class="section-title">一路走过来的旅程</h2>
+      <p class="section-desc">这座数字花园从 2021 年开始生长，每个阶段都留下了真实的印记。</p>
+    </div>
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-year">2021.07</div>
+        <div class="tl-title">数字花园开园</div>
+        <div class="tl-desc">第一个站点上线，从此开始持续运行与更新，记录分享教程与思维认知。</div>
+      </div>
+      <div class="tl-item reveal" style="--delay:80ms">
+        <div class="tl-year">2023</div>
+        <div class="tl-title">开源起步 · video_vip</div>
+        <div class="tl-desc">全网 VIP 解析脚本开源，慢慢收获 4500+ stars — 第一次感受到开源的快乐。</div>
+      </div>
+      <div class="tl-item reveal" style="--delay:160ms">
+        <div class="tl-year">2025</div>
+        <div class="tl-title">茉灵智库站点矩阵成形</div>
+        <div class="tl-desc">博客 + 导航站 + 维修站 + Lofi Radio + 深度研究，一站一用，互相打通。</div>
+      </div>
+      <div class="tl-item reveal" style="--delay:240ms">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">AI Agent 工程化进行时</div>
+        <div class="tl-desc">把多智能体协同、MCP 工具链与 RAG 知识库，做成每一天的日常。</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="beliefs">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sec-label">beliefs</div>
+      <h2 class="section-title">我相信的几件事</h2>
+    </div>
+    <div class="beliefs">
+      <div class="belief-card reveal">
+        <p>收集有用的，也保留有趣的。</p>
+        <span>// motto</span>
+      </div>
+      <div class="belief-card reveal" style="--delay:90ms">
+        <p>前沿跑得快，地基更要稳。</p>
+        <span>// foundation</span>
+      </div>
+      <div class="belief-card reveal" style="--delay:180ms">
+        <p>比起停留在概念，更愿意动手把想法跑通。</p>
+        <span>// ship-it</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="sec-label">skills</div>
+      <h2 class="section-title">技能与工具</h2>
+    </div>
+    <div class="skills reveal">
+      <span class="hot">AI Agent</span>
+      <span class="hot">MCP 工具链</span>
+      <span class="hot">RAG 知识库</span>
+      <span>Prompt / Skill 设计</span>
+      <span>Python</span>
+      <span>TypeScript</span>
+      <span>网站开发</span>
+      <span>开源维护</span>
+      <span>内容创作</span>
+      <span>自动化工作流</span>
+      <span>技术写作</span>
+      <span>GitHub Actions</span>
+    </div>
+  </div>
+</section>
+<section class="section" id="contact">
+  <div class="container">
+    <div class="contact-card reveal">
+      <h2>欢迎聊聊 <span class="hl">AI、工具</span>，<br>或者任何有趣的合作想法</h2>
+      <p class="cc-desc">无论是 AI Agent 工程化、MCP 工具链与知识库，还是网站开发、电脑维修的需求，或者只是想打个招呼——都欢迎。</p>
+      <div class="contact-links">
+        <a class="c-pill" href="mailto:431761794@qq.com">✉️ 431761794@qq.com</a>
+        <a class="c-pill" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">💬 QQ 群</a>
+        <a class="c-pill" href="https://go.88lin.eu.org/gzh/index.html" target="_blank" rel="noreferrer">💚 微信公众号</a>
+        <a class="c-pill" href="https://space.bilibili.com/1412014683" target="_blank" rel="noreferrer">📺 B 站</a>
+        <a class="c-pill" href="https://github.com/88lin" target="_blank" rel="noreferrer">🐙 GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <p class="f-brand">© 2021 - 2026 茉灵智库 · 88lin ✦ 收集有用的，也保留有趣的</p>
+    <p class="f-line">
+      <a href="../index.html">首页</a> ·
+      <a href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">博客</a> ·
+      <a href="https://go.88lin.eu.org" target="_blank" rel="noreferrer">导航</a> ·
+      <a href="https://github.com/88lin" target="_blank" rel="noreferrer">GitHub</a><br>
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">桂ICP备21015360号</a> ·
+      <a href="https://icp.gov.moe/?keyword=20249980" target="_blank" rel="noreferrer">萌ICP备20249980号</a>
+    </p>
+  </div>
+</footer>
+<script>
+/* 滚动渐显 */
+(function () {
+  var reveals = document.querySelectorAll('.reveal');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+  reveals.forEach(function (el) { io.observe(el); });
+})();
+</script>
+</body>
+</html>
