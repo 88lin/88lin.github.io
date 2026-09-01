@@ -565,11 +565,22 @@ body {
 /* 区块节奏 */
 .works { background: linear-gradient(180deg, var(--cream) 0%, var(--cream-dark) 18%, var(--cream-dark) 82%, var(--cream) 100%); border-block: none; }
 .contact { background: var(--cream); }
+/* 联系区渐变卡片（与 /about 一致） */
+.contact-card {
+  position: relative; overflow: hidden;
+  background: linear-gradient(150deg, #EAF3FE 0%, #FBF8EC 58%, #FEF4F5 100%);
+  border: 1px solid var(--hairline); border-radius: 30px;
+  padding: 64px 40px; text-align: center;
+  box-shadow: 0 20px 50px rgba(26,26,46,0.05);
+}
+.contact-card .contact-title { margin: 0 auto; }
+.contact-card .contact-links { margin-top: 34px; }
+@media (max-width: 640px) { .contact-card { padding: 48px 22px; } }
 /* 按钮微光 */
 .btn-bright:hover { box-shadow: 0 16px 36px rgba(30,91,168,0.30); }
 .btn-bright:active, .btn-line:active { transform: translateY(-1px); }
 /* 联系区星光 */
-.contact-panel::after {
+.contact-card::after {
   content: '✦'; position: absolute; top: 26px; right: 34px;
   font-size: 22px; color: rgba(244,215,88,0.95); text-shadow: 0 2px 10px rgba(244,215,88,0.5);
   animation: twinkle 3.2s ease-in-out infinite;
@@ -580,7 +591,7 @@ body {
 }
 .stat strong em { color: var(--brand-text); }
 @media (prefers-reduced-motion: reduce) {
-  .hero-spark, .contact-panel::after { animation: none; opacity: 0.7; }
+  .hero-spark, .contact-card::after { animation: none; opacity: 0.7; }
 }
 
 /* ============================================
@@ -664,10 +675,10 @@ body {
 <header class="nav">
   <div class="nav-inner">
     <a class="nav-logo" href="#top"><img src="icon.png" alt="88lin"><span>88lin</span></a>
-    <a class="nlink" href="about/index.html">关于</a>
     <a class="nlink" href="#works">项目</a>
     <a class="nlink" href="#sites">站点</a>
     <a class="nlink" href="#writing">文章</a>
+    <a class="nlink" href="about/index.html">关于</a>
     <a class="nlink nlink-cta" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">博客 ↗</a>
   </div>
 </header>
@@ -935,15 +946,16 @@ body {
 </section>
 <section class="contact" id="contact">
   <div class="container">
-    <div class="sec-label reveal" style="justify-content:center;">05 · contact</div>
-    <h2 class="contact-title reveal" style="--delay:80ms">欢迎聊聊 <span class="hl">AI Agent、工具链</span>，<br>或者任何有趣的合作想法</h2>
-    <p class="contact-desc reveal" style="--delay:160ms">无论是 AI Agent 工程化、MCP 工具链与知识库，还是网站开发、电脑维修的需求，或者只是想打个招呼——都欢迎。</p>
-    <div class="contact-links reveal" style="--delay:240ms">
-      <a class="c-pill" href="mailto:431761794@qq.com">✉️ 431761794@qq.com</a>
-      <a class="c-pill" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">💬 QQ 群</a>
-      <a class="c-pill" href="https://go.88lin.eu.org/gzh/index.html" target="_blank" rel="noreferrer">💚 微信公众号</a>
-      <a class="c-pill" href="https://space.bilibili.com/1412014683" target="_blank" rel="noreferrer">📺 B 站</a>
-      <a class="c-pill" href="https://github.com/88lin" target="_blank" rel="noreferrer">🐙 GitHub</a>
+    <div class="contact-card reveal">
+      <h2 class="contact-title">欢迎聊聊 <span class="hl">AI、工具</span>，<br>或者任何有趣的合作想法</h2>
+      <p class="contact-desc">无论是 AI Agent 工程化、MCP 工具链与知识库，还是网站开发、电脑维修的需求，或者只是想打个招呼——都欢迎。</p>
+      <div class="contact-links">
+        <a class="c-pill" href="mailto:431761794@qq.com">✉️ 431761794@qq.com</a>
+        <a class="c-pill" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">💬 QQ 群</a>
+        <a class="c-pill" href="https://go.88lin.eu.org/gzh/index.html" target="_blank" rel="noreferrer">💚 微信公众号</a>
+        <a class="c-pill" href="https://space.bilibili.com/1412014683" target="_blank" rel="noreferrer">📺 B 站</a>
+        <a class="c-pill" href="https://github.com/88lin" target="_blank" rel="noreferrer">🐙 GitHub</a>
+      </div>
     </div>
   </div>
 </section>

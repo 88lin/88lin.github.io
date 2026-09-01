@@ -67,20 +67,35 @@ section { scroll-margin-top: 88px; }
   position: fixed; top: 0; left: 0; right: 0; z-index: 900;
   display: flex; align-items: center; justify-content: center;
   padding: 14px 20px; pointer-events: none;
+  transition: padding 0.4s var(--ease);
 }
 .nav-inner {
-  pointer-events: auto; display: flex; align-items: center; gap: 4px;
+  pointer-events: auto;
+  display: flex; align-items: center; gap: 4px;
   background: rgba(250,247,240,0.72);
-  backdrop-filter: blur(20px) saturate(1.6); -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  border: 1px solid rgba(28,28,30,0.07); border-radius: 999px; padding: 6px;
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border: 1px solid rgba(28,28,30,0.07);
+  border-radius: 999px; padding: 6px;
   box-shadow: 0 8px 30px rgba(28,28,30,0.08);
+  transition: background 0.5s ease, border-color 0.5s ease;
 }
-.nav-logo { display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600; color: var(--ink); padding: 7px 14px 7px 10px; }
+.nav-logo {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
+  color: var(--ink); padding: 7px 14px 7px 10px;
+}
 .nav-logo img { width: 24px; height: 24px; border-radius: 50%; }
-.nav a.nlink { font-size: 0.86rem; font-weight: 500; color: var(--ink-light); padding: 8px 15px; border-radius: 999px; transition: all 0.25s ease; white-space: nowrap; }
+.nav a.nlink {
+  font-size: 0.86rem; font-weight: 500; color: var(--ink-light);
+  padding: 8px 15px; border-radius: 999px;
+  transition: all 0.25s ease; white-space: nowrap;
+}
 .nav a.nlink:hover { color: var(--ink); background: rgba(28,28,30,0.05); }
 .nav a.nlink.active { color: var(--ink); background: var(--highlight); box-shadow: 0 2px 8px rgba(244,215,88,0.5); }
-.nav a.nlink-cta { background: var(--ink); color: #fff; margin-left: 2px; }
+.nav a.nlink-cta {
+  background: var(--ink); color: #fff; margin-left: 2px;
+}
 .nav a.nlink-cta:hover { background: var(--brand-deep); color: #fff; }
 
 /* ============================================
@@ -175,7 +190,10 @@ section { scroll-margin-top: 88px; }
   .beliefs { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .nav a.nlink:not(.active):not(.nlink-cta) { display: none; }
+  .nav { padding: 10px 10px; }
+  .nav-logo { display: none; }
+  .nav a.nlink { padding: 7px 10px; font-size: 0.78rem; }
+  .nav a.nlink-cta { padding: 7px 12px; }
   .focus-grid { grid-template-columns: 1fr; }
   .hero { padding: 130px 0 70px; }
   .contact-card { padding: 48px 22px; }
@@ -190,7 +208,6 @@ section { scroll-margin-top: 88px; }
 <header class="nav">
   <div class="nav-inner">
     <a class="nav-logo" href="../index.html"><img src="../icon.png" alt="88lin"><span>88lin</span></a>
-    <a class="nlink" href="../index.html">首页</a>
     <a class="nlink" href="../index.html#works">项目</a>
     <a class="nlink" href="../index.html#sites">站点</a>
     <a class="nlink" href="../index.html#writing">文章</a>
