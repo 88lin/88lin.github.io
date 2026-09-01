@@ -112,6 +112,17 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
+                id: 'justdowork',
+                name: 'JustDoWork',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-09-01_130420_632.webp',
+                url: 'https://api.justwoker.icu/register?aff=wpiO',
+                tagline: '是免费公益大模型 API 平台，支持Claude Opus 5 顶级模型，目前较稳定。',
+                desc: '免费公益大模型API平台，可用Claude Opus 5 模型，目前稳定可用。注册送＄100（每日签到得＄30左右），支持GitHub登录。',
+                highlights: ['注册送 $100', '每日签到 $30', '免费稳定'],
+                cta: '免费领取',
+                accent: '#4d6bff'
+            },
+            {
                 id: 'agentrouter',
                 name: 'Agent Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
@@ -151,7 +162,7 @@
                 url: 'https://seekai.cc/sign-up?aff=Plh5',
                 tagline: '是免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。',
                 desc: '免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。目前较稳定。注册送 $70，每日签到得 $10 左右，支持 GitHub 登录。',
-                highlights: ['注册送 $200', '每日签到 $20', 'GitHub 登录', '免费稳定'],
+                highlights: ['注册送 $200', '每日签到 $20', 'GitHub 登录'],
                 cta: '免费领取',
                 accent: '#1e88e5'
             }
