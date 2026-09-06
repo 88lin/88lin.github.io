@@ -1089,7 +1089,7 @@
                     <select id="api-select"></select>
                 </div>
                 <div class="input-group url-group">
-                    <input type="url" id="video-url" placeholder="请输入视频链接（如遇卡顿可尝试切换至海外网络环境）" autocomplete="off">
+                    <input type="url" id="video-url" placeholder="请输入视频链接（如遇卡顿可使用海外网络观看）" autocomplete="off">
                     <button type="button" id="input-clear" aria-label="清空输入"><i class="fas fa-times"></i></button>
                 </div>
                 <button id="parse-btn" class="btn btn-primary">
@@ -1241,7 +1241,7 @@
                             注意事项
                         </h3>
                         <p>1. 视频内广告均为资源本身自带，并非本站所为，请勿轻信，谨防受骗，可快进跳过</p>
-                        <p>2. 如果某个解析接口无法使用，请尝试切换其他接口或使用海外网络环境</p>
+                        <p>2. 如遇视频无法加载或播放卡顿，可切换不同线路/使用海外网络观看</p>
                         <p>3. 部分视频可能需要等待几秒钟加载时间；全屏播放时按ESC键退出</p>
                         <p>4. 本站仅限个人学习使用，请勿用于商业用途</p>
                     </div>
@@ -1261,7 +1261,7 @@
                     <p>6. 请支持正版视频平台，购买官方VIP会员享受更好的服务。</p>
                     <div class="disclaimer">
                         <p>
-                            ⚡郑重声明：本站仅用于技术研究，禁止用于任何商业或非法用途。请在24小时内删除从本站获取的任何视频内容。
+                            郑重声明：本站仅用于技术研究，禁止用于任何商业或非法用途。请在24小时内删除从本站获取的任何视频内容。
                         </p>
                     </div>
                 </div>
@@ -1824,7 +1824,7 @@
                     if (mode === 'parse') {
                         // 切到链接解析：回填上次解析的链接（输入框为空时）
                         wsyzyInput.type = 'url';
-                        wsyzyInput.placeholder = '请输入视频链接（如遇卡顿可尝试切换至海外网络环境）';
+                        wsyzyInput.placeholder = '请输入视频链接（如遇卡顿可使用海外网络观看）';
                         if (!wsyzyInput.value.trim() && lastParseUrl) wsyzyInput.value = lastParseUrl;
                         wsyzyBtn.innerHTML = '<i class="fas fa-bolt"></i><span>解析视频</span>';
                         wsyzyPanel.style.display = 'none';
