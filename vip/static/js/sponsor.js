@@ -112,26 +112,26 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
-                id: 'justdowork',
-                name: 'JustDoWork',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-09-01_130420_632.webp',
-                url: 'https://api.justwoker.icu/register?aff=wpiO',
-                tagline: '是免费公益大模型 API 平台，支持Claude Opus 5 顶级模型，目前较稳定。',
-                desc: '免费公益大模型API平台，可用Claude Opus 5 模型，目前稳定可用。注册送＄100（每日签到得＄30左右），支持GitHub登录。',
-                highlights: ['注册送 $100', '每日签到 $30', '免费稳定'],
-                cta: '免费领取',
-                accent: '#4d6bff'
-            },
-            {
                 id: 'agentrouter',
                 name: 'Agent Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
                 url: 'https://agentrouter.org/register?aff=ugVO',
-                tagline: '是免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连不折腾。',
-                desc: '免费公益大模型 API 平台，支持 GPT-5.6、Claude Opus 5 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
+                tagline: '是免费公益大模型 API 平台，支持GPT-5.6、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连不折腾。',
+                desc: '免费公益大模型 API 平台，支持GPT-5.6、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
                 highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
                 cta: '免费领取',
                 accent: '#7c4dff'
+            },
+            {
+                id: 'anyrouter',
+                name: 'Any Router',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/微信图片_20260907170036_114_2.webp',
+                url: 'https://anyrouter.top/register?aff=woX5',
+                tagline: '是免费公益大模型 API 平台，可用gpt-6-astra、claude-fable-5.1等顶级模型。',
+                desc: '免费公益大模型 API 平台，gpt-6-astra、claude-fable-5.1等顶级模型。目前较稳定。注册送 $50，每日签到随机额度。',
+                highlights: ['注册送 $50', '每日签到随机额度'],
+                cta: '免费领取',
+                accent: '#1e88e5'
             },
             {
                 id: 'sheapi',
@@ -150,21 +150,21 @@
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
                 url: 'https://www.workbuddy.cn/events/invite?inviteCode=w0x2ic45z',
                 tagline: '是腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说需求、执行任务、交付完整成果，可用国产顶级模型。',
-                desc: '腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy3 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.2 等模型。',
-                highlights: ['Hy3 模型限时免费', '注册送 2000 积分', '每月再送 500积分', 'Kimi-K3、GLM-5.2 等模型'],
+                desc: '腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy3 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.3 等模型。',
+                highlights: ['Hy3 模型限时免费', '注册送 2000 积分', '每月再送 500积分', 'Kimi-K3、GLM-5.3 等模型'],
                 cta: '立即体验',
                 accent: '#0052d9'
             },
             {
-                id: 'seekai',
-                name: 'SeekAI',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-07-31_213220_778.webp',
-                url: 'https://seekai.cc/sign-up?aff=Plh5',
-                tagline: '是免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。',
-                desc: '免费公益大模型 API 平台，可用claude-fable-5、Claude-Opus-5、kimi-k3、gpt-5.6-sol、glm-5.2等主流模型。目前较稳定。注册送 $70，每日签到得 $10 左右，支持 GitHub 登录。',
-                highlights: ['注册送 $200', '每日签到 $20', 'GitHub 登录'],
+                id: 'justdowork',
+                name: 'JustDoWork',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-09-01_130420_632.webp',
+                url: 'https://api.justwoker.icu/register?aff=wpiO',
+                tagline: '是免费公益大模型 API 平台，支持Claude Opus 5 顶级模型，目前较稳定。',
+                desc: '免费公益大模型API平台，可用Claude Opus 5 模型，目前稳定可用。注册送＄100（每日签到得＄30左右），支持GitHub登录。',
+                highlights: ['注册送 $100', '每日签到 $30', '免费稳定'],
                 cta: '免费领取',
-                accent: '#1e88e5'
+                accent: '#4d6bff'
             }
         ]
     };
