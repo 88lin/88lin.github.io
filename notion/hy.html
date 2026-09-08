@@ -27,16 +27,6 @@
             overflow-y: auto;
         }
 
-        /* 隐藏托管平台注入的品牌栏与悬浮角标（遮挡嵌入内容），
-           并压掉启动脚本为顶栏预留的 body 上边距 */
-        #mulepage-bar,
-        #mulepage-footer {
-            display: none !important;
-        }
-        body {
-            padding: 4px !important;
-        }
-
         /* 主容器：撑满组件宽高，内容居中，大圆角 */
         #main-container {
             width: 100%;
@@ -288,30 +278,6 @@
             ipEl.addEventListener('click', () => ipEl.classList.toggle('revealed'));
             initialize();
         });
-
-        // 移除托管平台注入的品牌栏/悬浮角标（CSS 之外的双保险），
-        // 并强制还原 body 边距（启动脚本会为顶栏偷偷加 padding-top 占位）
-        const stripInjectedBars = () => {
-            document.body.style.setProperty('padding', '4px', 'important');
-            ['mulepage-bar', 'mulepage-footer'].forEach((id) => {
-                const el = document.getElementById(id);
-                if (el) el.remove();
-            });
-        };
-        stripInjectedBars();
-        document.addEventListener('DOMContentLoaded', stripInjectedBars);
-        window.addEventListener('load', stripInjectedBars);
-        setTimeout(stripInjectedBars, 500);
-        new MutationObserver((mutations) => {
-            for (const m of mutations) {
-                for (const node of m.addedNodes) {
-                    if (node.nodeType === 1 && (node.id === 'mulepage-bar' || node.id === 'mulepage-footer')) {
-                        node.remove();
-                        document.body.style.setProperty('padding', '4px', 'important');
-                    }
-                }
-            }
-        }).observe(document.documentElement, { childList: true, subtree: true });
     </script>
 </body>
 </html>
