@@ -156,14 +156,14 @@
                 accent: '#0052d9'
             },
             {
-                id: 'justdowork',
-                name: 'JustDoWork',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-09-01_130420_632.webp',
-                url: 'https://api.justwoker.icu/register?aff=wpiO',
-                tagline: '是免费公益大模型 API 平台，支持Claude Opus 5 顶级模型，目前较稳定。',
-                desc: '免费公益大模型API平台，可用Claude Opus 5 模型。注册送＄100（每日签到得＄30左右），支持GitHub登录。',
-                highlights: ['注册送 $100', '每日签到 $30'],
-                cta: '免费领取',
+                id: 'workbuddy-auto-signin',
+                name: 'WorkBuddy',
+                logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
+                url: 'https://github.com/88lin/workbuddy-auto-signin',
+                tagline: '自动领取 WorkBuddy 每日签到积分的小脚本',
+                desc: '自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、领任务奖励的自动化脚本',
+                highlights: ['自动签到', '静默运行', '连登奖励', '开盲盒抽奖', '派 Buddy', '旅行礼物'],
+                cta: '免费开源',
                 accent: '#4d6bff'
             }
         ]
