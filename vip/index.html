@@ -1048,6 +1048,315 @@
                     font-size: 0.8rem;
                 }
             }
+
+            /* ===== 推荐弹窗（仅首次访问弹出一次） ===== */
+            .popup-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(6, 14, 28, 0.62);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 99999;
+                padding: 20px;
+                animation: popupFadeIn 0.28s ease-out;
+            }
+
+            .popup-box {
+                position: relative;
+                width: 100%;
+                max-width: 400px;
+                max-height: 92vh;
+                display: flex;
+                flex-direction: column;
+                background: #fff;
+                border-radius: 26px;
+                overflow: hidden;
+                box-shadow: 0 30px 70px rgba(4, 20, 44, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.6) inset;
+                animation: popupScaleIn 0.36s cubic-bezier(0.2, 0.9, 0.25, 1.05);
+            }
+
+            /* 顶部渐变头图 */
+            .popup-hero {
+                position: relative;
+                padding: 28px 24px 30px;
+                text-align: center;
+                background: linear-gradient(135deg, #009ff7 0%, #1eb6ff 50%, #78fadc 100%);
+                overflow: hidden;
+            }
+
+            .popup-hero::before,
+            .popup-hero::after {
+                content: '';
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.22);
+            }
+
+            .popup-hero::before {
+                width: 150px;
+                height: 150px;
+                top: -70px;
+                left: -40px;
+            }
+
+            .popup-hero::after {
+                width: 120px;
+                height: 120px;
+                right: -30px;
+                bottom: -60px;
+                background: rgba(255, 255, 255, 0.16);
+            }
+
+            .popup-badge {
+                position: relative;
+                z-index: 2;
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 6px 14px;
+                border-radius: 999px;
+                font-size: 12px;
+                font-weight: 800;
+                letter-spacing: 1px;
+                color: #fff;
+                background: rgba(255, 255, 255, 0.24);
+                border: 1px solid rgba(255, 255, 255, 0.45);
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+                animation: popupPulse 2.2s ease-in-out infinite;
+            }
+
+            .popup-hero-title {
+                position: relative;
+                z-index: 2;
+                margin: 14px 0 0;
+                font-size: 17px;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                color: #fff;
+                text-shadow: 0 2px 10px rgba(0, 60, 110, 0.28);
+            }
+
+            .popup-close {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                z-index: 10;
+                width: 34px;
+                height: 34px;
+                padding: 0;
+                border: none;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.25);
+                color: #fff;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+            }
+
+            /* 用 SVG 代替 × 字符，保证垂直方向绝对居中 */
+            .popup-close svg {
+                width: 14px;
+                height: 14px;
+                display: block;
+            }
+
+            .popup-close:hover {
+                background: #fff;
+                color: var(--primary);
+                transform: rotate(90deg);
+            }
+
+            .popup-body {
+                padding: 22px 24px 24px;
+                overflow-y: auto;
+                text-align: center;
+            }
+
+            .popup-title {
+                font-size: 25px;
+                font-weight: 800;
+                line-height: 1.4;
+                margin: 0 0 8px;
+                color: #0e1c2b;
+            }
+
+            .popup-text {
+                font-size: 15px;
+                color: #6b7a8c;
+                line-height: 1.7;
+                margin: 0 0 20px;
+            }
+
+            .popup-list {
+                list-style: none;
+                margin: 0 0 20px;
+                padding: 0;
+                display: grid;
+                gap: 9px;
+                text-align: left;
+            }
+
+            .popup-list li {
+                display: flex;
+                align-items: center;
+                gap: 11px;
+                padding: 10px 14px;
+                border-radius: 14px;
+                font-size: 14px;
+                font-weight: 600;
+                color: #2b3a4a;
+                background: linear-gradient(100deg, #f3f9ff, #f8fcff);
+                border: 1px solid #e3f0fd;
+                opacity: 0;
+                animation: popupRise 0.42s ease-out forwards;
+            }
+
+            .popup-list li:nth-child(1) { animation-delay: 0.06s; }
+            .popup-list li:nth-child(2) { animation-delay: 0.14s; }
+            .popup-list li:nth-child(3) { animation-delay: 0.22s; }
+
+            .popup-list i {
+                flex: 0 0 24px;
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 11px;
+                color: #fff;
+                background: linear-gradient(135deg, var(--primary), var(--secondary));
+                box-shadow: 0 4px 10px rgba(0, 159, 247, 0.28);
+            }
+
+            .popup-btn {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+                padding: 15px 20px;
+                border-radius: 999px;
+                font-size: 16.5px;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                color: #fff;
+                text-decoration: none;
+                overflow: hidden;
+                background: linear-gradient(120deg, #009ff7, #1eb6ff 55%, #78fadc);
+                box-shadow: 0 12px 26px rgba(0, 159, 247, 0.35);
+                transition: transform 0.18s ease, box-shadow 0.18s ease;
+            }
+
+            .popup-btn::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -60%;
+                width: 45%;
+                height: 100%;
+                pointer-events: none;
+                background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+                transform: skewX(-18deg);
+                animation: popupShine 3s ease-in-out infinite;
+            }
+
+            .popup-btn i {
+                transition: transform 0.18s ease;
+            }
+
+            .popup-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 16px 32px rgba(0, 159, 247, 0.42);
+            }
+
+            .popup-btn:hover i {
+                transform: translateX(4px);
+            }
+
+            .popup-tip {
+                margin: 12px 0 0;
+                font-size: 12px;
+                color: #94a3b3;
+                letter-spacing: 0.3px;
+            }
+
+            @media (prefers-color-scheme: dark) {
+                .popup-box {
+                    background: #151c27;
+                    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+                }
+                .popup-title {
+                    color: #eef5ff;
+                }
+                .popup-text {
+                    color: #93a3b8;
+                }
+                .popup-list li {
+                    background: rgba(255, 255, 255, 0.05);
+                    border-color: rgba(255, 255, 255, 0.08);
+                    color: #d7e2f0;
+                }
+                .popup-tip {
+                    color: #6f8095;
+                }
+            }
+
+            @keyframes popupFadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            @keyframes popupScaleIn {
+                from { transform: scale(0.9) translateY(16px); opacity: 0; }
+                to { transform: scale(1) translateY(0); opacity: 1; }
+            }
+
+            @keyframes popupRise {
+                from { opacity: 0; transform: translateY(8px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+
+            @keyframes popupPulse {
+                0%, 100% { transform: scale(1); }
+                50% { transform: scale(1.05); }
+            }
+
+            @keyframes popupShine {
+                0% { left: -60%; }
+                60%, 100% { left: 130%; }
+            }
+
+            /* 弹窗打开时禁止背景滚动 */
+            body.popup-lock {
+                overflow: hidden;
+            }
+
+            @media (max-width: 480px) {
+                .popup-overlay {
+                    padding: 16px;
+                }
+                .popup-hero {
+                    padding: 22px 20px 38px;
+                }
+                .popup-title {
+                    font-size: 22px;
+                }
+                .popup-body {
+                    padding: 0 20px 20px;
+                }
+                .popup-list li {
+                    font-size: 13.5px;
+                    padding: 9px 12px;
+                }
+            }
         </style>
     </head>
     <body class="bg-grid-aurora">
@@ -1056,6 +1365,33 @@
         <i class="fas fa-play-circle film-icon film-2"></i>
         <i class="fas fa-play-circle film-icon film-3"></i>
         <i class="fas fa-play-circle film-icon film-4"></i>
+
+        <!-- 推荐弹窗：仅首次访问弹出一次，关闭后不再出现 -->
+        <div class="popup-overlay" id="maint-overlay" style="display: none;">
+            <div class="popup-box">
+                <button class="popup-close" id="maint-close" aria-label="关闭">
+                    <svg viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                        <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <div class="popup-hero">
+                    <div class="popup-badge"><i class="fas fa-fire"></i> 备用站点推荐</div>
+                    <p class="popup-hero-title">卡顿时的另一个入口</p>
+                </div>
+                <div class="popup-body">
+                    <h2 class="popup-title">本站卡顿？推荐用这个</h2>
+                    <p class="popup-text">备一个更稳的观影站点，打开就能看</p>
+                    <ul class="popup-list">
+                        <li><i class="fas fa-bolt"></i> 全网影视一键搜，想看的基本都有</li>
+                        <li><i class="fas fa-film"></i> 高清画质，点开即播不转圈</li>
+                        <li><i class="fas fa-desktop"></i> 手机 / 电脑 / 电视 全端通用</li>
+                    </ul>
+                    <a class="popup-btn" id="maint-cta" href="https://zip0.com/?r=986GTO" target="_blank" rel="noopener noreferrer">立即前往体验<i class="fas fa-arrow-right"></i></a>
+                    <p class="popup-tip">无需注册 · 打开即看</p>
+                </div>
+            </div>
+        </div>
+
         <div class="container">
             <!-- 通知横幅 -->
             <div id="notice-banner" class="notice-banner" style="display: none;">
@@ -2084,6 +2420,51 @@
                     }
                 }
             });
+        </script>
+
+        <!-- 推荐弹窗逻辑：localStorage 记录，关闭后永不再弹 -->
+        <script>
+            (function () {
+                var STORAGE_KEY = 'vip_reco_popup_v3';
+                var overlay = document.getElementById('maint-overlay');
+                var closeBtn = document.getElementById('maint-close');
+                var cta = document.getElementById('maint-cta');
+                if (!overlay || !closeBtn) return;
+
+                // 已经看过（关闭过 / 点击过）则直接不弹
+                var seen = false;
+                try { seen = localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) {}
+                if (seen) return;
+
+                function markSeen() {
+                    try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
+                }
+
+                function closePopup() {
+                    overlay.style.display = 'none';
+                    document.body.classList.remove('popup-lock');
+                    document.removeEventListener('keydown', onKeyDown);
+                    markSeen();
+                }
+
+                function onKeyDown(e) {
+                    if (e.key === 'Escape' || e.key === 'Esc') closePopup();
+                }
+
+                closeBtn.addEventListener('click', closePopup);
+                overlay.addEventListener('click', function (e) {
+                    if (e.target === overlay) closePopup();
+                });
+                // 点了「点击前往」也视为已读，返回页面不会再弹
+                if (cta) cta.addEventListener('click', markSeen);
+                document.addEventListener('keydown', onKeyDown);
+
+                // 延迟展示，避免与首屏渲染抢帧
+                setTimeout(function () {
+                    overlay.style.display = 'flex';
+                    document.body.classList.add('popup-lock');
+                }, 600);
+            })();
         </script>
         <script defer src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/cdn/busuanzi.js"></script>
         <script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js"></script>
