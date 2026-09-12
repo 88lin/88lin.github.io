@@ -116,8 +116,8 @@
                 name: 'Agent Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
                 url: 'https://agentrouter.org/register?aff=ugVO',
-                tagline: '是免费公益大模型 API 平台，支持GPT-5.6、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连不折腾。',
-                desc: '免费公益大模型 API 平台，支持GPT-5.6、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
+                tagline: '是免费公益大模型 API 平台，支持GPT-6-Astra、gpt-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连不折腾。',
+                desc: '免费公益大模型 API 平台，支持GPT-6-Astra、gpt-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
                 highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
                 cta: '免费领取',
                 accent: '#7c4dff'
@@ -127,8 +127,8 @@
                 name: 'Any Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/微信图片_20260907170036_114_2.webp',
                 url: 'https://anyrouter.top/register?aff=woX5',
-                tagline: '是免费公益大模型 API 平台，可用GPT-6-astra、claude-fable-5.1等顶级模型。',
-                desc: '免费公益大模型 API 平台，GPT-6-astra、claude-fable-5.1等顶级模型。目前较稳定。注册送 $50，每日签到随机额度。',
+                tagline: '是免费公益大模型 API 平台，可用GPT-6-Astra、claude-fable-5.1等顶级模型。',
+                desc: '免费公益大模型 API 平台，GPT-6-Astra、claude-fable-5.1等顶级模型。目前较稳定。注册送 $50，每日签到随机额度。',
                 highlights: ['注册送 $50', '每日签到随机额度'],
                 cta: '免费领取',
                 accent: '#1e88e5'
@@ -138,8 +138,8 @@
                 name: 'SheApi',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
                 url: 'https://www.sheapi.top/sign-up?aff=MvcR',
-                tagline: '是一家可靠高效的 API 中转服务提供商，Codex 倍率补贴低至 0.06，GPT-Image-2生图每张0.04。受邀注册送$1 体验金。',
-                desc: '是一家可靠高效的 API 中转服务提供商，主要提供 Claude Code、Codex 等主流模型的高稳定中转能力，Codex 倍率补贴低至 0.06，GPT-Image-2生图每张0.04。受邀注册送$1 体验金，每日签到还可领取专属免费额度。',
+                tagline: '是一家可靠高效的 API 中转服务提供商，Codex 倍率补贴低至 0.08，GPT-Image-2生图每张0.04。受邀注册送$1 体验金。',
+                desc: '是一家可靠高效的 API 中转服务提供商，主要提供 Claude、GPT 等主流模型的高稳定中转能力，Codex 倍率补贴低至 0.08，GPT-Image-2生图每张0.04。受邀注册送$1 体验金，每日签到还可领取专属免费额度。',
                 highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
                 cta: '立即体验',
                 accent: '#1e88e5'
@@ -150,8 +150,8 @@
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
                 url: 'https://www.workbuddy.cn/events/invite?inviteCode=w0x2ic45z',
                 tagline: '是腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说需求、执行任务、交付完整成果，可用国产顶级模型。',
-                desc: '腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy4 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.3、Hy4 等模型。',
-                highlights: ['Hy4 模型限时免费', '注册送 2000 积分', '每月再送 500积分', 'Kimi-K3、GLM-5.3、Hy4 等模型'],
+                desc: '腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy4 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash等模型。',
+                highlights: ['Hy4 模型限时免费', '注册送 2000 积分', '每月再送 500积分', 'Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash等模型'],
                 cta: '立即体验',
                 accent: '#0052d9'
             },
@@ -161,7 +161,7 @@
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
                 url: 'https://github.com/88lin/workbuddy-auto-signin',
                 tagline: '自动领取 WorkBuddy 每日签到积分的小脚本',
-                desc: '自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、领任务奖励的自动化脚本',
+                desc: '一个可以自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、领任务奖励、连登兑换、断登补签的自动化脚本。Windows / macOS 定时任务，一句话交给 AI 自动配好，零 Token 静默运行。',
                 highlights: ['自动签到', '静默运行', '连登奖励', '开盲盒抽奖', '派 Buddy', '旅行礼物'],
                 cta: '免费开源',
                 accent: '#4d6bff'
