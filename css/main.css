@@ -97,6 +97,33 @@ img {
   max-width: 100%;
 }
 
+/* 例外：聊天表情面板底部的「系列」栏。
+   上面的全局 img reset 会把标签里的 <img> 拉成块级，vertical-align:middle 随之失效，
+   图标上半截顶出这条 30px 高的栏被裁掉。这里改成 flex 居中：
+   不用 vertical-align:middle 是因为它按字体基线对齐，实测会偏低约 3px，不是真居中。 */
+#ctrm_ .OwO .OwO-body .OwO-bar .OwO-packages li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 改成 flex 后就失去原来 line-height:30px 撑起的行高，这里补回来，
+     否则整条栏会缩到图标高度、比之前矮一截。 */
+  min-height: 30px;
+}
+
+/* <img> 外层还套着一层 <span>，它是 li 的 flex item；img 本身不是 flex item，
+   只在 span 的行盒里按 baseline 摆放，所以必须让 span 也参与居中，
+   否则整体仍会偏低（实测约 3px）。 */
+#ctrm_ .OwO .OwO-body .OwO-bar .OwO-packages li span {
+  display: flex;
+  align-items: center;
+}
+
+#ctrm_ .OwO .OwO-body .OwO-bar .OwO-packages li img {
+  max-width: none;
+  max-height: 1.25rem;
+  width: auto;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -1417,10 +1444,6 @@ button,
 
 .is-hidden {
   display: none !important;
-}
-
-.ctrm-title { 
-    background: linear-gradient(90deg, #ffdee9, #b5fffc)!important; /* 标题背景渐变色 */
 }
 
 @keyframes reveal-up {
