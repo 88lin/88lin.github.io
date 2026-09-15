@@ -124,6 +124,19 @@ img {
   width: auto;
 }
 
+/* 例外：聊天室标题里那颗爱心（茉灵智库 の 匿名聊天室 ♥）。
+   同一原因 —— 全局 img reset 把它变成块级，它就从标题行里掉下去、独占第二行，
+   再被 8% 高的标题栏裁掉半截、压进下面的消息区。改回行内级。
+   高度用 1em 跟着标题字号走（跟移动端那条已有的规则一致），
+   vertical-align 不用 middle：它按基线算，实测偏低 4.5px；-0.1em 是量出来的居中值（误差 0.3px）。 */
+#ctrm_ .ctrm-title-span img {
+  display: inline-block;
+  width: auto;
+  height: 1em;
+  max-width: none;
+  vertical-align: -0.1em;
+}
+
 a {
   color: inherit;
   text-decoration: none;
