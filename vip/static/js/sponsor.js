@@ -86,15 +86,18 @@
         },
 
         // 顺序即展示顺序。每个赞助商字段：
-        //   id / name / logo / url        必填
-        //   tagline                       轮播卡与横幅用的一句话（建议 ≤ 24 字）
-        //   desc                          标签页与弹窗用的完整介绍
+        //   id / name / url              必填
+        //   logo                         可选。不填（或图挂了）就用品牌名文字，不留空托盘
+        //   tagline                       主力文案：轮播卡与横幅都用它，重要信息
+        //   desc                          标签页与弹窗用的完整介绍，可再比 tagline 详一点
         //   highlights[]                  卖点小徽章，建议 2~3 条
         //   cta / accent                  按钮文字 / 品牌色（用于光晕）
+        //   internal                      自家招商位填 true，链接不再打 sponsored 标记
         //   banner                        可选。配了就在轮播卡里渲染整张大图，见下方示例
         //
         // logo 建议用「深色字 + 透明底 / 浅底」的横版图，会被放进 152×52 的白色托盘里；
         // 加载失败时自动退化成品牌名文字，不会留空白。
+        // 没有现成素材时，就别勉强配 logo —— 留空会退化成居中的品牌名文字
         //
         // 整图（纯图片轮播）示例 —— 把 banner 加进任意一家即可，可以只给部分赞助商配，
         // 整图和信息卡能混在同一个轮播里；三家都配了整图，卡片就自动进满幅模式（图顶到边框）。
@@ -112,12 +115,23 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
+                id: 'loomy',
+                name: 'Loomy',
+                logo: 'https://loomy.xunfei.cn/_next/image?url=%2Fassets%2Fimages%2Flogo_light.png&w=256&q=75',
+                url: 'https://loomy.xunfei.cn/download',
+                tagline: '讯飞出品的 AI 工作搭子，把想法实现并交付。可用Qwen 3.8 Max、GLM 5.3 Flash、SparkX2.5（免费），填邀请码 NMZ6CC、XB3TMC、XZEM3C、XZEM3C 可获得一万积分。',
+                desc: '讯飞出品的 AI 工作搭子，不只是听指令的助手，更会主动理解你要做的事，帮你撰写内容、把想法实现并交付成果。现已支持 DeepSeek V4 Flash 0731、Qwen 3.8 Max、GLM 5.3 Flash、Qwen 3.8 Flash、SparkX2.5（限时免费）。输入邀请码 NMZ6CC、XB3TMC、XZEM3C、XZEM3C 可获得一万积分。',
+                highlights: ['SparkX2.5（免费）', 'GLM 5.3 Flash', 'GLM 5.3 Flash'],
+                cta: '下载体验',
+                accent: '#2b5cff'
+            },
+            {
                 id: 'agentrouter',
                 name: 'Agent Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
                 url: 'https://agentrouter.org/register?aff=ugVO',
-                tagline: '是免费公益大模型 API 平台，支持GPT-6-Astra、GPT-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连不折腾。',
-                desc: '免费公益大模型 API 平台，支持GPT-6-Astra、gpt-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
+                tagline: '免费公益大模型 API 平台，支持 GPT-6-Astra、GPT-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash，国内直连不折腾。注册送 $125，每日签到 $25，被邀再得 $50。',
+                desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、GPT-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
                 highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
                 cta: '免费领取',
                 accent: '#7c4dff'
@@ -127,8 +141,8 @@
                 name: 'Any Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/微信图片_20260907170036_114_2.webp',
                 url: 'https://anyrouter.top/register?aff=woX5',
-                tagline: '是免费公益大模型 API 平台，可用GPT-6-Astra、claude-fable-5.1等顶级模型。',
-                desc: '免费公益大模型 API 平台，GPT-6-Astra、claude-fable-5.1等顶级模型。目前较稳定。注册送 $50，每日签到随机额度。',
+                tagline: '免费公益大模型 API 平台，主打 GPT-6-Astra、claude-fable-5.1 等顶级模型。注册即送 $50，每日签到还能再领随机额度。',
+                desc: '免费公益大模型 API 平台，主打 GPT-6-Astra、claude-fable-5.1 等顶级模型，目前线路较稳定。注册即送 $50，每日签到还能再领随机额度。',
                 highlights: ['注册送 $50', '每日签到随机额度'],
                 cta: '免费领取',
                 accent: '#1e88e5'
@@ -138,8 +152,8 @@
                 name: 'SheApi',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
                 url: 'https://www.sheapi.top/sign-up?aff=MvcR',
-                tagline: '是一家可靠高效的 API 中转服务提供商，Codex 倍率补贴低至 0.08，GPT-Image-2生图每张0.04。受邀注册送$1 体验金。',
-                desc: '是一家可靠高效的 API 中转服务提供商，主要提供 Claude、GPT 等主流模型的高稳定中转能力，Codex 倍率补贴低至 0.08，GPT-Image-2生图每张0.04。受邀注册送$1 体验金，每日签到还可领取专属免费额度。',
+                tagline: '可靠高效的 API 中转服务，提供 Claude、GPT 高稳定中转。Codex 倍率补贴低至 0.08，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到再领专属免费额度。',
+                desc: '可靠高效的 API 中转服务提供商，主要提供 Claude、GPT 等主流模型的高稳定中转能力。Codex 倍率补贴低至 0.08，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到还可领取专属免费额度。',
                 highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
                 cta: '立即体验',
                 accent: '#1e88e5'
@@ -149,22 +163,35 @@
                 name: 'WorkBuddy',
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
                 url: 'https://www.workbuddy.cn/events/invite?inviteCode=w0x2ic45z',
-                tagline: '是腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说需求、执行任务、交付完整成果，可用国产顶级模型。',
-                desc: '腾讯出品的全能 AI 工作台，是中国最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy4 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash等模型。',
-                highlights: ['Hy4 模型限时免费', '注册送 2000 积分', '每月再送 500积分'],
+                tagline: '腾讯出品的全能 AI 工作台，说需求、执行任务、交付完整成果。可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash，Hy4 限时免费，注册送 2000 积分，每月再送 500 积分。',
+                desc: '腾讯出品的全能 AI 工作台，国内最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy4 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash 等模型。',
+                highlights: ['Hy4 模型限时免费', '注册送 2000 积分', '每月再送 500 积分'],
                 cta: '立即体验',
                 accent: '#0052d9'
             },
             {
                 id: 'workbuddy-auto-signin',
-                name: 'WorkBuddy',
+                name: 'WorkBuddy 自动签到',
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
                 url: 'https://github.com/88lin/workbuddy-auto-signin',
-                tagline: '自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、连登兑换、断登补签的自动化脚本。',
+                tagline: '自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、连登兑换、断登补签的开源脚本。支持 Windows / macOS 定时任务，零 Token 静默运行，完全免费。',
                 desc: '一个可以自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、领任务奖励、连登兑换、断登补签的自动化脚本。Windows / macOS 定时任务，一句话交给 AI 自动配好，零 Token 静默运行。',
                 highlights: ['自动签到', '静默运行', '连登奖励', '开盲盒抽奖', '派 Buddy', '旅行礼物'],
                 cta: '免费开源',
                 accent: '#4d6bff'
+            },
+            {
+                // 自家招商位，非付费链接：internal 为 true 时不打 sponsored 标记
+                // 不配 logo / icon：托盘直接显示品牌名文字（.sp-logo-fallback 那套样式）
+                id: 'promo-slot',
+                name: '广告位招商',
+                url: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/weixin.jpg',
+                tagline: '四大黄金广告位虚位以待：播放器轮播、推荐广告页、顶部横幅、首页弹窗（可选）。日均访问 2000+，按周按月都能投，素材随时换、当天上线。欢迎咨询报价与档期。',
+                desc: '四个位置任你挑：轮播卡视线必经、用户停留最久、推荐广告页展示较全、顶部横幅全站常驻、首页弹窗首屏拦截，转化最直接。按周或按月皆可，素材随时换、当天生效。日活2000+，位置不多，先到先得。联系我聊报价与排期。',
+                highlights: ['轮播广告位', '按周起投门槛低', '日均 2000+ 曝光', '当天上线'],
+                cta: '联系我',
+                accent: '#0067f7',
+                internal: true
             }
         ]
     };
@@ -226,20 +253,27 @@
         return 'rgba(' + ((n >> 16) & 255) + ',' + ((n >> 8) & 255) + ',' + (n & 255) + ',' + alpha + ')';
     }
 
-    // 统一的对外链接：付费链接必须带 sponsored，避免被判为售卖权重
+    // 统一的对外链接：付费链接必须带 sponsored，避免被判为售卖权重。
     function link(sponsor, className) {
         var a = el('a', className);
         a.href = sponsor.url;
         a.target = '_blank';
-        a.rel = LINK_REL;
+        a.rel = sponsor.internal ? 'noopener noreferrer' : LINK_REL;
         return a;
     }
 
-    // logo 托盘：白底 + 品牌色柔光，加载失败时降级成品牌名文字
+    // logo 托盘：白底 + 品牌色柔光，加载失败（或压根没配 logo）时降级成品牌名文字
     function logoBox(sponsor, width, height) {
         var box = el('span', 'sp-logo');
         var glow = rgba(sponsor.accent, 0.5);
         if (glow) { box.style.setProperty('--sp-accent', glow); }
+
+        // 没配 logo 就直接用文字形态，不要渲染一个空 img ——
+        // src 为空字符串的 img 在部分浏览器里不发 error 事件，会留下一个白托盘。
+        if (!sponsor.logo) {
+            box.appendChild(el('span', 'sp-logo-fallback', sponsor.name));
+            return box;
+        }
 
         var img = document.createElement('img');
         img.src = sponsor.logo;

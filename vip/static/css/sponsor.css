@@ -76,11 +76,13 @@
 
 /* logo 加载失败时的兜底：显示品牌名文字 */
 .sp-logo .sp-logo-fallback {
-    font-size: .95rem;
+    font-size: 1.1rem;
     font-weight: 800;
+    letter-spacing: .04em;
     color: #0b7fbe;
     text-align: center;
     line-height: 1.2;
+    white-space: nowrap;
 }
 
 /* ── 通用：卖点小徽章 ─────────────────────────────────────────────────── */
@@ -341,14 +343,15 @@
 .sp-tagline {
     font-size: .9rem;
     font-weight: 600;
-    line-height: 1.45;
+    line-height: 1.55;
     opacity: .72;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
+    overflow-wrap: anywhere;
 }
 
 .sp-slide:hover .sp-cta {
@@ -814,6 +817,8 @@
     }
     .sp-slide .sp-tagline {
         grid-area: tag;
+        -webkit-line-clamp: 5;
+        line-clamp: 5;
     }
     /* 卖点徽章在「赞助商」标签页和弹窗里都有，轮播卡上省掉，换 55px 高度 */
     .sp-slide .sp-chips {
