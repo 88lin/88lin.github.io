@@ -80,6 +80,19 @@ body{
   top: 5%;
 }
     </style>
+    <meta name="description" content="Notion 倒计时组件：设定目标日期后实时显示剩余天数，适合考试、纪念日与项目节点。">
+    <link rel="canonical" href="https://go.88lin.eu.org/notion/3/index.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="茉灵智库">
+    <meta property="og:url" content="https://go.88lin.eu.org/notion/3/index.html">
+    <meta property="og:title" content="Notion倒计时组件 | 茉灵智库">
+    <meta property="og:description" content="Notion 倒计时组件：设定目标日期后实时显示剩余天数，适合考试、纪念日与项目节点。">
+    <meta property="og:image" content="https://go.88lin.eu.org/assets/og/notion-3.jpg">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Notion倒计时组件 | 茉灵智库">
+    <meta name="twitter:description" content="Notion 倒计时组件：设定目标日期后实时显示剩余天数，适合考试、纪念日与项目节点。">
+    <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/notion-3.jpg">
 </head>
 <body>
     
@@ -97,8 +110,12 @@ body{
 </body>
 <script>
     const year = new Date().getFullYear();
-const myDate = new Date('December 21, 2026 08:30:00');
-console.log(myDate);
+/* 原先把年份写死成 2026，跨年之后倒计时会一直显示负数。
+   这里按当前年份动态生成，并在目标日期已过时自动顺延到下一年。 */
+let myDate = new Date('December 21, ' + year + ' 08:30:00');
+if (myDate - new Date() < 0) {
+  myDate = new Date('December 21, ' + (year + 1) + ' 08:30:00');
+}
 
 // countdown
 let timer = setInterval(function() {

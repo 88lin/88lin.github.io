@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="zh-CN" style="height: 100%">
 <head>
+<title>个人书单旭日图｜茉灵智库</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body { height: 100%; margin: 0; background: #1e1a24; overflow: hidden; }
   </style>
+    <meta name="description" content="用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。">
+    <link rel="canonical" href="https://go.88lin.eu.org/books.html">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="茉灵智库">
+    <meta property="og:url" content="https://go.88lin.eu.org/books.html">
+    <meta property="og:title" content="个人书单旭日图｜茉灵智库">
+    <meta property="og:description" content="用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。">
+    <meta property="og:image" content="https://go.88lin.eu.org/assets/og/books.jpg">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="个人书单旭日图｜茉灵智库">
+    <meta name="twitter:description" content="用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。">
+    <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/books.jpg">
 </head>
 <body>
   <div id="container" style="height: 100%"></div>
@@ -275,7 +289,15 @@ option = {
       myChart.setOption(option);
     }
 
-    window.addEventListener('resize', myChart.resize);
+    /* 直接把 myChart.resize 当回调会丢失 this 绑定，ECharts 内部取不到实例会报错，
+       图表也不会随窗口重排。这里包一层函数，并加 150ms 防抖避免拖动窗口时高频重算。 */
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        myChart.resize();
+      }, 150);
+    });
   </script>
 </body>
 </html>

@@ -1,0 +1,70 @@
+# 茉灵智库
+
+> 中文在线工具与趣味项目导航站，由 88lin 维护。收录免费在线工具、实用小工具、创意特效页面与 Notion 小组件，全部免登录、打开即用，适配手机与电脑。
+
+站点：https://go.88lin.eu.org
+博客：https://blog.88lin.eu.org
+最后更新：2026-09-18
+
+## 实用工具
+
+- [免费在线工具导航](https://go.88lin.eu.org/)：本站首页，按场景分组收录全部工具与页面，支持关键词搜索。
+- [AI 模型检测工具](https://go.88lin.eu.org/ai-model-checker.html)：填入自己的 API Key 后查询接口可用的模型列表。
+- [深度房贷计算器](https://go.88lin.eu.org/Mortgage-Calculator/index.html)：等额本息与等额本金对比，支持提前还款、利率调整与月供变化模拟。
+- [论文降重工具](https://go.88lin.eu.org/jiangchong/index.html)：通过多语种转写改写论文表述，需自行填写百度翻译 AppID 与密钥。
+- [闲鱼敏感词加密](https://go.88lin.eu.org/xy/index.html)：把文本转为 HTML 实体编码，用于规避平台敏感词检测。
+- [书签管理与导出](https://go.88lin.eu.org/Bookmarks/index.html)：整理浏览器书签并生成个人网址导航页，支持导出分享。
+- [科研海报生成器](https://go.88lin.eu.org/academic-poster-generator/index.html)：把 Markdown 内容排版成学术海报并导出图片。
+- [古诗起名](https://go.88lin.eu.org/gushi/dist/index.html)：从诗词典籍中提炼名字灵感，按意象与寓意生成中文名字。
+
+## 影音内容
+
+- [全网 VIP 视频解析](https://go.88lin.eu.org/vip/index.html)：粘贴视频链接即可在线解析播放，支持多家主流平台。
+- [免费短剧搜索与播放](https://go.88lin.eu.org/duanju/index.html)：聚合全网短剧资源，支持搜索与在线播放。
+- [单页音乐播放器](https://go.88lin.eu.org/Music/index.html)：聚合热门歌单与电台，打开即听。
+
+## 图像与创意
+
+- [瀑布流图片浏览器](https://go.88lin.eu.org/bbl/index.html)：瀑布流式浏览图片，支持离线缓存与全屏查看。
+- [个人书单旭日图](https://go.88lin.eu.org/books.html)：用旭日图展示读过的好书，按分类、主题与评分逐层展开。
+
+## 节日特效
+
+- [跨年烟花模拟](https://go.88lin.eu.org/fireworks/index.html)：点击夜空绽放烟花特效。
+- [烟花模拟 · 版本一](https://go.88lin.eu.org/fireworks1/index.html)：另一套粒子与配色方案的烟花特效。
+- [烟花模拟 · 版本二](https://go.88lin.eu.org/fireworks2/index.html)：又一套烟花粒子效果。
+- [跨年烟花倒计时](https://go.88lin.eu.org/fireworks3/index.html)：烟花特效配新年倒计时与音效。
+- [新年快乐烟花](https://go.88lin.eu.org/fireworks4/index.html)：文字烟花与音效组合的节日页面。
+- [3D 粒子圣诞树](https://go.88lin.eu.org/Christmas/index.html)：Three.js 粒子组成的圣诞树，支持摄像头互动。
+- [3D 圣诞树](https://go.88lin.eu.org/christmas-tree/index.html)：另一版 3D 圣诞树特效。
+- [圣诞节礼盒](https://go.88lin.eu.org/Christmas3/index.html)：点击开启的 3D 礼盒动画与飘雪氛围。
+- [生日祝福特效](https://go.88lin.eu.org/birthday/index.html)：动画与音乐组合的生日祝福页面。
+
+## 表白与趣味
+
+- [520 表白特效 · 版本一](https://go.88lin.eu.org/love1/index.html)：浪漫动画与背景音乐的表白页面。
+- [520 表白特效 · 版本二](https://go.88lin.eu.org/love2/index.html)：另一套表白动画与音乐。
+- [520 表白特效 · 版本三](https://go.88lin.eu.org/love3/index.html)：简洁版告白页面。
+
+## Notion 小组件
+
+- [访客欢迎组件](https://go.88lin.eu.org/notion/hy.html)：显示来访者地区、与博主距离和问候语，可嵌入 Notion。
+- [显示时间组件](https://go.88lin.eu.org/notion/2/index.html)：Notion 风格实时时钟挂件。
+- [倒计时组件](https://go.88lin.eu.org/notion/3/index.html)：设定目标日期后显示剩余天数。
+- [计时器组件](https://go.88lin.eu.org/notion/8/index.html)：正计时与倒计时，用于专注与任务计时。
+- [音乐热歌榜组件](https://go.88lin.eu.org/notion/6/index.html)：展示热门歌曲列表。
+- [每日诗词组件](https://go.88lin.eu.org/notion/shici/index.html)：每天随机展示一句古诗词。
+- [植物生长组件](https://go.88lin.eu.org/notion/1/index.html)：随时间推移生长的植物动画。
+- [窗外动画组件](https://go.88lin.eu.org/notion/7/index.html)：模拟窗外四季风景与天气变化。
+
+## 其他
+
+- [延迟回放（外放干扰）](https://go.88lin.eu.org/stop/index.html)：把环境声音延迟 0.5–5 秒回放，用于打断外放噪声，支持添加到主屏幕。
+- [关注公众号](https://go.88lin.eu.org/gzh/index.html)：茉灵智库公众号引导页。
+
+## 联系与作者
+
+- 作者：88lin（茉灵智库）
+- 博客：https://blog.88lin.eu.org
+- QQ：2528251483
+- 备案：桂ICP备21015360号-1

@@ -16,14 +16,14 @@
   <!-- Facebook Meta Tags -->
   <meta property="og:url" content="https://go.88lin.eu.org/Bookmarks/index.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="茉灵智库">
+  <meta property="og:title" content="书签管理与导出工具 | 茉灵智库">
   <meta property="og:description" content="将您的海量书签，转换为您专属的精致导航网站。">
   <meta property="og:image" content="https://app.pintree.io/assets/og.png">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://go.88lin.eu.org/Bookmarks/index.html">
-  <meta name="twitter:title" content="茉灵智库">
+  <meta name="twitter:title" content="书签管理与导出工具 | 茉灵智库">
   <meta name="twitter:description" content="将您的海量书签，转换为您专属的精致导航网站。">
   <meta name="twitter:image" content="https://app.pintree.io/assets/og.png">
 
@@ -237,10 +237,27 @@
       offCanvasBackdrop.addEventListener('click', closeSidebar); // Close sidebar when clicking on the backdrop
     });
 
+    // pintree.json 有 460KB，原先搜索/清空时都会重新下载一遍。
+    // 用 Promise 缓存，整个页面只请求一次；失败时清除缓存以便下次重试。
+    let pintreeDataPromise = null;
+    function loadPintreeData() {
+      if (!pintreeDataPromise) {
+        pintreeDataPromise = fetch('json/pintree.json')
+          .then(response => {
+            if (!response.ok) throw new Error('HTTP ' + response.status);
+            return response.json();
+          })
+          .catch(err => {
+            pintreeDataPromise = null;
+            throw err;
+          });
+      }
+      return pintreeDataPromise;
+    }
+
     // Search functionality
     function searchBookmarks(query) {
-      fetch('json/pintree.json')
-        .then(response => response.json())
+      loadPintreeData()
         .then(data => {
           const results = searchInData(data, query.toLowerCase());
           renderBookmarks(results, [{ title: 'Search Results', children: results }]);
@@ -271,8 +288,7 @@
 
     // Clear search results and reset UI
     function clearSearchResults() {
-      fetch('json/pintree.json')
-        .then(response => response.json())
+      loadPintreeData()
         .then(data => {
           const secondLayer = data[0].children;
           renderNavigation(secondLayer, document.getElementById('navigation'));
@@ -285,18 +301,7 @@
 
     document.getElementById('clearSearchButton').addEventListener('click', clearSearchResults);
 
-    function searchBookmarks(query) {
-      fetch('json/pintree.json')
-        .then(response => response.json())
-        .then(data => {
-          const results = searchInData(data, query.toLowerCase());
-          renderBookmarks(results, [{ title: 'Search Results', children: results }]);
-          document.getElementById('clearSearchButton').classList.remove('hidden');
-        })
-        .catch(error => console.error('Error searching bookmarks:', error));
-    }
-
-    // Create bookmark card element
+        // Create bookmark card element
     function createCard(title, url, icon) {
       const card = document.createElement('div');
       card.className = 'cursor-pointer flex items-center hover:shadow-sm transition-shadow p-4 bg-white shadow-sm ring-1 ring-gray-900/5 dark:pintree-ring-gray-800 rounded-lg hover:bg-gray-100 dark:pintree-bg-gray-900 dark:hover:pintree-bg-gray-800';
@@ -569,8 +574,7 @@
     }
 
     // Fetch and render data
-    fetch('json/pintree.json')
-      .then(response => response.json())
+    loadPintreeData()
       .then(data => {
         // Use the first layer of the data directly
         const firstLayer = data;
@@ -632,8 +636,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       // Fetch and render data
-      fetch('json/pintree.json')
-        .then(response => response.json())
+      loadPintreeData()
         .then(data => {
           // Hide loading spinner
           document.getElementById('loading-spinner').style.display = 'none';

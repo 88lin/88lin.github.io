@@ -75,7 +75,8 @@ window.addEventListener('resize', () => {
 function extractValue(input) {
   var valueRegex = /\("([^\s]+)"\)/g;
   var match = valueRegex.exec(input);
-  return match[1];
+  /* 正则匹配不上时 match 为 null，直接取 [1] 会抛 TypeError 并中断后续初始化 */
+  return match ? match[1] : "";
 }
 
 //空格控制音乐

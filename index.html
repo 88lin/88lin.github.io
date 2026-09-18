@@ -17,13 +17,13 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="免费在线工具导航｜发现优质工具与趣味项目">
 <meta property="og:url" content="https://go.88lin.eu.org/">
-<meta property="og:title" content="免费在线工具导航｜发现优质工具与趣味项目">
+<meta property="og:title" content="免费在线工具导航-发现优质工具与趣味项目">
 <meta property="og:description" content="精选免费影视、免费短剧、音乐工具、烟花特效、学习与效率站点等优质资源，一键直达，安全快速、免登录、适配移动端。">
 <meta property="og:image" content="https://cdn.jsdmirror.com/gh/88lin/PicList@master/img/home_Image.webp">
 <meta property="og:image:alt" content="首页封面图">
 <meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="免费在线工具导航｜发现优质工具与趣味项目">
+<meta name="twitter:title" content="免费在线工具导航-发现优质工具与趣味项目">
 <meta name="twitter:description" content="精选免费影视、免费短剧、音乐工具、烟花特效、学习与效率站点等优质资源，一键直达，安全快速、免登录、适配移动端。">
 <meta name="twitter:image" content="https://cdn.jsdmirror.com/gh/88lin/PicList@master/img/home_Image.webp">
 <meta name="twitter:image:alt" content="首页封面图">
@@ -73,7 +73,7 @@
       "isPartOf": { "@id": "https://go.88lin.eu.org/#website" },
       "about": { "@id": "https://go.88lin.eu.org/#organization" },
       "inLanguage": "zh-CN",
-      "dateModified": "2026-05-30",
+      "dateModified": "2026-09-18",
       "description": "茉灵智库工具导航是一个中文免费在线工具与趣味项目导航站，收录 AI 模型检测、古诗起名、房贷计算、图像设计、时间专注、Notion 组件和节日特效等入口。"
     },
     {
@@ -91,7 +91,55 @@
         { "@type": "ListItem", "position": 7, "name": "AI模型检测", "url": "https://go.88lin.eu.org/ai-model-checker.html" },
         { "@type": "ListItem", "position": 8, "name": "房贷计算器", "url": "https://go.88lin.eu.org/Mortgage-Calculator/index.html" },
         { "@type": "ListItem", "position": 9, "name": "延迟回放", "url": "https://go.88lin.eu.org/stop/index.html" },
-        { "@type": "ListItem", "position": 10, "name": "论文降重", "url": "https://go.88lin.eu.org/jiangchong/index.html" }
+        { "@type": "ListItem", "position": 10, "name": "论文降重", "url": "https://go.88lin.eu.org/jiangchong/index.html" },
+        { "@type": "ListItem", "position": 11, "name": "书签管理", "url": "https://go.88lin.eu.org/Bookmarks/index.html" },
+        { "@type": "ListItem", "position": 12, "name": "个人书单旭日图", "url": "https://go.88lin.eu.org/books.html" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://go.88lin.eu.org/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "茉灵智库导航站是做什么的？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "这是一个中文在线工具与趣味项目导航站，由 88lin 维护。它把零散的实用工具、创意页面和节日特效整理成一页直达的入口，覆盖影音、图像设计、效率工具、学习资料与节庆特效等场景。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "这里收录了多少个项目？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "收录 40 余个可访问入口，分为节日特效、影音内容、趣味灵感、个人站点、图像设计、效率工具、时间专注、Notion 组件、学习资料和其他工具共 10 个分类，支持按关键词搜索与分类筛选。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "使用这些工具需要付费或注册吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "导航站本身免费、免登录，收录的页面打开即用。个别工具（如 AI 模型检测、论文降重）需要使用者自行提供第三方服务的 API Key，站点不会代收或存储。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "手机上能正常访问吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可以，页面针对移动端做了适配，手机与电脑均可访问。部分节日特效依赖 Canvas 与 Three.js 渲染，在电脑端体验更完整。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "怎么联系作者或获取源码？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可通过 QQ 2528251483 联系作者 88lin，也可访问个人博客 blog.88lin.eu.org 了解更多内容。若对某个页面的源码感兴趣，同样可以直接联系作者索取。"
+          }
+        }
       ]
     }
   ]
@@ -664,44 +712,44 @@ function cleanApiText(value) {
   return typeof value === "string" ? value.trim() : "";
 }
 
-function getVisitorLocationLabel(data, fallbackLabel) {
-  const location = cleanApiText(data.location);
-  const region = [
-    cleanApiText(data.country),
-    cleanApiText(data.addr),
-    cleanApiText(data.city),
-    cleanApiText(data.district)
-  ].filter(Boolean).join(" ");
-  const network = cleanApiText(data.isp) || cleanApiText(data.area);
-  const summary = location || region || network;
+/* 归属地查询走自建中转服务，与 notion/hy.html 使用同一套数据源：
+   第三方密钥保存在服务端，不暴露在前端；返回的是中文地名。 */
+const IP_API_ENDPOINT = "https://nbr5n3s9.qwenwork.host/api/ip";
 
-  return summary ? "来自 " + summary + " 的朋友" : fallbackLabel;
+function getVisitorLocationLabel(data, fallbackLabel) {
+  const country = cleanApiText(data.country);
+
+  if (!country) {
+    return fallbackLabel;
+  }
+
+  /* 国内显示到省市，境外只显示国家，避免中英文地名混排 */
+  if (country === "中国") {
+    const detail = [cleanApiText(data.province), cleanApiText(data.city)]
+      .filter(Boolean)
+      .filter((item, index, list) => list.indexOf(item) === index)
+      .join(" ");
+    return "来自 " + (detail || country) + " 的朋友";
+  }
+
+  return "来自 " + country + " 的朋友";
 }
 
-async function getVisitorIp(signal) {
-  const url = new URL("https://www.kevio.cn/api/ip");
-  url.searchParams.set("fields", "ip");
-
-  const response = await fetch(url, {
-    method: "GET",
-    headers: {
-      "X-API-Key": "sk-ClfVvpe9QR7HhgXi.gV9f07OBavLycfOZ6FWdOIb83GdWboLW"
-    },
-    signal
-  });
-
-  if (!response.ok) {
-    throw new Error("bad ip response");
+/* 先取访客出口 IP 再传给服务端，避免服务端只认代理头导致归属地偏差。
+   取不到也没关系，服务端会按访客头自行识别。 */
+async function fetchVisitorIp(signal) {
+  try {
+    const response = await fetch("https://api.ip.sb/ip", { cache: "no-store", signal });
+    if (response.ok) {
+      const text = (await response.text()).trim();
+      if (/^[0-9A-Fa-f:.]{7,45}$/.test(text)) {
+        return text;
+      }
+    }
+  } catch (error) {
+    /* 取不到就回退到服务端识别 */
   }
-
-  const result = await response.json();
-  const ip = result && result.code === 0 && result.data ? cleanApiText(result.data.ip) : "";
-
-  if (!ip) {
-    throw new Error("missing visitor ip");
-  }
-
-  return ip;
+  return "";
 }
 
 async function getVisitorMessage() {
@@ -711,12 +759,15 @@ async function getVisitorMessage() {
 
   try {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 4500);
-    const visitorIp = await getVisitorIp(controller.signal);
-    const response = await fetch("https://api-v2.cenguigui.cn/api/UserInfo/?ip=" + encodeURIComponent(visitorIp), {
-      method: "GET",
-      signal: controller.signal
-    });
+    const timeoutId = setTimeout(() => controller.abort(), 6000);
+    const visitorIp = await fetchVisitorIp(controller.signal);
+    const url = new URL(IP_API_ENDPOINT);
+
+    if (visitorIp) {
+      url.searchParams.set("ip", visitorIp);
+    }
+
+    const response = await fetch(url, { signal: controller.signal });
     clearTimeout(timeoutId);
 
     if (!response.ok) {
@@ -724,14 +775,14 @@ async function getVisitorMessage() {
     }
 
     const payload = await response.json();
-    const data = payload && payload.code === 200 && payload.data ? payload.data : {};
-    const location = getVisitorLocationLabel(data, referrer);
-    const browser = cleanApiText(data.browser) || fallbackClient.browser;
-    const os = cleanApiText(data.os) || fallbackClient.os;
+
+    if (!payload || payload.code !== 0 || !payload.data) {
+      throw new Error("bad payload");
+    }
 
     return {
-      eyebrow: location,
-      message: "使用 " + os + " · " + browser + " 访问本站。" + greeting
+      eyebrow: getVisitorLocationLabel(payload.data, referrer),
+      message: "使用 " + fallbackClient.os + " · " + fallbackClient.browser + " 访问本站。" + greeting
     };
   } catch (error) {
     return {

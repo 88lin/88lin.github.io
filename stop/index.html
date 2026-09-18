@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -15,7 +15,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:locale" content="zh_CN">
-    <meta property="og:title" content="延迟回放｜STFU外放干扰小工具">
+    <meta property="og:title" content="STFU外放干扰工具 | 茉灵智库">
     <meta property="og:description" content="把声音延迟 0.5–5 秒回放，打断外放与大声说话的节奏，减少噪声干扰。打开即用，支持 PWA。">
     <meta property="og:url" content="https://go.88lin.eu.org/stop">
     <meta property="og:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2026-01-20_13-36-24.png">
@@ -24,7 +24,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="STFU｜make-it-stop">
+    <meta name="twitter:title" content="STFU外放干扰工具 | 茉灵智库">
     <meta name="twitter:description" content="延迟回放声音 0.5–5 秒，打断外放与噪声干扰。打开即用，支持 PWA。">
     <meta name="twitter:image" content="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/PixPin_2026-01-20_13-36-24.png">
     <!-- PWA Meta Tags -->
@@ -241,7 +241,9 @@
         });
         // Register Service Worker
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
+            /* 用相对路径注册：站点可能部署在子目录下，
+               写死 "/sw.js" 会去请求根域的文件，在 /stop/ 下必然 404。 */
+            navigator.serviceWorker.register('./sw.js')
                 .then(() => console.log('SW registered'))
                 .catch((err) => console.log('SW registration failed:', err));
         }

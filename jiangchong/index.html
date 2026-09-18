@@ -8,8 +8,10 @@
   <title>论文降重工具 | 茉灵智库</title>
   <meta name="description" content="免费在线论文降重工具，基于百度翻译智能改写算法，帮助你快速优化句子表达，有效降低重复率，提升论文原创度。">
   <meta name="keywords" content="论文降重, 论文改写, 百度翻译, 降重工具, 论文查重, 论文优化, 降重网站">
-  <meta property="og:title" content="论文降重工具｜基于百度翻译的智能改写助手">
+  <meta property="og:title" content="论文降重工具 | 茉灵智库">
   <meta property="og:description" content="智能论文降重与改写，支持百度翻译算法，一键提升论文原创度与表达质量。">
+  <meta property="og:image" content="https://go.88lin.eu.org/assets/og/jiangchong.jpg">
+  <meta property="og:locale" content="zh_CN">
   <link rel="icon" href="/favicon.svg">
   <script async src="https://019b9894-1861-76d6-9948-7ad2739a9eb8.spst2.com/ustat.js"></script>
   <style>
@@ -314,6 +316,12 @@
   </style>
   <!-- 引入图标库 -->
   <link rel="stylesheet" href="https://sf.akass.cn/font-awesome/6.4.0/css/all.min.css">
+    <link rel="canonical" href="https://go.88lin.eu.org/jiangchong/index.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="论文降重工具 | 茉灵智库">
+    <meta name="twitter:description" content="免费在线论文降重工具，基于百度翻译智能改写算法，帮助你快速优化句子表达，有效降低重复率，提升论文原创度。">
+    <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/jiangchong.jpg">
+    <meta property="og:image" content="https://go.88lin.eu.org/assets/og/jiangchong.jpg">
 </head>
 <body>
   <div class="container">
@@ -444,8 +452,10 @@
     var fromTextEle = $(".fromText"),
       toTextELe = $(".toText"),
       switchBtnEle = $(".switchBtn"),
-      appid = "20210323000739360",
-      key = "82GT5f3GpFEjNsNBPF1c";
+      /* 移除内置的开发者 AppID / 密钥：静态页面源码对所有人可见，额度会被盗用。
+         改由使用者在页面上填入自己的凭证（已支持 localStorage 缓存）。 */
+      appid = "",
+      key = "";
 
     var transList = {
       simple: ["zh en", "en de", "de zh"],
@@ -482,13 +492,12 @@
 
       return new Promise((resolve, reject) => {
         $.ajax({
-          type: "POST",
+          /* 百度翻译接口不返回 CORS 头，浏览器只能用 JSONP 跨域，
+             而 JSONP 强制走 GET；原先写的 type:"POST" 会被 jQuery 覆盖，属于矛盾写法。 */
+          type: "GET",
           url: params.url,
           data: params.data,
           dataType: "jsonp",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-          },
           success: (res) => {
             log(`翻译步骤完成: ${from} -> ${to}`);
             updateProgress();
@@ -513,11 +522,24 @@
         for (let i = 0; i < transList[mode].length; i++) {
           var lang = transList[mode][i].split(" ");
           try {
-            res = await translate(dst, lang[0], lang[1]);
+            var res = await translate(dst, lang[0], lang[1]);
+            /* 接口出错时返回的是 error_code 而不是 trans_result，
+               直接取 trans_result[0] 会抛异常，让整个流程静默中断 */
+            if (
+              !res ||
+              !res.trans_result ||
+              !res.trans_result[0] ||
+              !res.trans_result[0].dst
+            ) {
+              log('译文为空，请检查 AppID / 密钥是否正确、额度是否用尽');
+              setLoading(false);
+              return;
+            }
             dst = res.trans_result[0].dst;
             log(`中间结果: ${dst}`);
           } catch (error) {
             log('翻译过程中遇到错误，已停止');
+            setLoading(false);
             return;
           }
         }
