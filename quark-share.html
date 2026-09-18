@@ -202,8 +202,8 @@
     </button>
 
     <ul class="steps">
-      <li>点击按钮自动唤起夸克 App，未安装时打开网页版</li>
-      <li>若未自动跳转，复制链接后打开夸克即可自动识别</li>
+      <li>手机上点一下页面任意位置即可跳转夸克</li>
+      <li>未自动跳转时：复制链接，打开夸克 App 会自动识别</li>
       <li>进入分享页后，记得把资源转存到自己的网盘</li>
     </ul>
   </main>
@@ -347,10 +347,23 @@
   }
 
   /* ---------- 底部引导弹层 ---------- */
-  function showSheet(title, desc) {
+  function showSheet(title, desc, mode) {
+    setSheetMode(mode);
     $('#sheetTitle').textContent = title;
     $('#sheetDesc').textContent = desc;
     $('#mask').classList.add('show');
+  }
+  // copy-first：复制链接为主按钮（微信/夸克识别剪贴板路径）
+  // web-first ：打开网页版为主按钮（桌面/兜底路径）
+  function setSheetMode(mode) {
+    var copy = $('#sheetCopy'), web = $('#sheetWeb');
+    if (mode === 'copy-first') {
+      copy.className = 'btn-main';
+      web.className = 'btn-secondary';
+    } else {
+      copy.className = 'btn-secondary';
+      web.className = 'btn-main';
+    }
   }
   function hideSheet() { $('#mask').classList.remove('show'); }
 
@@ -367,8 +380,13 @@
   var wakeTimer = null;
   var autoTimer = null;
   var lastCopyOk = false;
+  var sheetAutoHide = false;
+  var lastTouchOpen = 0;
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden) leftPage = true;
+    if (!document.hidden) return;
+    leftPage = true;
+    // 浏览器“是否打开”确认框点慢时会误报失败：App 真正打开后自动收起提示
+    if (sheetAutoHide) { sheetAutoHide = false; hideSheet(); }
   });
   window.addEventListener('pagehide', function () { leftPage = true; });
 
@@ -387,8 +405,9 @@
       return;
     }
     if (isInApp) {
-      showSheet('在微信/QQ 内无法直接唤起',
-        '点右上角「···」，选择「在浏览器打开」后再操作；或直接复制链接，到系统浏览器粘贴打开。');
+      showSheet('在微信/QQ 内无法直接跳转',
+        '点下方「复制链接」，然后直接打开夸克 App——它会自动识别剪贴板里的链接并跳转；也可以点右上角「···」选「在浏览器打开」。',
+        'copy-first');
       return;
     }
     if (isIOS) {
@@ -410,7 +429,8 @@
       return;
     }
 
-    // Android：尝试 quark:// scheme 唤起 App，2.6 秒内没离开页面视为失败
+    // Android：尝试唤起。部分浏览器会弹“是否打开”确认框，点确认才走，
+    // 所以给足 5 秒再判定；期间点页面任意位置也能触发。
     leftPage = false;
     if (auto) $('#btnOpenLabel').textContent = '正在打开夸克…';
     location.href = 'quark://web?target=' + encodeURIComponent(CONFIG.link);
@@ -418,16 +438,30 @@
     wakeTimer = setTimeout(function () {
       $('#btnOpenLabel').textContent = '一键获取资源';
       if (!leftPage && !document.hidden) {
-        showSheet('未能自动打开夸克 App',
+        showSheet(lastCopyOk ? '夸克还没有打开？' : '夸克没有自动打开？',
           lastCopyOk
-            ? '链接已复制到剪贴板，手动打开夸克 App 会自动识别并跳转；也可以先用浏览器打开网页版。'
-            : '复制页面中的链接后，打开夸克 App 粘贴即可访问；也可以先用浏览器打开网页版。');
+            ? '链接已复制好，直接打开夸克 App 就行，它会自动识别剪贴板里的链接并跳转；没装夸克也可以用浏览器打开网页版。'
+            : '点下方「复制链接」，然后打开夸克 App，它会自动识别剪贴板里的链接并跳转；没装夸克也可以用浏览器打开网页版。',
+          'copy-first');
+        sheetAutoHide = true;
       }
-    }, 2600);
+    }, 5000);
   }
 
   $('#btnOpen').addEventListener('click', function () { openTarget(false); });
   $('#btnCopy').addEventListener('click', function () { doCopy(this); });
+
+  // Android 上很多浏览器会拦截无手势的 App 唤起：点页面任意位置即触发
+  if (isAndroid) {
+    document.addEventListener('touchstart', function (e) {
+      if ($('#mask').classList.contains('show')) return;
+      if (e.target.closest('button, a, .link-box, .mask')) return;
+      var now = Date.now();
+      if (now - lastTouchOpen < 1200) return;
+      lastTouchOpen = now;
+      openTarget(false);
+    }, { passive: true });
+  }
 
   /* ---------- 自动跳转：默认打开立即跳，设 autoOpenDelay>0 时先倒计时 ---------- */
   if (CONFIG.autoOpen) {
