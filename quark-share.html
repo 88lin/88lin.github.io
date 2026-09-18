@@ -161,6 +161,8 @@
   .sheet-desc { font-size: 13.5px; line-height: 1.7; color: var(--text-2); margin-bottom: 18px; }
   .sheet-actions { display: flex; gap: 10px; }
   .sheet-actions .btn-secondary, .sheet-actions .btn-main { flex: 1; }
+  /* 弹层内主次按钮形状统一为胶囊，只保留实心/描边的区别 */
+  .sheet-actions .btn-secondary { border-radius: 999px; }
 
   /* 轻提示 */
   .toast {
@@ -365,7 +367,10 @@
       web.className = 'btn-main';
     }
   }
-  function hideSheet() { $('#mask').classList.remove('show'); }
+  function hideSheet() {
+    sheetAutoHide = false;
+    $('#mask').classList.remove('show');
+  }
 
   $('#mask').addEventListener('click', function (e) {
     if (e.target === this) hideSheet();
@@ -452,15 +457,16 @@
   $('#btnCopy').addEventListener('click', function () { doCopy(this); });
 
   // Android 上很多浏览器会拦截无手势的 App 唤起：点页面任意位置即触发
+  // 用 click 而不是 touchstart，滚动页面时不会误触
   if (isAndroid) {
-    document.addEventListener('touchstart', function (e) {
+    document.addEventListener('click', function (e) {
       if ($('#mask').classList.contains('show')) return;
       if (e.target.closest('button, a, .link-box, .mask')) return;
       var now = Date.now();
       if (now - lastTouchOpen < 1200) return;
       lastTouchOpen = now;
       openTarget(false);
-    }, { passive: true });
+    });
   }
 
   /* ---------- 自动跳转：默认打开立即跳，设 autoOpenDelay>0 时先倒计时 ---------- */
