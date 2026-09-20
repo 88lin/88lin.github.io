@@ -1,2 +1,6 @@
+# At /2/, crawlers use https://go.88lin.eu.org/robots.txt instead.
+# This local copy is only a fallback if the directory is hosted at a domain root.
 User-agent: *
 Allow: /
+
+Sitemap: https://go.88lin.eu.org/sitemap.xml

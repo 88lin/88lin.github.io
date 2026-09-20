@@ -3,14 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>88lin · 茉灵智库 — 把前沿 AI，做成能交付的东西</title>
-<meta name="description" content="88lin，AI 研究者与 Agent 工程实践者，茉灵智库主理人。收集有用的，也保留有趣的。">
+<title>88lin · 茉灵智库｜AI Agent 与开源项目</title>
+<meta name="description" content="88lin 的个人主页，整理 AI Agent、MCP 工具链、RAG 知识库与实用开源项目，提供 GitHub 源码、使用入口和精选博客文章。收集有用的，也保留有趣的。">
 <meta name="author" content="88lin">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://go.88lin.eu.org/2/">
+<link rel="author" href="about/">
+<link rel="alternate" type="application/rss+xml" title="茉灵智库博客 RSS" href="https://blog.88lin.eu.org/rss/feed.xml">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://go.88lin.eu.org/2/index.html">
-<meta property="og:title" content="88lin · 茉灵智库 — 把前沿 AI，做成能交付的东西">
-<meta property="og:description" content="AI 研究者与 Agent 工程实践者的数字花园：项目、站点、博客与分享。">
+<meta property="og:site_name" content="88lin · 茉灵智库">
+<meta property="og:url" content="https://go.88lin.eu.org/2/">
+<meta property="og:title" content="88lin · 茉灵智库｜AI Agent 与开源项目">
+<meta property="og:description" content="88lin 的个人主页，整理 AI Agent、MCP 工具链、RAG 知识库与实用开源项目，提供 GitHub 源码、使用入口和精选博客文章。收集有用的，也保留有趣的。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://go.88lin.eu.org/assets/og/profile-2.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:alt" content="88lin 茉灵智库个人主页：把前沿 AI，做成能交付的东西">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="88lin · 茉灵智库｜AI Agent 与开源项目">
+<meta name="twitter:description" content="88lin 的个人主页，整理 AI Agent、MCP 工具链、RAG 知识库与实用开源项目，提供 GitHub 源码、使用入口和精选博客文章。收集有用的，也保留有趣的。">
+<meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/profile-2.jpg">
+<meta name="twitter:image:alt" content="88lin 茉灵智库个人主页：把前沿 AI，做成能交付的东西">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,900;1,600;1,900&family=Noto+Serif+SC:wght@700;900&display=swap" rel="stylesheet">
@@ -634,25 +649,416 @@ body {
   .site-cell .s-url { font-size: 0.7rem; }
 }
 </style>
-    <link rel="canonical" href="https://go.88lin.eu.org/2/index.html">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="88lin · 茉灵智库 — 把前沿 AI，做成能交付的东西">
-    <meta name="twitter:description" content="88lin，AI 研究者与 Agent 工程实践者，茉灵智库主理人。收集有用的，也保留有趣的。">
-    <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/profile-2.jpg">
-    <meta property="og:image" content="https://go.88lin.eu.org/assets/og/profile-2.jpg">
+<link rel="stylesheet" href="assets/enhancements.css">
+<script id="site-structured-data" type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://go.88lin.eu.org/2/#website",
+      "url": "https://go.88lin.eu.org/2/",
+      "name": "88lin · 茉灵智库",
+      "inLanguage": "zh-CN",
+      "publisher": {
+        "@id": "https://go.88lin.eu.org/2/about/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://go.88lin.eu.org/2/about/#person",
+      "name": "88lin",
+      "url": "https://go.88lin.eu.org/2/about/",
+      "description": "AI 研究者与 Agent 工程实践者，茉灵智库主理人。",
+      "image": "https://go.88lin.eu.org/2/assets/avatar.webp",
+      "knowsAbout": [
+        "AI Agent",
+        "MCP 工具链",
+        "RAG 知识库",
+        "Prompt / Skill 设计",
+        "Python",
+        "TypeScript",
+        "网站开发",
+        "开源维护",
+        "内容创作",
+        "自动化工作流",
+        "技术写作",
+        "GitHub Actions"
+      ],
+      "email": "mailto:431761794@qq.com",
+      "sameAs": [
+        "https://github.com/88lin",
+        "https://space.bilibili.com/1412014683"
+      ]
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": "https://go.88lin.eu.org/2/#webpage",
+      "url": "https://go.88lin.eu.org/2/",
+      "name": "88lin · 茉灵智库｜AI Agent 与开源项目",
+      "description": "88lin 的个人主页，整理 AI Agent、MCP 工具链、RAG 知识库与实用开源项目，提供 GitHub 源码、使用入口和精选博客文章。收集有用的，也保留有趣的。",
+      "inLanguage": "zh-CN",
+      "dateModified": "2026-09-20",
+      "isPartOf": {
+        "@id": "https://go.88lin.eu.org/2/#website"
+      },
+      "about": {
+        "@id": "https://go.88lin.eu.org/2/about/#person"
+      },
+      "author": {
+        "@id": "https://go.88lin.eu.org/2/about/#person"
+      },
+      "primaryImageOfPage": {
+        "@type": "ImageObject",
+        "url": "https://go.88lin.eu.org/assets/og/profile-2.jpg",
+        "width": 1200,
+        "height": 630
+      },
+      "mainEntity": [
+        {
+          "@id": "https://go.88lin.eu.org/2/#projects-list"
+        },
+        {
+          "@id": "https://go.88lin.eu.org/2/#sites-list"
+        },
+        {
+          "@id": "https://go.88lin.eu.org/2/#writing-list"
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://go.88lin.eu.org/2/#projects-list",
+      "name": "精选开源项目",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "numberOfItems": 14,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-video-vip",
+            "name": "video_vip",
+            "description": "多接口视频解析油猴脚本，支持自动匹配选集与桌面、移动端使用。",
+            "url": "https://github.com/88lin/video_vip",
+            "codeRepository": "https://github.com/88lin/video_vip"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-workbuddy-auto-signin",
+            "name": "workbuddy-auto-signin",
+            "description": "自动领取 WorkBuddy 签到积分与成长中心奖励，支持本地定时、静默运行。",
+            "url": "https://github.com/88lin/workbuddy-auto-signin",
+            "codeRepository": "https://github.com/88lin/workbuddy-auto-signin"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-computer-repair-skill",
+            "name": "computer-repair-skill",
+            "description": "让 Codex / Claude Code 成为电脑维修助手：64 个诊断、清理与修复流程，先取证，再动手。",
+            "url": "https://github.com/88lin/computer-repair-skill",
+            "codeRepository": "https://github.com/88lin/computer-repair-skill"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-lofi-radio-web",
+            "name": "lofi-radio-web",
+            "description": "专注时的 Lofi 背景音：21 个精选频道，打开即听，让工作与创作多一点松弛。",
+            "url": "https://github.com/88lin/lofi-radio-web",
+            "codeRepository": "https://github.com/88lin/lofi-radio-web"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-facetmark",
+            "name": "facetmark",
+            "description": "从关键词、内容、收藏意图与上下文找回书签，数据保存在本地 SQLite。",
+            "url": "https://github.com/88lin/facetmark",
+            "codeRepository": "https://github.com/88lin/facetmark"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-textmark",
+            "name": "textmark",
+            "description": "在浏览器本地为文字添加、提取和清除隐形水印，支持可选加密。",
+            "url": "https://github.com/88lin/textmark",
+            "codeRepository": "https://github.com/88lin/textmark"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-textcard-studio",
+            "name": "TextCard-Studio",
+            "description": "把 Markdown 和长文排成小红书 3:4 系列文字卡片，支持预览与高清导出。",
+            "url": "https://github.com/88lin/TextCard-Studio",
+            "codeRepository": "https://github.com/88lin/TextCard-Studio"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-gzh-design-skill",
+            "name": "gzh-design-skill",
+            "description": "Markdown 一键排成公众号 HTML：8 套主题、主题生成器与校验流程。基于上游项目维护。",
+            "url": "https://github.com/88lin/gzh-design-skill",
+            "codeRepository": "https://github.com/88lin/gzh-design-skill"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-agentrouter-auto-signin",
+            "name": "agentrouter-auto-signin",
+            "description": "AgentRouter 本地自动签到工具，支持多账号、余额查询与定时补跑。",
+            "url": "https://github.com/88lin/agentrouter-auto-signin",
+            "codeRepository": "https://github.com/88lin/agentrouter-auto-signin"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-wesum-wechat-monitor",
+            "name": "wesum-wechat-monitor",
+            "description": "聚合公众号 RSS，用大模型生成摘要、过滤干扰内容，再推送到企业微信。",
+            "url": "https://github.com/88lin/wesum-wechat-monitor",
+            "codeRepository": "https://github.com/88lin/wesum-wechat-monitor"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-geo-book-skill",
+            "name": "geo-book-skill",
+            "description": "把《从 SEO 到 GEO》的方法整理成 13 张 Agent 能力卡，用于 AI 搜索优化。",
+            "url": "https://github.com/88lin/geo-book-skill",
+            "codeRepository": "https://github.com/88lin/geo-book-skill"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-teardown-lab",
+            "name": "teardown-lab",
+            "description": "把真实产品体验、截图和零散判断整理成产品洞察、图卡与 HTML 报告。",
+            "url": "https://github.com/88lin/teardown-lab",
+            "codeRepository": "https://github.com/88lin/teardown-lab"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-react-ai-orb",
+            "name": "react-ai-orb",
+            "description": "面向 AI 界面的 React 发光球体组件，纯 CSS 动画，支持调色板与预设。基于 Steve0929/react-ai-orb 二次开发。",
+            "url": "https://github.com/88lin/react-ai-orb",
+            "codeRepository": "https://github.com/88lin/react-ai-orb"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "item": {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://go.88lin.eu.org/2/#project-diataxis-docs-skill",
+            "name": "diataxis-docs-skill",
+            "description": "面向技术文档写作的 Skill，把项目经验与使用方法整理成可复用的文档。",
+            "url": "https://github.com/88lin/diataxis-docs-skill",
+            "codeRepository": "https://github.com/88lin/diataxis-docs-skill"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://go.88lin.eu.org/2/#sites-list",
+      "name": "站点入口",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "WebPage",
+            "name": "茉灵智库 · 博客",
+            "description": "内容主站：记录技术教程、资源共享与思考认知。",
+            "url": "https://blog.88lin.eu.org"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "WebPage",
+            "name": "工具导航站",
+            "description": "影视、音乐、烟花特效与效率工具的统一入口。",
+            "url": "https://go.88lin.eu.org"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "WebPage",
+            "name": "深度研究",
+            "description": "面向深度研究场景的聚合工具。",
+            "url": "https://research.88lin.eu.org"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "WebPage",
+            "name": "知识分享",
+            "description": "知识分享与科学前沿内容。",
+            "url": "https://learn.88lin.eu.org"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "WebPage",
+            "name": "倒计时应用",
+            "description": "简洁的倒计时与时间感知小工具。",
+            "url": "https://timepulse.ravelloh.top"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "WebPage",
+            "name": "打印纸设计",
+            "description": "在线打印纸与纸张模板设计工具。",
+            "url": "https://88lin.github.io/PaperStudio"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://go.88lin.eu.org/2/#writing-list",
+      "name": "精选博客文章",
+      "itemListOrder": "https://schema.org/ItemListUnordered",
+      "numberOfItems": 6,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "item": {
+            "@type": "WebPage",
+            "name": "实用生活指南：必备经验与高效技巧分享",
+            "description": "食材挑选与保存、家务清洁、租房押金沟通，把日常生活里常遇到的问题整理成一份经验清单。",
+            "url": "https://blog.88lin.eu.org/article/50"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "item": {
+            "@type": "WebPage",
+            "name": "Notion快捷键大全：从入门到构建高效工作流",
+            "description": "块编辑、页面关联、提醒与斜杠命令，一份整理笔记和管理任务时能随手查的清单。",
+            "url": "https://blog.88lin.eu.org/article/notion"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "item": {
+            "@type": "WebPage",
+            "name": "李笑来作品集：6 本书浓缩成一份可执行的人生操作系统",
+            "description": "把六本书里的思考方法，落到注意力管理、每周复盘与时间审计。",
+            "url": "https://blog.88lin.eu.org/article/20"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "item": {
+            "@type": "WebPage",
+            "name": "Windows实用教程：常见问题解决与系统优化指南",
+            "description": "整理常用快捷键、系统设置、网络共享与故障处理，遇到电脑问题时按场景查找办法。",
+            "url": "https://blog.88lin.eu.org/article/14"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "item": {
+            "@type": "WebPage",
+            "name": "C盘清理详细教程：Windows系统一键瘦身",
+            "description": "用 SpaceSniffer 找出空间占用，迁移微信和 QQ 文件，再按需清理缓存或考虑分区扩容。",
+            "url": "https://blog.88lin.eu.org/article/10"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "item": {
+            "@type": "WebPage",
+            "name": "面向新型创业者的短课 · Anything You Want",
+            "description": "Derek Sivers 把经营 CD Baby 的经历写成 48 篇短课，谈客户、执行、取舍与工作的意义。",
+            "url": "https://blog.88lin.eu.org/article/34"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 </head>
-<body>
+<body class="home-page">
+<a class="skip-link" href="#main">跳到主要内容</a>
 <header class="nav">
-  <div class="nav-inner">
-    <a class="nav-logo" href="#top"><img src="icon.png" alt="88lin"><span>88lin</span></a>
+  <nav class="nav-inner" aria-label="主导航">
+    <a class="nav-logo" href="#top" aria-label="回到首页顶部"><img src="assets/avatar.webp" width="256" height="256" alt="88lin"><span>88lin</span></a>
     <a class="nlink" href="#works">项目</a>
     <a class="nlink" href="#sites">站点</a>
     <a class="nlink" href="#writing">文章</a>
-    <a class="nlink" href="about/index.html">关于</a>
-    <a class="nlink nlink-cta" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">博客 ↗</a>
-  </div>
+    <a class="nlink" href="about/">关于</a>
+    <a class="nlink nlink-cta" href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">博客 ↗</a>
+  </nav>
 </header>
 
+<main id="main">
 <section class="hero" id="top">
   <span class="hero-spark s1" aria-hidden="true">✦</span>
   <span class="hero-spark s2" aria-hidden="true">✦</span>
@@ -663,7 +1069,12 @@ body {
   <div class="hero-inner">
     <div class="hero-kicker hero-anim"><span class="dot"></span>88lin@garden · open to collaborate</div>
     <h1 class="hero-anim">把前沿 AI，<br>做成能交付的<span class="hl">东西</span>。</h1>
-    <p class="hero-sub hero-anim">你好，我是 <b>88lin</b> —— AI 研究者与 Agent 工程实践者，<b>茉灵智库</b>主理人。<br>追踪前沿，但更在意落地：用 Agent 工作流把复杂需求拆成可交付、可维护的工程结果。</p>
+    <p class="hero-sub hero-anim">你好，我是 <b>88lin</b> —— AI 研究者与 Agent 工程实践者，<b>茉灵智库</b>主理人。<br>这里整理我的 AI Agent 开源项目、MCP 工具链实践和博客笔记，把前沿探索做成可用、可复用的东西。</p>
+
+    <div class="hero-actions reveal" style="--delay:260ms">
+      <a class="btn btn-bright" href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">进入博客 →</a>
+      <a class="btn btn-line" href="#works">看看我的项目 ↓</a>
+    </div>
 
     <div class="mac-glow" aria-hidden="true"></div>
     <div class="macbook-wrapper reveal" style="--delay:120ms">
@@ -671,7 +1082,7 @@ body {
         <div class="macbook-notch"></div>
         <div class="macbook-screen">
           <div class="term-bar"><i></i><i></i><i></i><span class="term-title">88lin@garden ~ %</span></div>
-          <div class="terminal" id="terminalLines" aria-hidden="true"></div>
+          <div class="terminal" id="terminalLines" aria-hidden="true"><div class="t-line"><span class="t-prompt">$ </span>whoami</div><div class="t-line t-out">88lin · AI 研究者 &amp; Agent 工程实践者</div><div class="t-line"><span class="t-prompt">$ </span>cat mission.md</div><div class="t-line t-out">把前沿探索，变成可交付的工程结果</div><div class="t-line"><span class="t-prompt">$ </span>ls ~/garden</div><div class="t-line t-blue">blog/ go/ lofi/ repair/ research/ learn/</div><div class="t-line"><span class="t-prompt">$ </span>echo $STATUS</div><div class="t-line t-hl">收集有用的，也保留有趣的</div></div>
         </div>
       </div>
       <div class="macbook-hinge"></div>
@@ -680,182 +1091,138 @@ body {
     </div>
 
     <div class="stats-row reveal" style="--delay:200ms">
-      <div class="stat"><strong><em>4600</em>+</strong><span>GitHub Stars</span></div>
-      <div class="stat"><strong><em>55</em>+</strong><span>博客文章</span></div>
-      <div class="stat"><strong><em>50</em>+</strong><span>导航站入口</span></div>
-      <div class="stat"><strong><em id="statDays">1850</em>+</strong><span>持续运行天数</span></div>
+      <div class="stat"><strong><em data-github-stars>5,865</em></strong><span>GitHub 总 Stars</span></div>
+      <div class="stat"><strong><em data-github-projects>118</em></strong><span>项目总数</span></div>
+      <div class="stat"><strong><em>6</em></strong><span>独立站点</span></div>
+      <div class="stat"><strong><em data-running-days>1,896</em></strong><span>持续运行天数</span></div>
     </div>
+    <p class="stats-source"><a href="https://github.com/88lin?tab=repositories" target="_blank" rel="noopener noreferrer">GitHub 公开仓库统计</a>，含 Fork · <time datetime="2026-09-20">2026.09.20</time></p>
 
-    <div class="hero-actions reveal" style="--delay:260ms">
-      <a class="btn btn-bright" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">进入博客 →</a>
-      <a class="btn btn-line" href="#works">看看我的项目 ↓</a>
-    </div>
+
   </div>
 </section>
-<section class="about" id="about">
-  <div class="container">
-    <div class="sec-label reveal">01 · whoami</div>
-    <h2 class="sec-title reveal" style="--delay:60ms">读源码、搭原型、踩坑、复盘<br>让每一次实践都留下能复用的东西</h2>
-    <p class="about-statement reveal" style="--delay:140ms; margin-top:34px;">
-      我追踪 AI 领域的最新进展，但更在意它们<span class="hl">能不能落地</span>——用 Agent 工作流把复杂需求拆成可交付、可维护、可复盘的工程结果。前沿跑得快，地基更要稳；比起停留在概念，我更愿意<span class="hl">动手把想法跑通</span>。
-    </p>
 
-    <div class="about-grid">
-      <div class="id-card reveal">
-        <div class="id-head">
-          <img src="icon.png" alt="88lin 头像">
-          <div>
-            <div class="id-name">88lin · 茉灵智库</div>
-            <div class="id-role">AI researcher / agent-engineering practitioner</div>
-          </div>
-        </div>
-        <div class="id-tags">
-          <span>AI Agent 工程化</span>
-          <span>开源信仰者</span>
-          <span>网站开发 / 电脑维修</span>
-        </div>
-        <div class="id-quote">以 Codex / Claude Code 多智能体协同贯穿开发与科研全流程；用 MCP 打通浏览器、GitHub、Notion 与部署工具，让 Agent 直接触达真实的项目上下文。</div>
-      </div>
-      <div class="term-card reveal" style="--delay:120ms">
-        <div class="t-bar"><i></i><i></i><i></i><em>88lin@garden ~ %</em></div>
-        <div class="t-body" id="aboutTerm">
-          <div><span class="t-prompt">$ </span><span class="t-cmd">whoami</span></div>
-          <div><span class="t-out">&gt; AI 研究者 &amp; Agent 工程实践者</span></div>
-          <div><span class="t-prompt">$ </span><span class="t-cmd">ls ~/garden</span></div>
-          <div><span class="t-out">&gt; </span><span class="t-key">blog/</span> <span class="t-key">nav/</span> <span class="t-key">repair/</span> <span class="t-key">lofi/</span> <span class="t-key">research/</span></div>
-          <div><span class="t-prompt">$ </span><span class="t-cmd">cat motto.txt</span></div>
-          <div><span class="t-out">&gt; 收集有用的，也保留有趣的 ✦</span></div>
-          <div><span class="t-prompt">$ </span><span class="t-caret"></span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-tile reveal"><b><em id="statDays">1850</em> 天</b><span>数字花园持续运行 · 2021-07-12 起</span></div>
-      <div class="stat-tile reveal" style="--delay:70ms"><b><em>4600</em>+</b><span>GitHub Stars · video_vip 等开源项目</span></div>
-      <div class="stat-tile reveal" style="--delay:140ms"><b><em>55</em>+</b><span>博客文章 · 教程与思维认知</span></div>
-      <div class="stat-tile reveal" style="--delay:210ms"><b><em>50</em>+</b><span>导航站收录入口 · 工具与趣味并存</span></div>
-    </div>
-  </div>
-</section>
 <section class="works" id="works">
   <div class="container">
-    <div class="sec-label reveal">02 · ls works/</div>
-    <h2 class="sec-title reveal" style="--delay:60ms">动手把想法跑通</h2>
-    <p class="sec-desc reveal" style="--delay:120ms">从爆款油猴脚本到 AI Agent Skills——每个项目都来自真实需求，并且长期维护。</p>
-
+    <div class="sec-label reveal">01 · ls works/</div>
+    <h2 class="sec-title reveal">动手把想法跑通</h2>
+    <p class="sec-desc reveal">从油猴脚本、日常工具到 AI Agent Skills，把遇到的问题，做成可用、可复用的项目。</p>
     <div class="bento">
-      <article class="b-cell b-big reveal">
-        <div class="b-head">
-          <span class="b-name">video_vip</span>
-          <span class="b-star">★ 4566+ · 开源热榜</span>
-        </div>
-        <p class="b-desc">全网 VIP 视频免费解析脚本：集成多个第三方解析接口，去广告解锁会员限制。适配 PC + 移动端，完全免费、长期维护。</p>
+      <article class="b-cell b-big p-cream reveal" data-project id="project-video-vip">
+        <div class="b-head"><h3 class="b-name">video_vip</h3><span class="b-star">★ 4,956</span></div>
+        <p class="project-intro">从一个小脚本开始，<br>把日常需求变成实用工具。</p>
+        <p class="b-desc">多接口视频解析油猴脚本，支持自动匹配选集与桌面、移动端使用。</p>
         <div class="b-platforms"><span>爱奇艺</span><span>腾讯视频</span><span>优酷</span><span>芒果 TV</span><span>bilibili</span></div>
-        <div class="b-highlight"><b>★ 4566+</b>&nbsp;stars · 完全免费 · 长期维护更新</div>
-        <div class="b-tags"><span>JavaScript</span><span>油猴脚本</span><span>全平台适配</span></div>
-        <div class="b-links">
-          <a href="https://github.com/88lin/video_vip" target="_blank" rel="noreferrer">GitHub →</a>
-          <a href="https://blog.88lin.eu.org/article/46" target="_blank" rel="noreferrer">使用教程 →</a>
-        </div>
+        <div class="b-tags"><span>JavaScript</span><span>油猴脚本</span><span>PC + 移动端</span></div>
+        <div class="b-links"><a href="https://github.com/88lin/video_vip" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://blog.88lin.eu.org/article/46" target="_blank" rel="noopener noreferrer">使用教程 →</a></div>
       </article>
-
-      <article class="b-cell reveal" style="--delay:70ms">
-        <div class="b-head">
-          <span class="b-name">lofi-radio-web<span class="eq"><i></i><i></i><i></i><i></i></span></span>
-          <span class="b-star">★ 87</span>
-        </div>
-        <p class="b-desc">专注场景的 Lofi 电台：macOS 灵动岛设计，21 个精选频道，打开即用。</p>
-        <div class="b-links">
-          <a href="https://github.com/88lin/lofi-radio-web" target="_blank" rel="noreferrer">GitHub →</a>
-          <a href="https://lofi.88lin.eu.org" target="_blank" rel="noreferrer">听 →</a>
-        </div>
+      <article class="b-cell b-feature p-blue reveal" data-project id="project-workbuddy-auto-signin">
+        <div class="b-head"><h3 class="b-name">workbuddy-auto-signin</h3><span class="b-star">★ 434</span></div>
+        <p class="b-desc">自动领取 WorkBuddy 签到积分与成长中心奖励，支持本地定时、静默运行。</p>
+        <div class="b-links"><a href="https://github.com/88lin/workbuddy-auto-signin" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
       </article>
-
-      <article class="b-cell reveal" style="--delay:140ms">
-        <div class="b-head">
-          <span class="b-name">computer-repair-skill</span>
-          <span class="b-star">★ 7</span>
-        </div>
-        <p class="b-desc">让 Codex / Claude Code 成为电脑维修助手：62 个 Playbook，先取证、再计划、确认后修改。</p>
-        <div class="b-links">
-          <a href="https://github.com/88lin/computer-repair-skill" target="_blank" rel="noreferrer">GitHub →</a>
-          <a href="https://repair.88lin.eu.org/" target="_blank" rel="noreferrer">使用 →</a>
-        </div>
+      <article class="b-cell b-feature p-rose reveal" data-project id="project-computer-repair-skill">
+        <div class="b-head"><h3 class="b-name">computer-repair-skill</h3><span class="b-star">★ 267</span></div>
+        <p class="b-desc">让 Codex / Claude Code 成为电脑维修助手：64 个诊断、清理与修复流程，先取证，再动手。</p>
+        <div class="b-links"><a href="https://github.com/88lin/computer-repair-skill" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://repair.88lin.eu.org/" target="_blank" rel="noopener noreferrer">项目官网 ↗</a></div>
       </article>
-
-      <article class="b-cell reveal" style="--delay:70ms">
-        <div class="b-head"><span class="b-name">gzh-design-skill</span><span class="b-star">Skill</span></div>
-        <p class="b-desc">Markdown 一键排成公众号精致 HTML：6 套主题 + 主题生成器 + 双关卡校验。</p>
-        <div class="b-links"><a href="https://github.com/88lin/gzh-design-skill" target="_blank" rel="noreferrer">GitHub →</a></div>
+      <article class="b-cell p-sage reveal" data-project id="project-lofi-radio-web">
+        <div class="b-head"><h3 class="b-name">lofi-radio-web<span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span></h3><span class="b-star">★ 92</span></div>
+        <p class="b-desc">专注时的 Lofi 背景音：21 个精选频道，打开即听，让工作与创作多一点松弛。</p>
+        <div class="b-links"><a href="https://github.com/88lin/lofi-radio-web" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://lofi.88lin.eu.org/" target="_blank" rel="noopener noreferrer">听一会儿 ↗</a></div>
       </article>
-
-      <article class="b-cell reveal" style="--delay:140ms">
-        <div class="b-head"><span class="b-name">TextCard-Studio</span><span class="b-star">工具</span></div>
-        <p class="b-desc">小红书智能文字卡片：把内容自动排成适合社交平台的图文卡片。</p>
-        <div class="b-links">
-          <a href="https://github.com/88lin/TextCard-Studio" target="_blank" rel="noreferrer">GitHub →</a>
-          <a href="https://88lin.github.io/TextCard" target="_blank" rel="noreferrer">体验 →</a>
-        </div>
+      <article class="b-cell p-lav reveal" data-project id="project-facetmark">
+        <div class="b-head"><h3 class="b-name">facetmark</h3><span class="b-star">书签工具</span></div>
+        <p class="b-desc">从关键词、内容、收藏意图与上下文找回书签，数据保存在本地 SQLite。</p>
+        <div class="b-links"><a href="https://github.com/88lin/facetmark" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://88lin.github.io/facetmark/" target="_blank" rel="noopener noreferrer">项目介绍 ↗</a></div>
       </article>
-
-      <article class="b-cell b-wide reveal" style="--delay:210ms">
-        <div class="b-head"><span class="b-name">more ·</span><span class="b-star">diataxis-docs · mydesign-system · my-skills …</span></div>
-        <p class="b-desc">还有技术文档写作 Skill、个人 IP 设计系统、油猴脚本合集等十多个开源仓库，在 GitHub 上慢慢逛。</p>
-        <div class="b-links"><a href="https://github.com/88lin" target="_blank" rel="noreferrer">github.com/88lin →</a></div>
+      <article class="b-cell p-blue reveal" data-project id="project-textmark">
+        <div class="b-head"><h3 class="b-name">textmark</h3><span class="b-star">文字工具</span></div>
+        <p class="b-desc">在浏览器本地为文字添加、提取和清除隐形水印，支持可选加密。</p>
+        <div class="b-links"><a href="https://github.com/88lin/textmark" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://88lin.github.io/textmark/" target="_blank" rel="noopener noreferrer">在线使用 ↗</a></div>
       </article>
-
-      <article class="b-cell b-wide reveal" style="--delay:260ms">
-        <div class="b-head"><span class="b-name">开源进行时</span><span class="b-star">GitHub · 长期维护</span></div>
-        <p class="b-desc">所有项目的源码、更新动态与 Issue 讨论都在 GitHub；认真回复每一个 Issues，欢迎 Star 与共建。</p>
-        <div class="b-links"><a href="https://github.com/88lin" target="_blank" rel="noreferrer">Follow @88lin →</a></div>
+      <article class="b-cell b-wide p-rose reveal" data-project id="project-textcard-studio">
+        <div class="b-head"><h3 class="b-name">TextCard-Studio</h3><span class="b-star">内容创作</span></div>
+        <p class="b-desc">把 Markdown 和长文排成小红书 3:4 系列文字卡片，支持预览与高清导出。</p>
+        <div class="b-links"><a href="https://github.com/88lin/TextCard-Studio" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://88lin.github.io/TextCard-Studio/" target="_blank" rel="noopener noreferrer">在线体验 ↗</a></div>
+      </article>
+      <article class="b-cell b-wide p-cream reveal" data-project id="project-gzh-design-skill">
+        <div class="b-head"><h3 class="b-name">gzh-design-skill</h3><span class="b-star">定制维护</span></div>
+        <p class="b-desc">Markdown 一键排成公众号 HTML：8 套主题、主题生成器与校验流程。基于上游项目维护。</p>
+        <div class="b-links"><a href="https://github.com/88lin/gzh-design-skill" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://88lin.github.io/gzh-design-skill/docs/gallery/index.html" target="_blank" rel="noopener noreferrer">主题预览 ↗</a></div>
       </article>
     </div>
+    <details class="project-extra">
+      <summary>再逛逛其他 6 个项目 · 自动化、Skills 与组件</summary>
+      <div class="bento">
+      <article class="b-cell p-blue reveal" data-project id="project-agentrouter-auto-signin">
+        <div class="b-head"><h3 class="b-name">agentrouter-auto-signin</h3><span class="b-star">自动化</span></div>
+        <p class="b-desc">AgentRouter 本地自动签到工具，支持多账号、余额查询与定时补跑。</p>
+        <div class="b-links"><a href="https://github.com/88lin/agentrouter-auto-signin" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
+      </article>
+      <article class="b-cell p-sage reveal" data-project id="project-wesum-wechat-monitor">
+        <div class="b-head"><h3 class="b-name">wesum-wechat-monitor</h3><span class="b-star">阅读工作流</span></div>
+        <p class="b-desc">聚合公众号 RSS，用大模型生成摘要、过滤干扰内容，再推送到企业微信。</p>
+        <div class="b-links"><a href="https://github.com/88lin/wesum-wechat-monitor" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
+      </article>
+      <article class="b-cell p-cream reveal" data-project id="project-geo-book-skill">
+        <div class="b-head"><h3 class="b-name">geo-book-skill</h3><span class="b-star">Agent Skill</span></div>
+        <p class="b-desc">把《从 SEO 到 GEO》的方法整理成 13 张 Agent 能力卡，用于 AI 搜索优化。</p>
+        <div class="b-links"><a href="https://github.com/88lin/geo-book-skill" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
+      </article>
+      <article class="b-cell p-peach reveal" data-project id="project-teardown-lab">
+        <div class="b-head"><h3 class="b-name">teardown-lab</h3><span class="b-star">产品分析</span></div>
+        <p class="b-desc">把真实产品体验、截图和零散判断整理成产品洞察、图卡与 HTML 报告。</p>
+        <div class="b-links"><a href="https://github.com/88lin/teardown-lab" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
+      </article>
+      <article class="b-cell p-lav reveal" data-project id="project-react-ai-orb">
+        <div class="b-head"><h3 class="b-name">react-ai-orb</h3><span class="b-star">二次开发</span></div>
+        <p class="b-desc">面向 AI 界面的 React 发光球体组件，纯 CSS 动画，支持调色板与预设。基于 Steve0929/react-ai-orb 二次开发。</p>
+        <div class="b-links"><a href="https://github.com/88lin/react-ai-orb" target="_blank" rel="noopener noreferrer">GitHub →</a><a href="https://88lin.github.io/react-ai-orb/" target="_blank" rel="noopener noreferrer">在线预览 ↗</a></div>
+      </article>
+      <article class="b-cell p-blue reveal" data-project id="project-diataxis-docs-skill">
+        <div class="b-head"><h3 class="b-name">diataxis-docs-skill</h3><span class="b-star">技术写作</span></div>
+        <p class="b-desc">面向技术文档写作的 Skill，把项目经验与使用方法整理成可复用的文档。</p>
+        <div class="b-links"><a href="https://github.com/88lin/diataxis-docs-skill" target="_blank" rel="noopener noreferrer">GitHub →</a></div>
+      </article>
+      </div>
+    </details>
+    <p class="project-updated">项目信息与 Stars 核对于 <time datetime="2026-09-20">2026-09-20</time> · <a href="https://github.com/88lin?tab=repositories" target="_blank" rel="noopener noreferrer">在 GitHub 查看更多项目 ↗</a></p>
   </div>
 </section>
 <section class="sites" id="sites">
   <div class="container">
-    <div class="sec-label reveal">03 · ~/sites</div>
-    <h2 class="sec-title reveal" style="--delay:60ms">一个围绕「实用 + 有趣」<br>搭建的站点矩阵</h2>
-    <p class="sec-desc reveal" style="--delay:120ms">所有站点手机与电脑都能顺畅访问，一站一用，互相打通。</p>
+    <div class="sec-label reveal">02 · ~/sites</div>
+    <h2 class="sec-title reveal" style="--delay:60ms">日常探索的几个入口</h2>
+    <p class="sec-desc reveal" style="--delay:120ms">读点东西、查点资料，或者找一个顺手的小工具。</p>
 
     <div class="sites-grid">
-      <a class="site-cell reveal p-cream" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">
+      <a class="site-cell reveal p-cream" href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">
         <div class="s-top"><span class="s-dot" style="background:#F4D758"></span><strong>茉灵智库 · 博客</strong></div>
         <p>内容主站：记录技术教程、资源共享与思考认知。</p>
         <span class="s-url">blog.88lin.eu.org</span>
       </a>
-      <a class="site-cell reveal p-blue" style="--delay:60ms" href="https://go.88lin.eu.org" target="_blank" rel="noreferrer">
+      <a class="site-cell reveal p-blue" style="--delay:60ms" href="https://go.88lin.eu.org" target="_blank" rel="noopener noreferrer">
         <div class="s-top"><span class="s-dot" style="background:#7FB4F2"></span><strong>工具导航站</strong></div>
         <p>影视、音乐、烟花特效与效率工具的统一入口。</p>
         <span class="s-url">go.88lin.eu.org</span>
       </a>
-      <a class="site-cell reveal p-rose" style="--delay:120ms" href="https://repair.88lin.eu.org/" target="_blank" rel="noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#E84A5F"></span><strong>电脑维修技能</strong></div>
-        <p>AI Agent 驱动的跨平台电脑维修助手。</p>
-        <span class="s-url">repair.88lin.eu.org</span>
-      </a>
-      <a class="site-cell reveal p-sage" style="--delay:180ms" href="https://lofi.88lin.eu.org" target="_blank" rel="noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#4ade80"></span><strong>Lofi Radio</strong></div>
-        <p>专注场景的低保真音乐电台，21 个精选频道。</p>
-        <span class="s-url">lofi.88lin.eu.org</span>
-      </a>
-      <a class="site-cell reveal p-blue" href="https://research.88lin.eu.org" target="_blank" rel="noreferrer">
+      <a class="site-cell reveal p-blue" href="https://research.88lin.eu.org" target="_blank" rel="noopener noreferrer">
         <div class="s-top"><span class="s-dot" style="background:#7FB4F2"></span><strong>深度研究</strong></div>
         <p>面向深度研究场景的聚合工具。</p>
         <span class="s-url">research.88lin.eu.org</span>
       </a>
-      <a class="site-cell reveal p-cream" style="--delay:60ms" href="https://learn.88lin.eu.org" target="_blank" rel="noreferrer">
+      <a class="site-cell reveal p-cream" style="--delay:60ms" href="https://learn.88lin.eu.org" target="_blank" rel="noopener noreferrer">
         <div class="s-top"><span class="s-dot" style="background:#F4D758"></span><strong>知识分享</strong></div>
         <p>知识分享与科学前沿内容。</p>
         <span class="s-url">learn.88lin.eu.org</span>
       </a>
-      <a class="site-cell reveal p-sage" style="--delay:120ms" href="https://timepulse.ravelloh.top" target="_blank" rel="noreferrer">
+      <a class="site-cell reveal p-sage" style="--delay:120ms" href="https://timepulse.ravelloh.top" target="_blank" rel="noopener noreferrer">
         <div class="s-top"><span class="s-dot" style="background:#4ade80"></span><strong>倒计时应用</strong></div>
         <p>简洁的倒计时与时间感知小工具。</p>
         <span class="s-url">timepulse.ravelloh.top</span>
       </a>
-      <a class="site-cell reveal p-peach" style="--delay:180ms" href="https://88lin.github.io/PaperStudio" target="_blank" rel="noreferrer">
+      <a class="site-cell reveal p-peach" style="--delay:180ms" href="https://88lin.github.io/PaperStudio" target="_blank" rel="noopener noreferrer">
         <div class="s-top"><span class="s-dot" style="background:#E84A5F"></span><strong>打印纸设计</strong></div>
         <p>在线打印纸与纸张模板设计工具。</p>
         <span class="s-url">88lin.github.io/PaperStudio</span>
@@ -865,52 +1232,43 @@ body {
 </section>
 <section class="writing" id="writing">
   <div class="container">
-    <div class="sec-label reveal">04 · cat latest/</div>
-    <h2 class="sec-title reveal" style="--delay:60ms">记录分享教程，与思维认知</h2>
-    <p class="sec-desc reveal" style="--delay:120ms">博客里最近更新的几篇，更多文章去归档里慢慢逛。</p>
-
-    <div class="post-list reveal" style="--delay:180ms">
-      <a class="post-row" href="https://blog.88lin.eu.org/article/46" target="_blank" rel="noreferrer">
-        <span class="post-date">2026-08-06</span>
-        <span class="post-title">全网 VIP 视频免费看教程：短剧电视剧白嫖指南</span>
-        <span class="post-tag">必看</span>
-        <span class="post-arrow">→</span>
+    <div class="sec-label reveal">03 · selected writing/</div>
+    <h2 class="sec-title reveal">读完之后，能用起来的几篇</h2>
+    <p class="sec-desc reveal">生活里的实用经验，电脑上的常见难题，还有知识整理与阅读思考。选六篇值得收藏、用得上时能回来翻看的文章。</p>
+    <div class="post-list reveal">
+      <a class="post-row" href="https://blog.88lin.eu.org/article/50" target="_blank" rel="noopener noreferrer">
+        <span class="post-copy"><span class="post-title">实用生活指南：必备经验与高效技巧分享</span><span class="post-summary">食材挑选与保存、家务清洁、租房押金沟通，把日常生活里常遇到的问题整理成一份经验清单。</span></span>
+        <span class="post-tag">生活经验</span>
+        <span class="post-arrow" aria-hidden="true">→</span>
       </a>
-      <a class="post-row" href="https://blog.88lin.eu.org/article/50" target="_blank" rel="noreferrer">
-        <span class="post-date">2026-07-31</span>
-        <span class="post-title">实用生活指南：必备经验与高效技巧分享</span>
-        <span class="post-tag">生活</span>
-        <span class="post-arrow">→</span>
+      <a class="post-row" href="https://blog.88lin.eu.org/article/notion" target="_blank" rel="noopener noreferrer">
+        <span class="post-copy"><span class="post-title">Notion快捷键大全：从入门到构建高效工作流</span><span class="post-summary">块编辑、页面关联、提醒与斜杠命令，一份整理笔记和管理任务时能随手查的清单。</span></span>
+        <span class="post-tag">知识工作流</span>
+        <span class="post-arrow" aria-hidden="true">→</span>
       </a>
-      <a class="post-row" href="https://blog.88lin.eu.org/article/12" target="_blank" rel="noreferrer">
-        <span class="post-date">2026-07-31</span>
-        <span class="post-title">一键屏蔽流氓软件：Windows 防火墙 / Hosts / DNS 组合屏蔽教程</span>
-        <span class="post-tag">教程</span>
-        <span class="post-arrow">→</span>
+      <a class="post-row" href="https://blog.88lin.eu.org/article/20" target="_blank" rel="noopener noreferrer">
+        <span class="post-copy"><span class="post-title">李笑来作品集：6 本书浓缩成一份可执行的人生操作系统</span><span class="post-summary">把六本书里的思考方法，落到注意力管理、每周复盘与时间审计。</span></span>
+        <span class="post-tag">阅读与思考</span>
+        <span class="post-arrow" aria-hidden="true">→</span>
       </a>
-      <a class="post-row" href="https://blog.88lin.eu.org/article/44" target="_blank" rel="noreferrer">
-        <span class="post-date">2026-07-31</span>
-        <span class="post-title">Windows 系统问题排查与修复：电脑故障解决手册</span>
-        <span class="post-tag">热门</span>
-        <span class="post-arrow">→</span>
+      <a class="post-row" href="https://blog.88lin.eu.org/article/14" target="_blank" rel="noopener noreferrer">
+        <span class="post-copy"><span class="post-title">Windows实用教程：常见问题解决与系统优化指南</span><span class="post-summary">整理常用快捷键、系统设置、网络共享与故障处理，遇到电脑问题时按场景查找办法。</span></span>
+        <span class="post-tag">Windows 技巧</span>
+        <span class="post-arrow" aria-hidden="true">→</span>
       </a>
-      <a class="post-row" href="https://blog.88lin.eu.org/article/5" target="_blank" rel="noreferrer">
-        <span class="post-date">2026-07-31</span>
-        <span class="post-title">电脑蓝屏终极解决办法：Windows 系统崩溃修复指南</span>
-        <span class="post-tag">教程</span>
-        <span class="post-arrow">→</span>
+      <a class="post-row" href="https://blog.88lin.eu.org/article/10" target="_blank" rel="noopener noreferrer">
+        <span class="post-copy"><span class="post-title">C盘清理详细教程：Windows系统一键瘦身</span><span class="post-summary">用 SpaceSniffer 找出空间占用，迁移微信和 QQ 文件，再按需清理缓存或考虑分区扩容。</span></span>
+        <span class="post-tag">磁盘清理</span>
+        <span class="post-arrow" aria-hidden="true">→</span>
       </a>
-      <a class="post-row" href="https://blog.88lin.eu.org/article/9" target="_blank" rel="noreferrer">
-        <span class="post-date">2026-07-31</span>
-        <span class="post-title">彻底卸载 360 和 2345 等流氓软件！</span>
-        <span class="post-tag">软件资源</span>
-        <span class="post-arrow">→</span>
+      <a class="post-row" href="https://blog.88lin.eu.org/article/34" target="_blank" rel="noopener noreferrer">
+        <span class="post-copy"><span class="post-title">面向新型创业者的短课 · Anything You Want</span><span class="post-summary">Derek Sivers 把经营 CD Baby 的经历写成 48 篇短课，谈客户、执行、取舍与工作的意义。</span></span>
+        <span class="post-tag">创业与思考</span>
+        <span class="post-arrow" aria-hidden="true">→</span>
       </a>
     </div>
-
     <div class="writing-more reveal">
-      <a class="btn btn-dark" href="https://blog.88lin.eu.org/archive" target="_blank" rel="noreferrer">查看全部 55+ 篇文章 →</a>
-      <a class="btn btn-ghost" href="https://blog.88lin.eu.org/rss/feed.xml" target="_blank" rel="noreferrer" style="margin-left:10px;">RSS 订阅</a>
+      <a class="btn btn-dark" href="https://blog.88lin.eu.org/archive" target="_blank" rel="noopener noreferrer">去博客继续阅读 →</a>
     </div>
   </div>
 </section>
@@ -921,27 +1279,36 @@ body {
       <p class="contact-desc">无论是 AI Agent 工程化、MCP 工具链与知识库，还是网站开发、电脑维修的需求，或者只是想打个招呼——都欢迎。</p>
       <div class="contact-links">
         <a class="c-pill" href="mailto:431761794@qq.com">✉️ 431761794@qq.com</a>
-        <a class="c-pill" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">💬 QQ 群</a>
-        <a class="c-pill" href="https://go.88lin.eu.org/gzh/index.html" target="_blank" rel="noreferrer">💚 微信公众号</a>
-        <a class="c-pill" href="https://space.bilibili.com/1412014683" target="_blank" rel="noreferrer">📺 B 站</a>
-        <a class="c-pill" href="https://github.com/88lin" target="_blank" rel="noreferrer">🐙 GitHub</a>
+        <a class="c-pill" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noopener noreferrer">💬 QQ 群</a>
+        <a class="c-pill" href="https://go.88lin.eu.org/gzh/index.html" target="_blank" rel="noopener noreferrer">💚 微信公众号</a>
+        <a class="c-pill" href="https://space.bilibili.com/1412014683" target="_blank" rel="noopener noreferrer">📺 B 站</a>
+        <a class="c-pill" href="https://github.com/88lin" target="_blank" rel="noopener noreferrer">🐙 GitHub</a>
       </div>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <div class="container">
-    <p class="f-brand">© 2021 - 2026 茉灵智库 · 88lin ✦ 收集有用的，也保留有趣的</p>
-    <p class="f-line">
-      <a href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">博客</a> ·
-      <a href="https://go.88lin.eu.org" target="_blank" rel="noreferrer">导航</a> ·
-      <a href="https://blog.88lin.eu.org/links" target="_blank" rel="noreferrer">友链</a> ·
-      <a href="https://blog.88lin.eu.org/rss/feed.xml" target="_blank" rel="noreferrer">RSS</a><br>
-      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noreferrer">桂ICP备21015360号</a> ·
-      <a href="https://icp.gov.moe/?keyword=20249980" target="_blank" rel="noreferrer">萌ICP备20249980号</a> ·
-      Design tokens by <a href="https://github.com/88lin/mydesign-system" target="_blank" rel="noreferrer">mydesign-system</a>
-    </p>
+</main>
+<footer class="footer garden-footer">
+  <div class="container footer-inner">
+    <div class="footer-main">
+      <a class="footer-brand" href="./" aria-label="回到 88lin 茉灵智库首页">
+        <img src="assets/avatar.webp" width="48" height="48" alt="" loading="lazy">
+        <span><strong>88lin · 茉灵智库</strong><span class="footer-motto">收集有用的，也保留有趣的。</span></span>
+      </a>
+      <nav class="footer-actions" aria-label="页脚导航">
+        <a class="footer-subscribe" href="https://blog.88lin.eu.org/rss/feed.xml" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="1"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg>订阅更新</a>
+        <a href="https://blog.88lin.eu.org/links" target="_blank" rel="noopener noreferrer">逛逛友链 <span aria-hidden="true">↗</span></a>
+        <a class="footer-top" href="#top">回到顶部 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2021–2026 88lin <span class="footer-separator" aria-hidden="true">·</span> 保持好奇，下次再见。</p>
+      <div class="footer-legal">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">桂ICP备21015360号</a>
+        <a href="https://icp.gov.moe/?keyword=20249980" target="_blank" rel="noopener noreferrer">萌ICP备20249980号</a>
+      </div>
+    </div>
   </div>
 </footer>
 <script>
@@ -993,6 +1360,7 @@ body {
   }
 
   async function run() {
+    term.replaceChildren();
     await new Promise(r => setTimeout(r, reduced ? 0 : 500));
     for (const step of script) {
       await typeCmd(step.cmd);
@@ -1002,6 +1370,7 @@ body {
     last.innerHTML = '<span class="t-prompt">$ </span><span class="t-cursor"></span>';
   }
 
+  if (!('IntersectionObserver' in window)) return;
   let started = false;
   const io = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting && !started) { started = true; run(); io.disconnect(); }
@@ -1018,6 +1387,7 @@ body {
   'use strict';
 
   // 渐显
+  if (!('IntersectionObserver' in window)) return;
   var reveals = document.querySelectorAll('.reveal');
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
@@ -1030,24 +1400,24 @@ body {
   var links = Array.from(document.querySelectorAll('.nav .nlink[href^="#"]'));
   var map = {};
   links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-  var sections = ['about', 'works', 'sites', 'writing', 'contact'].map(function (id) {
+  var sections = ['top', 'works', 'sites', 'writing', 'contact'].map(function (id) {
     return document.getElementById(id);
   });
 
   var secIO = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       var id = e.target.id;
-      if (e.isIntersecting && map[id]) {
-        links.forEach(function (a) { a.classList.remove('active'); });
-        map[id].classList.add('active');
+      if (e.isIntersecting) {
+        links.forEach(function (a) { a.classList.remove('active'); a.removeAttribute('aria-current'); });
+        if (map[id]) { map[id].classList.add('active'); map[id].setAttribute('aria-current', 'location'); }
       }
     });
   }, { rootMargin: '-40% 0px -52% 0px' });
   sections.forEach(function (s) { if (s) secIO.observe(s); });
 
   // 统计：hero 运行天数实时计算
-  var daysEl = document.getElementById('statDays');
-  if (daysEl) daysEl.textContent = String(Math.floor((Date.now() - new Date('2021-07-12T00:00:00+08:00')) / 86400000));
+  var days = Math.max(0, Math.floor((Date.now() - Date.parse('2021-07-12T00:00:00+08:00')) / 86400000));
+  document.querySelectorAll('[data-running-days]').forEach(function (el) { el.textContent = days.toLocaleString('zh-CN'); });
 })();
 /* ============================================
    Bento 聚光灯

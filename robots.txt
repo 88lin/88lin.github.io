@@ -1,6 +1,10 @@
 User-agent: *
 Allow: /
 
+# Search retrieval in ChatGPT; independent of GPTBot training controls.
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 

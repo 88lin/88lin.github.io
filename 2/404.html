@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>404 - 这页走丢了 | 88lin · 茉灵智库</title>
-<meta name="robots" content="noindex">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" href="/2/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -77,14 +77,16 @@ a.home {
 a.home:hover { background: var(--yellow); }
 </style>
     <meta name="description" content="页面走丢了。返回 88lin · 茉灵智库首页，继续浏览在线工具与创意页面。">
+<link rel="stylesheet" href="/2/assets/enhancements.css">
 </head>
-<body>
-<div class="wrap">
-  <div class="big404">404</div>
+<body class="error-page">
+<a class="skip-link" href="#main">跳到主要内容</a>
+<main class="wrap" id="main">
+  <div class="big404" aria-hidden="true">404</div>
   <h1>这一页<mark>走丢了</mark></h1>
   <div class="note">$ error: page not found in ~/garden</div>
   <p class="desc">你要找的页面不在这里。可能是链接旧了，也可能是我把它搬走了。</p>
-  <a class="home" href="/2">← 回到主页</a>
-</div>
+  <a class="home" href="/2/">← 回到主页</a>
+</main>
 </body>
 </html>

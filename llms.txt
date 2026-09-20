@@ -4,7 +4,7 @@
 
 站点：https://go.88lin.eu.org
 博客：https://blog.88lin.eu.org
-最后更新：2026-09-19
+最后更新：2026-09-20
 
 ## 实用工具
 
@@ -61,8 +61,9 @@
 
 ## 个人主页
 
-- [个人主页](https://go.88lin.eu.org/2/index.html)：88lin 的数字花园，收录项目、站点与博客。
-- [关于我](https://go.88lin.eu.org/2/about/index.html)：AI 研究者与 Agent 工程实践者的自述页。
+- [88lin 个人主页](https://go.88lin.eu.org/2/)：AI Agent 与开源项目目录，提供 GitHub 源码、站点入口和精选文章。
+- [关于 88lin](https://go.88lin.eu.org/2/about/)：茉灵智库主理人的 AI Agent、MCP、RAG 实践方向、开源历程与联系方式。
+- [个人主页内容索引](https://go.88lin.eu.org/2/llms.txt)：与页面同步的项目说明、文章链接和作者信息。
 
 ## 其他
 
