@@ -4,7 +4,7 @@
 
 站点：https://go.88lin.eu.org
 博客：https://blog.88lin.eu.org
-最后更新：2026-09-18
+最后更新：2026-09-19
 
 ## 实用工具
 
@@ -38,6 +38,8 @@
 - [3D 粒子圣诞树](https://go.88lin.eu.org/Christmas/index.html)：Three.js 粒子组成的圣诞树，支持摄像头互动。
 - [3D 圣诞树](https://go.88lin.eu.org/christmas-tree/index.html)：另一版 3D 圣诞树特效。
 - [圣诞节礼盒](https://go.88lin.eu.org/Christmas3/index.html)：点击开启的 3D 礼盒动画与飘雪氛围。
+- [圣诞音乐粒子树 · 版本一](https://go.88lin.eu.org/Christmas1/index.html)：Three.js 粒子圣诞树，内置三首背景音乐，也可上传自己的歌。
+- [圣诞表白粒子树 · 版本二](https://go.88lin.eu.org/Christmas2/index.html)：粒子圣诞树亮起后浮现表白祝福语。
 - [生日祝福特效](https://go.88lin.eu.org/birthday/index.html)：动画与音乐组合的生日祝福页面。
 
 ## 表白与趣味
@@ -57,10 +59,16 @@
 - [植物生长组件](https://go.88lin.eu.org/notion/1/index.html)：随时间推移生长的植物动画。
 - [窗外动画组件](https://go.88lin.eu.org/notion/7/index.html)：模拟窗外四季风景与天气变化。
 
+## 个人主页
+
+- [个人主页](https://go.88lin.eu.org/2/index.html)：88lin 的数字花园，收录项目、站点与博客。
+- [关于我](https://go.88lin.eu.org/2/about/index.html)：AI 研究者与 Agent 工程实践者的自述页。
+
 ## 其他
 
 - [延迟回放（外放干扰）](https://go.88lin.eu.org/stop/index.html)：把环境声音延迟 0.5–5 秒回放，用于打断外放噪声，支持添加到主屏幕。
 - [关注公众号](https://go.88lin.eu.org/gzh/index.html)：茉灵智库公众号引导页。
+- [请我喝咖啡](https://go.88lin.eu.org/fireworks/1.html)：赞助与支持作者的页面。
 
 ## 联系与作者
 

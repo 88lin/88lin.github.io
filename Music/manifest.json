@@ -1,11 +1,13 @@
 {
-  "name": "HeoMusic",
-  "short_name": "HeoMusic",
+  "name": "茉灵智库 Music",
+  "short_name": "Music",
+  "description": "单页音乐播放器：聚合热门歌单与电台，打开即听。",
+  "lang": "zh-CN",
   "theme_color": "#000000",
   "background_color": "#000000",
   "display": "fullscreen",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "./",
+  "start_url": "./",
   "icons": [
       {
         "src": "img/icon-r_mini.png",
@@ -13,9 +15,14 @@
         "type": "image/png"
       },
       {
-        "src": "img/icon-r.webp",
+        "src": "img/icon-r.png",
         "sizes": "512x512",
         "type": "image/png"
+      },
+      {
+        "src": "img/icon-r.webp",
+        "sizes": "512x512",
+        "type": "image/webp"
       }
     ]
 }

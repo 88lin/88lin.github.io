@@ -41,10 +41,15 @@ async function cacheRefresh(req) {
   let refresh = fetch(req).then(async (rsp) => {
     if (rsp.ok) {
       let cache = await caches.open(cacheName);
-      cache.put(req, rsp.clone());
+      await cache.put(req, rsp.clone());
     }
     return rsp;
   });
+
+  /* 命中缓存时 refresh 只在后台跑，没人 await；离线状态下它会 reject，
+     不接住就是一条 unhandled rejection。 */
+  refresh.catch(() => {});
+
   return (pathname != "/" ? await caches.match(req) : null) || (await refresh);
 }
 

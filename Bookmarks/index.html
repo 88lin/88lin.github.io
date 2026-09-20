@@ -42,8 +42,10 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "url": "https://go.88lin.eu.org/Bookmarks/index.html",
-    "name": "Pintree",
-    "description": "Managing and Exporting your Bookmarks into a Website",
+    "name": "书签管理与导出工具",
+    "description": "把浏览器书签整理、导出成一个美观易用的个人网址导航页面。",
+    "inLanguage": "zh-CN",
+    "isPartOf": { "@id": "https://go.88lin.eu.org/#website" }
   }
   </script>
 </head>
@@ -55,7 +57,7 @@
     <div id="off-canvas-menu" class="relative z-50 lg:hidden hidden" role="dialog" aria-modal="true">
       <div id="off-canvas-backdrop"
         class="fixed inset-0 bg-gray-900/80 opacity-0 transition-opacity ease-linear duration-300"></div>
-      <div class="fixed inset-0 flex">
+      <div id="off-canvas-wrapper" class="fixed inset-0 flex">
         <div id="off-canvas-content"
           class="relative mr-16 flex w-full max-w-xs flex-1 -translate-x-full transition ease-in-out duration-300 transform">
           <!-- Close button for the off-canvas menu -->
@@ -106,7 +108,15 @@
       <div
         class="items-center justify-between sticky top-0 z-40 flex h-16 shrink-0 gap-x-4 border-b border-gray-200 dark:pintree-border-gray-800 bg-white dark:pintree-bg-gray-900 px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
         <div class="h-full items-center flex flex-1 gap-x-4 self-stretch lg:gap-x-6 justify-between">
-          <div class="flex gap-x-4 justify-between">
+          <div class="flex gap-x-4 justify-between items-center">
+            <button id="open-sidebar-button" type="button"
+              class="-m-2.5 p-2.5 text-gray-700 dark:text-gray-300 lg:hidden">
+              <span class="sr-only">打开侧边栏</span>
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
             <img class="pl-2 h-8 w-auto lg:hidden" src="assets/logo.svg" alt="Pintree">
             <div class="hidden lg:block relative w-72 h-full items-center justify-between">
               <button id="searchButton" class="absolute h-full text-gray-400 rounded">
@@ -232,9 +242,16 @@
       };
 
       // Event listeners for open and close buttons
-      openSidebarButton.addEventListener('click', openSidebar);
-      closeSidebarButton.addEventListener('click', closeSidebar);
-      offCanvasBackdrop.addEventListener('click', closeSidebar); // Close sidebar when clicking on the backdrop
+      // 移动端的汉堡按钮（open-sidebar-button）目前不在 DOM 里，不判空的话这里会抛错，
+      // 导致下面两个关闭侧栏的监听根本绑不上，侧栏一旦打开就关不掉。
+      openSidebarButton?.addEventListener('click', openSidebar);
+      closeSidebarButton?.addEventListener('click', closeSidebar);
+
+      // 遮罩层被 #off-canvas-wrapper 整个盖住，直接监听它收不到 click；
+      // 改在外层容器上判断落点是否在面板之外。
+      document.getElementById('off-canvas-wrapper')?.addEventListener('click', (event) => {
+        if (offCanvasContent && !offCanvasContent.contains(event.target)) closeSidebar();
+      });
     });
 
     // pintree.json 有 460KB，原先搜索/清空时都会重新下载一遍。
@@ -684,9 +701,15 @@
     });
 
     // Open mobile menu
-    document.getElementById('open-sidebar-button').addEventListener('click', function () {
-      var navigation = document.getElementById('navigation').cloneNode(true);
-      document.getElementById('sidebar-2').appendChild(navigation);
+    document.getElementById('open-sidebar-button')?.addEventListener('click', function () {
+      const source = document.getElementById('navigation');
+      const target = document.getElementById('sidebar-2');
+      if (!source || !target) return;
+      const navigation = source.cloneNode(true);
+      // 克隆体去掉 id，否则页面里会出现两个 #navigation，getElementById 只认第一个
+      navigation.removeAttribute('id');
+      // 每次打开都重建，避免反复点击时侧栏里叠加出多份导航
+      target.replaceChildren(navigation);
     });
 
   </script>

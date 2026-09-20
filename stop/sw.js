@@ -39,9 +39,10 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch - 仅对 GET 走缓存优先，避免把 POST 之类的请求也塞进缓存
+// Fetch - 仅对同源 GET 走缓存优先，跨域请求与 POST 交回浏览器默认处理
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  if (new URL(event.request.url).origin !== self.location.origin) return;
   event.respondWith(
     caches.match(event.request)
       .then((response) => response || fetch(event.request))
