@@ -63,6 +63,7 @@
 
 - [88lin 个人主页](https://go.88lin.eu.org/2/)：AI Agent 与开源项目目录，提供 GitHub 源码、站点入口和精选文章。
 - [关于 88lin](https://go.88lin.eu.org/2/about/)：茉灵智库主理人的 AI Agent、MCP、RAG 实践方向、开源历程与联系方式。
+- [88lin 的白板](https://go.88lin.eu.org/2/system/)：开源项目、实用教程、阅读书单与常用工具；可拖动浏览，访客创作仅保存到本机。
 - [个人主页内容索引](https://go.88lin.eu.org/2/llms.txt)：与页面同步的项目说明、文章链接和作者信息。
 
 ## 其他

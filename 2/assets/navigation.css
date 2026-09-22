@@ -1,0 +1,77 @@
+/* Shared navigation: 44px hit areas with stable, inset capsule backgrounds. */
+.nav {
+  --nav-surface: var(--ui-surface);
+  --nav-border: var(--ui-border);
+  --nav-text: var(--ui-text);
+  --nav-ink: var(--ui-ink);
+  --nav-hover: var(--ui-hover);
+  --nav-active: var(--ui-active);
+  --nav-focus: var(--ui-accent);
+  position: fixed; inset: 0 0 auto; z-index: 900;
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px 16px; pointer-events: none;
+}
+.nav-inner {
+  display: flex; align-items: center; gap: 3px;
+  width: max-content; max-width: 100%; padding: 4px 6px;
+  border: 1px solid var(--nav-border); border-radius: 999px;
+  background: var(--nav-surface); box-shadow: 0 8px 24px #25233212;
+  pointer-events: auto;
+}
+.nav-logo {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  gap: 8px; min-width: 44px; height: 44px; padding: 0 12px 0 7px;
+  border-radius: 999px; color: var(--nav-ink); font: 600 13px var(--body, sans-serif);
+  text-decoration: none; -webkit-tap-highlight-color: transparent;
+}
+.nav-logo img { width: 26px; height: 26px; border-radius: 50%; }
+.nav a.nlink {
+  --item-fill: transparent;
+  position: relative; isolation: isolate; flex: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 62px; height: 44px; min-height: 44px; padding: 0 14px;
+  border-radius: 999px; background: transparent; box-shadow: none;
+  color: var(--nav-text); font-size: 13px; font-weight: 500; line-height: 1;
+  white-space: nowrap; text-decoration: none; transform: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color .16s ease;
+}
+.nav a.nlink::before {
+  content: ""; position: absolute; inset: 5px 0; z-index: -1;
+  border-radius: inherit; background: var(--item-fill);
+  transition: background-color .16s ease;
+}
+.nav a.nlink:hover { --item-fill: var(--nav-hover); color: var(--nav-ink); }
+.nav a.nlink:active { --item-fill: var(--ui-pressed); transform: none; }
+.nav a.nlink.active, .nav a.nlink[aria-current="page"], .nav a.nlink[aria-current="location"] {
+  --item-fill: var(--nav-active); color: var(--ui-accent); font-weight: 600;
+}
+.nav a.nlink-cta { --item-fill: var(--ui-accent); color: #FFFFFF; margin-left: 3px; }
+.nav a.nlink-cta:hover, .nav a.nlink-cta:active { --item-fill: var(--ui-action-hover); color: #FFFFFF; }
+.nav a.nlink:focus-visible { outline: none; }
+.nav a.nlink:focus-visible::before { outline: 2px solid var(--nav-focus); outline-offset: 2px; }
+.nav-logo:hover { background: var(--nav-hover); text-decoration: none; }
+.nav-logo:focus-visible { outline: 2px solid var(--nav-focus); outline-offset: 1px; }
+body.in-dark .nav {
+  --nav-surface: #242230; --nav-border: #464050;
+  --nav-text: #E0DAED; --nav-ink: #FFFFFF; --nav-hover: #373142; --nav-focus: #CDB8F4;
+}
+.system-page .nav { top: auto; bottom: calc(12px + env(safe-area-inset-bottom)); padding-block: 0; z-index: 50; }
+@media (max-width: 640px) {
+  .nav { padding-inline: 8px; padding-top: max(9px, env(safe-area-inset-top)); }
+  .nav-inner { gap: 0; padding: 4px; }
+  .nav-logo { width: 44px; padding: 0; }
+  .nav-logo span { display: none; }
+  .nav a.nlink { min-width: 54px; padding-inline: 10px; font-size: 13px; }
+  .nav a.nlink-cta { display: none; }
+  .system-page .nav { padding-top: 0; }
+}
+@media (max-width: 360px) {
+  .nav a.nlink { min-width: 50px; padding-inline: 8px; }
+}
+@media (max-width: 760px) {
+  .system-page .wb-app.sidebar-open ~ .nav { visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav a.nlink, .nav a.nlink::before { transition: none; }
+}

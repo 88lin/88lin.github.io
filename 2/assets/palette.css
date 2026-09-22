@@ -1,0 +1,52 @@
+/* Shared card materials, sampled from 88lin's Lofi Radio about/stations pages. */
+:root {
+  --surface-page: #FFFCF8;
+  --surface-section: #F8F7FB;
+  --surface-white: #FFFFFF;
+  --surface-line: #E8E3EC;
+  --surface-blue: #EBF4FF;
+  --line-blue: #D5E6FF;
+  --text-blue: #2455A4;
+  --surface-pink: #FFE3F1;
+  --line-pink: #FBC7E0;
+  --text-pink: #A82262;
+  --surface-lilac: #F0EAFE;
+  --line-lilac: #DCCEFC;
+  --text-lilac: #6941B0;
+  --surface-mint: #E0F6EF;
+  --line-mint: #B7EAD9;
+  --text-mint: #236952;
+  --surface-peach: #FEEDE1;
+  --line-peach: #FDD5B9;
+  --text-peach: #925025;
+  --surface-aqua: #DFF6F9;
+  --line-aqua: #B4E9F2;
+  --text-aqua: #226876;
+  --surface-yellow: #FFF4D6;
+  --line-yellow: #F0DEAA;
+  --text-yellow: #796020;
+  --ui-surface: #FFFFFF;
+  --ui-border: #E4DFED;
+  --ui-text: #575363;
+  --ui-ink: #2F293D;
+  --ui-hover: #F6F2FD;
+  --ui-active: var(--surface-lilac);
+  --ui-accent: var(--text-lilac);
+  --ui-accent-line: #D3C4EC;
+  --ui-pressed: #E3D8FA;
+  --ui-action-hover: #53338E;
+  --ui-focus-ring: #6941B01F;
+  --p-cream: var(--surface-yellow);
+  --p-blue: var(--surface-blue);
+  --p-rose: var(--surface-pink);
+  --p-sage: var(--surface-mint);
+  --p-lav: var(--surface-lilac);
+  --p-peach: var(--surface-peach);
+}
+.p-cream { --tile-surface: var(--surface-yellow); --tile-border: var(--line-yellow); --tile-ink: var(--text-yellow); }
+.p-blue { --tile-surface: var(--surface-blue); --tile-border: var(--line-blue); --tile-ink: var(--text-blue); }
+.p-rose { --tile-surface: var(--surface-pink); --tile-border: var(--line-pink); --tile-ink: var(--text-pink); }
+.p-sage { --tile-surface: var(--surface-mint); --tile-border: var(--line-mint); --tile-ink: var(--text-mint); }
+.p-lav { --tile-surface: var(--surface-lilac); --tile-border: var(--line-lilac); --tile-ink: var(--text-lilac); }
+.p-peach { --tile-surface: var(--surface-peach); --tile-border: var(--line-peach); --tile-ink: var(--text-peach); }
+.p-aqua { --tile-surface: var(--surface-aqua); --tile-border: var(--line-aqua); --tile-ink: var(--text-aqua); }

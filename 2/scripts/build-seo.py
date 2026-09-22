@@ -1,4 +1,4 @@
-"""Generate static JSON-LD and llms.txt from the visible homepage content.
+"""Generate static JSON-LD and llms.txt from the visible personal-site pages.
 
 Run after editing page content: python 2/scripts/build-seo.py --updated YYYY-MM-DD
 Python standard library only. The published website has no build/runtime dependency.
@@ -126,6 +126,10 @@ def main():
     home_file, about_file = SITE_DIR / "index.html", SITE_DIR / "about/index.html"
     home_source, about_source = (p.read_text(encoding="utf-8") for p in (home_file, about_file))
     home, about = Document(home_source).root, Document(about_source).root
+    canvas_file = SITE_DIR / "system/index.html"
+    canvas_source = canvas_file.read_text(encoding="utf-8")
+    canvas = Document(canvas_source).root
+    cm = metadata(canvas)
     hm, am = metadata(home), metadata(about)
     home_url, about_url = hm["url"], am["url"]
     person_id, website_id = about_url + "#person", home_url + "#website"
@@ -183,11 +187,22 @@ def main():
                "mainEntity": {"@id": person_id}, "primaryImageOfPage": image_object(am)}
     home_source = inject_schema(home_source, [website, person, homepage, project_list, sites_list, posts_list])
     about_source = inject_schema(about_source, [website, person, profile])
+    canvas_parts = []
+    for card in canvas.all(attribute="data-card"):
+        heading = card.all(tag="h2")
+        canvas_parts.append({"@type": "WebPageElement", "@id": cm["url"] + "#" + card.attrs["id"],
+                             "name": heading[0].plain() if heading else card.attrs["aria-label"]})
+    canvas_page = {"@type": "WebPage", "@id": cm["url"] + "#webpage", "url": cm["url"],
+                   "name": cm["title"], "description": cm["description"], "inLanguage": "zh-CN",
+                   "dateModified": updated, "isPartOf": {"@id": website_id}, "about": {"@id": person_id},
+                   "author": {"@id": person_id}, "primaryImageOfPage": image_object(cm), "hasPart": canvas_parts}
+    canvas_source = inject_schema(canvas_source, [website, person, canvas_page])
 
     lines = ["# " + hm["og:site_name"], "", "> " + hm["description"], "",
              f"内容更新：{updated}", "", "## 作者与页面", "",
              f"- [个人主页]({home_url})：AI Agent、MCP 工具链与开源项目目录。",
              f"- [关于 88lin]({about_url})：{person['description']}",
+             f"- [88lin 的白板]({cm['url']})：{cm['description']}",
              "- [GitHub](https://github.com/88lin)：源码、README、Issue 与各仓库许可证。",
              "- [茉灵智库博客](https://blog.88lin.eu.org/)：实践记录与精选文章原文。",
              f"- [联系作者]({person['email']})", "",
@@ -206,8 +221,9 @@ def main():
               "- [博客 RSS](https://blog.88lin.eu.org/rss/feed.xml)", ""]
     write_if_changed(home_file, home_source)
     write_if_changed(about_file, about_source)
+    write_if_changed(canvas_file, canvas_source)
     write_if_changed(SITE_DIR / "llms.txt", "\n".join(lines))
-    print(f"Generated JSON-LD for 2 pages and llms.txt: {len(projects)} projects, {len(sites)} sites, {len(posts)} articles.")
+    print(f"Generated JSON-LD for 3 pages and llms.txt: {len(projects)} projects, {len(sites)} sites, {len(posts)} articles, {len(canvas_parts)} canvas sections.")
 
 
 if __name__ == "__main__":

@@ -111,51 +111,6 @@ section { scroll-margin-top: 88px; }
 .sec-desc { margin-top: 14px; color: var(--ink-light); font-size: 1.02rem; line-height: 1.9; max-width: 560px; }
 
 /* ============================================
-   NAV — 顶部玻璃导航
-   ============================================ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-  display: flex; align-items: center; justify-content: center;
-  padding: 14px 20px; pointer-events: none;
-  transition: padding 0.4s var(--ease);
-}
-.nav-inner {
-  pointer-events: auto;
-  display: flex; align-items: center; gap: 4px;
-  background: rgba(250,247,240,0.72);
-  backdrop-filter: blur(20px) saturate(1.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  border: 1px solid rgba(28,28,30,0.07);
-  border-radius: 999px; padding: 6px;
-  box-shadow: 0 8px 30px rgba(28,28,30,0.08);
-  transition: background 0.5s ease, border-color 0.5s ease;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
-  color: var(--ink); padding: 7px 14px 7px 10px;
-}
-.nav-logo img { width: 24px; height: 24px; border-radius: 50%; }
-.nav a.nlink {
-  font-size: 0.86rem; font-weight: 500; color: var(--ink-light);
-  padding: 8px 15px; border-radius: 999px;
-  transition: all 0.25s ease; white-space: nowrap;
-}
-.nav a.nlink:hover { color: var(--ink); background: rgba(28,28,30,0.05); }
-.nav a.nlink.active { color: var(--ink); background: var(--highlight); box-shadow: 0 2px 8px rgba(244,215,88,0.5); }
-.nav a.nlink-cta {
-  background: var(--ink); color: #fff; margin-left: 2px;
-}
-.nav a.nlink-cta:hover { background: var(--brand-deep); color: #fff; }
-body.in-dark .nav-inner {
-  background: rgba(16,20,32,0.62);
-  border-color: rgba(255,255,255,0.10);
-}
-body.in-dark .nav a.nlink { color: var(--on-dark-dim); }
-body.in-dark .nav a.nlink:hover { color: var(--on-dark); background: rgba(255,255,255,0.08); }
-body.in-dark .nav a.nlink.active { color: var(--ink); background: var(--highlight); }
-body.in-dark .nav-logo { color: var(--on-dark); }
-/* ============================================
    HERO — 明亮大字排版
    ============================================ */
 .hero {
@@ -506,10 +461,6 @@ body.in-dark .nav-logo { color: var(--on-dark); }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-  .nav { padding: 10px 10px; }
-  .nav-logo { display: none; }
-  .nav a.nlink { padding: 7px 10px; font-size: 0.78rem; }
-  .nav a.nlink-cta { padding: 7px 12px; }
   .bento { grid-template-columns: 1fr; }
   .b-big, .b-wide { grid-column: span 1; }
   .sites-grid { grid-template-columns: 1fr; }
@@ -610,12 +561,6 @@ body {
    粉彩分类色块 · 无边框大圆角 · 柔和弥散阴影 · 胶囊标签
    ============================================ */
 :root {
-  --p-cream: #F6EDD3;
-  --p-blue: #DEE7F0;
-  --p-rose: #F3E3DC;
-  --p-sage: #E3E8E2;
-  --p-lav: #E7E4EC;
-  --p-peach: #F8E8DA;
   --shadow-soft: 0 1px 3px rgba(28,28,30,0.04), 0 16px 36px rgba(28,28,30,0.06);
   --shadow-lift: 0 2px 6px rgba(28,28,30,0.05), 0 22px 48px rgba(28,28,30,0.10);
 }
@@ -649,7 +594,9 @@ body {
   .site-cell .s-url { font-size: 0.7rem; }
 }
 </style>
+<link rel="stylesheet" href="assets/palette.css">
 <link rel="stylesheet" href="assets/enhancements.css">
+<link rel="stylesheet" href="assets/navigation.css">
 <script id="site-structured-data" type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -698,7 +645,7 @@ body {
       "name": "88lin · 茉灵智库｜AI Agent 与开源项目",
       "description": "88lin 的个人主页，整理 AI Agent、MCP 工具链、RAG 知识库与实用开源项目，提供 GitHub 源码、使用入口和精选博客文章。收集有用的，也保留有趣的。",
       "inLanguage": "zh-CN",
-      "dateModified": "2026-09-20",
+      "dateModified": "2026-09-21",
       "isPartOf": {
         "@id": "https://go.88lin.eu.org/2/#website"
       },
@@ -1053,6 +1000,7 @@ body {
     <a class="nlink" href="#works">项目</a>
     <a class="nlink" href="#sites">站点</a>
     <a class="nlink" href="#writing">文章</a>
+    <a class="nlink" href="system/">画布</a>
     <a class="nlink" href="about/">关于</a>
     <a class="nlink nlink-cta" href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">博客 ↗</a>
   </nav>
@@ -1108,7 +1056,7 @@ body {
     <h2 class="sec-title reveal">动手把想法跑通</h2>
     <p class="sec-desc reveal">从油猴脚本、日常工具到 AI Agent Skills，把遇到的问题，做成可用、可复用的项目。</p>
     <div class="bento">
-      <article class="b-cell b-big p-cream reveal" data-project id="project-video-vip">
+      <article class="b-cell b-big p-lav reveal" data-project id="project-video-vip">
         <div class="b-head"><h3 class="b-name">video_vip</h3><span class="b-star">★ 4,956</span></div>
         <p class="project-intro">从一个小脚本开始，<br>把日常需求变成实用工具。</p>
         <p class="b-desc">多接口视频解析油猴脚本，支持自动匹配选集与桌面、移动端使用。</p>
@@ -1197,33 +1145,33 @@ body {
     <p class="sec-desc reveal" style="--delay:120ms">读点东西、查点资料，或者找一个顺手的小工具。</p>
 
     <div class="sites-grid">
-      <a class="site-cell reveal p-cream" href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#F4D758"></span><strong>茉灵智库 · 博客</strong></div>
+      <a class="site-cell reveal p-rose" href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">
+        <div class="s-top"><span class="s-dot"></span><strong>茉灵智库 · 博客</strong></div>
         <p>内容主站：记录技术教程、资源共享与思考认知。</p>
         <span class="s-url">blog.88lin.eu.org</span>
       </a>
       <a class="site-cell reveal p-blue" style="--delay:60ms" href="https://go.88lin.eu.org" target="_blank" rel="noopener noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#7FB4F2"></span><strong>工具导航站</strong></div>
+        <div class="s-top"><span class="s-dot"></span><strong>工具导航站</strong></div>
         <p>影视、音乐、烟花特效与效率工具的统一入口。</p>
         <span class="s-url">go.88lin.eu.org</span>
       </a>
-      <a class="site-cell reveal p-blue" href="https://research.88lin.eu.org" target="_blank" rel="noopener noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#7FB4F2"></span><strong>深度研究</strong></div>
+      <a class="site-cell reveal p-lav" href="https://research.88lin.eu.org" target="_blank" rel="noopener noreferrer">
+        <div class="s-top"><span class="s-dot"></span><strong>深度研究</strong></div>
         <p>面向深度研究场景的聚合工具。</p>
         <span class="s-url">research.88lin.eu.org</span>
       </a>
-      <a class="site-cell reveal p-cream" style="--delay:60ms" href="https://learn.88lin.eu.org" target="_blank" rel="noopener noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#F4D758"></span><strong>知识分享</strong></div>
+      <a class="site-cell reveal p-aqua" style="--delay:60ms" href="https://learn.88lin.eu.org" target="_blank" rel="noopener noreferrer">
+        <div class="s-top"><span class="s-dot"></span><strong>知识分享</strong></div>
         <p>知识分享与科学前沿内容。</p>
         <span class="s-url">learn.88lin.eu.org</span>
       </a>
       <a class="site-cell reveal p-sage" style="--delay:120ms" href="https://timepulse.ravelloh.top" target="_blank" rel="noopener noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#4ade80"></span><strong>倒计时应用</strong></div>
+        <div class="s-top"><span class="s-dot"></span><strong>倒计时应用</strong></div>
         <p>简洁的倒计时与时间感知小工具。</p>
         <span class="s-url">timepulse.ravelloh.top</span>
       </a>
       <a class="site-cell reveal p-peach" style="--delay:180ms" href="https://88lin.github.io/PaperStudio" target="_blank" rel="noopener noreferrer">
-        <div class="s-top"><span class="s-dot" style="background:#E84A5F"></span><strong>打印纸设计</strong></div>
+        <div class="s-top"><span class="s-dot"></span><strong>打印纸设计</strong></div>
         <p>在线打印纸与纸张模板设计工具。</p>
         <span class="s-url">88lin.github.io/PaperStudio</span>
       </a>
@@ -1300,6 +1248,7 @@ body {
         <a class="footer-subscribe" href="https://blog.88lin.eu.org/rss/feed.xml" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="1"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg>订阅更新</a>
         <a href="https://blog.88lin.eu.org/links" target="_blank" rel="noopener noreferrer">逛逛友链 <span aria-hidden="true">↗</span></a>
         <a class="footer-top" href="#top">回到顶部 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a>
+        <a href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">逛逛博客 ↗</a>
       </nav>
     </div>
     <div class="footer-bottom">

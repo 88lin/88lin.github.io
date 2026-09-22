@@ -2,12 +2,13 @@
 
 > 88lin 的个人主页，整理 AI Agent、MCP 工具链、RAG 知识库与实用开源项目，提供 GitHub 源码、使用入口和精选博客文章。收集有用的，也保留有趣的。
 
-内容更新：2026-09-20
+内容更新：2026-09-21
 
 ## 作者与页面
 
 - [个人主页](https://go.88lin.eu.org/2/)：AI Agent、MCP 工具链与开源项目目录。
 - [关于 88lin](https://go.88lin.eu.org/2/about/)：AI 研究者与 Agent 工程实践者，茉灵智库主理人。
+- [88lin 的白板](https://go.88lin.eu.org/2/system/)：在 88lin 的个人白板上查看 video_vip、computer-repair-skill、facetmark 等开源项目，以及 Windows 教程、阅读书单、博客与常用工具。支持拖动浏览、便签和涂鸦，创作仅保存在本机。
 - [GitHub](https://github.com/88lin)：源码、README、Issue 与各仓库许可证。
 - [茉灵智库博客](https://blog.88lin.eu.org/)：实践记录与精选文章原文。
 - [联系作者](mailto:431761794@qq.com)

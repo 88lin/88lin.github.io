@@ -14,16 +14,23 @@
 </url>
 
 <url>
+ <loc>https://go.88lin.eu.org/2/system/</loc>
+ <priority>0.7</priority>
+ <lastmod>2026-09-21</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
  <loc>https://go.88lin.eu.org/2/about/</loc>
  <priority>0.5</priority>
- <lastmod>2026-09-20</lastmod>
+ <lastmod>2026-09-21</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
  <loc>https://go.88lin.eu.org/2/</loc>
  <priority>0.5</priority>
- <lastmod>2026-09-20</lastmod>
+ <lastmod>2026-09-21</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 

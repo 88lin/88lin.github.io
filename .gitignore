@@ -110,3 +110,7 @@ dist
 .tern-port
 
 .workbuddy
+
+# Keep the design-system sidecar; ignore local briefs and browser review artifacts.
+2/.impeccable/*
+!2/.impeccable/design.json

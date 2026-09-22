@@ -3,6 +3,10 @@
   --section-space: clamp(48px, 5vw, 72px);
   --section-heading-gap: clamp(24px, 3vw, 32px);
 }
+.home-page, .about-page, .error-page {
+  --cream: var(--surface-page);
+  --cream-dark: var(--surface-section);
+}
 [hidden] { display: none !important; }
 :focus-visible { outline: 3px solid var(--brand, #2B7FD8); outline-offset: 5px; }
 a { text-underline-offset: 4px; }
@@ -16,9 +20,6 @@ a { text-underline-offset: 4px; }
 .reveal { opacity: 1; transform: none; }
 .reveal.in { animation: gentle-reveal .65s var(--ease) both; }
 @keyframes gentle-reveal { from { opacity: .75; transform: translateY(14px); } to { opacity: 1; transform: none; } }
-.nav a.nlink { min-height: 44px; display: inline-flex; align-items: center; }
-.nav { transition: none; }
-.nav-logo { min-height: 44px; }
 .home-page .hero { padding-bottom: 56px; }
 .home-page :is(.works, .sites, .writing) { padding-block: var(--section-space); }
 .home-page .contact { padding: var(--section-space) 0 48px; }
@@ -55,12 +56,28 @@ a { text-underline-offset: 4px; }
 .b-cell .b-desc { margin-top: 14px; }
 .b-links { flex-wrap: wrap; gap: 8px 20px; }
 .b-links a { min-height: 36px; }
-.b-cell.p-cream { background: #fff7dd; }
-.b-cell.p-blue { background: #e7effa; }
-.b-cell.p-rose { background: #fae9e5; }
-.b-cell.p-sage { background: #eaf0e4; }
-.b-cell.p-lav { background: #eeeaf5; }
-.b-cell.p-peach { background: #fff0e3; }
+.home-page :is(.b-cell, .site-cell), .about-page .focus-card {
+  background: var(--tile-surface, var(--surface-blue));
+  border: 1px solid var(--tile-border, var(--line-blue));
+  border-radius: 20px;
+  box-shadow: none;
+  transition: transform .25s var(--ease), border-color .2s;
+}
+.home-page .b-cell::before { display: none; }
+.home-page :is(.b-cell, .site-cell):hover, .about-page .focus-card:hover {
+  border-color: var(--tile-ink);
+  box-shadow: none;
+  transform: translateY(-3px);
+}
+.b-cell .b-name, .b-cell .b-links a,
+.site-cell .s-top strong, .site-cell .s-url, .about-page .focus-card h3 {
+  color: var(--tile-ink);
+}
+.b-cell .b-links a:hover { color: var(--tile-ink); text-decoration: underline; }
+.home-page .site-cell .s-dot { background: var(--tile-ink); box-shadow: none; }
+.home-page .site-cell .s-url { background: transparent; padding: 0; opacity: 1; }
+.b-cell .b-platforms span { background: rgba(255,255,255,.64); color: var(--tile-ink); }
+.home-page .works { background: var(--surface-section); }
 .b-star { background: rgba(255,255,255,.72); border-color: transparent; }
 .b-tags span { background: rgba(255,255,255,.7); }
 .project-intro { margin-top: 26px; font-size: clamp(1.5rem, 2.4vw, 2.05rem); line-height: 1.65; font-weight: 750; }
@@ -95,6 +112,14 @@ a { text-underline-offset: 4px; }
   background: var(--cream-dark);
   text-align: left;
 }
+.contact-card {
+  background: var(--surface-lilac);
+  border-color: var(--line-lilac);
+  box-shadow: none;
+}
+.contact-card::after { color: var(--text-lilac); opacity: .45; animation: none; }
+.contact-card .c-pill { background: rgba(255,255,255,.8); border-color: transparent; }
+.contact-card .c-pill:hover { border-color: var(--text-lilac); color: var(--text-lilac); box-shadow: none; }
 .footer-inner { padding-top: 34px; border-top: 1px solid var(--border); }
 .footer-main { display: flex; justify-content: space-between; align-items: center; gap: 32px; padding-bottom: 28px; }
 .footer-brand { display: inline-flex; align-items: center; gap: 14px; }
@@ -142,10 +167,14 @@ a { text-underline-offset: 4px; }
 .about-page .tl-year { font-size: .8rem; }
 .about-page .tl-item:last-child .tl-year { color: var(--brand-text); font-weight: 600; }
 .about-page .tl-title { line-height: 1.6; }
-.about-page .belief-card { padding: 28px 24px; }
-.about-page .belief-card:first-child { background: var(--highlight-soft); box-shadow: none; }
-.about-page .belief-card p { position: relative; line-height: 1.75; }
-.about-page .belief-card span { margin-top: 12px; }
+.about-page .belief-card {
+  display: flex; flex-direction: column; padding: 28px 24px;
+  background: var(--tile-surface); border: 1px solid var(--tile-border);
+  border-radius: 20px; box-shadow: none;
+}
+.about-page .belief-card::before { color: var(--tile-ink); opacity: .2; }
+.about-page .belief-card p { position: relative; padding-right: 16px; line-height: 1.75; color: var(--tile-ink); text-wrap: pretty; }
+.about-page .belief-card span { margin-top: auto; padding-top: 14px; font-size: 12px; line-height: 1.5; color: var(--tile-ink); }
 .about-page .skills { gap: 10px; padding-top: 6px; }
 .about-page .skills span { padding: 8px 15px; line-height: 1.5; }
 .about-page .contact-card h2 { line-height: 1.4; text-wrap: balance; }
@@ -155,6 +184,7 @@ a { text-underline-offset: 4px; }
 .error-page .wrap { width: min(560px, 100%); }
 .error-page .note { max-width: 100%; overflow-wrap: anywhere; line-height: 1.6; }
 .error-page .home { display: inline-flex; align-items: center; min-height: 44px; margin-top: 24px; }
+.error-page .note { background: var(--surface-lilac); color: var(--text-lilac); border: 1px solid var(--line-lilac); padding: 10px 14px; border-radius: 12px; }
 @media (max-width: 960px) {
   .sites-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .footer-main { align-items: flex-start; }
@@ -172,11 +202,6 @@ a { text-underline-offset: 4px; }
   .about-page .focus-card p { grid-column: 1 / -1; }
 }
 @media (max-width: 640px) {
-  .nav-inner { max-width: 100%; gap: 2px; }
-  .nav-logo { display: inline-flex; justify-content: center; padding: 4px; min-width: 32px; }
-  .nav-logo span { display: none; }
-  .nav a.nlink { justify-content: center; padding-inline: 8px; }
-  .nav a.nlink-cta { padding-inline: 10px; }
   .sites-grid { grid-template-columns: 1fr; }
   .garden-footer { padding-bottom: 24px; }
   .footer-main { flex-direction: column; gap: 22px; padding-bottom: 23px; }
@@ -248,6 +273,7 @@ a { text-underline-offset: 4px; }
 }
 @media (hover: none) {
   .focus-card:hover, .skills span:hover, .c-pill:hover, .site-cell:hover, .b-cell:hover { transform: none; }
+  .home-page :is(.b-cell, .site-cell):hover, .about-page .focus-card:hover { transform: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

@@ -43,7 +43,6 @@
   --ink: #1C1C1E; --ink-light: #48484A; --ink-faint: #6B6B70;
   --border: rgba(28,28,30,0.10); --hairline: rgba(28,28,30,0.06);
   --card-bg: #FFFFFF;
-  --p-cream:#F6EDD3; --p-blue:#DEE7F0; --p-rose:#F3E3DC; --p-sage:#E3E8E2; --p-lav:#E7E4EC; --p-peach:#F8E8DA;
   --shadow-soft: 0 1px 3px rgba(28,28,30,0.04), 0 16px 36px rgba(28,28,30,0.06);
   --shadow-lift: 0 2px 6px rgba(28,28,30,0.05), 0 22px 48px rgba(28,28,30,0.10);
   --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "HarmonyOS Sans SC", "Helvetica Neue", "Noto Sans SC", sans-serif;
@@ -69,44 +68,6 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 .container { width: min(1120px, 92vw); margin: 0 auto; }
 section { scroll-margin-top: 88px; }
-
-/* ============================================
-   NAV
-   ============================================ */
-.nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
-  display: flex; align-items: center; justify-content: center;
-  padding: 14px 20px; pointer-events: none;
-  transition: padding 0.4s var(--ease);
-}
-.nav-inner {
-  pointer-events: auto;
-  display: flex; align-items: center; gap: 4px;
-  background: rgba(250,247,240,0.72);
-  backdrop-filter: blur(20px) saturate(1.6);
-  -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  border: 1px solid rgba(28,28,30,0.07);
-  border-radius: 999px; padding: 6px;
-  box-shadow: 0 8px 30px rgba(28,28,30,0.08);
-  transition: background 0.5s ease, border-color 0.5s ease;
-}
-.nav-logo {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-mono); font-size: 0.82rem; font-weight: 600;
-  color: var(--ink); padding: 7px 14px 7px 10px;
-}
-.nav-logo img { width: 24px; height: 24px; border-radius: 50%; }
-.nav a.nlink {
-  font-size: 0.86rem; font-weight: 500; color: var(--ink-light);
-  padding: 8px 15px; border-radius: 999px;
-  transition: all 0.25s ease; white-space: nowrap;
-}
-.nav a.nlink:hover { color: var(--ink); background: rgba(28,28,30,0.05); }
-.nav a.nlink.active { color: var(--ink); background: var(--highlight); box-shadow: 0 2px 8px rgba(244,215,88,0.5); }
-.nav a.nlink-cta {
-  background: var(--ink); color: #fff; margin-left: 2px;
-}
-.nav a.nlink-cta:hover { background: var(--brand-deep); color: #fff; }
 
 /* ============================================
    HERO
@@ -200,10 +161,6 @@ section { scroll-margin-top: 88px; }
   .beliefs { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
-  .nav { padding: 10px 10px; }
-  .nav-logo { display: none; }
-  .nav a.nlink { padding: 7px 10px; font-size: 0.78rem; }
-  .nav a.nlink-cta { padding: 7px 12px; }
   .focus-grid { grid-template-columns: 1fr; }
   .hero { padding: 130px 0 70px; }
   .contact-card { padding: 48px 22px; }
@@ -213,7 +170,9 @@ section { scroll-margin-top: 88px; }
   .contact-card::after { animation: none; opacity: 0.7; }
 }
 </style>
+<link rel="stylesheet" href="../assets/palette.css">
 <link rel="stylesheet" href="../assets/enhancements.css">
+<link rel="stylesheet" href="../assets/navigation.css">
 <script id="site-structured-data" type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -262,7 +221,7 @@ section { scroll-margin-top: 88px; }
       "name": "关于 88lin｜AI Agent、MCP 与知识库实践",
       "description": "认识 88lin，AI 研究者与 Agent 工程实践者、茉灵智库主理人。了解 AI Agent 工程化、MCP 工具链、RAG 知识库的实践方向，查看开源历程、使用的工具与联系方式。",
       "inLanguage": "zh-CN",
-      "dateModified": "2026-09-20",
+      "dateModified": "2026-09-21",
       "isPartOf": {
         "@id": "https://go.88lin.eu.org/2/#website"
       },
@@ -288,6 +247,7 @@ section { scroll-margin-top: 88px; }
     <a class="nlink" href="../#works">项目</a>
     <a class="nlink" href="../#sites">站点</a>
     <a class="nlink" href="../#writing">文章</a>
+    <a class="nlink" href="../system/">画布</a>
     <a class="nlink active" href="./" aria-current="page">关于</a>
     <a class="nlink nlink-cta" href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">博客 ↗</a>
   </nav>
@@ -342,7 +302,7 @@ section { scroll-margin-top: 88px; }
         <h3>知识库与 RAG</h3>
         <p>把项目文档、Issue、FAQ 与设计规范沉淀为可检索的知识库，让经验成为可持续复用的工程记忆。</p>
       </div>
-      <div class="focus-card p-cream reveal" style="--delay:210ms">
+      <div class="focus-card p-lav reveal" style="--delay:210ms">
         <div class="fc-icon">🌱</div>
         <h3>基础与成长</h3>
         <p>持续打磨算法与计算机科学的核心基础，在解决真实问题中学习，在动手构建中成长。</p>
@@ -388,16 +348,16 @@ section { scroll-margin-top: 88px; }
       <h2 class="section-title">我相信的几件事</h2>
     </div>
     <div class="beliefs">
-      <div class="belief-card reveal">
+      <div class="belief-card p-rose reveal">
         <p>收集有用的，也保留有趣的。</p>
         <span>// motto</span>
       </div>
-      <div class="belief-card reveal" style="--delay:90ms">
+      <div class="belief-card p-lav reveal" style="--delay:90ms">
         <p>前沿跑得快，地基更要稳。</p>
         <span>// foundation</span>
       </div>
-      <div class="belief-card reveal" style="--delay:180ms">
-        <p>比起停留在概念，更愿意动手把想法跑通。</p>
+      <div class="belief-card p-blue reveal" style="--delay:180ms">
+        <p>比起停留在概念，<br>更愿意动手把想法跑通。</p>
         <span>// ship-it</span>
       </div>
     </div>
@@ -452,6 +412,7 @@ section { scroll-margin-top: 88px; }
         <a class="footer-subscribe" href="https://blog.88lin.eu.org/rss/feed.xml" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="19" r="1"/><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/></svg>订阅更新</a>
         <a href="https://blog.88lin.eu.org/links" target="_blank" rel="noopener noreferrer">逛逛友链 <span aria-hidden="true">↗</span></a>
         <a class="footer-top" href="#top">回到顶部 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></a>
+        <a href="https://blog.88lin.eu.org" target="_blank" rel="noopener noreferrer">逛逛博客 ↗</a>
       </nav>
     </div>
     <div class="footer-bottom">
