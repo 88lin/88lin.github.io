@@ -115,15 +115,15 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
-                id: 'loomy',
-                name: 'Loomy',
-                logo: 'https://loomy.xunfei.cn/_next/image?url=%2Fassets%2Fimages%2Flogo_light.png&w=256&q=75',
-                url: 'https://loomy.xunfei.cn/download',
-                tagline: '讯飞出品的 AI 工作搭子，把想法实现并交付。可用Qwen 3.8 Max、GLM 5.3 Flash、SparkX2.5（免费），填邀请码 NMZ6CC、XB3TMC、XZEM3C、XZEM3C、GVQBUH 可获得永久一万积分。',
-                desc: '讯飞出品的 AI 工作搭子，不只是听指令的助手，更会主动理解你要做的事，帮你撰写内容、把想法实现并交付成果。现已支持 DeepSeek V4 Flash 0731、Qwen 3.8 Max、GLM 5.3 Flash、Qwen 3.8 Flash、SparkX2.5（限时免费）。输入邀请码 NMZ6CC、XB3TMC、XZEM3C、XZEM3C、GVQBUH 可获得永久一万积分。',
-                highlights: ['SparkX2.5（免费）', 'GLM 5.3 Flash', 'GLM 5.3 Flash'],
-                cta: '下载体验',
-                accent: '#2b5cff'
+                id: 'lightvela',
+                name: 'LightVela',
+                logo: 'https://lightvela.com/lightvela-logo.svg',
+                url: 'https://lightvela.com/?ref=9TVZHV5GKS',
+                tagline: '腾讯轻量云团队推出的云端 Agent 托管产品，支持跨会话记忆、连接微信、QQ、飞书、钉钉等主流聊天通道。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
+                desc: '腾讯轻量云团队推出的云端 Agent 托管产品，它把 Agent 的部署、运维与 7×24 小时运行全部放在云端托管，支持跨会话记忆、连接主流聊天通道（微信、QQ、飞书、钉钉等），可自定义模型、工具、人设。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
+                highlights: ['免费体验 1 个月', '送 2核8G 云主机', '4500 AI 积分'],
+                cta: '免费体验',
+                accent: '#1e80ff'
             },
             {
                 id: 'agentrouter',
