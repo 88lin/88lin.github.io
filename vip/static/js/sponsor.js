@@ -115,23 +115,23 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
-                id: 'lightvela',
-                name: 'LightVela',
-                logo: 'https://lightvela.com/lightvela-logo.svg',
-                url: 'https://lightvela.com/?ref=9TVZHV5GKS',
-                tagline: '腾讯轻量云团队推出的云端 Agent 托管产品，支持跨会话记忆、连接微信、QQ、飞书、钉钉等主流聊天通道。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
-                desc: '腾讯轻量云团队推出的云端 Agent 托管产品，它把 Agent 的部署、运维与 7×24 小时运行全部放在云端托管，支持跨会话记忆、连接主流聊天通道（微信、QQ、飞书、钉钉等），可自定义模型、工具、人设。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
-                highlights: ['免费体验 1 个月', '送 2核8G 云主机', '4500 AI 积分'],
-                cta: '免费体验',
-                accent: '#1e80ff'
+                id: 'agentmore',
+                name: 'AgentMore',
+                logo: 'https://sfile.chatglm.cn/workspace/image/1c/1c83b94683.png',
+                url: 'https://agentmore.chatglm.cn?Rawcode=PM9UPGFZAX8M',
+                tagline: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间登录积分 ×10（日领2k积分），花出去的积分 100% 原路返还。',
+                desc: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，轻松组建专属 Agent 团队，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间（9月25日-10月7日）登录积分 ×10，普通用户日领 2000 积分，花出去的积分 100% 原路返还，单账号最多回血 15 万积分！',
+                highlights: ['登录积分 ×10', '日领 2000 积分', '积分 100% 返还', '免费白嫖'],
+                cta: '立即领取',
+                accent: '#d533fe'
             },
             {
                 id: 'agentrouter',
                 name: 'Agent Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
                 url: 'https://agentrouter.org/register?aff=ugVO',
-                tagline: '免费公益大模型 API 平台，支持 GPT-6-Astra、GPT-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash，国内直连不折腾。注册送 $125，每日签到 $25，被邀再得 $50。',
-                desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、GPT-5.6-sol、claude-opus-5、glm-5.3、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
+                tagline: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5、deepseek-v4-flash。注册送 $125，每日签到 $25，被邀再得 $50。',
+                desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
                 highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
                 cta: '免费领取',
                 accent: '#7c4dff'
@@ -141,21 +141,10 @@
                 name: 'Any Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/微信图片_20260907170036_114_2.webp',
                 url: 'https://anyrouter.top/register?aff=woX5',
-                tagline: '免费公益大模型 API 平台，主打 GPT-6-Astra、claude-fable-5.1 等顶级模型。注册即送 $50，每日签到还能再领随机额度。',
-                desc: '免费公益大模型 API 平台，主打 GPT-6-Astra、claude-fable-5.1 等顶级模型，目前线路较稳定。注册即送 $50，每日签到还能再领随机额度。',
+                tagline: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5.5 等顶级模型。注册即送 $50，每日签到还能再领随机额度。',
+                desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5.5 等顶级模型。注册即送 $50，每日签到还能再领随机额度。',
                 highlights: ['注册送 $50', '每日签到随机额度'],
                 cta: '免费领取',
-                accent: '#1e88e5'
-            },
-            {
-                id: 'sheapi',
-                name: 'SheApi',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
-                url: 'https://www.sheapi.top/sign-up?aff=MvcR',
-                tagline: '可靠高效的 API 中转服务，提供 Claude、GPT 高稳定中转。Codex 倍率补贴低至 0.08，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到再领专属免费额度。',
-                desc: '可靠高效的 API 中转服务提供商，主要提供 Claude、GPT 等主流模型的高稳定中转能力。Codex 倍率补贴低至 0.08，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到还可领取专属免费额度。',
-                highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
-                cta: '立即体验',
                 accent: '#1e88e5'
             },
             {
@@ -192,6 +181,28 @@
                 cta: '联系我',
                 accent: '#0067f7',
                 internal: true
+            },
+            {
+                id: 'lightvela',
+                name: 'LightVela',
+                logo: 'https://lightvela.com/lightvela-logo.svg',
+                url: 'https://lightvela.com/?ref=9TVZHV5GKS',
+                tagline: '腾讯轻量云团队推出的云端 Agent 托管产品，支持跨会话记忆、连接微信、QQ、飞书、钉钉等主流聊天通道。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
+                desc: '腾讯轻量云团队推出的云端 Agent 托管产品，它把 Agent 的部署、运维与 7×24 小时运行全部放在云端托管，支持跨会话记忆、连接主流聊天通道（微信、QQ、飞书、钉钉等），可自定义模型、工具、人设。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
+                highlights: ['免费体验 1 个月', '送 2核8G 云主机', '4500 AI 积分'],
+                cta: '免费体验',
+                accent: '#1e80ff'
+            },
+            {
+                id: 'sheapi',
+                name: 'SheApi',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
+                url: 'https://www.sheapi.top/sign-up?aff=MvcR',
+                tagline: '可靠高效的 API 中转服务，提供 gpt-6-astra、grok-4.7、glm-5.3 等模型。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到得额度。',
+                desc: '可靠高效的 API 中转服务提供商，主要提供 gpt-6-astra、kimi-k3、grok-4.7、glm-5.3、deepseek-v4.1-flash 等主流模型的高稳定中转能力。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到还可领取专属免费额度。',
+                highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
+                cta: '立即体验',
+                accent: '#1e88e5'
             }
         ]
     };
