@@ -123,7 +123,7 @@
                 desc: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，轻松组建专属 Agent 团队，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间（9月25日-10月7日）登录积分 ×10，普通用户日领 2000 积分，花出去的积分 100% 原路返还，单账号最多回血 15 万积分！',
                 highlights: ['登录积分 ×10', '日领 2000 积分', '积分 100% 返还', '免费白嫖'],
                 cta: '立即领取',
-                accent: '#d533fe'
+                accent: '#0052d9'
             },
             {
                 id: 'agentrouter',
@@ -134,7 +134,7 @@
                 desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
                 highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
                 cta: '免费领取',
-                accent: '#7c4dff'
+                accent: '#5f4dff'
             },
             {
                 id: 'anyrouter',
