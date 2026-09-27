@@ -163,11 +163,13 @@ def main():
     posts = [{"name": card.one(class_name="post-title").plain(), "description": card.one(class_name="post-summary").plain(), "url": card.attrs["href"]}
              for card in home.all(class_name="post-row")]
     skills = [node.plain() for node in about.one(class_name="skills").all(tag="span")]
+    contact_links = [(a.plain(), a.attrs["href"]) for a in home.one(class_name="contact-links").all(tag="a")]
+    social_links = [(label, url) for label, url in contact_links if not url.startswith("mailto:")]
     person = {"@type": "Person", "@id": person_id, "name": "88lin", "url": about_url,
               "description": "AI 研究者与 Agent 工程实践者，茉灵智库主理人。",
               "image": home_url + "assets/avatar.webp", "knowsAbout": skills,
               "email": next(a.attrs["href"] for a in about.one(class_name="contact-links").all(tag="a") if a.attrs["href"].startswith("mailto:")),
-              "sameAs": ["https://github.com/88lin", "https://space.bilibili.com/1412014683"]}
+              "sameAs": [url for _, url in social_links]}
     website = {"@type": "WebSite", "@id": website_id, "url": home_url,
                "name": hm["og:site_name"], "inLanguage": "zh-CN", "publisher": {"@id": person_id}}
     project_list = item_list(home_url + "#projects-list", "精选开源项目", [
@@ -205,7 +207,8 @@ def main():
              f"- [88lin 的白板]({cm['url']})：{cm['description']}",
              "- [GitHub](https://github.com/88lin)：源码、README、Issue 与各仓库许可证。",
              "- [茉灵智库博客](https://blog.88lin.eu.org/)：实践记录与精选文章原文。",
-             f"- [联系作者]({person['email']})", "",
+             f"- [联系作者]({person['email']})",
+             "- 社交渠道：" + "、".join(f"[{label}]({url})" for label, url in social_links), "",
              "实践方向与工具：" + "、".join(skills) + "。", "", "## 精选开源项目", ""]
     for project in projects:
         extra = "；".join(f"[{label}]({url})" for label, url in project["links"] if url != project["repository"])

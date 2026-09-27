@@ -12,6 +12,7 @@
 - [GitHub](https://github.com/88lin)：源码、README、Issue 与各仓库许可证。
 - [茉灵智库博客](https://blog.88lin.eu.org/)：实践记录与精选文章原文。
 - [联系作者](mailto:431761794@qq.com)
+- 社交渠道：[🎵 抖音](https://v.douyin.com/nDD4_ACPRiY)、[📕 小红书](https://xhslink.cn/o/418LhmF376U)、[📺 B 站](https://space.bilibili.com/1412014683)、[🐙 GitHub](https://github.com/88lin)
 
 实践方向与工具：AI Agent、MCP 工具链、RAG 知识库、Prompt / Skill 设计、Python、TypeScript、网站开发、开源维护、内容创作、自动化工作流、技术写作、GitHub Actions。
 
