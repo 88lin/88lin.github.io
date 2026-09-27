@@ -2,7 +2,7 @@
 
 > 88lin 的个人主页，整理 AI Agent、MCP 工具链、RAG 知识库与实用开源项目，提供 GitHub 源码、使用入口和精选博客文章。收集有用的，也保留有趣的。
 
-内容更新：2026-09-21
+内容更新：2026-09-28
 
 ## 作者与页面
 
@@ -21,8 +21,8 @@
 - [workbuddy-auto-signin](https://github.com/88lin/workbuddy-auto-signin)：自动领取 WorkBuddy 签到积分与成长中心奖励，支持本地定时、静默运行。 [主页简介](https://go.88lin.eu.org/2/#project-workbuddy-auto-signin)
 - [computer-repair-skill](https://github.com/88lin/computer-repair-skill)：让 Codex / Claude Code 成为电脑维修助手：64 个诊断、清理与修复流程，先取证，再动手。 [主页简介](https://go.88lin.eu.org/2/#project-computer-repair-skill)；[项目官网 ↗](https://repair.88lin.eu.org/)
 - [lofi-radio-web](https://github.com/88lin/lofi-radio-web)：专注时的 Lofi 背景音：21 个精选频道，打开即听，让工作与创作多一点松弛。 [主页简介](https://go.88lin.eu.org/2/#project-lofi-radio-web)；[听一会儿 ↗](https://lofi.88lin.eu.org/)
+- [gpt-image-studio](https://github.com/88lin/gpt-image-studio)：基于 OpenAI gpt-image-2.5 的图片生成与编辑工作台：内置中文提示词模板，支持遮罩局部改图和多参考图迭代，历史与素材本地保存。 [主页简介](https://go.88lin.eu.org/2/#project-gpt-image-studio)；[在线使用 ↗](https://88lin.github.io/gpt-image-studio/)
 - [facetmark](https://github.com/88lin/facetmark)：从关键词、内容、收藏意图与上下文找回书签，数据保存在本地 SQLite。 [主页简介](https://go.88lin.eu.org/2/#project-facetmark)；[项目介绍 ↗](https://88lin.github.io/facetmark/)
-- [textmark](https://github.com/88lin/textmark)：在浏览器本地为文字添加、提取和清除隐形水印，支持可选加密。 [主页简介](https://go.88lin.eu.org/2/#project-textmark)；[在线使用 ↗](https://88lin.github.io/textmark/)
 - [TextCard-Studio](https://github.com/88lin/TextCard-Studio)：把 Markdown 和长文排成小红书 3:4 系列文字卡片，支持预览与高清导出。 [主页简介](https://go.88lin.eu.org/2/#project-textcard-studio)；[在线体验 ↗](https://88lin.github.io/TextCard-Studio/)
 - [gzh-design-skill](https://github.com/88lin/gzh-design-skill)：Markdown 一键排成公众号 HTML：8 套主题、主题生成器与校验流程。基于上游项目维护。 [主页简介](https://go.88lin.eu.org/2/#project-gzh-design-skill)；[主题预览 ↗](https://88lin.github.io/gzh-design-skill/docs/gallery/index.html)
 - [agentrouter-auto-signin](https://github.com/88lin/agentrouter-auto-signin)：AgentRouter 本地自动签到工具，支持多账号、余额查询与定时补跑。 [主页简介](https://go.88lin.eu.org/2/#project-agentrouter-auto-signin)
@@ -54,7 +54,7 @@
 
 ## 数据与更新
 
-GitHub 公开仓库统计，含 Fork · 2026.09.20。
+GitHub 公开仓库统计，含 Fork · 2026.09.28。
 GitHub 总 Stars 与项目总数统计公开仓库，包含 Fork；精选卡片数量与账户仓库总数不同。
 - [GitHub 仓库列表](https://github.com/88lin?tab=repositories)
 - [博客 RSS](https://blog.88lin.eu.org/rss/feed.xml)

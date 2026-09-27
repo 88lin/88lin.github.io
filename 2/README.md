@@ -24,11 +24,13 @@ python -m http.server 8765 --bind 127.0.0.1
 - `assets/avatar.webp`：由已有 `icon.png` 转换的头像，尺寸 256 × 256；原 PNG 继续用于 Apple Touch Icon。
 - `llms.txt`：由页面真实内容生成的个人主页索引，包含项目、站点、文章与作者资料。
 - `scripts/build-seo.py`：使用 Python 标准库同步静态 JSON-LD、项目片段地址和内容索引；仅维护时运行。
+- `scripts/update-github-stats.py`：调用 GitHub 公开 API 刷新首屏统计与卡片 Star 徽标；仅刷新已经显示 `★` 的卡片，中文分类标签保持不变。
+- `.github/workflows/update-github-stats.yml`：每周日 00:00（Asia/Shanghai）重建上述数字，有变化才提交，也可手动触发。
 - `SEO-GEO.md`：SEO / GEO 修改依据、验证记录与发布后的检查步骤。
 
-项目以静态 HTML 交付，不依赖访问者请求 GitHub API。首页先展示 8 个项目，原生 `details` 可展开另外 6 个；关闭 JavaScript 也可浏览全部项目。添加精选项目时更新项目卡片及展开提示；首屏项目总数使用 GitHub 账户公开仓库总数，不等于精选卡片数量。
+项目以静态 HTML 交付，不依赖访问者请求 GitHub API。首页先展示 8 个项目，原生 `details` 可展开另外 6 个；关闭 JavaScript 也可浏览全部项目。添加精选项目时更新项目卡片及展开提示；首屏项目总数使用 GitHub 账户公开仓库总数，不等于精选卡片数量。Stars 与项目总数由 Actions 每天重建后写回 HTML，页面本身不发起任何外部请求。
 
-项目信息于 2026-09-20 核对 GitHub 公开 API、仓库 README 和演示地址。首屏统计为 5,865 Stars、118 个公开仓库，包含 Fork；按 GitHub owner 仓库接口遍历全部分页求和，仓库自身的 Star 数不会继承上游。Stars 是当日快照，更新时同时修改页面注明的日期和单项目徽标。`react-ai-orb` 标注二次开发，`gzh-design-skill` 标注基于上游维护；不把 `fork=false` 等同于原创。TextCard 的有效地址为 `https://88lin.github.io/TextCard-Studio/`。
+项目信息于 2026-09-28 核对 GitHub 公开 API、仓库 README 和演示地址。首屏统计为 6,620 Stars、115 个公开仓库，包含 Fork；按 GitHub owner 仓库接口遍历全部分页求和，仓库自身的 Star 数不会继承上游。Stars 是当日快照，更新时同时修改页面注明的日期和单项目徽标。`react-ai-orb` 标注二次开发，`gzh-design-skill` 标注基于上游维护；不把 `fork=false` 等同于原创。TextCard 的有效地址为 `https://88lin.github.io/TextCard-Studio/`。
 
 ## 本次验证
 
@@ -54,6 +56,8 @@ python -m http.server 8765 --bind 127.0.0.1
 个人画布地址为 `https://go.88lin.eu.org/2/system/`，使用独立的标题、摘要、canonical、分享截图与 WebPage 结构化数据，并加入 sitemap 和两级内容索引。生成脚本同步维护首页、关于页和画布三个页面。
 
 更改项目、文章、技能或页面元信息后，在仓库根目录运行 `python 2/scripts/build-seo.py --updated YYYY-MM-DD`，日期使用实际内容核对日期。生成结果直接提交为静态 HTML / 文本，不需要前端构建，也不依赖访问者执行 JavaScript。
+
+Stars、仓库总数和 Star 徽标不需要手动维护：在仓库根目录运行 `python 2/scripts/update-github-stats.py` 可立即刷新，Actions 每周自动执行一次（也可以随时手动触发）。脚本只改写这些数字与核对日期，不会改动项目文案；运行后仍需再跑一次上面的 SEO 脚本，让 `llms.txt` 里的统计来源日期保持一致。
 
 本轮额外完成 JSON-LD / Schema.org 字段、目录与可见内容一致性、canonical / sitemap、抓取规则、无 JavaScript 项目直达和 12 组浏览器尺寸复核。详细范围与发布后验证见 [SEO-GEO.md](SEO-GEO.md)。
 
