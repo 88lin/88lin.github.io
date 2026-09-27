@@ -33,8 +33,8 @@ a { text-underline-offset: 4px; }
 .c-pill { min-height: 44px; justify-content: center; }
 .hero .hero-actions { margin-top: 30px; }
 .hero .macbook-wrapper { margin-top: 40px; }
-.hero .macbook-screen { aspect-ratio: auto; min-height: 340px; }
-.hero .terminal { height: auto; min-height: 302px; font-size: 13px; line-height: 1.95; }
+.hero .macbook-screen { aspect-ratio: auto; min-height: 300px; }
+.hero .terminal { height: auto; min-height: 0; font-size: 13px; line-height: 1.95; }
 .hero .stats-row { margin-top: 15px; }
 .hero .stat { padding-inline: 20px; }
 .hero .stat strong { font-variant-numeric: tabular-nums; }
@@ -223,8 +223,9 @@ a { text-underline-offset: 4px; }
   .macbook-screen-bezel { width: min(680px, 90vw); padding: 10px; }
   .macbook-hinge { width: min(692px, 92vw); }
   .macbook-base { width: min(730px, 96vw); }
-  .hero .terminal { padding: 15px 13px; min-height: 312px; font-size: 11.5px; line-height: 2.05; }
-  .hero .macbook-screen { min-height: 350px; }
+  .hero .terminal { padding: 14px 13px; min-height: 0; font-size: 11.5px; line-height: 1.95; }
+  .hero .macbook-screen { min-height: 0; }
+  .macbook-shadow { height: 18px; margin-top: 4px; }
   .term-title { font-size: 11px; }
   .hero .stats-row { margin-top: 10px; width: 100%; }
   .hero .stat { padding-inline: 8px; }
