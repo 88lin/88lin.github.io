@@ -33,8 +33,10 @@ a { text-underline-offset: 4px; }
 .c-pill { min-height: 44px; justify-content: center; }
 .hero .hero-actions { margin-top: 30px; }
 .hero .macbook-wrapper { margin-top: 40px; }
-.hero .macbook-screen { aspect-ratio: auto; min-height: 300px; }
-.hero .terminal { height: auto; min-height: 0; font-size: 13px; line-height: 1.95; }
+.hero .macbook-screen { aspect-ratio: auto; min-height: 0; }
+/* 预留打字动画打完后的 9 行高度（4 条命令 + 4 行输出 + 末尾光标行），
+   用 em 计算，字号变化时自动跟随，避免动画期间屏幕忽高忽低 */
+.hero .terminal { height: auto; min-height: calc(17.55em + 32px); font-size: 13px; line-height: 1.95; }
 .hero .stats-row { margin-top: 15px; }
 .hero .stat { padding-inline: 20px; }
 .hero .stat strong { font-variant-numeric: tabular-nums; }
@@ -223,7 +225,7 @@ a { text-underline-offset: 4px; }
   .macbook-screen-bezel { width: min(680px, 90vw); padding: 10px; }
   .macbook-hinge { width: min(692px, 92vw); }
   .macbook-base { width: min(730px, 96vw); }
-  .hero .terminal { padding: 14px 13px; min-height: 0; font-size: 11.5px; line-height: 1.95; }
+  .hero .terminal { padding: 14px 13px; min-height: calc(17.55em + 28px); font-size: 11.5px; line-height: 1.95; }
   .hero .macbook-screen { min-height: 0; }
   .macbook-shadow { height: 18px; margin-top: 4px; }
   .term-title { font-size: 11px; }
