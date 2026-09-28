@@ -31,6 +31,15 @@
   --spotlight-y: 50%;
 }
 
+/* Native disclosure keeps the directory compact and readable without scripts. */
+.site-help { max-width: 54rem; }
+.site-help h2 { font-size: 1.35rem; }
+.site-help details { border-bottom: 1px solid var(--line); }
+.site-help summary { padding: .85rem 0; cursor: pointer; font-weight: 700; }
+.site-help summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.site-help p { margin: 0 0 1rem; color: var(--muted); overflow-wrap: anywhere; }
+.site-help a { color: var(--accent-deep); text-decoration: underline; }
+
 *,
 *::before,
 *::after {
@@ -1446,12 +1455,12 @@ button,
 }
 
 .reveal {
-  opacity: 0;
-  transform: translateY(18px);
+  opacity: 1;
+  transform: none;
 }
 
 .reveal.is-visible {
-  animation: reveal-up 720ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: reveal-up 720ms cubic-bezier(0.22, 1, 0.36, 1) both;
   animation-delay: var(--delay, 0ms);
 }
 

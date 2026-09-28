@@ -7,12 +7,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body { height: 100%; margin: 0; background: #1e1a24; overflow: hidden; }
+    .book-catalog { position: fixed; left: 16px; bottom: 16px; z-index: 2; max-width: calc(100% - 32px); color: #fff4df; background: #2e2733; border: 1px solid #817184; border-radius: 8px; font: 15px/1.7 system-ui, sans-serif; }
+    .book-catalog summary { padding: 10px 14px; cursor: pointer; }
+    .book-catalog summary:focus-visible { outline: 2px solid #ffae57; outline-offset: 3px; }
+    .book-catalog[open] { width: 580px; }
+    .book-catalog .book-text { max-height: 60vh; max-height: 60dvh; overflow-y: auto; overscroll-behavior: contain; padding: 0 16px 16px; overflow-wrap: anywhere; }
+    .book-catalog h1 { font-size: 1.25rem; }
+    .book-catalog h2 { font-size: 1.1rem; color: #ffae57; }
+    .book-catalog h3 { font-size: 1rem; }
+    .book-catalog ul { padding-left: 1.4rem; }
+    .book-catalog a { color: #ffae57; }
   </style>
     <meta name="description" content="用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。">
-    <link rel="canonical" href="https://go.88lin.eu.org/books.html">
+    <link rel="canonical" href="https://go.88lin.eu.org/books">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="茉灵智库">
-    <meta property="og:url" content="https://go.88lin.eu.org/books.html">
+    <meta property="og:url" content="https://go.88lin.eu.org/books">
     <meta property="og:title" content="个人书单旭日图｜茉灵智库">
     <meta property="og:description" content="用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。">
     <meta property="og:image" content="https://go.88lin.eu.org/assets/og/books.jpg">
@@ -21,9 +31,221 @@
     <meta name="twitter:title" content="个人书单旭日图｜茉灵智库">
     <meta name="twitter:description" content="用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。">
     <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/books.jpg">
+<!-- book-schema:start -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://go.88lin.eu.org/books#webpage",
+  "url": "https://go.88lin.eu.org/books",
+  "name": "个人书单旭日图｜茉灵智库",
+  "description": "用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。",
+  "inLanguage": "zh-CN",
+  "author": {
+    "@id": "https://go.88lin.eu.org/2/about/#person"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "name": "个人阅读书单",
+    "itemListOrder": "https://schema.org/ItemListUnordered",
+    "numberOfItems": 67,
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "item": {"@type": "Book", "name": "好好学习"}},
+      {"@type": "ListItem", "position": 2, "item": {"@type": "Book", "name": "学习之道"}},
+      {"@type": "ListItem", "position": 3, "item": {"@type": "Book", "name": "如何实现从阅读到写作"}},
+      {"@type": "ListItem", "position": 4, "item": {"@type": "Book", "name": "写作是门手艺"}},
+      {"@type": "ListItem", "position": 5, "item": {"@type": "Book", "name": "如何有效阅读一本书"}},
+      {"@type": "ListItem", "position": 6, "item": {"@type": "Book", "name": "带一本书去读研"}},
+      {"@type": "ListItem", "position": 7, "item": {"@type": "Book", "name": "卡片笔记写作法"}},
+      {"@type": "ListItem", "position": 8, "item": {"@type": "Book", "name": "认知驱动"}},
+      {"@type": "ListItem", "position": 9, "item": {"@type": "Book", "name": "金字塔原理"}},
+      {"@type": "ListItem", "position": 10, "item": {"@type": "Book", "name": "结构化思维"}},
+      {"@type": "ListItem", "position": 11, "item": {"@type": "Book", "name": "麦肯锡结构化战略思维"}},
+      {"@type": "ListItem", "position": 12, "item": {"@type": "Book", "name": "把时间当作朋友"}},
+      {"@type": "ListItem", "position": 13, "item": {"@type": "Book", "name": "用一年时间重生"}},
+      {"@type": "ListItem", "position": 14, "item": {"@type": "Book", "name": "拆掉思维里的墙"}},
+      {"@type": "ListItem", "position": 15, "item": {"@type": "Book", "name": "对生命说是"}},
+      {"@type": "ListItem", "position": 16, "item": {"@type": "Book", "name": "你要如何衡量你的人生"}},
+      {"@type": "ListItem", "position": 17, "item": {"@type": "Book", "name": "如何达成目标"}},
+      {"@type": "ListItem", "position": 18, "item": {"@type": "Book", "name": "远见"}},
+      {"@type": "ListItem", "position": 19, "item": {"@type": "Book", "name": "设计你的工作和人生"}},
+      {"@type": "ListItem", "position": 20, "item": {"@type": "Book", "name": "斯坦福大学人生设计课"}},
+      {"@type": "ListItem", "position": 21, "item": {"@type": "Book", "name": "规划最好的一年"}},
+      {"@type": "ListItem", "position": 22, "item": {"@type": "Book", "name": "小强升职记"}},
+      {"@type": "ListItem", "position": 23, "item": {"@type": "Book", "name": "华为战略管理法"}},
+      {"@type": "ListItem", "position": 24, "item": {"@type": "Book", "name": "绝不是靠运气"}},
+      {"@type": "ListItem", "position": 25, "item": {"@type": "Book", "name": "幕后产品"}},
+      {"@type": "ListItem", "position": 26, "item": {"@type": "Book", "name": "如何开会不添堵"}},
+      {"@type": "ListItem", "position": 27, "item": {"@type": "Book", "name": "管理的实践"}},
+      {"@type": "ListItem", "position": 28, "item": {"@type": "Book", "name": "德鲁克管理思想精要"}},
+      {"@type": "ListItem", "position": 29, "item": {"@type": "Book", "name": "四千周：凡人的时间管理"}},
+      {"@type": "ListItem", "position": 30, "item": {"@type": "Book", "name": "圆圈正义"}},
+      {"@type": "ListItem", "position": 31, "item": {"@type": "Book", "name": "掌控习惯"}},
+      {"@type": "ListItem", "position": 32, "item": {"@type": "Book", "name": "正念禅修"}},
+      {"@type": "ListItem", "position": 33, "item": {"@type": "Book", "name": "幽默感：成为更受欢迎的人"}},
+      {"@type": "ListItem", "position": 34, "item": {"@type": "Book", "name": "孤独的150个信念"}},
+      {"@type": "ListItem", "position": 35, "item": {"@type": "Book", "name": "随意搜寻"}},
+      {"@type": "ListItem", "position": 36, "item": {"@type": "Book", "name": "富爸爸穷爸爸"}},
+      {"@type": "ListItem", "position": 37, "item": {"@type": "Book", "name": "财务自由之路"}},
+      {"@type": "ListItem", "position": 38, "item": {"@type": "Book", "name": "财务自由之路（全三册）"}},
+      {"@type": "ListItem", "position": 39, "item": {"@type": "Book", "name": "小狗钱钱"}},
+      {"@type": "ListItem", "position": 40, "item": {"@type": "Book", "name": "学会提问"}},
+      {"@type": "ListItem", "position": 41, "item": {"@type": "Book", "name": "人类沟通的起源"}},
+      {"@type": "ListItem", "position": 42, "item": {"@type": "Book", "name": "沟通力"}},
+      {"@type": "ListItem", "position": 43, "item": {"@type": "Book", "name": "关键对话"}},
+      {"@type": "ListItem", "position": 44, "item": {"@type": "Book", "name": "认知觉醒"}},
+      {"@type": "ListItem", "position": 45, "item": {"@type": "Book", "name": "为什么大象不听话"}},
+      {"@type": "ListItem", "position": 46, "item": {"@type": "Book", "name": "生命之书"}},
+      {"@type": "ListItem", "position": 47, "item": {"@type": "Book", "name": "沉思录"}},
+      {"@type": "ListItem", "position": 48, "item": {"@type": "Book", "name": "苏菲的世界"}},
+      {"@type": "ListItem", "position": 49, "item": {"@type": "Book", "name": "人生的智慧"}},
+      {"@type": "ListItem", "position": 50, "item": {"@type": "Book", "name": "人间值得"}},
+      {"@type": "ListItem", "position": 51, "item": {"@type": "Book", "name": "非暴力沟通的觉醒"}},
+      {"@type": "ListItem", "position": 52, "item": {"@type": "Book", "name": "战胜抑郁症"}},
+      {"@type": "ListItem", "position": 53, "item": {"@type": "Book", "name": "超越原生家庭"}},
+      {"@type": "ListItem", "position": 54, "item": {"@type": "Book", "name": "被讨厌的勇气"}},
+      {"@type": "ListItem", "position": 55, "item": {"@type": "Book", "name": "社会心理学"}},
+      {"@type": "ListItem", "position": 56, "item": {"@type": "Book", "name": "蛤蟆先生去看心理医生"}},
+      {"@type": "ListItem", "position": 57, "item": {"@type": "Book", "name": "少有人走的路"}},
+      {"@type": "ListItem", "position": 58, "item": {"@type": "Book", "name": "宇宙"}},
+      {"@type": "ListItem", "position": 59, "item": {"@type": "Book", "name": "费曼讲物理：入门"}},
+      {"@type": "ListItem", "position": 60, "item": {"@type": "Book", "name": "量子力学怪也不怪"}},
+      {"@type": "ListItem", "position": 61, "item": {"@type": "Book", "name": "直到时间的尽头"}},
+      {"@type": "ListItem", "position": 62, "item": {"@type": "Book", "name": "大脑传"}},
+      {"@type": "ListItem", "position": 63, "item": {"@type": "Book", "name": "神经的逻辑"}},
+      {"@type": "ListItem", "position": 64, "item": {"@type": "Book", "name": "脑与意识"}},
+      {"@type": "ListItem", "position": 65, "item": {"@type": "Book", "name": "追寻记忆的痕迹"}},
+      {"@type": "ListItem", "position": 66, "item": {"@type": "Book", "name": "疯脑"}},
+      {"@type": "ListItem", "position": 67, "item": {"@type": "Book", "name": "神经生物学原理"}}
+    ]
+  }
+}
+</script>
+<!-- book-schema:end -->
 </head>
 <body>
   <div id="container" style="height: 100%"></div>
+<!-- book-catalog:start -->
+<details class="book-catalog" id="book-list">
+  <summary>阅读书单 · 查看文字版（67 本）</summary>
+  <div class="book-text">
+    <h1>茉灵智库的个人阅读书单</h1>
+    <p>这份书单按实用类、理论类和具体主题整理，与旭日图使用同一份数据。星级是作者的个人阅读评价，不是读者平均分或权威排名。点击图表可探索分类，也可在这里阅读完整书名。</p>
+    <p><a href="/2/about/">关于 88lin</a> · <a href="/">返回工具导航</a></p>
+<h2>实用类</h2>
+<h3>学习方法</h3>
+<ul>
+  <li>好好学习 <span>（个人评分 4☆）</span></li>
+  <li>学习之道 <span>（个人评分 4☆）</span></li>
+  <li>如何实现从阅读到写作 <span>（个人评分 4☆）</span></li>
+  <li>写作是门手艺 <span>（个人评分 3☆）</span></li>
+  <li>如何有效阅读一本书 <span>（个人评分 3☆）</span></li>
+  <li>带一本书去读研 <span>（个人评分 5☆）</span></li>
+  <li>卡片笔记写作法 <span>（个人评分 5☆）</span></li>
+</ul>
+<h3>思维逻辑</h3>
+<ul>
+  <li>认知驱动 <span>（个人评分 4☆）</span></li>
+  <li>金字塔原理 <span>（个人评分 4☆）</span></li>
+  <li>结构化思维 <span>（个人评分 4☆）</span></li>
+  <li>麦肯锡结构化战略思维 <span>（个人评分 3☆）</span></li>
+</ul>
+<h3>人生规划</h3>
+<ul>
+  <li>把时间当作朋友 <span>（个人评分 4☆）</span></li>
+  <li>用一年时间重生 <span>（个人评分 4☆）</span></li>
+  <li>拆掉思维里的墙 <span>（个人评分 4☆）</span></li>
+  <li>对生命说是 <span>（个人评分 3☆）</span></li>
+  <li>你要如何衡量你的人生 <span>（个人评分 3☆）</span></li>
+  <li>如何达成目标 <span>（个人评分 3☆）</span></li>
+  <li>远见 <span>（个人评分 3☆）</span></li>
+  <li>设计你的工作和人生 <span>（个人评分 3☆）</span></li>
+  <li>斯坦福大学人生设计课 <span>（个人评分 3☆）</span></li>
+  <li>规划最好的一年 <span>（个人评分 5☆）</span></li>
+  <li>小强升职记 <span>（个人评分 5☆）</span></li>
+</ul>
+<h3>工作技能</h3>
+<ul>
+  <li>华为战略管理法 <span>（个人评分 3☆）</span></li>
+  <li>绝不是靠运气 <span>（个人评分 5☆）</span></li>
+  <li>幕后产品 <span>（个人评分 5☆）</span></li>
+  <li>如何开会不添堵 <span>（个人评分 5☆）</span></li>
+</ul>
+<h3>管理思想</h3>
+<ul>
+  <li>管理的实践 <span>（个人评分 4☆）</span></li>
+  <li>德鲁克管理思想精要 <span>（个人评分 4☆）</span></li>
+</ul>
+<h3>生活技巧</h3>
+<ul>
+  <li>四千周：凡人的时间管理 <span>（个人评分 5☆）</span></li>
+  <li>圆圈正义 <span>（个人评分 5☆）</span></li>
+  <li>掌控习惯 <span>（个人评分 5☆）</span></li>
+  <li>正念禅修 <span>（个人评分 4☆）</span></li>
+  <li>幽默感：成为更受欢迎的人 <span>（个人评分 4☆）</span></li>
+  <li>孤独的150个信念 <span>（个人评分 3☆）</span></li>
+</ul>
+<h3>信息架构</h3>
+<ul>
+  <li>随意搜寻 <span>（个人评分 4☆）</span></li>
+</ul>
+<h3>理财</h3>
+<ul>
+  <li>富爸爸穷爸爸 <span>（个人评分 4☆）</span></li>
+  <li>财务自由之路 <span>（个人评分 4☆）</span></li>
+  <li>财务自由之路（全三册） <span>（个人评分 5☆）</span></li>
+  <li>小狗钱钱 <span>（个人评分 5☆）</span></li>
+</ul>
+<h3>沟通技能</h3>
+<ul>
+  <li>学会提问 <span>（个人评分 5☆）</span></li>
+  <li>人类沟通的起源 <span>（个人评分 5☆）</span></li>
+  <li>沟通力 <span>（个人评分 5☆）</span></li>
+  <li>关键对话 <span>（个人评分 5☆）</span></li>
+</ul>
+<h2>理论类</h2>
+<h3>认知心理学</h3>
+<ul>
+  <li>认知觉醒 <span>（个人评分 5☆）</span></li>
+  <li>为什么大象不听话 <span>（个人评分 4☆）</span></li>
+</ul>
+<h3>人生哲学</h3>
+<ul>
+  <li>生命之书 <span>（个人评分 4☆）</span></li>
+  <li>沉思录 <span>（个人评分 4☆）</span></li>
+  <li>苏菲的世界 <span>（个人评分 3☆）</span></li>
+  <li>人生的智慧 <span>（个人评分 5☆）</span></li>
+  <li>人间值得 <span>（个人评分 5☆）</span></li>
+</ul>
+<h3>心理学</h3>
+<ul>
+  <li>非暴力沟通的觉醒 <span>（个人评分 4☆）</span></li>
+  <li>战胜抑郁症 <span>（个人评分 3☆）</span></li>
+  <li>超越原生家庭 <span>（个人评分 5☆）</span></li>
+  <li>被讨厌的勇气 <span>（个人评分 5☆）</span></li>
+  <li>社会心理学 <span>（个人评分 5☆）</span></li>
+  <li>蛤蟆先生去看心理医生 <span>（个人评分 5☆）</span></li>
+  <li>少有人走的路 <span>（个人评分 5☆）</span></li>
+</ul>
+<h3>物理学</h3>
+<ul>
+  <li>宇宙 <span>（个人评分 5☆）</span></li>
+  <li>费曼讲物理：入门 <span>（个人评分 5☆）</span></li>
+  <li>量子力学怪也不怪 <span>（个人评分 5☆）</span></li>
+  <li>直到时间的尽头 <span>（个人评分 5☆）</span></li>
+</ul>
+<h3>认知神经科学</h3>
+<ul>
+  <li>大脑传 <span>（个人评分 4☆）</span></li>
+  <li>神经的逻辑 <span>（个人评分 4☆）</span></li>
+  <li>脑与意识 <span>（个人评分 4☆）</span></li>
+  <li>追寻记忆的痕迹 <span>（个人评分 5☆）</span></li>
+  <li>疯脑 <span>（个人评分 5☆）</span></li>
+  <li>神经生物学原理 <span>（个人评分 3☆）</span></li>
+</ul>
+  </div>
+</details>
+<!-- book-catalog:end -->
   <script type="text/javascript" src="https://cdn.jsdmirror.com/npm/echarts@5.5.0/dist/echarts.min.js"></script>
 
   <script type="text/javascript">

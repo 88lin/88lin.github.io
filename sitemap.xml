@@ -9,7 +9,7 @@
 <url>
  <loc>https://go.88lin.eu.org/</loc>
  <priority>1.0</priority>
- <lastmod>2026-09-18</lastmod>
+ <lastmod>2026-09-28</lastmod>
  <changefreq>weekly</changefreq>
 </url>
 
@@ -35,261 +35,261 @@
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/Bookmarks/index.html</loc>
+ <loc>https://go.88lin.eu.org/Bookmarks/</loc>
  <priority>0.7</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/Christmas/index.html</loc>
+ <loc>https://go.88lin.eu.org/Christmas/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/Christmas1/index.html</loc>
+ <loc>https://go.88lin.eu.org/Christmas1/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/Christmas2/index.html</loc>
+ <loc>https://go.88lin.eu.org/Christmas2/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/Christmas3/index.html</loc>
+ <loc>https://go.88lin.eu.org/Christmas3/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/Mortgage-Calculator/index.html</loc>
+ <loc>https://go.88lin.eu.org/Mortgage-Calculator/</loc>
  <priority>0.8</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/Music/index.html</loc>
+ <loc>https://go.88lin.eu.org/Music/</loc>
  <priority>0.6</priority>
- <lastmod>2026-09-18</lastmod>
+ <lastmod>2026-09-28</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/academic-poster-generator/index.html</loc>
+ <loc>https://go.88lin.eu.org/academic-poster-generator/</loc>
  <priority>0.7</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/ai-model-checker.html</loc>
+ <loc>https://go.88lin.eu.org/ai-model-checker</loc>
+ <priority>0.8</priority>
+ <lastmod>2026-09-28</lastmod>
+ <changefreq>weekly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/bbl/</loc>
+ <priority>0.6</priority>
+ <lastmod>2026-09-28</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/birthday/</loc>
+ <priority>0.5</priority>
+ <lastmod>2026-09-18</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/books</loc>
+ <priority>0.6</priority>
+ <lastmod>2026-09-28</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/christmas-tree/</loc>
+ <priority>0.5</priority>
+ <lastmod>2026-09-18</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/duanju/</loc>
  <priority>0.8</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>weekly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/bbl/index.html</loc>
- <priority>0.6</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/birthday/index.html</loc>
+ <loc>https://go.88lin.eu.org/fireworks/1</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/books.html</loc>
- <priority>0.6</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/christmas-tree/index.html</loc>
+ <loc>https://go.88lin.eu.org/fireworks/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/duanju/index.html</loc>
+ <loc>https://go.88lin.eu.org/fireworks1/</loc>
+ <priority>0.5</priority>
+ <lastmod>2026-09-18</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/fireworks2/</loc>
+ <priority>0.5</priority>
+ <lastmod>2026-09-18</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/fireworks3/</loc>
+ <priority>0.5</priority>
+ <lastmod>2026-09-18</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/fireworks4/</loc>
+ <priority>0.5</priority>
+ <lastmod>2026-09-18</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/gushi/dist/</loc>
  <priority>0.8</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>weekly</changefreq>
+ <lastmod>2026-09-28</lastmod>
+ <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/fireworks/1.html</loc>
+ <loc>https://go.88lin.eu.org/gzh/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/fireworks/index.html</loc>
- <priority>0.5</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/fireworks1/index.html</loc>
- <priority>0.5</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/fireworks2/index.html</loc>
- <priority>0.5</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/fireworks3/index.html</loc>
- <priority>0.5</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/fireworks4/index.html</loc>
- <priority>0.5</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/gushi/dist/index.html</loc>
- <priority>0.8</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/gzh/index.html</loc>
- <priority>0.5</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/jiangchong/index.html</loc>
+ <loc>https://go.88lin.eu.org/jiangchong/</loc>
  <priority>0.7</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/love1/index.html</loc>
+ <loc>https://go.88lin.eu.org/love1/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/love2/index.html</loc>
+ <loc>https://go.88lin.eu.org/love2/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/love3/index.html</loc>
+ <loc>https://go.88lin.eu.org/love3/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/1/index.html</loc>
+ <loc>https://go.88lin.eu.org/notion/1/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/2/index.html</loc>
+ <loc>https://go.88lin.eu.org/notion/2/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/3/index.html</loc>
+ <loc>https://go.88lin.eu.org/notion/3/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/6/index.html</loc>
+ <loc>https://go.88lin.eu.org/notion/6/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/7/index.html</loc>
+ <loc>https://go.88lin.eu.org/notion/7/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/8/index.html</loc>
+ <loc>https://go.88lin.eu.org/notion/8/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/hy.html</loc>
+ <loc>https://go.88lin.eu.org/notion/hy</loc>
+ <priority>0.5</priority>
+ <lastmod>2026-09-28</lastmod>
+ <changefreq>monthly</changefreq>
+</url>
+
+<url>
+ <loc>https://go.88lin.eu.org/notion/shici/</loc>
  <priority>0.5</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/notion/shici/index.html</loc>
- <priority>0.5</priority>
- <lastmod>2026-09-18</lastmod>
- <changefreq>monthly</changefreq>
-</url>
-
-<url>
- <loc>https://go.88lin.eu.org/stop/index.html</loc>
+ <loc>https://go.88lin.eu.org/stop/</loc>
  <priority>0.6</priority>
- <lastmod>2026-09-18</lastmod>
+ <lastmod>2026-09-28</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/vip/index.html</loc>
+ <loc>https://go.88lin.eu.org/vip/</loc>
  <priority>0.8</priority>
  <lastmod>2026-09-18</lastmod>
  <changefreq>weekly</changefreq>
 </url>
 
 <url>
- <loc>https://go.88lin.eu.org/xy/index.html</loc>
+ <loc>https://go.88lin.eu.org/xy/</loc>
  <priority>0.6</priority>
- <lastmod>2026-09-18</lastmod>
+ <lastmod>2026-09-28</lastmod>
  <changefreq>monthly</changefreq>
 </url>
 

@@ -1,82 +1,40 @@
-# 茉灵智库
+# 茉灵智库工具导航
 
-> 中文在线工具与趣味项目导航站，由 88lin 维护。收录免费在线工具、实用小工具、创意特效页面与 Notion 小组件，全部免登录、打开即用，适配手机与电脑。
+> 茉灵智库工具导航由 88lin 维护，收集实用站点、轻工具与趣味项目，汇集站内页面和外部网站入口。可以按名称或用途搜索，也可以按分类浏览。
 
-站点：https://go.88lin.eu.org
-博客：https://blog.88lin.eu.org
-最后更新：2026-09-20
+以下为部分入口，不代表全部内容或重要性排序。完整分类可在首页浏览，功能与使用条件以各页面正文为准。完整页面目录见 [sitemap.xml](https://go.88lin.eu.org/sitemap.xml)。
 
-## 实用工具
+导航本身无需注册或付费。部分工具需要第三方 API 凭据；接口费用、可用性与外部网站的使用条件由对应服务商决定。
 
-- [免费在线工具导航](https://go.88lin.eu.org/)：本站首页，按场景分组收录全部工具与页面，支持关键词搜索。
-- [AI 模型检测工具](https://go.88lin.eu.org/ai-model-checker.html)：填入自己的 API Key 后查询接口可用的模型列表。
-- [深度房贷计算器](https://go.88lin.eu.org/Mortgage-Calculator/index.html)：等额本息与等额本金对比，支持提前还款、利率调整与月供变化模拟。
-- [论文降重工具](https://go.88lin.eu.org/jiangchong/index.html)：通过多语种转写改写论文表述，需自行填写百度翻译 AppID 与密钥。
-- [闲鱼敏感词加密](https://go.88lin.eu.org/xy/index.html)：把文本转为 HTML 实体编码，用于规避平台敏感词检测。
-- [书签管理与导出](https://go.88lin.eu.org/Bookmarks/index.html)：整理浏览器书签并生成个人网址导航页，支持导出分享。
-- [科研海报生成器](https://go.88lin.eu.org/academic-poster-generator/index.html)：把 Markdown 内容排版成学术海报并导出图片。
-- [古诗起名](https://go.88lin.eu.org/gushi/dist/index.html)：从诗词典籍中提炼名字灵感，按意象与寓意生成中文名字。
+## 导航首页
 
-## 影音内容
+- [免费在线工具导航｜发现优质工具与趣味项目](https://go.88lin.eu.org/): 茉灵智库工具导航由 88lin 维护，收集实用站点、轻工具与趣味项目，汇集站内页面和外部网站入口。可以按名称或用途搜索，也可以按分类浏览。
 
-- [全网 VIP 视频解析](https://go.88lin.eu.org/vip/index.html)：粘贴视频链接即可在线解析播放，支持多家主流平台。
-- [免费短剧搜索与播放](https://go.88lin.eu.org/duanju/index.html)：聚合全网短剧资源，支持搜索与在线播放。
-- [单页音乐播放器](https://go.88lin.eu.org/Music/index.html)：聚合热门歌单与电台，打开即听。
+## 影音入口
 
-## 图像与创意
+- [免费影视](https://go.88lin.eu.org/vip/): 输入视频地址并选择解析线路，播放情况取决于第三方接口。
+- [免费短剧](https://go.88lin.eu.org/duanju/): 短剧搜索与播放入口。
+- [在线音乐播放器｜用音乐感染人心](https://go.88lin.eu.org/Music/): 在线歌单与音乐播放页面，音源可用性取决于第三方接口。
 
-- [瀑布流图片浏览器](https://go.88lin.eu.org/bbl/index.html)：瀑布流式浏览图片，支持离线缓存与全屏查看。
-- [个人书单旭日图](https://go.88lin.eu.org/books.html)：用旭日图展示读过的好书，按分类、主题与评分逐层展开。
+## 工具与阅读
 
-## 节日特效
-
-- [跨年烟花模拟](https://go.88lin.eu.org/fireworks/index.html)：点击夜空绽放烟花特效。
-- [烟花模拟 · 版本一](https://go.88lin.eu.org/fireworks1/index.html)：另一套粒子与配色方案的烟花特效。
-- [烟花模拟 · 版本二](https://go.88lin.eu.org/fireworks2/index.html)：又一套烟花粒子效果。
-- [跨年烟花倒计时](https://go.88lin.eu.org/fireworks3/index.html)：烟花特效配新年倒计时与音效。
-- [新年快乐烟花](https://go.88lin.eu.org/fireworks4/index.html)：文字烟花与音效组合的节日页面。
-- [3D 粒子圣诞树](https://go.88lin.eu.org/Christmas/index.html)：Three.js 粒子组成的圣诞树，支持摄像头互动。
-- [3D 圣诞树](https://go.88lin.eu.org/christmas-tree/index.html)：另一版 3D 圣诞树特效。
-- [圣诞节礼盒](https://go.88lin.eu.org/Christmas3/index.html)：点击开启的 3D 礼盒动画与飘雪氛围。
-- [圣诞音乐粒子树 · 版本一](https://go.88lin.eu.org/Christmas1/index.html)：Three.js 粒子圣诞树，内置三首背景音乐，也可上传自己的歌。
-- [圣诞表白粒子树 · 版本二](https://go.88lin.eu.org/Christmas2/index.html)：粒子圣诞树亮起后浮现表白祝福语。
-- [生日祝福特效](https://go.88lin.eu.org/birthday/index.html)：动画与音乐组合的生日祝福页面。
-
-## 表白与趣味
-
-- [520 表白特效 · 版本一](https://go.88lin.eu.org/love1/index.html)：浪漫动画与背景音乐的表白页面。
-- [520 表白特效 · 版本二](https://go.88lin.eu.org/love2/index.html)：另一套表白动画与音乐。
-- [520 表白特效 · 版本三](https://go.88lin.eu.org/love3/index.html)：简洁版告白页面。
-
-## Notion 小组件
-
-- [访客欢迎组件](https://go.88lin.eu.org/notion/hy.html)：显示来访者地区、与博主距离和问候语，可嵌入 Notion。
-- [显示时间组件](https://go.88lin.eu.org/notion/2/index.html)：Notion 风格实时时钟挂件。
-- [倒计时组件](https://go.88lin.eu.org/notion/3/index.html)：设定目标日期后显示剩余天数。
-- [计时器组件](https://go.88lin.eu.org/notion/8/index.html)：正计时与倒计时，用于专注与任务计时。
-- [音乐热歌榜组件](https://go.88lin.eu.org/notion/6/index.html)：展示热门歌曲列表。
-- [每日诗词组件](https://go.88lin.eu.org/notion/shici/index.html)：每天随机展示一句古诗词。
-- [植物生长组件](https://go.88lin.eu.org/notion/1/index.html)：随时间推移生长的植物动画。
-- [窗外动画组件](https://go.88lin.eu.org/notion/7/index.html)：模拟窗外四季风景与天气变化。
+- [AI 模型检测｜模型列表与对话测试](https://go.88lin.eu.org/ai-model-checker): AI 模型检测工具用于连接兼容 OpenAI 格式的 API，查询模型列表，测试流式对话、多轮聊天、参数与模型对比。测试接口响应，不鉴定模型真实身份；需自行提供 API Key，调用费用由服务商决定。
+- [深度房贷计算器｜茉灵智库](https://go.88lin.eu.org/Mortgage-Calculator/): 深度房贷计算器，支持LPR利率变动、提前还款对比（减月供/减年限）、组合贷并行计算，直观展示利息差异、还款周期与剩余本金趋势，帮助你提前预演最优房贷方案。
+- [科研学习分享海报生成器｜茉灵智库](https://go.88lin.eu.org/academic-poster-generator/): 在线生成适配小红书等图文社交媒体的科研学习分享海报。支持 Markdown、LaTeX 数学公式、代码高亮与分页排版，一键导出 PNG/ZIP 或合并 PDF，快速制作精美竖版学术海报与学习笔记。
+- [书签管理与导出工具 | 茉灵智库](https://go.88lin.eu.org/Bookmarks/): 是一款高效的书签管理与导出工具，支持一键整理浏览器书签，并生成美观易用的个人网址导航页面，轻松分享与访问。
+- [你的名字 · 古诗文起名](https://go.88lin.eu.org/gushi/dist/): 你的名字是一款古诗文起名工具：选择《诗经》《楚辞》或唐诗宋词等 7 部典籍，输入姓氏，随机生成 6 个名字候选并查看诗句出处，用于寻找中文命名灵感。
+- [个人书单旭日图｜茉灵智库](https://go.88lin.eu.org/books): 用旭日图整理读过的好书：按实用类与理论类分组，逐层展开主题与评分，一眼看清自己的阅读结构。
+- [瀑布流图片浏览器 | 茉灵智库](https://go.88lin.eu.org/bbl/): 在浏览器中选择或拖入本地图片文件夹，以瀑布流布局浏览图片。支持列数、间距、排序与宽高比筛选，点击图片可放大查看。
+- [闲鱼敏感词加密工具 | 茉灵智库](https://go.88lin.eu.org/xy/): 闲鱼敏感词加密工具，将输入文字转换为 HTML 实体编码，支持复制结果、实时预览与字符统计，转换在浏览器本地完成。
 
 ## 个人主页
 
-- [88lin 个人主页](https://go.88lin.eu.org/2/)：AI Agent 与开源项目目录，提供 GitHub 源码、站点入口和精选文章。
-- [关于 88lin](https://go.88lin.eu.org/2/about/)：茉灵智库主理人的 AI Agent、MCP、RAG 实践方向、开源历程与联系方式。
-- [88lin 的白板](https://go.88lin.eu.org/2/system/)：开源项目、实用教程、阅读书单与常用工具；可拖动浏览，访客创作仅保存到本机。
-- [个人主页内容索引](https://go.88lin.eu.org/2/llms.txt)：与页面同步的项目说明、文章链接和作者信息。
+- [88lin 个人主页](https://go.88lin.eu.org/2/): 个人项目、站点入口与精选博客文章。
+- [关于 88lin](https://go.88lin.eu.org/2/about/): 个人介绍、实践方向与联系方式。
+- [88lin 的白板](https://go.88lin.eu.org/2/system/): 项目、博客、阅读内容与常用工具，支持拖动浏览、便签和涂鸦，访客创作保存在本机。
 
-## 其他
+## Optional
 
-- [延迟回放（外放干扰）](https://go.88lin.eu.org/stop/index.html)：把环境声音延迟 0.5–5 秒回放，用于打断外放噪声，支持添加到主屏幕。
-- [关注公众号](https://go.88lin.eu.org/gzh/index.html)：茉灵智库公众号引导页。
-- [小红书](https://xhslink.cn/o/418LhmF376U)：茉灵智库的小红书主页。
-- [抖音](https://v.douyin.com/nDD4_ACPRiY)：茉灵智库的抖音主页。
-- [请我喝咖啡](https://go.88lin.eu.org/fireworks/1.html)：赞助与支持作者的页面。
-
-## 联系与作者
-
-- 作者：88lin（茉灵智库）
-- 博客：https://blog.88lin.eu.org
-- QQ：2528251483
-- 备案：桂ICP备21015360号-1
+- [3D 粒子圣诞树 | 茉灵智库](https://go.88lin.eu.org/Christmas/): 一个基于手势识别的 3D 粒子互动圣诞树：握拳聚拢、张手散开、捏合放大照片。支持上传照片生成记忆树，搭配电影级光晕、粒子与雪花特效，打造沉浸式圣诞互动体验。
+- [跨年烟花模拟特效｜茉灵智库](https://go.88lin.eu.org/fireworks/): 一款绚丽的烟花模拟特效，点击屏幕即可绽放多彩烟花，感受节日的浪漫与光影之美。
+- [访客欢迎组件｜茉灵智库](https://go.88lin.eu.org/notion/hy): 访客欢迎组件：显示来访者所在地区、与博主的距离与问候语，可嵌入 Notion 页面。
