@@ -1,0 +1,49 @@
+/* ==========================================================================
+   fonts.css — 自托管字体声明（无任何外部 CDN 依赖）
+   --------------------------------------------------------------------------
+   · Ma Shan Zheng（马善政毛笔楷书）—— 仅保留页面实际用到的中文字形，
+     由完整字库裁剪而成，约 68 KB，用于标题与装饰性中文文案。
+   · Great Vibes —— 拉丁手写体，用于 Happy Birthday 等英文展示文案。
+   · Cormorant Garamond —— 拉丁衬线体，用于英文小标题与正文点缀。
+   字体授权：SIL Open Font License 1.1
+   ========================================================================== */
+
+@font-face {
+    font-family: 'Ma Shan Zheng';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/mashanzheng-subset.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Great Vibes';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/great-vibes-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url('../fonts/cormorant-garamond-latin-400-italic.woff2') format('woff2');
+}

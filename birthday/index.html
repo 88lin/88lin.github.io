@@ -1,132 +1,520 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <title>生日祝福特效｜茉灵智库</title>
-    <meta name="description" content="特别的生日祝福页面，用动画与音乐为你送上最温暖的生日快乐！">
+    <title>生日快乐 · 致最爱的你｜生日祝福</title>
+    <meta name="description" content="为你准备的生日惊喜：一颗由花朵慢慢绽放而成的爱心、一封慢慢写给你看的信、三句藏在蛋糕里的祝愿，还有满屏的彩带与烟火。生日快乐，我最爱的你。">
     <meta property="og:url" content="https://go.88lin.eu.org/birthday/">
-    <meta property="og:title" content="生日祝福特效｜茉灵智库">
+    <meta property="og:title" content="生日快乐 · 致最爱的你">
     <meta property="og:description" content="专属的生日祝福特效，为你呈现浪漫与惊喜。">
+    <meta property="og:image" content="https://go.88lin.eu.org/assets/og/birthday.jpg">
     <link rel="icon" href="/favicon.svg">
+    <link rel="canonical" href="https://go.88lin.eu.org/birthday/">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#fff5f9">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="生日快乐 · 致最爱的你">
+    <meta name="twitter:description" content="为你准备的生日惊喜：一朵花心、一封信、三个愿望，还有满屏的烟火。">
+    <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/birthday.jpg">
+
+    <link href="./css/fonts.css" type="text/css" rel="stylesheet">
     <link href="./css/style.css" type="text/css" rel="stylesheet">
     <script async src="https://019b9894-1861-76d6-9948-7ad2739a9eb8.spst2.com/ustat.js"></script>
-    <script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-    <script src="./js/garden.js"></script>
-    <script src="./js/functions.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="canonical" href="https://go.88lin.eu.org/birthday/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="生日祝福特效｜茉灵智库">
-    <meta name="twitter:description" content="特别的生日祝福页面，用动画与音乐为你送上最温暖的生日快乐！">
-    <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/birthday.jpg">
-    <meta property="og:image" content="https://go.88lin.eu.org/assets/og/birthday.jpg">
+    <script>document.documentElement.classList.add('js');</script>
+    <noscript>
+        <style>
+            #intro { display: none !important; }
+            #page { opacity: 1 !important; }
+        </style>
+    </noscript>
 </head>
 
 <body>
-<div id="mainDiv">
-    <div id="content">
-        <div id="code" style="font-size: 25px;">
-            <span class="comments">亲爱的宝贝：</span><br/>
-            <span class="comments">在你生日到来之际，我将快乐的音符，作为礼物送给你</span><br/>
-            <span class="comments">愿您拥有365个美丽的日子，衷心地祝福你，生日快乐！</span><br/><br/>
-            <span class="comments">在此诚挚地献上我的三个祝愿：</span><br/>
-            <span class="comments">一愿你身体健康；二愿你幸福快乐；三愿你万事如意！</span><br/><br/>
-            <span class="comments">送你一个生日蛋糕，祝你生日快乐！</span><br/>
-            <span class="comments">第一层，体贴！第二层，关怀！</span><br/>
-            <span class="comments">第三层，浪漫！第四层，温馨！</span><br/>
-            <span class="comments">中间夹层，甜蜜！祝你天天都有一份好心情！</span><br/>
-            <br><br>
-            <span class="comments"><b class="bb">小林，祝你生日快乐呀！</b></span>
-        </div>
-        <div id="loveHeart">
-            <canvas id="garden"></canvas>
-            <div id="words">
-                <div id="messages">
-                    <img src="./images/zsr.png">
-                </div>
-                <div id="loveu">
-                    <img src="./images/sr.png">
-                </div>
+    <!-- 背景光晕 -->
+    <div class="aurora" aria-hidden="true">
+        <span class="aurora__blob aurora__blob--1"></span>
+        <span class="aurora__blob aurora__blob--2"></span>
+        <span class="aurora__blob aurora__blob--3"></span>
+        <span class="aurora__blob aurora__blob--4"></span>
+    </div>
+
+    <!-- 花瓣与彩带画布 -->
+    <canvas id="petals" class="fx-layer fx-layer--petals" aria-hidden="true"></canvas>
+    <canvas id="burst" class="fx-layer fx-layer--burst" aria-hidden="true"></canvas>
+
+    <!-- ============ 开屏引导 ============ -->
+    <div class="intro" id="intro" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+        <div class="intro__card">
+            <div class="gift" id="giftBtn">
+                <span class="gift__ring"></span>
+                <span class="gift__ring gift__ring--2"></span>
+                <span class="gift__ring gift__ring--3"></span>
+                <svg class="gift__heart" viewBox="0 0 100 100" aria-hidden="true">
+                    <defs>
+                        <linearGradient id="giftGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#ffb6d5" />
+                            <stop offset=".42" stop-color="#ff8fc0" />
+                            <stop offset=".75" stop-color="#f4a9a0" />
+                            <stop offset="1" stop-color="#ffd6a5" />
+                        </linearGradient>
+                        <filter id="giftGlow" x="-60%" y="-60%" width="220%" height="220%">
+                            <feGaussianBlur stdDeviation="4" result="b" />
+                            <feMerge>
+                                <feMergeNode in="b" />
+                                <feMergeNode in="SourceGraphic" />
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    <path class="gift__path" filter="url(#giftGlow)"
+                        d="M50 88C22 68 6 52 6 34 6 19 17 8 31 8c8 0 15 4 19 11 4-7 11-11 19-11 14 0 25 11 25 26 0 18-16 34-44 54Z"
+                        fill="url(#giftGrad)" />
+                    <path class="gift__shine"
+                        d="M31 22c-7 0-13 5-15 12-1 4 4 6 6 2 2-6 6-9 12-9 4 0 4-5-3-5Z" fill="#fff"
+                        opacity=".72" />
+                </svg>
             </div>
+
+            <p class="intro__kicker">A surprise for you</p>
+            <h1 class="intro__title" id="introTitle">有一份惊喜<br>只为你准备</h1>
+            <button class="btn btn--primary" id="openBtn" type="button">
+                <span>开启惊喜</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 20.5C5.5 16 2 12.2 2 8.4 2 5.4 4.4 3 7.4 3c1.8 0 3.5.9 4.6 2.4C13.1 3.9 14.8 3 16.6 3 19.6 3 22 5.4 22 8.4c0 3.8-3.5 7.6-10 12.1Z"
+                        fill="currentColor" />
+                </svg>
+            </button>
+            <p class="intro__tip">点击之后会有音乐响起，记得把音量打开哦</p>
         </div>
     </div>
-    <div id="copyright">
-        <center>
-            <link rel="stylesheet" href="./css/cuplayer.css">
-            <div style="position:absolute; top:50px; right:50px;">
-                <audio id="main_audio" autoplay="autoplay" preload="auto" loop>
-                    <source src="./mp3/birthday1.mp3" type="audio/mpeg"/>
-                    <embed id="main_audio_ie8" hidden="true" autostart="true" height="0" width=0 loop="true"
-                           src="./mp3/birthday1.mp3" autoplay="autoplay"/>
-                </audio>
-                <a class="c-white fs-12 icon-play rotate" id="btn-play" href="javascript:void(0);"></a>
+
+    <!-- ============ 正文 ============ -->
+    <main id="page">
+
+        <!-- ---------- Hero ---------- -->
+        <section class="hero" id="hero">
+            <div class="wrap">
+                <p class="hero__date" id="heroDate">2026 · 09 · 29</p>
+                <p class="hero__en reveal">Happy Birthday</p>
+                <h2 class="hero__zh font-ma" data-split>生日快乐</h2>
+                <div class="hero__name reveal">
+                    <span class="hero__rule"></span>
+                    致最爱的你&nbsp;·&nbsp;<b class="js-name font-ma">小林</b>
+                    <span class="hero__rule"></span>
+                </div>
+                <p class="hero__sub reveal">愿所有的美好，都在今天为你而来</p>
             </div>
-            <script type="text/javascript">
-			
-                //获取picid函数
-                $(function () {
-                    $("area").click(function () {
-                        var picId = $(this).attr("data-id");
-                        var picSrc = "images/img_big/" + picId + ".jpg"
-                        $(".modal-content>.pic-box>img").attr("src", picSrc);
-                    })
-                    var isPlaying = function (audio) {
-                        return !audio.paused;
-                    }
-                    var a = document.getElementById('main_audio');
-                    if (!(a.play instanceof Function)) {
-                        a = document.getElementById('main_audio_ie8');
-                        isPlaying = function (audio) {
-                            return audio.playState == 2;
-                        }
-                    }
-                    $('#btn-play').on('click', function () {
-                        if ($(this).hasClass('rotate')) {
-                            a.pause();
-                            $(this).removeClass('rotate');
-                        } else {
-                            a.play();
-                            $(this).addClass('rotate');
-                        }
-                    });
-                })
-			
-            </script>
-        </center>
-    </div>
-</div>
-<script type="text/javascript">
-    var offsetX = $("#loveHeart").width() / 2;
-    var offsetY = $("#loveHeart").height() / 2 - 55;
-    var together = new Date();
-    together.setHours(8);
-    together.setMinutes(0);
-    together.setSeconds(0);
-    together.setMilliseconds(0);
+            <a class="scroll-cue" href="#bloom" aria-label="向下浏览">
+                <span class="scroll-cue__dot"></span>
+            </a>
+        </section>
 
-    if (!document.createElement('canvas').getContext) {
-        var msg = document.createElement("div");
-        msg.id = "errorMsg";
-        msg.innerHTML = "您的浏览器已经过时!请使用非IE浏览器进行预览";
-        document.body.appendChild(msg);
-        $("#code").css("display", "none")
-        $("#copyright").css("position", "absolute");
-        $("#copyright").css("bottom", "10px");
-        document.execCommand("stop");
-    } else {
-        setTimeout(function () {
-            startHeartAnimation();
-        }, 5000);
+        <!-- ---------- 花心 ---------- -->
+        <section class="bloom section" id="bloom">
+            <div class="wrap">
+                <header class="sec-head reveal">
+                    <p class="sec-head__en">for you</p>
+                    <h3 class="sec-head__zh font-ma">为你开一个花做的蛋糕</h3>
+                    <p class="sec-head__sub">每一朵小花，都是一句生日快乐</p>
+                </header>
 
-        timeElapse(together);
-        setInterval(function () {
-            timeElapse(together);
-        }, 500);
+                <div class="heart-wrap">
+                    <div class="heart-glow" aria-hidden="true"></div>
+                    <canvas id="garden"></canvas>
+                    <span class="heart-sparkle" id="heartSparkle" aria-hidden="true"></span>
+                    <div class="heart-words" aria-hidden="true">
+                        <p class="heart-words__zh font-ma" id="heartWordsZh">生日快乐</p>
+                        <p class="heart-words__en" id="heartWordsEn">Happy Birthday !</p>
+                    </div>
+                </div>
 
-        adjustCodePosition();
-        $("#code").typewriter();
-    }
-</script>
-</div>
+                <div class="counter" id="counter" hidden>
+                    <p class="counter__label font-ma">我们已经相伴</p>
+                    <div class="counter__grid">
+                        <div class="counter__cell"><b id="cDay">0</b><span>天</span></div>
+                        <div class="counter__cell"><b id="cHour">00</b><span>时</span></div>
+                        <div class="counter__cell"><b id="cMin">00</b><span>分</span></div>
+                        <div class="counter__cell"><b id="cSec">00</b><span>秒</span></div>
+                    </div>
+                    <p class="counter__foot">以及往后余生的每一天</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ---------- 情书 ---------- -->
+        <section class="letter section" id="letter">
+            <div class="wrap">
+                <header class="sec-head reveal">
+                    <p class="sec-head__en">a letter</p>
+                    <h3 class="sec-head__zh font-ma">写给你的信</h3>
+                </header>
+
+                <article class="paper reveal" id="paper">
+                    <span class="paper__corner paper__corner--tl" aria-hidden="true"></span>
+                    <span class="paper__corner paper__corner--tr" aria-hidden="true"></span>
+                    <span class="paper__corner paper__corner--bl" aria-hidden="true"></span>
+                    <span class="paper__corner paper__corner--br" aria-hidden="true"></span>
+
+                    <div class="letter-body" id="letterBody">
+                        <p>亲爱的宝贝：</p>
+                        <p>在你生日到来的这一天，我想把世界上所有快乐的音符，一颗一颗拾起来，当作礼物送给你。</p>
+                        <p>愿你拥有三百六十五个美丽的日子——清晨有光，黄昏有风，夜里好梦。</p>
+                        <p>在此，我诚挚地献上三个祝愿：一愿你身体健康，二愿你幸福快乐，三愿你万事如意。</p>
+                        <p>还想送你一个生日蛋糕：第一层是体贴，第二层是关怀，第三层是浪漫，第四层是温馨，中间夹着满满的甜蜜。愿你天天都有一份好心情。</p>
+                        <p>最后——<span class="js-name">小林</span>，生日快乐呀。</p>
+                        <p>要一直被我这样，认认真真地喜欢着。</p>
+                    </div>
+
+                    <footer class="letter-sign">
+                        <span class="letter-sign__line"></span>
+                        <span class="letter-sign__who font-ma">永远爱你的我</span>
+                        <span class="letter-sign__date" id="letterDate"></span>
+                    </footer>
+
+                    <span class="paper__seal" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 21C5.4 16.4 2 12.6 2 8.6 2 5.6 4.4 3.2 7.4 3.2c1.9 0 3.6 1 4.6 2.6 1-1.6 2.7-2.6 4.6-2.6 3 0 5.4 2.4 5.4 5.4 0 4-3.4 7.8-10 12.4Z"
+                                fill="currentColor" />
+                        </svg>
+                    </span>
+
+                    <p class="paper__hint" id="paperHint">轻点信纸，可以跳过打字动画</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- ---------- 三个愿望 ---------- -->
+        <section class="wishes section" id="wishes">
+            <div class="wrap">
+                <header class="sec-head reveal">
+                    <p class="sec-head__en">three wishes</p>
+                    <h3 class="sec-head__zh font-ma">三个愿望</h3>
+                    <p class="sec-head__sub">都写好了，只等一个一个实现</p>
+                </header>
+
+                <ul class="wish-grid">
+                    <li class="wish reveal">
+                        <span class="wish__halo" aria-hidden="true"></span>
+                        <span class="wish__icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48">
+                                <path class="wish__stroke"
+                                    d="M24 40C11 31 5 25 5 18 5 12 9.5 8 15 8c3.6 0 7 1.8 9 4.8C26 9.8 29.4 8 33 8c5.5 0 10 4 10 10 0 7-6 13-19 22Z"
+                                    fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" />
+                                <path class="wish__pulse" d="M12 22h6l3-6 4 12 3-6h8" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </span>
+                        <h4 class="wish__title">一愿你身体健康</h4>
+                        <p class="wish__desc">少熬夜，多喝水，别逞强。<br>你的身体，是我想守护一辈子的事。</p>
+                    </li>
+
+                    <li class="wish reveal">
+                        <span class="wish__halo" aria-hidden="true"></span>
+                        <span class="wish__icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48">
+                                <circle class="wish__stroke" cx="24" cy="24" r="9" fill="none" stroke="currentColor"
+                                    stroke-width="2.4" />
+                                <g class="wish__rays" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                                    <path d="M24 4v5M24 39v5M4 24h5M39 24h5M9.5 9.5l3.5 3.5M35 35l3.5 3.5M38.5 9.5 35 13M13 35l-3.5 3.5" />
+                                </g>
+                                <path class="wish__smile" d="M20 23.5c1 1.6 2.4 2.4 4 2.4s3-.8 4-2.4" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" />
+                            </svg>
+                        </span>
+                        <h4 class="wish__title">二愿你幸福快乐</h4>
+                        <p class="wish__desc">看到好看的云会笑，吃到好吃的东西会眯眼。<br>愿你天天都有一份好心情。</p>
+                    </li>
+
+                    <li class="wish reveal">
+                        <span class="wish__halo" aria-hidden="true"></span>
+                        <span class="wish__icon" aria-hidden="true">
+                            <svg viewBox="0 0 48 48">
+                                <path class="wish__stroke"
+                                    d="M24 5c1.6 7.6 4.9 12 12.5 14-7.6 2-10.9 6.4-12.5 14-1.6-7.6-4.9-12-12.5-14 7.6-2 10.9-6.4 12.5-14Z"
+                                    fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" />
+                                <path class="wish__spark"
+                                    d="M38 33c.8 3.6 2.3 5.4 5.5 6.5-3.2 1.1-4.7 2.9-5.5 6.5-.8-3.6-2.3-5.4-5.5-6.5 3.2-1.1 4.7-2.9 5.5-6.5Z"
+                                    fill="currentColor" />
+                                <circle class="wish__spark" cx="9" cy="34" r="2.2" fill="currentColor" />
+                            </svg>
+                        </span>
+                        <h4 class="wish__title">三愿你万事如意</h4>
+                        <p class="wish__desc">想要的都拥有，得不到的都释怀。<br>往后每一岁，都值得被珍藏。</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ---------- 生日蛋糕 ---------- -->
+        <section class="cake section" id="cake">
+            <div class="wrap">
+                <header class="sec-head reveal">
+                    <p class="sec-head__en">make a wish</p>
+                    <h3 class="sec-head__zh font-ma">许个愿吧</h3>
+                    <p class="sec-head__sub">三支蜡烛，三个愿望，等你吹灭</p>
+                </header>
+
+                <div class="cake-stage reveal" id="cakeStage">
+                    <svg class="cake-svg" viewBox="0 0 340 300" role="img" aria-label="插着三支蜡烛的生日蛋糕">
+                        <defs>
+                            <linearGradient id="sponge" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#ffe6b8" />
+                                <stop offset="1" stop-color="#f3c98b" />
+                            </linearGradient>
+                            <linearGradient id="spongeDark" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#ffd9a0" />
+                                <stop offset="1" stop-color="#e8b478" />
+                            </linearGradient>
+                            <linearGradient id="cream" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#fffdfe" />
+                                <stop offset=".55" stop-color="#ffe6f1" />
+                                <stop offset="1" stop-color="#ffcfe4" />
+                            </linearGradient>
+                            <linearGradient id="candle" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="0" stop-color="#fff" />
+                                <stop offset="1" stop-color="#ffc3dd" />
+                            </linearGradient>
+                            <radialGradient id="flameGrad" cx=".5" cy=".62" r=".6">
+                                <stop offset="0" stop-color="#fffbe8" />
+                                <stop offset=".4" stop-color="#ffd166" />
+                                <stop offset=".78" stop-color="#ff9a3c" />
+                                <stop offset="1" stop-color="#ff6b6b" />
+                            </radialGradient>
+                            <radialGradient id="plateGrad" cx=".5" cy=".5" r=".5">
+                                <stop offset="0" stop-color="#ffffff" />
+                                <stop offset="1" stop-color="#ffd9e8" />
+                            </radialGradient>
+                            <radialGradient id="stageGlow" cx=".5" cy=".5" r=".5">
+                                <stop offset="0" stop-color="#ffc487" stop-opacity=".55" />
+                                <stop offset=".5" stop-color="#ffb6d5" stop-opacity=".3" />
+                                <stop offset="1" stop-color="#ffb6d5" stop-opacity="0" />
+                            </radialGradient>
+                            <filter id="cakeShadow" x="-30%" y="-30%" width="160%" height="160%">
+                                <feGaussianBlur stdDeviation="7" />
+                            </filter>
+                        </defs>
+
+                        <!-- 蛋糕背后的暖光，呼吸式明暗变化 -->
+                        <ellipse class="cake-glow" cx="170" cy="196" rx="152" ry="132" fill="url(#stageGlow)" />
+
+                        <!-- 底盘 -->
+                        <ellipse cx="170" cy="272" rx="128" ry="15" fill="#e9a7c6" opacity=".28"
+                            filter="url(#cakeShadow)" />
+                        <ellipse cx="170" cy="266" rx="124" ry="16" fill="url(#plateGrad)" />
+                        <ellipse cx="170" cy="263" rx="108" ry="12" fill="#fff" opacity=".75" />
+
+                        <!-- 第一层 -->
+                        <rect x="56" y="196" width="228" height="62" rx="16" fill="url(#sponge)" />
+                        <g class="cake__sprinkle" opacity=".9">
+                            <rect x="86" y="230" width="9" height="4" rx="2" fill="#ff9ec7" transform="rotate(-18 86 230)" />
+                            <rect x="126" y="238" width="9" height="4" rx="2" fill="#a8d8ff" transform="rotate(14 126 238)" />
+                            <rect x="166" y="228" width="9" height="4" rx="2" fill="#ffd166" transform="rotate(-8 166 228)" />
+                            <rect x="206" y="240" width="9" height="4" rx="2" fill="#c6b3ff" transform="rotate(22 206 240)" />
+                            <rect x="240" y="228" width="9" height="4" rx="2" fill="#8ee6c0" transform="rotate(-14 240 228)" />
+                        </g>
+                        <path class="cake__cream"
+                            d="M56 210h228v-4c0-9-7-16-16-16H72c-9 0-16 7-16 16v4Z" fill="url(#cream)" />
+                        <g class="cake__drips" fill="url(#cream)">
+                            <circle cx="78" cy="212" r="11" />
+                            <circle cx="104" cy="216" r="8" />
+                            <circle cx="130" cy="213" r="12" />
+                            <circle cx="158" cy="217" r="9" />
+                            <circle cx="186" cy="212" r="13" />
+                            <circle cx="214" cy="216" r="9" />
+                            <circle cx="240" cy="213" r="11" />
+                            <circle cx="262" cy="210" r="8" />
+                        </g>
+
+                        <!-- 第二层 -->
+                        <rect x="82" y="140" width="176" height="58" rx="14" fill="url(#spongeDark)" />
+                        <path d="M82 154h176v-3c0-8-6-14-14-14H96c-8 0-14 6-14 14v3Z" fill="url(#cream)" />
+                        <g fill="url(#cream)">
+                            <circle cx="102" cy="156" r="10" />
+                            <circle cx="128" cy="160" r="7" />
+                            <circle cx="154" cy="157" r="11" />
+                            <circle cx="182" cy="161" r="8" />
+                            <circle cx="210" cy="156" r="12" />
+                            <circle cx="236" cy="159" r="8" />
+                        </g>
+
+                        <!-- 顶层 -->
+                        <rect x="108" y="94" width="124" height="48" rx="12" fill="url(#sponge)" />
+                        <path d="M108 106h124v-2c0-7-5-12-12-12h-100c-7 0-12 5-12 12v2Z" fill="url(#cream)" />
+                        <g fill="url(#cream)">
+                            <circle cx="126" cy="108" r="9" />
+                            <circle cx="150" cy="111" r="6" />
+                            <circle cx="174" cy="108" r="10" />
+                            <circle cx="198" cy="112" r="7" />
+                            <circle cx="218" cy="108" r="9" />
+                        </g>
+
+                        <!-- 蜡烛 -->
+                        <g class="candles" id="candles">
+                            <g class="candle" data-candle>
+                                <rect x="140" y="52" width="12" height="44" rx="5" fill="url(#candle)" />
+                                <path d="M140 62h12M140 72h12M140 82h12" stroke="#ff9ec7" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <rect x="144.5" y="44" width="3" height="10" rx="1.4" fill="#c98aa6" />
+                                <g class="candle__flame">
+                                    <ellipse cx="146" cy="34" rx="17" ry="20" fill="#ffb347" opacity=".22" />
+                                    <path d="M146 20c6 8 10 12 10 18a10 10 0 0 1-20 0c0-6 4-10 10-18Z" fill="url(#flameGrad)" />
+                                    <path d="M146 28c3 4 4.6 6.4 4.6 9.2a4.6 4.6 0 0 1-9.2 0c0-2.8 1.6-5.2 4.6-9.2Z" fill="#fff6d8"
+                                        opacity=".9" />
+                                </g>
+                                <g class="candle__smoke">
+                                    <circle cx="146" cy="26" r="4" />
+                                    <circle cx="146" cy="26" r="6" />
+                                    <circle cx="146" cy="26" r="3" />
+                                </g>
+                            </g>
+
+                            <g class="candle" data-candle>
+                                <rect x="164" y="40" width="12" height="56" rx="5" fill="url(#candle)" />
+                                <path d="M164 52h12M164 62h12M164 72h12M164 82h12" stroke="#c6b3ff" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <rect x="168.5" y="32" width="3" height="10" rx="1.4" fill="#c98aa6" />
+                                <g class="candle__flame">
+                                    <ellipse cx="170" cy="22" rx="17" ry="20" fill="#ffb347" opacity=".22" />
+                                    <path d="M170 8c6 8 10 12 10 18a10 10 0 0 1-20 0c0-6 4-10 10-18Z" fill="url(#flameGrad)" />
+                                    <path d="M170 16c3 4 4.6 6.4 4.6 9.2a4.6 4.6 0 0 1-9.2 0c0-2.8 1.6-5.2 4.6-9.2Z" fill="#fff6d8"
+                                        opacity=".9" />
+                                </g>
+                                <g class="candle__smoke">
+                                    <circle cx="170" cy="14" r="4" />
+                                    <circle cx="170" cy="14" r="6" />
+                                    <circle cx="170" cy="14" r="3" />
+                                </g>
+                            </g>
+
+                            <g class="candle" data-candle>
+                                <rect x="188" y="52" width="12" height="44" rx="5" fill="url(#candle)" />
+                                <path d="M188 62h12M188 72h12M188 82h12" stroke="#ffd166" stroke-width="3"
+                                    stroke-linecap="round" />
+                                <rect x="192.5" y="44" width="3" height="10" rx="1.4" fill="#c98aa6" />
+                                <g class="candle__flame">
+                                    <ellipse cx="194" cy="34" rx="17" ry="20" fill="#ffb347" opacity=".22" />
+                                    <path d="M194 20c6 8 10 12 10 18a10 10 0 0 1-20 0c0-6 4-10 10-18Z" fill="url(#flameGrad)" />
+                                    <path d="M194 28c3 4 4.6 6.4 4.6 9.2a4.6 4.6 0 0 1-9.2 0c0-2.8 1.6-5.2 4.6-9.2Z" fill="#fff6d8"
+                                        opacity=".9" />
+                                </g>
+                                <g class="candle__smoke">
+                                    <circle cx="194" cy="26" r="4" />
+                                    <circle cx="194" cy="26" r="6" />
+                                    <circle cx="194" cy="26" r="3" />
+                                </g>
+                            </g>
+                        </g>
+                    </svg>
+
+                    <div class="cake-actions">
+                        <button class="btn btn--primary" id="blowBtn" type="button">
+                            <span>吹蜡烛</span>
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M3 9h12a3 3 0 1 1 0 6h-1M3 9v6M6 15c2.6 3.6 6.4 5.4 11.4 5.4"
+                                    fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" />
+                            </svg>
+                        </button>
+                        <p class="cake-tip">也可以直接点一下蜡烛</p>
+                    </div>
+
+                    <p class="cake-message" id="cakeMessage" aria-live="polite">
+                        愿望已经许下，<span class="js-name">小林</span>，生日快乐！<br>
+                        <em>一定会实现的。</em>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ---------- 结尾 ---------- -->
+        <section class="finale section" id="finale">
+            <div class="wrap">
+                <div class="balloons" aria-hidden="true">
+                    <span class="balloon balloon--1"></span>
+                    <span class="balloon balloon--2"></span>
+                    <span class="balloon balloon--3"></span>
+                    <span class="balloon balloon--4"></span>
+                    <span class="balloon balloon--5"></span>
+                </div>
+
+                <p class="finale__en reveal">Happy Birthday, my love</p>
+                <h3 class="finale__zh font-ma" data-split>永远爱你</h3>
+                <p class="finale__sub reveal">愿我们年年有今日，岁岁有今朝。<br>余生的每一场烟火，都想和你一起看。</p>
+
+                <button class="btn btn--ghost" id="againBtn" type="button">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4.5h-4.5" fill="none" stroke="currentColor"
+                            stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    <span>再看一遍</span>
+                </button>
+
+                <footer class="site-foot">
+                    <span class="site-foot__line"></span>
+                    <p>用一点点代码，替你说了句生日快乐</p>
+                    <p class="site-foot__copy">© <span id="year">2026</span> 茉灵智库 · 特别为你制作</p>
+                </footer>
+            </div>
+        </section>
+    </main>
+
+    <!-- 音乐播放器 -->
+    <button class="music" id="musicBtn" type="button" aria-label="播放背景音乐" aria-pressed="false">
+        <span class="music__disc" aria-hidden="true">
+            <svg viewBox="0 0 32 32">
+                <circle cx="16" cy="16" r="15" fill="#3a1a2a" />
+                <circle cx="16" cy="16" r="11" fill="#5a2740" />
+                <circle cx="16" cy="16" r="7" fill="#3a1a2a" />
+                <circle cx="16" cy="16" r="3" fill="#ffd7e8" />
+            </svg>
+        </span>
+        <span class="music__bars" aria-hidden="true">
+            <i></i><i></i><i></i><i></i>
+        </span>
+        <span class="music__text">生日快乐歌</span>
+    </button>
+
+    <audio id="bgm" src="./mp3/birthday1.mp3" preload="auto" loop></audio>
+
+    <div class="progress" id="progress" aria-hidden="true"></div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="./js/shapes.js"></script>
+    <script src="./js/garden.js"></script>
+    <script>
+        /* 开屏的兜底逻辑：主脚本若未能就绪，点击或 8 秒后仍可正常进入页面。 */
+        (function () {
+            var root = document.documentElement;
+            if (!root.classList.contains('js')) { return; }
+            document.body.classList.add('is-locked');
+
+            function fallback() {
+                root.classList.add('is-fallback', 'is-open');
+                document.body.classList.remove('is-locked');
+                var intro = document.getElementById('intro');
+                if (intro) { intro.classList.add('is-gone'); }
+                document.dispatchEvent(new CustomEvent('birthday:fallback'));
+            }
+
+            function guard() {
+                if (window.__openIntro) { return false; }
+                fallback();
+                return true;
+            }
+
+            ['openBtn', 'giftBtn'].forEach(function (id) {
+                var el = document.getElementById(id);
+                if (el) { el.addEventListener('click', guard); }
+            });
+
+            setTimeout(function () {
+                if (root.classList.contains('is-open') || window.__birthdayReady) { return; }
+                fallback();
+            }, 8000);
+        })();
+    </script>
+    <script src="./js/functions.js"></script>
 </body>
+
 </html>
