@@ -8,7 +8,6 @@
         <meta name="description" content="全网VIP视频解析，支持爱奇艺、腾讯视频、优酷、芒果TV、乐视、搜狐视频、哔哩哔哩等主流平台，一键解析高清视频，稳定快速、免安装、多端适配。"/>
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
         <link rel="canonical" href="https://go.88lin.eu.org/vip/" />
-        <link rel="alternate" hreflang="zh-CN" href="https://go.88lin.eu.org/vip/" />
         <meta property="og:type" content="website">
         <meta property="og:site_name" content="全网VIP视频解析" />
         <meta property="og:url" content="https://go.88lin.eu.org/vip/">
@@ -579,7 +578,7 @@
                 z-index: 1;
             }
 
-            .instructions h3 {
+            .instructions h2 {
                 color: var(--primary);
                 margin-bottom: 15px;
                 display: flex;
@@ -1069,7 +1068,7 @@
                 <button class="notice-close" id="notice-close" aria-label="关闭通知"><i class="fas fa-times"></i></button>
             </div>
             <header>
-                <div class="logo" onclick="location.href='/vip/index.html'">全网VIP视频免费解析</div>
+                <h1 class="logo" style="margin:0" onclick="location.href='/vip/'">全网VIP视频免费解析</h1>
                 <div class="nav-group">
                 <a href="https://blog.88lin.eu.org/article/46" target="_blank" rel="noopener noreferrer" class="nav-btn">
                     <i class="fas fa-video"></i>
@@ -1104,7 +1103,7 @@
                 .wsyzy-mode.active span, .wsyzy-mode.active i { color: #fff; }
                 .wsyzy-panel { display: none; background: linear-gradient(145deg, #f5f7fa, #e4edf5); border-radius: 24px; border: 2px solid rgba(255,255,255,.8); box-shadow: inset 0 -8px 25px rgba(0,0,0,.05), 0 15px 40px rgba(0,0,0,.1); padding: 22px; margin-bottom: 30px; position: relative; z-index: 1; }
                 .ws-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; gap: 10px; flex-wrap: wrap; }
-                .ws-head h3 { margin: 0; font-size: 1.05rem; color: var(--dark); }
+                .ws-head h2 { margin: 0; font-size: 1.05rem; color: var(--dark); }
                 .ws-back { padding: 8px 16px; border-radius: 16px; border: 2px solid rgba(255,255,255,.9); background: linear-gradient(145deg, #f0f0f0, #ffffff); color: var(--dark); font-weight: 700; font-family: inherit; cursor: pointer; font-size: .85rem; transition: var(--transition); }
                 .ws-back:hover { border-color: var(--primary); color: var(--primary); }
                 .ws-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 18px; }
@@ -1206,10 +1205,10 @@
             </div>
             <div class="tab-content" id="instructions-content">
                 <div class="instructions">
-                    <h3>
+                    <h2>
                         <i class="fas fa-graduation-cap"></i>
                         使用教程
-                    </h3>
+                    </h2>
                     <ol>
                         <li>
                             <strong>剧名搜剧（默认模式）</strong>
@@ -1237,10 +1236,10 @@
                         </li>
                     </ol>
                     <div class="disclaimer">
-                        <h3>
+                        <h2>
                             <i class="fas fa-exclamation-triangle"></i>
                             注意事项
-                        </h3>
+                        </h2>
                         <p>1. 视频内广告均为资源本身自带，并非本站所为，请勿轻信，谨防受骗，可快进跳过</p>
                         <p>2. 如遇视频无法加载或播放卡顿，可切换不同线路/使用海外网络观看</p>
                         <p>3. 部分视频可能需要等待几秒钟加载时间；全屏播放时按ESC键退出</p>
@@ -1250,10 +1249,10 @@
             </div>
             <div class="tab-content" id="disclaimer-content">
                 <div class="instructions">
-                    <h3>
+                    <h2>
                         <i class="fas fa-shield-alt"></i>
                         免责声明
-                    </h3>
+                    </h2>
                     <p>1. 本站所有内容均来自互联网收集而来，版权归原创者所有，未提供资源上传、存储服务。</p>
                     <p>2. 本站提供的视频解析服务仅供学习交流使用，所有解析接口均来源于网络公开资源。</p>
                     <p>3. 使用本站观看VIP视频时，仅用于体验目的。</p>
@@ -1882,7 +1881,7 @@
                             '<button class="ws-page" data-p="' + (wsPage + 1) + '"' + (wsPage >= total ? ' disabled' : '') + '><i class="fas fa-chevron-right"></i></button>' +
                             '</div>';
                     }
-                    wsyzyPanelShow('<div class="ws-head"><h3>「' + esc(wsCurName) + '」共 ' + wsList.length + ' 个结果</h3><span style="font-size:.85rem;color:#5a6b7d">点击海报选剧</span></div>' +
+                    wsyzyPanelShow('<div class="ws-head"><h2>「' + esc(wsCurName) + '」共 ' + wsList.length + ' 个结果</h2><span style="font-size:.85rem;color:#5a6b7d">点击海报选剧</span></div>' +
                         '<div class="ws-grid">' + cards + '</div>' + pager);
                     wsyzyPanel.querySelectorAll('.ws-card').forEach(card =>
                         card.addEventListener('click', () => wsOpenShow(card.getAttribute('data-id'), card.getAttribute('data-name'))));
@@ -1897,7 +1896,7 @@
                         '<button class="ws-ep" data-i="' + i + '">' + esc(e.name || ('第' + (i + 1) + '集')) + '</button>'
                     ).join('');
                     const backBtn = wsList.length ? '<button class="ws-back"><i class="fas fa-arrow-left"></i> 返回结果</button>' : '';
-                    wsyzyPanelShow('<div class="ws-head"><h3>「' + esc(name) + '」共 ' + eps.length + ' 集</h3>' + backBtn + '</div>' +
+                    wsyzyPanelShow('<div class="ws-head"><h2>「' + esc(name) + '」共 ' + eps.length + ' 集</h2>' + backBtn + '</div>' +
                         '<div class="ws-eps">' + pills + '</div>');
                     const backEl = wsyzyPanel.querySelector('.ws-back');
                     if (backEl) backEl.addEventListener('click', () => wsRenderResults());
