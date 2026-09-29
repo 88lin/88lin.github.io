@@ -731,8 +731,8 @@ select{
 .output-box.streaming{background:var(--xy-yellow-soft);box-shadow:4px 4px 0 var(--xy-orange)}
 .output-box.markdown{font-family:var(--sans);font-size:14px;white-space:normal;line-height:1.7;font-weight:500}
 .output-box.markdown p{margin-bottom:10px}
-.output-box.markdown h1,.output-box.markdown h2,.output-box.markdown h3,.output-box.markdown h4{margin:16px 0 8px;font-weight:900;letter-spacing:-.01em}
-.output-box.markdown h1{font-size:22px}
+.output-box.markdown h2,.output-box.markdown h3,.output-box.markdown h4{margin:16px 0 8px;font-weight:900;letter-spacing:-.01em}
+.output-box.markdown h2.md-h1{font-size:22px}
 .output-box.markdown h2{font-size:18px}
 .output-box.markdown h3{font-size:16px}
 .output-box.markdown h4{font-size:14px}
@@ -820,6 +820,7 @@ select{
   white-space:pre-wrap;word-break:break-word;color:var(--xy-ink);
 }
 .msg.user .msg-body{background:var(--xy-yellow-soft)}
+.msg-body h2.md-h1{font-size:2em;margin-block:.67em;font-weight:700}
 .msg-actions{display:flex;gap:4px;margin-left:auto}
 .msg-actions .ig-btn{width:24px;height:24px;border-radius:6px;box-shadow:1.5px 1.5px 0 var(--xy-ink)}
 .msg-actions .ig-btn svg{width:11px;height:11px}
@@ -2395,7 +2396,7 @@ function renderMarkdown(src){
   html=html.replace(/^#### (.+)$/gm,'<h4>$1</h4>');
   html=html.replace(/^### (.+)$/gm,'<h3>$1</h3>');
   html=html.replace(/^## (.+)$/gm,'<h2>$1</h2>');
-  html=html.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  html=html.replace(/^# (.+)$/gm,'<h2 class="md-h1">$1</h2>');
   // blockquote
   html=html.replace(/^&gt; (.+)$/gm,'<blockquote>$1</blockquote>');
   // bold + italic

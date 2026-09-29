@@ -1,4 +1,7 @@
 # Do not add a global X-Frame-Options: Notion widgets are embedded cross-origin.
+# Only hosts that read _headers apply this file (Cloudflare Pages, Netlify).
+# GitHub Pages ignores it entirely, and also excludes _-prefixed files from the
+# published output, so the canonical host must support _headers for these to take effect.
 /*
   Strict-Transport-Security: max-age=31536000
   X-Content-Type-Options: nosniff
