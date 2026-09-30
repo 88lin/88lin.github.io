@@ -10,20 +10,28 @@
 <style>
   body { margin: 0; min-height: 100vh; display: flex; align-items: center;
     justify-content: center; padding: 24px; box-sizing: border-box;
-    background: #fdfcfa; color: #2b2b2b;
+    background: #FFFCF8; color: #2F293D;
     font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC",
       "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
-  main { max-width: 32rem; text-align: center; }
-  p { margin: 0 0 10px; line-height: 1.8; }
-  .lead { font-size: 1.05rem; }
-  a { color: #8a6d3b; text-decoration: none; border-bottom: 1px solid #d8c9a8; }
-  a:hover { border-bottom-color: #8a6d3b; }
-  .hint { font-size: .9rem; color: #6b6b6b; }
+  main { width: 100%; max-width: 30rem; text-align: center; background: #FFFFFF;
+    border: 1px solid #E4DFED; border-radius: 18px; padding: 34px 28px;
+    box-shadow: 0 6px 24px rgba(47, 41, 61, .06); }
+  .badge { display: inline-block; background: #F0EAFE; color: #6941B0;
+    border: 1px solid #DCCEFC; border-radius: 999px; padding: 3px 13px;
+    font-size: .78rem; margin-bottom: 14px; }
+  h1 { margin: 0 0 14px; font-size: 1.15rem; font-weight: 650; color: #2F293D; }
+  p { margin: 0 0 10px; line-height: 1.8; color: #575363; }
+  a { color: #6941B0; text-decoration: none; border-bottom: 1px solid #DCCEFC;
+    word-break: break-all; }
+  a:hover { border-bottom-color: #6941B0; }
+  .hint { font-size: .85rem; color: #857F93; margin-top: 14px; margin-bottom: 0; }
 </style>
 </head>
 <body>
 <main>
-  <p class="lead">本页已迁移到<br><a href="https://88lin.eu.org/">https://88lin.eu.org/</a></p>
+  <span class="badge">页面已迁移</span>
+  <h1>正在前往新地址</h1>
+  <p><a href="https://88lin.eu.org/">https://88lin.eu.org/</a></p>
   <p class="hint">正在自动跳转……如果没有跳转，请点击上面的链接。</p>
 </main>
 <script>location.replace("https://88lin.eu.org/");</script>
