@@ -1,10 +1,14 @@
 # 个人主页已迁移到独立域名 https://88lin.eu.org
 # 以下规则保留旧 /2 地址的权重（Cloudflare Pages 生效，GitHub Pages 忽略本文件）
 
+/2/about/index.html https://88lin.eu.org/about/ 301
+/2/system/index.html https://88lin.eu.org/system/ 301
+/2/index.html https://88lin.eu.org/ 301
 /2/about/   https://88lin.eu.org/about/    301
 /2/about    https://88lin.eu.org/about/    301
 /2/system/  https://88lin.eu.org/system/   301
 /2/system   https://88lin.eu.org/system/   301
 /2/         https://88lin.eu.org/          301
 /2          https://88lin.eu.org/          301
-/2/*        https://88lin.eu.org/          301
+# Preserve paths for old assets/deep links; do not silently send everything home.
+/2/*        https://88lin.eu.org/:splat    301

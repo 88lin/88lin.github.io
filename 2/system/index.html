@@ -6,6 +6,14 @@
 <title>页面已迁移 · 88lin</title>
 <link rel="canonical" href="https://88lin.eu.org/system/">
 <meta name="robots" content="noindex, follow">
+<script>
+(() => {
+  const target = new URL("https://88lin.eu.org/system/");
+  target.search = location.search;
+  target.hash = location.hash;
+  location.replace(target.href);
+})();
+</script>
 <meta http-equiv="refresh" content="0; url=https://88lin.eu.org/system/">
 <style>
   body { margin: 0; min-height: 100vh; display: flex; align-items: center;
@@ -13,7 +21,7 @@
     background: #FFFCF8; color: #2F293D;
     font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC",
       "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
-  main { width: 100%; max-width: 32rem; text-align: center; background: #FFFFFF;
+  main { box-sizing: border-box; width: 100%; max-width: 32rem; text-align: center; background: #FFFFFF;
     border: 1px solid #E4DFED; border-radius: 20px; padding: 44px 36px;
     box-shadow: 0 10px 34px rgba(47, 41, 61, .08); }
   .badge { display: inline-block; background: #F0EAFE; color: #6941B0;
@@ -34,6 +42,5 @@
   <p><a href="https://88lin.eu.org/system/">https://88lin.eu.org/system/</a></p>
   <p class="hint">正在自动跳转……如果没有跳转，请点击上面的链接。</p>
 </main>
-<script>location.replace("https://88lin.eu.org/system/");</script>
 </body>
 </html>
