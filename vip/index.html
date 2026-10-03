@@ -1861,7 +1861,7 @@
                         const meta = [v.type_name, v.vod_time ? String(v.vod_time).slice(0, 10) : ''].filter(Boolean).join(' · ');
                         return '<div class="ws-card" data-id="' + esc(x.id) + '" data-name="' + esc(x.name) + '">' +
                         '<div class="ws-poster">' +
-                        '<img src="' + esc(x.pic || '') + '" onerror="this.style.visibility=\'hidden\'" loading="lazy" alt="">' +
+                        '<img src="' + esc(x.pic || '') + '" onerror="this.style.visibility=\'hidden\'" loading="lazy" alt="" width="200" height="300">' +
                         (remarks ? '<span class="ws-remarks">' + esc(remarks) + '</span>' : '') +
                         '</div>' +
                         '<div class="ws-name" title="' + esc(x.name) + '">' + esc(x.name) + '</div>' +

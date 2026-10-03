@@ -2406,7 +2406,7 @@ function renderMarkdown(src){
   // strikethrough
   html=html.replace(/~~(.+?)~~/g,'<del>$1</del>');
   // links
-  html=html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  html=html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,(_,text,url)=>'<a href="'+url+'" target="_blank" rel="noopener noreferrer">'+text+'</a>');
   // hr
   html=html.replace(/^---+$/gm,'<hr>');
   // tables (simple)
