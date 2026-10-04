@@ -1,7 +1,0 @@
-/* Compact, keyboard-accessible instructions for full-screen tools. */
-.page-guide{position:fixed;left:12px;bottom:12px;z-index:10001;max-width:min(380px,calc(100vw - 24px));box-sizing:border-box;border:1px solid #bbb;border-radius:10px;background:#fff;color:#292929;font:14px/1.65 system-ui,sans-serif;text-align:left;padding:9px 12px;box-shadow:0 3px 12px #0002}
-.page-guide summary{cursor:pointer;list-style:revert}
-.page-guide summary h1{display:inline;font:600 14px/1.5 system-ui,sans-serif;margin:0;color:inherit;background:none;-webkit-text-fill-color:currentColor}
-.page-guide p{font:14px/1.65 system-ui,sans-serif;margin:10px 0;color:inherit}
-.page-guide[open]{max-height:60vh;overflow:auto}
-.page-guide a{color:#3454a5;text-decoration:underline}
