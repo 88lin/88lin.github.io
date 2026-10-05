@@ -23,6 +23,8 @@ const filters = [...html.matchAll(/<button\b([^>]*\bdata-filter="[^"]+"[^>]*)>([
 const labels = new Map(filters.map(button => [button.dataset.filter, button.textContent]));
 assert.equal(labels.size, filters.length, 'Category keys must be unique');
 assert(labels.has('all'));
+assert(!labels.has('web'), 'The retired web-development category must not return');
+assert.equal(labels.size - 1, 10);
 assert.deepEqual(filters.slice(0, 2).map(button => button.dataset.filter), ['all', 'portfolio'], 'My sites must be the first category after All');
 assert.equal(labels.get('portfolio'), '我的站点');
 const cards = [...html.matchAll(/<a\b(?=[^>]*\btool-card\b)([^>]+)>([\s\S]*?)<\/a>/g)].map(m => {
@@ -90,8 +92,7 @@ function run(category, query = '') {
 assert.equal(run('all').length, 58);
 assert.deepEqual(run('focus').sort(), ['https://focustide.app', 'https://timepulse.ravelloh.top', 'https://lofi.88lin.eu.org', '/notion/2/', '/notion/3/', '/notion/8/'].sort());
 assert.deepEqual(run('fun').sort(), ['/stop/', 'https://site.nocode.host', 'https://sri.88lin.eu.org/', 'https://test.88lin.eu.org/'].sort());
-assert.deepEqual(run('utility').sort(), ['/Bookmarks/', '/gushi/dist/', '/Mortgage-Calculator/', '/xy/', 'https://88lin.github.io/gift-ledger'].sort());
-assert.deepEqual(run('web').sort(), ['/ai-model-checker', 'https://dev.88lin.eu.org/', 'https://xiaozeroai.github.io/FangHong_wx'].sort());
+assert.deepEqual(run('utility').sort(), ['/Bookmarks/', '/gushi/dist/', '/Mortgage-Calculator/', '/xy/', 'https://88lin.github.io/gift-ledger', 'https://xiaozeroai.github.io/FangHong_wx'].sort());
 assert.equal(run('portfolio').length, 8);
 assert(visible().includes('https://dev.88lin.eu.org/'));
 assert.equal(cards.find(card => card.href === 'https://dev.88lin.eu.org/').dataset.group, 'portfolio', 'The portfolio and freelance site belongs primarily to My sites');
@@ -126,7 +127,7 @@ assert.deepEqual(visible(), ['/academic-poster-generator/']);
 assert.equal(new URL(context.location.href).searchParams.get('q'), '海报');
 assert.equal(new URL(context.location.href).searchParams.has('category'), false);
 
-for (const [query, expectedCategory, count] of [['?category=focus&q=Notion', 'focus', 3], ['?category=other', 'utility', 5], ['?category=unknown', 'all', 58]]) {
+for (const [query, expectedCategory, count] of [['?category=focus&q=Notion', 'focus', 3], ['?category=other', 'utility', 6], ['?category=web', 'all', 58], ['?category=unknown', 'all', 58]]) {
   context.location.search = query;
   context.restoreFiltersFromUrl();
   assert.equal(context.activeFilter, expectedCategory);

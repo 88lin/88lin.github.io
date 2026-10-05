@@ -65,7 +65,7 @@ h1,h2,h3 { text-wrap:balance; }
 .shortcut-chip[data-shortcut="海报"],.collection-filter[data-filter="design"] { --chip-bg:var(--rose); --chip-ink:#a12c64; --chip-line:#f5c2dc; --chip-hover:#ffcce3; }
 .shortcut-chip[data-shortcut="专注"],.collection-filter[data-filter="focus"],.collection-filter[data-filter="study"] { --chip-bg:var(--mint); --chip-ink:#236952; --chip-line:#bce6d9; --chip-hover:#c8eedb; }
 .collection-filter[data-filter="festival"] { --chip-bg:var(--orchid); --chip-ink:#803792; --chip-line:#e7c6f3; --chip-hover:#ebcbf6; }
-.collection-filter[data-filter="fun"],.collection-filter[data-filter="web"] { --chip-bg:var(--periwinkle); --chip-ink:#5555a4; --chip-line:#cdcdf6; --chip-hover:#d5d5fa; }
+.collection-filter[data-filter="fun"] { --chip-bg:var(--periwinkle); --chip-ink:#5555a4; --chip-line:#cdcdf6; --chip-hover:#d5d5fa; }
 .shortcut-chip { padding:6px 14px; border:0; border-radius:var(--pill); background:var(--chip-bg); color:var(--chip-ink); box-shadow:inset 0 0 0 1px var(--chip-line); font-size:13px; font-weight:700; min-height:36px; transition:background 180ms,transform 180ms; }
 .shortcut-chip:hover { background:var(--chip-hover); transform:translateY(-2px); }
 .shortcut-chip:active { transform:scale(.97); }
