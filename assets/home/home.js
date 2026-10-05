@@ -250,6 +250,11 @@ function syncFilters() {
   }
 }
 
+function matchesCategory(link, category) {
+  return category === 'all' || link.dataset.group === category ||
+    (link.dataset.relatedGroups || '').split(/\s+/).includes(category);
+}
+
 function filterLinks() {
   const animateGrid = !firstFilter && canAnimate() && document.getElementById('toolGrid').getBoundingClientRect().top < innerHeight;
   const oldBoxes = new Map(animateGrid ? links.filter(link => !link.classList.contains('is-hidden')).map(link => [link, link.getBoundingClientRect()]) : []);
@@ -259,7 +264,7 @@ function filterLinks() {
   let count = 0;
   links.forEach((link) => {
     const text = `${link.dataset.keywords} ${link.textContent}`.toLocaleLowerCase();
-    const match = (activeFilter === 'all' || link.dataset.group === activeFilter) && (!query || text.includes(query));
+    const match = matchesCategory(link, activeFilter) && (!query || text.includes(query));
     link.classList.toggle('is-hidden', !match);
     if (match) count++;
   });
@@ -301,8 +306,13 @@ toolGrid.addEventListener('focusin', () => requestAnimationFrame(keepFocusedTool
 new ResizeObserver(syncCatalogScrollClearance).observe(collectionToolbar);
 syncCatalogScrollClearance();
 
+function resolveCategory(key) {
+  const normalized = key === 'other' ? 'utility' : key;
+  return collectionFilters.some(button => button.dataset.filter === normalized) ? normalized : 'all';
+}
+
 function chooseCategory(key) {
-  activeFilter = key;
+  activeFilter = resolveCategory(key);
   syncFilters();
   filterLinks();
 }
@@ -339,8 +349,9 @@ document.querySelectorAll('[data-browse]').forEach((link) => link.addEventListen
   showResults();
 }));
 document.querySelectorAll('.shortcut-chip').forEach((button) => button.addEventListener('click', () => {
-  searchInput.value = button.dataset.shortcut;
-  chooseCategory('all');
+  const category = button.dataset.shortcutCategory;
+  searchInput.value = category ? '' : button.dataset.shortcut;
+  chooseCategory(category || 'all');
   updateSearchUrl();
   showResults();
 }));
@@ -366,9 +377,7 @@ document.addEventListener('keydown', (event) => {
 function restoreFiltersFromUrl() {
   const params = new URLSearchParams(location.search);
   const query = params.get('q') || '';
-  const requestedCategory = params.get('category');
-  const category = collectionFilters.some(button => button.dataset.filter === requestedCategory)
-    ? requestedCategory : 'all';
+  const category = resolveCategory(params.get('category'));
   // Fragment navigation also fires popstate; leave identical filters untouched.
   if (!firstFilter && searchInput.value.trim() === query.trim() && activeFilter === category) return;
   searchInput.value = query;
@@ -377,12 +386,12 @@ function restoreFiltersFromUrl() {
 window.addEventListener('popstate', restoreFiltersFromUrl);
 
 const recommendations = [
-  { name: '古诗起名', description: '从诗词意境里，遇见一个好名字', href: '/gushi/dist/', glyph: '诗', tone: 'violet', meta: '学习资料' },
-  { name: '科研海报生成器', description: '把研究成果，整理成一张好海报', href: '/academic-poster-generator/', glyph: '图', tone: 'coral', meta: '图像设计' },
-  { name: '番茄时钟', description: '留一点专注的时间，把眼前的事做好', href: 'https://focustide.app', glyph: '时', tone: 'blue', meta: '时间专注' },
-  { name: 'Lofi 音乐', description: '给工作和放空，配上一点舒服的旋律', href: 'https://lofi.88lin.eu.org', glyph: '听', tone: 'indigo', meta: '声音空间' },
-  { name: '个人书单旭日图', description: '换一种方式，发现书与书之间的联系', href: '/books', glyph: '书', tone: 'lavender', meta: '阅读工具' },
-  { name: '跨年烟花', description: '给平常的一天，一点特别的仪式感', href: '/fireworks/', glyph: '花', tone: 'rose', meta: '趣味灵感' }
+  { name: '古诗起名', description: '从诗词意境里，遇见一个好名字', href: '/gushi/dist/', glyph: '诗', tone: 'violet', meta: '日常工具' },
+  { name: '科研海报生成器', description: '把研究成果，整理成一张好海报', href: '/academic-poster-generator/', glyph: '图', tone: 'coral', meta: '图片设计' },
+  { name: '番茄时钟', description: '留一点专注的时间，把眼前的事做好', href: 'https://focustide.app', glyph: '时', tone: 'blue', meta: '计时专注' },
+  { name: 'Lofi 音乐', description: '给工作和放空，配上一点舒服的旋律', href: 'https://lofi.88lin.eu.org', glyph: '听', tone: 'indigo', meta: '影音放松' },
+  { name: '个人书单旭日图', description: '换一种方式，发现书与书之间的联系', href: '/books', glyph: '书', tone: 'lavender', meta: '阅读学习' },
+  { name: '跨年烟花', description: '给平常的一天，一点特别的仪式感', href: '/fireworks/', glyph: '花', tone: 'rose', meta: '节日祝福' }
 ];
 let recommendationIndex = 0;
 const discoveryStage = document.querySelector('.discovery-stage');
