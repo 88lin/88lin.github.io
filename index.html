@@ -26,12 +26,12 @@
 <meta name="twitter:description" content="茉灵智库工具导航由 88lin 维护，收集实用站点、轻工具与趣味项目，汇集站内页面和外部网站入口。可以按名称或用途搜索，也可以按分类浏览。">
 <meta name="twitter:image" content="https://cdn.jsdmirror.com/gh/88lin/PicList@master/img/home_Image.webp">
 <meta name="twitter:image:alt" content="首页封面图">
-<link rel="icon" href="favicon.svg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;600;700;900&display=swap">
-<link rel="stylesheet" href="https://sf.akass.cn/lxgw-wenkai-screen-webfont/1.7.0/style.min.css">
+<link rel="icon" href="assets/home/mark.svg" type="image/svg+xml">
+<link rel="preload" href="assets/home/medium.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/home/bold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="css/main.css">
+<script src="assets/home/home.js" defer></script>
+<meta name="theme-color" content="#fffcf8">
 <script async src="https://019b9894-1861-76d6-9948-7ad2739a9eb8.spst2.com/ustat.js"></script>
 <script type="application/ld+json">
 {
@@ -44,10 +44,10 @@
       "url": "https://go.88lin.eu.org/",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://go.88lin.eu.org/favicon.svg"
+        "url": "https://go.88lin.eu.org/assets/home/mark.svg"
       },
       "sameAs": [
-        "https://blog.88lin.eu.org/"
+      "https://88lin.eu.org/"
       ]
     },
     {
@@ -79,7 +79,7 @@
         "@id": "https://go.88lin.eu.org/#organization"
       },
       "inLanguage": "zh-CN",
-      "dateModified": "2026-09-28",
+      "dateModified": "2026-10-05",
       "description": "茉灵智库工具导航由 88lin 维护，收集实用站点、轻工具与趣味项目，汇集站内页面和外部网站入口。可以按名称或用途搜索，也可以按分类浏览。",
       "mainEntity": {
         "@id": "https://go.88lin.eu.org/#tool-list"
@@ -98,7 +98,7 @@
           "@type": "ListItem",
           "position": 1,
           "name": "茉灵智库",
-          "url": "https://blog.88lin.eu.org"
+          "url": "https://88lin.eu.org/"
         },
         {
           "@type": "ListItem",
@@ -193,7 +193,7 @@
           "name": "怎么联系作者或获取源码？",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "可通过 QQ 2528251483 联系作者 88lin，也可访问个人博客 blog.88lin.eu.org 了解更多内容。若对某个页面的源码感兴趣，同样可以直接联系作者索取。"
+            "text": "可通过 QQ 2528251483 联系作者 88lin，也可访问 88lin 个人主页了解更多内容。若对某个页面的源码感兴趣，同样可以直接联系作者索取。"
           }
         }
       ]
@@ -214,448 +214,222 @@
 </script>
 </head>
 <body>
+<a class="skip-link" href="#collections">跳到工具列表</a>
 <div class="page-shell">
-  <div class="page-noise" aria-hidden="true"></div>
-  <header class="site-header">
-    <a class="brand" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">
-      <span class="brand-avatar-shell">
-        <img class="brand-avatar" src="favicon.svg" alt="茉灵智库标志" width="64" height="64" decoding="async">
-      </span>
-      <div class="brand-copy">
-        <span class="brand-eyebrow">茉灵智库</span>
-        <strong>数字花园导航</strong>
-        <span class="brand-subline">常用工具、灵感页面与小作品的统一入口</span>
-      </div>
-    </a>
-    <nav class="header-nav" aria-label="页面导航">
-      <a href="#featured">精选入口</a>
-      <a href="#finder">快速查找</a>
-      <a href="#collections">项目分组</a>
-      <a href="#footer">站点信息</a>
-    </nav>
-  </header>
-
-  <main class="page-main">
-    <section class="hero">
-      <div class="hero-copy reveal">
-        <p class="hero-kicker">收集有用的，也保留有趣的。</p>
-        <h1>把零散工具、创意页面和节日特效，整理成<span class="accent-text">一页就能直达</span>的中文导航。</h1>
-        <p class="hero-summary">
-          这里收录了 88lin 制作和整理的一批实用站点、轻工具与趣味项目。
-          可以按名称或用途搜索，也可以分类慢慢逛，手机和电脑都能顺畅访问。
-        </p>
-        <div class="hero-actions">
-          <a class="primary-action" href="#finder">先找我需要的</a>
-          <a class="secondary-action" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">联系作者</a>
-        </div>
-        <ul class="hero-metadata" aria-label="站点特性">
-          <li>移动端友好</li>
-          <li>工具与趣味并存</li>
-        </ul>
-        <div class="hero-notes" aria-label="浏览建议">
-          <article class="hero-note">
-            <span>先逛热门</span>
-            <p>如果你只是第一次来，建议从精选入口开始。</p>
-          </article>
-          <article class="hero-note">
-            <span>再用搜索</span>
-            <p>知道自己要什么时，输入关键词会更快。</p>
-          </article>
-          <article class="hero-note">
-            <span>最后慢逛</span>
-            <p>分类里藏着不少小而有趣的页面和工具。</p>
-          </article>
-        </div>
-      </div>
-
-      <aside class="hero-panel reveal" aria-label="站点状态">
-        <div class="status-card status-card-primary">
-          <span class="status-label">站点状态</span>
-          <strong id="siteRuntime" class="status-value">正在计算运行时长</strong>
-          <p>自 2021 年 7 月 12 日开始持续运行与更新。</p>
-        </div>
-        <div class="status-grid">
-          <div class="status-card">
-            <span class="status-label">项目总数</span>
-            <strong id="projectCount" class="status-value">52</strong>
-            <p>覆盖影视、工具、创意页面和节日特效。</p>
-          </div>
-          <div class="status-card">
-            <span class="status-label">推荐方式</span>
-            <strong class="status-value">搜索 + 分组</strong>
-            <p>先查关键词，再根据分类快速进入。</p>
-          </div>
-        </div>
-        <div class="notice-card">
-          <span>公告</span>
-          <p>部分节日特效更适合在电脑端打开。如遇链接失效或页面异常，可以通过页脚的联系方式告诉我。</p>
-        </div>
-      </aside>
-    </section>
-
-    <section id="featured" class="section reveal">
-      <div class="section-heading">
-        <p class="section-label">精选入口</p>
-        <h2>先看这一组高频入口</h2>
-      </div>
-      <div id="featuredGrid" class="featured-grid">
-        <a class="featured-card featured-card-wide featured-card-story resource-link" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer" data-group="portfolio" data-keywords="个人博客 茉灵智库 博客 文章">
-          <span class="featured-tag">内容主站</span>
-          <strong>个人博客</strong>
-          <p>想先了解站主在写什么、做什么，可以从这里开始。</p>
-        </a>
-        <a class="featured-card featured-card-signal resource-link" href="/vip/" target="_blank" rel="noreferrer" data-group="media" data-keywords="免费影视 视频 追剧">
-          <span class="featured-tag">热门资源</span>
-          <strong>免费影视</strong>
-          <p>常用资源入口之一，适合快速直达。</p>
-        </a>
-        <a class="featured-card featured-card-soft resource-link" href="/duanju/" target="_blank" rel="noreferrer" data-group="media" data-keywords="免费短剧 短剧 娱乐">
-          <span class="featured-tag">休闲娱乐</span>
-          <strong>免费短剧</strong>
-          <p>更轻量的内容选择，打开就能看。</p>
-        </a>
-        <a class="featured-card featured-card-ink resource-link" href="/gushi/dist/" target="_blank" rel="noreferrer" data-group="study" data-keywords="古诗起名 起名 诗词">
-          <span class="featured-tag">创意工具</span>
-          <strong>古诗起名</strong>
-          <p>把诗词意象变成更有气质的名字灵感。</p>
-        </a>
-        <a class="featured-card featured-card-paper resource-link" href="/academic-poster-generator/" target="_blank" rel="noreferrer" data-group="design" data-keywords="海报生成器 学术海报 设计">
-          <span class="featured-tag">效率工具</span>
-          <strong>海报生成</strong>
-          <p>适合做排版与展示类素材的快速入口。</p>
-        </a>
-        <a class="featured-card featured-card-tech resource-link" href="/ai-model-checker" target="_blank" rel="noreferrer" data-group="utility" data-keywords="模型检测 AI 模型">
-          <span class="featured-tag">近期项目</span>
-          <strong>模型检测</strong>
-          <p>更偏向 AI 与工具向的功能页面。</p>
-        </a>
-      </div>
-    </section>
-
-    <section id="finder" class="section search-section reveal">
-      <div class="section-heading">
-        <p class="section-label">快速查找</p>
-        <h2>输入关键词，页面会自动帮你筛选</h2>
-      </div>
-      <div class="search-shell">
-        <label class="search-label" for="searchInput">搜索项目名称或用途</label>
-        <div class="search-input-wrap">
-          <input id="searchInput" class="search-input" type="search" placeholder="例如：烟花、影视、起名、房贷、倒计时" autocomplete="off">
-          <button id="clearSearch" class="search-clear" type="button">清空</button>
-        </div>
-        <noscript><p class="search-hint">分类与链接可直接浏览；关键词搜索需启用 JavaScript。</p></noscript>
-        <div class="search-shortcuts" aria-label="热门关键词">
-          <button class="shortcut-chip" type="button" data-shortcut="影视">影视</button>
-          <button class="shortcut-chip" type="button" data-shortcut="烟花">烟花</button>
-          <button class="shortcut-chip" type="button" data-shortcut="学习">学习</button>
-          <button class="shortcut-chip" type="button" data-shortcut="专注">专注</button>
-          <button class="shortcut-chip" type="button" data-shortcut="趣味">趣味</button>
-        </div>
-        <p class="search-hint"><span id="searchMessage">当前共收录</span> <strong id="resultCount">52</strong> <span id="searchSuffix">个可访问入口。</span></p>
-      </div>
-    </section>
-
-    <section id="collections" class="section reveal">
-      <div class="section-heading">
-        <p class="section-label">项目分组</p>
-        <h2>按使用场景整理，比平铺更好找</h2>
-      </div>
-
-      <div class="collection-toolbar" aria-label="分类筛选">
-        <button class="collection-filter is-active" type="button" data-filter="all">全部分类</button>
-        <button class="collection-filter" type="button" data-filter="festival">节日特效</button>
-        <button class="collection-filter" type="button" data-filter="media">影音内容</button>
-        <button class="collection-filter" type="button" data-filter="fun">趣味灵感</button>
-        <button class="collection-filter" type="button" data-filter="portfolio">个人站点</button>
-        <button class="collection-filter" type="button" data-filter="design">图像设计</button>
-        <button class="collection-filter" type="button" data-filter="utility">效率工具</button>
-        <button class="collection-filter" type="button" data-filter="focus">时间专注</button>
-        <button class="collection-filter" type="button" data-filter="notion">Notion 组件</button>
-        <button class="collection-filter" type="button" data-filter="study">学习资料</button>
-        <button class="collection-filter" type="button" data-filter="other">其他工具</button>
-      </div>
-
-      <p id="emptyState" class="empty-state is-hidden">没有找到匹配的内容，试试换一个关键词，或者先点“全部分类”再看看。</p>
-
-      <div class="collection-grid">
-        <article class="collection-card collection-card-festival" data-collection data-group="festival">
-          <header class="collection-header">
-            <p class="collection-index">01</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>节日特效</h3>
-                <span class="collection-count">11 项</span>
-              </div>
-              <p>适合节庆、祝福和氛围展示，电脑端体验通常更完整。</p>
-            </div>
-          </header>
-          <div class="collection-sections">
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">烟花</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="/fireworks/" target="_blank" rel="noreferrer" data-keywords="跨年烟花 烟花 节日 特效">跨年烟花</a>
-                <a class="resource-link" href="/fireworks1/" target="_blank" rel="noreferrer" data-keywords="跨年烟花1 烟花 节日 特效">跨年烟花 1</a>
-                <a class="resource-link" href="/fireworks2/" target="_blank" rel="noreferrer" data-keywords="跨年烟花2 烟花 节日 特效">跨年烟花 2</a>
-                <a class="resource-link" href="/fireworks3/" target="_blank" rel="noreferrer" data-keywords="跨年烟花3 烟花 节日 特效">跨年烟花 3</a>
-                <a class="resource-link" href="/fireworks4/" target="_blank" rel="noreferrer" data-keywords="跨年烟花4 烟花 节日 特效">跨年烟花 4</a>
-              </div>
-            </section>
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">圣诞</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="/Christmas/" target="_blank" rel="noreferrer" data-keywords="粒子圣诞树 圣诞 节日 特效">粒子圣诞树</a>
-                <a class="resource-link" href="/christmas-tree/" target="_blank" rel="noreferrer" data-keywords="3D圣诞树 圣诞 节日 特效">3D 圣诞树</a>
-                <a class="resource-link" href="/Christmas1/" target="_blank" rel="noreferrer" data-keywords="圣诞树一 圣诞 节日 特效">圣诞树一</a>
-                <a class="resource-link" href="/Christmas2/" target="_blank" rel="noreferrer" data-keywords="圣诞树二 圣诞 节日 特效">圣诞树二</a>
-                <a class="resource-link" href="/Christmas3/" target="_blank" rel="noreferrer" data-keywords="圣诞礼盒 圣诞 节日 特效">圣诞礼盒</a>
-              </div>
-            </section>
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">祝福</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="/birthday/" target="_blank" rel="noreferrer" data-keywords="生日祝福 祝福 节日 页面">生日祝福</a>
-              </div>
-            </section>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-media" data-collection data-group="media">
-          <header class="collection-header">
-            <p class="collection-index">02</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>影音内容</h3>
-                <span class="collection-count">4 项</span>
-              </div>
-              <p>优先放最常访问的影视、短剧和音乐入口，适合快速直达。</p>
-            </div>
-          </header>
-          <div class="collection-sections">
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">视频</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="/vip/" target="_blank" rel="noreferrer" data-keywords="免费影视 视频 追剧">免费影视</a>
-                <a class="resource-link" href="/duanju/" target="_blank" rel="noreferrer" data-keywords="免费短剧 短剧">免费短剧</a>
-              </div>
-            </section>
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">音乐</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="https://lofi.88lin.eu.org" target="_blank" rel="noreferrer" data-keywords="Lofi 音乐 Lofi Radio">Lofi 音乐</a>
-                <a class="resource-link" href="/Music/" target="_blank" rel="noreferrer" data-keywords="音乐 听歌">单页音乐</a>
-              </div>
-            </section>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-fun" data-collection data-group="fun">
-          <header class="collection-header">
-            <p class="collection-index">03</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>趣味灵感</h3>
-                <span class="collection-count">4 项</span>
-              </div>
-              <p>更偏玩具项目、轻互动和灵感浏览，适合随手打开放松一下。</p>
-            </div>
-          </header>
-          <div class="link-cloud">
-            <a class="resource-link" href="/love1/" target="_blank" rel="noreferrer" data-keywords="表白代码 表白 页面">表白代码 1</a>
-            <a class="resource-link" href="/love2/" target="_blank" rel="noreferrer" data-keywords="表白代码 表白 页面">表白代码 2</a>
-            <a class="resource-link" href="/love3/" target="_blank" rel="noreferrer" data-keywords="表白代码 表白 页面">表白代码 3</a>
-            <a class="resource-link" href="https://site.nocode.host" target="_blank" rel="noreferrer" data-keywords="动物塑测试 测试 趣味">动物塑测试</a>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-portfolio" data-collection data-group="portfolio">
-          <header class="collection-header">
-            <p class="collection-index">04</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>个人站点</h3>
-                <span class="collection-count">7 项</span>
-              </div>
-              <p>集中展示个人主页、博客与表达类页面，更像一个小型站点集合。</p>
-            </div>
-          </header>
-          <div class="link-cloud">
-            <a class="resource-link" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer" data-keywords="个人博客 茉灵智库 博客">个人博客</a>
-            <a class="resource-link" href="https://88lin.eu.org/" target="_blank" rel="noreferrer" data-keywords="88lin 茉灵智库 AI Agent MCP 个人主页">88lin 个人主页</a>
-            <a class="resource-link" href="https://xiaozeroai.github.io" target="_blank" rel="noreferrer" data-keywords="个人主页 首页 作品">个人主页</a>
-            <a class="resource-link" href="/gzh/" target="_blank" rel="noreferrer" data-keywords="关注公众号 微信 公众号">关注公众号</a>
-            <a class="resource-link" href="https://xhslink.cn/o/418LhmF376U" target="_blank" rel="noreferrer" data-keywords="小红书 关注 社交 笔记">小红书</a>
-            <a class="resource-link" href="https://v.douyin.com/nDD4_ACPRiY" target="_blank" rel="noreferrer" data-keywords="抖音 关注 社交 视频">抖音</a>
-            <a class="resource-link" href="/fireworks/1" target="_blank" rel="noreferrer" data-keywords="请我喝咖啡 打赏">请我喝咖啡</a>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-design" data-collection data-group="design">
-          <header class="collection-header">
-            <p class="collection-index">05</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>图像设计</h3>
-                <span class="collection-count">6 项</span>
-              </div>
-              <p>偏图片处理、图文生成和轻设计工具，适合做内容和素材时使用。</p>
-            </div>
-          </header>
-          <div class="link-cloud">
-            <a class="resource-link" href="/bbl/" target="_blank" rel="noreferrer" data-keywords="瀑布流图片 浏览器 图片">瀑布流图片</a>
-            <a class="resource-link" href="https://picseal.zhiweio.me" target="_blank" rel="noreferrer" data-keywords="相机风格 水印照片 图片 水印">相机风格水印照片</a>
-            <a class="resource-link" href="https://88lin.github.io/PaperStudio" target="_blank" rel="noreferrer" data-keywords="在线打印纸设计 设计 模板">打印纸设计</a>
-            <a class="resource-link" href="/academic-poster-generator/" target="_blank" rel="noreferrer" data-keywords="海报生成器 学术海报 设计">科研海报生成器</a>
-            <a class="resource-link" href="https://88lin.github.io/TextCard-Studio" target="_blank" rel="noreferrer" data-keywords="小红书智能文字转图片 文本 图片">小红书智能文字转图片</a>
-            <a class="resource-link" href="https://www.huglemon.com/tools/xhs" target="_blank" rel="noreferrer" data-keywords="小红书加微引流图生成器 小红书 引流">小红书加微引流图生成器</a>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-utility" data-collection data-group="utility">
-          <header class="collection-header">
-            <p class="collection-index">06</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>效率工具</h3>
-                <span class="collection-count">5 项</span>
-              </div>
-              <p>更偏向解决具体问题的工具集合，适合带着明确任务直接进入。</p>
-            </div>
-          </header>
-          <div class="link-cloud">
-            <a class="resource-link" href="/Bookmarks/" target="_blank" rel="noreferrer" data-keywords="书签管理 书签导航 收藏夹 搜索">书签导航与搜索</a>
-            <a class="resource-link" href="/ai-model-checker" target="_blank" rel="noreferrer" data-keywords="模型检测 AI 检测">AI模型检测</a>
-            <a class="resource-link" href="/Mortgage-Calculator/" target="_blank" rel="noreferrer" data-keywords="房贷计算器 贷款 计算">房贷计算器</a>
-            <a class="resource-link" href="https://research.88lin.eu.org" target="_blank" rel="noreferrer" data-keywords="深度研究 deep 工具">深度研究</a>
-            <a class="resource-link" href="/jiangchong/" target="_blank" rel="noreferrer" data-keywords="论文降重 论文 学术">论文降重</a>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-focus" data-collection data-group="focus">
-          <header class="collection-header">
-            <p class="collection-index">07</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>时间专注</h3>
-                <span class="collection-count">3 项</span>
-              </div>
-              <p>围绕计时、专注和时间感知整理，适合工作学习时快速调用。</p>
-            </div>
-          </header>
-          <div class="collection-sections">
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">时钟计时</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="https://timepulse.ravelloh.top" target="_blank" rel="noreferrer" data-keywords="倒计时应用 时间 工具">倒计时应用</a>
-              </div>
-            </section>
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">专注氛围</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="https://focustide.app" target="_blank" rel="noreferrer" data-keywords="番茄时钟 专注 计时">番茄时钟</a>
-                <a class="resource-link" href="/stop/" target="_blank" rel="noreferrer" data-keywords="外放干扰器 声音 工具">外放干扰器</a>
-              </div>
-            </section>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-notion" data-collection data-group="notion">
-          <header class="collection-header">
-            <p class="collection-index">08</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>Notion 组件</h3>
-                <span class="collection-count">8 项</span>
-              </div>
-              <p>把首页里所有 Notion 风格的小组件集中收纳，找组件时不再分散在各个分类里。</p>
-            </div>
-          </header>
-          <div class="collection-sections">
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">时间组件</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="/notion/2/" target="_blank" rel="noreferrer" data-keywords="显示时间 时钟 Notion 组件">显示时间组件</a>
-                <a class="resource-link" href="/notion/3/" target="_blank" rel="noreferrer" data-keywords="倒计时组件 计时 时间 Notion 组件">倒计时组件</a>
-                <a class="resource-link" href="/notion/8/" target="_blank" rel="noreferrer" data-keywords="计时器组件 时间 工具 Notion 组件">计时器组件</a>
-              </div>
-            </section>
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">内容组件</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="/notion/6/" target="_blank" rel="noreferrer" data-keywords="音乐热歌 榜单 热歌 Notion 组件">音乐热歌组件</a>
-                <a class="resource-link" href="/notion/shici/" target="_blank" rel="noreferrer" data-keywords="一言古诗 诗词 文案 Notion 组件">一言古诗组件</a>
-                <a class="resource-link" href="/notion/hy" target="_blank" rel="noreferrer" data-keywords="访客欢迎 问候 归属地 Notion 组件">访客欢迎组件</a>
-              </div>
-            </section>
-            <section class="collection-section">
-              <div class="collection-section-head">
-                <span class="collection-section-label">氛围组件</span>
-              </div>
-              <div class="link-cloud">
-                <a class="resource-link" href="/notion/1/" target="_blank" rel="noreferrer" data-keywords="植物生长 动画 时间 Notion 组件">植物生长组件</a>
-                <a class="resource-link" href="/notion/7/" target="_blank" rel="noreferrer" data-keywords="窗外动画 动画 风景 Notion 组件">窗外动画组件</a>
-              </div>
-            </section>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-study" data-collection data-group="study">
-          <header class="collection-header">
-            <p class="collection-index">09</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>学习资料</h3>
-                <span class="collection-count">4 项</span>
-              </div>
-              <p>把偏知识、诗词和学习辅助的页面单独收起来，更方便集中浏览。</p>
-            </div>
-          </header>
-          <div class="link-cloud">
-            <a class="resource-link" href="/books" target="_blank" rel="noreferrer" data-keywords="个人书单 旭日图 阅读 书籍">个人书单旭日图</a>
-            <a class="resource-link" href="https://learn.88lin.eu.org" target="_blank" rel="noreferrer" data-keywords="知识分享 科学前沿">知识分享</a>
-            <a class="resource-link" href="/gushi/dist/" target="_blank" rel="noreferrer" data-keywords="古诗起名 起名 诗词">古诗起名</a>
-            <a class="resource-link" href="https://88lin.github.io/Periodic-table-web" target="_blank" rel="noreferrer" data-keywords="元素周期表 化学 学习">元素周期表</a>
-          </div>
-        </article>
-
-        <article class="collection-card collection-card-other" data-collection data-group="other">
-          <header class="collection-header">
-            <p class="collection-index">10</p>
-            <div>
-              <div class="collection-title-row">
-                <h3>其他工具</h3>
-                <span class="collection-count">3 项</span>
-              </div>
-              <p>放一些不太适合塞进主分类，但又会偶尔用到的杂项小工具和接口页面。</p>
-            </div>
-          </header>
-          <div class="link-cloud">
-            <a class="resource-link" href="/xy/" target="_blank" rel="noreferrer" data-keywords="闲鱼敏感词加密 加密 工具 其他">闲鱼敏感词加密</a>
-            <a class="resource-link" href="https://88lin.github.io/gift-ledger" target="_blank" rel="noreferrer" data-keywords="专业电子礼簿器 礼簿 记录 其他">电子礼簿系统</a>
-            <a class="resource-link" href="https://xiaozeroai.github.io/FangHong_wx" target="_blank" rel="noreferrer" data-keywords="防红接口 接口 微信 其他">防红接口</a>
-          </div>
-        </article>
-      </div>
-    </section>
+ <header class="site-header">
+  <a class="brand" href="./" aria-label="茉灵导航首页"><img src="assets/home/mark.svg" width="50" height="50" alt="" class="brand-mark"><span class="brand-copy"><strong>茉灵导航<span class="brand-period">.</span></strong><span>茉灵智库 · 工具导航</span></span></a>
+  <nav class="header-nav" aria-label="主导航"><a class="nav-current" href="#collections" aria-current="page">发现工具</a><a href="https://dev.88lin.eu.org/" target="_blank" rel="noreferrer">开发服务 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a href="#site-help">关于导航</a></nav>
+  <a class="nav-contact" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">联系作者 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+ </header>
+ <main>
+<div class="launchpad"><section aria-labelledby="hero-title" class="hero">
+<h1 id="hero-title"><span class="hero-line">好工具，</span><span class="hero-line">让灵感<span class="hero-accent">即刻发生。</span></span></h1>
+<p class="hero-summary"><span>收集实用与有趣，</span><span>每个想法，都有顺手的工具。</span></p>
+<span id="finder" class="legacy-anchor" aria-hidden="true"></span>
+<form action="./" class="search-form" id="searchForm" method="get" role="search">
+<label class="sr-only" for="searchInput">搜索工具、网站或用途</label>
+<div class="search-input-wrap"><svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 4 4"></path></svg><input aria-controls="toolGrid" aria-describedby="searchHint" autocomplete="off" class="search-input" id="searchInput" name="q" placeholder="找工具，让想法发生…" type="search"/><kbd class="search-key" title="按 / 快速搜索">/</kbd><button aria-label="清除搜索" class="search-clear is-hidden" id="clearSearch" type="button"><svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"></path></svg></button><button class="search-submit" type="submit">搜索 <svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></button></div>
+</form>
+<div class="search-shortcuts" id="searchHint"><span>试试搜索</span><button class="shortcut-chip" data-shortcut="AI" type="button">AI 工具</button><button class="shortcut-chip" data-shortcut="海报" type="button">海报设计</button><button class="shortcut-chip" data-shortcut="专注" type="button">专注计时</button><span class="hero-count"><strong id="projectCount">56</strong> 个入口，慢慢发现</span></div>
+</section><div class="featured-grid">
+<a class="feature-card feature-design" href="#collections" data-browse="design"><span class="palette-composition" aria-hidden="true"><i></i><i></i><i></i></span><span class="feature-copy"><h2>把想法，<span>变成画面</span></h2><p>探索设计与创作工具</p></span><span class="feature-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
+<a class="feature-card feature-focus" href="#collections" data-browse="focus"><span class="focus-composition" aria-hidden="true"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 15v10l7 4"/><path d="M24 6v3M24 39v3M6 24h3M39 24h3"/><circle cx="24" cy="25" r="2" fill="currentColor" stroke="none"/></svg></span><span class="feature-copy"><h2>专注一点，<span>轻松一点</span></h2><p>找到适合自己的节奏</p></span><span class="feature-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></a>
+<aside id="featured" class="discovery-stage" data-tone="violet" aria-roledescription="轮播" aria-labelledby="discovery-heading" tabindex="0">
+<div class="deck-sheet deck-back" aria-hidden="true"></div><div class="deck-sheet deck-middle" aria-hidden="true"></div>
+<div class="discovery-viewport"><div class="discovery-track"><article class="discovery-card" data-tone="violet" data-slot="0" role="group" aria-roledescription="卡片" aria-label="第 1 张，共 6 张：古诗起名">
+<b class="discovery-ghost" aria-hidden="true">01</b><p class="discovery-spine" aria-hidden="true">古诗起名</p>
+<div class="discovery-top"><h2 id="discovery-heading">随手发现</h2></div>
+<div class="discovery-content"><div class="discovery-symbol" id="discoverySymbol" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></div><p class="discovery-meta">学习资料 <s></s> 推荐入口</p><h3 id="discoveryName">古诗起名</h3><p id="discoveryDescription" class="discovery-description">从诗词意境里，遇见一个好名字</p></div><a id="discoveryLink" class="discovery-link" href="/gushi/dist/" target="_blank" rel="noopener noreferrer" draggable="false">打开工具 <i aria-hidden="true">→</i></a>
+</article></div></div>
+<div class="discovery-bottom"><button id="previousTool" class="deck-nav" type="button" aria-label="上一个推荐工具"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6 9 12l6 6"/></svg></button><span class="deck-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i></span><button id="shuffleTool" class="deck-nav" type="button" aria-label="下一个推荐工具"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button><span>左右滑动，发现更多</span></div><span id="discoveryStatus" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></span>
+</aside>
+</div></div>
+  <section id="collections" class="catalog" aria-labelledby="catalog-title">
+   <div class="section-heading"><h2 id="catalog-title">发现你的下一个好工具<span>.</span></h2><p id="searchStatus" role="status" aria-live="polite" aria-atomic="true">全部 <strong id="resultCount">56</strong> 个入口</p></div>
+   <div class="collection-toolbar" role="group" aria-label="工具分类"><button class="collection-filter is-active" type="button" data-filter="all" aria-pressed="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>全部工具</button><button class="collection-filter" type="button" data-filter="utility" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="3"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4M18 9h4m-4 6h4"/></svg>效率工具</button>
+<button class="collection-filter" type="button" data-filter="design" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-4 5 5"/></svg>图像设计</button>
+<button class="collection-filter" type="button" data-filter="media" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m10 8 6 4-6 4Z"/></svg>影音内容</button>
+<button class="collection-filter" type="button" data-filter="study" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg>学习资料</button>
+<button class="collection-filter" type="button" data-filter="focus" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg>时间专注</button>
+<button class="collection-filter" type="button" data-filter="festival" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg>节日特效</button>
+<button class="collection-filter" type="button" data-filter="notion" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 10 5-10 5L2 8Zm-10 9 10 5 10-5M2 17l10 5 10-5"/></svg>Notion 组件</button>
+<button class="collection-filter" type="button" data-filter="fun" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg>趣味灵感</button>
+<button class="collection-filter" type="button" data-filter="portfolio" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3Z"/></svg>个人站点</button>
+<button class="collection-filter" type="button" data-filter="other" aria-pressed="false"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>其他工具</button>
+</div>
+   <div class="tool-grid" id="toolGrid"><a class="resource-link tool-card blue" href="/ai-model-checker" target="_blank" rel="noopener noreferrer" data-group="utility" data-keywords="模型检测 AI 检测">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="3"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4M18 9h4m-4 6h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>AI模型检测</h3><p>测试模型表现，找到适合你的 AI</p><span class="tool-category">效率工具</span>
+</a><a class="resource-link tool-card purple" href="/academic-poster-generator/" target="_blank" rel="noopener noreferrer" data-group="design" data-keywords="海报生成器 学术海报 设计">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-4 5 5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>科研海报生成器</h3><p>把研究成果，变成清晰好看的海报</p><span class="tool-category">图像设计</span>
+</a><a class="resource-link tool-card orange" href="/Bookmarks/" target="_blank" rel="noopener noreferrer" data-group="utility" data-keywords="书签管理 书签导航 收藏夹 搜索">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>书签导航与搜索</h3><p>收好常用网站，让下次查找更轻松</p><span class="tool-category">效率工具</span>
+</a><a class="resource-link tool-card mint" href="/gushi/dist/" target="_blank" rel="noopener noreferrer" data-group="study" data-keywords="古诗起名 起名 诗词">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>古诗起名</h3><p>从诗词意境里，遇见一个好名字</p><span class="tool-category">学习资料</span>
+</a><a class="resource-link tool-card rose" href="/vip/" target="_blank" rel="noopener noreferrer" data-group="media" data-keywords="免费影视 视频 追剧">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m10 8 6 4-6 4Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>免费影视</h3><p>电影与剧集，给日常一点放松</p><span class="tool-category">影音内容</span>
+</a><a class="resource-link tool-card red" href="https://focustide.app" target="_blank" rel="noopener noreferrer" data-group="focus" data-keywords="番茄时钟 专注 计时">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>番茄时钟</h3><p>留一段不被打扰的专注时间</p><span class="tool-category">时间专注</span>
+</a><a class="resource-link tool-card sky" href="https://88lin.github.io/TextCard-Studio" target="_blank" rel="noopener noreferrer" data-group="design" data-keywords="小红书智能文字转图片 文本 图片">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6V3h18v3M12 3v18m-4 0h8"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>小红书智能文字转图片</h3><p>把文字排成一张值得分享的卡片</p><span class="tool-category">图像设计</span>
+</a><a class="resource-link tool-card teal" href="/Mortgage-Calculator/" target="_blank" rel="noopener noreferrer" data-group="utility" data-keywords="房贷计算器 贷款 计算">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="2" width="14" height="20" rx="3"/><path d="M8 6h8M8 11h1m6 0h1m-8 4h1m6 0h1m-8 4h1m6 0h1"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>房贷计算器</h3><p>算清每月还款，做好自己的规划</p><span class="tool-category">效率工具</span>
+</a><a class="resource-link tool-card violet" href="https://lofi.88lin.eu.org" target="_blank" rel="noopener noreferrer" data-group="media" data-keywords="Lofi 音乐 Lofi Radio">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2"/><ellipse cx="6" cy="18" rx="3" ry="3"/><ellipse cx="18" cy="16" rx="3" ry="3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>Lofi 音乐</h3><p>适合工作、阅读和放空的背景音乐</p><span class="tool-category">影音内容</span>
+</a><a class="resource-link tool-card amber" href="/books" target="_blank" rel="noopener noreferrer" data-group="study" data-keywords="个人书单 旭日图 阅读 书籍">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>个人书单旭日图</h3><p>换个角度，发现书与书之间的联系</p><span class="tool-category">学习资料</span>
+</a><a class="resource-link tool-card indigo" href="/fireworks/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="跨年烟花 烟花 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>跨年烟花</h3><p>把值得庆祝的时刻，点亮在屏幕上</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card indigo" href="https://research.88lin.eu.org" target="_blank" rel="noopener noreferrer" data-group="utility" data-keywords="深度研究 deep 工具">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>深度研究</h3><p>带着问题，开始一次更深入的研究</p><span class="tool-category">效率工具</span>
+</a><a class="resource-link tool-card purple" href="/jiangchong/" target="_blank" rel="noopener noreferrer" data-group="utility" data-keywords="论文降重 论文 学术">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6V3h18v3M12 3v18m-4 0h8"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>论文降重</h3><p>连接 AI 接口，辅助论文文字改写</p><span class="tool-category">效率工具</span>
+</a><a class="resource-link tool-card sky" href="/bbl/" target="_blank" rel="noopener noreferrer" data-group="design" data-keywords="瀑布流图片 浏览器 图片">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-4 5 5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>瀑布流图片</h3><p>用瀑布流排布，轻松浏览图片</p><span class="tool-category">图像设计</span>
+</a><a class="resource-link tool-card teal" href="https://picseal.zhiweio.me" target="_blank" rel="noopener noreferrer" data-group="design" data-keywords="相机风格 水印照片 图片 水印">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-4 5 5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>相机风格水印照片</h3><p>给照片加上相机风格的信息水印</p><span class="tool-category">图像设计</span>
+</a><a class="resource-link tool-card orange" href="https://88lin.github.io/PaperStudio" target="_blank" rel="noopener noreferrer" data-group="design" data-keywords="在线打印纸设计 设计 模板">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>打印纸设计</h3><p>设计一张适合自己的打印纸</p><span class="tool-category">图像设计</span>
+</a><a class="resource-link tool-card rose" href="https://www.huglemon.com/tools/xhs" target="_blank" rel="noopener noreferrer" data-group="design" data-keywords="小红书加微引流图生成器 小红书 引流">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-4 5 5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>小红书加微引流图生成器</h3><p>制作小红书风格的引流图素材</p><span class="tool-category">图像设计</span>
+</a><a class="resource-link tool-card orange" href="/duanju/" target="_blank" rel="noopener noreferrer" data-group="media" data-keywords="免费短剧 短剧 娱乐">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m10 8 6 4-6 4Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>免费短剧</h3><p>用碎片时间，看一段轻松的故事</p><span class="tool-category">影音内容</span>
+</a><a class="resource-link tool-card sky" href="/Music/" target="_blank" rel="noopener noreferrer" data-group="media" data-keywords="音乐 听歌">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2"/><ellipse cx="6" cy="18" rx="3" ry="3"/><ellipse cx="18" cy="16" rx="3" ry="3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>单页音乐</h3><p>在简单的音乐页面里，听一会儿歌</p><span class="tool-category">影音内容</span>
+</a><a class="resource-link tool-card blue" href="https://learn.88lin.eu.org" target="_blank" rel="noopener noreferrer" data-group="study" data-keywords="知识分享 科学前沿">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>知识分享</h3><p>一起探索知识分享与科学前沿</p><span class="tool-category">学习资料</span>
+</a><a class="resource-link tool-card indigo" href="https://88lin.github.io/Periodic-table-web" target="_blank" rel="noopener noreferrer" data-group="study" data-keywords="元素周期表 化学 学习">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>元素周期表</h3><p>换一种交互方式，认识化学元素</p><span class="tool-category">学习资料</span>
+</a><a class="resource-link tool-card sky" href="https://timepulse.ravelloh.top" target="_blank" rel="noopener noreferrer" data-group="focus" data-keywords="倒计时应用 时间 工具">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>倒计时应用</h3><p>给重要的事情，设置一个倒计时</p><span class="tool-category">时间专注</span>
+</a><a class="resource-link tool-card orange" href="/stop/" target="_blank" rel="noopener noreferrer" data-group="focus" data-keywords="外放干扰器 声音 工具">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2"/><ellipse cx="6" cy="18" rx="3" ry="3"/><ellipse cx="18" cy="16" rx="3" ry="3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>外放干扰器</h3><p>通过延迟回放，体验声音小工具</p><span class="tool-category">时间专注</span>
+</a><a class="resource-link tool-card violet" href="/fireworks1/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="跨年烟花1 烟花 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>跨年烟花 1</h3><p>打开一场绚丽的网页烟花</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card rose" href="/fireworks2/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="跨年烟花2 烟花 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>跨年烟花 2</h3><p>给屏幕换一种烟花绽放的方式</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card orange" href="/fireworks3/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="跨年烟花3 烟花 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>跨年烟花 3</h3><p>让烟花为特别的时刻增添气氛</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card sky" href="/fireworks4/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="跨年烟花4 烟花 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>跨年烟花 4</h3><p>发现另一种烟花动画的浪漫</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card mint" href="/Christmas/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="粒子圣诞树 圣诞 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>粒子圣诞树</h3><p>用粒子动画点亮你的圣诞树</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card teal" href="/christmas-tree/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="3D圣诞树 圣诞 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 10 5-10 5L2 8Zm-10 9 10 5 10-5M2 17l10 5 10-5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>3D 圣诞树</h3><p>一棵可以在屏幕里欣赏的 3D 圣诞树</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card leaf" href="/Christmas1/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="圣诞树一 圣诞 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>圣诞树一</h3><p>为圣诞节准备一点屏幕上的惊喜</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card rose" href="/Christmas2/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="圣诞树二 圣诞 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>圣诞树二</h3><p>把节日的温暖藏进一个小页面</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card red" href="/Christmas3/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="圣诞礼盒 圣诞 节日 特效">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>圣诞礼盒</h3><p>圣诞礼盒主题的节日小作品</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card rose" href="/birthday/" target="_blank" rel="noopener noreferrer" data-group="festival" data-keywords="生日祝福 祝福 节日 页面">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>生日祝福</h3><p>把一句生日快乐，变成特别的祝福</p><span class="tool-category">节日特效</span>
+</a><a class="resource-link tool-card blue" href="/notion/2/" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="显示时间 时钟 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>显示时间组件</h3><p>把实时钟表嵌入你的 Notion 页面</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card orange" href="/notion/3/" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="倒计时组件 计时 时间 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>倒计时组件</h3><p>为页面加上一个清晰的倒计时</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card mint" href="/notion/8/" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="计时器组件 时间 工具 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>计时器组件</h3><p>在 Notion 里，也能随手开启计时</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card violet" href="/notion/6/" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="音乐热歌 榜单 热歌 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13M9 9l12-2"/><ellipse cx="6" cy="18" rx="3" ry="3"/><ellipse cx="18" cy="16" rx="3" ry="3"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>音乐热歌组件</h3><p>把音乐热歌榜放进自己的页面</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card leaf" href="/notion/shici/" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="一言古诗 诗词 文案 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>一言古诗组件</h3><p>打开页面时，遇见一句好诗</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card rose" href="/notion/hy" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="访客欢迎 问候 归属地 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>访客欢迎组件</h3><p>给来到页面的访客一句欢迎</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card mint" href="/notion/1/" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="植物生长 动画 时间 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 10 5-10 5L2 8Zm-10 9 10 5 10-5M2 17l10 5 10-5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>植物生长组件</h3><p>让植物生长动画陪伴你的页面</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card sky" href="/notion/7/" target="_blank" rel="noopener noreferrer" data-group="notion" data-keywords="窗外动画 动画 风景 Notion 组件">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-4 5 5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>窗外动画组件</h3><p>给页面留一扇可以看风景的窗</p><span class="tool-category">Notion 组件</span>
+</a><a class="resource-link tool-card rose" href="/love1/" target="_blank" rel="noopener noreferrer" data-group="fun" data-keywords="表白代码 表白 页面">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>表白代码 1</h3><p>用一个小页面，认真表达你的心意</p><span class="tool-category">趣味灵感</span>
+</a><a class="resource-link tool-card violet" href="/love2/" target="_blank" rel="noopener noreferrer" data-group="fun" data-keywords="表白代码 表白 页面">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>表白代码 2</h3><p>另一种把喜欢说出口的网页方式</p><span class="tool-category">趣味灵感</span>
+</a><a class="resource-link tool-card red" href="/love3/" target="_blank" rel="noopener noreferrer" data-group="fun" data-keywords="表白代码 表白 页面">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>表白代码 3</h3><p>给特别的人，准备一点特别的表达</p><span class="tool-category">趣味灵感</span>
+</a><a class="resource-link tool-card amber" href="https://site.nocode.host" target="_blank" rel="noopener noreferrer" data-group="fun" data-keywords="动物塑测试 测试 趣味">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>动物塑测试</h3><p>来看看，你会是哪一种动物形象</p><span class="tool-category">趣味灵感</span>
+</a><a class="resource-link tool-card leaf" data-group="portfolio" data-keywords="个人博客 茉灵智库 博客 文章" href="https://blog.88lin.eu.org" rel="noopener noreferrer" target="_blank">
+<span class="tool-top"><span class="tool-icon"><svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"></path></svg></span><span class="tool-arrow"><svg aria-hidden="true" class="icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" viewbox="0 0 24 24"><path d="M7 17 17 7M7 7h10v10"></path></svg></span></span>
+<h3>个人博客</h3><p>想先了解站主在写什么、做什么，可以从这里开始。</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card leaf" href="https://dev.88lin.eu.org/" target="_blank" rel="noopener noreferrer" data-group="portfolio" data-keywords="开发服务 AI Agent 自动化 网站定制 项目开发">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>开发服务</h3><p>AI Agent、自动化与网站定制</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card blue" href="https://88lin.eu.org/" target="_blank" rel="noopener noreferrer" data-group="portfolio" data-keywords="88lin 茉灵智库 AI Agent MCP 个人主页">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>88lin 个人主页</h3><p>了解 88lin 的项目、实践与探索</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card violet" href="https://xiaozeroai.github.io" target="_blank" rel="noopener noreferrer" data-group="portfolio" data-keywords="个人主页 首页 作品">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>个人主页</h3><p>另一个收集个人作品与表达的地方</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card mint" href="/gzh/" target="_blank" rel="noopener noreferrer" data-group="portfolio" data-keywords="关注公众号 微信 公众号">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>关注公众号</h3><p>关注微信公众号，继续发现新内容</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card rose" href="https://xhslink.cn/o/418LhmF376U" target="_blank" rel="noopener noreferrer" data-group="portfolio" data-keywords="小红书 关注 社交 笔记">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8" cy="8" r="1.5"/><path d="m4 17 5-5 4 4 3-4 5 5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>小红书</h3><p>在小红书上，看看新的分享与记录</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card blue" href="https://v.douyin.com/nDD4_ACPRiY" target="_blank" rel="noopener noreferrer" data-group="portfolio" data-keywords="抖音 关注 社交 视频">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="m10 8 6 4-6 4Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>抖音</h3><p>打开抖音，看看站主的视频分享</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card amber" href="/fireworks/1" target="_blank" rel="noopener noreferrer" data-group="portfolio" data-keywords="请我喝咖啡 打赏">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>请我喝咖啡</h3><p>如果这些小工具帮到了你</p><span class="tool-category">个人站点</span>
+</a><a class="resource-link tool-card orange" href="/xy/" target="_blank" rel="noopener noreferrer" data-group="other" data-keywords="闲鱼敏感词加密 加密 工具 其他">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6V3h18v3M12 3v18m-4 0h8"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>闲鱼敏感词加密</h3><p>处理闲鱼场景中的敏感词文本</p><span class="tool-category">其他工具</span>
+</a><a class="resource-link tool-card rose" href="https://88lin.github.io/gift-ledger" target="_blank" rel="noopener noreferrer" data-group="other" data-keywords="专业电子礼簿器 礼簿 记录 其他">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>电子礼簿系统</h3><p>把礼金往来，整理成清楚的记录</p><span class="tool-category">其他工具</span>
+</a><a class="resource-link tool-card teal" href="https://xiaozeroai.github.io/FangHong_wx" target="_blank" rel="noopener noreferrer" data-group="other" data-keywords="防红接口 接口 微信 其他">
+  <span class="tool-top"><span class="tool-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 10 5-10 5L2 8Zm-10 9 10 5 10-5M2 17l10 5 10-5"/></svg></span><span class="tool-arrow"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></span></span>
+  <h3>防红接口</h3><p>查看微信链接相关的接口工具</p><span class="tool-category">其他工具</span>
+</a></div>
+   <div class="empty-state is-hidden" id="emptyState"><span class="empty-icon"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg></span><h3>还没找到这个工具</h3><p>换个更简单的关键词，或看看其他分类。</p><button id="resetFilters" type="button">查看全部工具 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button></div>
+  </section>
     <section id="site-help" class="section site-help" aria-labelledby="site-help-title">
-      <h2 id="site-help-title">使用与来源说明</h2>
+      <div class="help-intro"><h2 id="site-help-title">关于这份收藏</h2><p>打开之前，你可能想知道。</p></div><div class="help-questions">
       <details>
         <summary>这个导航站由谁维护，收录哪些内容？</summary>
         <p>茉灵智库工具导航由 88lin 维护，收录个人制作与整理的实用站点、轻工具与趣味项目。站内工具与外部网站按使用场景分组，可以按名称或用途搜索。作者的实践方向见<a href="https://88lin.eu.org/about/" target="_blank" rel="noreferrer">关于 88lin</a>。</p>
@@ -666,390 +440,29 @@
       </details>
       <details>
         <summary>怎么联系作者或获取源码？</summary>
-        <p>可通过 <a href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">QQ 2528251483</a> 联系作者 88lin，也可访问个人博客 <a href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">blog.88lin.eu.org</a> 了解更多内容。若对某个页面的源码感兴趣，同样可以直接联系作者索取。</p>
+        <p>可通过 <a href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">QQ 2528251483</a> 联系作者 88lin，也可访问 <a href="https://88lin.eu.org/" target="_blank" rel="noreferrer">88lin 个人主页</a> 了解更多内容。若对某个页面的源码感兴趣，同样可以直接联系作者索取。</p>
       </details>
+      </div>
     </section>
-  </main>
 
-  <footer id="footer" class="site-footer reveal">
-    <div class="footer-grid">
-      <div>
-        <p class="footer-label">联系与反馈</p>
-        <h2>如果你想<span class="accent-text">定制页面</span>、反馈问题，或者只是来打个招呼，都欢迎联系我。</h2>
-      </div>
-      <div class="footer-actions">
-        <a class="footer-link" href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer">QQ：2528251483</a>
-        <a class="footer-link" href="https://blog.88lin.eu.org" target="_blank" rel="noreferrer">进入个人博客</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>本站采用单页导航方式整理常用入口，欢迎收藏后随时回来找工具。</p>
-      <p>备案号：<a href="http://beian.miit.gov.cn" target="_blank" rel="noreferrer">桂ICP备21015360号-1</a></p>
-    </div>
+ </main>
+  <footer id="footer" class="site-footer">
+    <div class="footer-main"><div><a class="footer-brand" href="#"><img class="footer-mark" src="assets/home/mark.svg" alt="" width="44" height="44"><span class="footer-brand-copy"><strong>茉灵智库</strong><span>工具导航</span></span></a><p>让工具顺手，让灵感自由。</p></div><div class="footer-actions"><a href="https://qm.qq.com/q/Q46OjlCcY8" target="_blank" rel="noreferrer"><span>反馈问题 / 联系作者</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a href="https://88lin.eu.org/" target="_blank" rel="noreferrer"><span>个人主页</span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a></div></div>
+    <div class="footer-bottom"><p class="footer-meta"><span>自 2021.07.12 起收集美好</span><span id="siteRuntime">运行时长计算中</span></p><p class="footer-record"><a href="http://beian.miit.gov.cn" target="_blank" rel="noreferrer">桂ICP备21015360号-1</a></p></div>
   </footer>
 </div>
-
-<!-- <button id="backToTop" class="back-to-top" type="button" aria-label="回到顶部" title="回到顶部"></button> -->
-
+<button id="backToTop" class="back-to-top" type="button" aria-label="回到顶部" title="回到顶部"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20V4m-6 6 6-6 6 6"/></svg></button>
 <aside id="welcomeToast" class="welcome-toast is-hidden" aria-live="polite" aria-atomic="true">
-  <div class="welcome-toast-inner">
+  <button id="dismissWelcome" class="welcome-close" type="button" aria-label="关闭欢迎提示"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+  <img class="welcome-mark" src="assets/home/mark.svg" alt="" width="48" height="48"><div class="welcome-toast-inner"><strong class="welcome-title">嗨，欢迎来逛逛</strong><p class="welcome-mobile-message">好工具，随手可得。</p>
     <p id="welcomeToastEyebrow" class="welcome-toast-eyebrow">欢迎来到茉灵导航</p>
     <p id="welcomeToastMessage" class="welcome-toast-message">正在准备欢迎语...</p>
   </div>
-</aside>
-<script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<!-- <script src="https://sf.akass.cn/layer/3.5.1/layer.min.js" type="text/javascript" charset="utf-8"></script> -->
-<script>
-const startDate = new Date("2021-07-12T00:00:00+08:00");
-const runtimeElement = document.getElementById("siteRuntime");
-const searchInput = document.getElementById("searchInput");
-const clearSearch = document.getElementById("clearSearch");
-const welcomeToast = document.getElementById("welcomeToast");
-const welcomeToastEyebrow = document.getElementById("welcomeToastEyebrow");
-const welcomeToastMessage = document.getElementById("welcomeToastMessage");
-const links = Array.from(document.querySelectorAll(".resource-link"));
-const featuredSection = document.getElementById("featured");
-const featuredGrid = document.getElementById("featuredGrid");
-const collections = Array.from(document.querySelectorAll("[data-collection]"));
-const collectionFilters = Array.from(document.querySelectorAll(".collection-filter"));
-const shortcutChips = Array.from(document.querySelectorAll(".shortcut-chip"));
-const projectCount = document.getElementById("projectCount");
-const resultCount = document.getElementById("resultCount");
-const searchMessage = document.getElementById("searchMessage");
-const searchSuffix = document.getElementById("searchSuffix");
-const emptyState = document.getElementById("emptyState");
-const totalProjects = new Set(links.map((link) => link.getAttribute("href"))).size;
-let activeFilter = "all";
-let welcomeToastTimer = null;
+<span class="welcome-progress" aria-hidden="true"></span></aside>
 
-function getTimeGreeting() {
-  const hour = new Date().getHours();
-  if (hour > 23 || hour <= 5) {
-    return "你是夜猫子呀？这么晚还不睡觉，明天起的来嘛？";
-  }
-  if (hour <= 7) {
-    return "早上好，新的一天已经开始了，来这里找点趁手工具吧。";
-  }
-  if (hour <= 11) {
-    return "上午好，先把常用入口打开，今天会轻松很多。";
-  }
-  if (hour <= 14) {
-    return "中午好，短暂休息时也可以顺手来这里找点灵感。";
-  }
-  if (hour <= 17) {
-    return "下午容易犯困，试试用计时和专注工具帮自己提提神。";
-  }
-  if (hour <= 19) {
-    return "傍晚好，适合慢慢逛逛这些有趣的小页面。";
-  }
-  if (hour <= 23) {
-    return "晚上好，来这里找工具、找灵感，或者随便逛逛都可以。";
-  }
-  return "欢迎回来，看看今天想先打开哪一个入口。";
-}
-
-function getReferrerLabel() {
-  if (!document.referrer) {
-    return "直接来到这里的朋友";
-  }
-
-  try {
-    const hostname = new URL(document.referrer).hostname;
-    if (hostname.includes("bing")) return "从必应来的朋友";
-    if (hostname.includes("baidu")) return "从百度来的朋友";
-    if (hostname.includes("google")) return "从谷歌来的朋友";
-    if (hostname.includes("sogou")) return "从搜狗来的朋友";
-    if (hostname.includes("so.com")) return "从 360 搜索来的朋友";
-    return "从 " + hostname + " 来的朋友";
-  } catch (error) {
-    return "来到这里的朋友";
-  }
-}
-
-function getClientSummary() {
-  const ua = navigator.userAgent;
-  let browser = "浏览器";
-  let os = navigator.platform || "设备";
-
-  if (ua.includes("Edg/")) browser = "Edge";
-  else if (ua.includes("Chrome/")) browser = "Chrome";
-  else if (ua.includes("Firefox/")) browser = "Firefox";
-  else if (ua.includes("Safari/") && !ua.includes("Chrome/")) browser = "Safari";
-
-  if (/Windows/i.test(ua)) os = "Windows";
-  else if (/Mac OS X/i.test(ua)) os = "macOS";
-  else if (/Android/i.test(ua)) os = "Android";
-  else if (/iPhone|iPad|iPod/i.test(ua)) os = "iOS";
-
-  return { browser, os };
-}
-
-function cleanApiText(value) {
-  return typeof value === "string" ? value.trim() : "";
-}
-
-/* 归属地查询走自建中转服务，与 notion/hy.html 使用同一套数据源：
-   第三方密钥保存在服务端，不暴露在前端；返回的是中文地名。 */
-const IP_API_ENDPOINT = "https://nbr5n3s9.qwenwork.host/api/ip";
-
-function getVisitorLocationLabel(data, fallbackLabel) {
-  const country = cleanApiText(data.country);
-
-  if (!country) {
-    return fallbackLabel;
-  }
-
-  /* 国内显示到省市，境外只显示国家，避免中英文地名混排 */
-  if (country === "中国") {
-    const detail = [cleanApiText(data.province), cleanApiText(data.city)]
-      .filter(Boolean)
-      .filter((item, index, list) => list.indexOf(item) === index)
-      .join(" ");
-    return "来自 " + (detail || country) + " 的朋友";
-  }
-
-  return "来自 " + country + " 的朋友";
-}
-
-/* 先取访客出口 IP 再传给服务端，避免服务端只认代理头导致归属地偏差。
-   取不到也没关系，服务端会按访客头自行识别。 */
-async function fetchVisitorIp(signal) {
-  try {
-    const response = await fetch("https://api.ip.sb/ip", { cache: "no-store", signal });
-    if (response.ok) {
-      const text = (await response.text()).trim();
-      if (/^[0-9A-Fa-f:.]{7,45}$/.test(text)) {
-        return text;
-      }
-    }
-  } catch (error) {
-    /* 取不到就回退到服务端识别 */
-  }
-  return "";
-}
-
-async function getVisitorMessage() {
-  const greeting = getTimeGreeting();
-  const referrer = getReferrerLabel();
-  const fallbackClient = getClientSummary();
-
-  try {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 6000);
-    const visitorIp = await fetchVisitorIp(controller.signal);
-    const url = new URL(IP_API_ENDPOINT);
-
-    if (visitorIp) {
-      url.searchParams.set("ip", visitorIp);
-    }
-
-    const response = await fetch(url, { signal: controller.signal });
-    clearTimeout(timeoutId);
-
-    if (!response.ok) {
-      throw new Error("bad response");
-    }
-
-    const payload = await response.json();
-
-    if (!payload || payload.code !== 0 || !payload.data) {
-      throw new Error("bad payload");
-    }
-
-    return {
-      eyebrow: getVisitorLocationLabel(payload.data, referrer),
-      message: "使用 " + fallbackClient.os + " · " + fallbackClient.browser + " 访问本站。" + greeting
-    };
-  } catch (error) {
-    return {
-      eyebrow: referrer,
-      message: "使用 " + fallbackClient.os + " · " + fallbackClient.browser + " 访问本站。" + greeting
-    };
-  }
-}
-
-function dismissWelcomeToast() {
-  if (welcomeToastTimer) {
-    clearTimeout(welcomeToastTimer);
-    welcomeToastTimer = null;
-  }
-  welcomeToast.classList.remove("is-visible");
-  setTimeout(() => {
-    welcomeToast.classList.add("is-hidden");
-  }, 220);
-}
-
-async function showWelcomeToast() {
-  const content = await getVisitorMessage();
-  welcomeToastEyebrow.textContent = content.eyebrow;
-  welcomeToastMessage.textContent = content.message;
-  welcomeToast.classList.remove("is-hidden");
-  requestAnimationFrame(() => {
-    welcomeToast.classList.add("is-visible");
-  });
-  welcomeToastTimer = setTimeout(dismissWelcomeToast, 3600);
-}
-
-function updateRuntime() {
-  const now = new Date();
-  const diff = now - startDate;
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  const minutes = Math.floor((diff % 3600000) / 60000);
-  const seconds = Math.floor((diff % 60000) / 1000);
-  runtimeElement.textContent = "已稳定运行 " + days + " 天 " + hours + " 小时 " + minutes + " 分 " + seconds + " 秒";
-}
-
-function updateCounts(totalVisible) {
-  projectCount.textContent = String(totalProjects);
-  resultCount.textContent = String(totalVisible);
-  if (searchInput.value.trim()) {
-    searchMessage.textContent = "搜索结果：";
-    searchSuffix.textContent = "个入口匹配当前关键词。";
-  } else {
-    searchMessage.textContent = "当前共收录";
-    searchSuffix.textContent = "个可访问入口。";
-  }
-}
-
-function updateCollectionCounts() {
-  collections.forEach((collection) => {
-    const counter = collection.querySelector(".collection-count");
-    const uniqueTargets = new Set(
-      Array.from(collection.querySelectorAll(".resource-link"))
-        .map((link) => link.getAttribute("href"))
-    );
-    counter.textContent = uniqueTargets.size + " 项";
-  });
-}
-
-function getInitialSearchQuery() {
-  try {
-    return new URLSearchParams(window.location.search).get("q") || "";
-  } catch (error) {
-    return "";
-  }
-}
-
-function filterLinks() {
-  const query = searchInput.value.trim().toLowerCase();
-  const visibleTargets = new Set();
-
-  links.forEach((link) => {
-    const keywords = (link.dataset.keywords || "") + " " + link.textContent;
-    const parentCollection = link.closest("[data-collection]");
-    const linkGroup = link.dataset.group || (parentCollection ? parentCollection.dataset.group : "");
-    const inActiveGroup = activeFilter === "all" || linkGroup === activeFilter;
-    const matched = inActiveGroup && (!query || keywords.toLowerCase().includes(query));
-    link.classList.toggle("is-hidden", !matched);
-    if (matched) {
-      visibleTargets.add(link.getAttribute("href"));
-    }
-  });
-
-  collections.forEach((collection) => {
-    const visibleLinks = collection.querySelectorAll(".resource-link:not(.is-hidden)");
-    const inActiveGroup = activeFilter === "all" || collection.dataset.group === activeFilter;
-    collection.classList.toggle("is-hidden", visibleLinks.length === 0 || !inActiveGroup);
-  });
-
-  const visibleFeatured = featuredGrid.querySelectorAll(".resource-link:not(.is-hidden)");
-  featuredSection.classList.toggle("is-hidden", visibleFeatured.length === 0);
-
-  emptyState.classList.toggle("is-hidden", visibleTargets.size > 0);
-  updateCounts(visibleTargets.size);
-}
-
-function revealOnLoad() {
-  const items = document.querySelectorAll(".reveal");
-  items.forEach((item, index) => {
-    item.style.setProperty("--delay", String(index * 90) + "ms");
-    item.classList.add("is-visible");
-  });
-}
-
-searchInput.addEventListener("input", filterLinks);
-clearSearch.addEventListener("click", () => {
-  searchInput.value = "";
-  filterLinks();
-  searchInput.focus();
-});
-
-collectionFilters.forEach((button) => {
-  button.addEventListener("click", () => {
-    activeFilter = button.dataset.filter;
-    collectionFilters.forEach((item) => item.classList.toggle("is-active", item === button));
-    filterLinks();
-  });
-});
-
-shortcutChips.forEach((button) => {
-  button.addEventListener("click", () => {
-    searchInput.value = button.dataset.shortcut;
-    filterLinks();
-    searchInput.focus();
-  });
-});
-
-updateRuntime();
-setInterval(updateRuntime, 1000);
-updateCollectionCounts();
-searchInput.value = getInitialSearchQuery();
-filterLinks();
-revealOnLoad();
-setTimeout(showWelcomeToast, 500);
-
-/* ===== 新增交互 ===== */
-
-// 1. 回到顶部按钮显隐
-const backToTop = document.getElementById("backToTop");
-
-function onScroll() {
-  const doc = document.documentElement;
-  const scrollTop = window.scrollY || doc.scrollTop || 0;
-  if (backToTop) {
-    backToTop.classList.toggle("is-visible", scrollTop > 320);
-  }
-}
-
-let scrollTicking = false;
-window.addEventListener("scroll", () => {
-  if (!scrollTicking) {
-    requestAnimationFrame(() => {
-      onScroll();
-      scrollTicking = false;
-    });
-    scrollTicking = true;
-  }
-}, { passive: true });
-onScroll();
-
-// 2. 回到顶部
-if (backToTop) {
-  backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-}
-
-// 3. spotlight 跟随：精选卡 + 分类卡
-const spotlightTargets = document.querySelectorAll(".featured-card, .collection-card");
-spotlightTargets.forEach((el) => {
-  el.addEventListener("pointermove", (e) => {
-    const rect = el.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    el.style.setProperty("--spotlight-x", x + "%");
-    el.style.setProperty("--spotlight-y", y + "%");
-  });
-  el.addEventListener("pointerleave", () => {
-    el.style.removeProperty("--spotlight-x");
-    el.style.removeProperty("--spotlight-y");
-  });
-});
-
-</script>
+<script src="https://cdn.jsdmirror.com/npm/jquery@3.7.1/dist/jquery.min.js" defer></script>
 <!-- <script src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/cdn/china-lantern.js"></script> -->
-<script src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/cdn/chat/chat4.min.js" async="async" fold></script>
+<script src="https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/cdn/chat/chat4.min.js" defer fold></script>
 <!-- <div id="music" key="63ca04db574c0" api="https://music.xfyun.club"></div><script id="xplayer" src="https://player.xfyun.club/Static/player9/js/player.js"></script> -->
 </body>
 </html>

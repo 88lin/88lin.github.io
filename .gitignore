@@ -114,3 +114,7 @@ dist
 # Keep the design-system sidecar; ignore local briefs and browser review artifacts.
 2/.impeccable/*
 !2/.impeccable/design.json
+
+# Homepage design review artifacts are local; keep its reusable design tokens.
+/.impeccable/*
+!/.impeccable/design.json

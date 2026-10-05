@@ -1,0 +1,467 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05T04:31:25.001830+00:00",
+  "title": "Design System: 茉灵导航",
+  "extensions": {
+    "colorMeta": {
+      "canvas": {
+        "displayName": "Warm Canvas",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0062 75.41)",
+          "oklch(27% 0.0062 75.41)",
+          "oklch(38% 0.0062 75.41)",
+          "oklch(49% 0.0062 75.41)",
+          "oklch(61% 0.0062 75.41)",
+          "oklch(73% 0.0062 75.41)",
+          "oklch(85% 0.0062 75.41)",
+          "oklch(95% 0.0062 75.41)"
+        ]
+      },
+      "surface": {
+        "displayName": "White",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0000 89.88)",
+          "oklch(27% 0.0000 89.88)",
+          "oklch(38% 0.0000 89.88)",
+          "oklch(49% 0.0000 89.88)",
+          "oklch(61% 0.0000 89.88)",
+          "oklch(73% 0.0000 89.88)",
+          "oklch(85% 0.0000 89.88)",
+          "oklch(95% 0.0000 89.88)"
+        ]
+      },
+      "ink": {
+        "displayName": "Plum Ink",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0390 296.87)",
+          "oklch(27% 0.0390 296.87)",
+          "oklch(38% 0.0390 296.87)",
+          "oklch(49% 0.0390 296.87)",
+          "oklch(61% 0.0390 296.87)",
+          "oklch(73% 0.0390 296.87)",
+          "oklch(85% 0.0390 296.87)",
+          "oklch(95% 0.0390 296.87)"
+        ]
+      },
+      "muted": {
+        "displayName": "Lilac Gray",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0396 303.92)",
+          "oklch(27% 0.0396 303.92)",
+          "oklch(38% 0.0396 303.92)",
+          "oklch(49% 0.0396 303.92)",
+          "oklch(61% 0.0396 303.92)",
+          "oklch(73% 0.0396 303.92)",
+          "oklch(85% 0.0396 303.92)",
+          "oklch(95% 0.0396 303.92)"
+        ]
+      },
+      "purple": {
+        "displayName": "Launch Purple",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1772 294.32)",
+          "oklch(27% 0.1772 294.32)",
+          "oklch(38% 0.1772 294.32)",
+          "oklch(49% 0.1772 294.32)",
+          "oklch(61% 0.1772 294.32)",
+          "oklch(73% 0.1772 294.32)",
+          "oklch(85% 0.1772 294.32)",
+          "oklch(95% 0.1772 294.32)"
+        ]
+      },
+      "purple-dark": {
+        "displayName": "Deep Purple",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1787 292.62)",
+          "oklch(27% 0.1787 292.62)",
+          "oklch(38% 0.1787 292.62)",
+          "oklch(49% 0.1787 292.62)",
+          "oklch(61% 0.1787 292.62)",
+          "oklch(73% 0.1787 292.62)",
+          "oklch(85% 0.1787 292.62)",
+          "oklch(95% 0.1787 292.62)"
+        ]
+      },
+      "lime": {
+        "displayName": "Lime",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1033 124.08)",
+          "oklch(27% 0.1033 124.08)",
+          "oklch(38% 0.1033 124.08)",
+          "oklch(49% 0.1033 124.08)",
+          "oklch(61% 0.1033 124.08)",
+          "oklch(73% 0.1033 124.08)",
+          "oklch(85% 0.1033 124.08)",
+          "oklch(95% 0.1033 124.08)"
+        ]
+      },
+      "line": {
+        "displayName": "Soft Divider",
+        "role": "neutral",
+        "tonalRamp": [
+          "oklch(15% 0.0235 310.70)",
+          "oklch(27% 0.0235 310.70)",
+          "oklch(38% 0.0235 310.70)",
+          "oklch(49% 0.0235 310.70)",
+          "oklch(61% 0.0235 310.70)",
+          "oklch(73% 0.0235 310.70)",
+          "oklch(85% 0.0235 310.70)",
+          "oklch(95% 0.0235 310.70)"
+        ]
+      },
+      "lavender": {
+        "displayName": "Lavender",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0360 301.44)",
+          "oklch(27% 0.0360 301.44)",
+          "oklch(38% 0.0360 301.44)",
+          "oklch(49% 0.0360 301.44)",
+          "oklch(61% 0.0360 301.44)",
+          "oklch(73% 0.0360 301.44)",
+          "oklch(85% 0.0360 301.44)",
+          "oklch(95% 0.0360 301.44)"
+        ]
+      },
+      "blue": {
+        "displayName": "Powder Blue",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0229 258.36)",
+          "oklch(27% 0.0229 258.36)",
+          "oklch(38% 0.0229 258.36)",
+          "oklch(49% 0.0229 258.36)",
+          "oklch(61% 0.0229 258.36)",
+          "oklch(73% 0.0229 258.36)",
+          "oklch(85% 0.0229 258.36)",
+          "oklch(95% 0.0229 258.36)"
+        ]
+      },
+      "cream": {
+        "displayName": "Cream",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0555 90.32)",
+          "oklch(27% 0.0555 90.32)",
+          "oklch(38% 0.0555 90.32)",
+          "oklch(49% 0.0555 90.32)",
+          "oklch(61% 0.0555 90.32)",
+          "oklch(73% 0.0555 90.32)",
+          "oklch(85% 0.0555 90.32)",
+          "oklch(95% 0.0555 90.32)"
+        ]
+      },
+      "mint": {
+        "displayName": "Mint",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0267 166.77)",
+          "oklch(27% 0.0267 166.77)",
+          "oklch(38% 0.0267 166.77)",
+          "oklch(49% 0.0267 166.77)",
+          "oklch(61% 0.0267 166.77)",
+          "oklch(73% 0.0267 166.77)",
+          "oklch(85% 0.0267 166.77)",
+          "oklch(95% 0.0267 166.77)"
+        ]
+      },
+      "rose": {
+        "displayName": "Rose",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0385 348.82)",
+          "oklch(27% 0.0385 348.82)",
+          "oklch(38% 0.0385 348.82)",
+          "oklch(49% 0.0385 348.82)",
+          "oklch(61% 0.0385 348.82)",
+          "oklch(73% 0.0385 348.82)",
+          "oklch(85% 0.0385 348.82)",
+          "oklch(95% 0.0385 348.82)"
+        ]
+      },
+      "peach": {
+        "displayName": "Peach",
+        "role": "secondary",
+        "tonalRamp": [
+          "oklch(15% 0.0305 57.92)",
+          "oklch(27% 0.0305 57.92)",
+          "oklch(38% 0.0305 57.92)",
+          "oklch(49% 0.0305 57.92)",
+          "oklch(61% 0.0305 57.92)",
+          "oklch(73% 0.0305 57.92)",
+          "oklch(85% 0.0305 57.92)",
+          "oklch(95% 0.0305 57.92)"
+        ]
+      },
+      "deck": {
+        "displayName": "Deck Purple",
+        "role": "primary",
+        "tonalRamp": [
+          "oklch(15% 0.1539 295.06)",
+          "oklch(27% 0.1539 295.06)",
+          "oklch(38% 0.1539 295.06)",
+          "oklch(49% 0.1539 295.06)",
+          "oklch(61% 0.1539 295.06)",
+          "oklch(73% 0.1539 295.06)",
+          "oklch(85% 0.1539 295.06)",
+          "oklch(95% 0.1539 295.06)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "display",
+        "purpose": "900 字重首页主标题。"
+      },
+      "headline": {
+        "displayName": "headline",
+        "purpose": "900 字重目录标题。"
+      },
+      "title": {
+        "displayName": "title",
+        "purpose": "紧凑精选入口标题。"
+      },
+      "card-title": {
+        "displayName": "card-title",
+        "purpose": "工具名称，桌面 20px，手机 17px。"
+      },
+      "body": {
+        "displayName": "body",
+        "purpose": "16px 中等字重基础正文。"
+      },
+      "description": {
+        "displayName": "description",
+        "purpose": "工具用途，桌面 15px，手机 14px。"
+      },
+      "label": {
+        "displayName": "label",
+        "purpose": "分类和短操作标签。"
+      },
+      "metadata": {
+        "displayName": "metadata",
+        "purpose": "分类名称与短辅助内容。"
+      }
+    },
+    "shadows": [
+      {
+        "name": "search-rest",
+        "value": "0 10px 26px #6e45920a",
+        "purpose": "常态搜索阴影。"
+      },
+      {
+        "name": "search-focus",
+        "value": "0 10px 30px #6945a51f",
+        "purpose": "搜索聚焦柔光。"
+      },
+      {
+        "name": "tool-hover",
+        "value": "0 15px 25px -12px var(--card-shadow)",
+        "purpose": "随六组卡片配色变化的悬停投影。"
+      },
+      {
+        "name": "discovery-rest",
+        "value": "0 15px 28px var(--deck-shadow)",
+        "purpose": "推荐正面的常态深度。"
+      },
+      {
+        "name": "discovery-hover",
+        "value": "0 20px 36px var(--deck-shadow)",
+        "purpose": "牌组展开时的深度。"
+      },
+      {
+        "name": "welcome-overlay",
+        "value": "0 18px 60px #4432522b",
+        "purpose": "右上欢迎卡。"
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "主要空间和内容反馈缓动。"
+      },
+      {
+        "name": "launchpad-entrance",
+        "value": "720ms; title delay 0/90ms; deck delay 170ms; search 600ms delay 140ms",
+        "purpose": "字体就绪后打开标题、搜索和推荐牌组。"
+      },
+      {
+        "name": "recommendation",
+        "value": "420ms horizontal track; 260ms drag rebound",
+        "purpose": "整张卡横向滑动、拖动跟手；相邻牌面独立配色，取消或短拖回弹。"
+      },
+      {
+        "name": "filter-continuity",
+        "value": "360ms; stagger 18ms capped at 90ms; at most 12 candidates",
+        "purpose": "筛选后的可视卡片位置连续动画。"
+      },
+      {
+        "name": "tool-hover",
+        "value": "translateY(-6px); transform 330ms; icon rotate(-7deg) scale(1.08)",
+        "purpose": "悬停抬升和图标反馈，触屏禁用抬升。"
+      },
+      {
+        "name": "ambient",
+        "value": "deck-back 8s ease-in-out",
+        "purpose": "启动区离屏或页面隐藏时停止相应装饰循环。"
+      },
+      {
+        "name": "welcome",
+        "value": "opacity 230ms; transform 450ms; countdown 7000ms",
+        "purpose": "右上入场；七秒计时在指针、焦点和页面隐藏时暂停。搜索、分类、快捷词、精选、工具、推荐操作或滚动超过 24px 立即关闭，并阻止访客查询后的迟到提示。"
+      },
+      {
+        "name": "motion-preference",
+        "value": "prefers-reduced-motion: reduce",
+        "purpose": "默认启用动画；系统减少动态效果时关闭脚本动画、CSS 过渡和流畅滚动。"
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-desktop",
+        "value": "1200px"
+      },
+      {
+        "name": "tablet",
+        "value": "960px"
+      },
+      {
+        "name": "mobile",
+        "value": "700px"
+      },
+      {
+        "name": "small-mobile",
+        "value": "380px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "搜索主按钮",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "紫色胶囊主操作，悬停抬升、按下缩放。",
+      "html": "<button class=\"ds-search-submit\" type=\"submit\">搜索 <svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewbox=\"0 0 24 24\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></button>",
+      "css": ".ds-search-submit{font:500 16px/1.75 var(--font-ui,'Moli Sans','PingFang SC','Microsoft YaHei',sans-serif);color:var(--ink,#292338);text-decoration:none}.ds-search-submit h2,.ds-search-submit h3,.ds-search-submit p{margin:0}.ds-search-submit button{font:inherit;cursor:pointer}.ds-search-submit:focus-visible,.ds-search-submit a:focus-visible,.ds-search-submit button:focus-visible,.ds-search-submit input:focus-visible{outline:3px solid var(--purple,#7650c7);outline-offset:5px}.ds-icon{width:22px; height:22px; flex:0 0 auto; vertical-align:middle;}.ds-search-submit{height:54px; padding:0 26px; display:flex; align-items:center; gap:12px; border:0; border-radius:var(--pill,999px); background:var(--purple,#7650c7); color:#fff; white-space:nowrap; font-size:16px; font-weight:700; transition:background 200ms,transform 200ms,box-shadow 200ms;}.ds-search-submit:hover{background:var(--purple-dark,#5f39b0); box-shadow:0 5px 15px #65449a33; transform:translateY(-1px);}.ds-search-submit:active{transform:scale(.97);}.ds-search-submit .ds-icon{width:20px; height:20px;}@media (max-width:960px){.ds-search-submit{height:50px; padding-inline:19px;}}@media (max-width:700px){.ds-search-submit{height:47px; padding:0 20px; font-size:15px;}}@media (max-width:700px){.ds-search-submit .ds-icon{display:none;}}@media(prefers-reduced-motion:reduce){.ds-search-submit,.ds-search-submit *,.ds-search-submit::before,.ds-search-submit::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}"
+    },
+    {
+      "name": "恢复筛选",
+      "kind": "button",
+      "refersTo": "button-reset",
+      "description": "空结果中的恢复动作；行为由页面脚本实现。",
+      "html": "<button class=\"ds-reset-button\" id=\"ds-resetFilters\" type=\"button\">查看全部工具 <svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewbox=\"0 0 24 24\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></button>",
+      "css": ".ds-reset-button{font:500 16px/1.75 var(--font-ui,'Moli Sans','PingFang SC','Microsoft YaHei',sans-serif);color:var(--ink,#292338);text-decoration:none}.ds-reset-button h2,.ds-reset-button h3,.ds-reset-button p{margin:0}.ds-reset-button button{font:inherit;cursor:pointer}.ds-reset-button:focus-visible,.ds-reset-button a:focus-visible,.ds-reset-button button:focus-visible,.ds-reset-button input:focus-visible{outline:3px solid var(--purple,#7650c7);outline-offset:5px}.ds-icon{width:22px; height:22px; flex:0 0 auto; vertical-align:middle;}.ds-empty-state{padding:46px 24px; text-align:center; background:var(--lavender,#eee5ff); border-radius:var(--radius,26px);}.ds-empty-state h3{font-size:26px; font-weight:800;}.ds-empty-state p{font-size:16px; margin:12px 0 24px; color:var(--muted,#655b73);}.ds-reset-button{display:inline-flex; align-items:center; gap:14px; padding:13px 25px; border:0; border-radius:var(--pill,999px); background:var(--purple,#7650c7); color:#fff; font-weight:700;}@media(prefers-reduced-motion:reduce){.ds-reset-button,.ds-reset-button *,.ds-reset-button::before,.ds-reset-button::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}"
+    },
+    {
+      "name": "联系作者",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "页头描边胶囊，悬停轻抬升。",
+      "html": "<a class=\"ds-nav-contact\" href=\"https://qm.qq.com/q/Q46OjlCcY8\" rel=\"noreferrer\" target=\"_blank\">联系作者 <svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewbox=\"0 0 24 24\"><path d=\"M7 17 17 7M7 7h10v10\"></path></svg></a>",
+      "css": ".ds-nav-contact{font:500 16px/1.75 var(--font-ui,'Moli Sans','PingFang SC','Microsoft YaHei',sans-serif);color:var(--ink,#292338);text-decoration:none}.ds-nav-contact h2,.ds-nav-contact h3,.ds-nav-contact p{margin:0}.ds-nav-contact button{font:inherit;cursor:pointer}.ds-nav-contact:focus-visible,.ds-nav-contact a:focus-visible,.ds-nav-contact button:focus-visible,.ds-nav-contact input:focus-visible{outline:3px solid var(--purple,#7650c7);outline-offset:5px}.ds-icon{width:22px; height:22px; flex:0 0 auto; vertical-align:middle;}.ds-nav-contact .ds-icon{width:16px; height:16px;}.ds-nav-contact{display:inline-flex; align-items:center; gap:10px; border:1px solid #d8c8e6; border-radius:var(--pill,999px); padding:11px 21px; font-size:14px; font-weight:700; transition:background 200ms,transform 200ms;}.ds-nav-contact:hover{background:var(--lavender,#eee5ff); transform:translateY(-2px);}@media (max-width:1200px){.ds-nav-contact{padding-inline:16px;}}@media (max-width:960px){.ds-nav-contact{display:none;}}@media(prefers-reduced-motion:reduce){.ds-nav-contact,.ds-nav-contact *,.ds-nav-contact::before,.ds-nav-contact::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}"
+    },
+    {
+      "name": "推荐卡左右切换",
+      "kind": "button",
+      "refersTo": "button-deck-nav",
+      "description": "44px 圆形切换按钮，随牌面强调色变化，保留清楚的焦点与悬停状态。",
+      "html": "<button aria-label=\"上一个推荐工具\" class=\"ds-deck-nav\" id=\"ds-previousTool\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><path d=\"M15 6 9 12l6 6\"></path></svg></button>",
+      "css": ".ds-deck-nav{ color-scheme:light; --canvas:#fffcff; --ink:#292338; --muted:#655b73; --purple:#7650c7; --purple-dark:#5f39b0; --lime:#decfff; --line:#e8dfef; --lavender:#eee5ff; --blue:#e6f0ff; --cream:#fff1dc; --mint:#e5f3ea; --rose:#ffe0ee; --peach:#ffe5df; --radius:26px; --pill:999px; --font-ui:\"Moli Sans\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif; --ease:cubic-bezier(.16,1,.3,1); }.ds-icon{ width:22px; height:22px; flex:0 0 auto; vertical-align:middle; }.ds-header-nav .ds-icon,.ds-nav-contact .ds-icon{ width:16px; height:16px; }.ds-search-input-wrap>.ds-icon{ color:#816396; width:25px; height:25px; }.ds-search-submit .ds-icon{ width:20px; height:20px; }.ds-feature-arrow .ds-icon{ width:18px; height:18px; }.ds-tool-icon .ds-icon{ width:29px; height:29px; stroke-width:1.9; }.ds-tool-arrow .ds-icon{ width:17px; height:17px; }.ds-footer-actions .ds-icon{ width:15px; height:15px; margin-left:5px; }.ds-welcome-close .ds-icon{ width:19px; height:19px; }@media  (max-width:700px) {.ds-search-input-wrap>.ds-icon{ width:21px; height:21px; }.ds-search-submit .ds-icon{ display:none; }.ds-tool-icon .ds-icon{ width:27px; height:27px; }.ds-tool-arrow .ds-icon{ width:15px; height:15px; }}@media  (min-width:701px) and (max-width:960px) {.ds-search-submit .ds-icon{ display:none; }}.ds-collection-filter .ds-icon{ width:18px; height:18px; }.ds-discovery-symbol .ds-icon{ width:32px; height:32px; stroke-width:1.8; }.ds-deck-nav{\n display:grid; place-items:center; flex-shrink:0; width:44px; height:44px; padding:0;\n border:1px solid var(--deck-line); border-radius:50%; background:#fffcff; color:var(--deck-ink);\n transition:background 180ms,transform 200ms var(--ease);\n}.ds-deck-nav .ds-icon{ width:17px; height:17px; }.ds-deck-nav:hover{ background:var(--deck-fill); transform:translateY(-2px); }.ds-deck-nav:active{ transform:scale(.94); }.ds-deck-nav:focus-visible{ outline-color:var(--deck-ink); outline-offset:3px; }@media  (max-width:700px) {.ds-collection-filter .ds-icon{ width:17px; height:17px; }}"
+    },
+    {
+      "name": "搜索输入",
+      "kind": "input",
+      "refersTo": "input-search",
+      "description": "圆角搜索框，清除按钮为 44px 点击区域；输入、清除和提交保留原有行为。",
+      "html": "<div class=\"ds-search-input-wrap\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"></circle><path d=\"m16 16 4 4\"></path></svg><input aria-controls=\"toolGrid\" aria-describedby=\"searchHint\" autocomplete=\"off\" class=\"ds-search-input\" id=\"ds-searchInput\" name=\"q\" placeholder=\"找工具，让想法发生…\" type=\"search\"/><kbd class=\"ds-search-key\" title=\"按 / 快速搜索\">/</kbd><button aria-label=\"清除搜索\" class=\"ds-search-clear\" id=\"ds-clearSearch\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"m6 6 12 12M6 18 18 6\"></path></svg></button><button class=\"ds-search-submit\" type=\"submit\">搜索 <svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"M4 12h16m-6-6 6 6-6 6\"></path></svg></button></div>",
+      "css": ".ds-search-input-wrap{ color-scheme:light; --canvas:#fffcff; --ink:#292338; --muted:#655b73; --purple:#7650c7; --purple-dark:#5f39b0; --lime:#decfff; --line:#e8dfef; --lavender:#eee5ff; --blue:#e6f0ff; --cream:#fff1dc; --mint:#e5f3ea; --rose:#ffe0ee; --peach:#ffe5df; --radius:26px; --pill:999px; --font-ui:\"Moli Sans\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif; --ease:cubic-bezier(.16,1,.3,1); }.ds-icon{ width:22px; height:22px; flex:0 0 auto; vertical-align:middle; }.ds-is-hidden{ display:none!important; }.ds-header-nav .ds-icon,.ds-nav-contact .ds-icon{ width:16px; height:16px; }.ds-search-input-wrap{ display:flex; align-items:center; gap:14px; height:72px; padding:7px 8px 7px 24px; border:1.5px solid #d8c6ef; border-radius:var(--pill); background:#fff; box-shadow:0 8px 24px -12px #6945a530; transition:border-color 200ms,box-shadow 250ms; }.ds-search-input-wrap:focus-within{ border-color:var(--purple); box-shadow:0 10px 30px #6945a51f; }.ds-search-input-wrap>.ds-icon{ color:#816396; width:25px; height:25px; }.ds-search-input{ flex:1; width:100%; min-width:0; height:100%; border:0; background:transparent; padding:0; color:var(--ink); caret-color:var(--purple); font-size:16px; font-weight:600; }.ds-search-input:focus-visible{ outline:0; }.ds-search-input::placeholder{ color:#796885; opacity:1; }.ds-search-input::-webkit-search-cancel-button{ display:none; }.ds-search-key{ display:grid; place-items:center; width:28px; height:28px; border:1px solid var(--line); border-radius:8px; color:#746280; font:14px var(--font-ui); }.ds-search-submit{ height:54px; padding:0 26px; display:flex; align-items:center; gap:12px; border:0; border-radius:var(--pill); background:var(--purple); color:#fff; white-space:nowrap; font-size:16px; font-weight:700; transition:background 200ms,transform 200ms,box-shadow 200ms; }.ds-search-submit:hover{ background:var(--purple-dark); box-shadow:0 5px 15px #65449a33; transform:translateY(-1px); }.ds-search-submit:active{ transform:scale(.97); }.ds-search-submit .ds-icon{ width:20px; height:20px; }.ds-search-clear{ width:44px; height:44px; flex-shrink:0; display:grid; place-items:center; border:0; border-radius:var(--pill); color:var(--muted); background:transparent; }.ds-search-clear:hover{ background:var(--lavender); }.ds-feature-arrow .ds-icon{ width:18px; height:18px; }.ds-tool-icon .ds-icon{ width:29px; height:29px; stroke-width:1.9; }.ds-tool-arrow .ds-icon{ width:17px; height:17px; }.ds-footer-actions .ds-icon{ width:16px; height:16px; }.ds-welcome-close .ds-icon{ width:19px; height:19px; }@media  (max-width:960px) {.ds-search-input-wrap{ padding-left:17px; gap:10px; height:66px; }.ds-search-submit{ height:50px; padding-inline:19px; }.ds-search-key{ display:none; }}@media  (max-width:700px) {.ds-search-input-wrap{ height:62px; padding:6px 6px 6px 16px; gap:9px; }.ds-search-input-wrap>.ds-icon{ width:21px; height:21px; }.ds-search-input{ font-size:16px; }.ds-search-input::placeholder{ font-size:14px; }.ds-search-submit{ height:47px; padding:0 20px; font-size:15px; }.ds-search-submit .ds-icon{ display:none; }.ds-feature-arrow .ds-icon{ width:16px; height:16px; }.ds-tool-icon .ds-icon{ width:27px; height:27px; }.ds-tool-arrow .ds-icon{ width:15px; height:15px; }}@media  (min-width:701px) and (max-width:960px) {.ds-search-input-wrap{ gap:8px; padding-left:14px; }.ds-search-submit{ padding-inline:16px; }.ds-search-submit .ds-icon{ display:none; }.ds-search-input::placeholder{ font-size:14px; }}.ds-collection-filter .ds-icon{ width:18px; height:18px; }.ds-discovery-symbol .ds-icon{ width:32px; height:32px; stroke-width:1.8; }.ds-deck-nav .ds-icon{ width:17px; height:17px; }@media  (max-width:700px) {.ds-collection-filter .ds-icon{ width:17px; height:17px; }}"
+    },
+    {
+      "name": "分类导航",
+      "kind": "nav",
+      "refersTo": "nav-category",
+      "description": "完整圆角分类栏；手机横向滚动并自动露出选中的分类，保留吸顶圆角。",
+      "html": "<div aria-label=\"工具分类\" class=\"ds-collection-toolbar\" role=\"group\"><button aria-pressed=\"true\" class=\"ds-collection-filter ds-is-active\" data-filter=\"all\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><rect height=\"7\" rx=\"2\" width=\"7\" x=\"3\" y=\"3\"></rect><rect height=\"7\" rx=\"2\" width=\"7\" x=\"14\" y=\"3\"></rect><rect height=\"7\" rx=\"2\" width=\"7\" x=\"3\" y=\"14\"></rect><rect height=\"7\" rx=\"2\" width=\"7\" x=\"14\" y=\"14\"></rect></svg>全部工具</button><button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"utility\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><rect height=\"12\" rx=\"3\" width=\"12\" x=\"6\" y=\"6\"></rect><rect height=\"4\" rx=\"1\" width=\"4\" x=\"10\" y=\"10\"></rect><path d=\"M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4M18 9h4m-4 6h4\"></path></svg>效率工具</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"design\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><rect height=\"18\" rx=\"4\" width=\"18\" x=\"3\" y=\"3\"></rect><circle cx=\"8\" cy=\"8\" r=\"1.5\"></circle><path d=\"m4 17 5-5 4 4 3-4 5 5\"></path></svg>图像设计</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"media\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><rect height=\"18\" rx=\"5\" width=\"18\" x=\"3\" y=\"3\"></rect><path d=\"m10 8 6 4-6 4Z\"></path></svg>影音内容</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"study\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z\"></path></svg>学习资料</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"focus\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><circle cx=\"12\" cy=\"12\" r=\"9\"></circle><path d=\"M12 6v6l4 3\"></path></svg>时间专注</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"festival\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"m12 3 2.3 6.7L21 12l-6.7 2.3L12 21l-2.3-6.7L3 12l6.7-2.3ZM20 2v4m-2-2h4\"></path></svg>节日特效</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"notion\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"m12 3 10 5-10 5L2 8Zm-10 9 10 5 10-5M2 17l10 5 10-5\"></path></svg>Notion 组件</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"fun\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-1 1-1-1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z\"></path></svg>趣味灵感</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"portfolio\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"m3 10 9-7 9 7v11h-7v-7h-4v7H3Z\"></path></svg>个人站点</button>\n<button aria-pressed=\"false\" class=\"ds-collection-filter\" data-filter=\"other\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><rect height=\"7\" rx=\"2\" width=\"7\" x=\"3\" y=\"3\"></rect><rect height=\"7\" rx=\"2\" width=\"7\" x=\"14\" y=\"3\"></rect><rect height=\"7\" rx=\"2\" width=\"7\" x=\"3\" y=\"14\"></rect><rect height=\"7\" rx=\"2\" width=\"7\" x=\"14\" y=\"14\"></rect></svg>其他工具</button>\n</div>",
+      "css": ".ds-collection-toolbar{ color-scheme:light; --canvas:#fffcff; --ink:#292338; --muted:#655b73; --purple:#7650c7; --purple-dark:#5f39b0; --lime:#decfff; --line:#e8dfef; --lavender:#eee5ff; --blue:#e6f0ff; --cream:#fff1dc; --mint:#e5f3ea; --rose:#ffe0ee; --peach:#ffe5df; --radius:26px; --pill:999px; --font-ui:\"Moli Sans\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif; --ease:cubic-bezier(.16,1,.3,1); }.ds-icon{ width:22px; height:22px; flex:0 0 auto; vertical-align:middle; }.ds-header-nav .ds-icon,.ds-nav-contact .ds-icon{ width:16px; height:16px; }.ds-search-input-wrap>.ds-icon{ color:#816396; width:25px; height:25px; }.ds-search-submit .ds-icon{ width:20px; height:20px; }.ds-feature-arrow .ds-icon{ width:18px; height:18px; }.ds-tool-icon .ds-icon{ width:29px; height:29px; stroke-width:1.9; }.ds-tool-arrow .ds-icon{ width:17px; height:17px; }.ds-footer-actions .ds-icon{ width:16px; height:16px; }.ds-welcome-close .ds-icon{ width:19px; height:19px; }@media  (max-width:700px) {.ds-search-input-wrap>.ds-icon{ width:21px; height:21px; }.ds-search-submit .ds-icon{ display:none; }.ds-feature-arrow .ds-icon{ width:16px; height:16px; }.ds-tool-icon .ds-icon{ width:27px; height:27px; }.ds-tool-arrow .ds-icon{ width:15px; height:15px; }}@media  (min-width:701px) and (max-width:960px) {.ds-search-submit .ds-icon{ display:none; }}.ds-collection-toolbar{\n position:sticky; top:12px; z-index:10; display:flex; flex-wrap:wrap; align-items:center;\n gap:8px; margin:0 0 24px; padding:12px; border:1px solid #e3d8ef; border-radius:28px;\n background:#f2ecf8; box-shadow:0 12px 28px -20px #583a7845;\n scroll-padding-inline:12px; scrollbar-width:none;\n}.ds-collection-toolbar::-webkit-scrollbar{ display:none; }.ds-collection-filter{\n display:inline-flex; align-items:center; justify-content:center; flex-shrink:0; gap:7px;\n min-height:44px; padding:10px 12px; border:0; border-radius:var(--pill);\n background:#fffcff; color:#665373; font-size:14px; font-weight:700; white-space:nowrap;\n transition:background 180ms,color 180ms,box-shadow 180ms,transform 220ms var(--ease);\n scroll-margin-top:160px;\n}.ds-collection-filter .ds-icon{ width:18px; height:18px; }.ds-collection-filter:hover{ background:#e7dcf5; color:var(--purple-dark); transform:translateY(-1px); }.ds-collection-filter.ds-is-active{ color:#fff; background:var(--ink); box-shadow:0 5px 12px #29233824; }.ds-collection-filter:focus-visible{ outline-offset:3px; }.ds-collection-filter:active{ transform:scale(.97); }.ds-discovery-symbol .ds-icon{ width:32px; height:32px; stroke-width:1.8; }.ds-deck-nav .ds-icon{ width:17px; height:17px; }.ds-deck-dots i.ds-is-active{ width:20px; background:var(--deck-ink); }@media  (max-width:700px) {.ds-collection-toolbar{ flex-wrap:nowrap; gap:6px; top:8px; margin:0 0 18px; padding:9px; border-radius:25px; overflow-x:auto; overscroll-behavior-x:contain; }.ds-collection-filter{ gap:6px; padding:10px 13px; font-size:13px; scroll-margin-top:100px; }.ds-collection-filter .ds-icon{ width:17px; height:17px; }}@media  (hover:none) {.ds-collection-filter:hover{ transform:none; }}.ds-collection-toolbar{position:relative;top:auto;font-family:var(--font-ui)}"
+    },
+    {
+      "name": "快捷搜索词",
+      "kind": "chip",
+      "refersTo": "chip-shortcut",
+      "description": "浅紫快捷搜索词；手机、平板和触摸设备最小点击高度为 44px。",
+      "html": "<button class=\"ds-shortcut-chip\" data-shortcut=\"AI\" type=\"button\">AI 工具</button>",
+      "css": ".ds-shortcut-chip{ color-scheme:light; --canvas:#fffcff; --ink:#292338; --muted:#655b73; --purple:#7650c7; --purple-dark:#5f39b0; --lime:#decfff; --line:#e8dfef; --lavender:#eee5ff; --blue:#e6f0ff; --cream:#fff1dc; --mint:#e5f3ea; --rose:#ffe0ee; --peach:#ffe5df; --radius:26px; --pill:999px; --font-ui:\"Moli Sans\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif; --ease:cubic-bezier(.16,1,.3,1); }.ds-shortcut-chip{ padding:6px 14px; border:0; border-radius:var(--pill); background:#f0e8f8; color:#6b5287; font-size:13px; font-weight:600; min-height:36px; transition:background 180ms,transform 180ms; }.ds-shortcut-chip:hover{ background:#e1d1f4; transform:translateY(-2px); }@media  (max-width:700px) {.ds-shortcut-chip{ font-size:12px; padding:7px 11px; min-height:44px; }}@media  (max-width:380px) {.ds-shortcut-chip{ font-size:12px; padding-inline:9px; }}@media  (max-width:960px), (any-pointer:coarse) {.ds-shortcut-chip{ min-height:44px; }}"
+    },
+    {
+      "name": "彩色工具卡片",
+      "kind": "card",
+      "refersTo": "card-tool",
+      "description": "六组浅色工具卡；手机使用 17px 水平内距，380px 以下使用 14px，保留清晰名称与说明。",
+      "html": "<a class=\"ds-resource-link ds-tool-card ds-blue\" data-group=\"utility\" data-keywords=\"模型检测 AI 检测\" href=\"/ai-model-checker\" rel=\"noopener noreferrer\" target=\"_blank\">\n<span class=\"ds-tool-top\"><span class=\"ds-tool-icon\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><rect height=\"12\" rx=\"3\" width=\"12\" x=\"6\" y=\"6\"></rect><rect height=\"4\" rx=\"1\" width=\"4\" x=\"10\" y=\"10\"></rect><path d=\"M9 2v4m6-4v4M9 18v4m6-4v4M2 9h4m-4 6h4M18 9h4m-4 6h4\"></path></svg></span><span class=\"ds-tool-arrow\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.7\" viewBox=\"0 0 24 24\"><path d=\"M7 17 17 7M7 7h10v10\"></path></svg></span></span>\n<h3>AI模型检测</h3><p>测试模型表现，找到适合你的 AI</p><span class=\"ds-tool-category\">效率工具</span>\n</a>",
+      "css": ".ds-resource-link{ color-scheme:light; --canvas:#fffcff; --ink:#292338; --muted:#655b73; --purple:#7650c7; --purple-dark:#5f39b0; --lime:#decfff; --line:#e8dfef; --lavender:#eee5ff; --blue:#e6f0ff; --cream:#fff1dc; --mint:#e5f3ea; --rose:#ffe0ee; --peach:#ffe5df; --radius:26px; --pill:999px; --font-ui:\"Moli Sans\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif; --ease:cubic-bezier(.16,1,.3,1); }.ds-icon{ width:22px; height:22px; flex:0 0 auto; vertical-align:middle; }.ds-header-nav .ds-icon,.ds-nav-contact .ds-icon{ width:16px; height:16px; }.ds-search-input-wrap>.ds-icon{ color:#816396; width:25px; height:25px; }.ds-search-submit .ds-icon{ width:20px; height:20px; }.ds-feature-arrow .ds-icon{ width:18px; height:18px; }.ds-tool-card{ --lift:0px; display:flex; flex-direction:column; position:relative; min-width:0; padding:24px; background:var(--card-bg); color:var(--card-ink); border:1px solid var(--card-line); border-radius:var(--radius); box-shadow:0 8px 22px -18px var(--card-shadow); transform:translateY(var(--lift)); transition:transform 330ms var(--ease),box-shadow 330ms var(--ease),border-color 250ms; overflow:hidden; }.ds-tool-card::after{ content:\"\"; position:absolute; inset:0; opacity:0; background:radial-gradient(240px circle at var(--pointer-x,50%) var(--pointer-y,0%),#ffffff70,transparent 70%); pointer-events:none; transition:opacity 300ms; }.ds-tool-card:hover{ --lift:-6px; border-color:var(--card-border-hover); box-shadow:0 15px 25px -12px var(--card-shadow); z-index:1; }.ds-tool-card:hover::after{ opacity:1; }.ds-tool-card>*{ position:relative; z-index:1; }.ds-blue{ --card-bg:#e7f0ff; --card-ink:#35649e; --card-line:#d5e3f7; --card-muted:#46627f; --card-border-hover:#a2c1eb; --card-shadow:#7ba1d266; }.ds-tool-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }.ds-tool-icon{ display:grid; place-items:center; width:52px; height:52px; border-radius:18px; background:#ffffffbd; transition:transform 450ms var(--ease),background 200ms; }.ds-tool-icon .ds-icon{ width:29px; height:29px; stroke-width:1.9; }.ds-tool-card:hover .ds-tool-icon{ transform:rotate(-7deg) scale(1.08); background:#fff; }.ds-tool-arrow{ display:grid; place-items:center; width:33px; height:33px; border-radius:50%; background:#ffffff66; transition:background 250ms,color 250ms,transform 250ms; }.ds-tool-arrow .ds-icon{ width:17px; height:17px; }.ds-tool-card:hover .ds-tool-arrow{ background:var(--card-ink); color:white; transform:rotate(5deg); }.ds-tool-card h3{ font-size:20px; font-weight:800; line-height:1.5; text-wrap:initial; overflow-wrap:anywhere; letter-spacing:-.015em; color:var(--ink); }.ds-tool-card p{ font-size:15px; font-weight:500; line-height:1.85; margin-top:10px; color:var(--card-muted); }.ds-tool-category{ align-self:flex-start; font-size:12px; font-weight:600; color:var(--card-muted); margin-top:auto; padding-top:20px; display:inline-flex; align-items:center; gap:7px; }.ds-footer-actions .ds-icon{ width:16px; height:16px; }.ds-welcome-close .ds-icon{ width:19px; height:19px; }@media  (max-width:1200px) {.ds-tool-card{ padding:23px 21px; }.ds-tool-card h3{ font-size:19px; }.ds-tool-card p{ font-size:14px; }}@media  (max-width:700px) {.ds-search-input-wrap>.ds-icon{ width:21px; height:21px; }.ds-search-submit .ds-icon{ display:none; }.ds-feature-arrow .ds-icon{ width:16px; height:16px; }.ds-tool-card{ padding:20px 17px 19px; border-radius:24px; }.ds-tool-top{ margin-bottom:16px; }.ds-tool-icon{ width:45px; height:45px; border-radius:15px; }.ds-tool-icon .ds-icon{ width:27px; height:27px; }.ds-tool-arrow{ width:27px; height:27px; }.ds-tool-arrow .ds-icon{ width:15px; height:15px; }.ds-tool-card h3{ font-size:17px; font-weight:800; line-height:1.55; }.ds-tool-card p{ font-size:14px; font-weight:500; line-height:1.8; margin-top:9px; }.ds-tool-category{ font-size:12px; padding-top:15px; }}@media  (max-width:380px) {.ds-tool-card{ padding:18px 14px; }.ds-tool-card h3{ font-size:16px; }.ds-tool-card p{ font-size:14px; }.ds-tool-icon{ width:41px; height:41px; }.ds-tool-arrow{ width:25px; height:25px; }}.ds-tool-card:focus-visible{ --lift:-3px; }.ds-tool-card{ scroll-margin-top:150px; }@media  (min-width:701px) and (max-width:960px) {.ds-search-submit .ds-icon{ display:none; }}@media  (max-width:700px) {.ds-tool-card{ scroll-margin-top:90px; }}.ds-tool-category::before{ content:\"\"; width:5px; height:5px; border-radius:50%; background:var(--card-ink); }.ds-collection-filter .ds-icon{ width:18px; height:18px; }.ds-discovery-symbol .ds-icon{ width:32px; height:32px; stroke-width:1.8; }.ds-deck-nav .ds-icon{ width:17px; height:17px; }@media  (max-width:700px) {.ds-collection-filter .ds-icon{ width:17px; height:17px; }}@media  (hover:none) {.ds-tool-card:hover{ --lift:0px; }.ds-tool-card::after{ display:none; }}.ds-tool-card{max-width:320px;font-family:var(--font-ui);text-decoration:none}"
+    },
+    {
+      "name": "推荐牌组",
+      "kind": "custom",
+      "refersTo": "panel-discovery",
+      "description": "六张推荐卡使用独立层级，保留 30px 书脊与扇形叠放；手机独占一行，保留说明、切换按钮和进度圆点。拖动可取消，卡片外松手不会卡住键盘操作。",
+      "html": "<aside aria-labelledby=\"ds-discovery-heading\" aria-roledescription=\"轮播\" class=\"ds-discovery-stage\" data-tone=\"violet\" tabindex=\"0\">\n<div aria-hidden=\"true\" class=\"ds-deck-sheet ds-deck-back\"></div><div aria-hidden=\"true\" class=\"ds-deck-sheet ds-deck-middle\"></div>\n<div class=\"ds-discovery-viewport\"><div class=\"ds-discovery-track\"><article aria-label=\"第 1 张，共 6 张：古诗起名\" aria-roledescription=\"卡片\" class=\"ds-discovery-card\" data-slot=\"0\" data-tone=\"violet\" role=\"group\">\n<b aria-hidden=\"true\" class=\"ds-discovery-ghost\">01</b><p aria-hidden=\"true\" class=\"ds-discovery-spine\">古诗起名</p>\n<div class=\"ds-discovery-top\"><h2 id=\"ds-discovery-heading\">随手发现</h2></div>\n<div class=\"ds-discovery-content\"><div aria-hidden=\"true\" class=\"ds-discovery-symbol\" id=\"ds-discoverySymbol\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.6\" viewBox=\"0 0 24 24\"><path d=\"M12 6v15M3 4h4c3 0 5 2 5 2s2-2 5-2h4v15h-4c-3 0-5 2-5 2s-2-2-5-2H3Z\"></path></svg></div><p class=\"ds-discovery-meta\">学习资料 <s></s> 推荐入口</p><h3 id=\"ds-discoveryName\">古诗起名</h3><p class=\"ds-discovery-description\" id=\"ds-discoveryDescription\">从诗词意境里，遇见一个好名字</p></div><a class=\"ds-discovery-link\" draggable=\"false\" href=\"/gushi/dist/\" id=\"ds-discoveryLink\" rel=\"noopener noreferrer\" target=\"_blank\">打开工具 <i aria-hidden=\"true\">→</i></a>\n</article></div></div>\n<div class=\"ds-discovery-bottom\"><button aria-label=\"上一个推荐工具\" class=\"ds-deck-nav\" id=\"ds-previousTool\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><path d=\"M15 6 9 12l6 6\"></path></svg></button><span aria-hidden=\"true\" class=\"ds-deck-dots\"><i class=\"ds-is-active\"></i><i></i><i></i><i></i><i></i><i></i></span><button aria-label=\"下一个推荐工具\" class=\"ds-deck-nav\" id=\"ds-shuffleTool\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" viewBox=\"0 0 24 24\"><path d=\"m9 6 6 6-6 6\"></path></svg></button><span>左右滑动，发现更多</span></div><span aria-atomic=\"true\" aria-live=\"polite\" class=\"ds-sr-only\" id=\"ds-discoveryStatus\" role=\"status\"></span>\n</aside>",
+      "css": ".ds-discovery-stage{ color-scheme:light; --canvas:#fffcff; --ink:#292338; --muted:#655b73; --purple:#7650c7; --purple-dark:#5f39b0; --lime:#decfff; --line:#e8dfef; --lavender:#eee5ff; --blue:#e6f0ff; --cream:#fff1dc; --mint:#e5f3ea; --rose:#ffe0ee; --peach:#ffe5df; --radius:26px; --pill:999px; --font-ui:\"Moli Sans\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif; --ease:cubic-bezier(.16,1,.3,1); }.ds-icon{ width:22px; height:22px; flex:0 0 auto; vertical-align:middle; }.ds-sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; border:0; }.ds-header-nav .ds-icon,.ds-nav-contact .ds-icon{ width:16px; height:16px; }.ds-search-input-wrap>.ds-icon{ color:#816396; width:25px; height:25px; }.ds-search-submit .ds-icon{ width:20px; height:20px; }.ds-feature-arrow .ds-icon{ width:18px; height:18px; }.ds-tool-icon .ds-icon{ width:29px; height:29px; stroke-width:1.9; }.ds-tool-arrow .ds-icon{ width:17px; height:17px; }.ds-footer-actions .ds-icon{ width:16px; height:16px; }.ds-welcome-close .ds-icon{ width:19px; height:19px; }@media  (max-width:700px) {.ds-search-input-wrap>.ds-icon{ width:21px; height:21px; }.ds-search-submit .ds-icon{ display:none; }.ds-feature-arrow .ds-icon{ width:16px; height:16px; }.ds-tool-icon .ds-icon{ width:27px; height:27px; }.ds-tool-arrow .ds-icon{ width:15px; height:15px; }}@media  (min-width:701px) and (max-width:960px) {.ds-search-submit .ds-icon{ display:none; }}.ds-collection-filter .ds-icon{ width:18px; height:18px; }.ds-collection-filter.ds-is-active{ color:#fff; background:var(--ink); box-shadow:0 5px 12px #29233824; }.ds-discovery-stage{\n --deck-fill:#f0eafe; --deck-line:#dccefc; --deck-ink:#6941b0;\n grid-column:9/13; grid-row:1/3; position:relative; display:flex; flex-direction:column;\n min-width:0; margin:11px 32px 10px 20px; isolation:isolate;\n}.ds-discovery-stage:focus-visible{ outline:3px solid var(--purple); outline-offset:8px; border-radius:24px; }.ds-deck-sheet{ display:none; }.ds-discovery-viewport{ position:relative; min-height:0; perspective:1400px; touch-action:pan-y pinch-zoom; cursor:grab; }.ds-discovery-track{ position:relative; display:grid; min-height:390px; }.ds-discovery-card{\n position:relative; grid-area:1/1; display:flex; flex-direction:column; min-width:0; width:100%;\n min-height:390px; padding:0 24px 0 54px; overflow:hidden;\n border:1px solid var(--deck-line); border-radius:24px; background:#fffdfb; color:var(--ink);\n box-shadow:0 4px 12px #38234006,0 20px 32px -18px #38234040;\n transform-origin:50% 50%; backface-visibility:hidden;\n transition:transform 520ms var(--ease),box-shadow 300ms var(--ease);\n}.ds-discovery-card::before{\n content:\"\"; position:absolute; z-index:0; inset:0 auto 0 0; width:30px;\n border-right:1px solid var(--deck-line); background:var(--deck-fill);\n}.ds-discovery-card[data-slot=\"0\"]{ z-index:6; transform:translate3d(var(--dx,0px),0,0) rotate(var(--rot,0deg)); }.ds-discovery-card[data-slot=\"1\"]{ z-index:5; transform:translate3d(16px,13px,0) scale(.966) rotate(1.3deg); }.ds-discovery-card[data-slot=\"2\"]{ z-index:4; transform:translate3d(30px,25px,0) scale(.933) rotate(2.6deg); }.ds-discovery-card[data-slot=\"3\"]{ z-index:3; transform:translate3d(42px,35px,0) scale(.902) rotate(3.9deg); }.ds-discovery-card[data-slot=\"4\"]{ z-index:2; transform:translate3d(53px,44px,0) scale(.875) rotate(5.2deg); }.ds-discovery-card[data-slot=\"5\"]{ z-index:1; transform:translate3d(62px,52px,0) scale(.85) rotate(6.4deg); }.ds-discovery-card:not([data-slot=\"0\"]){ pointer-events:none; box-shadow:0 8px 18px -8px #38234020; }.ds-discovery-card:not([data-slot=\"0\"])::after{ content:\"\"; position:absolute; z-index:8; inset:0; border-radius:inherit; background:#fffdfb; pointer-events:none; }.ds-discovery-card[data-slot=\"1\"]::after{ opacity:.46; }.ds-discovery-card[data-slot=\"2\"]::after{ opacity:.68; }.ds-discovery-card[data-slot=\"3\"]::after{ opacity:.84; }.ds-discovery-card[data-slot=\"4\"]::after{ opacity:.9; }.ds-discovery-card[data-slot=\"5\"]::after{ opacity:.94; }.ds-discovery-stage.ds-is-dragging .ds-discovery-card[data-slot=\"0\"]{ transition:none; }.ds-discovery-stage.ds-is-dragging .ds-discovery-viewport{ cursor:grabbing; user-select:none; }.ds-discovery-spine{\n position:absolute; z-index:2; left:0; bottom:22px; display:grid; place-items:center; width:30px;\n margin:0; color:var(--deck-ink); font-size:11px; font-weight:700; letter-spacing:.1em;\n white-space:nowrap; writing-mode:vertical-rl; text-orientation:mixed;\n}.ds-discovery-ghost{\n position:absolute; z-index:0; right:22px; top:24px; pointer-events:none; user-select:none;\n font-size:72px; font-weight:900; line-height:.85; letter-spacing:-.03em; color:var(--deck-fill);\n}.ds-discovery-top{ position:relative; z-index:1; padding-top:24px; }.ds-discovery-top h2{ color:var(--deck-ink); font-size:13px; font-weight:700; letter-spacing:.08em; }.ds-discovery-content{ position:relative; z-index:1; flex:1; min-width:0; padding-top:20px; }.ds-discovery-symbol{\n display:grid; place-items:center; width:56px; height:56px; margin-bottom:18px;\n border-radius:18px; background:var(--deck-fill); color:var(--deck-ink);\n}.ds-discovery-symbol .ds-icon{ width:32px; height:32px; stroke-width:1.8; }.ds-discovery-meta{ display:flex; align-items:center; flex-wrap:wrap; gap:7px; color:var(--deck-ink); font-size:12px; font-weight:600; }.ds-discovery-meta s{ width:3px; height:3px; border-radius:50%; background:currentColor; }.ds-discovery-content h3{ margin-top:10px; color:var(--ink); font-size:clamp(24px,2.2vw,32px); font-weight:800; line-height:1.35; letter-spacing:-.02em; text-wrap:initial; }.ds-discovery-description{ position:relative; margin-top:12px; color:var(--muted); font-size:15px; line-height:1.85; }.ds-discovery-link{\n position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:18px;\n min-height:48px; margin:22px 0 22px; padding:11px 18px; border-radius:var(--pill);\n background:var(--deck-fill); color:var(--deck-ink); font-size:15px; font-weight:700;\n transition:background 180ms,transform 220ms var(--ease);\n}.ds-discovery-link i{ font-style:normal; transition:transform 200ms var(--ease); }.ds-discovery-link:hover{ background:var(--deck-line); }.ds-discovery-link:hover i{ transform:translateX(4px); }.ds-discovery-link:active{ transform:scale(.98); }.ds-discovery-bottom{ position:relative; z-index:5; display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:30px; color:var(--muted); font-size:12px; }.ds-deck-nav{\n display:grid; place-items:center; flex-shrink:0; width:44px; height:44px; padding:0;\n border:1px solid var(--deck-line); border-radius:50%; background:#fffcff; color:var(--deck-ink);\n transition:background 180ms,transform 200ms var(--ease);\n}.ds-deck-nav .ds-icon{ width:17px; height:17px; }.ds-deck-nav:hover{ background:var(--deck-fill); transform:translateY(-2px); }.ds-deck-nav:active{ transform:scale(.94); }.ds-deck-nav:focus-visible,.ds-discovery-link:focus-visible{ outline-color:var(--deck-ink); outline-offset:3px; }.ds-deck-dots{ display:flex; align-items:center; gap:6px; }.ds-deck-dots i{ display:block; width:6px; height:6px; border-radius:var(--pill); background:#d6cce0; }.ds-deck-dots i.ds-is-active{ width:20px; background:var(--deck-ink); }.ds-discovery-stage[data-tone=\"violet\"],.ds-discovery-card[data-tone=\"violet\"],.ds-discovery-stage[data-tone=\"lavender\"],.ds-discovery-card[data-tone=\"lavender\"]{ --deck-fill:#eee5ff; --deck-line:#dbcef5; --deck-ink:#6941b0; }.ds-discovery-stage[data-tone=\"coral\"],.ds-discovery-card[data-tone=\"coral\"]{ --deck-fill:#ffe5de; --deck-line:#f4ccbf; --deck-ink:#954731; }.ds-discovery-stage[data-tone=\"blue\"],.ds-discovery-card[data-tone=\"blue\"]{ --deck-fill:#e7f0ff; --deck-line:#ccdef8; --deck-ink:#315fa0; }.ds-discovery-stage[data-tone=\"indigo\"],.ds-discovery-card[data-tone=\"indigo\"]{ --deck-fill:#e7f3ec; --deck-line:#cae4d5; --deck-ink:#35674f; }.ds-discovery-stage[data-tone=\"rose\"],.ds-discovery-card[data-tone=\"rose\"]{ --deck-fill:#ffe4ef; --deck-line:#f2cadd; --deck-ink:#973a64; }@media  (max-width:1200px) {.ds-discovery-stage{ margin-right:12px; margin-left:12px; }.ds-discovery-card{ padding-inline:48px 18px; }.ds-discovery-top{ padding-top:22px; }.ds-discovery-content{ padding-top:16px; }.ds-discovery-bottom>span:last-child{ display:none; }.ds-discovery-card[data-slot=\"1\"]{ transform:translate3d(7px,8px,0) scale(.966) rotate(1deg); }.ds-discovery-card[data-slot=\"2\"]{ transform:translate3d(12px,14px,0) scale(.933) rotate(2deg); }.ds-discovery-card[data-slot=\"3\"]{ transform:translate3d(16px,20px,0) scale(.902) rotate(3deg); }.ds-discovery-card[data-slot=\"4\"]{ transform:translate3d(20px,25px,0) scale(.875) rotate(4deg); }.ds-discovery-card[data-slot=\"5\"]{ transform:translate3d(24px,30px,0) scale(.85) rotate(5deg); }}@media  (min-width:701px) and (max-width:960px) {.ds-discovery-stage{ grid-column:9/15; grid-row:1/3; margin:8px 12px 0 8px; }.ds-discovery-track,.ds-discovery-card{ min-height:350px; }.ds-discovery-symbol{ width:48px; height:48px; margin-bottom:14px; border-radius:15px; }.ds-discovery-content h3{ font-size:24px; }.ds-discovery-description{ margin-top:10px; font-size:14px; }.ds-discovery-link{ margin-block:18px; min-height:44px; padding:9px 16px; font-size:14px; }.ds-discovery-bottom{ margin-top:26px; }}@media  (max-width:700px) {.ds-collection-filter .ds-icon{ width:17px; height:17px; }.ds-discovery-stage{ grid-column:1/-1; grid-row:auto; margin:4px 8px 0 0; }.ds-discovery-track,.ds-discovery-card{ min-height:214px; }.ds-discovery-card{ padding:0 18px 0 46px; border-radius:22px; }.ds-discovery-top{ padding-top:16px; }.ds-discovery-top h2{ font-size:12px; }.ds-discovery-content{ padding-top:8px; }.ds-discovery-content h3{ margin-top:0; font-size:24px; line-height:1.4; overflow-wrap:anywhere; }.ds-discovery-symbol,.ds-discovery-meta{ display:none; }.ds-discovery-description{ margin-top:7px; font-size:14px; line-height:1.75; }.ds-discovery-spine{ bottom:20px; }.ds-discovery-ghost{ top:13px; right:16px; font-size:40px; }.ds-discovery-link{ align-self:stretch; min-height:44px; margin:12px 0 16px; padding:9px 16px; font-size:14px; gap:12px; }.ds-discovery-bottom{ justify-content:center; margin-top:18px; gap:24px; }.ds-discovery-card[data-slot=\"1\"]{ transform:translate3d(4px,6px,0) scale(.985) rotate(.6deg); }.ds-discovery-card[data-slot=\"2\"]{ transform:translate3d(8px,12px,0) scale(.97) rotate(1.2deg); }.ds-discovery-card[data-slot=\"3\"],.ds-discovery-card[data-slot=\"4\"],.ds-discovery-card[data-slot=\"5\"]{ visibility:hidden; transform:translate3d(8px,12px,0) scale(.97); }}@media  (hover:none) {.ds-deck-nav:hover{ transform:none; }}.ds-discovery-stage{font-family:var(--font-ui);width:min(380px,100%);margin:12px 0;grid-column:auto;grid-row:auto}"
+    },
+    {
+      "name": "品牌欢迎卡",
+      "kind": "custom",
+      "refersTo": "panel-welcome",
+      "description": "右上欢迎卡；桌面最大 350px、手机为紧凑双行。悬停、焦点和页面隐藏暂停七秒计时，后台初次展示同样暂停。预览仅改为容器内定位。",
+      "html": "<aside aria-atomic=\"true\" aria-live=\"polite\" class=\"ds-welcome-toast\" id=\"ds-welcomeToast\">\n<button aria-label=\"关闭欢迎提示\" class=\"ds-welcome-close\" id=\"ds-dismissWelcome\" type=\"button\"><svg aria-hidden=\"true\" class=\"ds-icon\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.65\" viewBox=\"0 0 24 24\"><path d=\"m6 6 12 12M6 18 18 6\"></path></svg></button>\n<img alt=\"\" class=\"ds-welcome-mark\" height=\"48\" src=\"assets/home/mark.svg\" width=\"48\"/><div class=\"ds-welcome-toast-inner\"><strong class=\"ds-welcome-title\">嗨，欢迎来逛逛</strong><p class=\"ds-welcome-mobile-message\">好工具，随手可得。</p>\n<p class=\"ds-welcome-toast-eyebrow\" id=\"ds-welcomeToastEyebrow\">欢迎来到茉灵导航</p>\n<p class=\"ds-welcome-toast-message\" id=\"ds-welcomeToastMessage\">正在准备欢迎语...</p>\n</div>\n<span aria-hidden=\"true\" class=\"ds-welcome-progress\"></span></aside>",
+      "css": ".ds-welcome-toast{\n color-scheme: light; --canvas:#fffcff; --ink:#292338; --muted:#655b73; --purple:#7650c7; --purple-dark:#5f39b0; --lime:#decfff;\n --line:#e8dfef; --lavender:#eee5ff; --blue:#e6f0ff; --cream:#ffe5eb; --mint:#e8e8ff; --rose:#ffe0ee; --peach:#ffe5df;\n --radius:26px; --pill:999px; --font-ui:\"Moli Sans\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif; --ease:cubic-bezier(.16,1,.3,1);\n}.ds-icon{ width:22px; height:22px; flex:0 0 auto; vertical-align:middle; }.ds-is-hidden{ display:none!important; }.ds-header-nav .ds-icon,.ds-nav-contact .ds-icon{ width:16px; height:16px; }.ds-search-input-wrap>.ds-icon{ color:#816396; width:25px; height:25px; }.ds-search-submit .ds-icon{ width:20px; height:20px; }.ds-feature-arrow .ds-icon{ width:18px; height:18px; }.ds-deck-nav .ds-icon{ width:17px; height:17px; }.ds-discovery-symbol .ds-icon{ width:46px; height:46px; stroke-width:1.7; }.ds-discovery-link .ds-icon{ width:20px; height:20px; }.ds-collection-filter .ds-icon{ width:18px; height:18px; }.ds-tool-icon .ds-icon{ width:29px; height:29px; stroke-width:1.9; }.ds-tool-arrow .ds-icon{ width:17px; height:17px; }.ds-footer-actions .ds-icon{ width:15px; height:15px; margin-left:5px; }.ds-welcome-toast{ position:fixed; top:10px; right:26px; z-index:100; width:min(350px,calc(100% - 52px)); display:grid; grid-template-columns:42px 1fr; align-items:start; gap:12px; padding:16px 42px 18px 16px; border-radius:22px; background:#fffdf9; color:var(--ink); border:1px solid #e6d8f3; box-shadow:0 18px 60px #4432522b; opacity:0; transform:translateY(-12px) translateX(30px) scale(.97); transition:opacity 230ms,transform 450ms var(--ease); overflow:hidden; }.ds-welcome-toast.ds-is-visible{ opacity:1; transform:translate(0) scale(1); }.ds-welcome-mark{ border-radius:14px; width:42px; height:42px; }.ds-welcome-mobile-message{ display:none; }.ds-welcome-title{ display:block; font-size:17px; line-height:1.4; font-weight:800; }.ds-welcome-toast-eyebrow{ margin-top:3px; font-size:12px; font-weight:600; color:var(--purple-dark); }.ds-welcome-toast-message{ margin-top:6px; font-size:13px; line-height:1.7; color:var(--muted); }.ds-welcome-close{ position:absolute; top:10px; right:8px; width:44px; height:44px; display:grid; place-items:center; border:0; border-radius:50%; color:var(--muted); background:transparent; transition:background 180ms; }.ds-welcome-close:hover{ background:var(--lavender); }.ds-welcome-close .ds-icon{ width:19px; height:19px; }.ds-welcome-progress{ position:absolute; height:4px; left:23px; right:23px; bottom:0; background:#c9afe9; transform-origin:left; border-radius:var(--pill); }@media  (max-width:960px) {.ds-discovery-symbol .ds-icon{ width:38px; height:38px; }}@media  (max-width:700px) {.ds-search-input-wrap>.ds-icon{ width:21px; height:21px; }.ds-search-submit .ds-icon{ display:none; }.ds-discovery-symbol .ds-icon{ width:28px; height:28px; }.ds-discovery-link .ds-icon{ width:16px; height:16px; }.ds-collection-filter .ds-icon{ width:18px; height:18px; }.ds-tool-icon .ds-icon{ width:27px; height:27px; }.ds-tool-arrow .ds-icon{ width:15px; height:15px; }.ds-welcome-toast{ top:12px; right:12px; width:calc(100% - 24px); max-width:410px; padding:13px 44px 15px 17px; grid-template-columns:36px 1fr; gap:10px; border-radius:21px; }.ds-welcome-mark{ width:36px; height:36px; border-radius:12px; }.ds-welcome-title{ font-size:16px; }.ds-welcome-toast-eyebrow,.ds-welcome-toast-message{ display:none; }.ds-welcome-mobile-message{ display:block; font-size:13px; color:var(--muted); margin-top:3px; line-height:1.6; }.ds-welcome-close{ top:4px; right:3px; }}.ds-deck-nav .ds-icon{ width:16px; height:16px; }.ds-discovery-symbol .ds-icon{ width:32px; height:32px; stroke-width:1.8; }@media  (max-width:700px) {.ds-discovery-symbol .ds-icon{ width:26px; height:26px; }}@media  (min-width:701px) and (max-width:960px) {.ds-search-submit .ds-icon{ display:none; }}.ds-welcome-toast{position:relative;top:auto;right:auto;opacity:1;transform:none;width:min(350px,100%);font-family:var(--font-ui)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "有分量的彩色工具启动台",
+    "overview": "暖白画布、厚实中文标题和六组明亮浅色工具卡片构成亲近而清楚的浏览界面。纸张式推荐牌组形成明确视觉重点，深墨色选中控件稳定操作层级，随卡片变化的浅色胶囊按钮为推荐提供直接出口。\n\n实心 m 字标、饱满圆角与柔和立体层次形成品牌轮廓。动效展示进入、切换和重排关系；真实工具链接始终可以直接打开，装饰不延迟使用。",
+    "keyCharacteristics": [
+      "较大、较粗的中文层级与自托管字体。",
+      "暖白、六组彩色卡片、30px 书脊的纸张式推荐牌组与浅色胶囊打开按钮。",
+      "实心 m 字标、胶囊控件和可感知的柔和立体层次。",
+      "可关闭且尊重减少动态效果偏好的入场、切换、重排与悬停反馈。"
+    ],
+    "rules": [
+      {
+        "name": "Readable Color",
+        "body": "浅色负责表面识别，深色负责工具名称；选中状态同时提供文字与可访问状态，不只依赖颜色。",
+        "section": "colors"
+      },
+      {
+        "name": "Weight Has Substance",
+        "body": "保持当前较大字号和本地中粗、粗黑字重；不要恢复细小辅助字占主导的工具卡片。",
+        "section": "typography"
+      },
+      {
+        "name": "Motion Explains Change",
+        "body": "入场、推荐切换和筛选重排表达内容关系；动效默认开启，并保留减少动态效果降级，操作与链接不等待动画结束。",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do 保留较大中文名称、14px 以上的手机工具说明和真实粗字重。",
+      "Do 使用新 m 字标、六组彩色卡片和有主次的纸张式推荐牌组。",
+      "Do 让动效说明内容变化，默认开启，并保留离屏停止和减少动态效果支持。",
+      "Do 保留真实链接、搜索分类和可见的键盘焦点。",
+      "Do 将品牌欢迎卡放在右上，并保持可关闭、计时可暂停。"
+    ],
+    "donts": [
+      "Don't 恢复被否定的细小字体、连环 Logo、平淡居中堆叠或左下欢迎提示。",
+      "Don't 让动画延迟工具可用性，或在系统要求减少动态效果后继续装饰动画。",
+      "Don't 用浅色文字替代工具名称的深色正文。",
+      "Don't 将本首页视觉规则或图片重置扩散到独立子站和聊天室。"
+    ]
+  }
+}
