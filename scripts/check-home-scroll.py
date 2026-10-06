@@ -81,6 +81,8 @@ with sync_playwright() as playwright:
         page.emulate_media(reduced_motion='reduce')
         page.wait_for_function('document.documentElement.dataset.scrollMode === "native"')
         assert not page.evaluate('document.documentElement.classList.contains("lenis")')
+        page.wait_for_timeout(600)
+        assert not page.evaluate('document.documentElement.classList.contains("lenis")'), 'Delayed native-scroll callback restored a destroyed controller class'
         page.emulate_media(reduced_motion='no-preference')
         page.wait_for_function('document.documentElement.dataset.scrollMode === "lenis"')
         page.locator('#searchInput').fill('')

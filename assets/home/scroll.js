@@ -61,6 +61,8 @@
     frame = 0;
     resizeObserver?.disconnect();
     resizeObserver = null;
+    // Clear scrolling state before delayed native-scroll callbacks can run.
+    lenis?.stop();
     lenis?.destroy();
     lenis = null;
     root.dataset.scrollMode = 'native';
