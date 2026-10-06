@@ -386,12 +386,13 @@ function restoreFiltersFromUrl() {
 window.addEventListener('popstate', restoreFiltersFromUrl);
 
 const recommendations = [
-  { name: '古诗起名', description: '从诗词意境里，遇见一个好名字', href: '/gushi/dist/', glyph: '诗', tone: 'violet', meta: '日常工具' },
-  { name: '科研海报生成器', description: '把研究成果，整理成一张好海报', href: '/academic-poster-generator/', glyph: '图', tone: 'coral', meta: '图片设计' },
-  { name: '番茄时钟', description: '留一点专注的时间，把眼前的事做好', href: 'https://focustide.app', glyph: '时', tone: 'blue', meta: '计时专注' },
+  { name: '作品集与开发服务', description: '展示我的项目作品，也承接 AI、自动化与网站定制', href: 'https://dev.88lin.eu.org/', glyph: '开', tone: 'indigo', meta: '我的站点' },
+  { name: '88lin 个人主页', description: '了解 88lin 的项目、实践与探索', href: 'https://88lin.eu.org/', glyph: '家', tone: 'blue', meta: '我的站点' },
+  { name: '个人博客', description: '想了解我在写什么、做什么，可以从这里开始', href: 'https://blog.88lin.eu.org', glyph: '文', tone: 'violet', meta: '我的站点' },
+  { name: '免费影视', description: '电影与剧集，给日常一点放松', href: '/vip/', glyph: '影', tone: 'rose', meta: '影音放松' },
   { name: 'Lofi 音乐', description: '给工作和放空，配上一点舒服的旋律', href: 'https://lofi.88lin.eu.org', glyph: '听', tone: 'indigo', meta: '影音放松' },
-  { name: '个人书单旭日图', description: '换一种方式，发现书与书之间的联系', href: '/books', glyph: '书', tone: 'lavender', meta: '阅读学习' },
-  { name: '跨年烟花', description: '给平常的一天，一点特别的仪式感', href: '/fireworks/', glyph: '花', tone: 'rose', meta: '节日祝福' }
+  { name: '古诗起名', description: '从诗词意境里，遇见一个好名字', href: '/gushi/dist/', glyph: '诗', tone: 'violet', meta: '日常工具' },
+  { name: '动物塑测试', description: '来看看，你会是哪一种动物形象', href: 'https://site.nocode.host', glyph: '趣', tone: 'coral', meta: '趣味实验' }
 ];
 let recommendationIndex = 0;
 const discoveryStage = document.querySelector('.discovery-stage');
