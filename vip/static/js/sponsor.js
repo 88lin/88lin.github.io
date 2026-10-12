@@ -183,26 +183,26 @@
                 internal: true
             },
             {
-                id: 'agentmore',
-                name: 'AgentMore',
-                logo: 'https://sfile.chatglm.cn/workspace/image/1c/1c83b94683.png',
-                url: 'https://agentmore.chatglm.cn?Rawcode=PM9UPGFZAX8M',
-                tagline: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间登录积分 ×10（日领2k积分），花出去的积分 100% 原路返还。',
-                desc: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，轻松组建专属 Agent 团队，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间（9月25日-10月7日）登录积分 ×10，普通用户日领 2000 积分，花出去的积分 100% 原路返还，单账号最多回血 15 万积分！',
-                highlights: ['登录积分 ×10', '日领 2000 积分', '积分 100% 返还', '免费白嫖'],
-                cta: '立即领取',
-                accent: '#0052d9'
-            },
-            {
                 id: 'lightvela',
                 name: 'LightVela',
                 logo: 'https://lightvela.com/lightvela-logo.svg',
-                url: 'https://lightvela.com/?ref=9TVZHV5GKS',
+                url: 'https://lightvela.ai/?ref=CC9FGXAT9W',
                 tagline: '腾讯轻量云团队推出的云端 Agent 托管产品，支持跨会话记忆、连接微信、QQ、飞书、钉钉等主流聊天通道。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
                 desc: '腾讯轻量云团队推出的云端 Agent 托管产品，它把 Agent 的部署、运维与 7×24 小时运行全部放在云端托管，支持跨会话记忆、连接主流聊天通道（微信、QQ、飞书、钉钉等），可自定义模型、工具、人设。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
                 highlights: ['免费体验 1 个月', '送 2核8G 云主机', '4500 AI 积分'],
                 cta: '免费体验',
                 accent: '#1e80ff'
+            },
+            {
+                id: 'agentmore',
+                name: 'AgentMore',
+                logo: 'https://sfile.chatglm.cn/workspace/image/1c/1c83b94683.png',
+                url: 'https://agentmore.chatglm.cn?Rawcode=PM9UPGFZAX8M',
+                tagline: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，可用 GLM-5.3、GLM-5.3-Flash。每日完成任务领取1200积分。',
+                desc: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，轻松组建专属 Agent 团队，可用 GLM-5.3、GLM-5.3-Flash。每日完成任务领取1200积分。',
+                highlights: ['日领 1200 积分', '免费白嫖'],
+                cta: '立即领取',
+                accent: '#0052d9'
             }
         ]
     };
