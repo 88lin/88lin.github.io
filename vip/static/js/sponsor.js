@@ -115,21 +115,21 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
-                id: 'agentmore',
-                name: 'AgentMore',
-                logo: 'https://sfile.chatglm.cn/workspace/image/1c/1c83b94683.png',
-                url: 'https://agentmore.chatglm.cn?Rawcode=PM9UPGFZAX8M',
-                tagline: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间登录积分 ×10（日领2k积分），花出去的积分 100% 原路返还。',
-                desc: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，轻松组建专属 Agent 团队，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间（9月25日-10月7日）登录积分 ×10，普通用户日领 2000 积分，花出去的积分 100% 原路返还，单账号最多回血 15 万积分！',
-                highlights: ['登录积分 ×10', '日领 2000 积分', '积分 100% 返还', '免费白嫖'],
-                cta: '立即领取',
-                accent: '#0052d9'
+                id: 'sheapi',
+                name: 'SheApi',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
+                url: 'https://www.sheapi.top/sign-up?aff=MvcR',
+                tagline: '可靠高效的 API 中转服务，提供 gpt-6-astra、grok-4.7、glm-5.3 等模型。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到得额度。',
+                desc: '可靠高效的 API 中转服务提供商，主要提供 gpt-6-astra、kimi-k3、grok-4.7、glm-5.3、deepseek-v4.1-flash 等主流模型的高稳定中转能力。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到还可领取专属免费额度。',
+                highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
+                cta: '立即体验',
+                accent: '#1e88e5'
             },
             {
                 id: 'agentrouter',
                 name: 'Agent Router',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
-                url: 'https://agentrouter.org/register?aff=ugVO',
+                url: 'https://agentrouter.org/register?aff=G5Sl',
                 tagline: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5、deepseek-v4-flash。注册送 $125，每日签到 $25，被邀再得 $50。',
                 desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
                 highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
@@ -183,6 +183,17 @@
                 internal: true
             },
             {
+                id: 'agentmore',
+                name: 'AgentMore',
+                logo: 'https://sfile.chatglm.cn/workspace/image/1c/1c83b94683.png',
+                url: 'https://agentmore.chatglm.cn?Rawcode=PM9UPGFZAX8M',
+                tagline: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间登录积分 ×10（日领2k积分），花出去的积分 100% 原路返还。',
+                desc: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，轻松组建专属 Agent 团队，可用 GLM-5.3、GLM-5.3-Flash。双节活动期间（9月25日-10月7日）登录积分 ×10，普通用户日领 2000 积分，花出去的积分 100% 原路返还，单账号最多回血 15 万积分！',
+                highlights: ['登录积分 ×10', '日领 2000 积分', '积分 100% 返还', '免费白嫖'],
+                cta: '立即领取',
+                accent: '#0052d9'
+            },
+            {
                 id: 'lightvela',
                 name: 'LightVela',
                 logo: 'https://lightvela.com/lightvela-logo.svg',
@@ -192,17 +203,6 @@
                 highlights: ['免费体验 1 个月', '送 2核8G 云主机', '4500 AI 积分'],
                 cta: '免费体验',
                 accent: '#1e80ff'
-            },
-            {
-                id: 'sheapi',
-                name: 'SheApi',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
-                url: 'https://www.sheapi.top/sign-up?aff=MvcR',
-                tagline: '可靠高效的 API 中转服务，提供 gpt-6-astra、grok-4.7、glm-5.3 等模型。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到得额度。',
-                desc: '可靠高效的 API 中转服务提供商，主要提供 gpt-6-astra、kimi-k3、grok-4.7、glm-5.3、deepseek-v4.1-flash 等主流模型的高稳定中转能力。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到还可领取专属免费额度。',
-                highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
-                cta: '立即体验',
-                accent: '#1e88e5'
             }
         ]
     };
