@@ -63,21 +63,21 @@ One long-form article laid out in all 14 themes (screenshots plus interactive HT
 <table>
 <tr>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" width="250"></a><br><sub><b>Tech Cobalt (default)</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" width="250"></a><br><sub><b>Klein Blue</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/letter.html"><img src="assets/lf-letter.thumb.png" width="250"></a><br><sub><b>Letter</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/bento.html"><img src="assets/lf-bento.thumb.png" width="250"></a><br><sub><b>Bento</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/bento.html"><img src="assets/lf-bento.thumb.png" width="250"></a><br><sub><b>Bento</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/chat.html"><img src="assets/lf-chat.thumb.png" width="250"></a><br><sub><b>Chat</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/magazine.html"><img src="assets/lf-magazine.thumb.png" width="250"></a><br><sub><b>Magazine</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/journal.html"><img src="assets/lf-journal.thumb.png" width="250"></a><br><sub><b>Journal</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/journal.html"><img src="assets/lf-journal.thumb.png" width="250"></a><br><sub><b>Journal</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/daily.html"><img src="assets/lf-daily.thumb.png" width="250"></a><br><sub><b>Daily</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" width="250"></a><br><sub><b>Moyu Green</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/red-white.html"><img src="assets/lf-red-white.thumb.png" width="250"></a><br><sub><b>Red & White</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/red-white.html"><img src="assets/lf-red-white.thumb.png" width="250"></a><br><sub><b>Red & White</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" width="250"></a><br><sub><b>Klein Blue</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" width="250"></a><br><sub><b>Graphite</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/zen-whitespace.html"><img src="assets/lf-zen-whitespace.thumb.png" width="250"></a><br><sub><b>Zen Whitespace</b></sub></td>
 </tr>
@@ -96,7 +96,6 @@ One long-form article laid out in all 14 themes (screenshots plus interactive HT
 | | Theme | Best for |
 |---|---|---|
 | ![](https://placehold.co/12/1D4ED8/1D4ED8.png) `#1D4ED8` | Tech Cobalt (default) | AI tools, developer tutorials, product docs, workflow guides |
-| ![](https://placehold.co/12/002FA7/002FA7.png) `#002FA7` | Klein Blue | Art criticism, brand narratives, profiles, editorial-style long reads |
 | ![](https://placehold.co/12/2B7FD8/2B7FD8.png) `#2B7FD8` | Letter (Latte Stationery) | Narrative long reads, opinions, methodologies, year-end recaps |
 | ![](https://placehold.co/12/71519B/71519B.png) `#71519B` | Bento (Pastel) | Tool reviews, checklists, curated lists |
 | ![](https://placehold.co/12/059669/059669.png) `#059669` | Chat (Mint) | AI interview transcripts, Q&A tutorials, case recaps |
@@ -105,6 +104,7 @@ One long-form article laid out in all 14 themes (screenshots plus interactive HT
 | ![](https://placehold.co/12/C33D46/C33D46.png) `#C33D46` | Daily (Coral) | News digests, weekly roundups, quick briefs |
 | ![](https://placehold.co/12/059669/059669.png) `#059669` | Moyu Green | Tutorials, reviews, checklists, tool roundups |
 | ![](https://placehold.co/12/DC2626/DC2626.png) `#DC2626` | Red & White | Deep analysis, opinions, strong takes |
+| ![](https://placehold.co/12/002FA7/002FA7.png) `#002FA7` | Klein Blue | Art criticism, brand narratives, profiles, editorial-style long reads |
 | ![](https://placehold.co/12/52525B/52525B.png) `#52525B` | Graphite Minimal | Design, tech commentary, premium brand |
 | ![](https://placehold.co/12/4A5D52/4A5D52.png) `#4A5D52` | Zen Whitespace | Zen, minimal living, reflective essays |
 | ![](https://placehold.co/12/059669/059669.png) `#059669` | Moyu Ticket | Tool comparisons, creative reviews (ticket motif) |
