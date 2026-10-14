@@ -11,11 +11,11 @@
 | 科技钴蓝 | `#1D4ED8` cobalt | AI 工具、开发教程、产品说明、工作流指南（默认推荐；冷静清晰、信息密度高、黄蓝对比） | `references/theme-tech-cobalt.md` | `border-bottom:2px solid #93C5FD;font-weight:600;` |
 | 摸鱼绿 | `#059669` emerald | 教程、测评、清单、工具盘点（卡片丰富、信息密度高） | `references/theme-moyu-green.md` | `border-bottom:2px solid #A7F3D0;font-weight:600;` |
 | 红白色系 | `#DC2626` 正红 | 深度分析、观点、力量感话题（经典编辑风，编号章节+引言卡+签名区，红色克制点睛） | `references/theme-red-white.md` | `border-bottom:2px solid #FECACA;font-weight:600;` |
+| 克莱因蓝艺术展册 | `#002FA7` 克莱因蓝 | 艺术评论、品牌叙事、深度观点、人物特稿（浅蓝底圆角卡流、错位白卡标题、蓝点步骤卡、耳挂金句条） | `references/theme-klein-blue.md` | `border-bottom:2px solid #002FA7;font-weight:600;color:#111111;` |
 | 石墨极简风 | `#52525B` 石墨灰 | 设计、科技评论、专业观点、高端品牌（极简克制、留白理性、全灰阶） | `references/theme-graphite-minimal.md` | `border-bottom:2px solid #52525B;font-weight:600;` |
 | 留白禅意风 | `#4A5D52` 墨绿 | 禅意冥想、极简生活、深度随笔、艺术留白（呼吸感最强） | `references/theme-zen-whitespace.md` | `border-bottom:1.5px solid #B5C8BC;font-weight:500;` |
 | 摸鱼票据风 | `#059669` emerald | 测评、工具对比、创意评测（票据/门票视觉隐喻，星级评分+编号+硬阴影卡片） | `references/theme-moyu-ticket.md` | `border-bottom:2px solid #A7F3D0;font-weight:600;` |
 | 橄榄手记 | `#1e1f23` 墨黑（配橙 `#ed7b2f`） | 内刊手记、深度评测、案例复盘、系统性说明文档（编辑部内刊质感，分节形式多样，信息密度偏高） | `references/theme-olive-journal.md` | `border-bottom:2px solid #ed7b2f;font-weight:600;` |
-| 克莱因蓝艺术展册 | `#002FA7` 克莱因蓝 | 艺术评论、品牌叙事、深度观点、人物特稿（浅蓝底圆角卡流、错位白卡标题、蓝点步骤卡、耳挂金句条） | `references/theme-klein-blue.md` | `border-bottom:2px solid #002FA7;font-weight:600;color:#111111;` |
 | 奶咖信纸 Letter | `#2B7FD8`/`#F4D758`/`#E84A5F` 三色 | 叙事长文、观点、方法论、年度总结（奶白信纸底、中轴衬线标题、荧光笔点睛、三色装饰条分段，无卡片堆砌） | `references/theme-letter.md` | `background:linear-gradient(transparent 60%, #F4D758 60%);font-weight:bold;` |
 | 粉彩便当盒 Bento | `#7C3AED` 粉彩紫 | 工具测评、清单、干货合集（粉彩浅底马卡龙卡五色轮转、等宽眉标编号、奶油黄金句卡，无深色实底） | `references/theme-bento.md` | `background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;` |
 | 薄荷对话 Chat | `#059669` 薄荷 | AI 访谈实录、问答教程、案例复盘（浅绿/薄荷气泡问答推进、不对称圆角、奶油黄要点卡收束） | `references/theme-chat.md` | `background:linear-gradient(transparent 60%, #F4D793 60%);font-weight:bold;` |
