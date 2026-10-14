@@ -31,6 +31,7 @@
 衬线标题字体： Georgia,'Songti SC','Noto Serif SC',serif
 正文无衬线：   -apple-system,'PingFang SC','Helvetica Neue',sans-serif
 正文字号：     18px，line-height:2
+页面补充色：    #F1F5F9
 ```
 
 三色比例：墨色文字 90%，蓝黄红各作小剂量点缀（蓝=信息、黄=强调、红=警示/期号），一篇文章红色 kicker 只出现一次。

@@ -30,11 +30,122 @@
 常规圆角：       4px–8px；标签 999px；封面图可用拱门圆角
 轻阴影：         0 6px 18px rgba(0,47,167,0.08)
 强调阴影：       0 8px 24px rgba(0,47,167,0.16)
+
+—— v2 卡片流版页面色（docs/gallery/klein-blue.html，优先使用）——
+v2 页面底（浅蓝）：  #F4F6FE
+v2 墨蓝正文：       #16224A / #232C55 / #333F75
+v2 淡蓝水滴卡：     底 #DCE4FB / 文字 #16224A
+v2 渐变蓝大卡：     linear-gradient(135deg,#1E45C4,#3A62E0)，文字白
+v2 浅蓝强调字：     #5C7BE0（浅底）/ #C9D5FA（深底辅字）
+v2 白卡描边：       #F0F4FF 底 / #E8EDFD 边
+v2 眉题：           #333F75 加粗（禁浅灰）
 ```
 
 中文字体栈：`-apple-system,BlinkMacSystemFont,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif`
 
 英文与编号：`Georgia,'Times New Roman',serif`
+
+---
+
+## 组件 V2-1 开场：蓝幅 + 错位白卡标题（v2 卡片流版默认开场）
+
+> v2 页面 `docs/gallery/klein-blue.html` 的开场结构：全宽蓝幅（只放英文眉题）+ 上移的白卡标题（`margin-top` 负值制造错位悬浮）。观点类文章优先用这套开场，替代经典刊头+封面组合。
+
+```html
+<section style="max-width:677px;margin:0 auto;background:#F4F6FE;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#16224A;font-size:16px;line-height:1.9;">
+  <section style="background:#002FA7;padding:52px 30px 104px;text-align:center;">
+    <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:12px;font-weight:bold;letter-spacing:5px;padding-left:5px;color:#C9D5FA;"><span leaf="">栏目英文眉题 · 2026</span></p>
+  </section>
+  <section style="margin:-64px 26px 0;background:#FFFFFF;border-radius:18px;padding:32px 26px 30px;box-shadow:0 6px 24px rgba(0,47,167,0.10);">
+    <h2 style="margin:0 0 14px;font-size:26px;font-weight:900;line-height:1.55;color:#111C44;"><span leaf="">标题第一行</span><br><span style="color:#002FA7;"><span leaf="">标题第二行（克莱因蓝强调）</span></span></h2>
+    <p style="margin:0;font-size:15px;line-height:1.95;color:#232C55;font-weight:bold;"><span leaf="">一句导读，收住全文要讲什么。</span></p>
+  </section>
+```
+
+---
+
+## 组件 V2-2 淡蓝水滴卡（v2 分论点卡）
+
+```html
+<section style="margin:34px 26px 0;background:#E8EDFD;border-radius:18px;padding:28px 24px;">
+  <p style="margin:0 0 10px;font-size:13px;font-weight:bold;color:#002FA7;letter-spacing:2px;"><span leaf="">判断一</span></p>
+  <p style="margin:0 0 12px;font-size:19px;font-weight:900;color:#111C44;line-height:1.6;"><span leaf="">分论点标题</span></p>
+  <p style="margin:0 0 12px;font-size:16px;line-height:1.95;color:#232C55;text-align:justify;"><span leaf="">论述正文。</span><span style="background:#FFFFFF;color:#002FA7;font-weight:bold;padding:0 2px;border-radius:4px;"><span leaf="">核心定义用白底蓝字反白胶囊</span></span><span leaf="">，每卡 1 处。</span></p>
+</section>
+```
+
+---
+
+## 组件 V2-3 耳挂金句条（v2 专属构件）
+
+```html
+<section style="margin:26px 20px 0;display:flex;align-items:stretch;">
+  <section style="width:6px;border-radius:3px;background:#002FA7;font-size:0;line-height:0;flex-shrink:0;"><span leaf=""><br></span></section>
+  <section style="flex:1;background:#002FA7;border-radius:0 18px 18px 0;padding:24px 24px;">
+    <p style="margin:0;font-size:18px;line-height:1.85;font-weight:700;color:#FFFFFF;"><span leaf="">「金句正文，两侧引号保留。」</span></p>
+  </section>
+</section>
+```
+
+---
+
+## 组件 V2-4 白卡蓝点步骤（v2 枚举结构）
+
+```html
+<section style="margin:30px 26px 0;background:#FFFFFF;border-radius:18px;padding:28px 24px;box-shadow:0 4px 18px rgba(0,47,167,0.06);">
+  <p style="margin:0 0 10px;font-size:13px;font-weight:bold;color:#002FA7;letter-spacing:2px;"><span leaf="">判断二</span></p>
+  <p style="margin:0 0 16px;font-size:19px;font-weight:900;color:#111C44;line-height:1.6;"><span leaf="">分论点标题</span></p>
+  <section style="margin-bottom:14px;display:flex;">
+    <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#002FA7;color:#FFFFFF;font-size:13px;font-weight:bold;text-align:center;line-height:26px;margin-right:12px;"><span leaf="">1</span></span>
+    <p style="margin:0;font-size:15px;line-height:1.85;color:#232C55;"><span leaf=""><b>要点一</b> 说明文字。</span></p>
+  </section>
+  <section style="margin-bottom:14px;display:flex;">
+    <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#1E45C4;color:#FFFFFF;font-size:13px;font-weight:bold;text-align:center;line-height:26px;margin-right:12px;"><span leaf="">2</span></span>
+    <p style="margin:0;font-size:15px;line-height:1.85;color:#232C55;"><span leaf=""><b>要点二</b> 圆点色依次加深：#002FA7 → #1E45C4 → #5C7BE0。</span></p>
+  </section>
+  <section style="display:flex;">
+    <span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#5C7BE0;color:#FFFFFF;font-size:13px;font-weight:bold;text-align:center;line-height:26px;margin-right:12px;"><span leaf="">3</span></span>
+    <p style="margin:0;font-size:15px;line-height:1.85;color:#232C55;"><span leaf=""><b>要点三</b> 说明文字。</span></p>
+  </section>
+  <section style="margin:16px 0 0;background:#F0F4FF;border-radius:10px;padding:14px 16px;"><p style="margin:0;font-size:15px;line-height:1.95;color:#333F75;text-align:justify;"><span style="font-weight:bold;color:#002FA7;"><span leaf="">例 · </span></span><span leaf="">例子说明，浅蓝底内嵌条。</span></p></section>
+</section>
+```
+
+---
+
+## 组件 V2-5 渐变蓝大卡（v2 压轴论点）
+
+```html
+<section style="margin:30px 26px 0;background:linear-gradient(135deg,#002FA7 0%,#1E45C4 55%,#3A62E0 100%);border-radius:18px;padding:30px 26px;">
+  <p style="margin:0 0 10px;font-size:13px;font-weight:bold;color:#C9D5FA;letter-spacing:2px;"><span leaf="">判断三</span></p>
+  <p style="margin:0 0 12px;font-size:19px;font-weight:900;color:#FFFFFF;line-height:1.6;"><span leaf="">压轴论点标题</span></p>
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.95;color:#DCE4FB;text-align:justify;"><span leaf="">论述正文（浅蓝字在渐变深底上）。</span></p>
+  <p style="margin:0;font-size:13px;font-weight:bold;letter-spacing:1px;color:#DCE4FB;"><span leaf="">链式收束：A → B → C → D</span></p>
+</section>
+```
+
+---
+
+## 组件 V2-6 居中收束 + 白卡圆徽标页脚（v2）
+
+```html
+<section style="margin:52px 26px 0;text-align:center;padding:8px 10px 0;">
+  <p style="margin:0 0 14px;font-size:20px;font-weight:900;line-height:1.8;color:#111C44;"><span leaf="">收束前半句</span><br><span leaf="">后半句</span><span style="color:#002FA7;"><span leaf="">克莱因蓝强调</span></span><span leaf="">。</span></p>
+  <span style="display:inline-block;width:44px;height:4px;border-radius:2px;background:#002FA7;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin:34px 26px 0;background:#FFFFFF;border-radius:18px;padding:24px;text-align:center;box-shadow:0 4px 18px rgba(0,47,167,0.06);">
+  <span style="display:inline-block;width:34px;height:34px;border-radius:50%;background:#002FA7;color:#FFFFFF;font-size:15px;font-weight:900;line-height:34px;margin-bottom:10px;"><span leaf="">茉</span></span>
+  <p style="margin:0 0 4px;font-size:15px;font-weight:900;color:#111C44;letter-spacing:2px;"><span leaf="">{{作者名/品牌名}}</span></p>
+  <p style="margin:0;font-size:13px;color:#333F75;line-height:1.8;"><span leaf="">{{签名第一行}} · 觉得有收获，欢迎点赞、转发、推荐</span></p>
+</section>
+
+<section style="height:36px;"><span leaf=""><br></span></section>
+
+</section>
+```
+
+**v2 节奏铁律**：页面底一律浅蓝 `#F4F6FE`（组件 V2-1 已含）；三张分论点卡交替使用「水滴卡 V2-2 / 白卡步骤 V2-4 / 渐变大卡 V2-5」，中间穿插耳挂金句条 V2-3（全篇 ≤2 条）；眉题/标签一律 `#002FA7` 或 `#333F75` 加粗，禁浅灰；`#002FA7` 纯蓝只用于标签、圆点、耳挂条、徽标，不大面积平涂正文区。
 
 ---
 

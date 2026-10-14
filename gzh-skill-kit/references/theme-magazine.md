@@ -31,6 +31,7 @@
 细线：          1px solid rgba(29,42,45,.15)
 衬线标题：      Georgia,'Songti SC','Noto Serif SC',serif
 正文字号：      18px，line-height:2
+页面补充色：    #1D3A42
 ```
 
 三色比例：墨色 85%、孔雀蓝 10%（装饰词+关键词+细线）、蜜桃/赤陶 5%。装饰词每章一个，全篇统一孔雀蓝 10% 透明。
