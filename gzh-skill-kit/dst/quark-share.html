@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow">
+<meta property="og:title" content="夸克网盘资源">
+<meta property="og:description" content="点击获取资源，自动唤起夸克 App">
+<meta property="og:type" content="website">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f2f5fa">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#10141c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%232f7bff'/%3E%3Ctext x='50' y='70' font-size='52' text-anchor='middle' fill='%23fff' font-weight='700' font-family='PingFang SC,Microsoft YaHei,sans-serif'%3E%E5%A4%B8%3C/text%3E%3C/svg%3E">
+<title>资源获取</title>
+<style>
+  :root {
+    --blue: #2f7bff;
+    --blue-2: #0a5cff;
+    --text: #17233d;
+    --text-2: #5c6b85;
+    --text-3: #97a3b8;
+    --bg: #f2f5fa;
+    --glow: #d9e8ff;
+    --card: #ffffff;
+    --line: #e9edf4;
+    --box: #f5f7fb;
+    --box-line: #e6ebf3;
+    --shadow: 0 18px 50px -12px rgba(23, 62, 143, .18);
+    --toast-bg: rgba(17, 24, 39, .92);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --blue: #4d8dff;
+      --blue-2: #2f6dff;
+      --text: #e9eef8;
+      --text-2: #a6b1c6;
+      --text-3: #6f7b92;
+      --bg: #10141c;
+      --glow: #17233c;
+      --card: #181d28;
+      --line: #262e3f;
+      --box: #1f2634;
+      --box-line: #2a3347;
+      --shadow: 0 18px 50px -12px rgba(0, 0, 0, .55);
+      --toast-bg: rgba(70, 80, 100, .96);
+    }
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    padding: max(32px, env(safe-area-inset-top)) 20px calc(32px + env(safe-area-inset-bottom));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "HarmonyOS Sans SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    color: var(--text);
+    background: radial-gradient(1100px 520px at 50% -8%, var(--glow) 0%, var(--bg) 58%);
+  }
+  .wrap { margin: auto 0; width: 100%; display: flex; flex-direction: column; align-items: center; }
+
+  .brand { display: flex; align-items: center; gap: 10px; margin-bottom: 24px; }
+  .logo {
+    width: 46px; height: 46px; border-radius: 14px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-2));
+    color: #fff; font-size: 24px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 20px -6px rgba(47, 123, 255, .55);
+    user-select: none;
+  }
+  .brand-name { font-size: 22px; font-weight: 700; letter-spacing: .5px; }
+
+  .card {
+    width: 100%; max-width: 400px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: 26px 24px;
+    box-shadow: var(--shadow);
+  }
+  .res-name { font-size: 17px; font-weight: 700; text-align: center; overflow-wrap: anywhere; }
+  .res-sub { font-size: 12.5px; color: var(--text-3); text-align: center; margin: 4px 0 20px; }
+
+  .btn-main {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; padding: 14px 0;
+    border: none; border-radius: 999px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-2));
+    color: #fff; font-size: 15.5px; font-weight: 600; font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 10px 24px -8px rgba(47, 123, 255, .55);
+    transition: transform .15s ease, filter .2s ease;
+  }
+  .btn-main:active { transform: scale(.97); filter: brightness(.95); }
+  .btn-main svg { width: 17px; height: 17px; }
+
+  .divider { display: flex; align-items: center; gap: 12px; margin: 22px 0 16px; color: var(--text-3); font-size: 12px; white-space: nowrap; }
+  .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+  .link-box {
+    background: var(--box);
+    border: 1px solid var(--box-line);
+    border-radius: 12px;
+    padding: 12px 14px;
+    font-size: 13px; line-height: 1.6;
+    color: var(--text-2);
+    word-break: break-all;
+    text-align: left;
+    user-select: all; -webkit-user-select: all;
+    margin-bottom: 12px;
+  }
+
+  .btn-secondary {
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    width: 100%; padding: 11px 0;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--text-2);
+    font-size: 14px; font-weight: 500; font-family: inherit;
+    cursor: pointer;
+    transition: background .2s ease, transform .15s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-secondary:active { background: var(--box); transform: scale(.98); }
+  .btn-secondary.done { color: #12b76a; border-color: rgba(18, 183, 106, .45); }
+  .btn-secondary svg { width: 15px; height: 15px; }
+
+  .steps { margin: 20px 0 0; padding: 0; list-style: none; }
+  .steps li { position: relative; padding-left: 18px; font-size: 12.5px; color: var(--text-3); line-height: 2.1; }
+  .steps li::before {
+    content: ''; position: absolute; left: 2px; top: 12px;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--blue); opacity: .45;
+  }
+
+  .foot { margin-top: 22px; font-size: 11.5px; color: var(--text-3); text-align: center; }
+
+  /* 底部引导弹层 */
+  .mask {
+    position: fixed; inset: 0; z-index: 50;
+    background: rgba(8, 12, 24, .45);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    display: flex; align-items: flex-end; justify-content: center;
+    opacity: 0; pointer-events: none; visibility: hidden;
+    transition: opacity .25s ease, visibility .25s ease;
+  }
+  .mask.show { opacity: 1; pointer-events: auto; visibility: visible; }
+  .sheet {
+    width: 100%; max-width: 400px;
+    background: var(--card);
+    border-radius: 20px 20px 0 0;
+    padding: 12px 24px calc(24px + env(safe-area-inset-bottom));
+    transform: translateY(100%);
+    transition: transform .3s cubic-bezier(.2, .8, .2, 1);
+  }
+  .mask.show .sheet { transform: none; }
+  .sheet-bar { width: 36px; height: 4px; border-radius: 2px; background: var(--line); margin: 0 auto 16px; }
+  .sheet-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+  .sheet-desc { font-size: 13.5px; line-height: 1.7; color: var(--text-2); margin-bottom: 18px; }
+  .sheet-actions { display: flex; gap: 10px; }
+  .sheet-actions .btn-secondary, .sheet-actions .btn-main { flex: 1; }
+  /* 弹层内主次按钮形状统一为胶囊，只保留实心/描边的区别 */
+  .sheet-actions .btn-secondary { border-radius: 999px; }
+
+  /* 轻提示 */
+  .toast {
+    position: fixed; left: 50%; bottom: calc(88px + env(safe-area-inset-bottom));
+    transform: translateX(-50%) translateY(10px);
+    background: var(--toast-bg); color: #fff;
+    padding: 10px 18px; border-radius: 999px;
+    font-size: 13px; max-width: 80vw;
+    opacity: 0; z-index: 60; pointer-events: none;
+    transition: opacity .25s ease, transform .25s ease;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%); }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="brand">
+    <div class="logo">夸</div>
+    <div class="brand-name">夸克网盘</div>
+  </div>
+
+  <main class="card">
+    <div class="res-name" id="resName">夸克网盘资源</div>
+    <div class="res-sub">夸克网盘分享链接 · 长期有效</div>
+
+    <button class="btn-main" id="btnOpen" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+      <span id="btnOpenLabel">一键获取资源</span>
+    </button>
+
+    <div class="divider">或复制链接手动打开</div>
+
+    <div class="link-box" id="displayLink"></div>
+
+    <button class="btn-secondary" id="btnCopy" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+      <span id="btnCopyLabel">复制链接</span>
+    </button>
+
+    <ul class="steps">
+      <li>手机上点一下页面任意位置即可跳转夸克</li>
+      <li>未自动跳转时：复制链接，打开夸克 App 会自动识别</li>
+      <li>进入分享页后，记得把资源转存到自己的网盘</li>
+    </ul>
+  </main>
+
+  <div class="foot">请及时转存资源，防止分享失效</div>
+</div>
+
+<div class="mask" id="mask" role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="sheet-bar"></div>
+    <div class="sheet-title" id="sheetTitle"></div>
+    <div class="sheet-desc" id="sheetDesc"></div>
+    <div class="sheet-actions">
+      <button class="btn-secondary" id="sheetCopy" type="button"><span>复制链接</span></button>
+      <button class="btn-main" id="sheetWeb" type="button">浏览器打开网页版</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ════════════ 配置区：日常使用只改这里 ════════════
+     link          : 夸克分享链接（夸克 App 里点分享 → 复制链接）
+     name          : 页面显示的资源名（随意填）
+     autoOpen      : 打开页面后自动跳转（true 开 / false 关）
+     autoOpenDelay : 自动跳转前的等待秒数，0 = 打开立即跳
+
+     不改代码也能换链接，直接在网址后面带参数：
+       xxx.html?link=https://pan.quark.cn/s/abcd1234efgh
+       xxx.html?link=abcd1234efgh            （只填 12 位分享码）
+       xxx.html?link=...&name=某课程资源      （顺带改显示的资源名）
+       xxx.html?auto=0                       （临时关闭自动跳转）
+  ═══════════════════════════════════════════════════ */
+  var CONFIG = {
+    name: '夸克网盘资源',
+    link: 'https://pan.quark.cn/s/b35030800a59',
+    autoOpen: true,
+    autoOpenDelay: 0
+  };
+
+  var $ = function (sel) { return document.querySelector(sel); };
+
+  // 链接被聊天工具截断后常出现非法百分号编码，decode 会抛异常，必须兜底
+  function safeDecode(s) {
+    try { return decodeURIComponent(s); } catch (e) { return s; }
+  }
+
+  /* ---------- 读取 URL 参数，覆盖配置 ---------- */
+  (function () {
+    var q = {};
+    location.search.slice(1).split('&').forEach(function (kv) {
+      if (!kv) return;
+      var i = kv.indexOf('=');
+      var k = safeDecode(i < 0 ? kv : kv.slice(0, i));
+      var v = i < 0 ? '' : safeDecode(kv.slice(i + 1).replace(/\+/g, ' '));
+      q[k] = v;
+    });
+    var link = q.link || q.url || '';
+    if (!link && location.hash.length > 1) {
+      link = safeDecode(location.hash.slice(1));
+    }
+    if (link) {
+      if (/^[0-9a-f]{12}$/i.test(link)) link = 'https://pan.quark.cn/s/' + link;
+      if (/^https:\/\/([\w-]+\.)*quark\.cn\//i.test(link)) CONFIG.link = link;
+    }
+    if (q.name) CONFIG.name = q.name.slice(0, 60);
+    if (q.auto !== undefined) {
+      CONFIG.autoOpen = !(q.auto === '0' || q.auto === 'false' || q.auto === 'off');
+    }
+  })();
+
+  /* ---------- 渲染 ---------- */
+  document.title = CONFIG.name;
+  $('#resName').textContent = CONFIG.name;
+  $('#displayLink').textContent = CONFIG.link;
+
+  /* ---------- 环境判断 ---------- */
+  var ua = navigator.userAgent;
+  var isIOS = /iPhone|iPad|iPod/i.test(ua) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/i.test(ua);
+  var isQuark = /Quark/i.test(ua);
+  var isInApp = /MicroMessenger|QQBrowser|QQ\/|\bWeibo\b|AlipayClient|DingTalk/i.test(ua);
+
+  /* ---------- 轻提示 ---------- */
+  function toast(msg) {
+    var t = document.createElement('div');
+    t.className = 'toast';
+    t.textContent = msg;
+    document.body.appendChild(t);
+    requestAnimationFrame(function () { t.classList.add('show'); });
+    setTimeout(function () {
+      t.classList.remove('show');
+      setTimeout(function () { t.remove(); }, 300);
+    }, 2200);
+  }
+
+  /* ---------- 复制到剪贴板（新 API 优先，老环境兜底） ---------- */
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:0;left:-9999px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    ta.setSelectionRange(0, text.length);
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(
+        function () { return true; },
+        function () { return legacyCopy(text); }
+      );
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+
+  function markCopied(btn) {
+    var label = btn.querySelector('span');
+    if (!label) return;
+    var old = label.textContent;
+    btn.classList.add('done');
+    label.textContent = '已复制 ✓';
+    setTimeout(function () {
+      btn.classList.remove('done');
+      label.textContent = old;
+    }, 1600);
+  }
+
+  function doCopy(btn) {
+    copyText(CONFIG.link).then(function (ok) {
+      if (ok) { toast('链接已复制'); markCopied(btn); }
+      else toast('复制失败，请长按链接手动复制');
+    });
+  }
+
+  /* ---------- 底部引导弹层 ---------- */
+  function showSheet(title, desc, mode) {
+    setSheetMode(mode);
+    $('#sheetTitle').textContent = title;
+    $('#sheetDesc').textContent = desc;
+    $('#mask').classList.add('show');
+  }
+  // copy-first：复制链接为主按钮（微信/夸克识别剪贴板路径）
+  // web-first ：打开网页版为主按钮（桌面/兜底路径）
+  function setSheetMode(mode) {
+    var copy = $('#sheetCopy'), web = $('#sheetWeb');
+    if (mode === 'copy-first') {
+      copy.className = 'btn-main';
+      web.className = 'btn-secondary';
+    } else {
+      copy.className = 'btn-secondary';
+      web.className = 'btn-main';
+    }
+  }
+  function hideSheet() {
+    sheetAutoHide = false;
+    $('#mask').classList.remove('show');
+  }
+
+  $('#mask').addEventListener('click', function (e) {
+    if (e.target === this) hideSheet();
+  });
+  $('#sheetCopy').addEventListener('click', function () { doCopy(this); });
+  $('#sheetWeb').addEventListener('click', function () {
+    location.href = CONFIG.link;
+  });
+
+  /* ---------- 主按钮：按环境选择打开策略 ---------- */
+  var leftPage = false;
+  var wakeTimer = null;
+  var autoTimer = null;
+  var lastCopyOk = false;
+  var sheetAutoHide = false;
+  var lastTouchOpen = 0;
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) return;
+    leftPage = true;
+    // 浏览器“是否打开”确认框点慢时会误报失败：App 真正打开后自动收起提示
+    if (sheetAutoHide) { sheetAutoHide = false; hideSheet(); }
+  });
+  window.addEventListener('pagehide', function () { leftPage = true; });
+
+  function tryCopy() {
+    copyText(CONFIG.link).then(function (ok) { lastCopyOk = ok; });
+  }
+
+  function openTarget(auto) {
+    clearTimeout(autoTimer);
+    $('#btnOpenLabel').textContent = '一键获取资源';
+    tryCopy();
+
+    if (isQuark) {
+      // 已在夸克 App 内置浏览器里，直接打开链接即可
+      location.href = CONFIG.link;
+      return;
+    }
+    if (isInApp) {
+      showSheet('在微信/QQ 内无法直接跳转',
+        '点下方「复制链接」，然后直接打开夸克 App——它会自动识别剪贴板里的链接并跳转；也可以点右上角「···」选「在浏览器打开」。',
+        'copy-first');
+      return;
+    }
+    if (isIOS) {
+      // iOS 上未知 scheme 会弹“无法打开”错误框，直接走网页版；
+      // 已装夸克时，夸克网页版顶部有“在 App 中打开”引导。
+      // 用 replace 不留历史，避免用户后退回本页再次自动跳转形成循环。
+      location.replace(CONFIG.link);
+      return;
+    }
+    if (!isAndroid) {
+      // 桌面：window.open 无用户手势会被拦截，所以当前页直接跳；
+      // 自动跳转用 replace，避免用户在网页版按后退后又自动跳走的死循环。
+      if (auto) {
+        location.replace(CONFIG.link);
+      } else {
+        window.open(CONFIG.link, '_blank', 'noopener');
+        toast('已在新标签页打开网页版');
+      }
+      return;
+    }
+
+    // Android：尝试唤起。部分浏览器会弹“是否打开”确认框，点确认才走，
+    // 所以给足 5 秒再判定；期间点页面任意位置也能触发。
+    leftPage = false;
+    if (auto) $('#btnOpenLabel').textContent = '正在打开夸克…';
+    location.href = 'quark://web?target=' + encodeURIComponent(CONFIG.link);
+    clearTimeout(wakeTimer);
+    wakeTimer = setTimeout(function () {
+      $('#btnOpenLabel').textContent = '一键获取资源';
+      if (!leftPage && !document.hidden) {
+        showSheet(lastCopyOk ? '夸克还没有打开？' : '夸克没有自动打开？',
+          lastCopyOk
+            ? '链接已复制好，直接打开夸克 App 就行，它会自动识别剪贴板里的链接并跳转；没装夸克也可以用浏览器打开网页版。'
+            : '点下方「复制链接」，然后打开夸克 App，它会自动识别剪贴板里的链接并跳转；没装夸克也可以用浏览器打开网页版。',
+          'copy-first');
+        sheetAutoHide = true;
+      }
+    }, 5000);
+  }
+
+  $('#btnOpen').addEventListener('click', function () { openTarget(false); });
+  $('#btnCopy').addEventListener('click', function () { doCopy(this); });
+
+  // Android 上很多浏览器会拦截无手势的 App 唤起：点页面任意位置即触发
+  // 用 click 而不是 touchstart，滚动页面时不会误触
+  if (isAndroid) {
+    document.addEventListener('click', function (e) {
+      if ($('#mask').classList.contains('show')) return;
+      if (e.target.closest('button, a, .link-box, .mask')) return;
+      var now = Date.now();
+      if (now - lastTouchOpen < 1200) return;
+      lastTouchOpen = now;
+      openTarget(false);
+    });
+  }
+
+  /* ---------- 自动跳转：默认打开立即跳，设 autoOpenDelay>0 时先倒计时 ---------- */
+  if (CONFIG.autoOpen) {
+    var delay = Math.max(0, Math.round(Number(CONFIG.autoOpenDelay) || 0));
+    var label = $('#btnOpenLabel');
+    if (delay === 0) {
+      // 留 30ms 让首帧渲染完成，避免“白屏被拽走”的突兀感
+      setTimeout(function () { openTarget(true); }, 30);
+    } else {
+      var left = delay;
+      (function tick() {
+        label.textContent = left + ' 秒后自动打开';
+        if (left <= 0) { openTarget(true); return; }
+        left--;
+        autoTimer = setTimeout(tick, 1000);
+      })();
+    }
+  }
+})();
+</script>
+</body>
+</html>
