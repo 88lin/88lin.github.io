@@ -69,9 +69,6 @@
 </tr>
 </table>
 
-> [!TIP]
-> **👀 在线预览全部 14 套主题**：[88lin.github.io/gzh-skill-kit/docs/gallery/index.html](https://88lin.github.io/gzh-skill-kit/docs/gallery/index.html) —— 每套都能直接滚动看全文，选中意的直接复制组件。
-
 ## ✅ 适合 / ❌ 不适合
 
 **✅ 适合**：观点/深度分析 · 教程/操作指南 · 测评/工具盘点 · 知识整理/方法论 · 访谈/人物特稿 · 数据复盘/报告 · 生活/情感随笔 · 案例实战 —— 把 Markdown / Word / PDF / 纯文本长文，一键排成可直接粘进公众号编辑器的 HTML；也能按描述或参考图生成自定义主题。
