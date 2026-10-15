@@ -139,7 +139,7 @@ git clone https://github.com/88lin/gzh-skill-kit.git ~/.claude/skills/gzh-design
 > 用摸鱼绿把这篇文章排成公众号 HTML：`article.md`
 
 > [!TIP]
-> **懒人一键**：以上安装步骤全能省——直接对 Agent 说「帮我安装这个排版 skill：https://github.com/88lin/gzh-skill-kit」，它会自己 clone、接入并验证可用。
+> **懒人一键**：以上安装步骤全能省——直接对 Agent 说——帮我安装这个排版 skill：https://github.com/88lin/gzh-skill-kit 它会自己 clone、接入并验证可用。
 
 ## 📖 使用流程
 
