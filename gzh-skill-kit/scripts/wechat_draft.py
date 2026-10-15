@@ -104,7 +104,7 @@ def refresh_token():
     }, timeout=10)
     result = _parse_json(r)
     if 'access_token' not in result:
-        raise Exception(f"Token 刷新失败: {result}")
+        raise RuntimeError(f"Token 刷新失败: {result}")
 
     token = result['access_token']
     expires = datetime.datetime.now() + datetime.timedelta(seconds=result.get('expires_in', 7200))
@@ -146,7 +146,7 @@ def upload_cover(token, img_path):
             quality -= 5
 
     if size > 64000:
-        raise Exception(f"封面压缩后仍为 {size} 字节（>64KB），"
+        raise RuntimeError(f"封面压缩后仍为 {size} 字节（>64KB），"
                         "请换一张更小的图或先自行裁剪")
 
     with open(out, 'rb') as f:
@@ -160,7 +160,7 @@ def upload_cover(token, img_path):
         )
     result = _parse_json(r)
     if 'media_id' not in result:
-        raise Exception(f"封面上传失败: {result}")
+        raise RuntimeError(f"封面上传失败: {result}")
     return result['media_id']
 
 
@@ -190,7 +190,7 @@ def create_draft(token, thumb_media_id, title, digest, content):
     )
     result = _parse_json(r)
     if 'media_id' not in result:
-        raise Exception(f"草稿创建失败: {result}")
+        raise RuntimeError(f"草稿创建失败: {result}")
     return result['media_id']
 
 
@@ -219,7 +219,7 @@ def update_draft(token, media_id, thumb_media_id, title, digest, content, *, ori
     )
     result = _parse_json(r)
     if result.get('errcode') != 0:
-        raise Exception(f"草稿更新失败: {result}")
+        raise RuntimeError(f"草稿更新失败: {result}")
     return media_id
 
 
@@ -427,8 +427,15 @@ def main():
     try:
         upload_and_cleanup(cover, title, digest, content, base_dir=base_dir)
     except DraftVerificationError as exc:
+        # 草稿已经创建成功，只是回读验证没过——退出码 2，提示不要重复创建
         print_status(str(exc), file=sys.stderr)
         return 2
+    except (OSError, ValueError, RuntimeError) as exc:
+        # 其余失败（缺图、图片无法解析、token/封面上传失败等）给一行干净提示，
+        # 不要向用户甩 traceback。故意不用裸 except Exception——那会把真实的
+        # 编程错误（AttributeError/TypeError）也吞成"上传失败"，反而难排查。
+        print_status(f"✗ 上传失败：{exc}", file=sys.stderr)
+        return 1
     return 0
 
 

@@ -52,6 +52,7 @@ class LeafChecker(HTMLParser):
         self.leaf_depth = 0       # 处于 span[leaf] 内的嵌套计数
         self.code_depth = 0       # 处于代码区（等宽/pre）内的嵌套计数
         self.span_leaf_count = 0  # 全文 span leaf 总数
+        self.cjk_text_nodes = 0   # 参与正文的、含中文的文本节点数
         self.unwrapped = []       # (文本片段, 父标签) —— 未被 leaf 包裹的中文文本
         self.half_punct = []      # 正文里疑似半角标点的片段
 
@@ -96,6 +97,13 @@ class LeafChecker(HTMLParser):
             return
         if any(t in SKIP_TAGS for t, _, _ in self.stack):
             return  # <head>/<title>/<style>/<script> 内文字不进公众号正文
+        if any(t == "svg" for t, _, _ in self.stack):
+            # SVG 是原子渲染：内部文字（<text>/<tspan>）不走公众号富文本重排，
+            # 既不要求 <span leaf>，也不参与半角标点检查。
+            # 注意：统计也必须放在这两个跳过之后，否则"整篇只有一个 SVG"会被
+            # 误判成"全文没有任何 <span leaf> 包裹"。
+            return
+        self.cjk_text_nodes += 1
         if self.leaf_depth == 0:
             parent = self.stack[-1][0] if self.stack else "(root)"
             snippet = text[:24] + ("…" if len(text) > 24 else "")
@@ -131,8 +139,10 @@ def validate(html, name="<input>"):
     except Exception as e:  # 容错：解析失败不致命，只提示
         warnings.append(f"HTML 解析中断: {e}")
 
-    has_cjk = bool(CJK.search(html))
-    if has_cjk and checker.span_leaf_count == 0:
+    # 只有"真的有中文文本节点"时才要求 leaf。早期判据是对全文 grep CJK，
+    # 于是纯图片组件（中文只出现在 alt 属性里、没有任何正文文字）会被误判成
+    # "全文没有任何 <span leaf> 包裹"。
+    if checker.cjk_text_nodes > 0 and checker.span_leaf_count == 0:
         errors.append("全文没有任何 <span leaf=\"\"> 包裹——"
                       "粘贴到公众号后样式会大面积丢失")
     elif checker.unwrapped:

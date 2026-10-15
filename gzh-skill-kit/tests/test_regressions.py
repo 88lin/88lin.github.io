@@ -12,6 +12,15 @@ from unittest.mock import patch
 import xml.etree.ElementTree as ET
 import zipfile
 
+try:  # 可选依赖：CI 会安装，本地没装时相关用例应 skip 而不是 ERROR
+    import requests
+except ImportError:  # pragma: no cover - 取决于本地环境
+    requests = None
+try:
+    from PIL import Image
+except ImportError:  # pragma: no cover
+    Image = None
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 from component_lint import lint_file
@@ -87,6 +96,33 @@ class ValidationTests(unittest.TestCase):
     def test_static_svg_allowed(self):
         self.assertEqual(self.both('<svg><path d="M0 0 L1 1"/><text><tspan leaf="">图</tspan></text></svg>'), ([], []))
 
+    def test_svg_text_without_leaf_is_not_an_error(self):
+        # SVG 是原子渲染，内部文字不走公众号富文本重排，不要求 <span leaf>
+        source = ('<section style="background:#fff"><svg viewBox="0 0 120 30">'
+                  '<rect x="2" y="6" width="40" height="20"/>'
+                  '<text x="22" y="20">节点一</text></svg>'
+                  '<p><span leaf="">正文</span></p></section>')
+        self.assertEqual(validate(source)[:2], ([], []), source)
+
+    def test_svg_only_document_is_not_missing_leaf(self):
+        # 整篇只有 SVG（示意图帖）：SVG 内文字不该被计入"需要 leaf 的正文文本"，
+        # 否则会误报"全文没有任何 <span leaf> 包裹"。
+        source = ('<section style="background:#fff"><svg viewBox="0 0 200 60">'
+                  '<rect x="2" y="10" width="60" height="40"/>'
+                  '<text x="32" y="34">节点一</text>'
+                  '<text x="120" y="34">节点二</text></svg></section>')
+        self.assertEqual(validate(source)[:2], ([], []), source)
+
+    def test_chinese_only_in_attributes_is_not_missing_leaf(self):
+        # 纯图片组件：中文只出现在 alt 里、没有任何正文文字，不该判"全文没有 span leaf"
+        source = ('<section style="background:#fff;padding:6px;text-align:center">'
+                  '<img src="a.png" alt="图片说明" style="max-width:100%;height:auto"></section>')
+        self.assertEqual(validate(source)[:2], ([], []), source)
+        # 但同一段里若真有一段没包 leaf 的正文，仍然要报 ERROR（不能放过真问题）
+        bare = ('<section style="background:#fff">'
+                '<img src="a.png" alt="图片说明"><p>这段没包 leaf</p></section>')
+        self.assertTrue(validate(bare)[0])
+
     def test_void_leaf_does_not_cover_following_text(self):
         self.assertTrue(validate('<section><img leaf="" src="x.png">裸文字</section>')[0])
 
@@ -147,6 +183,7 @@ def response(value):
     return Response()
 
 
+@unittest.skipUnless(requests, 'requires requests')
 class DraftTests(unittest.TestCase):
     def test_failed_readback_is_not_zero_problems(self):
         with patch('requests.post', return_value=response({'errcode': 45009})):
@@ -178,9 +215,9 @@ class DraftTests(unittest.TestCase):
                 draft.upload_and_cleanup('cover', 'title', '', '<img src="missing.png">', base_dir=directory)
             post.assert_not_called()
 
+    @unittest.skipUnless(Image, 'requires Pillow')
     def test_local_images_uploaded_once_and_rewritten(self):
         with tempfile.TemporaryDirectory() as directory:
-            from PIL import Image
             image = Path(directory) / '截图 image.png'
             Image.new('RGB', (2, 2), 'white').save(image)
             html = '<section><img data-src="keep" src="截图%20image.png"><img src="截图%20image.png"/></section>'
@@ -195,9 +232,9 @@ class DraftTests(unittest.TestCase):
             self.assertEqual(sent.count('src="https://mmbiz.qpic.cn/example"'), 2)
             self.assertIn('data-src="keep"', sent)
 
+    @unittest.skipUnless(Image, 'requires Pillow')
     def test_image_replacement_ignores_attribute_text_and_preserves_offsets(self):
         with tempfile.TemporaryDirectory() as directory:
-            from PIL import Image
             path = Path(directory) / 'image.png'
             Image.new('RGB', (2, 2), 'white').save(path)
             html = '文字\r竖线\v换行\n<img alt="example src=fake.png" src="image.png">'
@@ -253,6 +290,34 @@ class CLITests(unittest.TestCase):
                                 env=dict(os.environ, PYTHONIOENCODING='gbk'))
         self.assertEqual(result.returncode, 0, result.stderr.decode('utf-8', 'replace'))
 
+    def test_cli_reports_upload_failure_without_traceback(self):
+        # 缺图 / 图片无法解析 / token 失败等：应得到一行干净提示 + 退出码 1，
+        # 而不是把 traceback 甩给用户。
+        for exc in [FileNotFoundError('找不到正文图片：x.png'),
+                    ValueError('正文图片不支持此来源'),
+                    RuntimeError('Token 刷新失败')]:
+            with self.subTest(exc=type(exc).__name__):
+                with patch.object(sys, 'argv', ['wechat_draft.py', 'cover', 'title', 'summary']), \
+                        patch.object(sys, 'stdin', io.StringIO('<p>x</p>')), \
+                        patch.object(draft, 'upload_and_cleanup', side_effect=exc):
+                    self.assertEqual(draft.main(), 1)
+
+    def test_cli_verification_failure_returns_two(self):
+        # 草稿已创建但回读失败：退出码 2，提示不要重复创建
+        with patch.object(sys, 'argv', ['wechat_draft.py', 'cover', 'title', 'summary']), \
+                patch.object(sys, 'stdin', io.StringIO('<p>x</p>')), \
+                patch.object(draft, 'upload_and_cleanup',
+                             side_effect=draft.DraftVerificationError('existing', '回读失败')):
+            self.assertEqual(draft.main(), 2)
+
+    def test_cli_does_not_swallow_programming_errors(self):
+        # 真实的编程错误（不是上传失败）必须继续抛出，不能被 main() 吞掉
+        with patch.object(sys, 'argv', ['wechat_draft.py', 'cover', 'title', 'summary']), \
+                patch.object(sys, 'stdin', io.StringIO('<p>x</p>')), \
+                patch.object(draft, 'upload_and_cleanup', side_effect=AttributeError('boom')):
+            with self.assertRaises(AttributeError):
+                draft.main()
+
     def test_library_status_keeps_host_encoding_and_does_not_raise(self):
         buffer = io.BytesIO()
         stream = io.TextIOWrapper(buffer, encoding='gbk')
@@ -287,8 +352,8 @@ class RepositoryTests(unittest.TestCase):
                 self.assertEqual(validate(source)[:2], ([], []))
                 self.assertEqual(validate(minify_html(source))[:2], ([], []))
 
+    @unittest.skipUnless(Image, 'requires Pillow')
     def test_png_assets_are_complete(self):
-        from PIL import Image
         for path in sorted((ROOT / 'assets').glob('lf-*.png')):
             with self.subTest(asset=path.name):
                 with Image.open(path) as image:
