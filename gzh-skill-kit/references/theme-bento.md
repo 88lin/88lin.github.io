@@ -9,7 +9,7 @@
 > - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`、`border-radius`、`box-shadow`
 >
 > **WeChat 兼容铁律**：
-> - 装饰性空元素（色点、短横线）内部放 `<span leaf=\"\"><br></span>`
+> - 装饰性空元素（色点、短横线）内部放 `<span leaf=""><br></span>`
 > - 不在 `<strong>` 上打 font-size/border；同一 `<p>` 不混多个 font-size
 > - 粉彩浅底卡内文字用同色系深字（见变量表），保证对比度 ≥4.5:1
 > - 高亮 span 不跨行：荧光笔短语控制在 12 字以内，超长就只标核心词
@@ -34,6 +34,7 @@
 等宽眉标字体：  'SF Mono',Consolas,Monaco,monospace
 标题字体：      -apple-system,'PingFang SC',sans-serif（900 重）
 正文字号：      16-17px，line-height:2
+中性/补充色：   #5A3E8F（签名卡字） / #F6DC8E
 ```
 
 色彩比例：暖白 75%、粉彩卡 20%（五色轮转）、奶油黄 5%（金句卡）。一张卡只用一种底色，不叠渐变；相邻两卡不同色。
@@ -43,7 +44,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style=\"max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2B2B33;font-size:17px;line-height:2;overflow-x:hidden;\">
+<section style="max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2B2B33;font-size:17px;line-height:2;overflow-x:hidden;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -53,8 +54,8 @@
 ## 组件 2 顶部眉头（等宽字体）
 
 ```html
-<section style=\"text-align:center;margin-bottom:16px;\">
-  <span style=\"font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;font-weight:bold;letter-spacing:3px;color:#7C3AED;\"><span leaf=\"\">✦ MALIN STUDIO · WEEKLY</span></span>
+<section style="text-align:center;margin-bottom:16px;">
+  <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;font-weight:bold;letter-spacing:3px;color:#7C3AED;"><span leaf="">✦ MALIN STUDIO · WEEKLY</span></span>
 </section>
 ```
 
@@ -63,12 +64,12 @@
 ## 组件 3 大标题区（左对齐）
 
 ```html
-<section style=\"margin-bottom:32px;\">
-  <p style=\"margin:0 0 10px;font-size:30px;font-weight:900;line-height:1.5;color:#2B2B33;word-break:normal;overflow-wrap:normal;\">
-    <span leaf=\"\">这 5 个 AI 工具，</span><br>
-    <span leaf=\"\">我每天都在用</span>
+<section style="margin-bottom:32px;">
+  <p style="margin:0 0 10px;font-size:30px;font-weight:900;line-height:1.5;color:#2B2B33;word-break:normal;overflow-wrap:normal;">
+    <span leaf="">这 5 个 AI 工具，</span><br>
+    <span leaf="">我每天都在用</span>
   </p>
-  <p style=\"margin:0;font-size:16px;color:#55506A;line-height:1.8;\"><span leaf=\"\">副标题：一句说清这篇文章给什么人解决什么问题</span></p>
+  <p style="margin:0;font-size:16px;color:#55506A;line-height:1.8;"><span leaf="">副标题：一句说清这篇文章给什么人解决什么问题</span></p>
 </section>
 ```
 
@@ -77,8 +78,8 @@
 ## 组件 4 眉标卡头（每张 Bento 卡的开头，颜色随卡）
 
 ```html
-<section style=\"margin-bottom:10px;\">
-  <span style=\"font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#2563EB;\"><span leaf=\"\">✦ 01 · tool-review/</span></span>
+<section style="margin-bottom:10px;">
+  <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#2563EB;"><span leaf="">✦ 01 · tool-review/</span></span>
 </section>
 ```
 
@@ -89,9 +90,9 @@
 ## 组件 5 淡紫卡（总述/结论卡）
 
 ```html
-<section style=\"margin-bottom:14px;padding:26px 22px;background:#F0EAFE;border:1px solid #E2D4FA;border-radius:20px;\">
-  <p style=\"margin:0 0 12px;font-size:19px;font-weight:900;color:#5B21B6;line-height:1.6;\"><span leaf=\"\">先说结论</span></p>
-  <p style=\"margin:0;font-size:16px;line-height:2;color:#3A2A58;text-align:justify;\"><span leaf=\"\">总述正文。</span><span style=\"background:linear-gradient(transparent 60%, #F6DC8E 60%);font-weight:bold;padding:0 2px;\"><span leaf=\"\">核心短语用荧光笔</span></span><span leaf=\"\">，每卡 1 处。</span></p>
+<section style="margin-bottom:14px;padding:26px 22px;background:#F0EAFE;border:1px solid #E2D4FA;border-radius:20px;">
+  <p style="margin:0 0 12px;font-size:19px;font-weight:900;color:#5B21B6;line-height:1.6;"><span leaf="">先说结论</span></p>
+  <p style="margin:0;font-size:16px;line-height:2;color:#3A2A58;text-align:justify;"><span leaf="">总述正文。</span><span style="background:linear-gradient(transparent 60%, #F6DC8E 60%);font-weight:bold;padding:0 2px;"><span leaf="">核心短语用荧光笔</span></span><span leaf="">，每卡 1 处。</span></p>
 </section>
 ```
 
@@ -100,16 +101,16 @@
 ## 组件 6 淡蓝卡（内容主卡：一个工具/要点一张）
 
 ```html
-<section style=\"margin-bottom:14px;padding:24px 22px;background:#EBF4FF;border:1px solid #D6E6FC;border-radius:20px;\">
-  <p style=\"margin:0 0 10px;font-size:18px;font-weight:900;color:#1D4ED8;line-height:1.6;\"><span leaf=\"\">① 工具名 —— 一句话定位</span></p>
-  <p style=\"margin:0 0 12px;font-size:16px;line-height:2;color:#283349;text-align:justify;\"><span leaf=\"\">正文：它解决什么问题，为什么值得用。</span><span style=\"background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;\"><span leaf=\"\">关键短语</span></span><span leaf=\"\">。</span></p>
-  <section style=\"margin-bottom:8px;\">
-    <span style=\"display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;\"><span leaf=\"\"><br></span></span>
-    <span style=\"font-size:16px;color:#2B2B33;\"><span leaf=\"\">适合：什么人/什么场景</span></span>
+<section style="margin-bottom:14px;padding:24px 22px;background:#EBF4FF;border:1px solid #D6E6FC;border-radius:20px;">
+  <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#1D4ED8;line-height:1.6;"><span leaf="">① 工具名 —— 一句话定位</span></p>
+  <p style="margin:0 0 12px;font-size:16px;line-height:2;color:#283349;text-align:justify;"><span leaf="">正文：它解决什么问题，为什么值得用。</span><span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;"><span leaf="">关键短语</span></span><span leaf="">。</span></p>
+  <section style="margin-bottom:8px;">
+    <span style="display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+    <span style="font-size:16px;color:#2B2B33;"><span leaf="">适合：什么人/什么场景</span></span>
   </section>
-  <section style=\"margin-bottom:0;\">
-    <span style=\"display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;\"><span leaf=\"\"><br></span></span>
-    <span style=\"font-size:16px;color:#2B2B33;\"><span leaf=\"\">坑：短板与不适用场景</span></span>
+  <section style="margin-bottom:0;">
+    <span style="display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+    <span style="font-size:16px;color:#2B2B33;"><span leaf="">坑：短板与不适用场景</span></span>
   </section>
 </section>
 ```
@@ -121,9 +122,9 @@
 ## 组件 7 淡青提示卡（避坑/提示）
 
 ```html
-<section style=\"margin-bottom:14px;padding:24px 22px;background:#DFF6F9;border:1px solid #C2E9F0;border-radius:20px;\">
-  <p style=\"margin:0 0 10px;font-size:18px;font-weight:900;color:#0E7490;line-height:1.6;\"><span leaf=\"\">💡 一个共同的坑</span></p>
-  <p style=\"margin:0;font-size:16px;line-height:2;color:#243E46;text-align:justify;\"><span leaf=\"\">提示正文，放跨工具的共性结论或避坑建议。</span></p>
+<section style="margin-bottom:14px;padding:24px 22px;background:#DFF6F9;border:1px solid #C2E9F0;border-radius:20px;">
+  <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#0E7490;line-height:1.6;"><span leaf="">💡 一个共同的坑</span></p>
+  <p style="margin:0;font-size:16px;line-height:2;color:#243E46;text-align:justify;"><span leaf="">提示正文，放跨工具的共性结论或避坑建议。</span></p>
 </section>
 ```
 
@@ -132,9 +133,9 @@
 ## 组件 8 淡粉卡（彩蛋/福利/互动引导）
 
 ```html
-<section style=\"margin-bottom:14px;padding:24px 22px;background:#FFE3F1;border:1px solid #FBCFE0;border-radius:20px;\">
-  <p style=\"margin:0 0 10px;font-size:18px;font-weight:900;color:#BE185D;line-height:1.6;\"><span leaf=\"\">🌸 意外惊喜</span></p>
-  <p style=\"margin:0;font-size:16px;line-height:2;color:#542838;text-align:justify;\"><span leaf=\"\">福利/彩蛋内容。每篇 1–2 张即可。</span></p>
+<section style="margin-bottom:14px;padding:24px 22px;background:#FFE3F1;border:1px solid #FBCFE0;border-radius:20px;">
+  <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#BE185D;line-height:1.6;"><span leaf="">🌸 意外惊喜</span></p>
+  <p style="margin:0;font-size:16px;line-height:2;color:#542838;text-align:justify;"><span leaf="">福利/彩蛋内容。每篇 1–2 张即可。</span></p>
 </section>
 ```
 
@@ -143,10 +144,10 @@
 ## 组件 9 奶油黄金句卡（全宽压轴）
 
 ```html
-<section style=\"margin:28px 0;padding:30px 24px;background:#FFF4D6;border:1px solid #F8E6B0;border-radius:20px;text-align:center;\">
-  <p style=\"margin:0 0 10px;font-size:20px;font-weight:900;color:#92600A;line-height:1.8;\"><span leaf=\"\">金句第一行</span></p>
-  <p style=\"margin:0 0 12px;font-size:20px;font-weight:900;color:#B45309;line-height:1.8;\"><span leaf=\"\">第二行深一档强调</span></p>
-  <p style=\"margin:0;font-size:13px;color:#A78A4E;letter-spacing:2px;\"><span leaf=\"\">—— 出处 / 小注</span></p>
+<section style="margin:28px 0;padding:30px 24px;background:#FFF4D6;border:1px solid #F8E6B0;border-radius:20px;text-align:center;">
+  <p style="margin:0 0 10px;font-size:20px;font-weight:900;color:#92600A;line-height:1.8;"><span leaf="">金句第一行</span></p>
+  <p style="margin:0 0 12px;font-size:20px;font-weight:900;color:#B45309;line-height:1.8;"><span leaf="">第二行深一档强调</span></p>
+  <p style="margin:0;font-size:13px;color:#A78A4E;letter-spacing:2px;"><span leaf="">—— 出处 / 小注</span></p>
 </section>
 ```
 
@@ -155,7 +156,7 @@
 ## 组件 10 卡内行内强调（荧光笔，不跨行）
 
 ```html
-<span style=\"background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;\"><span leaf=\"\">关键短语</span></span>
+<span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;"><span leaf="">关键短语</span></span>
 ```
 
 **铁律**：短语 ≤12 字、必须在同一行内（跨行会拖出空色条）。每卡 1 处，宁少勿多。
@@ -165,9 +166,9 @@
 ## 组件 11 卡内清单行（同色圆点）
 
 ```html
-<section style=\"margin-bottom:8px;\">
-  <span style=\"display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;\"><span leaf=\"\"><br></span></span>
-  <span style=\"font-size:16px;color:#2B2B33;\"><span leaf=\"\">清单项内容</span></span>
+<section style="margin-bottom:8px;">
+  <span style="display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+  <span style="font-size:16px;color:#2B2B33;"><span leaf="">清单项内容</span></span>
 </section>
 ```
 
@@ -178,9 +179,9 @@
 ## 组件 12 图片卡（图 + 粉彩描边）
 
 ```html
-<section style=\"margin-bottom:14px;padding:12px;background:#FDFCF8;border:1px solid #E2D4FA;border-radius:20px;\">
-  <span leaf=\"\"><img src=\"{{图片URL}}\" style=\"width:100%;border-radius:12px;\"></span>
-  <p style=\"margin:10px 0 0;text-align:center;font-size:13px;color:#55506A;\"><span leaf=\"\">△ {{图片说明}}</span></p>
+<section style="margin-bottom:14px;padding:12px;background:#FDFCF8;border:1px solid #E2D4FA;border-radius:20px;">
+  <span leaf=""><img src="{{图片URL}}" style="width:100%;border-radius:12px;"></span>
+  <p style="margin:10px 0 0;text-align:center;font-size:13px;color:#55506A;"><span leaf="">△ {{图片说明}}</span></p>
 </section>
 ```
 
@@ -189,9 +190,9 @@
 ## 组件 13 结尾互动卡（淡紫呼应开头）
 
 ```html
-<section style=\"margin:24px 0 0;padding:24px 22px;background:#F0EAFE;border:1px solid #E2D4FA;border-radius:20px;text-align:center;\">
-  <p style=\"margin:0 0 8px;font-size:17px;font-weight:900;color:#5B21B6;\"><span leaf=\"\">你怎么看？</span></p>
-  <p style=\"margin:0;font-size:15px;line-height:2;color:#7C3AED;\"><span leaf=\"\">评论区聊聊，下期写一篇深度横评 🌸</span></p>
+<section style="margin:24px 0 0;padding:24px 22px;background:#F0EAFE;border:1px solid #E2D4FA;border-radius:20px;text-align:center;">
+  <p style="margin:0 0 8px;font-size:17px;font-weight:900;color:#5B21B6;"><span leaf="">你怎么看？</span></p>
+  <p style="margin:0;font-size:15px;line-height:2;color:#7C3AED;"><span leaf="">评论区聊聊，下期写一篇深度横评 🌸</span></p>
 </section>
 ```
 
@@ -200,14 +201,14 @@
 ## 组件 14 签名档（双小卡 flex，便当格式）
 
 ```html
-<section style=\"text-align:center;padding:24px 0 0;\">
-  <p style=\"margin:0 0 4px;font-size:15px;font-weight:bold;color:#2B2B33;\"><span leaf=\"\">{{作者名/品牌名}}</span></p>
-  <section style=\"display:flex;gap:10px;margin-top:10px;\">
-    <section style=\"flex:1;background:#F0EAFE;border-radius:10px;padding:10px 8px;text-align:center;\">
-      <p style=\"margin:0;font-size:12px;font-weight:bold;color:#5A3E8F;\"><span leaf=\"\">{{签名第一行，如：专注 AI 观察与知识干货}}</span></p>
+<section style="text-align:center;padding:24px 0 0;">
+  <p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:#2B2B33;"><span leaf="">{{作者名/品牌名}}</span></p>
+  <section style="display:flex;gap:10px;margin-top:10px;">
+    <section style="flex:1;background:#F0EAFE;border-radius:10px;padding:10px 8px;text-align:center;">
+      <p style="margin:0;font-size:12px;font-weight:bold;color:#5A3E8F;"><span leaf="">{{签名第一行，如：专注 AI 观察与知识干货}}</span></p>
     </section>
-    <section style=\"flex:1;background:#FFE3F1;border-radius:10px;padding:10px 8px;text-align:center;\">
-      <p style=\"margin:0;font-size:12px;font-weight:bold;color:#A13060;\"><span leaf=\"\">点赞 · 转发 · 推荐</span></p>
+    <section style="flex:1;background:#FFE3F1;border-radius:10px;padding:10px 8px;text-align:center;">
+      <p style="margin:0;font-size:12px;font-weight:bold;color:#BE185D;"><span leaf="">点赞 · 转发 · 推荐</span></p>
     </section>
   </section>
 </section>
@@ -218,7 +219,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style=\"max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;...\">
+<section style="max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;...">
   <!-- 1. 顶部眉头（组件 2） -->
   <!-- 2. 大标题区（组件 3） -->
   <!-- 3. 淡紫总述卡（组件 4 眉标 + 组件 5） -->

@@ -281,7 +281,7 @@
     <span leaf="">REFERENCE</span>
   </p>
   <p style="font-size:16px;color:#3F3F46;margin:0;line-height:1.8;text-align:justify;">
-    {{引用内容，可含 7d 石墨下划线等内联样式}}
+    <span leaf="">{{引用内容，可含 7d 石墨下划线等内联样式}}</span>
   </p>
 </section>
 ```
@@ -366,7 +366,7 @@
     <span style="font-size:16px;font-weight:800;color:#27272A;"><span leaf="">{{步骤标题}}</span></span>
   </section>
   <p style="font-size:16px;margin:0 0 16px;color:#52525B;line-height:1.8;text-align:justify;">
-    {{步骤内容}}
+    <span leaf="">{{步骤内容}}</span>
   </p>
 </section>
 ```
@@ -391,7 +391,7 @@
 ```html
 <section style="border:1px solid #E4E4E7;padding:16px 20px;margin:0 10px 24px;">
   <p style="font-size:15px;color:#52525B;margin:0;line-height:1.8;">
-    {{条目说明内容}}
+    <span leaf="">{{条目说明内容}}</span>
   </p>
 </section>
 ```
@@ -442,7 +442,7 @@
   </section>
   <section style="flex:1;padding-bottom:12px;">
     <p style="margin:0 0 6px;font-size:16px;font-weight:800;color:#27272A;"><span leaf="">{{节点标题}}</span></p>
-    <p style="font-size:16px;margin:0;color:#52525B;line-height:1.8;text-align:justify;">{{节点内容}}</p>
+    <p style="font-size:16px;margin:0;color:#52525B;line-height:1.8;text-align:justify;"><span leaf="">{{节点内容}}</span></p>
   </section>
 </section>
 ```

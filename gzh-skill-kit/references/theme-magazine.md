@@ -32,6 +32,7 @@
 衬线标题：      Georgia,'Songti SC','Noto Serif SC',serif
 正文字号：      18px，line-height:2
 页面补充色：    #1D3A42
+中性/补充色：   #843426
 ```
 
 三色比例：墨色 85%、孔雀蓝 10%（装饰词+关键词+细线）、蜜桃/赤陶 5%。装饰词每章一个，全篇统一孔雀蓝 10% 透明。
@@ -68,7 +69,7 @@
     <span leaf="">AI 自学笔记</span>
   </p>
   <p style="margin:0 0 6px;font-size:16px;color:#2C4249;line-height:1.9;"><span leaf="">没有名校光环，没有大厂背景，她用 14 个月把自己变成了公司离不开的人</span></p>
-  <p style="margin:0;font-size:13px;color:#3A4E54;letter-spacing:1px;"><span leaf="">文 / 茉灵智库 · 约 4200 字 · 阅读 11 分钟</span></p>
+  <p style="margin:0;font-size:13px;color:#3A4E54;letter-spacing:1px;"><span leaf="">文 / {{作者名}} · 约 4200 字 · 阅读 11 分钟</span></p>
 </section>
 ```
 

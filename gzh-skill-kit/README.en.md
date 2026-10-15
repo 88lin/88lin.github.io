@@ -56,7 +56,7 @@ A layout Skill for AI agents (Claude Code / Codex / Cursor …). You write Markd
 | Word / PDF draft → WeChat | auto-normalize format → then pick a theme by topic |
 | A style beyond the built-ins | Theme generator: make one from a line or an image |
 
-## 🎨 8 Curated Themes
+## 🎨 14 Curated Themes
 
 One long-form article laid out in all 14 themes (screenshots plus interactive HTML previews):
 
@@ -172,7 +172,7 @@ Source gate flags `white-space:pre` (blank bloat), full-border dashed frames in 
 ```
 gzh-design/
 ├── SKILL.md                 # layout workflow (agent entry)
-├── references/              # 8 theme libs + generator + shared lib + theme-index + eval-cases
+├── references/              # 14 theme libs + generator + shared lib + theme-index + eval-cases
 ├── scripts/                 # validate_gzh_html.py + component_lint.py
 ├── assets/                  # sample-article.md + theme-previews/
 └── docs/gallery/            # browser preview of themes

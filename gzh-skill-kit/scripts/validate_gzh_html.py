@@ -5,6 +5,11 @@
 排版生成后必跑：检查禁用标签/属性/样式，并核查文字节点是否用
 <span leaf=""> 包裹（公众号编辑器粘贴后保持样式的关键）。
 
+覆盖的致命项：禁用标签/属性（div/class/id/style/script/position/float/
+grid/@media/CSS 变量/外部字体）、**可点击的 `<a href>`**、**内联 SVG**、
+**漏包 `<span leaf="">`**、**空输入**。半角标点（, . ; : ! ?）与英文直引号
+报 WARNING，按 SKILL.md 要求同样要修到 0 再交付。
+
 用法:
     validate_gzh_html.py <file.html>
     validate_gzh_html.py --stdin < file.html
@@ -35,12 +40,25 @@ FORBIDDEN = [
     (re.compile(r"var\s*\(\s*--", re.I), "ERROR", "CSS 变量 var(--x) 不被支持，请写死值"),
     (re.compile(r"url\s*\(\s*['\"]?https?://[^)]*\.(woff2?|ttf|otf|eot)", re.I),
      "ERROR", "外部字体不被支持"),
+    # 公众号正文外链不可点击，留 <a href> 只会被过滤成裸 URL —— 必须转成脚注（通用库 4a/4b）
+    (re.compile(r"<a\s[^>]*href\s*=", re.I), "ERROR",
+     "正文里出现可点击的 <a href>——公众号外链不可点，请转上标角标 + 文末参考资料"),
+    # 微信白名单会剥掉 SVG（含其子标签与 <text>/<tspan>），图标/示意图要改用 <img> 或 section 拼形状
+    (re.compile(r"<(svg|path|rect|circle|ellipse|polygon|polyline|text|tspan)\b", re.I),
+     "ERROR", "内联 SVG 及其子标签会被微信过滤——图标请换 <img>，图形请用 <section> 拼"),
+    (re.compile(r"</?(figure|figcaption)\b", re.I), "WARN",
+     "<figure>/<figcaption> 不在公众号可用标签清单内，可能被改写，建议换 <section>/<p>"),
 ]
 
 CJK = re.compile(r"[一-鿿㐀-䶿]")
+ALNUM = re.compile(r"[A-Za-z0-9]")
 SKIP_TAGS = {"head", "title", "style", "script"}  # 不参与公众号正文粘贴的区域
-# 中文字后紧跟半角逗号/分号/叹号/问号（应改全角）；只查"中文在前"避免中英混排误伤
-HALF_PUNCT = re.compile(r"[一-鿿㐀-䶿][,;!?]")
+# 中文字后紧跟半角标点（应改全角）；只查"中文在前"避免中英混排误伤。
+# 覆盖 , . ; : ! ? —— 早期版本漏了 . 和 :，是实际使用中最常见的漏网点。
+# (?!\d) 放过「共 3.5 万」「时间:30」这类数字紧跟的场景。
+HALF_PUNCT = re.compile(r"[一-鿿㐀-䶿][,.;:!?](?!\d)")
+# 英文撇号（don't / it's）不是直引号误用，先整词排除再查
+APOSTROPHE_WORD = re.compile(r"[A-Za-z]'[A-Za-z]")
 ASCII_QUOTE = re.compile(r"[\"']")
 # 代码区特征：等宽字体或 white-space:pre —— 其内半角符号是正常的
 CODE_STYLE = re.compile(r"monospace|white-space\s*:\s*pre|courier|consolas|sf mono", re.I)
@@ -85,7 +103,9 @@ class LeafChecker(HTMLParser):
 
     def handle_data(self, data):
         text = data.strip()
-        if not text or not CJK.search(text):
+        # 只要含中文或英数就当"有实质内容的文本节点"——早期版本只认中文，
+        # 导致纯英文段落漏包 <span leaf> 时完全不告警。
+        if not text or not (CJK.search(text) or ALNUM.search(text)):
             return
         if any(t in SKIP_TAGS for t, _, _ in self.stack):
             return  # <head>/<title>/<style>/<script> 内文字不进公众号正文
@@ -94,13 +114,25 @@ class LeafChecker(HTMLParser):
             snippet = text[:24] + ("…" if len(text) > 24 else "")
             self.unwrapped.append((snippet, parent))
         if self.code_depth == 0 and (HALF_PUNCT.search(text)
-                                     or ASCII_QUOTE.search(text)):
+                                     or self._has_straight_quote(text)):
             snippet = text[:24] + ("…" if len(text) > 24 else "")
             self.half_punct.append(snippet)
+
+    @staticmethod
+    def _has_straight_quote(text):
+        """查英文直引号；先剔掉 don't / it's 这类撇号，避免误报。"""
+        return bool(ASCII_QUOTE.search(APOSTROPHE_WORD.sub("", text)))
 
 
 def validate(html, name="<input>"):
     errors, warnings = [], []
+
+    # 空输入必须拦住：早期版本对空字符串报"完全合规"，
+    # 读取失败 / 生成失败 / 管道没接上时会被误判为通过。
+    if not html or not html.strip():
+        errors.append("输入为空——没有可校验的 HTML 内容"
+                      "（检查文件路径是否正确、生成步骤是否真的产出了内容）")
+        return errors, warnings, 0
 
     for rx, level, msg in FORBIDDEN:
         hits = len(rx.findall(html))
@@ -119,11 +151,13 @@ def validate(html, name="<input>"):
         errors.append("全文没有任何 <span leaf=\"\"> 包裹——"
                       "粘贴到公众号后样式会大面积丢失")
     elif checker.unwrapped:
+        # 漏 <span leaf> 是"粘贴后样式整片丢失"的致命错，按 ERROR 处理——
+        # 早期版本只报 WARNING（退出码 0），Agent 会误以为已通过。
         sample = "；".join(f"「{s}」(在 <{p}> 内)"
                            for s, p in checker.unwrapped[:5])
-        warnings.append(
-            f"{len(checker.unwrapped)} 处中文文本未被 <span leaf> 包裹，"
-            f"样式可能丢失。例：{sample}")
+        errors.append(
+            f"{len(checker.unwrapped)} 处文本未被 <span leaf=\"\"> 包裹，"
+            f"粘贴到公众号后这些文字的样式会丢失。例：{sample}")
 
     if checker.half_punct:
         sample = "；".join(f"「{s}」" for s in checker.half_punct[:5])
@@ -143,6 +177,12 @@ def validate(html, name="<input>"):
         warnings.append(
             "只有最外层 <section> 检测到 background。公众号编辑器可能剥离"
             "最外层 background，请给各正文区块分别添加 background 或等价底色")
+    elif len(section_styles) >= 4 and section_bg_count == 0:
+        # 上面分支只在"外层有底色"时生效；现在推荐外层不设底色，
+        # 就得反过来查"内层一个底色都没有"的情况。
+        warnings.append(
+            f"共 {len(section_styles)} 个 <section> 都没有 background/等价底色。"
+            "公众号编辑器会剥离最外层底色，请给各正文区块分别加底色")
 
     return errors, warnings, checker.span_leaf_count
 
@@ -157,8 +197,12 @@ def main():
         html = sys.stdin.read()
         name = "<stdin>"
     else:
-        with open(args.file, encoding="utf-8", errors="replace") as f:
-            html = f.read()
+        try:
+            with open(args.file, encoding="utf-8", errors="replace") as f:
+                html = f.read()
+        except OSError as e:
+            print(f"❌ 读取失败（请检查路径是否正确）: {e}")
+            sys.exit(1)
         name = args.file
 
     errors, warnings, leaf_n = validate(html, name)

@@ -35,6 +35,11 @@ Python 用法（推荐）:
 
 import sys, os, json, re, datetime
 
+# 压缩逻辑只此一份（scripts/minify_gzh_html.py），不在这里复制实现——
+# 两份拷贝必然漂移，之前就是这么把"换行被吃掉"的 bug 复制了两遍。
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from minify_gzh_html import minify_html  # noqa: E402
+
 # ── 配置路径（可通过环境变量覆盖）───────────────────────────────────────
 # Token 缓存文件
 TOKEN_FILE = os.environ.get(
@@ -49,6 +54,16 @@ CONFIG_FILE = os.environ.get(
 
 
 # ── Token 管理 ─────────────────────────────────────────────────────────
+
+def _parse_json(r):
+    """统一按 UTF-8 显式解码。
+
+    部分微信接口按 ISO-8859-1 声明编码，r.json() 会双重解码造成中文乱码——
+    SKILL.md 第 6 步明确要求用 json.loads(r.content.decode('utf-8'))。
+    以前只有 draft/get 遵守了，其余三个接口仍在用 r.json()。
+    """
+    return json.loads(r.content.decode('utf-8'))
+
 
 def get_token():
     """从本地缓存文件读取 access_token，过期前自动刷新。"""
@@ -77,7 +92,7 @@ def refresh_token():
         'secret': secret,
         'force_refresh': False
     }, timeout=10)
-    result = r.json()
+    result = _parse_json(r)
     if 'access_token' not in result:
         raise Exception(f"Token 刷新失败: {result}")
 
@@ -106,6 +121,24 @@ def upload_cover(token, img_path):
         size = os.path.getsize(out)
         quality -= 5
 
+    # 只降质量可能压不到 64KB（大尺寸照片 quality=30 仍超限，会被微信拒收）。
+    # 质量降到最低还不够时，按比例缩尺寸再压，最多缩 4 轮。
+    attempts = 0
+    while size > 64000 and attempts < 4:
+        attempts += 1
+        w, h = img.size
+        img = img.resize((max(1, int(w * 0.7)), max(1, int(h * 0.7))),
+                         Image.LANCZOS)
+        quality = 85
+        while size > 64000 and quality > 30:
+            img.save(out, 'JPEG', quality=quality)
+            size = os.path.getsize(out)
+            quality -= 5
+
+    if size > 64000:
+        raise Exception(f"封面压缩后仍为 {size} 字节（>64KB），"
+                        "请换一张更小的图或先自行裁剪")
+
     with open(out, 'rb') as f:
         files = {'media': ('cover.jpg', f, 'image/jpeg')}
         # access_token / type 必须放 URL query 参数（微信接口从 query 读取，
@@ -115,7 +148,7 @@ def upload_cover(token, img_path):
             params={'access_token': token, 'type': 'thumb'},
             files=files, timeout=15
         )
-    result = r.json()
+    result = _parse_json(r)
     if 'media_id' not in result:
         raise Exception(f"封面上传失败: {result}")
     return result['media_id']
@@ -145,7 +178,7 @@ def create_draft(token, thumb_media_id, title, digest, content):
         headers={'Content-Type': 'application/json; charset=utf-8'},
         timeout=15
     )
-    result = r.json()
+    result = _parse_json(r)
     if 'media_id' not in result:
         raise Exception(f"草稿创建失败: {result}")
     return result['media_id']
@@ -175,27 +208,10 @@ def update_draft(token, media_id, thumb_media_id, title, digest, content):
         headers={'Content-Type': 'application/json; charset=utf-8'},
         timeout=15
     )
-    result = r.json()
+    result = _parse_json(r)
     if result.get('errcode') not in (None, 0):
         raise Exception(f"草稿更新失败: {result}")
     return media_id
-
-
-# ── HTML 压缩 ─────────────────────────────────────────────────────────
-
-def minify_html(html):
-    """
-    压缩 HTML：去掉标签之间的换行和缩进，以及文字节点内的多余换行。
-    防止微信手机端把源码里的换行/空格误转成 &nbsp; 导致排版错乱。
-    """
-    # 1. 移除 HTML 注释
-    html = re.sub(r'<!--.*?-->', '', html, flags=re.DOTALL)
-    # 2. 去掉标签之间的空白（换行、空格、制表符）
-    html = re.sub(r'>\s+<', '><', html)
-    # 3. 去掉每行首尾空白后拼接（消除文字节点内的多余换行）
-    lines = html.split('\n')
-    cleaned_lines = [line.strip() for line in lines if line.strip()]
-    return ''.join(cleaned_lines).strip()
 
 
 # ── 一站式上传 ─────────────────────────────────────────────────────────
@@ -226,7 +242,7 @@ def upload_and_cleanup(cover_path, title, digest, html_content):
     import requests as _req
     url = f"https://api.weixin.qq.com/cgi-bin/draft/get?access_token={token}"
     r = _req.post(url, json={"media_id": media_id}, timeout=10)
-    result = json.loads(r.content.decode('utf-8'))   # 不要用 r.json()，见 SKILL.md 说明
+    result = _parse_json(r)   # 不要用 r.json()，见 SKILL.md 第 6 步说明
     if 'news_item' not in result:
         print(f"[警告] 取回草稿验证失败: {result}")
         return media_id, 0
@@ -245,7 +261,7 @@ def cleanup_draft_nbsp(token, media_id):
     import requests as _req
     url = f"https://api.weixin.qq.com/cgi-bin/draft/get?access_token={token}"
     r = _req.post(url, json={"media_id": media_id}, timeout=10)
-    result = json.loads(r.content.decode('utf-8'))
+    result = _parse_json(r)
     if 'news_item' not in result:
         raise Exception(f"取回草稿失败: {result}")
 
@@ -257,13 +273,20 @@ def cleanup_draft_nbsp(token, media_id):
         print("草稿无 nbsp，无需清理")
         return media_id
 
-    # 清理所有空白实体
-    cleaned = content.replace('&nbsp;', '').replace('&#160;', '')
+    # 只清"连续 2 个及以上"的空白实体 —— 手机端注入的 nbsp 来自源码缩进，
+    # 必然成串出现。单个 &nbsp; 通常是排版里刻意留的间隔
+    # （如 <span leaf="">&nbsp;</span> 圆点分隔符、"&nbsp;·&nbsp;"），
+    # 以前无差别全删会把这些正常间距一起抹掉、撑坏布局。
+    cleaned = re.sub(r'(?:&nbsp;|&#160;){2,}', '', content)
     cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)
+    removed = original_nbsp - (cleaned.count('&nbsp;') + cleaned.count('&#160;'))
+    if removed == 0:
+        print("未发现连串 nbsp（单个 nbsp 属正常排版间距，已保留）")
+        return media_id
 
     update_draft(token, media_id, news.get('thumb_media_id', ''),
                  news['title'], news.get('digest', ''), cleaned)
-    print(f"清理完成: 删除 {original_nbsp} 个空白符")
+    print(f"清理完成: 删除 {removed} 个连串空白符")
     return media_id
 
 

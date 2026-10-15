@@ -35,6 +35,7 @@
 字间距：       0.5px
 最大宽度：     677px
 内容区边距：   0 10px（左右各 10px）
+中性/补充色：   #1F2937 / #4B5563 / #F3F4F6 / #FAFAFA
 ```
 
 字体栈：`-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif`
@@ -260,7 +261,7 @@
 ```html
 <section style="background:#FEF2F2;border-radius:10px;padding:18px 20px;margin-bottom:24px;border:1px solid #FECACA;">
   <p style="font-size:16px;color:#374151;margin:0;line-height:1.8;text-align:justify;">
-    {{引用内容，可含 7d 下划线等内联样式}}
+    <span leaf="">{{引用内容，可含 7d 下划线等内联样式}}</span>
   </p>
 </section>
 ```
@@ -325,7 +326,7 @@
     <span style="font-size:16px;font-weight:800;color:#1C1917;"><span leaf="">{{步骤标题}}</span></span>
   </section>
   <p style="font-size:16px;margin:0 0 16px;color:#374151;line-height:1.8;text-align:justify;">
-    {{步骤内容}}
+    <span leaf="">{{步骤内容}}</span>
   </p>
 </section>
 ```
@@ -337,7 +338,7 @@
 ```html
 <section style="background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 4px 16px rgba(220,38,38,0.10);margin-bottom:24px;">
   <p style="font-size:15px;color:#374151;margin:0;line-height:1.8;">
-    {{条目说明内容}}
+    <span leaf="">{{条目说明内容}}</span>
   </p>
 </section>
 ```
@@ -388,7 +389,7 @@
   </section>
   <section style="flex:1;padding-bottom:12px;">
     <p style="margin:0 0 6px;font-size:16px;font-weight:800;color:#1C1917;"><span leaf="">{{节点标题}}</span></p>
-    <p style="font-size:16px;margin:0;color:#374151;line-height:1.8;text-align:justify;">{{节点内容}}</p>
+    <p style="font-size:16px;margin:0;color:#374151;line-height:1.8;text-align:justify;"><span leaf="">{{节点内容}}</span></p>
   </section>
 </section>
 ```

@@ -233,8 +233,10 @@ media_id, nbsp = upload_and_cleanup(
 ## 平台红线（核心，完整检查交给校验脚本）
 
 - **禁止**：`<style>`/`<script>`/`<div>`、`class`/`id` 属性、`position:fixed/absolute/sticky`、`float`、`@media`/`@keyframes`、`display:grid`、CSS 变量、外部字体/CSS。
+- **禁止（易踩）**：**内联 `<svg>` 及其子标签**（`path`/`rect`/`circle`/`ellipse`/`line`/`polygon`/`polyline`/`text`/`tspan`）——微信白名单会整块剥掉，图标/流程图会变成空白。图标用文本字形（`👍`/`↗`/`★`/`◎`/`→`）或 `<img>`，示意图用 flex 卡片拼。
+- **禁止**：**可点击的 `<a href>`**——公众号正文外链不可点，留 `<a>` 只会被过滤成裸 URL（超链接一律转脚注，见通用库 4a/4b）。
 - **必须**：样式全部内联 `style`；所有文字节点用 `<span leaf="">文字</span>` 包裹（否则粘贴后样式丢失）。
-- **可用**：`display:flex`（有限）、`linear-gradient`、`border-radius`、`box-shadow`、`<section>/<p>/<span>/<strong>/<img>/<h3>`。
+- **可用**：`display:flex`（有限）、`linear-gradient`、`border-radius`、`box-shadow`、`<section>/<p>/<span>/<strong>/<img>/<h3>`。`figure`/`figcaption` 谨慎使用（可能被改写）。
 
 ## 移动端适配（多端一致，不靠 @media）
 
@@ -248,9 +250,13 @@ media_id, nbsp = upload_and_cleanup(
 
 > 这些规则的确定性兜底在 `component_lint.py`（固定宽 ≥150px 未配 max-width 报 WARN）；`@media`/`float`/`grid`/定位 等则由 `validate_gzh_html.py` 强制拦截。
 
+> 两关现在的覆盖面：`component_lint.py` 查组件库里的 `white-space:pre` / `div` / `class` / `id` / `style` / `position` / `grid` / CSS 变量 / `@media`、**属性引号转义 `\"`**、**内联 SVG**、**`<a href>`**、**漏 `<span leaf>`**，并把 `docs/gallery` 的示例产物一并纳管；`validate_gzh_html.py` 查产物的同样禁用项，外加**空输入**、**漏 `<span leaf>`（ERROR）**、**半角 `, . ; : ! ?`**。**两关都不允许 SVG 和 `<a href>`**——发现就说明组件库或产物有问题，改到 0 再交付。
+
 ## Gotchas（真实排版踩过的坑）
 
-- **漏 `<span leaf>` 包裹**是最常见致命错——粘贴到公众号后样式整片丢失。靠第 5 步校验脚本兜底，别跳过。
+- **漏 `<span leaf>` 包裹**是最常见致命错——粘贴到公众号后样式整片丢失。靠第 5 步校验脚本兜底，别跳过。**组件库里 `{{占位}}` 这类文字必须写成 `<span leaf="">{{占位}}</span>`**，否则模型照抄组件时就会一起把裸文本抄进产物。
+- **组件库里属性引号被转义成 `\"`** 会让样式在第一个空格处被截断（`style=\"max-width:677px;margin:0 auto\"` 只剩 `max-width`）。从组件库复制 HTML 时若看到 `\"`，说明源文件已损坏，先修组件库。
+- **内联 SVG 会被微信整块剥掉**，图标/流程图在手机上变空白。别用 `<svg>`，用文本字形或 flex 卡片。
 - **外层容器 `background` 粘贴后丢失**：微信公众号编辑器会剥离最外层 `<section>` 的 `background` 属性（包括纯色和渐变）。不要把页面底色/整体背景只放在顶层容器上——正文的每个内容区块（章节、分割装饰、签名区、互动区等）都要独立加 `background` 或等价底色，确保任一区块被剥离外层后仍保留自己的底色。
 - **下划线：逐段落实、每段 1–3 个短语**。不要整段划线（失去焦点），也不要有的段标有的段漏；列表项里的关键描述同样要标。**密度宁少勿多**：一段最多 2 处、多数段落 1 处即可——到处是标记等于没有重点。
 - **长段不拆**：正文单段超过约 3 句或 120 字时，在句号处拆成 1~3 句的短段再排（文字一字不改，只拆不删不加）——移动端大段密字极易劝退。

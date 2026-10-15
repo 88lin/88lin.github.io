@@ -45,6 +45,7 @@
 字间距：       0.5px
 最大宽度：     677px
 内容区边距：   0 20px（模块左右各 20px）
+中性/补充色：   #1F2937
 ```
 
 字体栈：`-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif`
@@ -351,7 +352,7 @@
     </h4>
   </section>
   <p style="font-size:15px;margin:0 0 16px;color:#4B5563;line-height:1.9;text-align:justify;">
-    {{步骤内容}}
+    <span leaf="">{{步骤内容}}</span>
   </p>
 </section>
 ```
@@ -422,7 +423,7 @@
 ```html
 <section style="background:#F9FAFB;border:1px dashed #D1D5DB;border-radius:8px;padding:12px 16px;margin-bottom:24px;text-align:justify;">
   <p style="font-size:13px;color:#374151;margin:0;line-height:1.6;">
-    {{引用内容，可嵌入绿色加粗等内联样式}}
+    <span leaf="">{{引用内容，可嵌入绿色加粗等内联样式}}</span>
   </p>
 </section>
 ```
@@ -512,7 +513,7 @@
     <span style="color:#059669;"><span leaf="">✦ {{提示标题}}</span></span>
   </p>
   <p style="font-size:13px;color:#374151;margin:0;line-height:1.7;">
-    {{提示内容}}
+    <span leaf="">{{提示内容}}</span>
   </p>
 </section>
 ```
@@ -532,7 +533,7 @@
 ```html
 <section style="background:#F0FDF4;padding:12px 16px;border-radius:8px;border:1px solid #BBF7D0;margin-bottom:20px;">
   <p style="font-size:13px;color:#374151;margin:0;line-height:1.7;text-align:justify;">
-    {{信息内容}}
+    <span leaf="">{{信息内容}}</span>
   </p>
 </section>
 ```
@@ -666,7 +667,7 @@
       <span leaf="">{{英文副标题}}</span>
     </p>
     <p style="font-size:15px;margin:0 0 16px;color:#4B5563;line-height:1.7;text-align:justify;">
-      {{内容}}
+      <span leaf="">{{内容}}</span>
     </p>
   </section>
 </section>
@@ -681,7 +682,7 @@
 ```html
 <section style="background:#fff;border-radius:12px;padding:16px 20px;box-shadow:0 4px 16px rgba(5,150,105,0.12);margin-bottom:24px;">
   <p style="font-size:13px;color:#374151;margin:0;line-height:1.8;">
-    {{说明内容}}
+    <span leaf="">{{说明内容}}</span>
   </p>
 </section>
 ```
@@ -790,7 +791,7 @@
 
 ### 13a. footer-cta（互动三连区，即本主题的签名/CTA 区）
 
-固定文案照写；SVG 图标微信支持，原样保留。
+固定文案照写；图标用文本字形 `👍`/`↗`/`★`（内联 SVG 会被微信过滤，不要用）。
 
 ```html
 <section style="background:radial-gradient(circle at center,#F9FAFB 0%,#FFFFFF 100%);border:1px solid #E5E7EB;border-radius:16px;padding:32px 20px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.03);margin:0 0 24px;">
@@ -800,19 +801,19 @@
   <section style="display:flex;justify-content:center;gap:24px;margin-bottom:16px;">
     <section style="text-align:center;cursor:pointer;color:#4B5563;">
       <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#fff;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.05);border:1px solid #F3F4F6;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+        <span style="font-size:18px;line-height:1;"><span leaf="">👍</span></span>
       </section>
       <span style="font-size:10px;font-weight:600;"><span leaf="">点赞</span></span>
     </section>
     <section style="text-align:center;cursor:pointer;color:#4B5563;">
       <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#fff;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.05);border:1px solid #F3F4F6;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18v-4a8 8 0 0 1 8-8h8"></path><polyline points="16 2 20 6 16 10"></polyline></svg>
+        <span style="font-size:18px;line-height:1;"><span leaf="">↗</span></span>
       </section>
       <span style="font-size:10px;font-weight:600;"><span leaf="">转发</span></span>
     </section>
     <section style="text-align:center;cursor:pointer;color:#059669;">
       <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#ECFDF5;border-radius:12px;box-shadow:0 2px 4px rgba(5,150,105,0.15);border:1px solid #A7F3D0;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <span style="font-size:18px;line-height:1;"><span leaf="">★</span></span>
       </section>
       <span style="font-size:10px;font-weight:600;"><span leaf="">推荐</span></span>
     </section>

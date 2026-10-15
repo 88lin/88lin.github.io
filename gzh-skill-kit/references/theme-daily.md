@@ -36,6 +36,7 @@
 页面补充色：    #4A3D60
 页面补充色：    #5A4A30
 页面补充色：    #5C3A4A
+中性/补充色：   #3A4440 / #3F5560 / #4A5568 / #E8B4B8 / #FFFDF9
 ```
 
 三色比例：粉彩卡底 70%、近黑正文 20%、珊瑚红点缀 10%。
@@ -114,9 +115,9 @@
 
 ```html
 <section style="border:1.5px solid #E8B4B8;border-radius:14px;padding:22px 20px;text-align:center;background:#FFFDF9;">
-  <p style="margin:0 0 6px;font-size:15px;font-weight:900;color:#C33D46;letter-spacing:2px;"><span leaf="">茉灵智库</span></p>
-  <p style="margin:0 0 4px;font-size:13px;color:#5F4446;line-height:1.8;"><span leaf="">专注 AI 观察与知识干货，帮你把复杂的东西讲简单</span></p>
-  <p style="margin:0;font-size:13px;color:#A13060;font-weight:bold;"><span leaf="">觉得有收获，欢迎点赞、转发、推荐</span></p>
+  <p style="margin:0 0 6px;font-size:15px;font-weight:900;color:#C33D46;letter-spacing:2px;"><span leaf="">{{作者名/品牌名}}</span></p>
+  <p style="margin:0 0 4px;font-size:13px;color:#5F4446;line-height:1.8;"><span leaf="">{{一句话简介}}</span></p>
+  <p style="margin:0;font-size:13px;color:#8F2050;font-weight:bold;"><span leaf="">觉得有收获，欢迎点赞、转发、推荐</span></p>
 </section>
 ```
 

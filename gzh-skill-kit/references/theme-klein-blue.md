@@ -51,6 +51,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 
 > v2 页面 `docs/gallery/klein-blue.html` 的开场结构：全宽蓝幅（只放英文眉题）+ 上移的白卡标题（`margin-top` 负值制造错位悬浮）。观点类文章优先用这套开场，替代经典刊头+封面组合。
 
+中性/补充色：   #111C44
 ```html
 <section style="max-width:677px;margin:0 auto;background:#F4F6FE;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#16224A;font-size:16px;line-height:1.9;">
   <section style="background:#002FA7;padding:52px 30px 104px;text-align:center;">

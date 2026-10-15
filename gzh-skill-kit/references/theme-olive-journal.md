@@ -6,13 +6,14 @@
 >
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class/id、`position:fixed/absolute`、`float`、`@media`/`@keyframes`、`display:grid`
-> - ✅ 支持内联 `style`、`display:flex`（含 `gap`）、`box-shadow`、`border-radius`、`<svg>`（流程图/图标，微信支持）、`<section>/<p>/<span>/<strong>/<img>/<h3>/<h4>/<figure>/<figcaption>/<hr>/<ul>/<li>` 等基础标签
+> - ❌ 不支持内联 `<svg>`（含 `rect`/`circle`/`ellipse`/`path`/`line`/`polygon`/`text`/`tspan` 等子标签）——微信白名单会整块剥掉；流程图改用 flex 卡片 + `→` 文本箭头，图标改用文本字形 `👍`/`↗`/`★`/`◎`
+> - ✅ 支持内联 `style`、`display:flex`（含 `gap`）、`box-shadow`、`border-radius`、`<section>/<p>/<span>/<strong>/<img>/<h3>/<h4>/<figure>/<figcaption>/<hr>/<ul>/<li>` 等基础标签
 >
 > **WeChat 兼容铁律**（本主题组件全部已按此写好，改动时必须遵守）：
 > - 原始设计稿里出现的 `id="block-*"`、`class="..."`、`display:grid` 均已在下方组件中清除/替换为 `display:flex`，新增组件时同样不能带这三样
 > - 行内代码一律用 `<span>` 模拟（不用 `<code>` 标签），风格与通用库 1c 保持同源
 > - 图片一律只保留 `src`/`alt`/`style`，不要带 `class`/`data-ratio`/`data-w`/`data-imgqrcoded` 等编辑器内部属性
-> - 流程示意图（组件 23）内文字用 SVG `<tspan leaf="">` 而非 `<span leaf="">`——SVG 是原子渲染，不受微信富文本重排影响，校验脚本可能仍会把这几处计入"未包裹"warning，属已知误报，可忽略
+> - 流程示意图（组件 23）用 flex 卡片 + `→` 文本箭头表达，不要画 SVG；所有文字照常包 `<span leaf="">`，校验脚本不应再报"未包裹"
 
 ---
 
@@ -38,6 +39,7 @@
 区块间距：                     margin-top: 24px（首块头图卡除外）
 圆角：                         6px（统一小圆角，不用大圆角）
 阴影：                         整体几乎无阴影，靠边框 + 色块分层，仅头图卡的插画占位区可有极轻装饰
+中性/补充色：   #A3A3A3 / #B6B7AF / #FAFAFA
 ```
 
 字体栈：`-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif`
@@ -86,13 +88,7 @@
         <p style="font-size:13px;color:#65675e;margin:0;line-height:1.7;"><span leaf="">{{副标题说明}}</span></p>
       </section>
       <section style="flex-shrink:0;width:112px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#eeefe9;border:1px dashed #bfc1b7;border-radius:6px;padding:8px;">
-        <svg width="72" height="72" viewBox="0 0 64 64" aria-hidden="true" style="display:block;">
-          <ellipse cx="32" cy="36" rx="22" ry="18" fill="none" stroke="#4d4f46" stroke-width="2"></ellipse>
-          <circle cx="26" cy="30" r="3" fill="#4d4f46"></circle>
-          <circle cx="38" cy="30" r="3" fill="#4d4f46"></circle>
-          <path d="M28 40 Q32 44 36 40" fill="none" stroke="#4d4f46" stroke-width="1.5"></path>
-          <path d="M12 34 L8 28 M52 34 L56 28" stroke="#bfc1b7" stroke-width="2" stroke-linecap="round"></path>
-        </svg>
+        <section style="width:56px;height:56px;border:2px solid #4d4f46;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center;"><span style="font-size:20px;line-height:1;color:#4d4f46;"><span leaf="">◎</span></span></section>
         <span style="font-size:8px;font-weight:700;color:#9ea096;letter-spacing:1px;margin-top:4px;"><span leaf="">DOODLE</span></span>
       </section>
     </section>
@@ -552,7 +548,7 @@
 
 ## 组件 23 流程示意图 flow-diagram
 
-**用途**：技术流程/数据管线一类"从输入到输出"的示意图，SVG 绘制，节点用矩形+箭头连接，末端用深色终点框强调结果。
+**用途**：技术流程/数据管线一类"从输入到输出"的示意图，用 flex 卡片横向排布 + `→` 文本箭头连接，末端用深色终点框强调结果（**不要画 SVG**，微信会剥掉）。
 
 **可替换字段**：`{{FLOW标签}}` `{{流程说明}}` `{{图示脚注}}`，以及图中各节点文字（`SDK`/`ingest`/`队列`/`规则`/`聚合`/`输出`/`图表`/`live` 等，按实际流程改写）
 
@@ -561,28 +557,31 @@
   <section style="background:#eeefe9;border-radius:6px;padding:22px 18px;border:1px solid #bfc1b7;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="font-size:10px;color:#65675e;margin:0 0 4px;text-transform:uppercase;letter-spacing:2px;font-weight:600;"><span leaf="">{{FLOW标签}}</span></p>
     <p style="font-size:13px;color:#23251d;font-weight:600;margin:0 0 8px;"><span leaf="">{{流程说明}}</span></p>
-    <svg viewBox="0 0 400 82" style="width:100%;height:auto;" role="img" aria-label="流程示意">
-      <rect x="2" y="14" width="58" height="48" rx="4" fill="#fdfdf8" stroke="#4d4f46" stroke-width="1.5"></rect>
-      <text x="31" y="34" font-size="9" fill="#23251d" text-anchor="middle" font-weight="700" font-family="-apple-system,'PingFang SC',sans-serif"><tspan leaf="">节点一</tspan></text>
-      <text x="31" y="48" font-size="8" fill="#65675e" text-anchor="middle"><tspan leaf="">说明</tspan></text>
-      <line x1="66" y1="38" x2="82" y2="38" stroke="#4d4f46" stroke-width="1.5"></line>
-      <polygon points="82,34 90,38 82,42" fill="#4d4f46"></polygon>
-      <rect x="96" y="6" width="210" height="64" rx="6" fill="#fdfdf8" stroke="#bfc1b7" stroke-width="1"></rect>
-      <text x="201" y="18" font-size="7" fill="#9ea096" text-anchor="middle" font-weight="600" letter-spacing="1"><tspan leaf="">处理层</tspan></text>
-      <rect x="104" y="26" width="42" height="36" rx="4" fill="#e5e7e0" stroke="#bfc1b7"></rect>
-      <text x="125" y="48" font-size="8" fill="#23251d" text-anchor="middle" font-weight="600"><tspan leaf="">节点二</tspan></text>
-      <rect x="152" y="26" width="42" height="36" rx="4" fill="#e5e7e0" stroke="#bfc1b7"></rect>
-      <text x="173" y="48" font-size="8" fill="#23251d" text-anchor="middle" font-weight="600"><tspan leaf="">节点三</tspan></text>
-      <rect x="200" y="26" width="42" height="36" rx="4" fill="#e5e7e0" stroke="#bfc1b7"></rect>
-      <text x="221" y="48" font-size="8" fill="#23251d" text-anchor="middle" font-weight="600"><tspan leaf="">节点四</tspan></text>
-      <rect x="248" y="26" width="50" height="36" rx="4" fill="#d4c9b8" stroke="#b17816"></rect>
-      <text x="273" y="48" font-size="8" fill="#23251d" text-anchor="middle" font-weight="600"><tspan leaf="">输出</tspan></text>
-      <line x1="312" y1="38" x2="328" y2="38" stroke="#4d4f46" stroke-width="1.5"></line>
-      <polygon points="328,34 336,38 328,42" fill="#4d4f46"></polygon>
-      <rect x="340" y="12" width="56" height="52" rx="4" fill="#1e1f23"></rect>
-      <text x="368" y="36" font-size="8" fill="#fff" text-anchor="middle" font-weight="700"><tspan leaf="">结果</tspan></text>
-      <text x="368" y="50" font-size="8" fill="#ed7b2f" text-anchor="middle" font-weight="700"><tspan leaf="">live</tspan></text>
-    </svg>
+    <section style="display:flex;align-items:stretch;flex-wrap:wrap;gap:6px;">
+      <section style="flex:1;min-width:62px;background:#fdfdf8;border:1.5px solid #4d4f46;border-radius:4px;padding:8px 4px;text-align:center;">
+        <p style="margin:0;font-size:11px;font-weight:700;color:#23251d;line-height:1.3;"><span leaf="">节点一</span></p>
+        <p style="margin:2px 0 0;font-size:9px;color:#65675e;line-height:1.3;"><span leaf="">说明</span></p>
+      </section>
+      <section style="flex:0 0 auto;display:flex;align-items:center;padding:0 2px;">
+        <span style="font-size:13px;line-height:1;color:#4d4f46;"><span leaf="">→</span></span>
+      </section>
+      <section style="flex:2;min-width:150px;background:#fdfdf8;border:1px solid #bfc1b7;border-radius:6px;padding:8px 6px;">
+        <p style="margin:0 0 6px;font-size:8px;font-weight:600;color:#9ea096;letter-spacing:1px;text-align:center;"><span leaf="">处理层</span></p>
+        <section style="display:flex;flex-wrap:wrap;gap:4px;">
+          <section style="flex:1;min-width:38px;background:#e5e7e0;border:1px solid #bfc1b7;border-radius:4px;padding:5px 2px;text-align:center;"><p style="margin:0;font-size:9px;font-weight:600;color:#23251d;line-height:1.3;"><span leaf="">节点二</span></p></section>
+          <section style="flex:1;min-width:38px;background:#e5e7e0;border:1px solid #bfc1b7;border-radius:4px;padding:5px 2px;text-align:center;"><p style="margin:0;font-size:9px;font-weight:600;color:#23251d;line-height:1.3;"><span leaf="">节点三</span></p></section>
+          <section style="flex:1;min-width:38px;background:#e5e7e0;border:1px solid #bfc1b7;border-radius:4px;padding:5px 2px;text-align:center;"><p style="margin:0;font-size:9px;font-weight:600;color:#23251d;line-height:1.3;"><span leaf="">节点四</span></p></section>
+          <section style="flex:1;min-width:38px;background:#d4c9b8;border:1px solid #b17816;border-radius:4px;padding:5px 2px;text-align:center;"><p style="margin:0;font-size:9px;font-weight:600;color:#23251d;line-height:1.3;"><span leaf="">输出</span></p></section>
+        </section>
+      </section>
+      <section style="flex:0 0 auto;display:flex;align-items:center;padding:0 2px;">
+        <span style="font-size:13px;line-height:1;color:#4d4f46;"><span leaf="">→</span></span>
+      </section>
+      <section style="flex:1;min-width:56px;background:#1e1f23;border-radius:4px;padding:8px 4px;text-align:center;">
+        <p style="margin:0;font-size:10px;font-weight:700;color:#ffffff;line-height:1.3;"><span leaf="">结果</span></p>
+        <p style="margin:2px 0 0;font-size:9px;font-weight:700;color:#ed7b2f;line-height:1.3;"><span leaf="">live</span></p>
+      </section>
+    </section>
     <p style="font-size:11px;color:#65675e;margin:14px 0 0;border-top:1px solid #bfc1b7;padding-top:12px;line-height:1.5;"><span leaf="">{{图示脚注}}</span></p>
   </section>
 </section>
@@ -711,19 +710,19 @@
     <section style="display:flex;justify-content:center;gap:18px;margin-bottom:14px;flex-wrap:wrap;">
       <section style="text-align:center;color:#4d4f46;">
         <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#eeefe9;border-radius:6px;border:1px solid #bfc1b7;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
+          <span style="font-size:18px;line-height:1;"><span leaf="">👍</span></span>
         </section>
         <span style="font-size:11px;font-weight:600;"><span leaf="">赞</span></span>
       </section>
       <section style="text-align:center;color:#4d4f46;">
         <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#eeefe9;border-radius:6px;border:1px solid #bfc1b7;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 18v-4a8 8 0 0 1 8-8h8"></path><polyline points="16 2 20 6 16 10"></polyline></svg>
+          <span style="font-size:18px;line-height:1;"><span leaf="">↗</span></span>
         </section>
         <span style="font-size:11px;font-weight:600;"><span leaf="">转发</span></span>
       </section>
       <section style="text-align:center;color:#23251d;">
         <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#d4c9b8;border-radius:6px;border:1px solid #b17816;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#23251d" stroke-width="1.8" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          <span style="font-size:18px;line-height:1;"><span leaf="">★</span></span>
         </section>
         <span style="font-size:11px;font-weight:700;"><span leaf="">推荐</span></span>
       </section>

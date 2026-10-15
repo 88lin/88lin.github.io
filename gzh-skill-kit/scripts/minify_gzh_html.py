@@ -12,6 +12,7 @@
     from minify_gzh_html import minify_html
     minified = minify_html(html_string)
 """
+import os
 import re
 import sys
 
@@ -30,27 +31,39 @@ def minify_html(html):
 
     注意：
     - 不动 <span leaf=""> 包裹的文字内容里的正常空格
+    - 行内软换行只在"两侧都是英数"时补一个空格，避免把
+      "will\\nremove" 拼成 "willremove"；中文之间不补空格
     """
     # 移除 HTML 注释
     html = re.sub(r'<!--.*?-->', '', html, flags=re.DOTALL)
 
-    # 去掉标签之间的空白（换行、空格、制表符）
-    html = re.sub(r'>\s+<', '><', html)
+    # 只去掉"含换行"的标签间空白（即源码缩进/换行）。
+    # 不能用 >\s+< —— 那会把 </span> <span> 之间渲染上真实存在的空格也吃掉
+    # （"赞 转发" 会变成 "赞转发"）。
+    html = re.sub(r'>[ \t]*\n[ \t]*<', '><', html)
 
-    # 去掉标签属性后紧跟的文字内容里的换行
-    # 例如: <p style="...">这里
-    # 有换行</p>  →  <p style="...">这里有换行</p>
-    # 通过把每行按 > 分割后 strip 再拼回来实现
+    # 去掉文字节点里的软换行：逐行 strip 后拼回。
+    # 拼回时若前一行末字符与下一行首字符都是英数，补一个空格再拼。
     lines = html.split('\n')
     cleaned_lines = []
     for line in lines:
-        # 每行首尾空白strip，但如果是纯空白行（标签间空行）则跳过
         stripped = line.strip()
-        if stripped:
-            cleaned_lines.append(stripped)
-    html = ''.join(cleaned_lines)
+        if not stripped:
+            continue  # 纯空白行（标签间空行）直接丢掉
+        if cleaned_lines and _needs_space(cleaned_lines[-1], stripped):
+            cleaned_lines[-1] = cleaned_lines[-1] + ' '
+        cleaned_lines.append(stripped)
 
-    return html.strip()
+    return ''.join(cleaned_lines).strip()
+
+
+def _needs_space(prev, nxt):
+    """判断拼接处是否要补空格：仅当"上一行末字符"和"下一行首字符"都是英数时补。
+
+    中文之间不补（本来就没有词间空格），中英/英中之间也不补（避免多余空隙），
+    只有 will⏎remove 这类纯英文软换行才需要补，否则会粘成 willremove。
+    """
+    return bool(re.match(r'[A-Za-z0-9]', prev[-1:])) and bool(re.match(r'[A-Za-z0-9]', nxt[:1]))
 
 
 def minify_file(input_path, output_path=None):
@@ -67,13 +80,17 @@ def minify_file(input_path, output_path=None):
         print(f"  原始: {len(html)} 字符, 换行 {html.count(chr(10))} 个")
         print(f"  压缩: {len(minified)} 字符, 换行 {minified.count(chr(10))} 个")
     else:
-        # 就地压缩
+        # 就地压缩。备份只在"还没备份过"时写——否则第二次运行会把
+        # 已压缩的内容写进 .bak，真正的原始文件就再也找不回来了。
         backup = input_path + '.bak'
-        with open(backup, 'w', encoding='utf-8') as f:
-            f.write(html)
+        if os.path.exists(backup):
+            print(f"压缩完成（沿用已有备份: {backup}，未被覆盖）")
+        else:
+            with open(backup, 'w', encoding='utf-8') as f:
+                f.write(html)
+            print(f"压缩完成（原始备份: {backup}）")
         with open(input_path, 'w', encoding='utf-8') as f:
             f.write(minified)
-        print(f"压缩完成（原始备份: {backup}）")
         print(f"  原始: {len(html)} 字符, 换行 {html.count(chr(10))} 个")
         print(f"  压缩: {len(minified)} 字符, 换行 {minified.count(chr(10))} 个")
 

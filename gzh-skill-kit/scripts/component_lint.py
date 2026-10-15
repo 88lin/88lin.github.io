@@ -17,6 +17,9 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from validate_gzh_html import LeafChecker  # 复用产物关的 leaf 检测，两关同一判据
+
 CJK = re.compile(r"[一-鿿㐀-䶿]")
 
 # (正则, 级别, 说明) —— 在每个 ```html 组件块内检查
@@ -33,6 +36,16 @@ CHECKS = [
     (re.compile(r"display\s*:\s*grid", re.I), "ERROR", "display:grid 不被支持"),
     (re.compile(r"var\s*\(\s*--", re.I), "ERROR", "用了 CSS 变量 var(--x)"),
     (re.compile(r"@(media|keyframes|import)", re.I), "ERROR", "@media/@keyframes/@import 不被支持"),
+    # 属性引号被转义成 \" —— 粘贴后 style 会在第一个空格处被截断，
+    # 其余全变成垃圾属性（theme-bento/theme-chat 曾整库踩过这个坑）
+    (re.compile(r'\\"'), "ERROR",
+     "属性引号被转义成 \\\" —— 解析器会把 style 截断在第一个空格，样式全丢"),
+    # 微信白名单剥 SVG；图标请用 <img> 或 <section> 拼形状
+    (re.compile(r"<(svg|path|rect|circle|ellipse|polygon|polyline|text|tspan)\b", re.I),
+     "ERROR", "内联 SVG 会被微信过滤——图标换 <img>，示意图用 <section> 拼"),
+    # 公众号正文外链不可点，留 <a href> 会被过滤成裸 URL
+    (re.compile(r"<a\s[^>]*href\s*=", re.I), "ERROR",
+     "出现可点击的 <a href>——请转上标角标 + 文末参考资料（通用库 4a/4b）"),
 ]
 
 # 四周虚线框：border: ... dashed（不含方向，如 border-left dashed 不算）
@@ -51,11 +64,32 @@ def lint_file(path):
             seen.add(msg)
             found.append((level, msg))
 
-    for m in re.finditer(r"```html\s*\n(.*?)```", text, re.S):
-        html = m.group(1)
+    # .html 产物（docs/gallery 下的主题示例）整份当一个块扫；
+    # .md 组件库只扫 ```html 围栏内的块，避免说明文字干扰。
+    blocks = ([text] if path.lower().endswith(".html")
+              else [m.group(1) for m in re.finditer(r"```html\s*\n(.*?)```", text, re.S)])
+
+    for html in blocks:
         for rx, level, msg in CHECKS:
             if rx.search(html):
                 add(level, msg)
+        # 漏 <span leaf=""> 包裹：粘贴后样式整片丢失，是最高频致命错。
+        # 用真正的 HTML 解析器找"裸露的文本节点"，而不是正则匹配——
+        # 否则注释里的中文、属性里的中文都会被误判。
+        checker = LeafChecker()
+        try:
+            checker.feed(html)
+        except Exception as e:  # 解析失败不致命，跳过该项
+            add("WARN", f"组件块 HTML 解析中断，跳过 leaf 检查: {e}")
+        if checker.unwrapped:
+            sample = "；".join(f"「{s}」(在 <{p}> 内)"
+                               for s, p in checker.unwrapped[:3])
+            add("ERROR", f"有文本节点未被 <span leaf=\"\"> 包裹——"
+                         f"粘贴后样式会丢失。例：{sample}")
+        if checker.span_leaf_count == 0 and CJK.search(
+                re.sub(r"<!--.*?-->", "", html, flags=re.S)):
+            add("ERROR", "整个组件块没有任何 <span leaf=\"\"> 包裹——"
+                         "所有文字节点都必须包一层")
         # 四周虚线框：正文强调勿用；居中块视为"占位/素材"组件，豁免
         if FOURSIDE_DASHED.search(html) and not CENTERED.search(html):
             add("WARN", "四周虚线框 border:…dashed（正文强调请用左竖条；"
@@ -84,9 +118,15 @@ def main():
         print(f"未找到 {root}/references/*.md")
         sys.exit(1)
 
+    # 已交付的主题示例产物一并纳入源头关，防止"库改了但示例没跟上"。
+    # 跳过 index.html（它是画廊外壳页，含 style/class/@media，本就不进公众号）。
+    products = [p for p in sorted(glob.glob(os.path.join(root, "docs", "gallery", "*.html")))
+                if os.path.basename(p) != "index.html"]
+
+    targets = refs + products
     total_err = total_warn = clean = 0
-    print(f"📐 组件库源头检查：{len(refs)} 个库\n")
-    for path in refs:
+    print(f"📐 组件库源头检查：{len(refs)} 个库 + {len(products)} 份示例产物\n")
+    for path in targets:
         name, found = lint_file(path)
         if not found:
             clean += 1
@@ -101,7 +141,8 @@ def main():
         for m in warns:
             print(f"   ⚠️  {m}")
 
-    print(f"\n汇总：{clean}/{len(refs)} 个库干净，ERROR×{total_err}，WARN×{total_warn}")
+    print(f"\n汇总：{clean}/{len(targets)} 个检查对象干净，"
+          f"ERROR×{total_err}，WARN×{total_warn}")
     if total_err == 0 and total_warn == 0:
         print("✅ 全部组件库源头无反模式")
     sys.exit(1 if total_err else 0)
