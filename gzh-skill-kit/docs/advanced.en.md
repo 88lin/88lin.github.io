@@ -25,7 +25,7 @@ Run this in a terminal, then follow the installer prompts to select your client 
 npx skills add https://github.com/88lin/gzh-skill-kit
 ```
 
-The repository is named `gzh-skill-kit`; the skill name in [SKILL.md](../SKILL.md) is **`gzh-design`**. After installation, check that your client can discover it. Reload the client or start a new session if needed.
+The repository is named `gzh-skill-kit`; the skill name in [SKILL.md](../SKILL.md) is **`gzh-skill`**. After installation, check that your client can discover it. Reload the client or start a new session if needed.
 
 <details>
 <summary>Other installation options: ask your agent, or install manually</summary>
@@ -41,7 +41,7 @@ and run the validation scripts.
 For a project-level Claude Code installation, run this from your project directory (Git required):
 
 ```bash
-git clone https://github.com/88lin/gzh-skill-kit.git .claude/skills/gzh-design
+git clone https://github.com/88lin/gzh-skill-kit.git .claude/skills/gzh-skill
 ```
 
 For other clients, use their supported skill directories. Check local changes before replacing an existing installation, especially custom themes.
@@ -280,7 +280,7 @@ CI uses Python 3.13 on Ubuntu and Windows for regressions, component checks, gal
 
 ```text
 gzh-skill-kit/
-├── SKILL.md                       # Agent workflow; skill name: gzh-design
+├── SKILL.md                       # Agent workflow; skill name: gzh-skill
 ├── references/
 │   ├── theme-index.md             # Theme registry
 │   ├── theme-*.md                 # Theme libraries and generator

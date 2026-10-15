@@ -243,7 +243,7 @@ Most workflow and theme reference documents are in Chinese.
 
 ## 💬 Community and feedback
 
-To discuss WeChat layout, AI tools, or theme collaboration, add WeChat **`zuiyn_soul`** with the note "gzh-design". Suggestions are also welcome in [Issues](https://github.com/88lin/gzh-skill-kit/issues).
+To discuss WeChat layout, AI tools, or theme collaboration, add WeChat **`Piscesstar02`** with the note "gzh-skill". Suggestions are also welcome in [Issues](https://github.com/88lin/gzh-skill-kit/issues).
 
 ---
 

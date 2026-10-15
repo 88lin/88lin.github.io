@@ -25,7 +25,7 @@
 npx skills add https://github.com/88lin/gzh-skill-kit
 ```
 
-仓库名是 `gzh-skill-kit`，技能在 [SKILL.md](../SKILL.md) 中的名称是 **`gzh-design`**。安装完成后，确认客户端能找到该技能；必要时重新加载客户端或开启新会话。
+仓库名是 `gzh-skill-kit`，技能在 [SKILL.md](../SKILL.md) 中的名称是 **`gzh-skill`**。安装完成后，确认客户端能找到该技能；必要时重新加载客户端或开启新会话。
 
 <details>
 <summary>其他安装方式：交给 Agent，或手动安装</summary>
@@ -40,7 +40,7 @@ npx skills add https://github.com/88lin/gzh-skill-kit
 以 Claude Code 的项目级安装为例，在你的项目目录执行（需要 Git）：
 
 ```bash
-git clone https://github.com/88lin/gzh-skill-kit.git .claude/skills/gzh-design
+git clone https://github.com/88lin/gzh-skill-kit.git .claude/skills/gzh-skill
 ```
 
 其他客户端请使用各自支持的技能目录。已有安装时先检查本地修改，避免直接覆盖自定义主题。
@@ -277,7 +277,7 @@ CI 使用 Python 3.13，在 Ubuntu 和 Windows 上运行回归、组件检查、
 
 ```text
 gzh-skill-kit/
-├── SKILL.md                       # Agent 工作流入口，技能名 gzh-design
+├── SKILL.md                       # Agent 工作流入口，技能名 gzh-skill
 ├── references/
 │   ├── theme-index.md             # 主题注册表
 │   ├── theme-*.md                 # 主题组件库与生成器
