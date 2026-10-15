@@ -40,9 +40,12 @@ CHECKS = [
     # 其余全变成垃圾属性（theme-bento/theme-chat 曾整库踩过这个坑）
     (re.compile(r'\\"'), "ERROR",
      "属性引号被转义成 \\\" —— 解析器会把 style 截断在第一个空格，样式全丢"),
-    # 微信白名单剥 SVG；图标请用 <img> 或 <section> 拼形状
-    (re.compile(r"<(svg|path|rect|circle|ellipse|polygon|polyline|text|tspan)\b", re.I),
-     "ERROR", "内联 SVG 会被微信过滤——图标换 <img>，示意图用 <section> 拼"),
+    # 静态内联 SVG 实测可保留（已发布文章验证过图标类 SVG），
+    # 只禁会被过滤的 SMIL 动画与外部引用。
+    (re.compile(r"<(animate|animateTransform|animateMotion|set)\b", re.I), "ERROR",
+     "SVG SMIL 动画标签会被微信过滤——只保留静态图形"),
+    (re.compile(r"url\s*\(\s*#", re.I), "WARN",
+     "SVG 内 url(#id) 外部引用会被过滤，请把图形写成自包含的 <path>/<polygon>"),
     # 公众号正文外链不可点，留 <a href> 会被过滤成裸 URL
     (re.compile(r"<a\s[^>]*href\s*=", re.I), "ERROR",
      "出现可点击的 <a href>——请转上标角标 + 文末参考资料（通用库 4a/4b）"),
@@ -69,18 +72,10 @@ def lint_file(path):
     blocks = ([text] if path.lower().endswith(".html")
               else [m.group(1) for m in re.finditer(r"```html\s*\n(.*?)```", text, re.S)])
 
-    # docs/gallery 预览产物豁免 SVG 检查：预览页只在浏览器渲染（不粘贴进公众号），
-    # SVG 图标观感更好。组件库（references/*.md）仍然严禁 SVG——正文必须用文本字形。
-    in_gallery = os.sep + "docs" + os.sep + "gallery" + os.sep in path
-    checks = [c for c in CHECKS
-              if not (in_gallery and c[1] == "ERROR" and "SVG" in c[2])]
-
     for html in blocks:
-        for rx, level, msg in checks:
+        for rx, level, msg in CHECKS:
             if rx.search(html):
                 add(level, msg)
-    if in_gallery and re.search(r"<svg\b", text, re.I):
-        add("WARN", "预览页含内联 SVG——浏览器预览正常，但正文引用此组件时请改用文本字形（微信会剥 SVG）")
         # 漏 <span leaf=""> 包裹：粘贴后样式整片丢失，是最高频致命错。
         # 用真正的 HTML 解析器找"裸露的文本节点"，而不是正则匹配——
         # 否则注释里的中文、属性里的中文都会被误判。

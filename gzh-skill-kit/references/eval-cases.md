@@ -49,7 +49,7 @@
 - [ ] 移动端适配：内容容器无死宽（`width:NNNpx` ≥150px 未配 max-width）；多列 flex 用 `flex:1` 或 `flex-wrap:wrap`+百分比；行内标签带 `margin-bottom`；长 URL 有 `word-break:break-all`；不依赖 `@media`
 - [ ] 组件库 HTML 里属性引号是正常 `"`，没有转义成 `\"`（转义会让 style 在第一个空格处被截断）
 - [ ] 组件库里的 `{{占位}}` 文字都包了 `<span leaf="">`，不是裸文本
-- [ ] 全文无内联 `<svg>`（含 path/rect/circle/text/tspan 等子标签）——图标用文本字形，示意图用 flex 卡片
+- [ ] SVG 只用静态图形；无 SMIL 动画标签（`<animate>`/`<animateTransform>`/`<animateMotion>`/`<set>`）、无外部 `url(#id)` 引用
 - [ ] 全文无可点击的 `<a href>`（超链接已转上标角标 + 文末参考资料）
 - [ ] 生成后跑 scripts/validate_gzh_html.py：ERROR 清零、半角标点 WARNING 清零；脚本对空输入必须报 ERROR 而不是"完全合规"
 

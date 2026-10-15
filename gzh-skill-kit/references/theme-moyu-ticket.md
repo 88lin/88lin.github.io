@@ -6,8 +6,8 @@
 >
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class/id、`position:fixed/absolute`、`float`、`@media`/`@keyframes`、`display:grid`
-> - ❌ 不支持内联 `<svg>`（含 `path`/`rect`/`circle`/`polygon`/`text`/`tspan` 等子标签）——微信白名单会整块剥掉，结尾互动区图标改用文本字形 `👍`/`↗`/`★`
-> - ✅ 支持内联 `style`、`display:flex`（有限）、`box-shadow`（含硬阴影偏移）、`border-radius`、`text-shadow`、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
+> - ✅ 支持内联 `style`、`display:flex`（有限）、`box-shadow`（含硬阴影偏移）、`border-radius`、`text-shadow`、`<svg>`（结尾互动区图标，微信支持）、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
+> - ⚠️ SVG 仅限**静态**图形；SMIL 动画、`<script>`、外部 `url(#id)` 引用会被过滤
 >
 > **WeChat 兼容铁律**（本主题组件全部已按此写好，改动时必须遵守）：
 > - 所有"装饰性空元素"（撕票虚线、头像占位框）**没有真实内容时整块删掉**，不留空 section
@@ -338,7 +338,7 @@
 
 ## 组件 13 结尾互动区 footer-cta（本主题的签名/CTA 区）
 
-**用途**：文章结尾，票据风的"点赞·转发·推荐"三连区，撕票虚线收尾。图标用文本字形 `👍`/`↗`/`★`（内联 SVG 会被微信过滤，不要用）。
+**用途**：文章结尾，票据风的"点赞·转发·推荐"三连区，撕票虚线收尾。SVG 图标微信支持，原样保留。
 
 **签名文案适配**：SKILL.md 的作者签名（"我是 {{作者名}}…"两段，默认占位、由用户替换）以正文段落（组件 5）形式放在本组件**之前**；本组件内部 `{{互动文案}}` 直接使用 SKILL.md 固定的第二段（"如果你觉得今天这篇有收获…三连，我们下篇见"），不要重复堆叠两句"三连"。
 
@@ -353,19 +353,19 @@
     <section style="display:flex;justify-content:center;gap:24px;margin-bottom:16px;">
       <section style="text-align:center;color:#555;">
         <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#fff;border:1px solid #1a1a1a;">
-          <span style="font-size:18px;line-height:1;"><span leaf="">👍</span></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
         </section>
         <span style="font-size:10px;font-weight:600;"><span leaf="">点赞</span></span>
       </section>
       <section style="text-align:center;color:#555;">
         <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#fff;border:1px solid #1a1a1a;">
-          <span style="font-size:18px;line-height:1;"><span leaf="">↗</span></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18v-4a8 8 0 0 1 8-8h8"></path><polyline points="16 2 20 6 16 10"></polyline></svg>
         </section>
         <span style="font-size:10px;font-weight:600;"><span leaf="">转发</span></span>
       </section>
       <section style="text-align:center;color:#059669;">
         <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#F0FDF4;border:2px solid #059669;">
-          <span style="font-size:18px;line-height:1;"><span leaf="">★</span></span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
         </section>
         <span style="font-size:10px;font-weight:600;"><span leaf="">推荐</span></span>
       </section>

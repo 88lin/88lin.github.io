@@ -278,7 +278,8 @@
 - 阴影、渐变、圆角、边框都可以使用，但必须克制，并保证即使部分样式退化，结构依然成立。
 
 7.4 禁止或谨慎使用的能力：
-- 不要使用 `<style>`、`<script>`、`form`、`input`、`button`、`textarea`、`select`、`video`、`audio`、`canvas`、`svg`、`iframe`。
+- 不要使用 `<style>`、`<script>`、`form`、`input`、`button`、`textarea`、`select`、`video`、`audio`、`canvas`、`iframe`。
+- **`svg` 可以用，但只做静态图形**：实测静态内联 SVG（图标、示意图形）发布后能保留；禁止 SMIL 动画（`<animate>`/`<animateTransform>`/`<animateMotion>`/`<set>`）、`<script>`、外部 `url(#id)` 引用与 `foreignObject`。
 - 不要使用 JavaScript 事件、动画、悬停态、过渡、滤镜交互、粘性定位、固定定位。
 - 不要使用 CSS Grid、复杂 Flex 布局、`position: sticky`、`position: fixed`、`backdrop-filter`、CSS 变量、伪元素、媒体查询。
 - 不要把 `table`、`tr`、`td` 用作通用页面布局、分栏布局、按钮编排、卡片宫格或图片区块骨架；它们只应在真实表格语义下出现。
@@ -292,7 +293,7 @@
 - 图片应使用固定高度或稳定比例思路来设计展示区域，避免复制到公众号编辑器后出现比例错乱；如需定高，可直接写 `height`；如需比例感，应通过稳定容器或占位图本身尺寸体现，而不要依赖复杂 CSS。
 - 每个图片都必须提供合适的 `alt` 属性，内容应与图片区块语义一致或语义接近，例如 `alt="头图占位"`、`alt="双图对比占位"`；允许 `alt` 使用中文。
 - 视频区块只能做"静态视频占位"，不要输出真实 `<video>`、`iframe` 播放器或交互控件。
-- 图表、可视化、流程图等内容必须降级为静态占位图/静态区块，不要依赖脚本或 SVG 渲染。
+- 图表、可视化、流程图等内容必须降级为**静态**表达：可用静态 SVG 绘制，也可用 `section` 卡片拼，但不得依赖脚本、动画或外部引用渲染。
 
 7.6 文案与组件兼容规则：
 - 按钮本质上应使用带样式的 `a` 或 `span` 模拟，不要使用真正的表单按钮组件。

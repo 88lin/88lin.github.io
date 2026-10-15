@@ -791,7 +791,7 @@
 
 ### 13a. footer-cta（互动三连区，即本主题的签名/CTA 区）
 
-固定文案照写；图标用文本字形 `👍`/`↗`/`★`（内联 SVG 会被微信过滤，不要用）。
+固定文案照写；SVG 图标微信支持，原样保留（静态描边图标实测发布后能保留；不要加 SMIL 动画）。
 
 ```html
 <section style="background:radial-gradient(circle at center,#F9FAFB 0%,#FFFFFF 100%);border:1px solid #E5E7EB;border-radius:16px;padding:32px 20px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.03);margin:0 0 24px;">
@@ -801,19 +801,19 @@
   <section style="display:flex;justify-content:center;gap:24px;margin-bottom:16px;">
     <section style="text-align:center;cursor:pointer;color:#4B5563;">
       <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#fff;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.05);border:1px solid #F3F4F6;">
-        <span style="font-size:18px;line-height:1;"><span leaf="">👍</span></span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"></path></svg>
       </section>
       <span style="font-size:10px;font-weight:600;"><span leaf="">点赞</span></span>
     </section>
     <section style="text-align:center;cursor:pointer;color:#4B5563;">
       <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#fff;border-radius:12px;box-shadow:0 2px 4px rgba(0,0,0,0.05);border:1px solid #F3F4F6;">
-        <span style="font-size:18px;line-height:1;"><span leaf="">↗</span></span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18v-4a8 8 0 0 1 8-8h8"></path><polyline points="16 2 20 6 16 10"></polyline></svg>
       </section>
       <span style="font-size:10px;font-weight:600;"><span leaf="">转发</span></span>
     </section>
     <section style="text-align:center;cursor:pointer;color:#1D4ED8;">
       <section style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;margin:0 auto 6px;background:#EFF6FF;border-radius:12px;box-shadow:0 2px 4px rgba(29,78,216,0.15);border:1px solid #93C5FD;">
-        <span style="font-size:18px;line-height:1;"><span leaf="">★</span></span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
       </section>
       <span style="font-size:10px;font-weight:600;"><span leaf="">推荐</span></span>
     </section>

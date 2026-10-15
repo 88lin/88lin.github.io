@@ -43,11 +43,14 @@ FORBIDDEN = [
     # 公众号正文外链不可点击，留 <a href> 只会被过滤成裸 URL —— 必须转成脚注（通用库 4a/4b）
     (re.compile(r"<a\s[^>]*href\s*=", re.I), "ERROR",
      "正文里出现可点击的 <a href>——公众号外链不可点，请转上标角标 + 文末参考资料"),
-    # 微信白名单会剥掉 SVG（含其子标签与 <text>/<tspan>），图标/示意图要改用 <img> 或 section 拼形状
-    (re.compile(r"<(svg|path|rect|circle|ellipse|polygon|polyline|text|tspan)\b", re.I),
-     "ERROR", "内联 SVG 及其子标签会被微信过滤——图标请换 <img>，图形请用 <section> 拼"),
     (re.compile(r"</?(figure|figcaption)\b", re.I), "WARN",
      "<figure>/<figcaption> 不在公众号可用标签清单内，可能被改写，建议换 <section>/<p>"),
+    # 静态内联 SVG 实测可保留（已发布文章验证过图标类 SVG），
+    # 只禁会被过滤的 SMIL 动画与外部引用。
+    (re.compile(r"<(animate|animateTransform|animateMotion|set)\b", re.I), "ERROR",
+     "SVG SMIL 动画标签会被微信过滤——只保留静态图形"),
+    (re.compile(r"url\s*\(\s*#", re.I), "WARN",
+     "SVG 内 url(#id) 外部引用会被过滤，请把图形写成自包含的 <path>/<polygon>"),
 ]
 
 CJK = re.compile(r"[一-鿿㐀-䶿]")
@@ -81,7 +84,9 @@ class LeafChecker(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         ad = dict(attrs)
-        is_leaf = tag == "span" and "leaf" in ad
+        # 任何带 leaf 属性的元素都算"已包裹"——不只是 <span>。
+        # olive-journal 的流程图用 SVG <tspan leaf="">，此前被误判成未包裹文字。
+        is_leaf = "leaf" in ad
         is_code = bool(CODE_STYLE.search(ad.get("style", "") or ""))
         if is_leaf:
             self.span_leaf_count += 1
