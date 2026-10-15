@@ -6,6 +6,7 @@
 >
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class、`position`、`float`、`transform:rotate`（微信编辑器会剥掉 rotate，倾斜效果用预斜字体风格替代——所以"手写感"靠字体与不对称，不靠 transform）
+> - **外层底色会被剥离**：公众号编辑器会剥掉最外层 `<section>` 的 `background`（纯色/渐变都可能丢）。页面底色不要只放顶层容器——每个正文区块（章节卡、分割装饰、签名区、互动区）都要各自带 `background` 或等价底色，确保外层被剥掉后任一区块都不是裸内容
 > - ✅ 支持内联 `style`、`border-radius`、`dashed` 边框（仅限素材占位/批注框）
 >
 > **WeChat 兼容铁律**：
@@ -27,6 +28,7 @@
 松绿反衬：      #2F6B5B / 松绿底 #E6F1ED
 深面板：        #1F2226
 虚线批注框：    1.5px dashed #D46E74
+正文下划线（theme-index 权威值）：background:linear-gradient(transparent 60%, #EFCE9A 60%);font-weight:bold;
 正文字号：      17px，line-height:2
 书卡作者行：    #5F4449（书卡内「作者 / 出版社」行）
 玫瑰点缀：      #A13060（手账完贴纸字）/ #E8B4B8 / #B98A90（胶带浅玫瑰变体）

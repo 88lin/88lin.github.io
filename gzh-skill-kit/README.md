@@ -317,7 +317,7 @@ gzh-design/
 
 - [x] 主题生成器：按描述/参考图生成自定义主题
 - [x] GitHub Pages 在线画廊（[14 套在线预览](https://88lin.github.io/gzh-skill-kit/docs/gallery/index.html)）
-- [ ] 更多精选内置主题（欢迎 [提建议](../../issues/new?template=theme_request.md)）
+- [ ] 更多精选内置主题（欢迎 [提建议](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md)）
 - [ ] 一键把整篇 Markdown + 配图打包导出
 
 ## ❓ FAQ
