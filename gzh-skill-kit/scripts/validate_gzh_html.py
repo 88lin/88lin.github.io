@@ -63,10 +63,12 @@ class LeafChecker(HTMLParser):
         self._punct_parts.clear()
         if not text or not (CJK.search(text) or ALNUM.search(text)):
             return
-        hits = [m.start() + 1 for m in HALF_PUNCT.finditer(text)] + self._straight_quotes(text)
-        for at in sorted(hits):
-            # Center the sample on the mark: a long paragraph's prefix may not contain it.
-            start = max(0, at - 12)
+        hits = sorted(set(m.start() for m in HALF_PUNCT.finditer(text))
+                      | set(self._straight_quotes(text)))
+        for at in hits:
+            # 样本从命中字符前 1 字起、向后取 24 字：不同命中点的窗口以各自的
+            # 命中字符开头，天然互不雷同；句子太短时窗口重合则由报告层去重。
+            start = max(0, at - 1)
             self.half_punct.append(('…' if start else '') + text[start:start + 24]
                                    + ('…' if start + 24 < len(text) else ''))
 
@@ -181,7 +183,10 @@ def validate(html, name="<input>"):
             f"粘贴到公众号后这些文字的样式会丢失。例：{sample}")
 
     if checker.half_punct:
-        sample = "；".join(f"「{s}」" for s in checker.half_punct[:5])
+        # 相邻命中的定位窗口可能重叠成相同文本（短句里两个标点挨得近）；
+        # 样本去重展示，命中数仍按真实处数计，避免"同一句报两遍"的观感。
+        unique = list(dict.fromkeys(checker.half_punct))
+        sample = "；".join(f"「{s}」" for s in unique[:5])
         warnings.append(
             f"{len(checker.half_punct)} 处正文疑似半角标点/英文引号，应改中文全角"
             f"（代码块内不计）。例：{sample}")
