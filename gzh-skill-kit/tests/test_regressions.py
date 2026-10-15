@@ -101,7 +101,7 @@ class ValidationTests(unittest.TestCase):
         source = ('<section style="background:#fff"><svg viewBox="0 0 120 30">'
                   '<rect x="2" y="6" width="40" height="20"/>'
                   '<text x="22" y="20">节点一</text></svg>'
-                  '<p><span leaf="">正文</span></p></section>')
+                  '<p style="background:#fff"><span leaf="">正文</span></p></section>')
         self.assertEqual(validate(source)[:2], ([], []), source)
 
     def test_svg_only_document_is_not_missing_leaf(self):
@@ -173,8 +173,8 @@ class WordTests(unittest.TestCase):
             self.assertEqual(extract(str(docx), str(output)), 0)
             text = output.read_text(encoding='utf-8')
             self.assertIn('[来源](https://example.com/source)', text)
-            self.assertIn('![](<images/01-image.png>)<br>下一段', text)
-            self.assertEqual((folder / 'images/01-image.png').read_bytes(), b'image fixture')
+            self.assertIn('![](<images/article/01-image.png>)<br>下一段', text)
+            self.assertEqual((folder / 'images/article/01-image.png').read_bytes(), b'image fixture')
 
 
 def response(value):
@@ -312,11 +312,13 @@ class CLITests(unittest.TestCase):
 
     def test_cli_does_not_swallow_programming_errors(self):
         # 真实的编程错误（不是上传失败）必须继续抛出，不能被 main() 吞掉
-        with patch.object(sys, 'argv', ['wechat_draft.py', 'cover', 'title', 'summary']), \
-                patch.object(sys, 'stdin', io.StringIO('<p>x</p>')), \
-                patch.object(draft, 'upload_and_cleanup', side_effect=AttributeError('boom')):
-            with self.assertRaises(AttributeError):
-                draft.main()
+        for exc in (AttributeError('boom'), KeyError('internal-field')):
+            with self.subTest(exc=type(exc).__name__), \
+                    patch.object(sys, 'argv', ['wechat_draft.py', 'cover', 'title', 'summary']), \
+                    patch.object(sys, 'stdin', io.StringIO('<p>x</p>')), \
+                    patch.object(draft, 'upload_and_cleanup', side_effect=exc):
+                with self.assertRaises(type(exc)):
+                    draft.main()
 
     def test_library_status_keeps_host_encoding_and_does_not_raise(self):
         buffer = io.BytesIO()
