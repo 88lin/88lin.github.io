@@ -59,6 +59,7 @@ def lint_file(path):
         checker = LeafChecker()
         try:
             checker.feed(html)
+            checker.close()
         except Exception as e:  # 解析失败不致命，跳过该项
             add("WARN", f"组件块 HTML 解析中断，跳过 leaf 检查: {e}")
         if checker.unwrapped:

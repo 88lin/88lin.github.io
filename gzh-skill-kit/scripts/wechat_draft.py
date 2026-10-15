@@ -75,23 +75,43 @@ def _parse_json(r):
     return json.loads(r.content.decode('utf-8'))
 
 
+def _load_config():
+    """在数据入口校验凭据，让配置错误走 CLI 的 ValueError 提示。"""
+    with open(CONFIG_FILE, encoding='utf-8') as f:
+        cfg = json.load(f)
+    if not isinstance(cfg, dict):
+        raise ValueError('公众号配置必须是 JSON 对象')
+    for key in ('WECHAT_APP_ID', 'WECHAT_APP_SECRET'):
+        value = cfg.get(key)
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError(f'公众号配置项 {key} 必须是非空字符串')
+    return cfg
+
+
+def _cached_token(appid):
+    """返回当前 AppID 仍有效的缓存 token；损坏或格式不对的缓存一律视为未命中。"""
+    try:
+        with open(TOKEN_FILE, encoding='utf-8') as f:
+            data = json.load(f)
+        expires = datetime.datetime.fromisoformat(data['expires'])
+        if (data.get('appid') == appid and isinstance(data['access_token'], str)
+                and datetime.datetime.now() < expires - datetime.timedelta(minutes=5)):
+            return data['access_token']
+    except (OSError, ValueError, TypeError, KeyError, AttributeError):
+        pass
+    return None
+
+
 def get_token():
-    """从本地缓存文件读取 access_token，过期前自动刷新。"""
-    if not os.path.exists(TOKEN_FILE):
-        return refresh_token()
-    with open(TOKEN_FILE, encoding='utf-8') as f:
-        data = json.load(f)
-    expires = datetime.datetime.fromisoformat(data.get('expires', '2000-01-01'))
-    if datetime.datetime.now() >= expires - datetime.timedelta(minutes=5):
-        return refresh_token()
-    return data['access_token']
+    """只复用当前 AppID 的有效缓存；旧格式、损坏或其他账号的缓存必须刷新。"""
+    appid = _load_config()['WECHAT_APP_ID']
+    return _cached_token(appid) or refresh_token()
 
 
 def refresh_token():
     """调用 stable_token 接口刷新 access_token，并缓存到本地文件。"""
+    cfg = _load_config()
     import requests
-    with open(CONFIG_FILE, encoding='utf-8') as f:
-        cfg = json.load(f)
     appid = cfg['WECHAT_APP_ID']
     secret = cfg['WECHAT_APP_SECRET']
 
@@ -109,7 +129,7 @@ def refresh_token():
     token = result['access_token']
     expires = datetime.datetime.now() + datetime.timedelta(seconds=result.get('expires_in', 7200))
     with open(TOKEN_FILE, 'w', encoding='utf-8') as f:
-        json.dump({'access_token': token, 'expires': expires.isoformat()}, f)
+        json.dump({'appid': appid, 'access_token': token, 'expires': expires.isoformat()}, f)
     return token
 
 
@@ -251,12 +271,18 @@ def _nbsp_count(content):
     return len(re.findall(r'&nbsp;|&#0*160;|&#x0*a0;|\u00a0', content, re.I))
 
 
-def verify_draft(token, media_id, expected_title):
+NBSP_RUN = re.compile(r'(?:&nbsp;|&#0*160;|&#x0*a0;|\u00a0){2,}', re.I)
+
+
+def verify_draft(token, media_id, expected_title, *, expected_nbsp=None):
     try:
         news = _get_article(token, media_id)
         if news.get('title') != expected_title:
             raise RuntimeError('回读标题与提交标题不一致（含中文/emoji）')
-        return _nbsp_count(news['content'])
+        count = _nbsp_count(news['content'])
+        if expected_nbsp is not None and (count != expected_nbsp or NBSP_RUN.search(news['content'])):
+            raise RuntimeError('回读正文的空白清理结果不符（仍有连串 nbsp 或单个间距数量改变）')
+        return count
     except Exception as exc:
         raise DraftVerificationError(media_id, str(exc)) from exc
 
@@ -390,7 +416,7 @@ def cleanup_draft_nbsp(token, media_id):
     # 必然成串出现。单个 &nbsp; 通常是排版里刻意留的间隔
     # （如 <span leaf="">&nbsp;</span> 圆点分隔符、"&nbsp;·&nbsp;"），
     # 以前无差别全删会把这些正常间距一起抹掉、撑坏布局。
-    cleaned = re.sub(r'(?:&nbsp;|&#0*160;|&#x0*a0;|\u00a0){2,}', '', content, flags=re.I)
+    cleaned = NBSP_RUN.sub('', content)
     cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)
     removed = original_nbsp - _nbsp_count(cleaned)
     if removed == 0:
@@ -399,7 +425,7 @@ def cleanup_draft_nbsp(token, media_id):
 
     update_draft(token, media_id, news.get('thumb_media_id', ''),
                  news['title'], news.get('digest', ''), cleaned, original_article=news)
-    verify_draft(token, media_id, news['title'])
+    verify_draft(token, media_id, news['title'], expected_nbsp=_nbsp_count(cleaned))
     print_status(f"清理完成: 删除 {removed} 个连串空白符")
     return media_id
 
@@ -421,10 +447,10 @@ def main():
     cover = args.cover or os.environ.get('WECHAT_COVER_PATH', 'image_001.jpg')
     title = args.title if args.title is not None else input('标题: ')
     digest = args.digest if args.digest is not None else input('摘要: ')
-    content = (args.html_file.read_text(encoding='utf-8') if args.html_file else
-               args.content if args.content is not None else sys.stdin.read())
-    base_dir = args.base_dir or (args.html_file.resolve().parent if args.html_file else Path.cwd())
     try:
+        content = (args.html_file.read_text(encoding='utf-8') if args.html_file else
+                   args.content if args.content is not None else sys.stdin.read())
+        base_dir = args.base_dir or (args.html_file.resolve().parent if args.html_file else Path.cwd())
         upload_and_cleanup(cover, title, digest, content, base_dir=base_dir)
     except DraftVerificationError as exc:
         # 草稿已经创建成功，只是回读验证没过——退出码 2，提示不要重复创建

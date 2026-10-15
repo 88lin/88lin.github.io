@@ -17,6 +17,7 @@ import os
 import sys
 from html import escape
 from pathlib import Path
+from urllib.parse import quote
 
 if __package__:
     from .cli_utils import configure_stdio
@@ -47,10 +48,19 @@ def main():
         print(f"✗ 读不到预览模板 {tpl_path}: {exc}")
         sys.exit(1)
 
-    title = os.path.splitext(os.path.basename(src))[0]
-    out_html = tpl.replace("{{TITLE}}", escape(title)).replace("<!--GZH_CONTENT-->", content)
-
     out = sys.argv[2] if len(sys.argv) > 2 else os.path.splitext(src)[0] + "_预览.html"
+    # Resolve every relative resource (img/srcset/CSS URLs) against the article.
+    # A relative base keeps previews portable when their containing tree moves.
+    source_dir, output_dir = Path(src).resolve().parent, Path(out).resolve().parent
+    try:
+        relative = os.path.relpath(source_dir, output_dir).replace(os.sep, '/')
+        base_url = quote(relative, safe='/') + '/'
+    except ValueError:  # Different Windows drives cannot have a relative path.
+        base_url = source_dir.as_uri() + '/'
+    title = os.path.splitext(os.path.basename(src))[0]
+    out_html = (tpl.replace("{{BASE_URL}}", escape(base_url, quote=True))
+                .replace("{{TITLE}}", escape(title)).replace("<!--GZH_CONTENT-->", content))
+
     try:
         Path(out).write_text(out_html, encoding="utf-8")
     except OSError as exc:

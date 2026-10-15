@@ -24,10 +24,10 @@ from html.parser import HTMLParser
 
 if __package__:
     from .cli_utils import configure_stdio
-    from .markup_checks import VOID_TAGS, inspect_markup
+    from .markup_checks import BLOCK_TAGS, VOID_TAGS, inspect_markup
 else:
     from cli_utils import configure_stdio
-    from markup_checks import VOID_TAGS, inspect_markup
+    from markup_checks import BLOCK_TAGS, VOID_TAGS, inspect_markup
 
 CJK = re.compile(r"[一-鿿㐀-䶿]")
 ALNUM = re.compile(r"[A-Za-z0-9]")
@@ -41,6 +41,7 @@ APOSTROPHE_WORD = re.compile(r"[A-Za-z]'[A-Za-z]")
 ASCII_QUOTE = re.compile(r"[\"']")
 # 代码区特征：等宽字体或 white-space:pre —— 其内半角符号是正常的
 CODE_STYLE = re.compile(r"monospace|white-space\s*:\s*pre|courier|consolas|sf mono", re.I)
+PUNCT_BOUNDARIES = BLOCK_TAGS | SKIP_TAGS | {'br', 'svg'}
 
 
 class LeafChecker(HTMLParser):
@@ -55,6 +56,25 @@ class LeafChecker(HTMLParser):
         self.cjk_text_nodes = 0   # 参与正文的、含中文的文本节点数
         self.unwrapped = []       # (文本片段, 父标签) —— 未被 leaf 包裹的中文文本
         self.half_punct = []      # 正文里疑似半角标点的片段
+        self._punct_parts = []    # 连续正文跨 span/strong 检查，块/代码/SVG 边界断开
+
+    def _flush_punctuation(self):
+        text = ''.join(self._punct_parts).strip()
+        self._punct_parts.clear()
+        if not text or not (CJK.search(text) or ALNUM.search(text)):
+            return
+        hits = sorted(set(m.start() for m in HALF_PUNCT.finditer(text))
+                      | set(self._straight_quotes(text)))
+        for at in hits:
+            # 样本从命中字符前 1 字起、向后取 24 字：不同命中点的窗口以各自的
+            # 命中字符开头，天然互不雷同；句子太短时窗口重合则由报告层去重。
+            start = max(0, at - 1)
+            self.half_punct.append(('…' if start else '') + text[start:start + 24]
+                                   + ('…' if start + 24 < len(text) else ''))
+
+    def close(self):
+        super().close()
+        self._flush_punctuation()
 
     def handle_starttag(self, tag, attrs):
         ad = dict(attrs)
@@ -62,6 +82,8 @@ class LeafChecker(HTMLParser):
         # olive-journal 的流程图用 SVG <tspan leaf="">，此前被误判成未包裹文字。
         is_leaf = "leaf" in ad
         is_code = bool(CODE_STYLE.search(ad.get("style", "") or ""))
+        if tag in PUNCT_BOUNDARIES or is_code:
+            self._flush_punctuation()
         if is_leaf:
             self.span_leaf_count += 1
             self.leaf_depth += 1
@@ -79,8 +101,12 @@ class LeafChecker(HTMLParser):
             self.handle_endtag(tag)
 
     def handle_endtag(self, tag):
+        if tag in PUNCT_BOUNDARIES:
+            self._flush_punctuation()
         for i in range(len(self.stack) - 1, -1, -1):
             if self.stack[i][0] == tag:
+                if any(is_code for _, _, is_code in self.stack[i:]):
+                    self._flush_punctuation()
                 for _, was_leaf, was_code in self.stack[i:]:
                     if was_leaf:
                         self.leaf_depth -= 1
@@ -93,8 +119,6 @@ class LeafChecker(HTMLParser):
         text = data.strip()
         # 只要含中文或英数就当"有实质内容的文本节点"——早期版本只认中文，
         # 导致纯英文段落漏包 <span leaf> 时完全不告警。
-        if not text or not (CJK.search(text) or ALNUM.search(text)):
-            return
         if any(t in SKIP_TAGS for t, _, _ in self.stack):
             return  # <head>/<title>/<style>/<script> 内文字不进公众号正文
         if any(t == "svg" for t, _, _ in self.stack):
@@ -103,20 +127,23 @@ class LeafChecker(HTMLParser):
             # 注意：统计也必须放在这两个跳过之后，否则"整篇只有一个 SVG"会被
             # 误判成"全文没有任何 <span leaf> 包裹"。
             return
+        if self.code_depth == 0:
+            # Keep punctuation-only nodes and the following digit/apostrophe
+            # context; stripping each node would change adjacent-word meaning.
+            self._punct_parts.append(data)
+        if not text or not (CJK.search(text) or ALNUM.search(text)):
+            return
         self.cjk_text_nodes += 1
         if self.leaf_depth == 0:
             parent = self.stack[-1][0] if self.stack else "(root)"
             snippet = text[:24] + ("…" if len(text) > 24 else "")
             self.unwrapped.append((snippet, parent))
-        if self.code_depth == 0 and (HALF_PUNCT.search(text)
-                                     or self._has_straight_quote(text)):
-            snippet = text[:24] + ("…" if len(text) > 24 else "")
-            self.half_punct.append(snippet)
 
     @staticmethod
-    def _has_straight_quote(text):
-        """查英文直引号；先剔掉 don't / it's 这类撇号，避免误报。"""
-        return bool(ASCII_QUOTE.search(APOSTROPHE_WORD.sub("", text)))
+    def _straight_quotes(text):
+        """英文直引号的位置；don't / it's 这类撇号先等长遮住，避免误报且下标不变。"""
+        masked = APOSTROPHE_WORD.sub(lambda m: " " * len(m.group()), text)
+        return [m.start() for m in ASCII_QUOTE.finditer(masked)]
 
 
 def validate(html, name="<input>"):
@@ -136,6 +163,7 @@ def validate(html, name="<input>"):
     checker = LeafChecker()
     try:
         checker.feed(html)
+        checker.close()
     except Exception as e:  # 容错：解析失败不致命，只提示
         warnings.append(f"HTML 解析中断: {e}")
 
@@ -155,12 +183,15 @@ def validate(html, name="<input>"):
             f"粘贴到公众号后这些文字的样式会丢失。例：{sample}")
 
     if checker.half_punct:
-        sample = "；".join(f"「{s}」" for s in checker.half_punct[:5])
+        # 相邻命中的定位窗口可能重叠成相同文本（短句里两个标点挨得近）；
+        # 样本去重展示，命中数仍按真实处数计，避免"同一句报两遍"的观感。
+        unique = list(dict.fromkeys(checker.half_punct))
+        sample = "；".join(f"「{s}」" for s in unique[:5])
         warnings.append(
             f"{len(checker.half_punct)} 处正文疑似半角标点/英文引号，应改中文全角"
             f"（代码块内不计）。例：{sample}")
 
-    if markup.sections > 1 and markup.uncovered:
+    if markup.sections and markup.uncovered:
         sample = "；".join(dict.fromkeys(markup.uncovered[:5]))
         warnings.append(
             "正文区块依赖最外层背景，缺少独立的非透明底色：" + sample)

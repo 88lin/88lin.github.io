@@ -1,5 +1,5 @@
 ---
-name: gzh-design
+name: gzh-skill
 description: 微信公众号文章排版引擎，将 Markdown 转换为可直接粘贴到公众号编辑器的 HTML。主题风格从 references/theme-index.md 注册的自定义主题库中选取，自动章节编号、关键词下划线标记、引言卡片、目录导航、代码块、图片/GIF、作者签名。支持 Markdown / Word(.docx) / PDF / 纯文本输入（非 Markdown 先自动归一化），也支持"一键自动排版"（自动推断结构+选主题），还支持根据用户描述/参考图生成自定义主题组件库并保存本地复用，支持"先标注再排版"的两阶段模式（产出可检查、可修正、可重渲染的标注版 Markdown），并可选用微信 API 把排版产物直传公众号草稿箱（scripts/wechat_draft.py）。触发场景：(1) 用户提到"公众号排版""公众号文章""微信排版""gzh"，(2) 用户想把文章（md/docx/pdf/纯文本）转成公众号 HTML，(3) 用户说"自动排版""一键排版"公众号内容，(4) 用户想为公众号排版"生成新主题/自定义风格/按这张图做一套组件库"，(5) 用户说"先标注""两步排版""标注后再排"进入两阶段模式，(6) 用户说"上传草稿箱""API 发布""自动发布"把排版结果直传公众号草稿箱。不用于生成普通网页/落地页/PPT（用前端或 PPT 类 skill）。
 ---
 
@@ -127,11 +127,11 @@ media_id, nbsp = upload_and_cleanup(
 
 **方式 B（手动）**：先 `<SKILL_ROOT>/scripts/minify_gzh_html.py <正文.html>` 压缩，再用压缩产物调 `create_draft`。
 
-**凭据配置**：`~/.wechat_config.json` 存 `{"WECHAT_APP_ID": "...", "WECHAT_APP_SECRET": "..."}`；可用环境变量 `WECHAT_CONFIG_FILE` / `WECHAT_TOKEN_FILE` / `WECHAT_COVER_PATH` 覆盖默认路径。access_token 缓存在本地文件，过期前自动刷新。
+**凭据配置**：`~/.wechat_config.json` 存 `{"WECHAT_APP_ID": "...", "WECHAT_APP_SECRET": "..."}`；可用环境变量 `WECHAT_CONFIG_FILE` / `WECHAT_TOKEN_FILE` / `WECHAT_COVER_PATH` 覆盖默认路径。access_token 缓存在本地文件并绑定 AppID，过期、切换账号、缓存损坏或读取不含 AppID 的旧缓存时自动刷新。
 
 **正文图片**：本地/相对图片按 `base_dir` 定位，先检查存在性，再经 `media/uploadimg` 上传并替换 URL；HTTP(S) URL 原样保留，需确保可访问。CLI 优先用 `--html-file 正文.html`，自动以该文件目录解析图片；正文中的字面量 `\n` 不解码。
 
-**上传后验证（强制）**：Python 与 CLI 都用 `draft/get` 回读，逐字比较标题（包括 emoji），统计正文 nbsp。失败抛出 `DraftVerificationError`，携带已创建的 `media_id`；CLI 退出码 2。此时只用 `verify_draft(token, media_id, title)` 重试验证，不重新创建。异常连续 nbsp 可用 `cleanup_draft_nbsp` 清理；它保留单个有意空白及作者、原文链接、留言设置，并回读更新结果。解析响应必须用 `json.loads(r.content.decode('utf-8'))`，不要用 `r.json()`（部分微信接口按 ISO-8859-1 返回，`r.json()` 会造成双重解码乱码）。
+**上传后验证（强制）**：Python 与 CLI 都用 `draft/get` 回读，逐字比较标题（包括 emoji），统计正文 nbsp。失败抛出 `DraftVerificationError`，携带已创建的 `media_id`；CLI 退出码 2。此时只用 `verify_draft(token, media_id, title)` 重试验证，不重新创建。异常连续 nbsp 可用 `cleanup_draft_nbsp` 清理；它保留单个有意空白及作者、原文链接、留言设置，并回读确认连串空白消失且单个 nbsp 数量未改变，未生效仍抛出验证异常。解析响应必须用 `json.loads(r.content.decode('utf-8'))`，不要用 `r.json()`（部分微信接口按 ISO-8859-1 返回，`r.json()` 会造成双重解码乱码）。
 
 两条路线不要混用：方向一的预览/兜底用未压缩的原始 HTML；方向二上传压缩后产物。
 
