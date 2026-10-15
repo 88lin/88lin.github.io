@@ -115,6 +115,17 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
+                id: 'agentrouter',
+                name: 'Agent Router',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
+                url: 'https://agentrouter.org/register?aff=G5Sl',
+                tagline: '免费公益大模型 API 平台，支持 claude-opus-5.5、GPT-6-Astra、gpt-6.1-sol、deepseek-v4-flash。注册送 $125，每日签到 $25，被邀再得 $50。',
+                desc: '免费公益大模型 API 平台，支持 claude-opus-5.5、GPT-6-Astra、gpt-6.1-sol、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
+                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
+                cta: '免费领取',
+                accent: '#5f4dff'
+            },
+            {
                 id: 'sheapi',
                 name: 'SheApi',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
@@ -124,17 +135,6 @@
                 highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
                 cta: '立即体验',
                 accent: '#1e88e5'
-            },
-            {
-                id: 'agentrouter',
-                name: 'Agent Router',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
-                url: 'https://agentrouter.org/register?aff=G5Sl',
-                tagline: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5、deepseek-v4-flash。注册送 $125，每日签到 $25，被邀再得 $50。',
-                desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
-                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
-                cta: '免费领取',
-                accent: '#5f4dff'
             },
             {
                 id: 'anyrouter',
