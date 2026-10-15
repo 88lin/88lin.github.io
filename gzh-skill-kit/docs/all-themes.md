@@ -28,7 +28,7 @@
 <tr>
 <td width="33%" align="center"><a href="gallery/moyu-ticket.html"><img src="../assets/lf-moyu-ticket.thumb.png" width="250"></a><br><sub><b>摸鱼票据风 Moyu Ticket</b></sub></td>
 <td width="33%" align="center"><a href="gallery/olive-journal.html"><img src="../assets/lf-olive-journal.thumb.png" width="250"></a><br><sub><b>橄榄手记 Olive Journal</b></sub></td>
-<td width="33%" align="center"><a href="./index.html"><b>全部 14 套<br>在线交互预览 ↗</b></a></td>
+<td width="33%" align="center"><a href="gallery/index.html"><b>全部 14 套<br>在线交互预览 ↗</b></a></td>
 </tr>
 </table>
 

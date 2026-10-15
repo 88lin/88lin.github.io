@@ -29,16 +29,26 @@ Python 用法（推荐）:
       cover_path='image_001.jpg',
       title='文章标题',
       digest='摘要',
-      html_content=open('article.html').read()
+      html_content=open('article.html', encoding='utf-8').read()
   )
 """
 
 import sys, os, json, re, datetime
+import argparse
+import mimetypes
+from html import escape
+from html.parser import HTMLParser
+from pathlib import Path
+from urllib.parse import unquote, urlsplit
 
 # 压缩逻辑只此一份（scripts/minify_gzh_html.py），不在这里复制实现——
 # 两份拷贝必然漂移，之前就是这么把"换行被吃掉"的 bug 复制了两遍。
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from minify_gzh_html import minify_html  # noqa: E402
+if __package__:
+    from .cli_utils import configure_stdio, print_status
+    from .minify_gzh_html import minify_html
+else:
+    from cli_utils import configure_stdio, print_status
+    from minify_gzh_html import minify_html
 
 # ── 配置路径（可通过环境变量覆盖）───────────────────────────────────────
 # Token 缓存文件
@@ -69,7 +79,7 @@ def get_token():
     """从本地缓存文件读取 access_token，过期前自动刷新。"""
     if not os.path.exists(TOKEN_FILE):
         return refresh_token()
-    with open(TOKEN_FILE) as f:
+    with open(TOKEN_FILE, encoding='utf-8') as f:
         data = json.load(f)
     expires = datetime.datetime.fromisoformat(data.get('expires', '2000-01-01'))
     if datetime.datetime.now() >= expires - datetime.timedelta(minutes=5):
@@ -80,7 +90,7 @@ def get_token():
 def refresh_token():
     """调用 stable_token 接口刷新 access_token，并缓存到本地文件。"""
     import requests
-    with open(CONFIG_FILE) as f:
+    with open(CONFIG_FILE, encoding='utf-8') as f:
         cfg = json.load(f)
     appid = cfg['WECHAT_APP_ID']
     secret = cfg['WECHAT_APP_SECRET']
@@ -98,7 +108,7 @@ def refresh_token():
 
     token = result['access_token']
     expires = datetime.datetime.now() + datetime.timedelta(seconds=result.get('expires_in', 7200))
-    with open(TOKEN_FILE, 'w') as f:
+    with open(TOKEN_FILE, 'w', encoding='utf-8') as f:
         json.dump({'access_token': token, 'expires': expires.isoformat()}, f)
     return token
 
@@ -184,21 +194,20 @@ def create_draft(token, thumb_media_id, title, digest, content):
     return result['media_id']
 
 
-def update_draft(token, media_id, thumb_media_id, title, digest, content):
+def update_draft(token, media_id, thumb_media_id, title, digest, content, *, original_article=None):
     """调用 draft/update 更新已有草稿。"""
     import requests as _req
+    original = original_article if original_article is not None else _get_article(token, media_id)
+    # Copy only editable fields, not read-only response fields such as url/update_time.
+    editable = {'title', 'author', 'digest', 'content', 'content_source_url',
+                'thumb_media_id', 'need_open_comment', 'only_fans_can_comment',
+                'show_cover_pic'}
+    article = {key: value for key, value in original.items() if key in editable}
+    article.update(title=title, digest=digest, content=content, thumb_media_id=thumb_media_id)
     update_data = {
         "media_id": media_id,
         "index": 0,
-        "articles": {
-            "title": title,
-            "digest": digest,
-            "content": content,
-            "content_source_url": "",
-            "thumb_media_id": thumb_media_id,
-            "need_open_comment": 1,
-            "only_fans_can_comment": 0
-        }
+        "articles": article
     }
     url = f"https://api.weixin.qq.com/cgi-bin/draft/update?access_token={token}"
     body = json.dumps(update_data, ensure_ascii=False)
@@ -209,14 +218,130 @@ def update_draft(token, media_id, thumb_media_id, title, digest, content):
         timeout=15
     )
     result = _parse_json(r)
-    if result.get('errcode') not in (None, 0):
+    if result.get('errcode') != 0:
         raise Exception(f"草稿更新失败: {result}")
     return media_id
 
 
 # ── 一站式上传 ─────────────────────────────────────────────────────────
 
-def upload_and_cleanup(cover_path, title, digest, html_content):
+class DraftVerificationError(RuntimeError):
+    """The draft exists; retry verification with media_id, not draft creation."""
+
+    def __init__(self, media_id, reason):
+        self.media_id = media_id
+        super().__init__(f'草稿已创建（media_id={media_id}），但验证失败：{reason}；请回读验证，不要重复创建')
+
+
+def _get_article(token, media_id):
+    import requests
+    r = requests.post(
+        f'https://api.weixin.qq.com/cgi-bin/draft/get?access_token={token}',
+        json={'media_id': media_id}, timeout=10)
+    result = _parse_json(r)
+    news = result.get('news_item')
+    if not isinstance(news, list) or not news or not isinstance(news[0], dict):
+        raise RuntimeError(f'取回草稿失败: {result}')
+    if not isinstance(news[0].get('content'), str):
+        raise RuntimeError('取回草稿缺少正文')
+    return news[0]
+
+
+def _nbsp_count(content):
+    return len(re.findall(r'&nbsp;|&#0*160;|&#x0*a0;|\u00a0', content, re.I))
+
+
+def verify_draft(token, media_id, expected_title):
+    try:
+        news = _get_article(token, media_id)
+        if news.get('title') != expected_title:
+            raise RuntimeError('回读标题与提交标题不一致（含中文/emoji）')
+        return _nbsp_count(news['content'])
+    except Exception as exc:
+        raise DraftVerificationError(media_id, str(exc)) from exc
+
+
+class _Images(HTMLParser):
+    """Locate only actual img src attributes, leaving the rest of HTML intact."""
+
+    def __init__(self, html, base_dir):
+        super().__init__(convert_charrefs=False)
+        self.base_dir = Path(base_dir or Path.cwd()).resolve()
+        self.images = []
+        # HTMLParser advances rows only at LF, not at every str.splitlines separator.
+        self.offsets = [0] + [match.end() for match in re.finditer('\n', html)]
+        self.feed(html)
+        self.close()
+
+    def handle_starttag(self, tag, attrs):
+        if tag != 'img':
+            return
+        src = dict(attrs).get('src', '') or ''
+        parsed = urlsplit(src)
+        if parsed.scheme.lower() in {'http', 'https'} and parsed.netloc:
+            return
+        # Drive letters are paths, not URL schemes. Unsupported schemes must not leak into drafts.
+        if parsed.scheme and parsed.scheme != 'file' and not re.match(r'^[A-Za-z]:[\\/]', src):
+            raise ValueError(f'正文图片不支持此来源：{src[:80]}')
+        if not src or src.startswith('//'):
+            raise ValueError('正文图片缺少明确的本地路径或 http(s) URL')
+        path_text = unquote(src) if re.match(r'^[A-Za-z]:[\\/]', src) else unquote(parsed.path)
+        if re.match(r'^/[A-Za-z]:/', path_text):
+            path_text = path_text[1:]
+        if parsed.scheme == 'file' and parsed.netloc not in {'', 'localhost'}:
+            raise ValueError('正文图片不支持远程 file 主机')
+        path = Path(path_text)
+        path = path.resolve() if path.is_absolute() else (self.base_dir / path).resolve()
+        if not path.is_file():
+            raise FileNotFoundError(f'找不到正文图片：{path}；请设置 base_dir/--base-dir')
+        from PIL import Image
+        with Image.open(path) as image:
+            image.verify()
+        raw = self.get_starttag_text()
+        # Consume whole attributes so src= inside a quoted alt/title cannot match.
+        attributes = re.finditer(
+            r'''([^\s=/>]+)(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+))?''',
+            raw[4:])  # skip <img
+        matches = [match for match in attributes if match.group(1).lower() == 'src']
+        if len(matches) != 1:
+            raise ValueError('正文 img 的 src 属性格式无效')
+        match = matches[0]
+        row, column = self.getpos()
+        self.images.append((self.offsets[row - 1] + column, raw,
+                            (match.start() + 4, match.end() + 4), path))
+
+    handle_startendtag = handle_starttag
+
+
+def upload_inline_image(token, path):
+    import requests
+    path = Path(path)
+    with open(path, 'rb') as image_file:
+        result = _parse_json(requests.post(
+            'https://api.weixin.qq.com/cgi-bin/media/uploadimg',
+            params={'access_token': token},
+            files={'media': (path.name, image_file, mimetypes.guess_type(path.name)[0] or 'application/octet-stream')},
+            timeout=30))
+    url = result.get('url', '')
+    if (not isinstance(url, str) or urlsplit(url).scheme not in {'http', 'https'}
+            or not urlsplit(url).netloc):
+        raise RuntimeError(f'正文图片上传失败: {result}')
+    return url
+
+
+def _replace_images(token, html, images):
+    uploaded = {}
+    # Upload in reading order, reuse repeated local files, then replace backwards by offset.
+    for _, _, _, path in images.images:
+        if path not in uploaded:
+            uploaded[path] = upload_inline_image(token, path)
+    for offset, raw, (start, end), path in reversed(images.images):
+        tag = raw[:start] + 'src="' + escape(uploaded[path], quote=True) + '"' + raw[end:]
+        html = html[:offset] + tag + html[offset + len(raw):]
+    return html
+
+
+def upload_and_cleanup(cover_path, title, digest, html_content, *, base_dir=None):
     """
     完整流程：刷新 token → 压缩 HTML → 上传封面 → 创建草稿。
     返回 (media_id, nbsp_count)
@@ -227,10 +352,14 @@ def upload_and_cleanup(cover_path, title, digest, html_content):
     注意：微信草稿 API 不接受 0 长度的 thumb_media_id，
     所以 cover_path 不能省略；封面图请预先准备好。
     """
-    token = refresh_token()
+    if not html_content.strip():
+        raise ValueError('正文不能为空')
+    # Resolve every local image before any API request, so missing images do not create partial drafts.
+    images = _Images(html_content, base_dir)
+    token = get_token()
 
     # 压缩 HTML，防止手机端注入 &nbsp;
-    html_minified = minify_html(html_content)
+    html_minified = minify_html(_replace_images(token, html_content, images))
 
     # 上传封面
     thumb_id = upload_cover(token, cover_path)
@@ -239,17 +368,8 @@ def upload_and_cleanup(cover_path, title, digest, html_content):
     media_id = create_draft(token, thumb_id, title, digest, html_minified)
 
     # 验证：取回草稿，检查内容里是否有 &nbsp;
-    import requests as _req
-    url = f"https://api.weixin.qq.com/cgi-bin/draft/get?access_token={token}"
-    r = _req.post(url, json={"media_id": media_id}, timeout=10)
-    result = _parse_json(r)   # 不要用 r.json()，见 SKILL.md 第 6 步说明
-    if 'news_item' not in result:
-        print(f"[警告] 取回草稿验证失败: {result}")
-        return media_id, 0
-
-    content = result['news_item'][0]['content']
-    nbsp_count = content.count('&nbsp;') + content.count('&#160;')
-    print(f"✅ 草稿上传完成: media_id={media_id}, &nbsp;={nbsp_count}")
+    nbsp_count = verify_draft(token, media_id, title)
+    print_status(f"✅ 草稿上传完成: media_id={media_id}, &nbsp;={nbsp_count}")
     return media_id, nbsp_count
 
 
@@ -258,62 +378,59 @@ def cleanup_draft_nbsp(token, media_id):
     清理草稿里的 &nbsp; 和 &#160; 空白字符。
     用于：发现草稿里出现多余 nbsp 之后补救。
     """
-    import requests as _req
-    url = f"https://api.weixin.qq.com/cgi-bin/draft/get?access_token={token}"
-    r = _req.post(url, json={"media_id": media_id}, timeout=10)
-    result = _parse_json(r)
-    if 'news_item' not in result:
-        raise Exception(f"取回草稿失败: {result}")
-
-    news = result['news_item'][0]
+    news = _get_article(token, media_id)
     content = news['content']
-    original_nbsp = content.count('&nbsp;') + content.count('&#160;')
+    original_nbsp = _nbsp_count(content)
 
     if original_nbsp == 0:
-        print("草稿无 nbsp，无需清理")
+        print_status("草稿无 nbsp，无需清理")
         return media_id
 
     # 只清"连续 2 个及以上"的空白实体 —— 手机端注入的 nbsp 来自源码缩进，
     # 必然成串出现。单个 &nbsp; 通常是排版里刻意留的间隔
     # （如 <span leaf="">&nbsp;</span> 圆点分隔符、"&nbsp;·&nbsp;"），
     # 以前无差别全删会把这些正常间距一起抹掉、撑坏布局。
-    cleaned = re.sub(r'(?:&nbsp;|&#160;){2,}', '', content)
+    cleaned = re.sub(r'(?:&nbsp;|&#0*160;|&#x0*a0;|\u00a0){2,}', '', content, flags=re.I)
     cleaned = re.sub(r'\n{3,}', '\n\n', cleaned)
-    removed = original_nbsp - (cleaned.count('&nbsp;') + cleaned.count('&#160;'))
+    removed = original_nbsp - _nbsp_count(cleaned)
     if removed == 0:
-        print("未发现连串 nbsp（单个 nbsp 属正常排版间距，已保留）")
+        print_status("未发现连串 nbsp（单个 nbsp 属正常排版间距，已保留）")
         return media_id
 
     update_draft(token, media_id, news.get('thumb_media_id', ''),
-                 news['title'], news.get('digest', ''), cleaned)
-    print(f"清理完成: 删除 {removed} 个连串空白符")
+                 news['title'], news.get('digest', ''), cleaned, original_article=news)
+    verify_draft(token, media_id, news['title'])
+    print_status(f"清理完成: 删除 {removed} 个连串空白符")
     return media_id
 
 
 # ── 命令行入口 ─────────────────────────────────────────────────────────
 
 def main():
-    """
-    用法：
-      python3 wechat_draft.py [封面图] [标题] [摘要] [正文html]
-      正文支持 \\n 分段，也可重定向：python3 wechat_draft.py cover.jpg "标题" "摘要" < article.html
-    """
-    import requests as _req
-    cover_path = (sys.argv[1] if len(sys.argv) > 1
-                  else os.environ.get('WECHAT_COVER_PATH', 'image_001.jpg'))
-    title      = (sys.argv[2] if len(sys.argv) > 2 else input("标题: "))
-    digest     = (sys.argv[3] if len(sys.argv) > 3 else input("摘要: "))
-    # 注意：\n 转义替换必须对(argv/stdin)两个来源都生效，
-    # 否则命令行直接传正文时 "\\n" 不会被还原成换行
-    content    = sys.argv[4] if len(sys.argv) > 4 else sys.stdin.read()
-    content    = content.replace('\\n', '\n')
-
-    token   = get_token()
-    thumb_id = upload_cover(token, cover_path)
-    draft_id = create_draft(token, thumb_id, title, digest,
-                            minify_html(content))
-    print(f"草稿创建成功: {draft_id}")
+    configure_stdio()
+    parser = argparse.ArgumentParser(description="上传公众号草稿并回读验证（UTF-8 输入）")
+    parser.add_argument('cover', nargs='?')
+    parser.add_argument('title', nargs='?')
+    parser.add_argument('digest', nargs='?')
+    parser.add_argument('content', nargs='?', help='原样 HTML；省略时从 stdin 读取')
+    parser.add_argument('--html-file', type=Path, help='从 UTF-8 HTML 文件读取正文')
+    parser.add_argument('--base-dir', type=Path, help='相对图片的基准目录；默认 HTML 所在目录或当前目录')
+    args = parser.parse_args()
+    if args.html_file and args.content is not None:
+        parser.error('--html-file 与正文参数不能同时使用')
+    cover = args.cover or os.environ.get('WECHAT_COVER_PATH', 'image_001.jpg')
+    title = args.title if args.title is not None else input('标题: ')
+    digest = args.digest if args.digest is not None else input('摘要: ')
+    content = (args.html_file.read_text(encoding='utf-8') if args.html_file else
+               args.content if args.content is not None else sys.stdin.read())
+    base_dir = args.base_dir or (args.html_file.resolve().parent if args.html_file else Path.cwd())
+    try:
+        upload_and_cleanup(cover, title, digest, content, base_dir=base_dir)
+    except DraftVerificationError as exc:
+        print_status(str(exc), file=sys.stderr)
+        return 2
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

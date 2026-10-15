@@ -55,7 +55,7 @@
 ## 组件 2 顶部眉头（等宽字体）
 
 ```html
-<section style="text-align:center;margin-bottom:16px;">
+<section style="text-align:center;margin-bottom:16px;background-color:#FDFCF8;">
   <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;font-weight:bold;letter-spacing:3px;color:#7C3AED;"><span leaf="">✦ MALIN STUDIO · WEEKLY</span></span>
 </section>
 ```
@@ -65,7 +65,7 @@
 ## 组件 3 大标题区（左对齐）
 
 ```html
-<section style="margin-bottom:32px;">
+<section style="margin-bottom:32px;background-color:#FDFCF8;">
   <p style="margin:0 0 10px;font-size:30px;font-weight:900;line-height:1.5;color:#2B2B33;word-break:normal;overflow-wrap:normal;">
     <span leaf="">这 5 个 AI 工具，</span><br>
     <span leaf="">我每天都在用</span>
@@ -79,7 +79,7 @@
 ## 组件 4 眉标卡头（每张 Bento 卡的开头，颜色随卡）
 
 ```html
-<section style="margin-bottom:10px;">
+<section style="margin-bottom:10px;background-color:#FDFCF8;">
   <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#2563EB;"><span leaf="">✦ 01 · tool-review/</span></span>
 </section>
 ```
@@ -167,7 +167,7 @@
 ## 组件 11 卡内清单行（同色圆点）
 
 ```html
-<section style="margin-bottom:8px;">
+<section style="margin-bottom:8px;background-color:#FDFCF8;">
   <span style="display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
   <span style="font-size:16px;color:#2B2B33;"><span leaf="">清单项内容</span></span>
 </section>
@@ -202,7 +202,7 @@
 ## 组件 14 签名档（双小卡 flex，便当格式）
 
 ```html
-<section style="text-align:center;padding:24px 0 0;">
+<section style="text-align:center;padding:24px 0 0;background-color:#FDFCF8;">
   <p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:#2B2B33;"><span leaf="">{{作者名/品牌名}}</span></p>
   <section style="display:flex;gap:10px;margin-top:10px;">
     <section style="flex:1;background:#F0EAFE;border-radius:10px;padding:10px 8px;text-align:center;">

@@ -185,32 +185,37 @@ export WECHAT_COVER_PATH="/path/to/cover.jpg"
 
 ```python
 import sys
+from pathlib import Path
 sys.path.insert(0, 'scripts')
+article = Path('article.html').resolve()
 from wechat_draft import upload_and_cleanup
 
 media_id, nbsp = upload_and_cleanup(
     cover_path='image_001.jpg',
     title='文章标题',
     digest='摘要（不超过54字）',
-    html_content=open('article.html').read()
+    html_content=article.read_text(encoding='utf-8'),
+    base_dir=article.parent
 )
 print(f'草稿 media_id: {media_id}')
 ```
 
-> `upload_and_cleanup()` 内部会先压缩 HTML（防止手机端注入 `&nbsp;`）再上传。
+> `upload_and_cleanup()` 会先检查本地图片，按 `base_dir` 上传正文图片并替换 URL，再压缩 HTML、上传封面、创建草稿并回读验证。重复引用的本地图片只上传一次。缺图会在任何 API 请求前报错；HTTP(S) 图片 URL 保持原样，调用方需确保可访问。
 
 ### 命令行调用
 
 ```bash
-python3 scripts/wechat_draft.py image_001.jpg "标题" "摘要" < article.html
+python3 scripts/wechat_draft.py image_001.jpg "标题" "摘要" --html-file article.html
+# 也支持 UTF-8 stdin；相对图片默认按当前目录解析，可用 --base-dir 覆盖
+# python3 scripts/wechat_draft.py image_001.jpg "标题" "摘要" < article.html
 # 或交互式（缺参时逐项提示输入）
 python3 scripts/wechat_draft.py
 ```
 
 ### 验证
 
-上传后自动验证：`title` 无乱码、emoji 正常、草稿内容 `&nbsp;` 计数为 0。
-若 `nbsp > 0`，调用 `cleanup_draft_nbsp()` 补救：
+Python 与 CLI 都会回读草稿，逐字比较标题（含中文和 emoji），并返回正文的 nbsp 计数。验证失败会抛出 `DraftVerificationError`（CLI 退出码 2），异常携带已经创建的 `media_id`；用 `verify_draft(token, media_id, title)` 重试回读，**不要重复创建草稿**。
+若 `nbsp > 0`，先确认是否为异常连续空白，再调用 `cleanup_draft_nbsp()`；它保留单个有意设置的 nbsp、原文链接、作者与留言设置，并在更新后再次回读：
 
 ```python
 from wechat_draft import cleanup_draft_nbsp, get_token
@@ -221,6 +226,8 @@ cleanup_draft_nbsp(token, media_id)
 ## 🧩 公众号平台限制（已内置兜底）
 
 生成的 HTML 严格遵守：禁 `<style>/<script>/<div>`、`class/id`、`position:fixed/absolute/sticky`、`float`、`@media/@keyframes`、`display:grid`、CSS 变量、外部字体；样式全部内联；所有文字用 `<span leaf="">` 包裹。这些由校验脚本确定性检查，而非靠模型自觉。
+
+脚本 CLI 使用 UTF-8 输入输出，支持 Windows 默认 GBK 环境。Python 调用方读取文章时也必须显式指定 `encoding="utf-8"`。HTML/代码中的字面量 `\n` 会原样保留。
 
 ## 🔁 可验证循环
 

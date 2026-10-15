@@ -84,7 +84,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ## 组件 V2-3 耳挂金句条（v2 专属构件）
 
 ```html
-<section style="margin:26px 20px 0;display:flex;align-items:stretch;">
+<section style="margin:26px 20px 0;display:flex;align-items:stretch;background-color:#F4F6FE;">
   <section style="width:6px;border-radius:3px;background:#002FA7;font-size:0;line-height:0;flex-shrink:0;"><span leaf=""><br></span></section>
   <section style="flex:1;background:#002FA7;border-radius:0 18px 18px 0;padding:24px 24px;">
     <p style="margin:0;font-size:18px;line-height:1.85;font-weight:700;color:#FFFFFF;"><span leaf="">「金句正文，两侧引号保留。」</span></p>
@@ -134,7 +134,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ## 组件 V2-6 居中收束 + 白卡圆徽标页脚（v2）
 
 ```html
-<section style="margin:52px 26px 0;text-align:center;padding:8px 10px 0;">
+<section style="margin:52px 26px 0;text-align:center;padding:8px 10px 0;background-color:#F4F6FE;">
   <p style="margin:0 0 14px;font-size:20px;font-weight:900;line-height:1.8;color:#111C44;"><span leaf="">收束前半句</span><br><span leaf="">后半句</span><span style="color:#002FA7;"><span leaf="">克莱因蓝强调</span></span><span leaf="">。</span></p>
   <span style="display:inline-block;width:44px;height:4px;border-radius:2px;background:#002FA7;font-size:0;line-height:0;"><span leaf=""><br></span></span>
 </section>
@@ -250,7 +250,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 > 第一章 `margin-top:20px`，后续章 `48px`。普通章使用 `01/02…`；结语章改为 `∞ + THE END`。
 
 ```html
-<section style="margin:48px 10px 28px;padding:0;box-sizing:border-box;">
+<section style="margin:48px 10px 28px;padding:0;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 10px;font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1;color:#002FA7;"><span leaf="">01</span></p>
   <span style="display:block;width:82px;height:1px;margin:0 0 16px;background:#B8C8F5;font-size:0;line-height:0;"><span leaf=""><br></span></span>
   <p style="margin:0 0 5px;font-size:21px;line-height:1.45;font-weight:600;color:#002FA7;"><span leaf="">章节标题占位：建立属于内容的秩序</span></p>
@@ -261,7 +261,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 结语变体：
 
 ```html
-<section style="margin:48px 10px 28px;padding:18px 0;border-top:1px solid #D8E1F6;border-bottom:1px solid #D8E1F6;text-align:center;box-sizing:border-box;">
+<section style="margin:48px 10px 28px;padding:18px 0;border-top:1px solid #D8E1F6;border-bottom:1px solid #D8E1F6;text-align:center;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 8px;font-family:Georgia,'Times New Roman',serif;font-size:24px;color:#002FA7;line-height:1;"><span leaf="">∞</span></p>
   <p style="margin:0 0 5px;font-size:20px;line-height:1.45;font-weight:600;color:#002FA7;"><span leaf="">结语标题占位：把答案留在更远的地方</span></p>
   <p style="margin:0;font-size:10px;color:#7D86A5;letter-spacing:2px;"><span leaf="">THE END · EPILOGUE</span></p>
@@ -273,7 +273,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ## 组件 8 蓝点小节标题
 
 ```html
-<section style="margin:28px 10px 14px;padding:0;display:flex;align-items:center;box-sizing:border-box;">
+<section style="margin:28px 10px 14px;padding:0;display:flex;align-items:center;box-sizing:border-box;background-color:#FFFFFF;">
   <span style="width:8px;height:8px;margin-right:10px;background:#002FA7;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
   <span style="font-size:16px;line-height:1.55;font-weight:700;color:#002FA7;"><span leaf="">小节标题占位</span></span>
   <span style="flex:1;height:1px;margin-left:12px;background:#B8C8F5;font-size:0;line-height:0;"><span leaf=""><br></span></span>
@@ -287,13 +287,13 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 基础段落：
 
 ```html
-<p style="margin:0 10px 20px;font-size:17px;line-height:1.75;color:#434650;text-align:justify;letter-spacing:0.3px;"><span leaf="">正文内容占位：这里展示标准段落的字号、行距与留白关系。文字保持克制，不依赖色块，以稳定阅读为第一优先级。</span></p>
+<p style="margin:0 10px 20px;font-size:17px;line-height:1.75;color:#434650;text-align:justify;letter-spacing:0.3px;background-color:#FFFFFF;"><span leaf="">正文内容占位：这里展示标准段落的字号、行距与留白关系。文字保持克制，不依赖色块，以稳定阅读为第一优先级。</span></p>
 ```
 
 关键词下划线段落：
 
 ```html
-<p style="margin:0 10px 20px;font-size:17px;line-height:1.75;color:#434650;text-align:justify;"><span leaf="">正文内容占位：阅读过程中需要突出的是</span><span style="border-bottom:2px solid #002FA7;color:#111111;font-weight:600;"><span leaf="">关键短语占位</span></span><span leaf="">，而不是让整段文字都变成蓝色。</span></p>
+<p style="margin:0 10px 20px;font-size:17px;line-height:1.75;color:#434650;text-align:justify;background-color:#FFFFFF;"><span leaf="">正文内容占位：阅读过程中需要突出的是</span><span style="border-bottom:2px solid #002FA7;color:#111111;font-weight:600;"><span leaf="">关键短语占位</span></span><span leaf="">，而不是让整段文字都变成蓝色。</span></p>
 ```
 
 ---
@@ -343,7 +343,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ### 11b 左线长引用
 
 ```html
-<section style="margin:0 10px 28px;padding:14px 0 14px 20px;border-left:3px solid #002FA7;box-sizing:border-box;">
+<section style="margin:0 10px 28px;padding:14px 0 14px 20px;border-left:3px solid #002FA7;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 9px;font-size:10px;color:#7D86A5;letter-spacing:2px;"><span leaf="">REFERENCE · 引用占位</span></p>
   <p style="margin:0;font-size:16px;line-height:1.9;color:#434650;text-align:justify;"><span leaf="">长引用内容占位：这里适合承载相对完整的背景说明、原始观点或材料摘录，以蓝色竖线建立层级，而不使用大面积色块。</span></p>
 </section>
@@ -352,7 +352,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ### 11c 居中金句分隔
 
 ```html
-<section style="margin:32px 10px;padding:22px 18px;border-top:1px solid #D8E1F6;border-bottom:1px solid #D8E1F6;text-align:center;box-sizing:border-box;">
+<section style="margin:32px 10px;padding:22px 18px;border-top:1px solid #D8E1F6;border-bottom:1px solid #D8E1F6;text-align:center;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 12px;font-size:10px;color:#002FA7;letter-spacing:2px;"><span leaf="">✦ THOUGHT ✦</span></p>
   <p style="margin:0;font-size:17px;line-height:1.9;font-weight:600;color:#002FA7;"><span leaf="">过渡金句占位：让一段思考在章节之间停留片刻。</span></p>
 </section>
@@ -374,7 +374,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ### 12b 重点提示
 
 ```html
-<section style="margin:0 10px 24px;padding:16px 0 16px 18px;border-left:4px solid #002FA7;border-top:1px solid #E8ECFF;border-bottom:1px solid #E8ECFF;box-sizing:border-box;">
+<section style="margin:0 10px 24px;padding:16px 0 16px 18px;border-left:4px solid #002FA7;border-top:1px solid #E8ECFF;border-bottom:1px solid #E8ECFF;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 6px;font-size:11px;color:#002FA7;font-weight:700;letter-spacing:1px;"><span leaf="">✦ 重点提示</span></p>
   <p style="margin:0;font-size:15px;line-height:1.8;color:#111111;font-weight:600;"><span leaf="">重点内容占位：这里放置需要立即被读者注意的一条原则或结论。</span></p>
 </section>
@@ -415,7 +415,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 轻量 CTA：
 
 ```html
-<section style="margin:0 10px 28px;padding:18px 0;border-top:1px solid #002FA7;border-bottom:1px solid #D8E1F6;text-align:center;box-sizing:border-box;">
+<section style="margin:0 10px 28px;padding:18px 0;border-top:1px solid #002FA7;border-bottom:1px solid #D8E1F6;text-align:center;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 12px;font-size:16px;line-height:1.7;font-weight:600;color:#111111;"><span leaf="">轻量引导占位：如果这部分与你有关，可以继续查看结构说明。</span></p>
   <span style="display:inline-block;padding:5px 14px;border:1px solid #B8C8F5;border-radius:999px;font-size:12px;color:#002FA7;font-weight:600;"><span leaf="">查看延伸内容</span></span>
 </section>
@@ -475,7 +475,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ## 组件 17 标准图片
 
 ```html
-<figure style="margin:0 10px 28px;padding:0;box-sizing:border-box;">
+<figure style="margin:0 10px 28px;padding:0;box-sizing:border-box;background-color:#FFFFFF;">
   <section style="padding:4px;background:#FFFFFF;border:1px solid #D8E1F6;border-radius:4px;overflow:hidden;">
     <span leaf=""><img src="{{图片URL}}" alt="{{图片说明}}" style="max-width:100%;height:auto;display:block;margin:0 auto;"></span>
   </section>
@@ -549,7 +549,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 > `table` 只用于真实数据语义，不承担布局。
 
 ```html
-<section style="margin:0 10px 28px;overflow-x:auto;box-sizing:border-box;">
+<section style="margin:0 10px 28px;overflow-x:auto;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 12px;font-size:11px;color:#002FA7;letter-spacing:2px;font-weight:700;"><span leaf="">DATA · 字段对照</span></p>
   <table style="width:100%;border-collapse:collapse;font-size:13px;line-height:1.6;">
     <thead><tr><th style="padding:9px 10px;background:#002FA7;color:#FFFFFF;text-align:left;font-weight:700;"><span leaf="">字段标题占位</span></th><th style="padding:9px 10px;background:#002FA7;color:#FFFFFF;text-align:left;font-weight:700;"><span leaf="">说明标题占位</span></th></tr></thead>
@@ -602,7 +602,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 有序列表：
 
 ```html
-<section style="margin:0 10px 28px;padding:0;box-sizing:border-box;">
+<section style="margin:0 10px 28px;padding:0;box-sizing:border-box;background-color:#FFFFFF;">
   <section style="display:flex;align-items:flex-start;margin:0 0 14px;padding:0 0 14px;border-bottom:1px solid #E8ECFF;"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin:1px 12px 0 0;background:#002FA7;color:#FFFFFF;border-radius:50%;font-family:Georgia,'Times New Roman',serif;font-size:12px;"><span leaf="">1</span></span><p style="flex:1;margin:0;font-size:15px;line-height:1.75;color:#434650;"><span leaf="">编号内容占位：先明确问题和输入条件。</span></p></section>
   <section style="display:flex;align-items:flex-start;margin:0 0 14px;padding:0 0 14px;border-bottom:1px solid #E8ECFF;"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin:1px 12px 0 0;background:#FFFFFF;color:#002FA7;border:1px solid #002FA7;border-radius:50%;font-family:Georgia,'Times New Roman',serif;font-size:12px;"><span leaf="">2</span></span><p style="flex:1;margin:0;font-size:15px;line-height:1.75;color:#434650;"><span leaf="">编号内容占位：再组织材料和结构顺序。</span></p></section>
   <section style="display:flex;align-items:flex-start;"><span style="display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;margin:1px 12px 0 0;background:#FFFFFF;color:#002FA7;border:1px solid #002FA7;border-radius:50%;font-family:Georgia,'Times New Roman',serif;font-size:12px;"><span leaf="">3</span></span><p style="flex:1;margin:0;font-size:15px;line-height:1.75;color:#434650;"><span leaf="">编号内容占位：最后检查结果和复用方式。</span></p></section>
@@ -715,7 +715,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 延伸阅读：
 
 ```html
-<section style="margin:0 10px 30px;padding:0;box-sizing:border-box;">
+<section style="margin:0 10px 30px;padding:0;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 14px;font-size:11px;color:#002FA7;letter-spacing:2px;font-weight:700;"><span leaf="">FURTHER READING · 延伸阅读</span></p>
   <section style="margin:0 0 12px;padding:14px 16px;background:#FFFFFF;border:1px solid #D8E1F6;border-left:3px solid #002FA7;"><p style="margin:0 0 4px;font-size:15px;color:#111111;font-weight:700;"><span leaf="">延伸条目标题占位</span></p><p style="margin:0;font-size:12px;line-height:1.65;color:#7D86A5;"><span leaf="">条目说明占位：补充与正文相关的阅读方向。</span></p></section>
   <section style="margin:0;padding:14px 16px;background:#FFFFFF;border:1px solid #D8E1F6;border-left:3px solid #B8C8F5;"><p style="margin:0 0 4px;font-size:15px;color:#111111;font-weight:700;"><span leaf="">延伸条目标题占位</span></p><p style="margin:0;font-size:12px;line-height:1.65;color:#7D86A5;"><span leaf="">条目说明占位：提供另一种理解问题的视角。</span></p></section>
@@ -729,7 +729,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 星芒分隔：
 
 ```html
-<section style="margin:34px 10px;display:flex;align-items:center;box-sizing:border-box;">
+<section style="margin:34px 10px;display:flex;align-items:center;box-sizing:border-box;background-color:#FFFFFF;">
   <span style="font-size:12px;color:#002FA7;"><span leaf="">✦</span></span><span style="flex:1;height:1px;margin:0 12px;background:#B8C8F5;font-size:0;line-height:0;"><span leaf=""><br></span></span><span style="font-size:10px;color:#002FA7;"><span leaf="">◆</span></span><span style="flex:1;height:1px;margin:0 12px;background:#B8C8F5;font-size:0;line-height:0;"><span leaf=""><br></span></span><span style="font-size:12px;color:#002FA7;"><span leaf="">✦</span></span>
 </section>
 ```
@@ -737,7 +737,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 轻量菱形分隔：
 
 ```html
-<section style="margin:34px 10px;display:flex;align-items:center;box-sizing:border-box;">
+<section style="margin:34px 10px;display:flex;align-items:center;box-sizing:border-box;background-color:#FFFFFF;">
   <span style="flex:1;height:1px;background:#B8C8F5;font-size:0;line-height:0;"><span leaf=""><br></span></span><span style="margin:0 12px;font-size:10px;color:#002FA7;"><span leaf="">◆</span></span><span style="flex:1;height:1px;background:#B8C8F5;font-size:0;line-height:0;"><span leaf=""><br></span></span>
 </section>
 ```
@@ -769,7 +769,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 END 几何收束：
 
 ```html
-<section style="margin:0 10px 30px;padding:28px 18px;text-align:center;border-top:1px solid #D8E1F6;border-bottom:1px solid #D8E1F6;box-sizing:border-box;">
+<section style="margin:0 10px 30px;padding:28px 18px;text-align:center;border-top:1px solid #D8E1F6;border-bottom:1px solid #D8E1F6;box-sizing:border-box;background-color:#FFFFFF;">
   <p style="margin:0 0 9px;font-size:22px;line-height:1.4;color:#002FA7;font-weight:600;"><span leaf="">感谢你的阅读 ✦</span></p>
   <p style="margin:0 0 18px;font-size:12px;line-height:1.7;color:#7D86A5;"><span leaf="">结尾说明占位：愿你在深邃的蓝色中，找到属于自己的自由。</span></p>
   <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:10px;color:#002FA7;letter-spacing:2px;"><span leaf="">— END —</span></p>

@@ -177,7 +177,7 @@
 2 个及以上章节时生成。第一个卡片绿色高亮，最后一个固定为"写在最后"（PART ///）。
 
 ```html
-<section style="margin:0 20px 32px;">
+<section style="margin:0 20px 32px;background-color:#ffffff;">
   <section style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
     <p style="font-size:10px;color:#9CA3AF;margin:0;text-transform:uppercase;letter-spacing:2px;font-weight:600;">
       <span leaf="">📦 {{N}} Parts + Conclusion</span>
@@ -234,7 +234,7 @@
 第一个章节用 `margin-top:16px`，后续章节用 `margin-top:48px`。最后一章编号用 `///`，PART 改为 `LAST`。
 
 ```html
-<section style="margin-top:48px;margin-bottom:32px;padding:0 20px;">
+<section style="margin-top:48px;margin-bottom:32px;padding:0 20px;background-color:#ffffff;">
   <section style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
     <section style="text-align:center;flex-shrink:0;">
       <p style="margin:0;font-size:28px;font-weight:900;color:#059669;line-height:1;letter-spacing:-2px;">
@@ -265,7 +265,7 @@
 ## 组件 5 正文段落 paragraph
 
 ```html
-<p style="margin-bottom:16px;font-size:15px;line-height:1.9;text-align:justify;">
+<p style="margin-bottom:16px;font-size:15px;line-height:1.9;text-align:justify;background-color:#ffffff;">
   <span leaf="">{{正文内容}}</span>
 </p>
 ```
@@ -345,7 +345,7 @@
 ### 7a. step-label（STEP 步骤标签）
 
 ```html
-<section style="margin-bottom:24px;">
+<section style="margin-bottom:24px;background-color:#ffffff;">
   <section style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span style="display:inline-block;background:#111827;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px;"><span leaf="">STEP 01</span></span>
     <h4 style="font-size:16px;font-weight:800;color:#111827;margin:0;">
@@ -361,7 +361,7 @@
 ### 7b. case-label（CASE 案例标签）
 
 ```html
-<section style="margin-bottom:28px;">
+<section style="margin-bottom:28px;background-color:#ffffff;">
   <section style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span style="display:inline-block;background:#E5E7EB;color:#6B7280;font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px;"><span leaf="">CASE 01</span></span>
     <h4 style="font-size:16px;font-weight:800;color:#111827;margin:0;">
@@ -375,7 +375,7 @@
 ### 7c. skill-label / tool-label（编号标签）
 
 ```html
-<section style="margin-bottom:28px;">
+<section style="margin-bottom:28px;background-color:#ffffff;">
   <section style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
     <span style="display:inline-block;background:#111827;color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px;"><span leaf="">SKILL 1</span></span>
     <h4 style="font-size:16px;font-weight:800;color:#111827;margin:0;">
@@ -394,7 +394,7 @@
 ### 8a. prompt-block（PROMPT 展示块）
 
 ```html
-<p style="font-size:13px;color:#374151;margin:0 0 16px;line-height:1.8;">
+<p style="font-size:13px;color:#374151;margin:0 0 16px;line-height:1.8;background-color:#ffffff;">
   <span style="display:inline-block;background:#059669;color:#fff;font-size:11px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle;letter-spacing:0.5px;"><span leaf="">PROMPT</span></span>
   <span style="font-size:12px;color:#9CA3AF;font-weight:700;"><span leaf="">{{提示词内容}}</span></span>
 </p>
@@ -403,7 +403,7 @@
 ### 8b. cmd-block（CMD 单行命令块）
 
 ```html
-<p style="font-size:13px;color:#374151;margin:0 0 24px;line-height:1.8;">
+<p style="font-size:13px;color:#374151;margin:0 0 24px;line-height:1.8;background-color:#ffffff;">
   <span style="display:inline-block;background:#111827;color:#fff;font-size:11px;font-weight:700;padding:1px 7px;border-radius:3px;margin-right:6px;vertical-align:middle;letter-spacing:0.5px;"><span leaf="">CMD</span></span>
   <span style="background:#F3F4F6;color:#1F2937;padding:2px 6px;border-radius:4px;font-size:13px;font-weight:600;"><span leaf="">{{命令内容}}</span></span>
 </p>
@@ -472,7 +472,7 @@
 ### 9c. subtitle-highlight（小节黄色下划线标题）
 
 ```html
-<p style="font-size:16px;font-weight:900;color:#111827;margin-bottom:16px;">
+<p style="font-size:16px;font-weight:900;color:#111827;margin-bottom:16px;background-color:#ffffff;">
   <span style="background:linear-gradient(180deg,transparent 65%,#FDE68A 65%);padding:0 4px;"><span leaf="">{{小节标题}}</span></span>
 </p>
 ```
@@ -482,7 +482,7 @@
 ### 9d. center-divider（居中金句分隔）
 
 ```html
-<p style="font-size:15px;margin-bottom:20px;text-align:center;color:#059669;font-weight:700;letter-spacing:1px;border-top:1px solid #F3F4F6;border-bottom:1px solid #F3F4F6;padding:12px 0;">
+<p style="font-size:15px;margin-bottom:20px;text-align:center;color:#059669;font-weight:700;letter-spacing:1px;border-top:1px solid #F3F4F6;border-bottom:1px solid #F3F4F6;padding:12px 0;background-color:#ffffff;">
   <span leaf="">{{居中金句}}</span>
 </p>
 ```
@@ -494,7 +494,7 @@
 ### 10a. warn-tip（踩坑提示）
 
 ```html
-<section style="padding:6px 0 4px;margin-bottom:16px;">
+<section style="padding:6px 0 4px;margin-bottom:16px;background-color:#ffffff;">
   <p style="margin-bottom:6px;font-size:12px;font-weight:700;color:#9CA3AF;letter-spacing:1px;">
     <span style="color:rgb(255,76,0);"><span leaf="">！踩坑提示 🕳</span></span>
   </p>
@@ -509,7 +509,7 @@
 ### 10b. green-tip（绿色提示）
 
 ```html
-<section style="padding:6px 0 4px;margin-bottom:16px;">
+<section style="padding:6px 0 4px;margin-bottom:16px;background-color:#ffffff;">
   <p style="margin-bottom:6px;font-size:12px;font-weight:700;color:#9CA3AF;letter-spacing:1px;">
     <span style="color:#059669;"><span leaf="">✦ {{提示标题}}</span></span>
   </p>
@@ -548,7 +548,7 @@
 基本版：
 
 ```html
-<section style="margin-bottom:14px;">
+<section style="margin-bottom:14px;background-color:#ffffff;">
   <p style="margin:0 0 6px;">
     <span style="display:inline-block;font-size:13px;font-weight:700;color:#059669;background:rgba(5,150,105,0.08);padding:3px 10px;border-radius:999px;"><span style="display:inline-block;width:6px;height:6px;background:#059669;border-radius:50%;margin-right:5px;vertical-align:middle;"><span leaf=""><br></span></span><span leaf="">{{列表项文字}}</span></span>
   </p>
@@ -558,7 +558,7 @@
 带说明文字版：
 
 ```html
-<section style="margin-bottom:14px;">
+<section style="margin-bottom:14px;background-color:#ffffff;">
   <p style="margin:0 0 6px;">
     <span style="display:inline-block;font-size:13px;font-weight:700;color:#059669;background:rgba(5,150,105,0.08);padding:3px 10px;border-radius:999px;"><span style="display:inline-block;width:6px;height:6px;background:#059669;border-radius:50%;margin-right:5px;vertical-align:middle;"><span leaf=""><br></span></span><span leaf="">{{标题}}</span></span>
   </p>
@@ -648,7 +648,7 @@
 ### 11d. timeline（时间线列表）
 
 ```html
-<section style="display:flex;margin-bottom:28px;">
+<section style="display:flex;margin-bottom:28px;background-color:#ffffff;">
   <section style="display:flex;flex-direction:column;align-items:center;margin-right:16px;flex-shrink:0;">
     <section style="width:14px;height:14px;border-radius:50%;border:3px solid #059669;background:#fff;margin-top:4px;box-shadow:0 0 0 2px #fff;">
       <span leaf=""><br></span>
@@ -706,7 +706,7 @@
 本主题保留 `<table>` 组件（摸鱼绿实测微信可用）；Markdown 表格优先用它，数据密度低时也可改用 11c 三列卡片。
 
 ```html
-<section style="margin-bottom:24px;overflow-x:auto;">
+<section style="margin-bottom:24px;overflow-x:auto;background-color:#ffffff;">
   <table style="width:100%;border-collapse:collapse;font-size:13px;">
     <thead>
       <tr>
@@ -736,7 +736,7 @@
 ### 11g. ordered-list（数字编号列表）
 
 ```html
-<section style="margin-bottom:24px;">
+<section style="margin-bottom:24px;background-color:#ffffff;">
   <section style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;">
     <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;background:#059669;color:#fff;font-size:11px;font-weight:700;border-radius:50%;flex-shrink:0;margin-top:2px;"><span leaf="">1</span></span>
     <p style="font-size:15px;color:#374151;margin:0;line-height:1.9;flex:1;">
@@ -765,7 +765,7 @@
 ### 12a. image（图片容器）
 
 ```html
-<section style="text-align:center;margin-bottom:24px;border-radius:12px;overflow:hidden;">
+<section style="text-align:center;margin-bottom:24px;border-radius:12px;overflow:hidden;background-color:#ffffff;">
   <!-- 保留原始图片代码不修改 -->
 </section>
 ```
@@ -830,7 +830,7 @@
 ### 13b. brand-card（品牌尾图）
 
 ```html
-<section style="text-align:center;" nodeleaf="">
+<section style="text-align:center;background-color:#ffffff;" nodeleaf="">
   <!-- 保留原始品牌尾图代码不修改 -->
 </section>
 ```

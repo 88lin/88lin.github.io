@@ -6,7 +6,7 @@
 <span leaf=""> 包裹（公众号编辑器粘贴后保持样式的关键）。
 
 覆盖的致命项：禁用标签/属性（div/class/id/style/script/position/float/
-grid/@media/CSS 变量/外部字体）、**可点击的 `<a href>`**、**内联 SVG**、
+grid/@media/CSS 变量/外部字体）、**可点击的 `<a href>`**、**SVG 动画/引用**、
 **漏包 `<span leaf="">`**、**空输入**。半角标点（, . ; : ! ?）与英文直引号
 报 WARNING，按 SKILL.md 要求同样要修到 0 再交付。
 
@@ -22,36 +22,12 @@ import re
 import sys
 from html.parser import HTMLParser
 
-# (正则, 级别, 说明) —— ERROR 会被公众号编辑器过滤掉或导致样式失效
-FORBIDDEN = [
-    (re.compile(r"<style[\s>]", re.I), "ERROR", "<style> 标签会被过滤，样式必须内联"),
-    (re.compile(r"<script[\s>]", re.I), "ERROR", "<script> 标签会被过滤"),
-    (re.compile(r"</?div[\s>]", re.I), "ERROR", "<div> 会被改写，请用 <section>"),
-    (re.compile(r"<link[\s>]", re.I), "ERROR", "外部 <link>（CSS/字体）会被过滤"),
-    (re.compile(r"\sclass\s*=", re.I), "ERROR", "class 属性会被剥离，请用内联 style"),
-    (re.compile(r"\sid\s*=", re.I), "ERROR", "id 属性会被剥离"),
-    (re.compile(r"position\s*:\s*(fixed|absolute|sticky)", re.I), "ERROR",
-     "position fixed/absolute/sticky 不被支持"),
-    (re.compile(r"float\s*:", re.I), "ERROR", "float 不被支持"),
-    (re.compile(r"@media", re.I), "ERROR", "@media 媒体查询不被支持"),
-    (re.compile(r"@keyframes", re.I), "ERROR", "@keyframes 动画不被支持"),
-    (re.compile(r"@import", re.I), "ERROR", "@import 不被支持"),
-    (re.compile(r"display\s*:\s*grid", re.I), "ERROR", "display:grid 不被支持，请用 flex"),
-    (re.compile(r"var\s*\(\s*--", re.I), "ERROR", "CSS 变量 var(--x) 不被支持，请写死值"),
-    (re.compile(r"url\s*\(\s*['\"]?https?://[^)]*\.(woff2?|ttf|otf|eot)", re.I),
-     "ERROR", "外部字体不被支持"),
-    # 公众号正文外链不可点击，留 <a href> 只会被过滤成裸 URL —— 必须转成脚注（通用库 4a/4b）
-    (re.compile(r"<a\s[^>]*href\s*=", re.I), "ERROR",
-     "正文里出现可点击的 <a href>——公众号外链不可点，请转上标角标 + 文末参考资料"),
-    (re.compile(r"</?(figure|figcaption)\b", re.I), "WARN",
-     "<figure>/<figcaption> 不在公众号可用标签清单内，可能被改写，建议换 <section>/<p>"),
-    # 静态内联 SVG 实测可保留（已发布文章验证过图标类 SVG），
-    # 只禁会被过滤的 SMIL 动画与外部引用。
-    (re.compile(r"<(animate|animateTransform|animateMotion|set)\b", re.I), "ERROR",
-     "SVG SMIL 动画标签会被微信过滤——只保留静态图形"),
-    (re.compile(r"url\s*\(\s*#", re.I), "WARN",
-     "SVG 内 url(#id) 外部引用会被过滤，请把图形写成自包含的 <path>/<polygon>"),
-]
+if __package__:
+    from .cli_utils import configure_stdio
+    from .markup_checks import VOID_TAGS, inspect_markup
+else:
+    from cli_utils import configure_stdio
+    from markup_checks import VOID_TAGS, inspect_markup
 
 CJK = re.compile(r"[一-鿿㐀-䶿]")
 ALNUM = re.compile(r"[A-Za-z0-9]")
@@ -65,9 +41,6 @@ APOSTROPHE_WORD = re.compile(r"[A-Za-z]'[A-Za-z]")
 ASCII_QUOTE = re.compile(r"[\"']")
 # 代码区特征：等宽字体或 white-space:pre —— 其内半角符号是正常的
 CODE_STYLE = re.compile(r"monospace|white-space\s*:\s*pre|courier|consolas|sf mono", re.I)
-SECTION_START = re.compile(r"<section\b([^>]*)>", re.I)
-STYLE_ATTR = re.compile(r"\bstyle\s*=\s*(['\"])(.*?)\1", re.I | re.S)
-BACKGROUND_PROP = re.compile(r"(?:^|;)\s*background(?:-[\w-]+)?\s*:", re.I)
 
 
 class LeafChecker(HTMLParser):
@@ -93,7 +66,16 @@ class LeafChecker(HTMLParser):
             self.leaf_depth += 1
         if is_code:
             self.code_depth += 1
-        self.stack.append((tag, is_leaf, is_code))
+        if tag not in VOID_TAGS:
+            self.stack.append((tag, is_leaf, is_code))
+        else:
+            self.leaf_depth -= int(is_leaf)
+            self.code_depth -= int(is_code)
+
+    def handle_startendtag(self, tag, attrs):
+        self.handle_starttag(tag, attrs)
+        if tag not in VOID_TAGS:
+            self.handle_endtag(tag)
 
     def handle_endtag(self, tag):
         for i in range(len(self.stack) - 1, -1, -1):
@@ -139,11 +121,9 @@ def validate(html, name="<input>"):
                       "（检查文件路径是否正确、生成步骤是否真的产出了内容）")
         return errors, warnings, 0
 
-    for rx, level, msg in FORBIDDEN:
-        hits = len(rx.findall(html))
-        if hits:
-            (errors if level == "ERROR" else warnings).append(
-                f"{msg}（命中 {hits} 处）")
+    markup = inspect_markup(html)
+    for level, message in markup.findings:
+        (errors if level == "ERROR" else warnings).append(message)
 
     checker = LeafChecker()
     try:
@@ -170,29 +150,16 @@ def validate(html, name="<input>"):
             f"{len(checker.half_punct)} 处正文疑似半角标点/英文引号，应改中文全角"
             f"（代码块内不计）。例：{sample}")
 
-    section_styles = []
-    for m in SECTION_START.finditer(html):
-        style_m = STYLE_ATTR.search(m.group(1))
-        section_styles.append(style_m.group(2) if style_m else "")
-    section_bg_count = sum(1 for style in section_styles
-                           if BACKGROUND_PROP.search(style))
-    if (len(section_styles) >= 4 and section_styles
-            and BACKGROUND_PROP.search(section_styles[0])
-            and section_bg_count <= 1):
+    if markup.sections > 1 and markup.uncovered:
+        sample = "；".join(dict.fromkeys(markup.uncovered[:5]))
         warnings.append(
-            "只有最外层 <section> 检测到 background。公众号编辑器可能剥离"
-            "最外层 background，请给各正文区块分别添加 background 或等价底色")
-    elif len(section_styles) >= 4 and section_bg_count == 0:
-        # 上面分支只在"外层有底色"时生效；现在推荐外层不设底色，
-        # 就得反过来查"内层一个底色都没有"的情况。
-        warnings.append(
-            f"共 {len(section_styles)} 个 <section> 都没有 background/等价底色。"
-            "公众号编辑器会剥离最外层底色，请给各正文区块分别加底色")
+            "正文区块依赖最外层背景，缺少独立的非透明底色：" + sample)
 
     return errors, warnings, checker.span_leaf_count
 
 
 def main():
+    configure_stdio()
     ap = argparse.ArgumentParser()
     ap.add_argument("file", nargs="?", help="HTML 文件路径")
     ap.add_argument("--stdin", action="store_true", help="从标准输入读取")
@@ -203,9 +170,9 @@ def main():
         name = "<stdin>"
     else:
         try:
-            with open(args.file, encoding="utf-8", errors="replace") as f:
+            with open(args.file, encoding="utf-8") as f:
                 html = f.read()
-        except OSError as e:
+        except (OSError, UnicodeError) as e:
             print(f"❌ 读取失败（请检查路径是否正确）: {e}")
             sys.exit(1)
         name = args.file

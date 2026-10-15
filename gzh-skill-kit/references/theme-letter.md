@@ -52,7 +52,7 @@
 ## 组件 2 红色 kicker（顶部期号标签，每篇一次）
 
 ```html
-<section style="text-align:center;margin-bottom:14px;">
+<section style="text-align:center;margin-bottom:14px;background-color:#fefcf6;">
   <span style="font-size:13px;font-weight:bold;letter-spacing:5px;color:#E84A5F;"><span leaf="">AI 工作流实录</span></span>
 </section>
 ```
@@ -64,7 +64,7 @@
 > 主标题默认两行以内；换行必须用 `<br>` 在语义边界断句。
 
 ```html
-<section style="text-align:center;margin-bottom:40px;padding:24px 0 40px;">
+<section style="text-align:center;margin-bottom:40px;padding:24px 0 40px;background-color:#fefcf6;">
   <p style="margin:0 0 12px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:32px;font-weight:900;color:#1A1A2E;line-height:1.5;word-break:normal;overflow-wrap:normal;">
     <span leaf="">我和 AI 搭档的第</span><span leaf="">100 天</span>
   </p>
@@ -75,7 +75,7 @@
 带荧光笔的标题变体：
 
 ```html
-<p style="margin:0 0 12px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:32px;font-weight:900;color:#1A1A2E;line-height:1.5;">
+<p style="margin:0 0 12px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:32px;font-weight:900;color:#1A1A2E;line-height:1.5;background-color:#fefcf6;">
   <span leaf="">把前沿 AI，</span><br>
   <span leaf="">做成</span><span style="background:linear-gradient(transparent 60%, #F4D758 60%);padding:0 2px;"><span leaf="">能交付的东西</span></span><span leaf="">。</span>
 </p>
@@ -86,7 +86,7 @@
 ## 组件 4 引言金句（居中衬线 + 关键词变色）
 
 ```html
-<section style="text-align:center;margin-bottom:10px;">
+<section style="text-align:center;margin-bottom:10px;background-color:#fefcf6;">
   <p style="margin:0;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:21px;font-weight:900;line-height:1.9;">
     <span leaf="">不是 AI 变强了，</span><br>
     <span leaf="">是我学会了</span><span style="color:#2B7FD8;"><span leaf="">提问</span></span><span leaf="">。</span>
@@ -99,7 +99,7 @@
 ## 组件 5 三色装饰条（标题后 + 章节间复用）
 
 ```html
-<section style="text-align:center;margin-bottom:36px;">
+<section style="text-align:center;margin-bottom:36px;background-color:#fefcf6;">
   <span style="display:inline-block;width:36px;height:4px;background:#2B7FD8;border-radius:2px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
   <span style="display:inline-block;width:18px;height:4px;background:#F4D758;border-radius:2px;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
   <span style="display:inline-block;width:8px;height:4px;background:#E84A5F;border-radius:2px;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
@@ -126,7 +126,7 @@
 > 每章配一个英文装饰词（Georgia italic 68px 淡蓝），词要短（1–2 个单词）且与章节主题相关。第一章 `margin-bottom:52px` 起始即可，无需额外 top；后续章节保持 52px。
 
 ```html
-<section style="margin-bottom:52px;">
+<section style="margin-bottom:52px;background-color:#fefcf6;">
   <section style="margin-bottom:6px;overflow:visible;">
     <span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:68px;font-weight:bold;color:rgba(43,127,216,0.14);line-height:1;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Start</span></span>
   </section>
@@ -145,7 +145,7 @@
 ## 组件 8 章节头四件套（教程/步骤类：STEP 标签）
 
 ```html
-<section style="margin-bottom:52px;">
+<section style="margin-bottom:52px;background-color:#fefcf6;">
   <section style="margin-bottom:6px;overflow:visible;">
     <span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:68px;font-weight:bold;color:rgba(43,127,216,0.14);line-height:1;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">01</span></span>
   </section>
@@ -167,7 +167,7 @@
 ## 组件 9 正文段落（18px / 行高 2，荧光笔标记）
 
 ```html
-<p style="margin:0 0 18px;font-size:18px;line-height:2;color:#1A1A2E;text-align:justify;">
+<p style="margin:0 0 18px;font-size:18px;line-height:2;color:#1A1A2E;text-align:justify;background-color:#fefcf6;">
   <span leaf="">我问 AI 的第一个问题是"帮我写一篇文案"。结果可想而知——又空又泛。后来才明白，</span>
   <span style="background:linear-gradient(transparent 60%, #F4D758 60%);font-weight:bold;padding:0 2px;"><span leaf="">你给它什么质量的输入，它就还你什么质量的输出。</span></span>
 </p>
@@ -200,7 +200,7 @@
 图注（可选）：
 
 ```html
-<section style="text-align:center;margin-bottom:20px;">
+<section style="text-align:center;margin-bottom:20px;background-color:#fefcf6;">
   <span style="font-size:13px;color:#6E6258;"><span leaf="">△ {{图片说明}}</span></span>
 </section>
 ```
@@ -210,7 +210,7 @@
 ## 组件 12 结尾金句（大装饰引号 + 三色条收束）
 
 ```html
-<section style="text-align:center;margin:48px 0 36px;">
+<section style="text-align:center;margin:48px 0 36px;background-color:#fefcf6;">
   <span style="font-family:Georgia,serif;font-style:italic;font-size:56px;color:rgba(43,127,216,0.18);line-height:1;"><span leaf="">“</span></span>
   <p style="margin:8px 0 6px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:21px;font-weight:900;line-height:1.8;color:#1A1A2E;"><span leaf="">核心金句文字</span></p>
   <p style="margin:0 0 16px;font-size:14px;color:#6E6258;"><span leaf="">副句 / 补充</span></p>
@@ -227,7 +227,7 @@
 ## 组件 13 签名档（居中克制）
 
 ```html
-<section style="text-align:center;padding:20px 0 0;">
+<section style="text-align:center;padding:20px 0 0;background-color:#fefcf6;">
   <p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:#1A1A2E;"><span leaf="">{{作者名}}</span></p>
   <p style="margin:0;font-size:13px;color:#6E6258;line-height:1.8;">
     <span leaf="">▪️{{签名第一行，如：在 AI 时代认真生活的女生}}</span><br>

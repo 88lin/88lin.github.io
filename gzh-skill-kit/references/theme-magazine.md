@@ -53,7 +53,7 @@
 ## 组件 2 顶部栏目标签（左对齐 + 细线延伸）
 
 ```html
-<section style="margin-bottom:20px;">
+<section style="margin-bottom:20px;background-color:#FDFBF9;">
   <span style="font-size:12px;font-weight:bold;letter-spacing:4px;color:#B24935;"><span leaf="">深度 · DEEP DIVE</span></span>
   <section style="margin-top:10px;border-bottom:1px solid rgba(29,42,45,.15);font-size:0;line-height:0;"><span leaf=""><br></span></section>
 </section>
@@ -64,7 +64,7 @@
 ## 组件 3 特稿标题区（左对齐衬线大字）
 
 ```html
-<section style="margin-bottom:36px;">
+<section style="margin-bottom:36px;background-color:#FDFBF9;">
   <p style="margin:0 0 14px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:31px;font-weight:900;color:#1D2A2D;line-height:1.55;word-break:normal;overflow-wrap:normal;">
     <span leaf="">一个县城女孩的</span><br>
     <span leaf="">AI 自学笔记</span>
@@ -79,7 +79,7 @@
 ## 组件 4 斜体导语（衬线斜体 + 首行缩进感）
 
 ```html
-<section style="margin-bottom:40px;">
+<section style="margin-bottom:40px;background-color:#FDFBF9;">
   <p style="margin:0;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-style:italic;font-size:17px;line-height:2;color:#2C4249;text-align:justify;">
     <span leaf="">「这是我今年听过最野的一张成长路径：白天在县城超市理货，晚上跟着开源文档学 Agent。14 个月后，她给三家创业公司做自动化顾问。」</span>
   </p>
@@ -91,7 +91,7 @@
 ## 组件 5 章节头（超大装饰词 + 衬线标题 + 蜜桃短条）
 
 ```html
-<section style="margin-bottom:48px;">
+<section style="margin-bottom:48px;background-color:#FDFBF9;">
   <section style="margin-bottom:4px;overflow:visible;">
     <span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:60px;font-weight:bold;color:rgba(21,105,124,0.10);line-height:1;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Origin</span></span>
   </section>
@@ -110,7 +110,7 @@
 ## 组件 6 正文段（18px / 蜜桃荧光笔）
 
 ```html
-<p style="margin:0 0 20px;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;">
+<p style="margin:0 0 20px;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;background-color:#FDFBF9;">
   <span leaf="">她第一次听说 Agent 是在超市的夜班间隙。手机刷到一篇教程，看完只记住一句话：</span>
   <span style="background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;padding:0 2px;"><span leaf="">让 AI 替你做重复的事，把人留给判断。</span></span>
 </p>
@@ -121,7 +121,7 @@
 ## 组件 7 人物引语卡（左细线 + 衬线斜体，不用色底）
 
 ```html
-<section style="margin:26px 0;padding:6px 0 6px 20px;border-left:3px solid #15697C;">
+<section style="margin:26px 0;padding:6px 0 6px 20px;border-left:3px solid #15697C;background-color:#FDFBF9;">
   <p style="margin:0 0 6px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-style:italic;font-size:17px;line-height:2;color:#0C4552;"><span leaf="">"别人问我怕不怕被 AI 取代。我说我是那个学会用 AI 的人，怕什么？"</span></p>
   <p style="margin:0;font-size:13px;color:#3A4E54;"><span leaf="">—— 受访者小鹿，自动化顾问</span></p>
 </section>
@@ -132,7 +132,7 @@
 ## 组件 8 数据强调行（三个数字并排）
 
 ```html
-<section style="margin:28px 0;text-align:center;">
+<section style="margin:28px 0;text-align:center;background-color:#FDFBF9;">
   <section style="margin-bottom:8px;">
     <span style="font-family:Georgia,serif;font-size:34px;font-weight:900;color:#15697C;"><span leaf="">14</span></span>
     <span style="font-size:14px;color:#3A4E54;"><span leaf=""> 个月自学</span></span>
@@ -156,7 +156,7 @@
 
 ```html
 <span leaf=""><img src="{{图片URL}}" style="width:100%;border-radius:10px;margin-bottom:8px;"></span>
-<section style="text-align:center;margin-bottom:24px;">
+<section style="text-align:center;margin-bottom:24px;background-color:#FDFBF9;">
   <span style="font-size:13px;color:#3A4E54;"><span leaf="">▲ {{图片说明}}</span></span>
 </section>
 ```
@@ -166,7 +166,7 @@
 ## 组件 10 章节细线分隔（无色条版）
 
 ```html
-<section style="margin:44px 0;border-bottom:1px solid rgba(29,42,45,.15);font-size:0;line-height:0;"><span leaf=""><br></span></section>
+<section style="margin:44px 0;border-bottom:1px solid rgba(29,42,45,.15);font-size:0;line-height:0;background-color:#FDFBF9;"><span leaf=""><br></span></section>
 ```
 
 ---
@@ -184,7 +184,7 @@
 ## 组件 12 结尾金句（居中衬线 + 孔雀蓝点睛）
 
 ```html
-<section style="text-align:center;margin:44px 0 30px;">
+<section style="text-align:center;margin:44px 0 30px;background-color:#FDFBF9;">
   <p style="margin:0 0 14px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:21px;font-weight:900;line-height:1.85;color:#1D2A2D;">
     <span leaf=""> gap 不吓人，</span><br>
     <span leaf="">吓人的是拿</span><span style="color:#15697C;"><span leaf="">"没准备好"</span></span><span leaf="">当借口。</span>
@@ -198,7 +198,7 @@
 ## 组件 13 签名档
 
 ```html
-<section style="text-align:center;padding:20px 0 0;">
+<section style="text-align:center;padding:20px 0 0;background-color:#FDFBF9;">
   <p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:#1D2A2D;"><span leaf="">作者名</span></p>
   <p style="margin:0;font-size:13px;color:#3A4E54;line-height:1.8;">
     <span leaf="">▪️{{签名第一行}}</span><br>

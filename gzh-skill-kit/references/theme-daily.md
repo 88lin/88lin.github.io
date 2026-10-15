@@ -57,7 +57,7 @@
 ## 组件 2 开场（日期胶囊 + 居中大标题 + 导语）
 
 ```html
-<section style="text-align:center;margin-bottom:36px;">
+<section style="text-align:center;margin-bottom:36px;background-color:#FEFAF5;">
   <span style="display:inline-block;background:#C33D46;color:#FFFDF9;font-size:12px;letter-spacing:2px;padding:6px 18px;border-radius:999px;"><span leaf="">AI 周报 · 十月十五日</span></span>
   <h2 style="margin:18px 0 0;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:30px;font-weight:900;color:#1F2226;line-height:1.5;"><span leaf="">本周 AI 圈，</span><br><span leaf="">值得记住的 6 件事</span></h2>
   <p style="margin:14px 0 0;font-size:15px;line-height:2;color:#5F4446;"><span leaf="">导语放这里，一到两句，交代本期基调。</span></p>
@@ -83,7 +83,7 @@
 ## 组件 4 双栏小卡（两条短讯并排）
 
 ```html
-<section style="margin-bottom:18px;">
+<section style="margin-bottom:18px;background-color:#FEFAF5;">
   <section style="display:flex;gap:12px;">
     <section style="flex:1;border-radius:12px;background:#EBF4FF;padding:18px 16px;">
       <p style="margin:0 0 6px;font-size:13px;font-weight:bold;color:#2C5A8F;letter-spacing:1px;"><span leaf="">⌨️ 工具 · 04</span></p>
@@ -104,7 +104,7 @@
 ## 组件 5 收尾金句（珊瑚红衬线大字 + 短条）
 
 ```html
-<section style="text-align:center;margin-bottom:30px;">
+<section style="text-align:center;margin-bottom:30px;background-color:#FEFAF5;">
   <p style="margin:0 0 6px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:20px;font-weight:900;color:#C33D46;line-height:1.7;"><span leaf="">每天 3 分钟</span><br><span leaf="">看懂 AI 圈</span></p>
   <section style="width:56px;height:4px;border-radius:2px;background:#C33D46;margin:14px auto 0;font-size:0;line-height:0;"><span leaf=""><br></span></section>
 </section>

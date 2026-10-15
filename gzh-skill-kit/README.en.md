@@ -146,6 +146,16 @@ Scan to join the **official WeChat Work group** (dynamic QR, auto-invite) — ch
 5. **Validate** — run `validate_gzh_html.py`, ship only at 0 ERROR.
 6. **Output** — a clean fragment + a preview page with a **Copy** button; open it, click "Copy to WeChat", then paste into the editor (no manual select-all).
 
+## Draft upload
+
+Install `requests` and `Pillow`, configure the WeChat credentials as described in the [Chinese guide](README.md#-api-上传草稿路线二), then run:
+
+```sh
+python scripts/wechat_draft.py cover.jpg "Title" "Summary" --html-file article.html
+```
+
+CLI input/output is UTF-8, including on Windows. Local inline images resolve relative to the HTML file (or `--base-dir`), are checked before API requests, and are uploaded before draft creation. Literal backslash escapes in code remain unchanged. Both CLI and Python calls read the draft back and compare its title; verification failure preserves the draft ID in `DraftVerificationError` (CLI exit 2). Retry verification with that ID instead of creating another draft. Whitespace cleanup preserves the original author, source URL and comment settings.
+
 ## 🧩 Platform limits (enforced)
 
 Output obeys: no `<style>/<script>/<div>`, no `class/id`, no `position:fixed/absolute/sticky`, `float`, `@media/@keyframes`, `display:grid`, CSS variables, external fonts; all styles inlined; every text node wrapped in `<span leaf="">`. Checked deterministically by scripts, not by model discipline.

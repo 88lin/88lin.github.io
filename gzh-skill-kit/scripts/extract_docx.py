@@ -18,7 +18,14 @@ import os
 import re
 import sys
 import zipfile
+import posixpath
+
 import xml.etree.ElementTree as ET
+
+if __package__:
+    from .cli_utils import configure_stdio, print_status
+else:
+    from cli_utils import configure_stdio, print_status
 
 W = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
 R = "{http://schemas.openxmlformats.org/officeDocument/2006/relationships}"
@@ -53,7 +60,8 @@ def load_rels(z):
     for rel in root:
         target = rel.get("Target") or ""
         if "media/" in target:
-            rels[rel.get("Id")] = "word/" + target.lstrip("/").replace("../", "")
+            rels[rel.get("Id")] = (target.lstrip("/") if target.startswith("/")
+                                       else posixpath.normpath(posixpath.join("word", target)))
     return rels
 
 
@@ -87,51 +95,45 @@ def _md_image_path(rel):
     return "<" + rel.replace(" ", "%20") + ">"
 
 
-def para_text(p, links_of=None):
-    """段内 run → 行内 Markdown（粗体→**、下划线→<u>、超链接→[text](url)）。
-
-    按**文档顺序**递归遍历，而不是"先扫所有超链接再扫所有 run"——
-    后者会把段落中间的链接整体挪到段首，打乱原文语序。
-    """
-    out = []
-    consumed = set()  # 已作为链接锚文本输出的 run，避免重复输出纯文本
-
-    def emit_run(r_el):
-        rpr = r_el.find(f"{W}rPr")
-        bold = rpr is not None and rpr.find(f"{W}b") is not None \
-            and (rpr.find(f"{W}b").get(f"{W}val") or "1") not in ("0", "false")
-        ul = rpr is not None and rpr.find(f"{W}u") is not None
-        text = "".join(t.text or "" for t in r_el.iter(f"{W}t"))
+def para_text(p, links_of=None, image_of=None):
+    """Preserve run order, breaks, tabs, links and inline drawings, including cells."""
+    def emit_run(run):
+        rpr = run.find(f"{W}rPr")
+        bold = rpr.find(f"{W}b") if rpr is not None else None
+        underline = rpr.find(f"{W}u") if rpr is not None else None
+        parts = []
+        for child in run.iter():
+            if child.tag == f"{W}t":
+                parts.append(child.text or "")
+            elif child.tag in {f"{W}br", f"{W}cr"}:
+                parts.append("<br>")
+            elif child.tag == f"{W}tab":
+                parts.append("\t")
+            elif child.tag == f"{A}blip" and image_of:
+                parts.append(image_of(child.get(f"{R}embed")))
+        text = "".join(parts)
         if not text:
-            return
-        if bold:
+            return ""
+        if bold is not None and (bold.get(f"{W}val") or "1").lower() not in {"0", "false", "off"}:
             text = f"**{text}**"
-        if ul:
+        if underline is not None and (underline.get(f"{W}val") or "single").lower() not in {"none", "0", "false"}:
             text = f"<u>{text}</u>"
-        out.append(text)
+        return text
 
     def walk(node):
+        out = []
         for child in node:
-            tag = child.tag
-            if tag == f"{W}hyperlink":
-                rid = child.get(f"{R}id")
-                target = (links_of or {}).get(rid) if rid else None
-                label = "".join(t.text or "" for t in child.iter(f"{W}t")).strip()
-                if target and label:
-                    for r_el in child.iter(f"{W}r"):
-                        consumed.add(id(r_el))
-                    out.append(f"[{label}]({_safe_url(target)})")
-                    continue
-                walk(child)  # 内部锚点取不到 URL：按普通文字继续，避免丢字
-            elif tag == f"{W}r":
-                if id(child) not in consumed:
-                    emit_run(child)
+            if child.tag == f"{W}hyperlink":
+                target = (links_of or {}).get(child.get(f"{R}id"))
+                label = walk(child)
+                out.append(f"[{label}]({_safe_url(target)})" if target and label else label)
+            elif child.tag == f"{W}r":
+                out.append(emit_run(child))
             else:
-                walk(child)  # smartTag / ins / sdt 等容器，继续往下找
+                out.append(walk(child))
+        return "".join(out)
 
-    walk(p)
-    s = "".join(out)
-    return re.sub(r"\*\*\*\*", "", s)  # 相邻粗体 run 合并的空标记
+    return re.sub(r"\*\*\*\*", "", walk(p))
 
 
 def _safe_url(url):
@@ -143,97 +145,79 @@ def _safe_url(url):
 
 def extract(docx_path, out_md):
     try:
-        z = zipfile.ZipFile(docx_path)
-        doc = ET.fromstring(z.read("word/document.xml"))
-    except (zipfile.BadZipFile, KeyError, ET.ParseError) as e:
-        print(f"✗ 不是合法 docx：{e}", file=sys.stderr)
+        with zipfile.ZipFile(docx_path) as z:
+            doc = ET.fromstring(z.read("word/document.xml"))
+            body = doc.find(f"{W}body")
+            if body is None:
+                raise ValueError("document.xml 里找不到 w:body")
+            heading_of, media_of, links_of = load_styles(z), load_rels(z), load_links(z)
+            out_dir = os.path.dirname(os.path.abspath(out_md))
+            img_dir = os.path.join(out_dir, "images")
+            images, lines, tables_n = {}, [], 0
+
+            def image_of(rid):
+                src = media_of.get(rid)
+                if not src:
+                    raise ValueError(f"内嵌图片缺少媒体关系：{rid}")
+                if src not in images:
+                    data = z.read(src)  # fail explicitly if an embedded image is missing
+                    os.makedirs(img_dir, exist_ok=True)
+                    name = f"{len(images) + 1:02d}-" + os.path.basename(src)
+                    with open(os.path.join(img_dir, name), "wb") as f:
+                        f.write(data)
+                    images[src] = "images/" + name
+                return f"![]({_md_image_path(images[src])})"
+
+            for element in body:
+                if element.tag == f"{W}tbl":
+                    rows = []
+                    for row in element.findall(f"{W}tr"):
+                        cells = []
+                        for cell in row.findall(f"{W}tc"):
+                            paragraphs = [para_text(p, links_of, image_of).strip()
+                                          for p in cell.iter(f"{W}p")]
+                            cells.append("<br>".join(paragraphs).replace("|", "\\|") or " ")
+                        rows.append(cells)
+                    if rows:
+                        width = max(map(len, rows))
+                        rendered = ["| " + " | ".join(row + [" "] * (width - len(row))) + " |"
+                                    for row in rows]
+                        lines.extend([rendered[0], "|" + "---|" * width, *rendered[1:], ""])
+                        tables_n += 1
+                    continue
+                if element.tag != f"{W}p":
+                    continue
+                text = para_text(element, links_of, image_of).strip()
+                if not text:
+                    continue
+                ppr = element.find(f"{W}pPr")
+                style = ppr.find(f"{W}pStyle") if ppr is not None else None
+                sid = style.get(f"{W}val") if style is not None else ""
+                level = heading_of.get(sid)
+                is_list = (ppr is not None and ppr.find(f"{W}numPr") is not None) or bool(
+                    re.search(r"list|列表", sid or "", re.I))
+                if level:
+                    text = "#" * min(level, 6) + " " + re.sub(r"^\*\*(.*)\*\*$", r"\1", text)
+                elif is_list:
+                    text = "- " + text
+                lines.extend([text, ""])
+            with open(out_md, "w", encoding="utf-8") as f:
+                f.write("\n".join(lines).rstrip() + "\n")
+    except (OSError, zipfile.BadZipFile, KeyError, ET.ParseError, ValueError) as exc:
+        print_status(f"✗ Word 提取失败：{exc}", file=sys.stderr)
         return 1
-
-    heading_of = load_styles(z)
-    media_of = load_rels(z)
-    links_of = load_links(z)
-    out_dir = os.path.dirname(os.path.abspath(out_md)) or "."
-    img_dir = os.path.join(out_dir, "images")
-    lines, img_n, tables_n, link_n = [], 0, 0, 0
-
-    body = doc.find(f"{W}body")
-    if body is None:
-        print("✗ document.xml 里找不到 <w:body>，无法提取", file=sys.stderr)
-        return 1
-    for el in body:
-        tag = el.tag
-        if tag == f"{W}tbl":
-            # 表格 → Markdown 表格，保住行列结构（合并单元格按普通格处理）
-            rows, ncols = [], 0
-            for tr in el.findall(f"{W}tr"):
-                cells = ["".join(t.text or "" for t in tc.iter(f"{W}t"))
-                         .strip().replace("|", "\\|") or " "
-                         for tc in tr.findall(f"{W}tc")]
-                if not rows:
-                    ncols = len(cells)
-                rows.append("| " + " | ".join(cells) + " |")
-            if rows:
-                lines.append(rows[0])
-                lines.append("|" + "---|" * ncols)
-                lines.extend(rows[1:])
-                lines.append("")
-                tables_n += 1
-            continue
-        if tag != f"{W}p":
-            continue
-        p = el
-        # 图片
-        for blip in p.iter(f"{A}blip"):
-            rid = blip.get(f"{R}embed")
-            src = media_of.get(rid)
-            if not src:
-                continue
-            os.makedirs(img_dir, exist_ok=True)
-            img_n += 1
-            fname = f"{img_n:02d}-" + os.path.basename(src)
-            with open(os.path.join(img_dir, fname), "wb") as f:
-                f.write(z.read(src))
-            lines.append(f"![]({_md_image_path('images/' + fname)})")
-            lines.append("")
-        text = para_text(p, links_of).strip()
-        if not text:
-            continue
-        link_n += text.count("](") - text.count("![](")  # 粗略统计转出的超链接数
-        ppr = p.find(f"{W}pPr")
-        style_el = ppr.find(f"{W}pStyle") if ppr is not None else None
-        sid = style_el.get(f"{W}val") if style_el is not None else ""
-        lvl = heading_of.get(sid)
-        # 列表识别：直接编号(numPr) 或 列表类段落样式（List Bullet/Number/Paragraph/中文"列表"）
-        is_list = (ppr is not None and ppr.find(f"{W}numPr") is not None) \
-            or bool(re.search(r"list|列表", sid or "", re.I))
-        if lvl:
-            text_clean = re.sub(r"^\*\*(.*)\*\*$", r"\1", text)  # 标题不需要再加粗
-            lines.append("#" * min(lvl, 6) + " " + text_clean)
-        elif is_list:
-            lines.append("- " + text)
-        else:
-            lines.append(text)
-        lines.append("")
-
-    md = "\n".join(lines).rstrip() + "\n"
-    with open(out_md, "w", encoding="utf-8") as f:
-        f.write(md)
-    print(f"✓ {os.path.basename(docx_path)} → {out_md}")
-    print(f"  段落 {sum(1 for l in lines if l and not l.startswith(('#','-','![')))} · "
-          f"标题 {sum(1 for l in lines if l.startswith('#'))} · "
-          f"列表 {sum(1 for l in lines if l.startswith('- '))} · 图片 {img_n}"
-          + (f" · 表格 {tables_n}（已转 Markdown 表格）" if tables_n else "")
-          + (f" · 超链接 {link_n}" if link_n else ""))
+    print_status(f"✓ {os.path.basename(docx_path)} → {out_md}（图片 {len(images)} · 表格 {tables_n}）")
     return 0
 
 
 def main():
+    configure_stdio()
     ap = argparse.ArgumentParser()
     ap.add_argument("docx")
     ap.add_argument("-o", "--out", help="输出 md 路径（默认同名 .md）")
     args = ap.parse_args()
     if not os.path.isfile(args.docx):
-        print(f"✗ 文件不存在: {args.docx}", file=sys.stderr)
+        print_status(f"✗ 文件不存在: {args.docx}", file=sys.stderr)
         sys.exit(1)
     out = args.out or re.sub(r"\.docx$", "", args.docx, flags=re.I) + ".md"
     sys.exit(extract(args.docx, out))

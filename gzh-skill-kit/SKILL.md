@@ -70,7 +70,7 @@ description: 微信公众号文章排版引擎，将 Markdown 转换为可直接
 然后依主题库的**"完整文章模板骨架"章节**装配，把每个 Markdown 元素替换为对应组件：
 
 - **骨架顺序以主题库为准**，不同主题骨架可能不同，不要套用其它主题的骨架。
-- **页面底色不能只放在最外层容器**：微信公众号编辑器可能剥离最外层 `<section>` 的 `background`（纯色、渐变都可能丢）。最外层可以保留宽度、字体、行高等全局属性，但正文各内容区块（封面/引言、目录、章节卡片、分割装饰、图片区、签名区、互动区等）必须各自带 `background` 或等价底色样式；即使外层容器被剥掉，任一区块也不能变成无底色的裸内容。
+- **页面底色不能只放在最外层容器**：微信公众号编辑器可能剥离最外层 `<section>` 的 `background`（纯色、渐变都可能丢）。最外层可以保留宽度、字体、行高等全局属性，但正文各内容区块（封面/引言、目录、章节卡片、分割装饰、图片区、签名区、互动区等）必须各自带 `background` 或等价底色样式；即使外层容器被剥掉，任一区块也不能变成无底色的裸内容。组件库已为独立区块补上主题底色；若将正文组件放入有色卡片，按卡片底色调整，避免新增色块。`transparent`、`background-position` 不算底色。
 - **行内标记按语义到所选组件库里找对应组件**（组件编号各库不统一，一律以语义为准、不要套固定编号）：`**加粗**`→主色加粗；`==高亮==`→渐变背景高亮；`<u>文字</u>` 或 `++文字++`→下划线；`~~文字~~`→荧光笔（底部半高亮）；`>引用`→引用高亮块。
 - 来自**通用增量库**的组件：` ``` 代码块 ``` `→ 1a 深色 / 1b 浅色代码块（**语言可识别时默认按通用库 1x 的 token 调色板做语法高亮**，语言未知保持单色），行内 `` `code` ``→ 1c；`![说明](url)`→ 2a 图片（有说明才加说明组件）、`.gif`→ 2b GIF；需要突出的**小标题/强调**→ 3a 左竖条小标题或 3b 药丸标签，金句→ 3d、提示旁注→ 3e。**优先级：先查主题库映射规则表**——该主题有等价语义组件（如自己的金句/提示块）就用主题库版本保持气质一致；主题库没有对应组件时才用通用库 3x 并按其换色规则换成主题色。
 - **超链接转脚注（通用库 4a/4b）**：正文里每个 `[text](url)`（非图片）→ 先收集：按**首次出现顺序**给每个不同 `(text,url)` 对编号 `[1] [2] …`，重复出现的同对复用同一编号；装配时把链接替换为 `text` + 通用库 4a 上标角标 `[n]`（套主题主色）；文末正文最后一段之后、作者签名之前，用通用库 4b 生成「参考资料」列表，顺序与正文 `[n]` 一一对应、复用编号只列一次。锚文本为空时用 title 或域名作标签。文中无超链接时不生成此区块。**不要把外链留成可点击的 `<a>`**（公众号正文外链不可点）。
@@ -113,10 +113,13 @@ description: 微信公众号文章排版引擎，将 Markdown 转换为可直接
 ```python
 import sys; sys.path.insert(0, '<SKILL_ROOT>/scripts')
 from wechat_draft import upload_and_cleanup
+from pathlib import Path
+article = Path('<校验通过的干净正文.html>').resolve()
 media_id, nbsp = upload_and_cleanup(
     cover_path='封面.jpg',        # 必填，草稿 API 不接受空封面；脚本自动压到 ≤64KB，建议 900×383（2.35:1）
     title='文章标题', digest='摘要',
-    html_content=open('<校验通过的干净正文.html>').read()
+    html_content=article.read_text(encoding='utf-8'),
+    base_dir=article.parent
 )
 # 返回 nbsp > 0 时：from wechat_draft import cleanup_draft_nbsp, get_token
 # cleanup_draft_nbsp(get_token(), media_id)
@@ -126,7 +129,9 @@ media_id, nbsp = upload_and_cleanup(
 
 **凭据配置**：`~/.wechat_config.json` 存 `{"WECHAT_APP_ID": "...", "WECHAT_APP_SECRET": "..."}`；可用环境变量 `WECHAT_CONFIG_FILE` / `WECHAT_TOKEN_FILE` / `WECHAT_COVER_PATH` 覆盖默认路径。access_token 缓存在本地文件，过期前自动刷新。
 
-**上传后验证（强制）**：`draft/get` 取回草稿，确认 `title` 无乱码、`content` 中 `&nbsp;` 计数为 0。解析响应必须用 `json.loads(r.content.decode('utf-8'))`，不要用 `r.json()`（部分微信接口按 ISO-8859-1 返回，`r.json()` 会造成双重解码乱码）。
+**正文图片**：本地/相对图片按 `base_dir` 定位，先检查存在性，再经 `media/uploadimg` 上传并替换 URL；HTTP(S) URL 原样保留，需确保可访问。CLI 优先用 `--html-file 正文.html`，自动以该文件目录解析图片；正文中的字面量 `\n` 不解码。
+
+**上传后验证（强制）**：Python 与 CLI 都用 `draft/get` 回读，逐字比较标题（包括 emoji），统计正文 nbsp。失败抛出 `DraftVerificationError`，携带已创建的 `media_id`；CLI 退出码 2。此时只用 `verify_draft(token, media_id, title)` 重试验证，不重新创建。异常连续 nbsp 可用 `cleanup_draft_nbsp` 清理；它保留单个有意空白及作者、原文链接、留言设置，并回读更新结果。解析响应必须用 `json.loads(r.content.decode('utf-8'))`，不要用 `r.json()`（部分微信接口按 ISO-8859-1 返回，`r.json()` 会造成双重解码乱码）。
 
 两条路线不要混用：方向一的预览/兜底用未压缩的原始 HTML；方向二上传压缩后产物。
 

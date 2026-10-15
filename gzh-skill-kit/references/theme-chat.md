@@ -53,7 +53,7 @@
 ## 组件 2 顶部对谈题头（薄荷 + 栏目名）
 
 ```html
-<section style="text-align:center;margin-bottom:16px;">
+<section style="text-align:center;margin-bottom:16px;background-color:#FDFCF8;">
   <span style="font-size:13px;font-weight:bold;letter-spacing:4px;color:#059669;"><span leaf="">● AI 对谈室</span></span>
 </section>
 ```
@@ -63,7 +63,7 @@
 ## 组件 3 大标题区（中轴 + 薄荷下划条）
 
 ```html
-<section style="text-align:center;margin-bottom:34px;">
+<section style="text-align:center;margin-bottom:34px;background-color:#FDFCF8;">
   <p style="margin:0 0 12px;font-size:30px;font-weight:900;line-height:1.5;color:#2B2B33;word-break:normal;overflow-wrap:normal;">
     <span leaf="">标题第一行</span><br>
     <span leaf="">标题第二行</span>
@@ -80,7 +80,7 @@
 ## 组件 4 提问气泡（左：浅绿底细边，尾巴朝左上）
 
 ```html
-<section style="margin-bottom:20px;">
+<section style="margin-bottom:20px;background-color:#FDFCF8;">
   <section style="margin-bottom:6px;">
     <span style="font-size:12px;font-weight:bold;letter-spacing:2px;color:#059669;"><span leaf="">🙋 我</span></span>
   </section>
@@ -95,7 +95,7 @@
 ## 组件 5 回答气泡（右：薄荷底，尾巴朝右上）
 
 ```html
-<section style="margin-bottom:24px;text-align:right;">
+<section style="margin-bottom:24px;text-align:right;background-color:#FDFCF8;">
   <section style="margin-bottom:6px;">
     <span style="font-size:12px;font-weight:bold;letter-spacing:2px;color:#059669;"><span leaf="">🤖 AI</span></span>
   </section>
@@ -117,7 +117,7 @@
 ## 组件 6 叙述段（气泡之间的过场正文）
 
 ```html
-<p style="margin:0 0 24px;font-size:17px;line-height:2;color:#1F2A22;text-align:justify;">
+<p style="margin:0 0 24px;font-size:17px;line-height:2;color:#1F2A22;text-align:justify;background-color:#FDFCF8;">
   <span leaf="">叙述正文，承上启下。这段是普通文章体，让长对话有呼吸感。</span>
   <span leaf="">翻车不可怕，</span><span style="background:linear-gradient(transparent 60%, #F4D793 60%);font-weight:bold;padding:0 2px;"><span leaf="">关键句用蜜黄荧光笔</span></span><span leaf="">。</span>
 </p>
@@ -130,7 +130,7 @@
 ## 组件 7 章节小标（薄荷字 + 居中）
 
 ```html
-<section style="text-align:center;margin:36px 0 24px;">
+<section style="text-align:center;margin:36px 0 24px;background-color:#FDFCF8;">
   <span style="font-size:14px;font-weight:bold;letter-spacing:4px;color:#059669;"><span leaf="">—— 第一轮 · 关于分工 ——</span></span>
 </section>
 ```
@@ -152,7 +152,7 @@
 
 ```html
 <span leaf=""><img src="{{图片URL}}" style="width:100%;border-radius:14px;margin-bottom:8px;"></span>
-<section style="text-align:center;margin-bottom:20px;">
+<section style="text-align:center;margin-bottom:20px;background-color:#FDFCF8;">
   <span style="font-size:13px;color:#465249;"><span leaf="">△ {{图片说明}}</span></span>
 </section>
 ```
@@ -162,7 +162,7 @@
 ## 组件 10 结尾金句（居中 + 薄荷强调 + 绿条）
 
 ```html
-<section style="text-align:center;margin:40px 0 28px;">
+<section style="text-align:center;margin:40px 0 28px;background-color:#FDFCF8;">
   <p style="margin:0 0 14px;font-size:20px;font-weight:900;line-height:1.8;color:#1F2A22;">
     <span leaf="">金句第一行，</span><br>
     <span leaf="">是</span><span style="color:#059669;"><span leaf="">薄荷绿强调短语</span></span><span leaf="">。</span>
@@ -176,7 +176,7 @@
 ## 组件 11 签名档（气泡式页脚）
 
 ```html
-<section style="text-align:center;padding:20px 0 0;">
+<section style="text-align:center;padding:20px 0 0;background-color:#FDFCF8;">
   <section style="display:inline-block;background:#E0F6EF;border-radius:18px 18px 4px 18px;padding:14px 22px;text-align:left;margin-bottom:8px;">
     <p style="margin:0 0 4px;font-size:15px;font-weight:900;color:#1F5C42;"><span leaf="">{{作者名/品牌名}}</span></p>
     <p style="margin:0;font-size:13px;color:#2F6B4F;line-height:1.8;"><span leaf="">{{签名第一行}} · 觉得有收获，欢迎点赞、转发、推荐</span></p>

@@ -16,40 +16,19 @@ import glob
 import os
 import re
 import sys
+from pathlib import Path
 
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from validate_gzh_html import LeafChecker  # 复用产物关的 leaf 检测，两关同一判据
+# 复用产物关的 leaf 检测，两关同一判据；支持 CLI 和模块导入。
+if __package__:
+    from .validate_gzh_html import LeafChecker
+    from .cli_utils import configure_stdio
+    from .markup_checks import inspect_markup
+else:
+    from validate_gzh_html import LeafChecker
+    from cli_utils import configure_stdio
+    from markup_checks import inspect_markup
 
 CJK = re.compile(r"[一-鿿㐀-䶿]")
-
-# (正则, 级别, 说明) —— 在每个 ```html 组件块内检查
-CHECKS = [
-    (re.compile(r"white-space\s*:\s*pre", re.I), "ERROR",
-     "用了 white-space:pre —— 会把 HTML 源码缩进/换行渲染成大左缩进+空行；"
-     "代码块改成每行一个 <p style=\"margin:0\">，缩进用全角空格"),
-    (re.compile(r"</?div[\s>]", re.I), "ERROR", "出现 <div>，应用 <section>"),
-    (re.compile(r"\sclass\s*=", re.I), "ERROR", "出现 class 属性（会被公众号剥离）"),
-    (re.compile(r"\sid\s*=", re.I), "ERROR", "出现 id 属性"),
-    (re.compile(r"<style[\s>]", re.I), "ERROR", "出现 <style> 标签"),
-    (re.compile(r"position\s*:\s*(fixed|absolute|sticky)", re.I), "ERROR",
-     "position fixed/absolute/sticky 不被支持"),
-    (re.compile(r"display\s*:\s*grid", re.I), "ERROR", "display:grid 不被支持"),
-    (re.compile(r"var\s*\(\s*--", re.I), "ERROR", "用了 CSS 变量 var(--x)"),
-    (re.compile(r"@(media|keyframes|import)", re.I), "ERROR", "@media/@keyframes/@import 不被支持"),
-    # 属性引号被转义成 \" —— 粘贴后 style 会在第一个空格处被截断，
-    # 其余全变成垃圾属性（theme-bento/theme-chat 曾整库踩过这个坑）
-    (re.compile(r'\\"'), "ERROR",
-     "属性引号被转义成 \\\" —— 解析器会把 style 截断在第一个空格，样式全丢"),
-    # 静态内联 SVG 实测可保留（已发布文章验证过图标类 SVG），
-    # 只禁会被过滤的 SMIL 动画与外部引用。
-    (re.compile(r"<(animate|animateTransform|animateMotion|set)\b", re.I), "ERROR",
-     "SVG SMIL 动画标签会被微信过滤——只保留静态图形"),
-    (re.compile(r"url\s*\(\s*#", re.I), "WARN",
-     "SVG 内 url(#id) 外部引用会被过滤，请把图形写成自包含的 <path>/<polygon>"),
-    # 公众号正文外链不可点，留 <a href> 会被过滤成裸 URL
-    (re.compile(r"<a\s[^>]*href\s*=", re.I), "ERROR",
-     "出现可点击的 <a href>——请转上标角标 + 文末参考资料（通用库 4a/4b）"),
-]
 
 # 四周虚线框：border: ... dashed（不含方向，如 border-left dashed 不算）
 FOURSIDE_DASHED = re.compile(r"border\s*:\s*[^;{}]*dashed", re.I)
@@ -57,7 +36,7 @@ CENTERED = re.compile(r"text-align\s*:\s*center", re.I)
 
 
 def lint_file(path):
-    text = open(path, encoding="utf-8", errors="replace").read()
+    text = Path(path).read_text(encoding="utf-8")
     name = os.path.basename(path).replace("公众号排版组件库 —— ", "").replace(".md", "")
     found = []  # (level, msg)
     seen = set()
@@ -73,9 +52,9 @@ def lint_file(path):
               else [m.group(1) for m in re.finditer(r"```html\s*\n(.*?)```", text, re.S)])
 
     for html in blocks:
-        for rx, level, msg in CHECKS:
-            if rx.search(html):
-                add(level, msg)
+        markup = inspect_markup(html)
+        for level, message in markup.findings:
+            add(level, message)
         # 漏 <span leaf=""> 包裹：粘贴后样式整片丢失，是最高频致命错。
         # 用真正的 HTML 解析器找"裸露的文本节点"，而不是正则匹配——
         # 否则注释里的中文、属性里的中文都会被误判。
@@ -94,12 +73,11 @@ def lint_file(path):
             add("ERROR", "整个组件块没有任何 <span leaf=\"\"> 包裹——"
                          "所有文字节点都必须包一层")
         # 四周虚线框：正文强调勿用；居中块视为"占位/素材"组件，豁免
-        if FOURSIDE_DASHED.search(html) and not CENTERED.search(html):
+        if any(FOURSIDE_DASHED.search(style) for style in markup.styles) and not any(CENTERED.search(style) for style in markup.styles):
             add("WARN", "四周虚线框 border:…dashed（正文强调请用左竖条；"
                         "仅居中的素材占位块可用 dashed）")
         # 移动端守护：内容容器固定像素宽(≥150px)且未配 max-width —— 手机端易被压缩/溢出
-        for sm in re.finditer(r'style\s*=\s*"([^"]*)"', html, re.I):
-            style = sm.group(1)
+        for style in markup.styles:
             has_maxw = re.search(r'max-width\s*:', style, re.I)
             for decl in style.split(';'):
                 prop, _, val = decl.partition(':')
@@ -115,6 +93,7 @@ def lint_file(path):
 
 
 def main():
+    configure_stdio()
     root = sys.argv[1] if len(sys.argv) > 1 else "."
     refs = sorted(glob.glob(os.path.join(root, "references", "*.md")))
     if not refs:

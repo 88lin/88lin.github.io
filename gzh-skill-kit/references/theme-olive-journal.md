@@ -120,7 +120,7 @@
 **可替换字段**：`{{编号}}` `{{标题}}` `{{副标题}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;align-items:center;gap:14px;">
       <section style="text-align:center;flex-shrink:0;">
@@ -146,7 +146,7 @@
 **可替换字段**：`{{刊头标签}}` `{{版本号}}` `{{存档说明}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#eeefe9;border:1px solid #bfc1b7;border-radius:6px;padding:12px 16px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;">
     <p style="margin:0;font-size:10px;font-weight:800;letter-spacing:4px;color:#23251d;"><span leaf="">{{刊头标签}}</span></p>
     <section style="display:flex;gap:8px;flex-wrap:wrap;">
@@ -166,7 +166,7 @@
 **可替换字段**：`{{刊头标签}}` `{{说明文字}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#1e1f23;border:1px solid #23251d;border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <p style="margin:0;font-size:10px;font-weight:800;letter-spacing:4px;color:#ffffff;"><span leaf="">{{刊头标签}}</span></p>
@@ -185,7 +185,7 @@
 **可替换字段**：`{{期号}}` `{{标题}}` `{{说明}}` `{{卷标}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#fdfdf8;border:1px solid #bfc1b7;border-radius:6px;padding:14px 16px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;display:flex;align-items:center;justify-content:space-between;gap:10px;">
     <section style="display:flex;align-items:center;gap:10px;">
       <span style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#1e1f23;color:#fff;font-size:11px;font-weight:800;"><span leaf="">{{期号}}</span></span>
@@ -208,7 +208,7 @@
 **可替换字段**：`{{步骤序号}}` `{{步骤标题}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;align-items:center;gap:10px;">
       <span style="background:#1e1f23;color:#fff;padding:4px 10px;border-radius:4px;font-size:11px;font-weight:700;"><span leaf="">{{步骤序号}}</span></span>
@@ -227,7 +227,7 @@
 **可替换字段**：`{{标题文字}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <h3 style="font-size:18px;font-weight:700;color:#23251d;margin:0;padding:0 2px;display:block;width:fit-content;box-shadow:inset 0 -0.5em 0 rgba(245,78,0,0.18);"><span leaf="">{{标题文字}}</span></h3>
   </section>
@@ -243,7 +243,7 @@
 **可替换字段**：`{{Kicker标签}}` `{{标题}}` `{{进度}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;border-bottom:1px solid #bfc1b7;padding-bottom:10px;">
       <span style="font-size:10px;font-weight:800;letter-spacing:3px;color:#ed7b2f;text-transform:uppercase;"><span leaf="">{{Kicker标签}}</span></span>
@@ -263,7 +263,7 @@
 **可替换字段**：`{{正文内容}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="margin:0;font-size:15px;line-height:1.9;text-align:justify;color:#4d4f46;">
       <span leaf="">{{正文内容}}</span>
@@ -313,7 +313,7 @@
 **可替换字段**：`{{正文前半}}` `{{代码}}` `{{正文后半}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="margin:0;font-size:15px;color:#4d4f46;line-height:1.9;">
       <span leaf="">{{正文前半}}&nbsp;</span><span style="background:#eeefe9;color:#23251d;padding:2px 6px;border-radius:4px;font-family:ui-monospace,Menlo,Monaco,Consolas,monospace;font-size:13px;border:1px solid #b6b7af;"><span leaf="">{{代码}}</span></span><span leaf="">&nbsp;{{正文后半}}</span>
@@ -331,7 +331,7 @@
 **可替换字段**：`{{旧表述}}` `{{新表述}}` `{{差异点}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="margin:0;font-size:15px;line-height:1.9;text-align:justify;color:#4d4f46;">
       <span style="font-size:15px;color:#9ea096;letter-spacing:0.3px;text-decoration:line-through;"><span leaf="">{{旧表述}}</span></span>
@@ -351,7 +351,7 @@
 **可替换字段**：`{{列表项}}`（可重复 N 次）
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <ul style="margin:0;padding-left:22px;line-height:1.8;list-style-position:outside;">
       <li style="margin-bottom:8px;font-size:16px;color:#4d4f46;list-style-type:disc;">
@@ -371,7 +371,7 @@
 **可替换字段**：`{{批注标签}}`（如 `EDITOR'S NOTE`）`{{批注小字}}` `{{编者按正文}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#fdfdf8;border:1px solid #bfc1b7;border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="padding:10px 16px;background:#1e1f23;display:flex;align-items:center;justify-content:space-between;gap:10px;">
       <p style="margin:0;font-size:10px;font-weight:800;letter-spacing:2px;color:#ffffff;"><span leaf="">{{批注标签}}</span></p>
@@ -393,7 +393,7 @@
 **可替换字段**：`{{重点观点}}` `{{补充说明}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="background:#fdfdf8;border-radius:6px;padding:16px 18px;border:1px solid #bfc1b7;">
       <p style="font-size:15px;color:#4d4f46;margin:0;line-height:1.8;text-align:justify;">
@@ -411,7 +411,7 @@
 **用途**：简单实线分割，章节内部小段落之间的轻量切分。
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <hr style="border:none;height:2px;background:#bfc1b7;margin:0;">
 </section>
 ```
@@ -423,7 +423,7 @@
 **用途**：三色点缀分隔符，比实线更轻、更有设计感，适合情绪/生活类内容的段落间隔。
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="display:flex;align-items:center;justify-content:center;gap:10px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <span style="width:8px;height:8px;border-radius:50%;background:#4d4f46;display:inline-block;overflow:hidden;vertical-align:middle;font-size:0;line-height:0;"><span leaf="">&nbsp;</span></span>
     <span style="width:8px;height:8px;border-radius:50%;background:#bfc1b7;display:inline-block;overflow:hidden;vertical-align:middle;font-size:0;line-height:0;"><span leaf="">&nbsp;</span></span>
@@ -441,7 +441,7 @@
 **可替换字段**：`{{图片URL}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="padding:0 8px;margin:0 -8px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="background:#fdfdf8;border-radius:6px;padding:6px;border:1px solid #bfc1b7;">
       <figure style="margin:0;border-radius:4px;overflow:hidden;">
@@ -461,7 +461,7 @@
 **可替换字段**：`{{图片URL}}` `{{图片说明}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <figure style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;margin:0;">
     <section style="border-radius:6px;overflow:hidden;border:1px solid #bfc1b7;display:block;">
       <span leaf=""><img src="{{图片URL}}" alt="图片" style="max-width:100%;height:auto;display:block;margin:0 auto;"></span>
@@ -482,7 +482,7 @@
 **可替换字段**：`{{图表标签}}`（如 `CHART`）`{{占位说明}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="padding:18px;border-radius:6px;background:#fdfdf8;border:1px solid #bfc1b7;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="margin:0 0 12px;font-size:12px;color:#65675e;font-weight:700;letter-spacing:1px;"><span leaf="">{{图表标签}}</span></p>
     <section style="min-height:140px;border-radius:6px;background:#eeefe9;display:flex;align-items:center;justify-content:center;border:1px dashed #bfc1b7;">
@@ -501,7 +501,7 @@
 **可替换字段**：`{{左侧标题}}` `{{左侧说明}}` `{{右侧标题}}` `{{右侧说明}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#eeefe9;padding:16px;border-radius:6px;border:1px solid #bfc1b7;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;align-items:stretch;justify-content:center;gap:8px;">
       <section style="flex:1;text-align:center;padding:10px 8px;background:#1e1f23;border-radius:6px;border:1px solid #23251d;">
@@ -527,7 +527,7 @@
 **可替换字段**：`{{维度列名}}` `{{方案A名}}` `{{方案B名}}` + 每行 `{{行标题}}` `{{A值}}` `{{B值}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="border-radius:6px;overflow:hidden;border:1px solid #bfc1b7;background:#fdfdf8;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;background:#eeefe9;border-bottom:1px solid #bfc1b7;">
       <section style="width:35%;padding:10px 12px;font-size:12px;font-weight:800;color:#23251d;"><span leaf="">{{维度列名}}</span></section>
@@ -559,7 +559,7 @@
 **可替换字段**：`{{FLOW标签}}` `{{流程说明}}` `{{图示脚注}}`，以及图中各节点文字（`SDK`/`ingest`/`队列`/`规则`/`聚合`/`输出`/`图表`/`live` 等，按实际流程改写）
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#eeefe9;border-radius:6px;padding:22px 18px;border:1px solid #bfc1b7;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="font-size:10px;color:#65675e;margin:0 0 4px;text-transform:uppercase;letter-spacing:2px;font-weight:600;"><span leaf="">{{FLOW标签}}</span></p>
     <p style="font-size:13px;color:#23251d;font-weight:600;margin:0 0 8px;"><span leaf="">{{流程说明}}</span></p>
@@ -598,7 +598,7 @@
 **可替换字段**：`{{条目标题}}` `{{条目说明}}`；圆点颜色可在 `#ed7b2f`（强调）/`#4d4f46`（常规）间轮换区分条目类型
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="margin-bottom:14px;">
       <p style="margin:0 0 6px;">
@@ -621,7 +621,7 @@
 **可替换字段**：`{{FAQ标签}}`（如 `COMMON QUESTIONS`）`{{问题}}`（可重复 N 次）
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#fdfdf8;border:1px solid #bfc1b7;padding:18px;box-sizing:border-box;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="margin:0 0 12px;font-size:10px;line-height:1.6;color:#9ea096;letter-spacing:3px;font-weight:800;"><span leaf="">{{FAQ标签}}</span></p>
     <section style="padding:10px 0;border-top:1px solid #bfc1b7;">
@@ -645,7 +645,7 @@
 **可替换字段**：`{{案例标题}}` `{{行业规模}}` `{{案例描述}}` `{{图片URL}}` `{{结果总结}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;">
       <section style="display:flex;flex-direction:column;align-items:center;margin-right:16px;flex-shrink:0;">
@@ -680,7 +680,7 @@
 **可替换字段**：`{{标签}}`（如 `TRUST`/`来源`）`{{分组说明}}` + 6 个 `{{LOGO占位}}`（可增减数量）
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="padding:18px;border-radius:6px;background:#fdfdf8;border:1px solid #bfc1b7;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;">
       <p style="margin:0;font-size:12px;color:#65675e;font-weight:700;letter-spacing:1px;"><span leaf="">{{标签}}</span></p>
@@ -706,7 +706,7 @@
 **可替换字段**：`{{文末互动引导}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#fdfdf8;border:1px solid #bfc1b7;border-radius:6px;padding:22px 16px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="font-size:13px;font-weight:700;color:#23251d;line-height:1.6;margin:0 0 14px;"><span leaf="">{{文末互动引导}}</span></p>
     <section style="display:flex;justify-content:center;gap:18px;margin-bottom:14px;flex-wrap:wrap;">
@@ -743,7 +743,7 @@
 **可替换字段**：`{{标签}}`（如 `ROADMAP`）+ N 个 `{{阶段名}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="padding:18px;border-radius:6px;background:#fdfdf8;border:1px solid #bfc1b7;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <p style="margin:0 0 12px;font-size:11px;font-weight:800;letter-spacing:2px;color:#65675e;"><span leaf="">{{标签}}</span></p>
     <section style="display:flex;flex-wrap:wrap;gap:8px;">
@@ -765,7 +765,7 @@
 **可替换字段**：`{{SUMMARY标签}}` `{{左侧结论}}` `{{NEXT标签}}` `{{右侧说明}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="border-radius:6px;overflow:hidden;border:1px solid #23251d;background:#1e1f23;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;display:flex;align-items:stretch;">
     <section style="flex:1;padding:18px 18px 20px;border-right:1px solid rgba(255,255,255,0.08);">
       <p style="margin:0 0 8px;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,0.55);font-weight:700;"><span leaf="">{{SUMMARY标签}}</span></p>
@@ -788,7 +788,7 @@
 **可替换字段**：`{{CLOSING标签}}` `{{结尾金句}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#1e1f23;border:1px solid #23251d;padding:8px;box-sizing:border-box;border-radius:6px;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="border:1px solid rgba(255,255,255,0.16);border-radius:4px;padding:20px 22px;">
       <p style="margin:0 0 8px;font-size:10px;line-height:1.6;color:#a3a3a3;letter-spacing:4px;font-weight:800;"><span leaf="">{{CLOSING标签}}</span></p>
@@ -809,7 +809,7 @@
 **可替换字段**：`{{摘要文字}}` `{{标签}}`（如 `SUMMARY`）
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="background:#eeefe9;border:1px solid #bfc1b7;border-radius:6px;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;">
       <p style="margin:0;font-size:13px;line-height:1.7;color:#23251d;font-weight:700;"><span leaf="">{{摘要文字}}</span></p>
@@ -828,7 +828,7 @@
 **可替换字段**：`{{头像字}}`（姓名首字）`{{签名文字}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <span style="display:inline-flex;align-items:center;gap:10px;padding:8px 12px;background:#eeefe9;border:1px solid #bfc1b7;border-radius:999px;">
       <span style="width:22px;height:22px;border-radius:50%;background:#1e1f23;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;"><span leaf="">{{头像字}}</span></span>
@@ -847,7 +847,7 @@
 **可替换字段**：`{{结尾标题}}` `{{结尾说明}}` `{{收尾段落1}}` `{{收尾段落2}}` `{{最后总结}}`
 
 ```html
-<section style="margin-top:24px;">
+<section style="margin-top:24px;background-color:#fdfdf8;">
   <section style="font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;">
     <section style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
       <section style="text-align:center;flex-shrink:0;">
@@ -908,7 +908,7 @@
 </section>
 
 <!-- 10. 隐藏标记（外层容器之外，全文最后一个元素） -->
-<p style="display:none;">
+<p style="display:none;background-color:#fdfdf8;">
   <mp-style-type data-value="3"></mp-style-type>
 </p>
 ```

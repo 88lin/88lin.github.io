@@ -15,6 +15,8 @@
 任何改动组件库或 SKILL 后，按这个双关卡闭环自检，两关全绿才提 PR：
 
 ```bash
+python -m unittest discover -s tests -v
+
 # 源头关：扫所有组件库的 HTML 块，查大空白 / 正文虚线框 / 平台禁用项 / 移动端死宽（≥150px 固定宽未配 max-width）
 python3 scripts/component_lint.py .
 
@@ -40,3 +42,5 @@ python3 scripts/validate_gzh_html.py <生成的.html>
 - 一个 PR 只做一件事（一套新主题 / 一处修复 / 一处文档）。
 - commit 信息说清「改了什么 + 为什么」。
 - 不要提交本地排版产物（`.gitignore` 已忽略 `*_排版_*.html`）。
+
+回归测试依赖 `requests` 与 `Pillow`，使用模拟微信响应，不会上传真实草稿。CI 在 Windows/Linux 上运行测试、组件校验、画廊校验和 PNG 完整性检查。

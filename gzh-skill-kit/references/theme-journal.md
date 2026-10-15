@@ -56,7 +56,7 @@
 ## 组件 2 顶部题头（日期式 + 胶带）
 
 ```html
-<section style="text-align:center;margin-bottom:24px;">
+<section style="text-align:center;margin-bottom:24px;background-color:#FEFAF5;">
   <span style="font-size:13px;letter-spacing:3px;color:#8A8A92;"><span leaf="">🗓 十月十五日 · 晴 · 手账第 42 页</span></span>
 </section>
 ```
@@ -66,7 +66,7 @@
 ## 组件 3 大标题（左对齐 + 斜贴胶带条）
 
 ```html
-<section style="margin-bottom:32px;">
+<section style="margin-bottom:32px;background-color:#FEFAF5;">
   <section style="margin-bottom:14px;">
     <span style="display:inline-block;width:96px;height:14px;background:rgba(242,147,140,0.45);border-radius:2px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
   </section>
@@ -89,7 +89,7 @@
 ## 组件 4 手写批注框（虚线 + 「批注：」标签）
 
 ```html
-<section style="margin:24px 0;padding:18px 18px 14px;border:1.5px dashed #D46E74;border-radius:6px;background:transparent;">
+<section style="margin:24px 0;padding:18px 18px 14px;border:1.5px dashed #D46E74;border-radius:6px;background:transparent;background-color:#FEFAF5;">
   <span style="display:inline-block;font-size:12px;font-weight:bold;letter-spacing:2px;color:#D46E74;margin-bottom:6px;"><span leaf="">✎ 批注</span></span>
   <p style="margin:0;font-size:15px;line-height:2;color:#9E2E38;"><span leaf="">手写感短批注，一两句话，像写在页边的铅笔字。</span></p>
 </section>
@@ -100,7 +100,7 @@
 ## 组件 5 正文段（赤陶荧光笔）
 
 ```html
-<p style="margin:0 0 18px;font-size:17px;line-height:2;color:#1F2226;text-align:justify;">
+<p style="margin:0 0 18px;font-size:17px;line-height:2;color:#1F2226;text-align:justify;background-color:#FEFAF5;">
   <span leaf="">重读《置身事内》，第一次读是看热闹，这一次终于看懂了门道。</span>
   <span style="background:linear-gradient(transparent 60%, #F5B8B3 60%);font-weight:bold;padding:0 2px;"><span leaf="">书没变，是读者的处境变了。</span></span>
 </p>
@@ -155,7 +155,7 @@
 ## 组件 9 清单行（手账打勾风）
 
 ```html
-<section style="margin-bottom:8px;">
+<section style="margin-bottom:8px;background-color:#FEFAF5;">
   <span style="font-size:15px;color:#2F6B5B;font-weight:bold;"><span leaf="">☑</span></span>
   <span style="font-size:16px;color:#1F2226;"><span leaf="">清单项内容</span></span>
 </section>
@@ -168,7 +168,7 @@
 ## 组件 10 图片（拍立得风：白框 + 大圆角）
 
 ```html
-<section style="margin:24px 0;text-align:center;">
+<section style="margin:24px 0;text-align:center;background-color:#FEFAF5;">
   <section style="display:inline-block;padding:10px 10px 30px;background:#FFFFFF;border:1px solid rgba(31,34,38,0.08);border-radius:4px;box-shadow:0 4px 14px rgba(31,34,38,0.10);">
     <span leaf=""><img src="{{图片URL}}" style="width:100%;max-width:280px;border-radius:2px;"></span>
     <p style="margin:8px 0 0;font-size:12px;color:#8A8A92;"><span leaf="">{{图片说明}}</span></p>
@@ -181,7 +181,7 @@
 ## 组件 11 结尾（胶带 + 日期收尾）
 
 ```html
-<section style="text-align:center;margin:40px 0 0;">
+<section style="text-align:center;margin:40px 0 0;background-color:#FEFAF5;">
   <span style="display:inline-block;width:72px;height:12px;background:rgba(242,147,140,0.45);border-radius:2px 10px 2px 10px;font-size:0;line-height:0;margin-bottom:14px;"><span leaf=""><br></span></span>
   <p style="margin:0;font-size:16px;font-weight:900;color:#1F2226;line-height:1.8;"><span leaf="">今天先记到这里。</span></p>
   <p style="margin:6px 0 0;font-size:13px;color:#8A8A92;letter-spacing:2px;"><span leaf="">—— 手账第 42 页 · 完</span></p>
@@ -193,7 +193,7 @@
 ## 组件 12 签名档
 
 ```html
-<section style="text-align:center;padding:20px 0 0;">
+<section style="text-align:center;padding:20px 0 0;background-color:#FEFAF5;">
   <p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:#1F2226;"><span leaf="">作者名</span></p>
   <p style="margin:0;font-size:13px;color:#8A8A92;line-height:1.8;">
     <span leaf="">▪️{{签名第一行}}</span><br>

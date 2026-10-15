@@ -62,7 +62,7 @@
 > 纯白底，上下各一条 1px 细线（`#E8E8E8`），衬线字体大字金句居中，右下署名。无边框、无阴影、无色块——完全靠留白和细线传递气质。
 
 ```html
-<section style="margin: 32px 16px 48px;padding: 40px 24px;border-top: 1px solid #E8E8E8;border-bottom: 1px solid #E8E8E8;text-align: center;">
+<section style="margin: 32px 16px 48px;padding: 40px 24px;border-top: 1px solid #E8E8E8;border-bottom: 1px solid #E8E8E8;text-align: center;background-color:#FFFFFF;">
   <p style="font-family: 'Songti SC','Noto Serif SC',Georgia,'Times New Roman',serif;font-size: 19px;font-weight: 600;color: #2B2B2B;margin: 0 0 28px;line-height: 1.85;letter-spacing: 0.8px;">
     <span leaf="">这里放开篇金句，衬线字体自带书卷气，</span><span leaf="">留白让文字自己呼吸。</span>
   </p>
@@ -81,7 +81,7 @@
 > 无色块目录，用细线分隔，数字编号低调呈现。三列等宽，纯文字 + 细线底边。
 
 ```html
-<section style="padding: 0 16px 48px;">
+<section style="padding: 0 16px 48px;background-color:#FFFFFF;">
   <p style="font-size: 11px;color: #A3A3A3;margin: 0 0 20px;letter-spacing: 2px;text-transform: uppercase;">
     <span leaf="">本文脉络</span>
   </p>
@@ -111,7 +111,7 @@
 > 极细线 + 超大上下 margin，靠留白分层，不依赖视觉装饰。
 
 ```html
-<section style="padding: 0 16px;">
+<section style="padding: 0 16px;background-color:#FFFFFF;">
   <section style="height: 1px;background: #E8E8E8;margin: 64px 0 0;">
     <span leaf=""><br></span>
   </section>
@@ -125,7 +125,7 @@
 > 英文小标签（极小号，墨绿，大字间距）+ 衬线中文大标题 + 标题下方一条短细线（40px 宽，墨绿）。编号低调嵌入英文标签前。无色块，无粗边框。
 
 ```html
-<section style="margin-top: 64px;margin-bottom: 32px;padding: 0 16px;">
+<section style="margin-top: 64px;margin-bottom: 32px;padding: 0 16px;background-color:#FFFFFF;">
   <p style="font-size: 10px;color: #4A5D52;font-weight: 600;letter-spacing: 4px;margin: 0 0 10px;text-transform: uppercase;">
     <span leaf="">01 · CHAPTER ONE</span>
   </p>
@@ -144,7 +144,7 @@
 **结语章节变体**（编号改 ∞，英文改 POSTSCRIPT）：
 
 ```html
-<p style="font-size: 10px;color: #4A5D52;font-weight: 600;letter-spacing: 4px;margin: 0 0 10px;text-transform: uppercase;">
+<p style="font-size: 10px;color: #4A5D52;font-weight: 600;letter-spacing: 4px;margin: 0 0 10px;text-transform: uppercase;background-color:#FFFFFF;">
   <span leaf="">∞ · POSTSCRIPT</span>
 </p>
 ```
@@ -158,7 +158,7 @@
 **基础段落**：
 
 ```html
-<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;color: #525252;padding: 0 16px;">
+<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;color: #525252;padding: 0 16px;background-color:#FFFFFF;">
   <span leaf="">正文内容，15px 字号，1.9 倍行高，两端对齐。段落间距 26px+，字里行间充满呼吸感。</span>
 </p>
 ```
@@ -166,7 +166,7 @@
 **带关键词下划线标记的段落**（推荐默认使用）：
 
 ```html
-<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;color: #525252;padding: 0 16px;">
+<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;color: #525252;padding: 0 16px;background-color:#FFFFFF;">
   <span leaf="">正文内容的前半部分，引出核心概念，</span>
   <span style="border-bottom: 1.5px solid #B5C8BC;font-weight: 500;"><span leaf="">这是需要强调的关键语句</span></span>
   <span leaf="">，后半部分继续阐述。</span>
@@ -228,7 +228,7 @@
 **在段落中的实际效果**：
 
 ```html
-<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;color: #525252;padding: 0 16px;">
+<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;color: #525252;padding: 0 16px;background-color:#FFFFFF;">
   <span leaf="">这个时代的竞争，拼的不是速度，而是</span>
   <span style="border-bottom: 1.5px solid #B5C8BC;font-weight: 500;"><span leaf="">深度思考的能力</span></span>
   <span leaf="">。真正的高手，往往在别人仰望风口时，已经悄悄</span>
@@ -254,7 +254,7 @@
 > 纯白底，上下各一条 1px 细线，衬线字体居中，大留白。这是禅意风最具特色的引用形式——不用色块，靠留白和字体传递力量。
 
 ```html
-<section style="margin: 40px 16px;padding: 36px 20px;border-top: 1px solid #E8E8E8;border-bottom: 1px solid #E8E8E8;text-align: center;">
+<section style="margin: 40px 16px;padding: 36px 20px;border-top: 1px solid #E8E8E8;border-bottom: 1px solid #E8E8E8;text-align: center;background-color:#FFFFFF;">
   <p style="font-family: 'Songti SC','Noto Serif SC',Georgia,'Times New Roman',serif;font-size:18px;font-weight: 600;color: #2B2B2B;margin: 0;line-height: 1.9;letter-spacing: 0.8px;">
     <span leaf="">「这里是核心金句，衬线字体 + 大留白 + 细线框定。」</span>
   </p>
@@ -278,7 +278,7 @@
 > 仅左侧 1px 浅灰线，字号稍小，颜色略淡，用于最轻量的旁注或个人感想。
 
 ```html
-<section style="border-left: 1px solid #E8E8E8;padding: 8px 16px;margin: 0 16px 28px;">
+<section style="border-left: 1px solid #E8E8E8;padding: 8px 16px;margin: 0 16px 28px;background-color:#FFFFFF;">
   <p style="font-size: 13px;color: #A3A3A3;margin: 0;line-height: 1.9;text-align: justify;font-style: italic;">
     <span leaf="">极轻量旁注，颜色浅、字号小，几乎不打扰主文节奏。</span>
   </p>
@@ -292,7 +292,7 @@
 > 用墨绿左竖条 + 「提示」小标签区分，无色块底色。保持留白气质，不用醒目色块警示。
 
 ```html
-<section style="margin: 0 16px 32px;padding: 18px 20px;border-left: 2px solid #4A5D52;">
+<section style="margin: 0 16px 32px;padding: 18px 20px;border-left: 2px solid #4A5D52;background-color:#FFFFFF;">
   <p style="font-size: 10px;color: #4A5D52;font-weight: 600;letter-spacing: 2px;margin: 0 0 8px;text-transform: uppercase;">
     <span leaf="">NOTE</span>
   </p>
@@ -307,7 +307,7 @@
 ## 组件 10 图片容器
 
 ```html
-<section style="margin: 0 16px 10px;border: 1px solid #E8E8E8;">
+<section style="margin: 0 16px 10px;border: 1px solid #E8E8E8;background-color:#FFFFFF;">
   <section style="margin: 0;overflow: hidden;">
     <span leaf=""><img src="图片URL" style="max-width: 100%;display: block;"></span>
   </section>
@@ -317,12 +317,12 @@
 图片 + 说明文字配合（说明文字用辅助色，居中，大留白）：
 
 ```html
-<section style="margin: 0 16px 8px;border: 1px solid #E8E8E8;">
+<section style="margin: 0 16px 8px;border: 1px solid #E8E8E8;background-color:#FFFFFF;">
   <section style="margin: 0;overflow: hidden;">
     <span leaf=""><img src="图片URL" style="max-width: 100%;display: block;"></span>
   </section>
 </section>
-<p style="font-size: 12px;color: #A3A3A3;text-align: center;margin: 8px 16px 32px;letter-spacing: 0.5px;">
+<p style="font-size: 12px;color: #A3A3A3;text-align: center;margin: 8px 16px 32px;letter-spacing: 0.5px;background-color:#FFFFFF;">
   <span leaf="">— 图片说明文字</span>
 </p>
 ```
@@ -332,7 +332,7 @@
 ## 组件 11 加粗结论段落
 
 ```html
-<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;font-weight: 600;color: #2B2B2B;padding: 0 16px;">
+<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;font-weight: 600;color: #2B2B2B;padding: 0 16px;background-color:#FFFFFF;">
   <span leaf="">加粗的结论性短句，字色加深到近黑，靠字重而非色彩传达重量。</span>
 </p>
 ```
@@ -340,7 +340,7 @@
 结合荧光笔的变体：
 
 ```html
-<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;font-weight: 600;color: #2B2B2B;padding: 0 16px;">
+<p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;font-weight: 600;color: #2B2B2B;padding: 0 16px;background-color:#FFFFFF;">
   <span style="background: linear-gradient(180deg, transparent 60%, #D6E4DC 60%);"><span leaf="">荧光笔标记的结论句，极浅墨绿底，克制温柔。</span></span>
 </p>
 ```
@@ -352,7 +352,7 @@
 ### 两列版（用细线边框替代色块）
 
 ```html
-<section style="display: flex;margin: 0 16px 32px;">
+<section style="display: flex;margin: 0 16px 32px;background-color:#FFFFFF;">
   <section style="flex: 1;border: 1px solid #E8E8E8;padding: 24px 16px;margin-right: 12px;text-align: center;">
     <p style="font-family: 'Songti SC','Noto Serif SC',Georgia,'Times New Roman',serif;font-size: 32px;font-weight: 700;color: #2B2B2B;margin: 0 0 8px;line-height: 1;"><span leaf="">14亿</span></p>
     <p style="font-size: 11px;color: #A3A3A3;margin: 0;letter-spacing: 1px;"><span leaf="">覆盖用户</span></p>
@@ -367,7 +367,7 @@
 ### 要点列表版（竖排，细线分隔）
 
 ```html
-<section style="margin: 0 16px 32px;border-top: 1px solid #E8E8E8;">
+<section style="margin: 0 16px 32px;border-top: 1px solid #E8E8E8;background-color:#FFFFFF;">
   <section style="display: flex;align-items: baseline;padding: 16px 0;border-bottom: 1px solid #E8E8E8;">
     <p style="font-size: 11px;color: #4A5D52;font-weight: 600;letter-spacing: 1px;margin: 0;min-width: 28px;"><span leaf="">01</span></p>
     <p style="font-size:15px;color: #2B2B2B;margin: 0;line-height: 1.7;padding-left: 12px;"><span leaf="">要点一：简明扼要的核心内容</span></p>
@@ -406,7 +406,7 @@
 > 居中极细线 + 「END」字样，低调收尾。墨绿细线 + 小号字母，不用渐变装饰。
 
 ```html
-<section style="padding: 0 16px;">
+<section style="padding: 0 16px;background-color:#FFFFFF;">
   <section style="text-align: center;margin: 48px 0 40px;">
     <section style="display: flex;align-items: center;justify-content: center;">
       <span style="height: 1px;width: 48px;background: #E8E8E8;margin-right: 16px;"></span>
@@ -422,7 +422,7 @@
 ## 组件 15 尾部作者签名区
 
 ```html
-<section style="padding: 0 16px 40px;">
+<section style="padding: 0 16px 40px;background-color:#FFFFFF;">
   <p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;color: #525252;">
     <span leaf="">我是 {{作者名}}，{{一句话简介，如：热衷于分享 AI 观察与干货}}。</span>
   </p>
@@ -445,7 +445,7 @@
   <!-- 组件 2 -->
 
   <!-- 2. 前言正文（开场白） -->
-  <section style="padding: 0 0 20px;">
+  <section style="padding: 0 0 20px;background-color:#FFFFFF;">
     <!-- 组件 6 正文段落 × N -->
   </section>
 
