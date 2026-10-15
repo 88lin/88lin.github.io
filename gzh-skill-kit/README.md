@@ -238,7 +238,7 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 
 ## 💬 交流与反馈
 
-想交流公众号排版和 AI 工具使用，或聊聊主题共创，可以添加微信 **`Piscesstar02`**，备注「gzh-skill」。也欢迎在 [Issues](https://github.com/88lin/gzh-skill-kit/issues) 留下建议。
+想交流公众号排版和 AI 工具使用，或聊聊主题共创，可以添加微信 **`zuiyn_soul`**，备注「gzh-design」。也欢迎在 [Issues](https://github.com/88lin/gzh-skill-kit/issues) 留下建议。
 
 ---
 
