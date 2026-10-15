@@ -69,10 +69,18 @@ def lint_file(path):
     blocks = ([text] if path.lower().endswith(".html")
               else [m.group(1) for m in re.finditer(r"```html\s*\n(.*?)```", text, re.S)])
 
+    # docs/gallery 预览产物豁免 SVG 检查：预览页只在浏览器渲染（不粘贴进公众号），
+    # SVG 图标观感更好。组件库（references/*.md）仍然严禁 SVG——正文必须用文本字形。
+    in_gallery = os.sep + "docs" + os.sep + "gallery" + os.sep in path
+    checks = [c for c in CHECKS
+              if not (in_gallery and c[1] == "ERROR" and "SVG" in c[2])]
+
     for html in blocks:
-        for rx, level, msg in CHECKS:
+        for rx, level, msg in checks:
             if rx.search(html):
                 add(level, msg)
+    if in_gallery and re.search(r"<svg\b", text, re.I):
+        add("WARN", "预览页含内联 SVG——浏览器预览正常，但正文引用此组件时请改用文本字形（微信会剥 SVG）")
         # 漏 <span leaf=""> 包裹：粘贴后样式整片丢失，是最高频致命错。
         # 用真正的 HTML 解析器找"裸露的文本节点"，而不是正则匹配——
         # 否则注释里的中文、属性里的中文都会被误判。
