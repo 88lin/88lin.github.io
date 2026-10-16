@@ -47,14 +47,15 @@
     sel.addRange(range);
     var ok=false;
     try{ok=document.execCommand('copy');}catch(e){ok=false;}
-    sel.removeAllRanges();
     var btn=document.getElementById('gzhCopyBtn');
     if(ok){
+      sel.removeAllRanges();
       gzhShowToast('✅ 已复制！去公众号编辑器按 Ctrl/⌘+V 粘贴即可');
       var old=btn.textContent;btn.textContent='✅ 已复制';
       setTimeout(function(){btn.textContent=old;},2200);
     }else{
-      gzhShowToast('⚠ 自动复制失败，请手动全选(Ctrl/⌘+A)再复制(Ctrl/⌘+C)');
+      // Keep only the article selected for the manual copy fallback.
+      gzhShowToast('⚠ 自动复制失败，正文已选中，请直接按 Ctrl/⌘+C 复制');
     }
   }
 </script>

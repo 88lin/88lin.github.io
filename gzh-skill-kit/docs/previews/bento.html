@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<base href="../gallery/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bento · 公众号排版预览</title>
+<style>
+  body{margin:0;background:#eef0f2;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;-webkit-text-size-adjust:100%;}
+  .gzh-toolbar{position:fixed;top:0;left:0;right:0;height:54px;background:#ffffff;box-shadow:0 1px 10px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:99;}
+  .gzh-hint{font-size:13px;color:#6b7280;line-height:1.4;}
+  .gzh-hint b{color:#111827;}
+  .gzh-copy{background:#059669;color:#fff;border:0;border-radius:9px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(5,150,105,.28);white-space:nowrap;transition:transform .08s,background .15s;}
+  .gzh-copy:hover{background:#047857;}
+  .gzh-copy:active{transform:translateY(1px);}
+  .gzh-toast{position:fixed;top:66px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s;z-index:100;box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:88vw;text-align:center;}
+  .gzh-toast.show{opacity:1;}
+  .gzh-stage{max-width:700px;margin:78px auto 64px;padding:0 8px;}
+  @media(max-width:520px){.gzh-hint{max-width:150px;}}
+</style>
+</head>
+<body>
+<div class="gzh-toolbar">
+  <span class="gzh-hint">👇 下方是排版效果 · 点右侧 <b>复制</b> 直接粘到公众号</span>
+  <button class="gzh-copy" id="gzhCopyBtn" onclick="gzhCopy()">📋 复制到公众号</button>
+</div>
+<div class="gzh-toast" id="gzhToast"></div>
+<div class="gzh-stage">
+  <div id="gzh-content">
+<section style="max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2B2B33;font-size:17px;line-height:2;overflow-x:hidden;">
+
+  <!-- 1. 顶部眉头 -->
+  <section style="text-align:center;margin-bottom:16px;background-color:#FDFCF8;">
+    <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:13px;font-weight:bold;letter-spacing:3px;color:#7C3AED;"><span leaf="">✦ MALIN STUDIO · WEEKLY</span></span>
+  </section>
+
+  <!-- 2. 大标题区 -->
+  <section style="margin-bottom:32px;background-color:#FDFCF8;">
+    <p style="margin:0 0 10px;font-size:30px;font-weight:900;line-height:1.5;color:#2B2B33;word-break:normal;overflow-wrap:normal;">
+      <span leaf="">这 5 个 AI 工具，</span><br>
+      <span leaf="">我每天都在用</span>
+    </p>
+    <section style="margin-bottom:14px;">
+    </section>
+    <p style="margin:0;font-size:16px;color:#55506A;line-height:1.8;"><span leaf="">亲测三个月后的真实评价，含踩坑记录</span></p>
+  </section>
+
+  <!-- 3. 总述卡（淡紫） -->
+  <section style="margin-bottom:10px;background-color:#FDFCF8;">
+    <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#7C3AED;"><span leaf="">✦ 00 · overview/</span></span>
+  </section>
+  <section style="margin-bottom:14px;padding:26px 22px;background:#F0EAFE;border:1px solid #E2D4FA;border-radius:20px;">
+    <p style="margin:0 0 12px;font-size:19px;font-weight:900;color:#5B21B6;line-height:1.6;"><span leaf="">先说结论</span></p>
+    <p style="margin:0;font-size:16px;line-height:2;color:#3A2A58;text-align:justify;"><span leaf="">工具不在多，在于</span><span style="background:linear-gradient(transparent 60%, #F6DC8E 60%);font-weight:bold;padding:0 2px;"><span leaf="">真正嵌进你的工作流</span></span><span leaf="">。下面 5 个，我从「收藏吃灰」用到「离了不行」，每个都写了它解决的具体问题。</span></p>
+  </section>
+
+  <!-- 4. 工具一：淡蓝卡 -->
+  <section style="margin-bottom:10px;background-color:#FDFCF8;">
+    <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#2563EB;"><span leaf="">✦ 01 · tool-review/</span></span>
+  </section>
+  <section style="margin-bottom:14px;padding:24px 22px;background:#EBF4FF;border:1px solid #D6E6FC;border-radius:20px;">
+    <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#1D4ED8;line-height:1.6;"><span leaf="">① Claude Projects —— 项目知识库</span></p>
+    <p style="margin:0 0 12px;font-size:16px;line-height:2;color:#283349;text-align:justify;"><span leaf="">把项目资料、常用指令、历史讨论都放进一个 Project，AI 就有了</span><span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;"><span leaf="">长期记忆</span></span><span leaf="">。换新会话不用重新解释背景，这一点省下的时间比订阅费值钱。</span></p>
+    <section style="margin-bottom:8px;">
+      <span style="display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+      <span style="font-size:16px;color:#2B2B33;"><span leaf="">适合：长期项目、反复迭代的内容</span></span>
+    </section>
+    <section style="margin-bottom:0;">
+      <span style="display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+      <span style="font-size:16px;color:#2B2B33;"><span leaf="">坑：资料要自己整理，喂垃圾就吐垃圾</span></span>
+    </section>
+  </section>
+
+  <!-- 5. 工具二：淡薄荷卡 -->
+  <section style="margin-bottom:10px;background-color:#FDFCF8;">
+    <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#059669;"><span leaf="">✦ 02 · tool-review/</span></span>
+  </section>
+  <section style="margin-bottom:14px;padding:24px 22px;background:#E0F6EF;border:1px solid #C4ECDC;border-radius:20px;">
+    <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#059669;line-height:1.6;"><span leaf="">② Raycast AI —— 效率聚合器</span></p>
+    <p style="margin:0 0 12px;font-size:16px;line-height:2;color:#26413A;text-align:justify;"><span leaf="">全局快捷键呼出，翻译、改写、摘要一步到位。它最大的价值是</span><span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;"><span leaf="">消灭了「切窗口」这个动作</span></span><span leaf="">——别小看它，一天能省二十次注意力切换。</span></p>
+    <section style="margin-bottom:8px;">
+      <span style="display:inline-block;width:8px;height:8px;background:#059669;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+      <span style="font-size:16px;color:#2B2B33;"><span leaf="">适合：高频小任务（翻译、润色、总结）</span></span>
+    </section>
+    <section style="margin-bottom:0;">
+      <span style="display:inline-block;width:8px;height:8px;background:#059669;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+      <span style="font-size:16px;color:#2B2B33;"><span leaf="">坑：Mac only，Windows 用户绕行</span></span>
+    </section>
+  </section>
+
+  <!-- 6. 淡青蓝卡 -->
+  <section style="margin-bottom:10px;background-color:#FDFCF8;">
+    <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#0891B2;"><span leaf="">✦ 03 · tips/</span></span>
+  </section>
+  <section style="margin-bottom:14px;padding:24px 22px;background:#DFF6F9;border:1px solid #C2E9F0;border-radius:20px;">
+    <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#0E7490;line-height:1.6;"><span leaf="">💡 一个共同的坑</span></p>
+    <p style="margin:0;font-size:16px;line-height:2;color:#243E46;text-align:justify;"><span leaf="">所有工具都别一上来就交给它完整任务。先用小任务试两周，摸清它的</span><span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;"><span leaf="">能力边界和翻车姿势</span></span><span leaf="">，再逐步放手。直接全托管的人，最后都在手动返工。</span></p>
+  </section>
+
+  <!-- 7. 淡粉卡 -->
+  <section style="margin-bottom:10px;background-color:#FDFCF8;">
+    <span style="font-family:'SF Mono',Consolas,Monaco,monospace;font-size:12px;font-weight:bold;letter-spacing:2px;color:#DB2777;"><span leaf="">✦ 04 · bonus/</span></span>
+  </section>
+  <section style="margin-bottom:14px;padding:24px 22px;background:#FFE3F1;border:1px solid #FBCFE0;border-radius:20px;">
+    <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#BE185D;line-height:1.6;"><span leaf="">🌸 意外惊喜</span></p>
+    <p style="margin:0;font-size:16px;line-height:2;color:#542838;text-align:justify;"><span leaf="">剩下 3 个工具 + 我的快捷键配置表，整理了一份速查图。需要的朋友在公众号后台回「工具」自取。</span></p>
+  </section>
+
+  <!-- 8. 奶油黄金句卡 -->
+  <section style="margin:28px 0;padding:30px 24px;background:#FFF4D6;border:1px solid #F8E6B0;border-radius:20px;text-align:center;">
+    <p style="margin:0 0 10px;font-size:20px;font-weight:900;color:#92600A;line-height:1.8;"><span leaf="">工具的价值不在功能列表，</span></p>
+    <p style="margin:0 0 12px;font-size:20px;font-weight:900;color:#B45309;line-height:1.8;"><span leaf="">而在它嵌进你流程的深度。</span></p>
+    <p style="margin:0;font-size:13px;color:#A78A4E;letter-spacing:2px;"><span leaf="">—— 三个月亲测后的总结</span></p>
+  </section>
+
+  <!-- 9. 结尾互动卡（淡紫呼应开头） -->
+  <section style="margin:24px 0 0;padding:24px 22px;background:#F0EAFE;border:1px solid #E2D4FA;border-radius:20px;text-align:center;">
+    <p style="margin:0 0 8px;font-size:17px;font-weight:900;color:#5B21B6;"><span leaf="">你最常用哪个工具？</span></p>
+    <p style="margin:0;font-size:15px;line-height:2;color:#7C3AED;"><span leaf="">评论区聊聊，下期写一篇深度横评 🌸</span></p>
+  </section>
+
+  <!-- 10. 签名档 -->
+  <section style="text-align:center;padding:24px 0 0;background-color:#FDFCF8;">
+    <p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:#2B2B33;"><span leaf="">茉灵智库</span></p>
+    <section style="display:flex;gap:10px;margin-top:10px;">
+      <section style="flex:1;background:#F0EAFE;border-radius:10px;padding:10px 8px;text-align:center;">
+        <p style="margin:0;font-size:12px;font-weight:bold;color:#5A3E8F;"><span leaf="">专注 AI 观察与知识干货</span></p>
+      </section>
+      <section style="flex:1;background:#FFE3F1;border-radius:10px;padding:10px 8px;text-align:center;">
+        <p style="margin:0;font-size:12px;font-weight:bold;color:#BE185D;"><span leaf="">点赞 · 转发 · 推荐</span></p>
+      </section>
+    </section>
+  </section>
+
+</section>
+  </div>
+</div>
+<script>
+  function gzhShowToast(msg){
+    var t=document.getElementById('gzhToast');
+    t.textContent=msg;t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer=setTimeout(function(){t.classList.remove('show');},2800);
+  }
+  function gzhCopy(){
+    var el=document.getElementById('gzh-content');
+    // 选中渲染后的富文本节点并复制（等价于手动 Ctrl+A / Ctrl+C，保留全部样式）
+    var range=document.createRange();
+    range.selectNodeContents(el);
+    var sel=window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    var ok=false;
+    try{ok=document.execCommand('copy');}catch(e){ok=false;}
+    var btn=document.getElementById('gzhCopyBtn');
+    if(ok){
+      sel.removeAllRanges();
+      gzhShowToast('✅ 已复制！去公众号编辑器按 Ctrl/⌘+V 粘贴即可');
+      var old=btn.textContent;btn.textContent='✅ 已复制';
+      setTimeout(function(){btn.textContent=old;},2200);
+    }else{
+      // Keep only the article selected for the manual copy fallback.
+      gzhShowToast('⚠ 自动复制失败，正文已选中，请直接按 Ctrl/⌘+C 复制');
+    }
+  }
+</script>
+</body>
+</html>

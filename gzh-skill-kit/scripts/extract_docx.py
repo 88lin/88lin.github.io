@@ -95,7 +95,16 @@ def _md_image_path(rel):
     所以用尖括号包裹（CommonMark 允许），只编码空格和 %/#/? 等会改变
     URL 含义的字符，中文保持原样可读。
     """
-    return "<" + re.sub(r"[\s%#?<>\\]", lambda m: quote(m.group()), rel) + ">"
+    return "<" + re.sub(r"[\s%#?<>\\|]", lambda m: quote(m.group()), rel) + ">"
+
+
+def _md_text(text):
+    """Escape literal Word text before adding generated Markdown/HTML markup.
+
+    Include the skill's ++/==/~~ markers and table pipes. Escaping ampersands
+    also prevents literal strings such as &copy; from becoming entities.
+    """
+    return re.sub(r"([\\`*_\[\]{}<>&#!|~+=().-])", r"\\\1", text)
 
 
 def para_text(p, links_of=None, image_of=None):
@@ -107,7 +116,7 @@ def para_text(p, links_of=None, image_of=None):
         parts = []
         for child in run.iter():
             if child.tag == f"{W}t":
-                parts.append(child.text or "")
+                parts.append(_md_text(child.text or ""))
             elif child.tag in {f"{W}br", f"{W}cr"}:
                 parts.append("<br>")
             elif child.tag == f"{W}tab":
@@ -128,8 +137,12 @@ def para_text(p, links_of=None, image_of=None):
             text = ''.join(run[0] for run in group)
             if not text:
                 continue
-            if bold:
-                text = f'**{text}**'
+            if bold and text.strip():
+                # Word selections often include a trailing space. Markdown
+                # emphasis delimiters must touch the non-whitespace content.
+                leading = text[:len(text) - len(text.lstrip())]
+                trailing = text[len(text.rstrip()):]
+                text = f'{leading}**{text.strip()}**{trailing}'
             if underline:
                 text = f'<u>{text}</u>'
             out.append(text)
@@ -167,6 +180,7 @@ def content_children(node):
 
 def _safe_url(url):
     """URL 含空格/括号时用尖括号包裹，否则 Markdown 链接会被截断。"""
+    url = url.replace('|', '%7C')  # generated URLs must not split table cells
     if re.search(r"[\s()<>]", url):
         return "<" + url.replace(" ", "%20") + ">"
     return url
@@ -206,7 +220,7 @@ def extract(docx_path, out_md):
                         for cell in (child for child in content_children(row) if child.tag == f'{W}tc'):
                             paragraphs = [para_text(p, links_of, image_of).strip()
                                           for p in cell.iter(f"{W}p")]
-                            cells.append("<br>".join(paragraphs).replace("|", "\\|") or " ")
+                            cells.append("<br>".join(paragraphs) or " ")
                         rows.append(cells)
                     if rows:
                         width = max(map(len, rows))

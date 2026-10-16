@@ -220,11 +220,11 @@ class WordAuditTests(unittest.TestCase):
 
     def test_literal_stars_are_not_removed_when_merging_bold_runs(self):
         for runs, expected in [
-            ('<w:r><w:t>口令是 ****，请原样输入。</w:t></w:r>', '口令是 ****，请原样输入。'),
+            ('<w:r><w:t>口令是 ****，请原样输入。</w:t></w:r>', r'口令是 \*\*\*\*，请原样输入。'),
             ('<w:r><w:rPr><w:b/></w:rPr><w:t>A</w:t></w:r>'
              '<w:r/>'
              '<w:r><w:rPr><w:b/></w:rPr><w:t>B</w:t></w:r>'
-             '<w:r><w:t> ****</w:t></w:r>', '**AB** ****'),
+             '<w:r><w:t> ****</w:t></w:r>', r'**AB** \*\*\*\*'),
         ]:
             with self.subTest(expected=expected):
                 p = ET.fromstring(f'<w:p xmlns:w="{W[1:-1]}">{runs}</w:p>')
