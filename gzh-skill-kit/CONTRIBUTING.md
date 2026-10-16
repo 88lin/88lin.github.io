@@ -9,6 +9,7 @@
 - `scripts/` — 校验脚本（`component_lint.py` / `validate_gzh_html.py`）+ 预览包装（`wrap_preview.py`）+ docx 抽取（`extract_docx.py`）+ 可选的草稿上传脚本（`wechat_draft.py` / `minify_gzh_html.py`）
 - `assets/` — 演示输入文章
 - `docs/gallery/` — 主题风格的浏览器预览
+- `docs/previews/` — 带手机 viewport 和复制按钮的在线预览页，由正文与共享模板生成
 
 ## 可验证循环（改动前后都要跑）
 
@@ -43,4 +44,14 @@ python3 scripts/validate_gzh_html.py <生成的.html>
 - commit 信息说清「改了什么 + 为什么」。
 - 不要提交本地排版产物（`.gitignore` 已忽略 `*_排版_*.html`）。
 
-回归测试依赖 `requests` 与 `Pillow`，使用模拟微信响应，不会上传真实草稿。CI 在 Windows/Linux 上运行测试、组件校验、画廊校验和 PNG 完整性检查。
+修改 `docs/gallery/` 正文或 `assets/preview-template.html` 后，运行 `python scripts/build_gallery_previews.py`，将生成的 `docs/previews/` 一并提交；回归测试会检查预览与源文件是否一致。主题详情的公开入口链接到 `docs/previews/`，公众号合规校验继续使用 `docs/gallery/` 的纯正文。
+
+回归测试依赖 `requests`、`Pillow` 与 `markdown-it-py`，使用模拟微信响应，不会上传真实草稿。CI 在 Windows/Linux 上运行测试、组件校验、画廊校验和 PNG 完整性检查。
+
+预览页的浏览器回归在独立的 Linux CI 任务中运行，覆盖手机视口以及复制成功/失败分支。本地运行方式：
+
+```bash
+python -m pip install playwright
+python -m playwright install chromium
+python tests/browser_preview.py
+```

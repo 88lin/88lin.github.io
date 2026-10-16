@@ -64,28 +64,28 @@ Click any thumbnail to read the full article in that theme. The previews work on
 
 <table>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="Tech Cobalt (default) theme preview" width="250"></a><br><sub><b>Tech Cobalt (default)</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/letter.html"><img src="assets/lf-letter.thumb.png" alt="Letter theme preview" width="250"></a><br><sub><b>Letter</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/bento.html"><img src="assets/lf-bento.thumb.png" alt="Bento theme preview" width="250"></a><br><sub><b>Bento</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="Tech Cobalt (default) theme preview" width="250"></a><br><sub><b>Tech Cobalt (default)</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/letter.html"><img src="assets/lf-letter.thumb.png" alt="Letter theme preview" width="250"></a><br><sub><b>Letter</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/bento.html"><img src="assets/lf-bento.thumb.png" alt="Bento theme preview" width="250"></a><br><sub><b>Bento</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/chat.html"><img src="assets/lf-chat.thumb.png" alt="Chat theme preview" width="250"></a><br><sub><b>Chat</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="Magazine theme preview" width="250"></a><br><sub><b>Magazine</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/journal.html"><img src="assets/lf-journal.thumb.png" alt="Journal theme preview" width="250"></a><br><sub><b>Journal</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/chat.html"><img src="assets/lf-chat.thumb.png" alt="Chat theme preview" width="250"></a><br><sub><b>Chat</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="Magazine theme preview" width="250"></a><br><sub><b>Magazine</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/journal.html"><img src="assets/lf-journal.thumb.png" alt="Journal theme preview" width="250"></a><br><sub><b>Journal</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/daily.html"><img src="assets/lf-daily.thumb.png" alt="Daily theme preview" width="250"></a><br><sub><b>Daily</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="Moyu Green theme preview" width="250"></a><br><sub><b>Moyu Green</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/red-white.html"><img src="assets/lf-red-white.thumb.png" alt="Red & White theme preview" width="250"></a><br><sub><b>Red & White</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/daily.html"><img src="assets/lf-daily.thumb.png" alt="Daily theme preview" width="250"></a><br><sub><b>Daily</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="Moyu Green theme preview" width="250"></a><br><sub><b>Moyu Green</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/red-white.html"><img src="assets/lf-red-white.thumb.png" alt="Red & White theme preview" width="250"></a><br><sub><b>Red & White</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" alt="Klein Blue theme preview" width="250"></a><br><sub><b>Klein Blue</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="Graphite Minimal theme preview" width="250"></a><br><sub><b>Graphite</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/zen-whitespace.html"><img src="assets/lf-zen-whitespace.thumb.png" alt="Zen Whitespace theme preview" width="250"></a><br><sub><b>Zen Whitespace</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" alt="Klein Blue theme preview" width="250"></a><br><sub><b>Klein Blue</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="Graphite Minimal theme preview" width="250"></a><br><sub><b>Graphite</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/zen-whitespace.html"><img src="assets/lf-zen-whitespace.thumb.png" alt="Zen Whitespace theme preview" width="250"></a><br><sub><b>Zen Whitespace</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/moyu-ticket.html"><img src="assets/lf-moyu-ticket.thumb.png" alt="Moyu Ticket theme preview" width="250"></a><br><sub><b>Moyu Ticket</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/olive-journal.html"><img src="assets/lf-olive-journal.thumb.png" alt="Olive Journal theme preview" width="250"></a><br><sub><b>Olive Journal</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-ticket.html"><img src="assets/lf-moyu-ticket.thumb.png" alt="Moyu Ticket theme preview" width="250"></a><br><sub><b>Moyu Ticket</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/olive-journal.html"><img src="assets/lf-olive-journal.thumb.png" alt="Olive Journal theme preview" width="250"></a><br><sub><b>Olive Journal</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/index.html"><b>All 14 themes<br>interactive preview ↗</b></a></td>
 </tr>
 </table>

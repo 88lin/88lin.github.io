@@ -140,10 +140,12 @@ def upload_cover(token, img_path):
     压缩封面上传，返回 media_id（必须用 type=thumb）。
     压缩到 ≤64KB（微信限制），质量自适应。
     """
-    from PIL import Image
+    from PIL import Image, ImageOps
     import requests as _req
 
-    img = Image.open(img_path).convert('RGB')
+    # Bake the camera orientation into the pixels before JPEG drops EXIF.
+    with Image.open(img_path) as source:
+        img = ImageOps.exif_transpose(source).convert('RGB')
     out = img_path.rsplit('.', 1)[0] + '_thumb.jpg'
     quality, size = 85, float('inf')
     while size > 64000 and quality > 30:

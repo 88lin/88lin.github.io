@@ -25,6 +25,14 @@ else:
     from cli_utils import configure_stdio
 
 
+def render_preview(content, title, base_url='./'):
+    """Render the shared preview shell for local articles and the online gallery."""
+    template = Path(__file__).resolve().parents[1] / 'assets' / 'preview-template.html'
+    tpl = template.read_text(encoding='utf-8')
+    return (tpl.replace('{{BASE_URL}}', escape(base_url, quote=True))
+            .replace('{{TITLE}}', escape(title)).replace('<!--GZH_CONTENT-->', content.strip()))
+
+
 def main():
     configure_stdio()
     if len(sys.argv) < 2:
@@ -40,14 +48,6 @@ def main():
     except (OSError, UnicodeError) as exc:
         print(f"✗ 读不到正文文件 {src}: {exc}")
         sys.exit(1)
-    tpl_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                            "..", "assets", "preview-template.html")
-    try:
-        tpl = Path(tpl_path).read_text(encoding="utf-8")
-    except OSError as exc:
-        print(f"✗ 读不到预览模板 {tpl_path}: {exc}")
-        sys.exit(1)
-
     out = sys.argv[2] if len(sys.argv) > 2 else os.path.splitext(src)[0] + "_预览.html"
     # Resolve every relative resource (img/srcset/CSS URLs) against the article.
     # A relative base keeps previews portable when their containing tree moves.
@@ -58,8 +58,11 @@ def main():
     except ValueError:  # Different Windows drives cannot have a relative path.
         base_url = source_dir.as_uri() + '/'
     title = os.path.splitext(os.path.basename(src))[0]
-    out_html = (tpl.replace("{{BASE_URL}}", escape(base_url, quote=True))
-                .replace("{{TITLE}}", escape(title)).replace("<!--GZH_CONTENT-->", content))
+    try:
+        out_html = render_preview(content, title, base_url)
+    except (OSError, UnicodeError) as exc:
+        print(f"✗ 读不到预览模板: {exc}")
+        sys.exit(1)
 
     try:
         Path(out).write_text(out_html, encoding="utf-8")

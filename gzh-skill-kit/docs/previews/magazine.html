@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<base href="../gallery/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>magazine · 公众号排版预览</title>
+<style>
+  body{margin:0;background:#eef0f2;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;-webkit-text-size-adjust:100%;}
+  .gzh-toolbar{position:fixed;top:0;left:0;right:0;height:54px;background:#ffffff;box-shadow:0 1px 10px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:99;}
+  .gzh-hint{font-size:13px;color:#6b7280;line-height:1.4;}
+  .gzh-hint b{color:#111827;}
+  .gzh-copy{background:#059669;color:#fff;border:0;border-radius:9px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(5,150,105,.28);white-space:nowrap;transition:transform .08s,background .15s;}
+  .gzh-copy:hover{background:#047857;}
+  .gzh-copy:active{transform:translateY(1px);}
+  .gzh-toast{position:fixed;top:66px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s;z-index:100;box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:88vw;text-align:center;}
+  .gzh-toast.show{opacity:1;}
+  .gzh-stage{max-width:700px;margin:78px auto 64px;padding:0 8px;}
+  @media(max-width:520px){.gzh-hint{max-width:150px;}}
+</style>
+</head>
+<body>
+<div class="gzh-toolbar">
+  <span class="gzh-hint">👇 下方是排版效果 · 点右侧 <b>复制</b> 直接粘到公众号</span>
+  <button class="gzh-copy" id="gzhCopyBtn" onclick="gzhCopy()">📋 复制到公众号</button>
+</div>
+<div class="gzh-toast" id="gzhToast"></div>
+<div class="gzh-stage">
+  <div id="gzh-content">
+<section style="max-width:677px;margin:0 auto;background:#FDFBF9;padding:44px 28px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1D2A2D;font-size:18px;line-height:2;overflow-x:hidden;">
+
+  <!-- 1. 栏目标签 -->
+  <section style="margin-bottom:20px;background-color:#FDFBF9;">
+    <span style="font-size:12px;font-weight:bold;letter-spacing:4px;color:#B24935;"><span leaf="">深度 · DEEP DIVE</span></span>
+    <section style="margin-top:10px;border-bottom:1px solid rgba(29,42,45,.15);font-size:0;line-height:0;"><span leaf=""><br></span></section>
+  </section>
+
+  <!-- 2. 特稿标题 -->
+  <section style="margin-bottom:36px;background-color:#FDFBF9;">
+    <p style="margin:0 0 14px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:31px;font-weight:900;color:#1D2A2D;line-height:1.55;word-break:normal;overflow-wrap:normal;">
+      <span leaf="">一个县城女孩的</span><br>
+      <span leaf="">AI 自学笔记</span>
+    </p>
+    <p style="margin:0 0 6px;font-size:16px;color:#2C4249;line-height:1.9;"><span leaf="">没有名校光环，没有大厂背景，她用 14 个月把自己变成了公司离不开的人</span></p>
+    <p style="margin:0;font-size:13px;color:#3A4E54;letter-spacing:1px;"><span leaf="">文 / 茉灵智库 · 约 4200 字 · 阅读 11 分钟</span></p>
+  </section>
+
+  <!-- 3. 斜体导语 -->
+  <section style="margin-bottom:40px;background-color:#FDFBF9;">
+    <p style="margin:0;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:17px;line-height:2;color:#1D3A42;text-align:justify;">
+      <span leaf="">「这是我今年听过最野的一张成长路径：白天在县城超市理货，晚上跟着开源文档学 Agent。14 个月后，她给三家创业公司做自动化顾问。」</span>
+    </p>
+  </section>
+
+  <!-- 4. 章节一 -->
+  <section style="margin-bottom:48px;background-color:#FDFBF9;">
+    <section style="margin-bottom:14px;overflow:visible;">
+      <span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:60px;font-weight:bold;color:rgba(21,105,124,0.08);line-height:1;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Origin</span></span>
+    </section>
+    <section style="margin-bottom:8px;">
+      <span style="font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:26px;font-weight:900;color:#1D2A2D;"><span leaf="">起点：超市货架与开源文档</span></span>
+    </section>
+    <section style="margin-bottom:20px;">
+      <span style="display:inline-block;width:52px;height:5px;background:#F5CDB4;border-radius:3px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+    </section>
+    <p style="margin:0 0 20px;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;">
+      <span leaf="">她第一次听说 Agent 是在超市的夜班间隙。手机刷到一篇教程，看完只记住一句话：</span>
+      <span style="background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;padding:0 2px;"><span leaf="">把重复的事交给 AI。</span></span>
+    </p>
+    <p style="margin:0;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;">
+      <span leaf="">那天晚上她没有收藏吃灰，而是把教程里的例子跑了一遍。第二天又跑了一遍。第三周，她在超市员工群里发了第一条「代做表格」广告——免费，只要对方愿意告诉她哪里做得不够好。</span>
+    </p>
+  </section>
+
+  <!-- 细线分隔 -->
+  <section style="margin:44px 0;border-bottom:1px solid rgba(29,42,45,.15);font-size:0;line-height:0;background-color:#FDFBF9;"><span leaf=""><br></span></section>
+
+  <!-- 5. 章节二 -->
+  <section style="margin-bottom:48px;background-color:#FDFBF9;">
+    <section style="margin-bottom:14px;overflow:visible;">
+      <span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:60px;font-weight:bold;color:rgba(21,105,124,0.08);line-height:1;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Leap</span></span>
+    </section>
+    <section style="margin-bottom:8px;">
+      <span style="font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:26px;font-weight:900;color:#1D2A2D;"><span leaf="">跳板：第一单和第一次翻车</span></span>
+    </section>
+    <section style="margin-bottom:20px;">
+      <span style="display:inline-block;width:52px;height:5px;background:#F5CDB4;border-radius:3px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+    </section>
+    <p style="margin:0 0 20px;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;">
+      <span leaf="">免费的第三个月，有人开始付费。第一单 300 块，她做了一个自动整理库存报表的流程。钱不多，但客户把流程介绍给了另一个老板——</span>
+      <span style="background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;padding:0 2px;"><span leaf="">口碑的第一次复利。</span></span>
+    </p>
+    <section style="margin:26px 0;padding:18px 20px;background:#F8E8E3;border-radius:12px;">
+      <p style="margin:0;font-size:16px;line-height:2;color:#843426;text-align:justify;"><span leaf="">⚠️ 转折：第 5 个月，她接的一单翻车了——交付的自动化流程客户完全用不起来。她复盘的结论是：技术没问题，是她没花时间理解客户的真实流程。</span></p>
+    </section>
+    <p style="margin:0;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;">
+      <span leaf="">从那以后她接单前必做一件事：去客户的工位（哪怕是线上）看一遍他们现在怎么做这件事。用她的话说，</span>
+      <span style="background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;padding:0 2px;"><span leaf="">先当一周学徒，再当顾问。</span></span>
+    </p>
+  </section>
+
+  <!-- 数据强调行 -->
+  <section style="margin:28px 0;text-align:center;background-color:#FDFBF9;">
+    <section style="margin-bottom:8px;">
+      <span style="font-family:Georgia,serif;font-size:34px;font-weight:900;color:#15697C;"><span leaf="">14</span></span>
+      <span style="font-size:14px;color:#3A4E54;"><span leaf=""> 个月自学</span></span>
+    </section>
+    <section style="margin-bottom:8px;">
+      <span style="font-family:Georgia,serif;font-size:34px;font-weight:900;color:#15697C;"><span leaf="">3</span></span>
+      <span style="font-size:14px;color:#3A4E54;"><span leaf=""> 家付费客户</span></span>
+    </section>
+    <section>
+      <span style="font-family:Georgia,serif;font-size:34px;font-weight:900;color:#15697C;"><span leaf="">0</span></span>
+      <span style="font-size:14px;color:#3A4E54;"><span leaf=""> 元报班费用</span></span>
+    </section>
+  </section>
+
+  <!-- 细线分隔 -->
+  <section style="margin:44px 0;border-bottom:1px solid rgba(29,42,45,.15);font-size:0;line-height:0;background-color:#FDFBF9;"><span leaf=""><br></span></section>
+
+  <!-- 6. 章节三 -->
+  <section style="margin-bottom:48px;background-color:#FDFBF9;">
+    <section style="margin-bottom:14px;overflow:visible;">
+      <span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:60px;font-weight:bold;color:rgba(21,105,124,0.08);line-height:1;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Now</span></span>
+    </section>
+    <section style="margin-bottom:8px;">
+      <span style="font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:26px;font-weight:900;color:#1D2A2D;"><span leaf="">现在：她不再是「被定义的人」</span></span>
+    </section>
+    <section style="margin-bottom:20px;">
+      <span style="display:inline-block;width:52px;height:5px;background:#F5CDB4;border-radius:3px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+    </section>
+    <p style="margin:0 0 20px;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;">
+      <span leaf="">我问她现在的状态和 14 个月前最大的区别。她想了想，说以前别人介绍她是「超市那个小姑娘」，现在介绍她是「做 AI 的」。</span>
+    </p>
+    <section style="margin:26px 0;padding:6px 0 6px 20px;border-left:3px solid #15697C;">
+      <p style="margin:0 0 6px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-style:italic;font-size:17px;line-height:2;color:#0C4552;"><span leaf="">「别人问我怕不怕被 AI 取代。我说我是那个学会用 AI 的人，怕什么？」</span></p>
+      <p style="margin:0;font-size:13px;color:#3A4E54;"><span leaf="">—— 受访者小鹿，自动化顾问</span></p>
+    </section>
+    <p style="margin:0;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;">
+      <span leaf="">她的下一个目标，是把这 14 个月的笔记整理成一本开源手册，写给和她一样起点的人。理由朴素得像她做过的每一个流程：</span>
+      <span style="background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;padding:0 2px;"><span leaf="">标记一个坑，少踩一次。</span></span>
+    </p>
+  </section>
+
+  <!-- 7. 结尾金句 -->
+  <section style="text-align:center;margin:44px 0 30px;background-color:#FDFBF9;">
+    <p style="margin:0 0 14px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:21px;font-weight:900;line-height:1.85;color:#1D2A2D;">
+      <span leaf="">gap 不吓人，</span><br>
+      <span leaf="">吓人的是拿</span><span style="color:#15697C;"><span leaf="">「没准备好」</span></span><span leaf="">当借口。</span>
+    </p>
+    <span style="display:inline-block;width:44px;height:5px;background:#15697C;border-radius:3px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+  </section>
+
+  <!-- 8. 签名档：编辑部签名条 -->
+  <section style="padding:20px 0 0;background-color:#FDFBF9;">
+    <section style="border-top:3px solid #15697C;padding-top:14px;display:flex;justify-content:space-between;align-items:baseline;">
+      <span style="font-size:15px;font-weight:900;color:#0C4552;letter-spacing:2px;"><span leaf="">茉灵智库</span></span>
+      <span style="font-size:12px;color:#15697C;"><span leaf="">点赞 · 转发 · 推荐</span></span>
+    </section>
+    <p style="margin:8px 0 0;font-size:12px;color:#2C4249;"><span leaf="">专注 AI 观察与知识干货，帮你把复杂的东西讲简单</span></p>
+  </section>
+
+</section>
+  </div>
+</div>
+<script>
+  function gzhShowToast(msg){
+    var t=document.getElementById('gzhToast');
+    t.textContent=msg;t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer=setTimeout(function(){t.classList.remove('show');},2800);
+  }
+  function gzhCopy(){
+    var el=document.getElementById('gzh-content');
+    // 选中渲染后的富文本节点并复制（等价于手动 Ctrl+A / Ctrl+C，保留全部样式）
+    var range=document.createRange();
+    range.selectNodeContents(el);
+    var sel=window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    var ok=false;
+    try{ok=document.execCommand('copy');}catch(e){ok=false;}
+    var btn=document.getElementById('gzhCopyBtn');
+    if(ok){
+      sel.removeAllRanges();
+      gzhShowToast('✅ 已复制！去公众号编辑器按 Ctrl/⌘+V 粘贴即可');
+      var old=btn.textContent;btn.textContent='✅ 已复制';
+      setTimeout(function(){btn.textContent=old;},2200);
+    }else{
+      // Keep only the article selected for the manual copy fallback.
+      gzhShowToast('⚠ 自动复制失败，正文已选中，请直接按 Ctrl/⌘+C 复制');
+    }
+  }
+</script>
+</body>
+</html>

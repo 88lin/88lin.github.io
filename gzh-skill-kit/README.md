@@ -63,28 +63,28 @@ https://github.com/88lin/gzh-skill-kit
 
 <table>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="科技钴蓝（默认） 主题预览" width="250"></a><br><sub><b>科技钴蓝（默认）</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/letter.html"><img src="assets/lf-letter.thumb.png" alt="奶咖信纸 主题预览" width="250"></a><br><sub><b>奶咖信纸</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/bento.html"><img src="assets/lf-bento.thumb.png" alt="粉彩便当盒 主题预览" width="250"></a><br><sub><b>粉彩便当盒</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="科技钴蓝（默认） 主题预览" width="250"></a><br><sub><b>科技钴蓝（默认）</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/letter.html"><img src="assets/lf-letter.thumb.png" alt="奶咖信纸 主题预览" width="250"></a><br><sub><b>奶咖信纸</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/bento.html"><img src="assets/lf-bento.thumb.png" alt="粉彩便当盒 主题预览" width="250"></a><br><sub><b>粉彩便当盒</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/chat.html"><img src="assets/lf-chat.thumb.png" alt="薄荷对话 主题预览" width="250"></a><br><sub><b>薄荷对话</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="孔雀蓝杂志 主题预览" width="250"></a><br><sub><b>孔雀蓝杂志</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/journal.html"><img src="assets/lf-journal.thumb.png" alt="珊瑚手账 主题预览" width="250"></a><br><sub><b>珊瑚手账</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/chat.html"><img src="assets/lf-chat.thumb.png" alt="薄荷对话 主题预览" width="250"></a><br><sub><b>薄荷对话</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="孔雀蓝杂志 主题预览" width="250"></a><br><sub><b>孔雀蓝杂志</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/journal.html"><img src="assets/lf-journal.thumb.png" alt="珊瑚手账 主题预览" width="250"></a><br><sub><b>珊瑚手账</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/daily.html"><img src="assets/lf-daily.thumb.png" alt="珊瑚日报 主题预览" width="250"></a><br><sub><b>珊瑚日报</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="摸鱼绿 主题预览" width="250"></a><br><sub><b>摸鱼绿</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/red-white.html"><img src="assets/lf-red-white.thumb.png" alt="红白色系 主题预览" width="250"></a><br><sub><b>红白色系</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/daily.html"><img src="assets/lf-daily.thumb.png" alt="珊瑚日报 主题预览" width="250"></a><br><sub><b>珊瑚日报</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="摸鱼绿 主题预览" width="250"></a><br><sub><b>摸鱼绿</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/red-white.html"><img src="assets/lf-red-white.thumb.png" alt="红白色系 主题预览" width="250"></a><br><sub><b>红白色系</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" alt="克莱因蓝 主题预览" width="250"></a><br><sub><b>克莱因蓝</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="石墨极简风 主题预览" width="250"></a><br><sub><b>石墨极简风</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/zen-whitespace.html"><img src="assets/lf-zen-whitespace.thumb.png" alt="留白禅意风 主题预览" width="250"></a><br><sub><b>留白禅意风</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" alt="克莱因蓝 主题预览" width="250"></a><br><sub><b>克莱因蓝</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="石墨极简风 主题预览" width="250"></a><br><sub><b>石墨极简风</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/zen-whitespace.html"><img src="assets/lf-zen-whitespace.thumb.png" alt="留白禅意风 主题预览" width="250"></a><br><sub><b>留白禅意风</b></sub></td>
 </tr>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/moyu-ticket.html"><img src="assets/lf-moyu-ticket.thumb.png" alt="摸鱼票据风 主题预览" width="250"></a><br><sub><b>摸鱼票据风</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/olive-journal.html"><img src="assets/lf-olive-journal.thumb.png" alt="橄榄手记 主题预览" width="250"></a><br><sub><b>橄榄手记</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-ticket.html"><img src="assets/lf-moyu-ticket.thumb.png" alt="摸鱼票据风 主题预览" width="250"></a><br><sub><b>摸鱼票据风</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/olive-journal.html"><img src="assets/lf-olive-journal.thumb.png" alt="橄榄手记 主题预览" width="250"></a><br><sub><b>橄榄手记</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/gallery/index.html"><b>全部 14 套<br>在线交互预览 ↗</b></a></td>
 </tr>
 </table>
