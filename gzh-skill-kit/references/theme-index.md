@@ -18,6 +18,7 @@
 | 橄榄手记 | `#1e1f23` 墨黑（配橙 `#ed7b2f`） | 内刊手记、深度评测、案例复盘、系统性说明文档（编辑部内刊质感，分节形式多样，信息密度偏高） | `references/theme-olive-journal.md` | `border-bottom:2px solid #ed7b2f;font-weight:600;` |
 | 奶咖信纸 Letter | `#2B7FD8`/`#F4D758`/`#E84A5F` 三色 | 叙事长文、观点、方法论、年度总结（奶白信纸底、中轴衬线标题、荧光笔点睛、三色装饰条分段，无卡片堆砌） | `references/theme-letter.md` | `background:linear-gradient(transparent 60%, #F4D758 60%);font-weight:bold;` |
 | 粉彩便当盒 Bento | `#7C3AED` 粉彩紫 | 工具测评、清单、干货合集（粉彩浅底马卡龙卡五色轮转、等宽眉标编号、奶油黄金句卡，无深色实底） | `references/theme-bento.md` | `background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;` |
+| 莓果信笺 | `#B9345A` 莓果红 | 读书笔记、观点长文、人文随笔（宋体与蝴蝶结手账；斜体大编号、12px 圆角摘录与便签、行楷落款，纯文字强调） | `references/theme-berry-letter.md` | `font-weight:700;color:#B9345A;` |
 | 薄荷对话 Chat | `#059669` 薄荷 | AI 访谈实录、问答教程、案例复盘（浅绿/薄荷气泡问答推进、不对称圆角、奶油黄要点卡收束） | `references/theme-chat.md` | `background:linear-gradient(transparent 60%, #F4D793 60%);font-weight:bold;` |
 | 孔雀蓝杂志 Magazine | `#15697C` 孔雀蓝 | 人物故事、行业观察、深度特稿（左对齐编辑排版、超大斜体装饰词、引语卡、数据强调行） | `references/theme-magazine.md` | `background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;` |
 | 珊瑚手账 Journal | `#C33D46` 珊瑚红 | 读书笔记、随笔、好物清单（纸感底、胶带贴纸、虚线批注框、书卡+深底摘录卡，珊瑚红+蜜杏+松绿） | `references/theme-journal.md` | `background:linear-gradient(transparent 60%, #EFCE9A 60%);font-weight:bold;` |

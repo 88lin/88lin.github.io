@@ -289,7 +289,7 @@ gzh-skill-kit/
 ├── assets/
 │   ├── sample-article.md          # 试排文章
 │   └── preview-template.html      # 复制预览外壳
-└── docs/gallery/                  # 14 套主题长文示例
+└── docs/gallery/                  # 15 套主题长文示例
 ```
 
 想贡献主题、修复问题或补充教程，请阅读 [贡献指南](../CONTRIBUTING.md) 和 [评估用例](../references/eval-cases.md)。反馈排版问题时，可提供脱敏的输入片段、主题名、校验输出和问题截图，便于复现。
