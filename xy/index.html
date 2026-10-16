@@ -20,39 +20,44 @@
     <!-- 图标 -->
     <link rel="icon" href="/favicon.svg" />
 
+    <!-- 字体：Noto Sans SC（真实字重，避免微软雅黑假加粗）+ JetBrains Mono（数字） -->
+    <link rel="preconnect" href="https://fonts.loli.net" crossorigin>
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=JetBrains+Mono:wght@500;700;800&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+
     <!-- 提高国内加载速度 -->
     <meta http-equiv="Cache-Control" content="max-age=86400" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+    <!-- 移动端浏览器地址栏配色 -->
+    <meta name="theme-color" content="#fbf3e0" />
+
     <script async src="https://019b9894-1861-76d6-9948-7ad2739a9eb8.spst2.com/ustat.js"></script>
     <style>
         /* ============================================================
-           闲鱼敏感词加密 · Xianyu Native 主题（neo-brutalism）
-           品牌色：闲鱼黄 #FFD100 + 极黑 #0a0a0a
-           关键语言：2px 黑边框 + 硬阴影 + 斜纹警示条
+           闲鱼敏感词加密 · 克制版设计
+           暖奶油纸面 + 白卡片 + 2px 描边 + 硬阴影
+           黄色纪律：仅用于主行动按钮 / 状态 pill / 品牌标 / 标题马克笔
            ============================================================ */
         :root {
-            --xy-yellow: #FFD100;
-            --xy-yellow-soft: #FFFBE6;
-            --xy-yellow-deep: #F5C400;
-            --xy-orange: #FF4500;
-            --xy-ink: #0a0a0a;
-            --xy-paper: #FAF9F6;
-            --xy-paper-warm: #F5F4EF;
-            --xy-line: #0a0a0a;
-            --xy-muted: #6B6B6B;
-            --xy-success: #16A34A;
-            --xy-danger: #DC2626;
+            --paper: #fbf3e0;
+            --card: #fffdf7;
+            --ink: #1c1815;
+            --muted: #6b5b45;
+            --line: #1c1815;
+            --yellow: #ffd100;
+            --yellow-deep: #f5be00;
+            --yellow-soft: #fff3c4;
+            --green: #8be08b;
+            --coral: #ff6b3d;
 
-            --r-lg: 20px;
-            --r-md: 10px;
-            --r-sm: 6px;
+            --font-ui: "Noto Sans SC", ui-rounded, "Arial Rounded MT Bold", "PingFang SC",
+                "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei", Inter, system-ui, sans-serif;
+            --font-mono: "JetBrains Mono", "SF Mono", ui-monospace,
+                SFMono-Regular, Menlo, Consolas, monospace;
 
-            --shadow-hard: 6px 6px 0 var(--xy-ink);
-            --shadow-hard-lg: 8px 8px 0 var(--xy-ink);
-            --shadow-hard-sm: 3px 3px 0 var(--xy-ink);
-
-            --t-fast: 0.12s ease;
+            --sh-1: 2px 3px 0 var(--line);
+            --sh-2: 4px 5px 0 var(--line);
+            --sh-3: 5px 6px 0 var(--line);
         }
 
         * {
@@ -61,630 +66,916 @@
             box-sizing: border-box;
         }
 
-        html, body { height: 100%; }
+        html {
+            scroll-behavior: smooth;
+            overflow-x: clip;
+        }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
-                "Microsoft YaHei", "Segoe UI", system-ui, sans-serif;
-            background: var(--xy-paper);
-            background-image:
-                radial-gradient(circle at 12% 8%, rgba(255, 209, 0, 0.35), transparent 40%),
-                radial-gradient(circle at 88% 92%, rgba(255, 69, 0, 0.10), transparent 45%);
+            font-family: var(--font-ui);
+            background: var(--paper);
+            color: var(--ink);
+            font-size: 15px;
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        ::selection {
+            background: var(--yellow);
+            color: var(--ink);
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border: 2px solid var(--paper);
+            border-radius: 999px;
+            background: var(--ink);
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--paper);
+        }
+
+        a { color: inherit; }
+
+        a:focus-visible {
+            outline: 3px solid var(--yellow);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        section[id] {
+            scroll-margin-top: 104px;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            flex: 0 0 auto;
+            stroke-width: 2.2;
+        }
+
+        /* ============================================================
+           顶部导航
+           ============================================================ */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            width: min(100% - 28px, 860px);
+            margin-inline: auto;
+            padding-top: 16px;
+        }
+
+        .nav-inner {
             display: flex;
+            min-height: 60px;
             align-items: center;
-            justify-content: center;
-            padding: 28px 16px;
-            color: var(--xy-ink);
-        }
-
-        .app-shell {
-            width: 100%;
-            max-width: 940px;
-        }
-
-        .container {
-            background: #ffffff;
-            border: 2px solid var(--xy-ink);
-            border-radius: var(--r-lg);
-            box-shadow: var(--shadow-hard-lg);
-            overflow: hidden;
-            animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-        }
-
-        /* -------- Header -------- */
-        .header {
-            position: relative;
-            padding: 22px 26px 18px;
-            background: var(--xy-yellow);
-            color: var(--xy-ink);
-            border-bottom: 2px solid var(--xy-ink);
-        }
-
-        /* 警示斜纹分隔条 */
-        .header::after {
-            content: "";
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            height: 8px;
-            background: repeating-linear-gradient(
-                45deg,
-                var(--xy-ink) 0,
-                var(--xy-ink) 6px,
-                var(--xy-yellow) 6px,
-                var(--xy-yellow) 12px
-            );
-            z-index: 1;
-        }
-
-        .header-inner { position: relative; z-index: 2; }
-
-        .header-topline {
-            display: flex;
-            align-items: flex-start;
             justify-content: space-between;
             gap: 14px;
-            margin-bottom: 12px;
+            padding: 8px 10px 8px 12px;
+            border: 2px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255, 253, 247, 0.9);
+            box-shadow: var(--sh-2);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
         }
 
-        .logo-wrap {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            min-width: 0;
-        }
-
-        .logo-badge {
-            width: 46px;
-            height: 46px;
-            border-radius: 12px;
-            border: 2px solid var(--xy-ink);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            font-weight: 900;
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
-            box-shadow: var(--shadow-hard-sm);
-            transform: rotate(-4deg);
-            flex-shrink: 0;
-            line-height: 1;
-        }
-
-        .header h1 {
-            font-size: 24px;
-            font-weight: 900;
-            letter-spacing: -0.01em;
-            line-height: 1.15;
-            color: var(--xy-ink);
-            margin-bottom: 2px;
-        }
-
-        .header p {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--xy-ink);
-            opacity: 0.72;
-        }
-
-        .tagline {
-            padding: 7px 12px;
-            border-radius: var(--r-sm);
-            border: 2px solid var(--xy-yellow);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 0.05em;
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
-            white-space: nowrap;
-            transform: rotate(2deg);
-            box-shadow: 0 0 0 2px var(--xy-ink);
-            flex-shrink: 0;
-            text-transform: none;
-        }
-
-        .header-meta {
-            margin-top: 10px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            font-size: 11px;
-        }
-
-        .header-pill {
+        .brand {
             display: inline-flex;
+            min-width: 0;
             align-items: center;
-            gap: 6px;
-            padding: 4px 10px;
-            border-radius: 999px;
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
-            border: none;
+            gap: 10px;
+            font-size: 17px;
             font-weight: 700;
-            font-size: 11px;
-        }
-        .header-pill:nth-child(2) {
-            background: transparent;
-            color: var(--xy-ink);
-            border: 1.5px solid var(--xy-ink);
+            letter-spacing: 0;
+            text-decoration: none;
         }
 
-        .header-pill-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #22c55e;
-            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.35);
+        .brand-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 2px solid var(--line);
+            border-radius: 11px;
+            background: var(--yellow);
+            box-shadow: var(--sh-1);
+            color: var(--ink);
+            font: 800 16px var(--font-mono);
+            transform: rotate(-4deg);
+            transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        /* -------- Content -------- */
-        .content {
-            padding: 28px 26px 8px;
-            background: #ffffff;
+        .brand:hover .brand-mark {
+            transform: rotate(4deg) scale(1.06);
         }
 
-        .section { margin-bottom: 22px; }
+        .nav-links {
+            display: flex;
+            gap: 2px;
+            margin-inline: auto;
+        }
 
-        .section-title {
+        .nav-links a {
+            padding: 8px 12px;
+            border-radius: 8px;
             font-size: 14px;
-            font-weight: 800;
-            color: var(--xy-ink);
-            margin-bottom: 10px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.14s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--yellow-soft);
+        }
+
+        .nav-actions {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .section-title::before {
-            content: counter(step, upper-alpha);
-            counter-increment: step;
-            background: var(--xy-yellow);
-            color: var(--xy-ink);
-            padding: 2px 8px;
-            border-radius: var(--r-sm);
-            font-size: 11px;
-            font-weight: 900;
-            border: 1.5px solid var(--xy-ink);
-            min-width: 22px;
-            text-align: center;
-            line-height: 1.4;
+        .status-pill {
+            display: inline-flex;
+            min-height: 30px;
+            align-items: center;
+            gap: 7px;
+            padding: 0 11px;
+            border: 2px solid var(--line);
+            border-radius: 999px;
+            background: var(--yellow);
+            box-shadow: var(--sh-1);
+            font: 700 11px var(--font-ui);
+            letter-spacing: 0.02em;
+            white-space: nowrap;
         }
 
-        body { counter-reset: step; }
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--ink);
+            animation: pulse-dot 1.6s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            50% { opacity: 0.3; }
+        }
+
+        /* ============================================================
+           页面骨架
+           ============================================================ */
+        .page {
+            width: min(100% - 28px, 860px);
+            margin-inline: auto;
+            padding: 44px 0 20px;
+        }
+
+        /* ----  Hero  ---- */
+        .hero {
+            position: relative;
+            text-align: center;
+            padding-bottom: 34px;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -90px -10% auto;
+            height: 340px;
+            background: radial-gradient(50% 50% at 50% 40%,
+                rgba(255, 209, 0, 0.14) 0, rgba(255, 209, 0, 0.04) 55%, transparent 75%);
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--muted);
+            font-size: 12.5px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+        }
+
+        .eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--yellow);
+            box-shadow: 0 0 0 3px rgba(255, 209, 0, 0.25);
+        }
+
+        .hero h1 {
+            position: relative;
+            margin-top: 14px;
+            font-size: clamp(32px, 5.4vw, 46px);
+            font-weight: 900;
+            line-height: 1.22;
+            letter-spacing: 0.01em;
+        }
+
+        .hero h1 .hl {
+            background: linear-gradient(transparent 64%, var(--yellow) 64%, var(--yellow) 94%, transparent 94%);
+            padding: 0 2px;
+        }
+
+        .lede {
+            position: relative;
+            max-width: 540px;
+            margin: 15px auto 0;
+            color: var(--muted);
+            font-size: 15px;
+            font-weight: 500;
+            line-height: 1.85;
+        }
+
+        .lede strong {
+            color: var(--ink);
+            font-weight: 700;
+        }
+
+        /* ----  工具台  ---- */
+        .workbench {
+            border: 2px solid var(--line);
+            border-radius: 16px;
+            background: var(--card);
+            box-shadow: var(--sh-3);
+        }
+
+        .wb-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+            gap: 0;
+        }
+
+        .panel {
+            min-width: 0;
+            padding: 20px;
+        }
+
+        .panel + .panel {
+            border-left: 2px solid var(--line);
+        }
+
+        .panel-head {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 13px;
+        }
+
+        .panel-num {
+            display: grid;
+            width: 26px;
+            height: 26px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 2px solid var(--line);
+            border-radius: 8px;
+            background: var(--yellow);
+            font: 900 11px var(--font-mono);
+        }
+
+        .panel-num.n2 {
+            background: var(--card);
+        }
+
+        .panel-head h2 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .live-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
+            padding: 3px 9px;
+            border: 1.5px solid var(--line);
+            border-radius: 999px;
+            background: var(--card);
+            color: var(--muted);
+            font: 500 10.5px var(--font-ui);
+            letter-spacing: 0.02em;
+        }
+
+        .live-badge .live-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse-dot 1.6s ease-in-out infinite;
+        }
 
         textarea {
             width: 100%;
-            border-radius: var(--r-md);
-            padding: 14px 16px;
-            font-size: 14px;
-            line-height: 1.6;
-            font-family: "SF Mono", "JetBrains Mono", Consolas, Monaco, ui-monospace, monospace;
+            min-height: 128px;
+            padding: 13px 15px;
+            border: 2px solid var(--line);
+            border-radius: 11px;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.7;
             resize: vertical;
-            min-height: 100px;
-            border: 2px solid var(--xy-ink);
-            background: var(--xy-paper);
-            color: var(--xy-ink);
-            transition: background var(--t-fast),
-                        box-shadow var(--t-fast),
-                        transform var(--t-fast);
             white-space: pre-wrap;
             word-break: break-all;
+            transition: background 0.14s ease, box-shadow 0.14s ease, transform 0.14s ease;
         }
 
         textarea::placeholder {
-            color: #9b9b9b;
-            font-weight: 500;
+            color: #786b54;
         }
 
         textarea:focus {
             outline: none;
-            background: var(--xy-yellow-soft);
-            box-shadow: 4px 4px 0 var(--xy-yellow);
+            background: #ffffff;
+            box-shadow: 3px 3px 0 var(--yellow);
             transform: translate(-1px, -1px);
         }
 
         textarea[readonly] {
-            background: var(--xy-paper-warm);
-            color: var(--xy-ink);
+            background: var(--paper);
             cursor: default;
         }
 
         textarea[readonly]:focus {
-            transform: none;
-            background: var(--xy-paper-warm);
+            background: var(--paper);
             box-shadow: none;
+            transform: none;
         }
 
-        /* -------- Buttons -------- */
-        .controls {
+        /* ----  按钮  ---- */
+        .panel-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 14px;
+            gap: 9px;
+            margin-top: 13px;
         }
 
-        button {
-            padding: 10px 18px;
-            border-radius: var(--r-sm);
-            font-size: 13px;
-            font-weight: 800;
-            cursor: pointer;
+        .btn {
             display: inline-flex;
+            min-height: 42px;
             align-items: center;
             justify-content: center;
-            gap: 6px;
-            appearance: none;
-            outline: none;
-            border: 2px solid var(--xy-ink);
-            background: #ffffff;
-            color: var(--xy-ink);
-            box-shadow: var(--shadow-hard-sm);
-            transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
-            white-space: nowrap;
-            letter-spacing: 0.02em;
+            gap: 7px;
+            padding: 9px 16px;
+            border: 2px solid var(--line);
+            border-radius: 9px;
+            background: var(--card);
+            color: var(--ink);
+            font-family: var(--font-ui);
+            font-size: 13.5px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--sh-1);
+            transition: transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease;
         }
 
-        button:hover {
-            transform: translate(-1px, -1px);
-            box-shadow: 4px 4px 0 var(--xy-ink);
+        .btn:hover {
+            box-shadow: 4px 5px 0 var(--line);
+            transform: translate(-1px, -2px);
         }
 
-        button:active {
-            transform: translate(2px, 2px);
-            box-shadow: 1px 1px 0 var(--xy-ink);
+        .btn:active {
+            box-shadow: 0 0 0 var(--line);
+            transform: translate(2px, 3px);
         }
 
-        button:focus-visible {
-            outline: 3px solid var(--xy-yellow);
+        .btn:focus-visible {
+            outline: 3px solid var(--yellow);
             outline-offset: 2px;
         }
 
         .btn-primary {
-            background: var(--xy-yellow);
-            color: var(--xy-ink);
+            background: var(--yellow);
         }
-        .btn-primary:hover { background: var(--xy-yellow-deep); }
 
-        .btn-secondary {
-            background: #ffffff;
-            color: var(--xy-ink);
+        .btn-primary:hover {
+            background: var(--yellow-deep);
         }
-        .btn-secondary:hover { background: var(--xy-paper-warm); }
 
-        .btn-success {
-            background: var(--xy-orange);
-            color: #ffffff;
+        /* 复制成功的瞬时反馈态 */
+        .btn.copied,
+        .btn.copied:hover {
+            background: var(--green);
         }
-        .btn-success:hover { background: #E63E00; }
 
-        .btn-warning {
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
+        .btn-copy {
+            flex: 1 1 auto;
+            min-height: 44px;
+            font-size: 14px;
         }
-        .btn-warning:hover { background: #1f1f1f; }
 
-        /* -------- Stats -------- */
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-            margin-top: 14px;
-            padding: 12px 16px;
-            background: var(--xy-yellow-soft);
-            border-radius: var(--r-md);
-            border: 2px dashed var(--xy-ink);
-            font-size: 12px;
-            color: var(--xy-ink);
+        .btn-copy .icon {
+            width: 15px;
+            height: 15px;
+        }
+
+        .hint {
+            margin-top: 11px;
+            color: var(--muted);
+            font-size: 12.5px;
+            font-weight: 500;
+            line-height: 1.75;
+        }
+
+        .hint kbd {
+            padding: 1px 6px;
+            border: 1.5px solid var(--line);
+            border-radius: 5px;
+            background: var(--card);
+            box-shadow: 1px 1px 0 var(--line);
+            font-family: var(--font-mono);
+            font-size: 10px;
             font-weight: 700;
         }
 
-        .stat-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        /* ----  统计条（并入工具台）  ---- */
+        .wb-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 2px solid var(--line);
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            padding: 15px 20px;
+        }
+
+        .stat + .stat {
+            border-left: 2px dashed rgba(28, 24, 21, 0.28);
         }
 
         .stat-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: var(--xy-muted);
-        }
-
-        .stat-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: var(--xy-ink);
+            color: var(--muted);
+            font: 500 11.5px var(--font-ui);
+            letter-spacing: 0.02em;
         }
 
         .stat-value {
-            font-weight: 900;
-            color: var(--xy-yellow);
-            background: var(--xy-ink);
-            padding: 2px 9px;
-            border-radius: var(--r-sm);
-            font-family: "SF Mono", ui-monospace, monospace;
-            font-size: 13px;
-            min-width: 28px;
+            font: 800 28px/1.1 var(--font-mono);
+            letter-spacing: -0.02em;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* ----  示例  ---- */
+        .demo {
+            margin-top: 22px;
+            padding: 16px 20px;
+            border: 2px solid var(--line);
+            border-radius: 14px;
+            background: var(--card);
+            box-shadow: var(--sh-2);
+        }
+
+        .demo-row {
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr);
+            gap: 10px;
+            align-items: start;
+        }
+
+        .demo-row + .demo-row {
+            margin-top: 10px;
+        }
+
+        .demo-tag {
+            padding: 4px 0;
+            border: 2px solid var(--line);
+            border-radius: 7px;
+            background: var(--paper);
+            font: 700 11px var(--font-ui);
             text-align: center;
         }
 
-        .copy-hint {
-            font-size: 11px;
-            color: var(--xy-muted);
-            margin-top: 8px;
-            line-height: 1.5;
+        .demo-row .tag-out {
+            background: var(--yellow-soft);
         }
 
-        .copy-hint kbd {
-            font-size: 10px;
-            padding: 1px 5px;
-            border-radius: 4px;
-            border: 1.5px solid var(--xy-ink);
-            background: #ffffff;
-            color: var(--xy-ink);
-            box-shadow: 1px 1px 0 var(--xy-ink);
-            margin: 0 1px;
-            font-family: "SF Mono", ui-monospace, monospace;
-            font-weight: 700;
-        }
-
-        /* -------- Example block -------- */
-        .example {
-            background: var(--xy-yellow-soft);
-            border: 2px solid var(--xy-ink);
-            border-radius: var(--r-md);
-            padding: 14px 16px;
-            font-size: 13px;
-            color: var(--xy-ink);
-            margin-top: 12px;
-            box-shadow: var(--shadow-hard-sm);
-            position: relative;
-        }
-
-        .example::before {
-            content: "示例";
-            position: absolute;
-            top: -10px;
-            left: 12px;
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
-            padding: 2px 8px;
-            border-radius: var(--r-sm);
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.05em;
-        }
-
-        .example strong {
+        .demo-row code {
             display: block;
-            margin-bottom: 6px;
-            color: var(--xy-ink);
-            font-weight: 800;
-        }
-
-        .example p + p { margin-top: 4px; }
-
-        .example code {
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-family: "SF Mono", Consolas, ui-monospace, monospace;
-            word-break: break-all;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .format-verification {
-            background: #FFF4E6;
-            border: 2px solid var(--xy-ink);
-            border-radius: var(--r-md);
-            padding: 10px 14px;
-            margin-top: 12px;
+            padding: 9px 12px;
+            border: 2px dashed rgba(28, 24, 21, 0.3);
+            border-radius: 9px;
+            background: var(--paper);
+            font-family: var(--font-mono);
             font-size: 13px;
-            color: var(--xy-ink);
+            line-height: 1.65;
+            word-break: break-all;
+        }
+
+        .demo-note {
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            box-shadow: var(--shadow-hard-sm);
-            font-weight: 600;
+            gap: 8px;
+            margin-top: 13px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(28, 24, 21, 0.14);
+            color: var(--muted);
+            font-size: 12.5px;
+            font-weight: 500;
+            line-height: 1.7;
         }
 
-        .format-verification::before {
-            content: "!";
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: var(--xy-orange);
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 900;
-            flex-shrink: 0;
-            margin-top: 1px;
-            border: 1.5px solid var(--xy-ink);
+        .demo-note .icon {
+            width: 14px;
+            height: 14px;
+            margin-top: 3px;
+            color: var(--ink);
         }
 
-        /* -------- Footer -------- */
-        .footer {
-            text-align: center;
-            padding: 14px 18px;
-            background: var(--xy-ink);
-            font-size: 11px;
-            color: rgba(255, 255, 255, 0.7);
-            border-top: 2px solid var(--xy-ink);
-            font-weight: 600;
-        }
-
-        .footer span {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .footer kbd {
-            font-size: 10px;
-            padding: 1px 6px;
+        .demo-note b {
+            padding: 0 4px;
             border-radius: 4px;
-            border: 1.5px solid var(--xy-yellow);
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
-            margin: 0 2px;
-            font-family: "SF Mono", ui-monospace, monospace;
+            background: var(--yellow-soft);
+            color: var(--ink);
+            font-family: var(--font-mono);
+            font-size: 11.5px;
             font-weight: 700;
         }
 
-        /* -------- Notification -------- */
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            max-width: 280px;
-            background: var(--xy-yellow);
-            color: var(--xy-ink);
-            padding: 12px 16px;
-            border-radius: var(--r-md);
-            border: 2px solid var(--xy-ink);
-            box-shadow: var(--shadow-hard);
-            transform: translateX(360px) rotate(2deg);
-            opacity: 0;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
-                        opacity 0.25s ease-out;
-            z-index: 999;
-            font-size: 13px;
-            font-weight: 800;
+        /* ----  FAQ  ---- */
+        .faq {
+            margin-top: 56px;
+        }
+
+        .faq-title {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 0.01em;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .faq-item {
+            overflow: hidden;
+            border: 2px solid var(--line);
+            border-radius: 13px;
+            background: var(--card);
+            box-shadow: var(--sh-2);
+            transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .faq-item:hover,
+        .faq-item[open] {
+            background: #fffae8;
+            box-shadow: 4px 6px 0 var(--line);
+            transform: translate(-1px, -2px);
+        }
+
+        .faq-item summary {
             display: flex;
+            min-height: 58px;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 13px 16px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
         }
 
-        .notification.show {
-            transform: translateX(0) rotate(-1deg);
-            opacity: 1;
+        .faq-item summary::-webkit-details-marker { display: none; }
+
+        .faq-item summary:focus-visible {
+            outline: 3px solid var(--yellow);
+            outline-offset: -3px;
+            border-radius: 11px;
         }
 
-        .notification.error {
-            background: var(--xy-orange);
-            color: #ffffff;
-        }
-
-        .notification-icon {
-            width: 22px;
-            height: 22px;
+        .faq-plus {
+            display: grid;
+            width: 26px;
+            height: 26px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 2px solid var(--line);
             border-radius: 50%;
-            background: var(--xy-ink);
-            color: var(--xy-yellow);
+            background: var(--yellow);
+            transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.14s ease;
+        }
+
+        .faq-plus .icon {
+            width: 12px;
+            height: 12px;
+            stroke-width: 2.8;
+        }
+
+        .faq-item[open] .faq-plus {
+            background: var(--ink);
+            color: var(--yellow);
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-width: 640px;
+            padding: 0 16px 16px;
+            color: var(--muted);
+            font-size: 13.5px;
+            font-weight: 500;
+            line-height: 1.8;
+        }
+
+        .faq-answer code {
+            padding: 1px 6px;
+            border-radius: 5px;
+            background: var(--ink);
+            color: var(--yellow);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            word-break: break-all;
+        }
+
+        .faq-answer kbd {
+            padding: 1px 6px;
+            border: 1.5px solid var(--line);
+            border-radius: 5px;
+            background: var(--card);
+            box-shadow: 1px 1px 0 var(--line);
+            color: var(--ink);
+            font-family: var(--font-mono);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        /* ============================================================
+           页脚
+           ============================================================ */
+        .footer-wrap {
+            width: min(100% - 28px, 860px);
+            margin: 56px auto 30px;
+        }
+
+        .site-footer {
+            overflow: hidden;
+            border: 2px solid var(--line);
+            border-radius: 16px;
+            background: var(--card);
+            box-shadow: var(--sh-3);
+        }
+
+        .site-footer-main {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px 40px;
+            padding: 28px 30px 26px;
+        }
+
+        .site-footer-brand {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 900;
-            border: 2px solid var(--xy-ink);
-            flex-shrink: 0;
+            gap: 11px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-decoration: none;
         }
 
-        .notification.error .notification-icon {
-            background: #ffffff;
-            color: var(--xy-orange);
-            border-color: #ffffff;
+        .site-footer-logo {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 2px solid var(--line);
+            border-radius: 11px;
+            background: var(--yellow);
+            box-shadow: var(--sh-1);
+            font: 800 15px var(--font-mono);
+            transform: rotate(-4deg);
         }
 
-        /* -------- Animations -------- */
-        @keyframes pop-in {
-            0% { opacity: 0; transform: translateY(12px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+        .site-footer-intro p {
+            max-width: 300px;
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 12.5px;
+            font-weight: 500;
+            line-height: 1.75;
         }
+
+        .site-footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 22px;
+            padding-top: 6px;
+        }
+
+        .site-footer-links a {
+            color: var(--muted);
+            font-size: 13px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.14s ease;
+        }
+
+        .site-footer-links a:hover {
+            color: var(--ink);
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .site-footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 13px 30px 14px;
+            border-top: 2px solid var(--line);
+            background: #f7f0dd;
+            color: var(--muted);
+            font-size: 11.5px;
+            font-weight: 500;
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           通知 toast
+           ============================================================ */
+        .toast {
+            position: fixed;
+            top: 96px;
+            right: 20px;
+            z-index: 999;
+            display: flex;
+            max-width: 300px;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border: 2px solid var(--line);
+            border-radius: 12px;
+            background: var(--yellow);
+            box-shadow: var(--sh-2);
+            color: var(--ink);
+            font-size: 13.5px;
+            font-weight: 700;
+            opacity: 0;
+            transform: translateX(calc(100% + 48px));
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+                        opacity 0.25s ease-out;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast.error {
+            background: var(--coral);
+            color: var(--ink);
+        }
+
+        .toast-icon {
+            display: grid;
+            width: 22px;
+            height: 22px;
+            flex: 0 0 auto;
+            place-items: center;
+            border: 2px solid var(--line);
+            border-radius: 50%;
+            background: var(--ink);
+            color: var(--yellow);
+        }
+
+        .toast-icon .icon {
+            width: 11px;
+            height: 11px;
+            stroke-width: 3;
+        }
+
+        .toast.error .toast-icon {
+            background: var(--ink);
+            color: var(--coral);
+            border-color: var(--ink);
+        }
+
+        /* ============================================================
+           入场动画
+           ============================================================ */
+        @keyframes fade-up {
+            0% { opacity: 0; transform: translateY(16px); }
+            100% { opacity: 1; transform: none;
+            }
+        }
+
+        .fade-up {
+            animation: 0.55s cubic-bezier(0.22, 1, 0.36, 1) both fade-up;
+        }
+
+        .d1 { animation-delay: 0.06s; }
+        .d2 { animation-delay: 0.12s; }
+        .d3 { animation-delay: 0.18s; }
+        .d4 { animation-delay: 0.24s; }
+        .d5 { animation-delay: 0.3s; }
 
         @media (prefers-reduced-motion: reduce) {
             * {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
                 transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
             }
-            button:hover, textarea:focus { transform: none !important; }
+            .btn:hover, .btn:active, .faq-item:hover { transform: none !important; }
         }
 
-        /* -------- Mobile -------- */
-        @media (max-width: 640px) {
-            body {
-                align-items: stretch;
-                padding: 16px 12px;
+        /* ============================================================
+           响应式
+           ============================================================ */
+        @media (max-width: 760px) {
+            .wb-grid { grid-template-columns: 1fr; }
+            .panel + .panel {
+                border-left: 0;
+                border-top: 2px solid var(--line);
             }
+            .site-footer-main { padding: 24px 22px 22px; }
+            .site-footer-links { gap: 7px 16px; }
+        }
 
-            .container {
-                border-radius: 16px;
-                box-shadow: 5px 5px 0 var(--xy-ink);
-            }
+        @media (max-width: 680px) {
+            .nav { width: min(100% - 20px, 860px); padding-top: 12px; }
+            .nav-inner { min-height: 56px; padding: 7px 9px 7px 10px; }
+            .brand { gap: 8px; font-size: 15px; }
+            .brand-mark { width: 34px; height: 34px; font-size: 14px; }
+            .nav-links a { padding: 7px 10px; font-size: 13px; }
+            .status-pill { min-height: 28px; padding: 0 9px; font-size: 10.5px; }
 
-            .header { padding: 18px 16px 14px; }
-            .header h1 { font-size: 19px; }
-            .header p { font-size: 12px; }
+            .page { width: min(100% - 20px, 860px); padding: 30px 0 16px; }
+            .hero { padding-bottom: 28px; }
+            .lede { font-size: 14.5px; }
+            .panel { padding: 18px 16px; }
+            textarea { min-height: 120px; font-size: 15px; }
 
-            .logo-badge {
-                width: 40px;
-                height: 40px;
-                font-size: 19px;
-            }
+            .panel-actions { gap: 8px; }
+            .panel-actions .btn { flex: 1 1 calc(50% - 8px); min-height: 44px; padding: 10px 12px; font-size: 13px; }
+            .btn-copy { flex: 1 0 100%; min-height: 48px; font-size: 14.5px; }
 
-            .tagline {
-                font-size: 11px;
-                padding: 5px 10px;
-            }
+            .stat { padding: 14px 16px; }
+            .stat-value { font-size: 24px; }
+            .stat-label { font-size: 11px; }
 
-            .content { padding: 22px 16px 4px; }
+            .demo { padding: 15px 16px; }
+            .demo-row { grid-template-columns: 40px minmax(0, 1fr); }
 
-            textarea {
-                font-size: 13px;
-                min-height: 90px;
-                padding: 12px 14px;
-            }
+            .faq { margin-top: 44px; }
+            .faq-item summary { min-height: 56px; padding: 13px 15px; font-size: 14.5px; }
+            .faq-answer { padding: 0 15px 15px; }
 
-            .controls { gap: 8px; }
-
-            .controls button {
-                flex: 1 1 calc(50% - 8px);
-                padding: 10px 12px;
-                font-size: 12px;
-            }
-
-            .controls button.long {
-                flex: 1 0 100%;
-            }
-
-            .stats {
+            .footer-wrap { width: min(100% - 20px, 860px); margin: 40px auto 22px; }
+            .site-footer-main { padding: 24px 20px 22px; }
+            .site-footer-links { gap: 7px 14px; }
+            .site-footer-links a { font-size: 12.5px; }
+            .site-footer-bottom {
                 flex-direction: column;
-                gap: 10px;
+                gap: 4px;
+                padding: 12px 20px 13px;
+                text-align: center;
             }
 
-            .footer {
-                padding: 14px 12px;
-                font-size: 10px;
-            }
+            /* 手机无实体键盘，隐藏快捷键提示 */
+            .site-footer-bottom .shortcuts { display: none; }
 
-            .notification {
-                top: 12px;
+            .toast {
+                top: 82px;
                 right: 12px;
                 left: 12px;
                 max-width: none;
             }
         }
 
-        /* -------- Desktop wide -------- */
-        @media (min-width: 1024px) {
-            .content { padding: 30px 32px 8px; }
-            textarea { min-height: 120px; }
+        /* ----  小屏手机（隐藏中部链接，保留品牌与状态 pill）  ---- */
+        @media (max-width: 480px) {
+            .nav-links { display: none; }
+            .nav-actions { margin-left: auto; }
+            textarea { font-size: 16px; }
+        }
 
-            .section.large-split {
-                display: grid;
-                grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-                gap: 24px;
-                align-items: flex-start;
-            }
+        /* ----  触控设备（无实体键盘，隐藏快捷键提示与键盘相关引导）  ---- */
+        @media (hover: none) and (pointer: coarse) {
+            .site-footer-bottom .shortcuts { display: none; }
         }
     </style>
     <link rel="canonical" href="https://go.88lin.eu.org/xy/">
@@ -694,130 +985,214 @@
     <meta name="twitter:image" content="https://go.88lin.eu.org/assets/og/xy.jpg">
 </head>
 <body>
-    <div class="app-shell">
-        <div class="container">
-            <header class="header">
-                <div class="header-inner">
-                    <div class="header-topline">
-                        <div class="logo-wrap">
-                            <div class="logo-badge" aria-hidden="true">鱼</div>
-                            <div>
-                                <h1>闲鱼敏感词加密</h1>
-                                <p>本地转换 · 一键复制</p>
-                            </div>
-                        </div>
-                        <span class="tagline">茉灵 · 闲鱼工具</span>
+    <!-- ============ 顶部导航 ============ -->
+    <header class="nav">
+        <nav class="nav-inner" aria-label="主导航">
+            <a class="brand" href="#top" aria-label="茉灵智库">
+                <span class="brand-mark" aria-hidden="true">鱼</span>
+                <span>茉灵智库</span>
+            </a>
+            <div class="nav-links">
+                <a href="#tool">加密工具</a>
+                <a href="#faq">常见问题</a>
+            </div>
+            <div class="nav-actions">
+                <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>本地转换</span>
+            </div>
+        </nav>
+    </header>
+
+    <main class="page" id="top">
+        <!-- ============ Hero ============ -->
+        <section class="hero">
+            <p class="eyebrow fade-up d1">茉灵智库 · 闲鱼卖家工具</p>
+            <h1 class="fade-up d2">闲鱼敏感词<span class="hl">加密</span></h1>
+            <p class="lede fade-up d3">
+                把文字转换成 <strong>HTML 实体编码</strong>，绕过平台敏感词检测。
+                全程在浏览器本地完成，<strong>不上传、不联网、不留痕</strong>。
+            </p>
+        </section>
+
+        <!-- ============ 工具台 ============ -->
+        <section class="workbench fade-up d4" id="tool" aria-label="文本转换区域">
+            <div class="wb-grid">
+                <div class="panel">
+                    <div class="panel-head">
+                        <span class="panel-num" aria-hidden="true">01</span>
+                        <h2>输入文本</h2>
                     </div>
-                    <div class="header-meta" aria-hidden="true">
-                        <div class="header-pill">
-                            <span class="header-pill-dot"></span>
-                            在本地完成转换
-                        </div>
-                        <div class="header-pill">支持中英文 & 符号</div>
+                    <textarea
+                        id="inputText"
+                        rows="4"
+                        aria-label="待加密的输入文本"
+                        placeholder="在此输入你想在闲鱼发送的内容... 例如：你好，世界！"
+                        spellcheck="false"
+                        autocapitalize="off"
+                        autocomplete="off"
+                    ></textarea>
+                    <div class="panel-actions">
+                        <button class="btn" id="convertBtn">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                            一键加密
+                        </button>
+                        <button class="btn" id="exampleBtn">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3L12 3z"/></svg>
+                            来个示例
+                        </button>
+                        <button class="btn" id="clearBtn">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m7 21-4.3-4.3a2.4 2.4 0 0 1 0-3.4l9.6-9.6a2.4 2.4 0 0 1 3.4 0l5.6 5.6a2.4 2.4 0 0 1 0 3.4L13 21"/><path d="M22 21H7"/><path d="m5 11 9 9"/></svg>
+                            清空
+                        </button>
                     </div>
                 </div>
-            </header>
 
-            <main class="content">
-                <section class="section large-split" aria-label="文本转换区域">
-                    <div>
-                        <div class="section-title">输入文本</div>
-                        <textarea
-                            id="inputText"
-                            rows="4"
-                            placeholder="在此输入你想在闲鱼发送的内容... 例如：你好，世界！"
-                        ></textarea>
-                        <div class="controls">
-                            <button class="btn-primary" id="convertBtn">
-                                ⚡ 一键加密
-                            </button>
-                            <button class="btn-secondary" id="clearBtn">
-                                清空
-                            </button>
-                            <button class="btn-warning" id="exampleBtn">
-                                来个示例
-                            </button>
-                        </div>
+                <div class="panel">
+                    <div class="panel-head">
+                        <span class="panel-num n2" aria-hidden="true">02</span>
+                        <h2>转换结果</h2>
+                        <span class="live-badge"><span class="live-dot" aria-hidden="true"></span>实时</span>
                     </div>
-
-                    <div>
-                        <div class="section-title">转换结果</div>
-                        <textarea
-                            id="outputText"
-                            rows="4"
-                            readonly
-                            placeholder="转换结果将显示在这里..."
-                        ></textarea>
-                        <div class="controls">
-                            <button class="btn-success long" id="copyBtn">
-                                复制走 →
-                            </button>
-                            <button class="btn-secondary" id="resetBtn">
-                                重置
-                            </button>
-                        </div>
-                        <p class="copy-hint">
-                            提示：若自动复制失败，请手动选择文本并按
-                            <kbd>Ctrl</kbd> + <kbd>C</kbd>（Mac 上为
-                            <kbd>⌘</kbd> + <kbd>C</kbd>）
-                        </p>
-
-                        <div class="stats" aria-label="统计信息">
-                            <div class="stat-item">
-                                <span class="stat-label">
-                                    <span class="stat-dot"></span>
-                                    输入字符
-                                </span>
-                                <span class="stat-value" id="inputCount">0</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">
-                                    <span class="stat-dot"></span>
-                                    输出长度
-                                </span>
-                                <span class="stat-value" id="outputCount">0</span>
-                            </div>
-                            <div class="stat-item">
-                                <span class="stat-label">
-                                    <span class="stat-dot"></span>
-                                    实体数量
-                                </span>
-                                <span class="stat-value" id="entityCount">0</span>
-                            </div>
-                        </div>
+                    <textarea
+                        id="outputText"
+                        rows="4"
+                        readonly
+                        aria-label="加密后的实体编码结果"
+                        placeholder="转换结果将显示在这里..."
+                        spellcheck="false"
+                    ></textarea>
+                    <div class="panel-actions">
+                        <button class="btn btn-primary btn-copy" id="copyBtn">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="13" height="13" x="9" y="9" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            复制走
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                        </button>
+                        <button class="btn" id="resetBtn">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                            重置
+                        </button>
                     </div>
-                </section>
+                    <p class="hint">
+                        输入即自动转换。若自动复制失败，请手动选中文本按 <kbd>Ctrl</kbd>+<kbd>C</kbd>（Mac 为 <kbd>⌘</kbd>+<kbd>C</kbd>）
+                    </p>
+                </div>
+            </div>
 
-                <section class="section" aria-label="示例与格式说明">
-                    <div class="example">
-                        <strong>使用示例：</strong>
-                        <p>输入：<code>你好，商品还在吗？</code></p>
-                        <p>输出：<code id="exampleOutput"></code></p>
-                        <p style="margin-top: 6px;">
-                            正确格式示例：&#20320;&#22909;&#65292;&#21830;&#21697;&#36824;&#22312;&#21527;
-                        </p>
-                    </div>
+            <div class="wb-stats" aria-label="统计信息">
+                <div class="stat">
+                    <span class="stat-label">输入字符</span>
+                    <span class="stat-value" id="inputCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">输出长度</span>
+                    <span class="stat-value" id="outputCount">0</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">实体数量</span>
+                    <span class="stat-value" id="entityCount">0</span>
+                </div>
+            </div>
+        </section>
 
-                  
-                </section>
-            </main>
+        <!-- ============ 示例 ============ -->
+        <section class="demo fade-up d5" id="example" aria-label="转换示例">
+            <div class="demo-row">
+                <span class="demo-tag">输入</span>
+                <code>你好，商品还在吗？</code>
+            </div>
+            <div class="demo-row">
+                <span class="demo-tag tag-out">输出</span>
+                <code id="exampleOutput"></code>
+            </div>
+            <p class="demo-note">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                <span>输出格式严格为 <b>(&#数字;)+</b>：不含空格、不含中文分号，可直接粘贴到闲鱼聊天框发送。</span>
+            </p>
+        </section>
 
-            <footer class="footer">
-                <span>
-                    快捷键：
-                    <kbd>Ctrl/⌘</kbd> + <kbd>Enter</kbd> 转换 ·
-                    <kbd>Ctrl/⌘</kbd> + <kbd>K</kbd> 清除 ·
-                    <kbd>Ctrl/⌘</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> 复制
-                </span>
-            </footer>
-        </div>
+        <!-- ============ FAQ ============ -->
+        <section class="faq" id="faq" aria-label="常见问题">
+            <h2 class="faq-title">常见问题</h2>
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary>
+                        什么是 HTML 实体编码？
+                        <span class="faq-plus" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                    </summary>
+                    <p class="faq-answer">
+                        把字符转换成 <code>&#</code> + 数字 + <code>;</code> 的形式。例如「你」是 <code>&#20320;</code>，「好」是 <code>&#22909;</code>。闲鱼等平台会正常解析并显示为原文，从而避免敏感词命中。
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>
+                        转换会上传我的内容吗？
+                        <span class="faq-plus" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                    </summary>
+                    <p class="faq-answer">
+                        不会。所有转换都在你的浏览器本地完成，不发送任何网络请求，也不保存任何记录，关闭页面后内容即消失。
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>
+                        支持英文、数字和 emoji 吗？
+                        <span class="faq-plus" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                    </summary>
+                    <p class="faq-answer">
+                        支持。所有 Unicode 字符都会被转换为对应的数字实体编码，包括英文、数字、特殊符号和 emoji。
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>
+                        复制后对方看到的是编码还是文字？
+                        <span class="faq-plus" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                    </summary>
+                    <p class="faq-answer">
+                        粘贴到闲鱼聊天框发送时，平台会解析实体编码，对方看到的是正常文字。如果在不支持解析的地方粘贴，可能会显示为 <code>&#20320;</code> 形式的原文。
+                    </p>
+                </details>
+                <details class="faq-item">
+                    <summary>
+                        自动复制失败怎么办？
+                        <span class="faq-plus" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span>
+                    </summary>
+                    <p class="faq-answer">
+                        点击「复制走」后若提示失败，请手动选中右侧文本框内容，按 <kbd>Ctrl</kbd> + <kbd>C</kbd>（Mac 上为 <kbd>⌘</kbd> + <kbd>C</kbd>）复制。
+                    </p>
+                </details>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============ 页脚 ============ -->
+    <div class="footer-wrap">
+        <footer class="site-footer">
+            <div class="site-footer-main">
+                <div class="site-footer-intro">
+                    <a class="site-footer-brand" href="#top">
+                        <span class="site-footer-logo" aria-hidden="true">鱼</span>
+                        <span>茉灵智库</span>
+                    </a>
+                    <p>本地完成闲鱼敏感词加密，不上传、不联网、不留痕。</p>
+                </div>
+                <nav class="site-footer-links" aria-label="页脚导航">
+                    <a href="#tool">文本转换</a>
+                    <a href="#example">转换示例</a>
+                    <a href="#faq">常见问题</a>
+                    <a href="https://88lin.eu.org/" target="_blank" rel="noreferrer">茉灵智库 ↗</a>
+                </nav>
+            </div>
+            <div class="site-footer-bottom">
+                <p>茉灵智库 · 闲鱼卖家工具箱 · 本地转换，安全即走</p>
+                <p class="shortcuts">快捷键 Ctrl/⌘+Enter 转换 · Ctrl/⌘+K 清除 · Ctrl/⌘+Shift+C 复制</p>
+            </div>
+        </footer>
     </div>
 
-    <div id="notification" class="notification" role="status" aria-live="polite">
-        <span class="notification-icon">✓</span>
+    <div id="notification" class="toast" role="status" aria-live="polite">
+        <span class="toast-icon">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+        </span>
         <span id="notificationText">已复制到剪贴板！</span>
     </div>
-
     <script>
         "use strict";
 
@@ -868,15 +1243,15 @@
         const showNotification = (message, isError = false) => {
             const notification = document.getElementById("notification");
             const textEl = document.getElementById("notificationText");
-            const iconEl = notification.querySelector(".notification-icon");
+            const iconEl = notification.querySelector(".toast-icon");
 
             textEl.textContent = message;
             notification.classList.remove("error");
             if (isError) {
                 notification.classList.add("error");
-                iconEl.textContent = "!";
+                iconEl.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
             } else {
-                iconEl.textContent = "✓";
+                iconEl.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>';
             }
 
             notification.classList.add("show");
@@ -919,6 +1294,7 @@
 
                 if (successful) {
                     showNotification("已复制到剪贴板！");
+                    flashCopied();
                 } else {
                     showNotification(
                         "自动复制失败，请手动选择文本复制",
@@ -974,6 +1350,25 @@
 
         // 按钮事件 ------------------------------------------------------------
 
+        // 复制按钮的图标与瞬时反馈态
+        const ICON_CHECK = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+        const COPY_BTN_HTML =
+            '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="13" height="13" x="9" y="9" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>' +
+            "复制走" +
+            '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+
+        let copyFlashTimer = null;
+        const flashCopied = () => {
+            if (copyFlashTimer) return;
+            copyBtn.innerHTML = ICON_CHECK + "已复制";
+            copyBtn.classList.add("copied");
+            copyFlashTimer = window.setTimeout(() => {
+                copyBtn.innerHTML = COPY_BTN_HTML;
+                copyBtn.classList.remove("copied");
+                copyFlashTimer = null;
+            }, 1600);
+        };
+
         convertBtn.addEventListener("click", doConvert);
 
         clearBtn.addEventListener("click", () => {
@@ -1005,7 +1400,10 @@
             if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard
                     .writeText(output)
-                    .then(() => showNotification("已复制到剪贴板！"))
+                    .then(() => {
+                        showNotification("已复制到剪贴板！");
+                        flashCopied();
+                    })
                     .catch(() => fallbackCopy(output));
             } else {
                 fallbackCopy(output);
