@@ -7,22 +7,34 @@
 <title>letter · 公众号排版预览</title>
 <style>
   body{margin:0;background:#eef0f2;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;-webkit-text-size-adjust:100%;}
-  .gzh-toolbar{position:fixed;top:0;left:0;right:0;height:54px;background:#ffffff;box-shadow:0 1px 10px rgba(0,0,0,.08);display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:99;}
-  .gzh-hint{font-size:13px;color:#6b7280;line-height:1.4;}
-  .gzh-hint b{color:#111827;}
-  .gzh-copy{background:#059669;color:#fff;border:0;border-radius:9px;padding:10px 20px;font-size:14px;font-weight:700;cursor:pointer;box-shadow:0 3px 10px rgba(5,150,105,.28);white-space:nowrap;transition:transform .08s,background .15s;}
-  .gzh-copy:hover{background:#047857;}
-  .gzh-copy:active{transform:translateY(1px);}
-  .gzh-toast{position:fixed;top:66px;left:50%;transform:translateX(-50%);background:#111827;color:#fff;padding:11px 20px;border-radius:10px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .25s;z-index:100;box-shadow:0 6px 20px rgba(0,0,0,.25);max-width:88vw;text-align:center;}
-  .gzh-toast.show{opacity:1;}
-  .gzh-stage{max-width:700px;margin:78px auto 64px;padding:0 8px;}
-  @media(max-width:520px){.gzh-hint{max-width:150px;}}
+  .gzh-toolbar{position:fixed;top:0;left:0;right:0;height:58px;box-sizing:border-box;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,42,.06);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 20px;z-index:99;}
+  .gzh-hint{font-size:13px;color:#6b7280;line-height:1.5;min-width:0;}
+  .gzh-hint b{color:#111827;font-weight:600;}
+  .gzh-copy{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:44px;box-sizing:border-box;background:#07c160;color:#fff;border:0;border-radius:999px;padding:11px 22px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(7,193,96,.32);white-space:nowrap;transition:transform .12s ease,box-shadow .18s ease,background-color .18s ease;}
+  .gzh-copy svg{width:19px;height:19px;flex-shrink:0;}
+  .gzh-copy:hover{background:#06b357;box-shadow:0 6px 18px rgba(7,193,96,.4);transform:translateY(-1px);}
+  .gzh-copy:active{transform:translateY(0);box-shadow:0 2px 8px rgba(7,193,96,.28);}
+  .gzh-copy:focus-visible{outline:2px solid #07c160;outline-offset:3px;}
+  .gzh-copy .gzh-copy-done{display:none;}
+  .gzh-copy.is-copied{background:#059a4d;}
+  .gzh-copy.is-copied .gzh-copy-idle{display:none;}
+  .gzh-copy.is-copied .gzh-copy-done{display:inline-flex;align-items:center;gap:8px;}
+  .gzh-toast{position:fixed;top:74px;left:50%;transform:translate(-50%,-8px);box-sizing:border-box;width:max-content;max-width:calc(100vw - 32px);background:#111827;color:#fff;padding:11px 20px;border-radius:12px;font-size:14px;font-weight:500;line-height:1.6;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.22);text-align:center;}
+  .gzh-toast.show{opacity:1;transform:translate(-50%,0);}
+  .gzh-stage{max-width:700px;margin:84px auto 64px;padding:0 8px;}
+  @media(max-width:520px){.gzh-toolbar{padding:0 14px;gap:10px;}.gzh-hint{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}}
+  @media(prefers-reduced-motion:reduce){.gzh-copy,.gzh-toast{transition:none;}.gzh-copy:hover{transform:none;}}
 </style>
 </head>
 <body>
 <div class="gzh-toolbar">
   <span class="gzh-hint">👇 下方是排版效果 · 点右侧 <b>复制</b> 直接粘到公众号</span>
-  <button class="gzh-copy" id="gzhCopyBtn" onclick="gzhCopy()">📋 复制到公众号</button>
+  <button class="gzh-copy" id="gzhCopyBtn" type="button" onclick="gzhCopy()">
+    <svg class="gzh-copy-idle" viewBox="0 0 72 72" aria-hidden="true" focusable="false"><path fill="#fff" fill-rule="nonzero" d="M51.756 20.459c-2.588-5.322-9.135-9.878-16.548-9.879-3.89 0-9.832 1.335-14.273 6.704-2.965 3.586-3.963 7.782-3.338 11.967.429 2.875 2.03 6.668 4.322 9.068.864-6.083 4.067-10.867 8.268-14.383 7.584-5.794 15.681-5.466 21.57-3.477"/><path fill="#fff" fill-rule="nonzero" d="M57.674 29.584c-4.64-6.022-12.662-7.707-19.903-5.022.234.07.467.14.7.219 10.72 3.652 16.515 15.282 12.942 25.977a20.192 20.192 0 0 1-4.39 7.39c2.309-.64 4.673-1.555 6.701-3.117 8.165-6.292 9.772-17.892 3.95-25.447"/><path fill="#fff" fill-rule="nonzero" d="M35.188 48.822c-1.63 0-3.207-.188-4.725-.527a2.321 2.321 0 0 0-.575-.051c-.45.019-.852.174-1.229.416l-5.007 3.21c-.14.089-.275.158-.446.166a.786.786 0 0 1-.816-.754c-.008-.196.061-.394.102-.582l.886-4.02c.038-.17.068-.332.061-.506a1.58 1.58 0 0 0-.698-1.243c-5.276-3.598-8.895-9.252-9.691-15.065-1.327 2.086-2.034 3.744-2.725 6.16-2.58 9.018 3.066 19.82 12.278 22.846 10.596 3.48 20.706-.426 24.198-9.437.424-1.094.889-2.953.985-4.497-3.71 2.73-7.639 3.884-12.598 3.884"/></svg>
+    <span class="gzh-copy-idle">复制到公众号</span>
+    <svg class="gzh-copy-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.5l5 5 10-11"/></svg>
+    <span class="gzh-copy-done">已复制</span>
+  </button>
 </div>
 <div class="gzh-toast" id="gzhToast"></div>
 <div class="gzh-stage">
@@ -186,9 +198,14 @@
     if(ok){
       sel.removeAllRanges();
       gzhShowToast('✅ 已复制！去公众号编辑器按 Ctrl/⌘+V 粘贴即可');
-      var old=btn.textContent;btn.textContent='✅ 已复制';
-      setTimeout(function(){btn.textContent=old;},2200);
+      // 用 class 切换“已复制”状态，连续点击也不会出现反馈无法复原
+      btn.classList.add('is-copied');
+      clearTimeout(btn._timer);
+      btn._timer=setTimeout(function(){btn.classList.remove('is-copied');},2200);
     }else{
+      // 上一次的“已复制”状态可能还未消退，本次失败应立即退回空闲态
+      btn.classList.remove('is-copied');
+      clearTimeout(btn._timer);
       // Keep only the article selected for the manual copy fallback.
       gzhShowToast('⚠ 自动复制失败，正文已选中，请直接按 Ctrl/⌘+C 复制');
     }
