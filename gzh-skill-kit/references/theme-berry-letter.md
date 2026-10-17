@@ -12,19 +12,19 @@
 
 | 变量 | 值 | 用途 |
 |---|---|---|
-| 主色 | `#B9345A` | 莓果红标题与重点词 |
+| 主色 | `#C43A6C` | 莓果红标题与重点词 |
 | 纸色 | `#FFFFFF` | 每个内容区块自带的清透白底 |
-| 正文 | `#743449` | 主体阅读文字 |
-| 次要文字 | `#A7546E` | 图注、署名、阅读线索 |
-| 樱花粉 | `#F9E5EC` | 大字摘录、对照卡、图片外框与樱粉代码页，不能用于行内高亮 |
-| 浅粉纸色 | `#FFF6F9` | 个人信纸与浅粉代码页，不能用于行内高亮 |
-| 分隔色 | `#EBC3D1` | 封面、章节、书卡与页脚细线 |
-| 深莓色 | `#A62C50` | 大字摘录、提醒标题、行内代码与深莓强调 |
-| 樱粉线稿 | `#D76F8D` | 蝴蝶结装饰 |
-| 装饰编号 | `#DC95AD` | 70px 浅粉斜体数字，与标题分列 |
-| 装饰引号 | `#CA708C` | 70px 浅粉引号，独立排在引用正文上方 |
-| 便签描边 | `#D68BA5` / `#E0A2B7` | 1px 粉色虚线，不用于行内文字 |
-| 行楷落款 | `#B64B6C` | 原文短批注与手写落款 |
+| 正文 | `#5E2E45` | 主体阅读文字 |
+| 次要文字 | `#A85C7A` | 图注、署名、阅读线索 |
+| 樱花粉 | `#FCE7F0` | 大字摘录、对照卡、图片外框与樱粉代码页，不能用于行内高亮 |
+| 浅粉纸色 | `#FFF7FB` | 个人信纸与浅粉代码页，不能用于行内高亮 |
+| 分隔色 | `#F2C9DC` | 封面、章节、书卡与页脚细线 |
+| 深莓色 | `#A82A5E` | 大字摘录、提醒标题、行内代码与深莓强调 |
+| 樱粉线稿 | `#E07BA4` | 蝴蝶结装饰 |
+| 装饰编号 | `#E8A6C2` | 70px 浅粉斜体数字，与标题分列 |
+| 装饰引号 | `#DA89AA` | 70px 浅粉引号，独立排在引用正文上方 |
+| 便签描边 | `#ECA7C4` / `#F2BDD2` | 1px 粉色虚线，不用于行内文字 |
+| 行楷落款 | `#B8487A` | 原文短批注与手写落款 |
 | 最大宽度 | `677px` | 公众号阅读容器 |
 | 正文 | `16px / 2.1` | 33.6px 行距，长段落优先 |
 | 标题 | `32px / 23px / 19px` | 封面专属字级、章节与小节的宋体层级 |
@@ -33,7 +33,7 @@
 
 宋体字体栈：`'Noto Serif SC','Songti SC','STSong',SimSun,serif`，用于封面、章节、小节和摘录；行楷字体栈：`'STXingkai','STKaiti','KaiTi','Songti SC',serif`，用于手写落款、出处和个人信纸。正文使用苹果优先无衬线字体栈；装饰数字使用 Georgia。字体未安装时依次回退，正式正文不依赖设计预览中的额外字体文件。封面开放左对齐，章节以白底细线分隔；内容卡片统一为 12px 圆角。粉底摘录保留轻微阴影，其余组件以纸色、细边和留白区分。
 
-**关键词强调唯一值**：`font-weight:700;color:#B9345A;`。主题索引沿用“正文下划线 CSS”这一列名，本主题将原稿的下划线标记转换为纯文字强调，不绘制线条。`**`、`++`、`<u>`、`==` 同样处理，避免一段出现多套强调样式；`~~` 使用深莓色加粗，不画删除线。
+**关键词强调唯一值**：`font-weight:700;color:#C43A6C;`。主题索引沿用“正文下划线 CSS”这一列名，本主题将原稿的下划线标记转换为纯文字强调，不绘制线条。`**`、`++`、`<u>`、`==` 同样处理，避免一段出现多套强调样式；`~~` 使用深莓色加粗，不画删除线。
 
 **手账组件层次**：大编号章节用于分章，大字摘录用于原文金句，樱粉便签用于独立批注或练习，藏书摘记用于书籍信息，粉白对照用于前后观点，行楷落款用于原有短批注。粉底与白底摘录、两种便签和代码页均是同一主题内的卡片内容样式。蝴蝶结只用于扉页和结尾。用不同内容角色带出版式变化，保留原文内容、顺序与图片。
 
@@ -48,7 +48,7 @@
 整篇文章唯一外层容器。背景不承担内部区块的可读性。
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#743449;font-family:-apple-system,BlinkMacSystemFont,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif;font-size:16px;line-height:2.1;box-sizing:border-box;"><!-- 按下方骨架依次装入组件；各区块已有独立底色 --></section>
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#5E2E45;font-family:-apple-system,BlinkMacSystemFont,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif;font-size:16px;line-height:2.1;box-sizing:border-box;"><!-- 按下方骨架依次装入组件；各区块已有独立底色 --></section>
 ```
 
 ### 2. 蝴蝶结扉页（cover）
@@ -56,7 +56,7 @@
 开放白底、左对齐宋体标题与静态蝴蝶结线稿，末尾用细粉线收束。32px、500 字重是已选定主题的封面专属例外，保留原文标题与自然换行。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:37px 30px 24px;"><h1 style="margin:0;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:32px;font-weight:500;line-height:1.65;letter-spacing:-0.5px;text-wrap:balance;color:#B9345A;"><span leaf="">{{文章标题}}</span></h1><section style="display:flex;align-items:center;margin-top:25px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;line-height:1.9;color:#A7546E;flex:1;min-width:0;"><span leaf="">{{副标题或一句导读}}</span></p><section style="width:82px;flex-shrink:0;margin-left:18px;"><svg width="82" height="57" viewBox="0 0 100 68" fill="none" aria-hidden="true" style="display:block;margin:0 auto;max-width:100%;"><path d="M49 31C32 4 8 8 10 25C12 42 34 37 49 31ZM51 31C64 3 91 7 90 23C89 41 66 37 51 31Z" stroke="#D76F8D" stroke-width="1.3"/><path d="M46 30C36 38 28 48 22 58L33 56L38 63C40 47 45 37 49 32M54 30C62 40 66 52 68 63L75 56L87 59C75 44 61 35 51 32" stroke="#D76F8D" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="50" cy="31" rx="5" ry="4" stroke="#D76F8D" stroke-width="1.3"/></svg></section></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A7546E;margin-top:15px;"><span leaf="">{{作者名}}</span></p><section style="height:1px;background:#EBC3D1;margin:27px 0 0;font-size:0;line-height:0;"><span leaf=""></span><br></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:37px 30px 24px;"><h1 style="margin:0;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:32px;font-weight:500;line-height:1.65;letter-spacing:-0.5px;text-wrap:balance;color:#C43A6C;"><span leaf="">{{文章标题}}</span></h1><section style="display:flex;align-items:center;margin-top:25px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;line-height:1.9;color:#A85C7A;flex:1;min-width:0;"><span leaf="">{{副标题或一句导读}}</span></p><section style="width:82px;flex-shrink:0;margin-left:18px;"><svg width="82" height="57" viewBox="0 0 100 68" fill="none" aria-hidden="true" style="display:block;margin:0 auto;max-width:100%;"><path d="M49 31C32 4 8 8 10 25C12 42 34 37 49 31ZM51 31C64 3 91 7 90 23C89 41 66 37 51 31Z" stroke="#E07BA4" stroke-width="1.3"/><path d="M46 30C36 38 28 48 22 58L33 56L38 63C40 47 45 37 49 32M54 30C62 40 66 52 68 63L75 56L87 59C75 44 61 35 51 32" stroke="#E07BA4" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="50" cy="31" rx="5" ry="4" stroke="#E07BA4" stroke-width="1.3"/></svg></section></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A85C7A;margin-top:15px;"><span leaf="">{{作者名}}</span></p><section style="height:1px;background:#F2C9DC;margin:27px 0 0;font-size:0;line-height:0;"><span leaf=""></span><br></section></section>
 ```
 
 ### 3. 手记引言（intro）
@@ -64,7 +64,7 @@
 20px 宋体与末尾细线，承接开场原文，不重复封面副标题。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:5px;padding-bottom:22px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:20px;line-height:1.95;color:#B9345A;"><span leaf="">{{引言正文}}</span></p><section style="height:1px;background:#EBC3D1;margin:21px 0 0;font-size:0;line-height:0;"><span leaf=""></span><br></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:5px;padding-bottom:22px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:20px;line-height:1.95;color:#C43A6C;"><span leaf="">{{引言正文}}</span></p><section style="height:1px;background:#F2C9DC;margin:21px 0 0;font-size:0;line-height:0;"><span leaf=""></span><br></section></section>
 ```
 
 ### 4. 阅读线索（contents）
@@ -72,7 +72,7 @@
 封面、引言之后；精选三个核心章节，保持原有先后顺序。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:14px;padding-bottom:20px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;letter-spacing:1px;color:#A7546E;margin-bottom:10px;"><span leaf="">这一篇，一起读</span></p><section style="display:flex;padding:7px 0;"><span style="font-family:Georgia,serif;color:#B9345A;font-size:14px;width:28px;flex-shrink:0;"><span leaf="">01</span></span><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#743449;line-height:1.65;"><span leaf="">{{精选章节一}}</span></p></section><section style="display:flex;padding:7px 0;"><span style="font-family:Georgia,serif;color:#B9345A;font-size:14px;width:28px;flex-shrink:0;"><span leaf="">02</span></span><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#743449;line-height:1.65;"><span leaf="">{{精选章节二}}</span></p></section><section style="display:flex;padding:7px 0;"><span style="font-family:Georgia,serif;color:#B9345A;font-size:14px;width:28px;flex-shrink:0;"><span leaf="">03</span></span><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#743449;line-height:1.65;"><span leaf="">{{精选章节三}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:14px;padding-bottom:20px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;letter-spacing:1px;color:#A85C7A;margin-bottom:10px;"><span leaf="">这一篇，一起读</span></p><section style="display:flex;padding:7px 0;"><span style="font-family:Georgia,serif;color:#C43A6C;font-size:14px;width:28px;flex-shrink:0;"><span leaf="">01</span></span><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#5E2E45;line-height:1.65;"><span leaf="">{{精选章节一}}</span></p></section><section style="display:flex;padding:7px 0;"><span style="font-family:Georgia,serif;color:#C43A6C;font-size:14px;width:28px;flex-shrink:0;"><span leaf="">02</span></span><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#5E2E45;line-height:1.65;"><span leaf="">{{精选章节二}}</span></p></section><section style="display:flex;padding:7px 0;"><span style="font-family:Georgia,serif;color:#C43A6C;font-size:14px;width:28px;flex-shrink:0;"><span leaf="">03</span></span><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#5E2E45;line-height:1.65;"><span leaf="">{{精选章节三}}</span></p></section></section>
 ```
 
 ### 5. 大编号章节（chapter）
@@ -80,7 +80,7 @@
 对应 ##；70px Georgia 斜体编号独占 80px 宽列，与 23px、600 字重宋体标题间隔 11px。为斜体边缘留出空间，白底与末尾细线建立层级。将示例 01 换为章节顺序；保留原文标题，装饰编号设置 aria-hidden。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:31px 26px 20px;"><section style="display:flex;align-items:center;background:#FFFFFF;padding:0 0 23px;border-bottom:1px solid #EBC3D1;"><p style="margin:0 11px 0 0;width:80px;flex-shrink:0;font-family:Georgia,serif;font-size:70px;font-style:italic;font-weight:400;line-height:0.95;letter-spacing:-2px;color:#DC95AD;" aria-hidden="true"><span leaf="">01</span></p><h2 style="margin:0;flex:1;min-width:0;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;line-height:1.65;font-weight:600;color:#B9345A;text-wrap:balance;"><span leaf="">{{章节标题}}</span></h2></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:31px 26px 20px;"><section style="display:flex;align-items:center;background:#FFFFFF;padding:0 0 23px;border-bottom:1px solid #F2C9DC;"><p style="margin:0 11px 0 0;width:80px;flex-shrink:0;font-family:Georgia,serif;font-size:70px;font-style:italic;font-weight:400;line-height:0.95;letter-spacing:-2px;color:#E8A6C2;" aria-hidden="true"><span leaf="">01</span></p><h2 style="margin:0;flex:1;min-width:0;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;line-height:1.65;font-weight:600;color:#C43A6C;text-wrap:balance;"><span leaf="">{{章节标题}}</span></h2></section></section>
 ```
 
 ### 6. 宋体小节（subheading）
@@ -88,7 +88,7 @@
 对应 ###；19px 宋体、600 字重，与正文共享左边线。带说明的独立小节可换为樱粉便签。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:16px;padding-bottom:8px;"><h3 style="margin:0;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;line-height:1.8;color:#B9345A;font-weight:600;"><span leaf="">{{小节标题}}</span></h3></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:16px;padding-bottom:8px;"><h3 style="margin:0;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;line-height:1.8;color:#C43A6C;font-weight:600;"><span leaf="">{{小节标题}}</span></h3></section>
 ```
 
 ### 7. 常规正文（paragraph）
@@ -96,7 +96,7 @@
 16px 起，2.1 行高；独立白底，支持长段落。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:6px;padding-bottom:12px;"><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;text-align:justify;"><span leaf="">{{正文段落}}</span></p></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:6px;padding-bottom:12px;"><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;text-align:justify;"><span leaf="">{{正文段落}}</span></p></section>
 ```
 
 ### 8. 主色加粗（strong）
@@ -104,7 +104,7 @@
 行内组件；一篇最多五处强强调。
 
 ```html
-<span style="color:#B9345A;font-weight:700;"><span leaf="">{{重点词}}</span></span>
+<span style="color:#C43A6C;font-weight:700;"><span leaf="">{{重点词}}</span></span>
 ```
 
 ### 9. 关键词强调（underline）
@@ -112,7 +112,7 @@
 承接 ++ 或 u 标记，只用莓果红加粗；不画下划线，不加行内背景。
 
 ```html
-<span style="font-weight:700;color:#B9345A;"><span leaf="">{{关键词}}</span></span>
+<span style="font-weight:700;color:#C43A6C;"><span leaf="">{{关键词}}</span></span>
 ```
 
 ### 10. 定义强调（highlight）
@@ -120,7 +120,7 @@
 与关键词保持相同纯文字处理，不叠加高亮底色。
 
 ```html
-<span style="font-weight:700;color:#B9345A;"><span leaf="">{{高亮词}}</span></span>
+<span style="font-weight:700;color:#C43A6C;"><span leaf="">{{高亮词}}</span></span>
 ```
 
 ### 11. 深莓强调（marker）
@@ -128,7 +128,7 @@
 对应 ~~ 标记，只换深莓色和字重，不加背景或删除线。
 
 ```html
-<span style="font-weight:700;color:#A62C50;"><span leaf="">{{标记词}}</span></span>
+<span style="font-weight:700;color:#A82A5E;"><span leaf="">{{标记词}}</span></span>
 ```
 
 ### 12. 大字摘录（quote）
@@ -136,7 +136,7 @@
 樱花粉底、12px 圆角与轻微阴影；70px 装饰引号、23px 宋体引用正文和 17px 行楷出处依次排列，引用字重为 500。摘录与正文按原文顺序衔接，一篇最多两处。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:17px 22px 25px;"><section style="background:#F9E5EC;padding:22px 24px 26px;border-radius:12px;box-shadow:0 6px 16px rgba(156,59,94,0.045);"><p style="margin:3px 0 9px;font-family:Georgia,serif;font-size:70px;line-height:0.85;color:#CA708C;" aria-hidden="true"><span leaf="">“</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;font-weight:500;line-height:1.9;color:#A62C50;"><span leaf="">{{引用正文}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:17px;color:#A34765;margin-top:20px;text-align:right;"><span leaf="">{{引用出处，可删}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:17px 22px 25px;"><section style="background:#FCE7F0;padding:22px 24px 26px;border-radius:12px;box-shadow:0 6px 16px rgba(156,59,94,0.045);"><p style="margin:3px 0 9px;font-family:Georgia,serif;font-size:70px;line-height:0.85;color:#DA89AA;" aria-hidden="true"><span leaf="">“</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;font-weight:500;line-height:1.9;color:#A82A5E;"><span leaf="">{{引用正文}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:17px;color:#A34765;margin-top:20px;text-align:right;"><span leaf="">{{引用出处，可删}}</span></p></section></section>
 ```
 
 ### 13. 白纸摘录（quote-dark）
@@ -144,7 +144,7 @@
 同一主题内的白底、细粉边与 12px 圆角摘录卡，字阶沿用大字摘录；两者合计最多两处，保留 quote-dark 标识以兼容组件分类。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:17px 22px 25px;"><section style="background:#FFFFFF;padding:22px 24px 26px;border-radius:12px;border:1px solid #EBC3D1;"><p style="margin:3px 0 9px;font-family:Georgia,serif;font-size:70px;line-height:0.85;color:#CA708C;" aria-hidden="true"><span leaf="">“</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;font-weight:500;line-height:1.9;color:#B9345A;"><span leaf="">{{核心金句}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:17px;color:#A34765;margin-top:20px;text-align:right;"><span leaf="">{{出处，可删}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:17px 22px 25px;"><section style="background:#FFFFFF;padding:22px 24px 26px;border-radius:12px;border:1px solid #F2C9DC;"><p style="margin:3px 0 9px;font-family:Georgia,serif;font-size:70px;line-height:0.85;color:#DA89AA;" aria-hidden="true"><span leaf="">“</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;font-weight:500;line-height:1.9;color:#C43A6C;"><span leaf="">{{核心金句}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:17px;color:#A34765;margin-top:20px;text-align:right;"><span leaf="">{{出处，可删}}</span></p></section></section>
 ```
 
 ### 14. 樱粉便签（note）
@@ -152,7 +152,7 @@
 白底、四周 1px 粉色虚线与 12px 圆角；19px、600 字重宋体标题完整排在框内，用于练习、批注和案例说明。主题明确采用虚线风格，属于 SKILL.md 允许的主题例外；通用 lint 的 dashed WARN 可保留。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:19px 24px 22px;"><section style="background:#FFFFFF;padding:22px 21px;border:1px dashed #D68BA5;border-radius:12px;"><h3 style="margin:0 0 12px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;font-weight:600;line-height:1.7;color:#B9345A;"><span leaf="">{{批注标题}}</span></h3><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;font-size:16px;line-height:1.95;"><span leaf="">{{补充说明}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:19px 24px 22px;"><section style="background:#FFFFFF;padding:22px 21px;border:1px dashed #ECA7C4;border-radius:12px;"><h3 style="margin:0 0 12px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;font-weight:600;line-height:1.7;color:#C43A6C;"><span leaf="">{{批注标题}}</span></h3><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;font-size:16px;line-height:1.95;"><span leaf="">{{补充说明}}</span></p></section></section>
 ```
 
 ### 15. 深莓提醒（notice）
@@ -160,7 +160,7 @@
 樱粉便签的深莓色标题与浅粉描边样式，用于前提和提醒；标题排在框内，沿用 12px 圆角与四周虚线的主题例外。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:19px 24px 22px;"><section style="background:#FFFFFF;padding:22px 21px;border:1px dashed #E0A2B7;border-radius:12px;"><h3 style="margin:0 0 12px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;font-weight:600;line-height:1.7;color:#A62C50;"><span leaf="">{{提醒标题}}</span></h3><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;font-size:16px;line-height:1.95;"><span leaf="">{{注意事项}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:19px 24px 22px;"><section style="background:#FFFFFF;padding:22px 21px;border:1px dashed #F2BDD2;border-radius:12px;"><h3 style="margin:0 0 12px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;font-weight:600;line-height:1.7;color:#A82A5E;"><span leaf="">{{提醒标题}}</span></h3><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;font-size:16px;line-height:1.95;"><span leaf="">{{注意事项}}</span></p></section></section>
 ```
 
 ### 16. 条目清单（list）
@@ -168,7 +168,7 @@
 无序列表；固定的小点列与流式文本列。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:4px;"><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:22px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">·</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{条目一}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:22px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">·</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{条目二}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:22px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">·</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{条目三}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:4px;"><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:22px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">·</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{条目一}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:22px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">·</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{条目二}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:22px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">·</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{条目三}}</span></p></section></section>
 ```
 
 ### 17. 顺序清单（ordered）
@@ -176,7 +176,7 @@
 有序条目；保留原文顺序。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:4px;"><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">1</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{第一项}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">2</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{第二项}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">3</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{第三项}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:4px;"><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">1</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{第一项}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">2</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{第二项}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">3</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{第三项}}</span></p></section></section>
 ```
 
 ### 18. 待办页（checklist）
@@ -184,7 +184,7 @@
 静态待办标记，不承诺点击交互。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:4px;"><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">□</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{待办内容}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#B9345A;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">□</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;flex:1;min-width:0;"><span leaf="">{{待办内容}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:4px;"><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">□</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{待办内容}}</span></p></section><section style="display:flex;align-items:baseline;margin-bottom:11px;"><span style="width:23px;flex-shrink:0;color:#C43A6C;font-size:15px;line-height:1.9;font-family:Georgia,serif;"><span leaf="">□</span></span><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;flex:1;min-width:0;"><span leaf="">{{待办内容}}</span></p></section></section>
 ```
 
 ### 19. 页码步骤（steps）
@@ -192,7 +192,7 @@
 32px 页码与正文并排，步骤在手机上纵向阅读；不是交互式时间线。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:0;padding-bottom:10px;"><section style="display:flex;padding:20px 0;border-bottom:1px solid #EBC3D1;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:32px;color:#B9345A;width:48px;flex-shrink:0;line-height:1.3;"><span leaf="">01</span></p><section style="flex:1;min-width:0;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;font-weight:700;color:#B9345A;margin-bottom:7px;"><span leaf="">{{阶段一}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#743449;"><span leaf="">{{说明正文}}</span></p></section></section><section style="display:flex;padding:20px 0;border-bottom:1px solid #EBC3D1;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:32px;color:#B9345A;width:48px;flex-shrink:0;line-height:1.3;"><span leaf="">02</span></p><section style="flex:1;min-width:0;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;font-weight:700;color:#B9345A;margin-bottom:7px;"><span leaf="">{{阶段二}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#743449;"><span leaf="">{{说明正文}}</span></p></section></section><section style="display:flex;padding:20px 0;border-bottom:1px solid #EBC3D1;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:32px;color:#B9345A;width:48px;flex-shrink:0;line-height:1.3;"><span leaf="">03</span></p><section style="flex:1;min-width:0;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;font-weight:700;color:#B9345A;margin-bottom:7px;"><span leaf="">{{阶段三}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#743449;"><span leaf="">{{说明正文}}</span></p></section></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:0;padding-bottom:10px;"><section style="display:flex;padding:20px 0;border-bottom:1px solid #F2C9DC;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:32px;color:#C43A6C;width:48px;flex-shrink:0;line-height:1.3;"><span leaf="">01</span></p><section style="flex:1;min-width:0;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;font-weight:700;color:#C43A6C;margin-bottom:7px;"><span leaf="">{{阶段一}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#5E2E45;"><span leaf="">{{说明正文}}</span></p></section></section><section style="display:flex;padding:20px 0;border-bottom:1px solid #F2C9DC;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:32px;color:#C43A6C;width:48px;flex-shrink:0;line-height:1.3;"><span leaf="">02</span></p><section style="flex:1;min-width:0;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;font-weight:700;color:#C43A6C;margin-bottom:7px;"><span leaf="">{{阶段二}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#5E2E45;"><span leaf="">{{说明正文}}</span></p></section></section><section style="display:flex;padding:20px 0;border-bottom:1px solid #F2C9DC;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:32px;color:#C43A6C;width:48px;flex-shrink:0;line-height:1.3;"><span leaf="">03</span></p><section style="flex:1;min-width:0;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;font-weight:700;color:#C43A6C;margin-bottom:7px;"><span leaf="">{{阶段三}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#5E2E45;"><span leaf="">{{说明正文}}</span></p></section></section></section>
 ```
 
 ### 20. 粉白对照（compare）
@@ -200,7 +200,7 @@
 樱花粉与白底两张纵向对照卡，采用宋体标题、细粉边与 12px 圆角；保留前后项原文，手机上不强行并排。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="background:#F9E5EC;padding:22px;border:1px solid #EBC3D1;border-radius:12px;margin-bottom:14px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:19px;color:#B9345A;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-weight:600;margin-bottom:9px;"><span leaf="">{{前项标题}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#743449;"><span leaf="">{{前项正文}}</span></p></section><section style="background:#FFFFFF;padding:22px;border:1px solid #EBC3D1;border-radius:12px;margin-bottom:14px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:19px;color:#A62C50;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-weight:600;margin-bottom:9px;"><span leaf="">{{后项标题}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#743449;"><span leaf="">{{后项正文}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="background:#FCE7F0;padding:22px;border:1px solid #F2C9DC;border-radius:12px;margin-bottom:14px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:19px;color:#C43A6C;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-weight:600;margin-bottom:9px;"><span leaf="">{{前项标题}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#5E2E45;"><span leaf="">{{前项正文}}</span></p></section><section style="background:#FFFFFF;padding:22px;border:1px solid #F2C9DC;border-radius:12px;margin-bottom:14px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:19px;color:#A82A5E;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-weight:600;margin-bottom:9px;"><span leaf="">{{后项标题}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#5E2E45;"><span leaf="">{{后项正文}}</span></p></section></section>
 ```
 
 ### 21. 藏书摘记（book-card）
@@ -208,7 +208,7 @@
 白底细粉边、12px 圆角；23px 宋体书名、来源与读后感分层。只使用原文提供的真实书籍和观点，不补造评分。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:14px 24px 20px;"><section style="background:#FFFFFF;border:1px solid #EBC3D1;border-radius:12px;padding:24px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;color:#B9345A;font-weight:600;"><span leaf="">{{书名}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A7546E;margin-top:6px;"><span leaf="">{{作者或章节信息}}</span></p><section style="height:1px;background:#EBC3D1;margin:16px 0;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#743449;"><span leaf="">{{读后感或推荐理由}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:14px 24px 20px;"><section style="background:#FFFFFF;border:1px solid #F2C9DC;border-radius:12px;padding:24px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;color:#C43A6C;font-weight:600;"><span leaf="">{{书名}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A85C7A;margin-top:6px;"><span leaf="">{{作者或章节信息}}</span></p><section style="height:1px;background:#F2C9DC;margin:16px 0;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:16px;color:#5E2E45;"><span leaf="">{{读后感或推荐理由}}</span></p></section></section>
 ```
 
 ### 22. 写给自己的信（letter-card）
@@ -216,7 +216,7 @@
 浅粉底、12px 圆角与舒展行楷，用于作者原有的个人感想或结尾，不擅自补写文章。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:15px 24px 22px;"><section style="background:#FFF6F9;padding:24px;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:21px;color:#A62C50;margin-bottom:12px;"><span leaf="">{{手记标题}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;line-height:2;color:#743449;"><span leaf="">{{手记正文}}</span></p><section style="height:1px;background:#EBC3D1;margin:20px 0 0;font-size:0;line-height:0;"><span leaf=""></span><br></section></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:15px 24px 22px;"><section style="background:#FFF7FB;padding:24px;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:21px;color:#A82A5E;margin-bottom:12px;"><span leaf="">{{手记标题}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:19px;line-height:2;color:#5E2E45;"><span leaf="">{{手记正文}}</span></p><section style="height:1px;background:#F2C9DC;margin:20px 0 0;font-size:0;line-height:0;"><span leaf=""></span><br></section></section></section>
 ```
 
 ### 23. 画页与题记（image）
@@ -224,7 +224,7 @@
 与通用 2a 同源；图片外框采用樱花粉与 12px 圆角，相对路径按正文文件定位，图注独立。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="background:#F9E5EC;padding:8px;border-radius:12px;"><img src="{{图片URL}}" alt="{{图片说明}}" style="max-width:100%;height:auto;display:block;margin:0 auto;"></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A7546E;text-align:center;margin-top:10px;"><span leaf="">{{图片说明}}</span></p></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="background:#FCE7F0;padding:8px;border-radius:12px;"><img src="{{图片URL}}" alt="{{图片说明}}" style="max-width:100%;height:auto;display:block;margin:0 auto;"></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A85C7A;text-align:center;margin-top:10px;"><span leaf="">{{图片说明}}</span></p></section>
 ```
 
 ### 24. 待补画页（placeholder）
@@ -232,7 +232,7 @@
 素材缺失时显示明确占位，不生成失效图片链接。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="background:#F9E5EC;padding:36px 22px;text-align:center;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:20px;color:#B9345A;"><span leaf="">待补配图</span></p><section style="height:1px;background:#EBC3D1;margin:15px 30%;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;color:#A34765;"><span leaf="">{{图片、录屏或视频说明}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="background:#FCE7F0;padding:36px 22px;text-align:center;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:20px;color:#C43A6C;"><span leaf="">待补配图</span></p><section style="height:1px;background:#F2C9DC;margin:15px 30%;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;color:#A34765;"><span leaf="">{{图片、录屏或视频说明}}</span></p></section></section>
 ```
 
 ### 25. 浅粉代码页（code-dark）
@@ -240,7 +240,7 @@
 浅粉底、12px 圆角与深莓红代码文字；沿用通用代码块的每行一个 p 结构。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:12px;padding-bottom:18px;"><section style="background:#FFF6F9;padding:18px 17px;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#743449;word-break:break-all;"><span leaf="">{{代码行一}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#743449;word-break:break-all;"><span leaf="">　　{{代码行二}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:12px;padding-bottom:18px;"><section style="background:#FFF7FB;padding:18px 17px;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#5E2E45;word-break:break-all;"><span leaf="">{{代码行一}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#5E2E45;word-break:break-all;"><span leaf="">　　{{代码行二}}</span></p></section></section>
 ```
 
 ### 26. 樱粉代码页（code-light）
@@ -248,7 +248,7 @@
 樱花粉底、12px 圆角，适合短命令；等宽字体、全角缩进，语法高亮规则同通用库。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:12px;padding-bottom:18px;"><section style="background:#F9E5EC;padding:18px 17px;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#743449;word-break:break-all;"><span leaf="">{{代码行一}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#743449;word-break:break-all;"><span leaf="">　　{{代码行二}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:12px;padding-bottom:18px;"><section style="background:#FCE7F0;padding:18px 17px;border-radius:12px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#5E2E45;word-break:break-all;"><span leaf="">{{代码行一}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:13px;line-height:1.75;color:#5E2E45;word-break:break-all;"><span leaf="">　　{{代码行二}}</span></p></section></section>
 ```
 
 ### 27. 行内代码（inline-code）
@@ -256,7 +256,7 @@
 只用于真实代码或文件名，不能用等宽字体装饰普通标题。
 
 ```html
-<span style="color:#A62C50;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:14px;"><span leaf="">{{代码}}</span></span>
+<span style="color:#A82A5E;font-family:&#x27;SF Mono&#x27;,Consolas,Monaco,monospace;font-size:14px;"><span leaf="">{{代码}}</span></span>
 ```
 
 ### 28. 资料表（table）
@@ -264,7 +264,7 @@
 仅用于真实表格数据，不作为布局容器。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><table style="width:100%;border-collapse:collapse;table-layout:fixed;"><tr><th style="padding:12px 10px;border-bottom:1px solid #EBC3D1;font-size:14px;line-height:1.7;text-align:left;color:#B9345A;background:#F9E5EC;"><span leaf="">项目占位</span></th><th style="padding:12px 10px;border-bottom:1px solid #EBC3D1;font-size:14px;line-height:1.7;text-align:left;color:#B9345A;background:#F9E5EC;"><span leaf="">说明占位</span></th></tr><tr><td style="padding:12px 10px;border-bottom:1px solid #EBC3D1;font-size:14px;line-height:1.7;text-align:left;color:#743449;background:#FFFFFF;"><span leaf="">维度占位</span></td><td style="padding:12px 10px;border-bottom:1px solid #EBC3D1;font-size:14px;line-height:1.7;text-align:left;color:#743449;background:#FFFFFF;"><span leaf="">内容占位</span></td></tr><tr><td style="padding:12px 10px;border-bottom:1px solid #EBC3D1;font-size:14px;line-height:1.7;text-align:left;color:#743449;background:#FFFFFF;"><span leaf="">维度占位</span></td><td style="padding:12px 10px;border-bottom:1px solid #EBC3D1;font-size:14px;line-height:1.7;text-align:left;color:#743449;background:#FFFFFF;"><span leaf="">内容占位</span></td></tr></table></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><table style="width:100%;border-collapse:collapse;table-layout:fixed;"><tr><th style="padding:12px 10px;border-bottom:1px solid #F2C9DC;font-size:14px;line-height:1.7;text-align:left;color:#C43A6C;background:#FCE7F0;"><span leaf="">项目占位</span></th><th style="padding:12px 10px;border-bottom:1px solid #F2C9DC;font-size:14px;line-height:1.7;text-align:left;color:#C43A6C;background:#FCE7F0;"><span leaf="">说明占位</span></th></tr><tr><td style="padding:12px 10px;border-bottom:1px solid #F2C9DC;font-size:14px;line-height:1.7;text-align:left;color:#5E2E45;background:#FFFFFF;"><span leaf="">维度占位</span></td><td style="padding:12px 10px;border-bottom:1px solid #F2C9DC;font-size:14px;line-height:1.7;text-align:left;color:#5E2E45;background:#FFFFFF;"><span leaf="">内容占位</span></td></tr><tr><td style="padding:12px 10px;border-bottom:1px solid #F2C9DC;font-size:14px;line-height:1.7;text-align:left;color:#5E2E45;background:#FFFFFF;"><span leaf="">维度占位</span></td><td style="padding:12px 10px;border-bottom:1px solid #F2C9DC;font-size:14px;line-height:1.7;text-align:left;color:#5E2E45;background:#FFFFFF;"><span leaf="">内容占位</span></td></tr></table></section>
 ```
 
 ### 29. 单项数据（metric）
@@ -272,7 +272,7 @@
 数据需来自原文，未给数据时删除整个组件；不要编造指标。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="padding:20px 0;border-top:1px solid #EBC3D1;border-bottom:1px solid #EBC3D1;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:44px;color:#B9345A;"><span leaf="">{{数字}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#743449;"><span leaf="">{{指标名称}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A7546E;margin-top:7px;"><span leaf="">{{数据说明与来源}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><section style="padding:20px 0;border-top:1px solid #F2C9DC;border-bottom:1px solid #F2C9DC;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:Georgia,serif;font-size:44px;color:#C43A6C;"><span leaf="">{{数字}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#5E2E45;"><span leaf="">{{指标名称}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A85C7A;margin-top:7px;"><span leaf="">{{数据说明与来源}}</span></p></section></section>
 ```
 
 ### 30. 一问一答（faq）
@@ -280,7 +280,7 @@
 连续问题间用普通正文组件衔接，避免无限嵌套卡片。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:19px 24px 22px;"><section style="background:#FFFFFF;padding:22px 21px;border:1px dashed #D68BA5;border-radius:12px;"><h3 style="margin:0 0 12px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;font-weight:600;line-height:1.7;color:#B9345A;"><span leaf="">{{问题}}</span></h3><p style="margin:0;font-size:16px;line-height:2.1;color:#743449;font-size:16px;line-height:1.95;"><span leaf="">{{回答}}</span></p></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding:19px 24px 22px;"><section style="background:#FFFFFF;padding:22px 21px;border:1px dashed #ECA7C4;border-radius:12px;"><h3 style="margin:0 0 12px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:19px;font-weight:600;line-height:1.7;color:#C43A6C;"><span leaf="">{{问题}}</span></h3><p style="margin:0;font-size:16px;line-height:2.1;color:#5E2E45;font-size:16px;line-height:1.95;"><span leaf="">{{回答}}</span></p></section></section>
 ```
 
 ### 31. 资料页脚（references）
@@ -288,7 +288,7 @@
 与通用 4b 同源；在正文后、作者前，不输出 a href。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:15px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-weight:700;color:#B9345A;margin-bottom:12px;"><span leaf="">参考资料</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;color:#743449;"><span leaf="">[1] {{资料名称}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A7546E;word-break:break-all;"><span leaf="">{{原始URL}}</span></p></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:15px;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-weight:700;color:#C43A6C;margin-bottom:12px;"><span leaf="">参考资料</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:13px;color:#5E2E45;"><span leaf="">[1] {{资料名称}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;color:#A85C7A;word-break:break-all;"><span leaf="">{{原始URL}}</span></p></section>
 ```
 
 ### 32. 作者落款（author）
@@ -296,7 +296,7 @@
 只在末尾出现一次；原文已有署名则沿用。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:20px;padding-bottom:8px;"><section style="height:1px;background:#EBC3D1;margin:8px 0 20px;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#A7546E;line-height:1.9;"><span leaf="">我是 {{作者名}}，{{一句话简介}}</span></p></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:20px;padding-bottom:8px;"><section style="height:1px;background:#F2C9DC;margin:8px 0 20px;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-size:14px;color:#A85C7A;line-height:1.9;"><span leaf="">我是 {{作者名}}，{{一句话简介}}</span></p></section>
 ```
 
 ### 33. 合卷收尾（ending）
@@ -304,7 +304,7 @@
 23px 宋体结束语与静态蝴蝶结线稿；互动顺序固定为点赞、转发、推荐。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:20px;padding-bottom:36px;"><section style="height:1px;background:#EBC3D1;margin:4px 25% 26px;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;font-weight:400;color:#B9345A;text-align:center;"><span leaf="">{{结束语}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;letter-spacing:2px;color:#A7546E;text-align:center;margin-top:13px;"><span leaf="">点赞、转发、推荐</span></p><section style="margin-top:20px;"><svg width="82" height="57" viewBox="0 0 100 68" fill="none" aria-hidden="true" style="display:block;margin:0 auto;max-width:100%;"><path d="M49 31C32 4 8 8 10 25C12 42 34 37 49 31ZM51 31C64 3 91 7 90 23C89 41 66 37 51 31Z" stroke="#D76F8D" stroke-width="1.3"/><path d="M46 30C36 38 28 48 22 58L33 56L38 63C40 47 45 37 49 32M54 30C62 40 66 52 68 63L75 56L87 59C75 44 61 35 51 32" stroke="#D76F8D" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="50" cy="31" rx="5" ry="4" stroke="#D76F8D" stroke-width="1.3"/></svg></section></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:20px;padding-bottom:36px;"><section style="height:1px;background:#F2C9DC;margin:4px 25% 26px;font-size:0;line-height:0;"><span leaf=""></span><br></section><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;Noto Serif SC&#x27;,&#x27;Songti SC&#x27;,&#x27;STSong&#x27;,SimSun,serif;font-size:23px;font-weight:400;color:#C43A6C;text-align:center;"><span leaf="">{{结束语}}</span></p><p style="margin:0;font-size:16px;line-height:2.1;font-size:12px;letter-spacing:2px;color:#A85C7A;text-align:center;margin-top:13px;"><span leaf="">点赞、转发、推荐</span></p><section style="margin-top:20px;"><svg width="82" height="57" viewBox="0 0 100 68" fill="none" aria-hidden="true" style="display:block;margin:0 auto;max-width:100%;"><path d="M49 31C32 4 8 8 10 25C12 42 34 37 49 31ZM51 31C64 3 91 7 90 23C89 41 66 37 51 31Z" stroke="#E07BA4" stroke-width="1.3"/><path d="M46 30C36 38 28 48 22 58L33 56L38 63C40 47 45 37 49 32M54 30C62 40 66 52 68 63L75 56L87 59C75 44 61 35 51 32" stroke="#E07BA4" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/><ellipse cx="50" cy="31" rx="5" ry="4" stroke="#E07BA4" stroke-width="1.3"/></svg></section></section>
 ```
 
 ### 34. 独立重点句（statement）
@@ -312,7 +312,7 @@
 需要强强调的完整句子单独成段；仍不加底色、边框或下划线。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:22px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:18px;line-height:1.9;font-weight:700;color:#B9345A;"><span leaf="">{{重点句}}</span></p></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:22px;"><p style="margin:0;font-size:16px;line-height:2.1;font-size:18px;line-height:1.9;font-weight:700;color:#C43A6C;"><span leaf="">{{重点句}}</span></p></section>
 ```
 
 ### 35. 行楷落款（hand-note）
@@ -320,13 +320,13 @@
 20px 行楷、右对齐的短批注或落款；建议十二字以内，保持自然换行，只使用原文内容，不凭空添加作者观点。
 
 ```html
-<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:24px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:20px;line-height:1.7;color:#B64B6C;text-align:right;"><span leaf="">{{原有的手写旁注}}</span></p></section>
+<section style="background:#FFFFFF;padding:20px 26px;box-sizing:border-box;padding-top:8px;padding-bottom:24px;"><p style="margin:0;font-size:16px;line-height:2.1;font-family:&#x27;STXingkai&#x27;,&#x27;STKaiti&#x27;,&#x27;KaiTi&#x27;,&#x27;Songti SC&#x27;,serif;font-size:20px;line-height:1.7;color:#B8487A;text-align:right;"><span leaf="">{{原有的手写旁注}}</span></p></section>
 ```
 
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#743449;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:2.1;">
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#5E2E45;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:2.1;">
   <!-- 蝴蝶结扉页 cover → 手记引言 intro（原文有引言时） -->
   <!-- 阅读线索 contents（可选）：置于引言后，只选三个核心看点 -->
   <!-- 开场正文 paragraph -->

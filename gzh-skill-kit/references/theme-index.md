@@ -18,11 +18,13 @@
 | 橄榄手记 | `#1e1f23` 墨黑（配橙 `#ed7b2f`） | 内刊手记、深度评测、案例复盘、系统性说明文档（编辑部内刊质感，分节形式多样，信息密度偏高） | `references/theme-olive-journal.md` | `border-bottom:2px solid #ed7b2f;font-weight:600;` |
 | 奶咖信纸 Letter | `#2B7FD8`/`#F4D758`/`#E84A5F` 三色 | 叙事长文、观点、方法论、年度总结（奶白信纸底、中轴衬线标题、荧光笔点睛、三色装饰条分段，无卡片堆砌） | `references/theme-letter.md` | `background:linear-gradient(transparent 60%, #F4D758 60%);font-weight:bold;` |
 | 粉彩便当盒 Bento | `#7C3AED` 粉彩紫 | 工具测评、清单、干货合集（粉彩浅底马卡龙卡五色轮转、等宽眉标编号、奶油黄金句卡，无深色实底） | `references/theme-bento.md` | `background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;` |
-| 莓果信笺 | `#B9345A` 莓果红 | 读书笔记、观点长文、人文随笔（宋体与蝴蝶结手账；斜体大编号、12px 圆角摘录与便签、行楷落款，纯文字强调） | `references/theme-berry-letter.md` | `font-weight:700;color:#B9345A;` |
-| 薄荷对话 Chat | `#059669` 薄荷 | AI 访谈实录、问答教程、案例复盘（浅绿/薄荷气泡问答推进、不对称圆角、奶油黄要点卡收束） | `references/theme-chat.md` | `background:linear-gradient(transparent 60%, #F4D793 60%);font-weight:bold;` |
+| 莓果信笺 | `#C43A6C` 莓果粉 | 读书笔记、观点长文、人文随笔（宋体与蝴蝶结手账；斜体大编号、圆角摘录与便签、行楷落款，纯文字强调） | `references/theme-berry-letter.md` | `font-weight:700;color:#C43A6C;` |
+| 薄荷对话 Chat | `#10B981` 薄荷 | AI 访谈实录、问答教程、案例复盘（浅绿/薄荷气泡问答推进、不对称圆角、薰衣草要点卡收束） | `references/theme-chat.md` | `background:#FFD3E2;color:#8F1A3C;font-weight:bold;padding:1px 6px 2px;border-radius:8px;box-shadow:inset 0 -2px 0 #F089A8;white-space:nowrap;` |
 | 孔雀蓝杂志 Magazine | `#15697C` 孔雀蓝 | 人物故事、行业观察、深度特稿（左对齐编辑排版、超大斜体装饰词、引语卡、数据强调行） | `references/theme-magazine.md` | `background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;` |
-| 珊瑚手账 Journal | `#C33D46` 珊瑚红 | 读书笔记、随笔、好物清单（纸感底、胶带贴纸、虚线批注框、书卡+深底摘录卡，珊瑚红+蜜杏+松绿） | `references/theme-journal.md` | `background:linear-gradient(transparent 60%, #EFCE9A 60%);font-weight:bold;` |
+| 珊瑚手账 Journal | `#E0567C` 玫粉 | 读书笔记、随笔、好物清单（粉白纸感底、大圆角胶带贴纸、虚线批注框、书卡+浅粉摘录卡，玫粉+薰衣草+薄荷） | `references/theme-journal.md` | `background:#FFD3E2;color:#8F1A3C;font-weight:bold;padding:1px 6px 2px;border-radius:8px;box-shadow:inset 0 -2px 0 #F089A8;white-space:nowrap;` |
 | 珊瑚日报 Daily | `#C33D46` 珊瑚红 | 资讯日报、周报盘点、快讯合集（日期胶囊开场、六色马卡龙横卡流、双栏小卡、居中珊瑚红金句） | `references/theme-daily.md` | `background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;` |
+| 草莓牛奶 Strawberry Milk | `#E84D72` 草莓红（配薰衣草紫 `#B79CF0` / 天蓝 `#8FD0F5`） | 生活方式、女性成长、读书笔记、好物清单（杂志编号风：手绘草莓、68px 淡粉装饰词、衬线标题、粉色高亮块、三色装饰条、深梅面板与结尾金句） | `references/theme-strawberry-milk.md` | `background:#FFD9E6;color:#8E1836;font-weight:bold;padding:1px 4px;border-radius:4px;` |
+| 花园茶会 Garden Tea | `#8B6FD6` 薰衣草紫（配草莓粉 `#F089A8` / 天蓝 `#7FC8E8`） | 花园随笔、女性成长、读书笔记、好物清单（杂志编号风：星芒与云朵线描插画、68px 装饰词、星点清单、蝴蝶引语、深紫面板） | `references/theme-garden-tea.md` | `background:#FFD9E6;color:#9C2547;font-weight:bold;padding:1px 4px;border-radius:4px;` |
 
 ## 选择建议
 

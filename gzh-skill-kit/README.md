@@ -4,7 +4,7 @@
 
 **把文章交给 AI，一键排成好看的公众号图文 ✨**
 
-15 套精选主题 + 主题生成器 · 图片 / GIF / 代码块 · 自动整理章节与重点 · 一键复制到公众号
+17 套精选主题 + 主题生成器 · 图片 / GIF / 代码块 · 自动整理章节与重点 · 一键复制到公众号
 
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-15%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
 
@@ -48,7 +48,7 @@ https://github.com/88lin/gzh-skill-kit
 
 ## ✨ 它能帮你做什么
 
-- **🎨 选风格**：15 套现成主题，从清爽教程、杂志特稿到温暖手账；拿不准就让 AI 推荐。
+- **🎨 选风格**：17 套现成主题，从清爽教程、杂志特稿到温暖手账；拿不准就让 AI 推荐。
 - **🪄 整理版面**：自动安排章节编号、引言、目录、重点标记和作者署名。
 - **📄 接住你的稿子**：直接粘贴文章，或提供 Markdown、Word、PDF；非 Markdown 稿件先整理结构再排版。
 - **🖼️ 排好图文**：支持图片、GIF、引用、列表、表格和代码块，长文章也有清楚的阅读层次。
@@ -59,7 +59,7 @@ https://github.com/88lin/gzh-skill-kit
 
 ## 👀 先看看，文章可以排成什么样
 
-**同一篇长文，15 种不同气质。** 点击缩略图就能查看对应主题的完整文章，手机和电脑都可以看。
+**同一篇长文，17 种不同气质。** 点击缩略图就能查看对应主题的完整文章，手机和电脑都可以看。
 
 <table>
 <tr>
@@ -232,7 +232,7 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 
 ## 🗺 接下来
 
-- [x] 15 套主题与在线画廊
+- [x] 17 套主题与在线画廊
 - [x] 按描述或参考图生成自定义主题
 - [ ] 更多精选主题（[告诉我们你想要的风格](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md)）
 - [ ] 将整篇文章与配图打包导出

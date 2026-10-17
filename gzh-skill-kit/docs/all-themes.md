@@ -1,8 +1,8 @@
-# 全部 15 套主题效果预览 · All 15 Themes
+# 全部 17 套主题效果预览 · All 17 Themes
 
-同一篇长文（《做了些爆款 Skills 以后，我对 Skills 的看法》），用 15 套精选主题排版，全部含真实长图/交互预览（含配图、引言卡、编号章节、金句、名词旁注等完整组件）。
+同一篇长文（《做了些爆款 Skills 以后，我对 Skills 的看法》），用 17 套精选主题排版，全部含真实长图/交互预览（含配图、引言卡、编号章节、金句、名词旁注等完整组件）。
 
-> The same long-form article laid out in all 15 curated themes (all 15 previews below). Back to [README](../README.md).
+> The same long-form article laid out in all 17 curated themes (all 17 previews below). Back to [README](../README.md).
 
 <table>
 <tr>

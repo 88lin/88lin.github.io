@@ -4,9 +4,9 @@
 
 **Give your article to AI. Get a polished WeChat layout in return. ✨**
 
-15 curated themes + theme generator · images / GIFs / code · sections & highlights · one-click rich-text copy
+17 curated themes + theme generator · images / GIFs / code · sections & highlights · one-click rich-text copy
 
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-15%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-17%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
 
 [🚀 Start with one prompt](#quick-start) · [👀 See the results](#gallery) · [📖 Your first article](#tutorials) · [🎨 Pick a theme](#themes) · [❓ FAQ](#faq)
 
@@ -49,7 +49,7 @@ No draft ready? Send this next:
 
 ## ✨ What it helps you do
 
-- **🎨 Find a style**: 15 ready-made themes, from clear tutorials and magazine features to warm reading journals. Ask AI to recommend one if you are unsure.
+- **🎨 Find a style**: 17 ready-made themes, from clear tutorials and magazine features to warm reading journals. Ask AI to recommend one if you are unsure.
 - **🪄 Arrange the page**: section numbering, introductions, contents lists, keyword highlights, and author signatures.
 - **📄 Use the draft you have**: paste text or provide Markdown, Word, or PDF. Other formats are organized into Markdown before layout.
 - **🖼️ Bring text and images together**: images, GIFs, quotes, lists, tables, and code blocks, with a clear reading structure for long articles.
@@ -237,7 +237,7 @@ Most workflow and theme reference documents are in Chinese.
 
 ## 🗺 What's next
 
-- [x] 15 themes and a live gallery
+- [x] 17 themes and a live gallery
 - [x] Custom themes from descriptions or reference images
 - [ ] More curated themes ([suggest a style](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md))
 - [ ] Export an article and its images together as a package
