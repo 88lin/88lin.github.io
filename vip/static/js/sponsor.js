@@ -151,7 +151,7 @@
                 id: 'workbuddy',
                 name: 'WorkBuddy',
                 logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
-                url: 'https://www.workbuddy.cn/events/invite?inviteCode=w0x2ic45z',
+                url: 'https://www.workbuddy.cn/events/invite?inviteCode=1qbwl6bilsn',
                 tagline: '腾讯出品的全能 AI 工作台，说需求、执行任务、交付完整成果。可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash，Hy4 限时免费，注册送 2000 积分，每月再送 500 积分。',
                 desc: '腾讯出品的全能 AI 工作台，国内最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy4 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash 等模型。',
                 highlights: ['Hy4 模型限时免费', '注册送 2000 积分', '每月再送 500 积分'],
@@ -191,6 +191,17 @@
                 desc: '腾讯轻量云团队推出的云端 Agent 托管产品，它把 Agent 的部署、运维与 7×24 小时运行全部放在云端托管，支持跨会话记忆、连接主流聊天通道（微信、QQ、飞书、钉钉等），可自定义模型、工具、人设。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
                 highlights: ['免费体验 1 个月', '送 2核8G 云主机', '4500 AI 积分'],
                 cta: '免费体验',
+                accent: '#1e80ff'
+            },
+            {
+                id: 'huaweicloud-codearts',
+                name: '华为云码道',
+                logo: 'https://devcloud-res.hc-cdn.com/CodeArtsWorkWeb/126.8.952/hws/assets/codearts-logo-DOfpw9gr.svg',
+                url: 'https://devcloud.cn-north-4.huaweicloud.com/chat?source=dmzntgwlb&sourcead=dmzntgwlb1&invitecode=INV-DNTA8GxLcgPE0YG9w_TMcxN3sTBxtfVFhCoavbi6G7gTtjrB48iiiwWa0EIycqiKZf_kWr1qc99tdy5F-IbHZ1b0IP52wVmx-minKqai-eqJEdfQ5o3W2z9-ePtqeDbej_rFDCUJB0MPmLU',
+                tagline: '华为云官方出品的 CodeArts 代码智能体，一句话说清需求就能生成代码、定位并修复 Bug、跑通整个项目。支持 GLM-5.3、GLM-5.3-Flash、DeepSeek-V4.1-Flash，体验版免费开通，每日送 1000 万 Tokens。',
+                desc: '华为云码道（CodeArts）是华为云官方推出的 AI 代码智能体：用自然语言描述需求，即可自动生成代码、定位并修复问题、跑通构建与部署，覆盖 Web、后端、鸿蒙应用等常见开发场景。支持 GLM-5.3、GLM-5.3-Flash、DeepSeek-V4.1-Flash 等模型并随时切换；体验版套餐免费开通、无需绑卡，每日登录即领 1000 万免费 Tokens（当日有效），完成任务还能攒积分兑换开发者权益。',
+                highlights: ['GLM-5.3 / 5.3-Flash', 'DeepSeek-V4.1-Flash', '每日 1000 万Tokens', '免费开通'],
+                cta: '免费开通',
                 accent: '#1e80ff'
             },
             {
