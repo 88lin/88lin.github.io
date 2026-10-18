@@ -292,7 +292,7 @@ gzh-skill-kit/
 ├── assets/
 │   ├── sample-article.md          # Sample input
 │   └── preview-template.html      # Copy preview wrapper
-└── docs/gallery/                  # Long-form samples in all 15 themes
+└── docs/gallery/                  # Long-form samples in all 17 themes
 ```
 
 For themes, fixes, or documentation contributions, read the [contribution guide](../CONTRIBUTING.md) and [evaluation cases](../references/eval-cases.md). Most workflow and reference documents are in Chinese. A useful layout bug report includes a sanitized input excerpt, theme ID, validator output, and a screenshot.

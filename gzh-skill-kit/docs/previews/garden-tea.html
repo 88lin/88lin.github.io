@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<base href="../gallery/">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>garden-tea · 公众号排版预览</title>
+<style>
+  body{margin:0;background:#eef0f2;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;-webkit-text-size-adjust:100%;}
+  .gzh-toolbar{position:fixed;top:0;left:0;right:0;height:58px;box-sizing:border-box;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:1px solid rgba(15,23,42,.06);display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 20px;z-index:99;}
+  .gzh-hint{font-size:13px;color:#6b7280;line-height:1.5;min-width:0;}
+  .gzh-hint b{color:#111827;font-weight:600;}
+  .gzh-copy{display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;min-height:44px;box-sizing:border-box;background:#07c160;color:#fff;border:0;border-radius:999px;padding:11px 22px;font-size:14px;font-weight:600;cursor:pointer;box-shadow:0 4px 14px rgba(7,193,96,.32);white-space:nowrap;transition:transform .12s ease,box-shadow .18s ease,background-color .18s ease;}
+  .gzh-copy svg{width:19px;height:19px;flex-shrink:0;}
+  .gzh-copy:hover{background:#06b357;box-shadow:0 6px 18px rgba(7,193,96,.4);transform:translateY(-1px);}
+  .gzh-copy:active{transform:translateY(0);box-shadow:0 2px 8px rgba(7,193,96,.28);}
+  .gzh-copy:focus-visible{outline:2px solid #07c160;outline-offset:3px;}
+  .gzh-copy .gzh-copy-done{display:none;}
+  .gzh-copy.is-copied{background:#059a4d;}
+  .gzh-copy.is-copied .gzh-copy-idle{display:none;}
+  .gzh-copy.is-copied .gzh-copy-done{display:inline-flex;align-items:center;gap:8px;}
+  .gzh-toast{position:fixed;top:74px;left:50%;transform:translate(-50%,-8px);box-sizing:border-box;width:max-content;max-width:calc(100vw - 32px);background:#111827;color:#fff;padding:11px 20px;border-radius:12px;font-size:14px;font-weight:500;line-height:1.6;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.22);text-align:center;}
+  .gzh-toast.show{opacity:1;transform:translate(-50%,0);}
+  .gzh-stage{max-width:700px;margin:84px auto 64px;padding:0 8px;}
+  @media(max-width:520px){.gzh-toolbar{padding:0 14px;gap:10px;}.gzh-hint{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}}
+  @media(prefers-reduced-motion:reduce){.gzh-copy,.gzh-toast{transition:none;}.gzh-copy:hover{transform:none;}}
+</style>
+</head>
+<body>
+<div class="gzh-toolbar">
+  <span class="gzh-hint">👇 下方是排版效果 · 点右侧 <b>复制</b> 直接粘到公众号</span>
+  <button class="gzh-copy" id="gzhCopyBtn" type="button" onclick="gzhCopy()">
+    <svg class="gzh-copy-idle" viewBox="0 0 72 72" aria-hidden="true" focusable="false"><path fill="#fff" fill-rule="nonzero" d="M51.756 20.459c-2.588-5.322-9.135-9.878-16.548-9.879-3.89 0-9.832 1.335-14.273 6.704-2.965 3.586-3.963 7.782-3.338 11.967.429 2.875 2.03 6.668 4.322 9.068.864-6.083 4.067-10.867 8.268-14.383 7.584-5.794 15.681-5.466 21.57-3.477"/><path fill="#fff" fill-rule="nonzero" d="M57.674 29.584c-4.64-6.022-12.662-7.707-19.903-5.022.234.07.467.14.7.219 10.72 3.652 16.515 15.282 12.942 25.977a20.192 20.192 0 0 1-4.39 7.39c2.309-.64 4.673-1.555 6.701-3.117 8.165-6.292 9.772-17.892 3.95-25.447"/><path fill="#fff" fill-rule="nonzero" d="M35.188 48.822c-1.63 0-3.207-.188-4.725-.527a2.321 2.321 0 0 0-.575-.051c-.45.019-.852.174-1.229.416l-5.007 3.21c-.14.089-.275.158-.446.166a.786.786 0 0 1-.816-.754c-.008-.196.061-.394.102-.582l.886-4.02c.038-.17.068-.332.061-.506a1.58 1.58 0 0 0-.698-1.243c-5.276-3.598-8.895-9.252-9.691-15.065-1.327 2.086-2.034 3.744-2.725 6.16-2.58 9.018 3.066 19.82 12.278 22.846 10.596 3.48 20.706-.426 24.198-9.437.424-1.094.889-2.953.985-4.497-3.71 2.73-7.639 3.884-12.598 3.884"/></svg>
+    <span class="gzh-copy-idle">复制到公众号</span>
+    <svg class="gzh-copy-done" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4.5 12.5l5 5 10-11"/></svg>
+    <span class="gzh-copy-done">已复制</span>
+  </button>
+</div>
+<div class="gzh-toast" id="gzhToast"></div>
+<div class="gzh-stage">
+  <div id="gzh-content">
+<section style="max-width:677px;margin:0 auto;background:#FFF9FD;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2A1F3D;font-size:17px;line-height:2;overflow-x:hidden;box-sizing:border-box;">
+
+<section style="text-align:center;margin-bottom:14px;background:#FFF9FD;">
+<span style="font-size:12px;font-weight:bold;letter-spacing:6px;color:#5E3FB8;"><span leaf="">GARDEN TEA · VOL.01</span></span>
+</section>
+
+<section style="text-align:center;margin-bottom:20px;padding:16px 0 20px;background:#FFF9FD;">
+<section style="margin:0 auto 14px;width:68px;max-width:68px;font-size:0;line-height:0;"><span leaf=""><svg width="68" height="68" viewBox="0 0 68 68" fill="none" aria-hidden="true" style="display:block;margin:0 auto;max-width:100%;"><circle cx="34" cy="34" r="30" fill="#F3EDFC"/><path d="M34 54C34 40 34 30 32 20" stroke="#7C5CD6" stroke-width="2.6" stroke-linecap="round"/><path d="M32 40C21 38 16 29 19 21C28 23 34 31 32 40Z" fill="#B3A0E8" stroke="#7C5CD6" stroke-width="1.8" stroke-linejoin="round"/><path d="M33 31C43 29 48 20 45 12C36 14 30 23 33 31Z" fill="#B3A0E8" stroke="#7C5CD6" stroke-width="1.8" stroke-linejoin="round"/><path d="M33 22C27 16 28 7 34 5C40 7 40 16 33 22Z" fill="#FFD3E2" stroke="#EC7FA3" stroke-width="1.8" stroke-linejoin="round"/><circle cx="34" cy="12" r="2" fill="#EC7FA3"/><path d="M50 44L52 49L57 51L52 53L50 58L48 53L43 51L48 49Z" fill="#7CC7EF"/></svg></span></section>
+<p style="margin:0 0 12px;font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:34px;font-weight:900;line-height:1.55;color:#2A1F3D;word-break:normal;overflow-wrap:normal;"><span leaf="">做了些爆款 Skills 以后，</span><br><span leaf="">我对 Skills 的看法</span></p>
+<p style="margin:0 0 20px;font-size:17px;line-height:1.8;color:#4C3D5E;"><span leaf="">关于经验、判断与长期积累的一次思考</span></p>
+<section style="text-align:center;background:#FFF9FD;">
+<span style="display:inline-block;width:36px;height:4px;border-radius:2px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:18px;height:4px;border-radius:2px;background:#EC7FA3;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:8px;height:4px;border-radius:2px;background:#7CC7EF;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+</section>
+
+<section style="text-align:center;margin-bottom:28px;background:#FFF9FD;">
+<span style="display:inline-block;padding:4px 14px;background:#FCE6EE;border-radius:999px;font-size:12px;font-weight:bold;color:#5E3FB8;"><span leaf="">AI 观察</span></span>
+<span style="display:inline-block;padding:4px 14px;background:#F3EDFC;border-radius:999px;font-size:12px;font-weight:bold;color:#A8385D;margin-left:8px;"><span leaf="">方法论</span></span>
+<span style="display:inline-block;padding:4px 14px;background:#EAF5FD;border-radius:999px;font-size:12px;font-weight:bold;color:#2A739C;margin-left:8px;"><span leaf="">8 分钟</span></span>
+</section>
+
+<section style="text-align:center;margin-bottom:14px;background:#FFF9FD;">
+<p style="margin:0;font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:22px;font-weight:900;line-height:1.9;color:#2A1F3D;"><span leaf="">Agent 不是简单抹平能力差距，</span><br><span leaf="">而是</span><span style="color:#5E3FB8;"><span leaf="">在放大能力差距</span></span><span leaf="">。</span></p>
+</section>
+
+<section style="margin-bottom:30px;padding:24px 22px;background:#FCE6EE;border-radius:20px;">
+<p style="margin:0 0 10px;font-size:11px;font-weight:bold;letter-spacing:3px;color:#5E3FB8;"><span leaf="">PREFACE</span></p>
+<p style="margin:0;font-size:17px;line-height:2;color:#2A1F3D;text-align:justify;"><span leaf="">我最近几次聊 Skills，有一个越来越明确的判断：大家都在说 Agent，但大多数人还没真正理解它。目标清晰、品味强的人会被 Agent 放大；目标混乱、没有判断的人，也会被放大混乱。而 Skill，正是弥合这道鸿沟的关键。</span></p>
+</section>
+
+<section style="margin-bottom:6px;background:#FFF9FD;">
+<span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:68px;font-weight:bold;line-height:1;color:rgba(124,92,214,0.20);white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Craft</span></span>
+</section>
+<section style="margin-bottom:4px;background:#FFF9FD;">
+<span style="font-size:12px;font-weight:bold;letter-spacing:4px;color:#5E3FB8;"><span leaf="">CHAPTER 01</span></span>
+</section>
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:30px;font-weight:900;line-height:1.55;color:#2A1F3D;"><span leaf="">Skill 是能力商品</span></span>
+</section>
+<section style="margin-bottom:22px;background:#FFF9FD;">
+<span style="display:inline-block;width:56px;height:6px;border-radius:3px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin-bottom:18px;background:#FFF9FD;">
+<p style="margin:0;font-size:17px;line-height:2;color:#2A1F3D;text-align:justify;"><span leaf="">我现在对 Skill 的一句话定义是：把专家经验、工作流、品味和工具调用，封装成可分发、可复用、可迭代的</span><span style="background:#FCE6EE;color:#9C2547;font-weight:bold;padding:1px 6px 2px;border-radius:8px;box-shadow:inset 0 -2px 0 #EC7FA3;white-space:nowrap;"><span leaf="">能力单元</span></span><span leaf="">。</span></p>
+</section>
+
+<section style="margin-bottom:18px;background:#FFF9FD;">
+<p style="margin:0;font-size:17px;line-height:2;color:#2A1F3D;text-align:justify;"><span leaf="">它不是单纯的提示词，也不是传统意义上的 App，更像 Agent 时代的</span><span style="background:#FCE6EE;color:#9C2547;font-weight:bold;padding:1px 6px 2px;border-radius:8px;box-shadow:inset 0 -2px 0 #EC7FA3;white-space:nowrap;"><span leaf="">能力商品</span></span><span leaf="">。用户不需要理解底层的 MCP、CLI、loop，只需要知道：它解决什么问题，产出什么结果。</span></p>
+</section>
+
+<section style="text-align:center;margin:38px 0;background:#FFF9FD;">
+<span style="display:inline-block;width:36px;height:4px;border-radius:2px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:18px;height:4px;border-radius:2px;background:#EC7FA3;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:8px;height:4px;border-radius:2px;background:#7CC7EF;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin-bottom:6px;background:#FFF9FD;">
+<span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:68px;font-weight:bold;line-height:1;color:rgba(124,92,214,0.20);white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">People</span></span>
+</section>
+<section style="margin-bottom:4px;background:#FFF9FD;">
+<span style="font-size:12px;font-weight:bold;letter-spacing:4px;color:#5E3FB8;"><span leaf="">CHAPTER 02</span></span>
+</section>
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:30px;font-weight:900;line-height:1.55;color:#2A1F3D;"><span leaf="">核心是把人的经验外化</span></span>
+</section>
+<section style="margin-bottom:22px;background:#FFF9FD;">
+<span style="display:inline-block;width:56px;height:6px;border-radius:3px;background:#EC7FA3;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin-bottom:18px;background:#FFF9FD;">
+<p style="margin:0;font-size:17px;line-height:2;color:#2A1F3D;text-align:justify;"><span leaf="">真正有价值的部分，是把人的审美、判断和经验固化进去。这要求创作者同时懂三件事：</span></p>
+</section>
+
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7C5CD6;margin-right:12px;vertical-align:3px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="font-size:17px;line-height:2;color:#2A1F3D;"><span leaf="">传统专业知识：决定你知道什么结果算好</span></span>
+</section>
+
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#EC7FA3;margin-right:12px;vertical-align:3px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="font-size:17px;line-height:2;color:#2A1F3D;"><span leaf="">AI 的上下限：决定你知道什么必须工程化兜底</span></span>
+</section>
+
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7CC7EF;margin-right:12px;vertical-align:3px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="font-size:17px;line-height:2;color:#2A1F3D;"><span leaf="">产品化思维：决定你知道用户场景和稳定性要求</span></span>
+</section>
+
+<section style="margin:26px 0 14px;background:#FFF9FD;">
+<section style="display:flex;align-items:center;background:#FFF9FD;">
+<section style="width:3px;height:16px;background:#7C5CD6;margin-right:10px;font-size:0;line-height:0;"><span leaf=""><br></span></section>
+<span style="font-size:18px;font-weight:bold;line-height:1.6;color:#2A1F3D;"><span leaf="">一个设计类 Skill 的例子</span></span>
+</section>
+</section>
+
+<section style="margin-bottom:18px;background:#FFF9FD;">
+<p style="margin:0;font-size:17px;line-height:2;color:#2A1F3D;text-align:justify;"><span leaf="">它没有让图像模型一把梭生成 Logo，而是先生成</span><span style="background:#FCE6EE;color:#9C2547;font-weight:bold;padding:1px 6px 2px;border-radius:8px;box-shadow:inset 0 -2px 0 #EC7FA3;white-space:nowrap;"><span leaf="">SVG 变体</span></span><span leaf="">，再做展示图。把 Logo 本体、展示场景、交互背景拆成不同层，分别用最适合的技术处理。</span></p>
+</section>
+
+<section style="text-align:center;margin:38px 0;background:#FFF9FD;">
+<span style="display:inline-block;width:36px;height:4px;border-radius:2px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:18px;height:4px;border-radius:2px;background:#EC7FA3;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:8px;height:4px;border-radius:2px;background:#7CC7EF;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin-bottom:6px;background:#FFF9FD;">
+<span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:68px;font-weight:bold;line-height:1;color:rgba(124,92,214,0.20);white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">System</span></span>
+</section>
+<section style="margin-bottom:4px;background:#FFF9FD;">
+<span style="font-size:12px;font-weight:bold;letter-spacing:4px;color:#5E3FB8;"><span leaf="">CHAPTER 03</span></span>
+</section>
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:30px;font-weight:900;line-height:1.55;color:#2A1F3D;"><span leaf="">好架构：中心短，辐射厚</span></span>
+</section>
+<section style="margin-bottom:22px;background:#FFF9FD;">
+<span style="display:inline-block;width:56px;height:6px;border-radius:3px;background:#7CC7EF;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin:28px 0;padding:24px 24px 22px;background:#FFFFFF;border:1.5px solid #E6DAFF;border-radius:22px;text-align:center;">
+<p style="margin:0 0 6px;font-family:Georgia,serif;font-size:44px;line-height:1;color:#C3ADEF;"><span leaf="">“</span></p>
+<p style="margin:0 0 10px;font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:19px;font-weight:900;line-height:1.9;color:#5E3FB8;"><span leaf="">复杂 Skill 不怕有复杂内容，</span><br><span leaf="">怕的是把复杂内容一次性塞给模型。</span></p>
+<p style="margin:0;font-size:12px;line-height:1.8;color:#847494;"><span leaf="">—— 文件系统本身就是上下文工程</span></p>
+</section>
+
+<section style="margin:34px 0;padding:28px 24px;background:#1F1730;border-radius:22px;">
+<p style="margin:0 0 12px;font-size:11px;font-weight:bold;letter-spacing:3px;color:#C3ADEF;"><span leaf="">ONE THING</span></p>
+<p style="margin:0;font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:20px;font-weight:bold;line-height:1.9;color:#FFFFFF;"><span leaf="">SKILL.md 只放高信号流程，</span><br><span leaf="">重文档留给 references。</span></p>
+<p style="margin:12px 0 0;font-size:13px;line-height:1.8;color:#D8CAE8;"><span leaf="">—— Thin Harness, Fat Skills</span></p>
+</section>
+
+<section style="text-align:center;margin:38px 0;background:#FFF9FD;">
+<span style="display:inline-block;width:36px;height:4px;border-radius:2px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:18px;height:4px;border-radius:2px;background:#EC7FA3;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:8px;height:4px;border-radius:2px;background:#7CC7EF;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin-bottom:6px;background:#FFF9FD;">
+<span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:68px;font-weight:bold;line-height:1;color:rgba(124,92,214,0.20);white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Garden</span></span>
+</section>
+<section style="margin-bottom:4px;background:#FFF9FD;">
+<span style="font-size:12px;font-weight:bold;letter-spacing:4px;color:#5E3FB8;"><span leaf="">CHAPTER 04</span></span>
+</section>
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:30px;font-weight:900;line-height:1.55;color:#2A1F3D;"><span leaf="">像代码质量一样维护</span></span>
+</section>
+<section style="margin-bottom:22px;background:#FFF9FD;">
+<span style="display:inline-block;width:56px;height:6px;border-radius:3px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin-bottom:18px;background:#FFF9FD;">
+<p style="margin:0;font-size:17px;line-height:2;color:#2A1F3D;text-align:justify;"><span leaf="">好 Skill 不是一次写完，它需要像代码质量一样维护。一个可靠的生命周期是：</span></p>
+</section>
+
+<section style="margin-bottom:14px;display:flex;align-items:flex-start;background:#FFF9FD;">
+<span style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#7C5CD6;font-size:13px;font-weight:bold;color:#FFFFFF;flex-shrink:0;margin-right:14px;"><span leaf="">1</span></span>
+<span style="flex:1;font-size:17px;line-height:1.9;color:#2A1F3D;"><span leaf="">先用真实任务找到它会错在哪里</span></span>
+</section>
+
+<section style="margin-bottom:14px;display:flex;align-items:flex-start;background:#FFF9FD;">
+<span style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#EC7FA3;font-size:13px;font-weight:bold;color:#FFFFFF;flex-shrink:0;margin-right:14px;"><span leaf="">2</span></span>
+<span style="flex:1;font-size:17px;line-height:1.9;color:#2A1F3D;"><span leaf="">把失败案例追加到 gotchas，而不是不断加长主流程</span></span>
+</section>
+
+<section style="margin-bottom:14px;display:flex;align-items:flex-start;background:#FFF9FD;">
+<span style="display:inline-block;width:28px;height:28px;line-height:28px;text-align:center;border-radius:50%;background:#7CC7EF;font-size:13px;font-weight:bold;color:#FFFFFF;flex-shrink:0;margin-right:14px;"><span leaf="">3</span></span>
+<span style="flex:1;font-size:17px;line-height:1.9;color:#2A1F3D;"><span leaf="">再做跨模型测试，看不同模型的差异</span></span>
+</section>
+
+<section style="margin:26px 0;padding:20px 22px;background:#F3EDFC;border-left:3px solid #EC7FA3;border-radius:0 14px 14px 0;">
+<p style="margin:0 0 8px;font-size:11px;font-weight:bold;letter-spacing:2px;color:#A8385D;"><span leaf="">NOTE · 一点提醒</span></p>
+<p style="margin:0;font-size:16px;line-height:1.95;color:#2A1F3D;text-align:justify;"><span style="text-decoration:line-through;color:#847494;"><span leaf="">gotchas 是整个 Skill 里最高价值的内容</span></span><span leaf="">，因为正向原则模型往往已经知道，</span><span style="color:#5E3FB8;font-weight:bold;"><span leaf="">负面边界才是专家经验</span></span><span leaf="">。</span></p>
+</section>
+
+<section style="text-align:center;margin:38px 0;background:#FFF9FD;">
+<span style="display:inline-block;width:36px;height:4px;border-radius:2px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:18px;height:4px;border-radius:2px;background:#EC7FA3;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:8px;height:4px;border-radius:2px;background:#7CC7EF;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin-bottom:6px;background:#FFF9FD;">
+<span style="display:inline-block;font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:68px;font-weight:bold;line-height:1;color:rgba(124,92,214,0.20);white-space:nowrap;word-break:keep-all;overflow-wrap:normal;"><span leaf="">Flywheel</span></span>
+</section>
+<section style="margin-bottom:4px;background:#FFF9FD;">
+<span style="font-size:12px;font-weight:bold;letter-spacing:4px;color:#5E3FB8;"><span leaf="">CHAPTER 05</span></span>
+</section>
+<section style="margin-bottom:10px;background:#FFF9FD;">
+<span style="font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:30px;font-weight:900;line-height:1.55;color:#2A1F3D;"><span leaf="">个人产品的复利飞轮</span></span>
+</section>
+<section style="margin-bottom:22px;background:#FFF9FD;">
+<span style="display:inline-block;width:56px;height:6px;border-radius:3px;background:#EC7FA3;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+
+<section style="margin:24px 0;background:#FFF9FD;">
+<section style="display:flex;gap:12px;">
+<section style="flex:1;padding:18px 16px;background:#FCE6EE;border-radius:16px;">
+<p style="margin:0 0 6px;font-size:11px;font-weight:bold;letter-spacing:1px;color:#5E3FB8;"><span leaf="">过去</span></p>
+<p style="margin:0;font-size:15px;line-height:1.9;color:#2A1F3D;"><span leaf="">文章和产品分开：先做产品，再写推广。</span></p>
+</section>
+<section style="flex:1;padding:18px 16px;background:#F3EDFC;border-radius:16px;">
+<p style="margin:0 0 6px;font-size:11px;font-weight:bold;letter-spacing:1px;color:#A8385D;"><span leaf="">现在</span></p>
+<p style="margin:0;font-size:15px;line-height:1.9;color:#2A1F3D;"><span leaf="">Skill、文章、案例、仓库互相喂养。</span></p>
+</section>
+</section>
+</section>
+
+<section style="margin-bottom:18px;background:#FFF9FD;">
+<p style="margin:0;font-size:17px;line-height:2;color:#2A1F3D;text-align:justify;"><span leaf="">每一次真实任务，都不只是在完成任务，而是在积累下一次能调用的</span><span style="background:#FCE6EE;color:#9C2547;font-weight:bold;padding:1px 6px 2px;border-radius:8px;box-shadow:inset 0 -2px 0 #EC7FA3;white-space:nowrap;"><span leaf="">能力资产</span></span><span leaf="">。这就是个人产品在 Agent 时代的复利飞轮。</span></p>
+</section>
+
+<section style="text-align:center;margin:46px 0 34px;background:#FFF9FD;">
+<span style="font-family:Georgia,'Songti SC',serif;font-style:italic;font-size:56px;line-height:1;color:#C3ADEF;"><span leaf="">“</span></span>
+<p style="margin:8px 0 6px;font-family:Georgia,'Songti SC','Noto Serif SC','STSong',serif;font-size:21px;font-weight:900;line-height:1.8;color:#2A1F3D;"><span leaf="">把经验做成可以反复调用的东西，</span><br><span leaf="">时间才会站到你这边。</span></p>
+<p style="margin:0 0 16px;font-size:14px;line-height:1.8;color:#847494;"><span leaf="">—— 写在这一篇的末尾</span></p>
+<section style="text-align:center;background:#FFF9FD;">
+<span style="display:inline-block;width:36px;height:4px;border-radius:2px;background:#7C5CD6;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:18px;height:4px;border-radius:2px;background:#EC7FA3;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+<span style="display:inline-block;width:8px;height:4px;border-radius:2px;background:#7CC7EF;margin-left:5px;font-size:0;line-height:0;"><span leaf=""><br></span></span>
+</section>
+</section>
+
+<section style="text-align:center;padding:24px 0 0;background:#FFF9FD;">
+<span style="display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;background:#7C5CD6;font-family:Georgia,serif;font-size:20px;font-weight:bold;color:#FFFFFF;margin-bottom:10px;"><span leaf="">茉</span></span>
+<p style="margin:0 0 4px;font-size:15px;font-weight:bold;color:#2A1F3D;"><span leaf="">茉灵智库</span></p>
+<p style="margin:0;font-size:13px;line-height:1.8;color:#847494;"><span leaf="">专注 AI 观察与知识干货</span><br><span leaf="">帮你把复杂的东西讲简单</span></p>
+</section>
+
+</section>
+  </div>
+</div>
+<script>
+  function gzhShowToast(msg){
+    var t=document.getElementById('gzhToast');
+    t.textContent=msg;t.classList.add('show');
+    clearTimeout(t._timer);
+    t._timer=setTimeout(function(){t.classList.remove('show');},2800);
+  }
+  function gzhCopy(){
+    var el=document.getElementById('gzh-content');
+    // 选中渲染后的富文本节点并复制（等价于手动 Ctrl+A / Ctrl+C，保留全部样式）
+    var range=document.createRange();
+    range.selectNodeContents(el);
+    var sel=window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    var ok=false;
+    try{ok=document.execCommand('copy');}catch(e){ok=false;}
+    var btn=document.getElementById('gzhCopyBtn');
+    if(ok){
+      sel.removeAllRanges();
+      gzhShowToast('✅ 已复制！去公众号编辑器按 Ctrl/⌘+V 粘贴即可');
+      // 用 class 切换“已复制”状态，连续点击也不会出现反馈无法复原
+      btn.classList.add('is-copied');
+      clearTimeout(btn._timer);
+      btn._timer=setTimeout(function(){btn.classList.remove('is-copied');},2200);
+    }else{
+      // 上一次的“已复制”状态可能还未消退，本次失败应立即退回空闲态
+      btn.classList.remove('is-copied');
+      clearTimeout(btn._timer);
+      // Keep only the article selected for the manual copy fallback.
+      gzhShowToast('⚠ 自动复制失败，正文已选中，请直接按 Ctrl/⌘+C 复制');
+    }
+  }
+</script>
+</body>
+</html>
