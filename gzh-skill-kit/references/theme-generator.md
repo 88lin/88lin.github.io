@@ -123,7 +123,7 @@
 - 要能体现主题特征，例如：
   - `theme-mono-magazine`
   - `theme-mist-tech`
-  - `theme-olive-journal`
+  - `theme-cocoa-note`
   - `theme-soft-editorial`
 
 4. 如果用户已提供名称或 ID，优先使用用户提供值；只有缺失时才自动补全。

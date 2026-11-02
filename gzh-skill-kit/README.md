@@ -4,9 +4,9 @@
 
 **把文章交给 AI，一键排成好看的公众号图文 ✨**
 
-17 套精选主题 + 主题生成器 · 图片 / GIF / 代码块 · 自动整理章节与重点 · 一键复制到公众号
+18 套精选主题 + 主题生成器 · 图片 / GIF / 代码块 · 自动整理章节与重点 · 一键复制到公众号
 
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-15%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
+[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-18%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
 
 [🚀 一句话开始](#quick-start) · [👀 看排版效果](#gallery) · [📖 跟着做一篇](#tutorials) · [🎨 挑选主题](#themes) · [❓ 常见问题](#faq)
 
@@ -48,7 +48,7 @@ https://github.com/88lin/gzh-skill-kit
 
 ## ✨ 它能帮你做什么
 
-- **🎨 选风格**：17 套现成主题，从清爽教程、杂志特稿到温暖手账；拿不准就让 AI 推荐。
+- **🎨 选风格**：18 套现成主题，从清爽教程、杂志特稿到温暖手账；拿不准就让 AI 推荐。
 - **🪄 整理版面**：自动安排章节编号、引言、目录、重点标记和作者署名。
 - **📄 接住你的稿子**：直接粘贴文章，或提供 Markdown、Word、PDF；非 Markdown 稿件先整理结构再排版。
 - **🖼️ 排好图文**：支持图片、GIF、引用、列表、表格和代码块，长文章也有清楚的阅读层次。
@@ -59,33 +59,38 @@ https://github.com/88lin/gzh-skill-kit
 
 ## 👀 先看看，文章可以排成什么样
 
-**同一篇长文，17 种不同气质。** 点击缩略图就能查看对应主题的完整文章，手机和电脑都可以看。
+**同一篇长文，18 种不同气质。** 点击缩略图就能查看对应主题的完整文章，手机和电脑都可以看。
 
 <table>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="科技钴蓝（默认） 主题预览" width="250"></a><br><sub><b>科技钴蓝（默认）</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/soft-candy.html"><img src="assets/lf-soft-candy.thumb.png" alt="软糖（默认） 主题预览" width="250"></a><br><sub><b>软糖（默认 · 新）</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/cream-puff.html"><img src="assets/lf-cream-puff.thumb.png" alt="奶油泡芙（新） 主题预览" width="250"></a><br><sub><b>奶油泡芙（新）</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/letter.html"><img src="assets/lf-letter.thumb.png" alt="奶咖信纸 主题预览" width="250"></a><br><sub><b>奶咖信纸</b></sub></td>
+</tr>
+<tr>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/bento.html"><img src="assets/lf-bento.thumb.png" alt="粉彩便当盒 主题预览" width="250"></a><br><sub><b>粉彩便当盒</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/strawberry-milk.html"><img src="assets/lf-strawberry-milk.thumb.png" alt="草莓牛奶 主题预览" width="250"></a><br><sub><b>草莓牛奶</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/garden-tea.html"><img src="assets/lf-garden-tea.thumb.png" alt="花园茶会 主题预览" width="250"></a><br><sub><b>花园茶会</b></sub></td>
 </tr>
 <tr>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/berry-letter.html"><img src="assets/lf-berry-letter.thumb.png" alt="莓果信笺 主题预览" width="250"></a><br><sub><b>莓果信笺</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/chat.html"><img src="assets/lf-chat.thumb.png" alt="薄荷对话 主题预览" width="250"></a><br><sub><b>薄荷对话</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="孔雀蓝杂志 主题预览" width="250"></a><br><sub><b>孔雀蓝杂志</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="科技钴蓝 主题预览" width="250"></a><br><sub><b>科技钴蓝</b></sub></td>
 </tr>
 <tr>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="孔雀蓝杂志 主题预览" width="250"></a><br><sub><b>孔雀蓝杂志</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/journal.html"><img src="assets/lf-journal.thumb.png" alt="珊瑚手账 主题预览" width="250"></a><br><sub><b>珊瑚手账</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/daily.html"><img src="assets/lf-daily.thumb.png" alt="珊瑚日报 主题预览" width="250"></a><br><sub><b>珊瑚日报</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="摸鱼绿 主题预览" width="250"></a><br><sub><b>摸鱼绿</b></sub></td>
 </tr>
 <tr>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="摸鱼绿 主题预览" width="250"></a><br><sub><b>摸鱼绿</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/red-white.html"><img src="assets/lf-red-white.thumb.png" alt="红白色系 主题预览" width="250"></a><br><sub><b>红白色系</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" alt="克莱因蓝 主题预览" width="250"></a><br><sub><b>克莱因蓝</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="石墨极简风 主题预览" width="250"></a><br><sub><b>石墨极简风</b></sub></td>
 </tr>
 <tr>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="石墨极简风 主题预览" width="250"></a><br><sub><b>石墨极简风</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/zen-whitespace.html"><img src="assets/lf-zen-whitespace.thumb.png" alt="留白禅意风 主题预览" width="250"></a><br><sub><b>留白禅意风</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-ticket.html"><img src="assets/lf-moyu-ticket.thumb.png" alt="摸鱼票据风 主题预览" width="250"></a><br><sub><b>摸鱼票据风</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/olive-journal.html"><img src="assets/lf-olive-journal.thumb.png" alt="橄榄手记 主题预览" width="250"></a><br><sub><b>橄榄手记</b></sub></td>
 </tr>
 </table>
 
@@ -121,7 +126,7 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 
 > 我不想挑主题，你根据文章内容直接选一套，排好就行。
 
-不知道选什么时，可以从默认的 **科技钴蓝** 开始；更多搭配见下面的 [主题推荐](#themes)。
+不知道选什么时，可以从默认的 **软糖** 开始；更多搭配见下面的 [主题推荐](#themes)。
 
 ### 📋 第三步：打开预览，复制到公众号
 
@@ -157,11 +162,15 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 
 | 配色 | 主题 | 适合的文章 |
 | --- | --- | --- |
-| ![#1D4ED8](https://placehold.co/12/1D4ED8/1D4ED8.png) | **科技钴蓝（默认）** | AI 工具、开发教程、工作流指南 |
+| ![#FFD3E2](https://placehold.co/12/FFD3E2/FFD3E2.png) | **软糖** | 教程、清单、测评、日常分享、轻松向长文 |
+| ![#A83A57](https://placehold.co/12/A83A57/A83A57.png) | **奶油泡芙** | 随笔、方法论、年度总结、读书笔记 |
 | ![#2B7FD8](https://placehold.co/12/2B7FD8/2B7FD8.png) | **奶咖信纸** | 叙事长文、观点、方法论、年度总结 |
 | ![#7C3AED](https://placehold.co/12/7C3AED/7C3AED.png) | **粉彩便当盒** | 工具测评、清单、干货合集 |
+| ![#E84D72](https://placehold.co/12/E84D72/E84D72.png) | **草莓牛奶** | 杂志编号风、手绘插画、生活方式内容 |
+| ![#8B6FD6](https://placehold.co/12/8B6FD6/8B6FD6.png) | **花园茶会** | 杂志编号风、线描插画、品牌叙事 |
 | ![#B9345A](https://placehold.co/12/B9345A/B9345A.png) | **莓果信笺** | 读书笔记、观点长文、人文随笔 |
 | ![#059669](https://placehold.co/12/059669/059669.png) | **薄荷对话** | 访谈实录、问答教程、案例复盘 |
+| ![#1D4ED8](https://placehold.co/12/1D4ED8/1D4ED8.png) | **科技钴蓝** | AI 工具、开发教程、工作流指南 |
 | ![#15697C](https://placehold.co/12/15697C/15697C.png) | **孔雀蓝杂志** | 人物故事、行业观察、深度特稿 |
 | ![#C33D46](https://placehold.co/12/C33D46/C33D46.png) | **珊瑚手账** | 读书笔记、随笔、好物清单 |
 | ![#C33D46](https://placehold.co/12/C33D46/C33D46.png) | **珊瑚日报** | 资讯日报、周报、快讯合集 |
@@ -171,7 +180,6 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 | ![#52525B](https://placehold.co/12/52525B/52525B.png) | **石墨极简风** | 设计、科技评论、专业观点 |
 | ![#4A5D52](https://placehold.co/12/4A5D52/4A5D52.png) | **留白禅意风** | 极简生活、冥想、深度随笔 |
 | ![#059669](https://placehold.co/12/059669/059669.png) | **摸鱼票据风** | 工具对比、创意评测 |
-| ![#1e1f23](https://placehold.co/12/1e1f23/1e1f23.png) | **橄榄手记** | 内刊手记、深度评测、案例复盘 |
 
 > 💡 选主题时直接说中文名就行；配色、组件和英文标识见 [完整主题索引](references/theme-index.md)。现有风格不够用，还可以 [让 AI 生成新主题](references/theme-generator.md)。
 
@@ -232,7 +240,7 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 
 ## 🗺 接下来
 
-- [x] 17 套主题与在线画廊
+- [x] 18 套主题与在线画廊
 - [x] 按描述或参考图生成自定义主题
 - [ ] 更多精选主题（[告诉我们你想要的风格](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md)）
 - [ ] 将整篇文章与配图打包导出

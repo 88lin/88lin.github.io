@@ -79,7 +79,7 @@ class LeafChecker(HTMLParser):
     def handle_starttag(self, tag, attrs):
         ad = dict(attrs)
         # 任何带 leaf 属性的元素都算"已包裹"——不只是 <span>。
-        # olive-journal 的流程图用 SVG <tspan leaf="">，此前被误判成未包裹文字。
+        # 流程图的 SVG <tspan leaf=""> 曾被误判成未包裹文字，故按属性判断。
         is_leaf = "leaf" in ad
         is_code = bool(CODE_STYLE.search(ad.get("style", "") or ""))
         if tag in PUNCT_BOUNDARIES or is_code:
