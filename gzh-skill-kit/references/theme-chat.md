@@ -31,7 +31,8 @@
 回答气泡：      底 #DCF9EF / 描边 #B7EEDC / 文字 #14634A / 标签 #10B981
 气泡内强调：    #B23A72（蜜橙加粗，浅底对比达标）
 薰衣草要点卡：  底 #F3EAFF / 描边 #E4D8FF / 标题 #263238 / 正文 #1E332B
-蜜黄荧光笔：    linear-gradient(transparent 60%, #FFD3E2 60%)（叙述段用）
+叙述段半高亮（组件 6）：box-shadow:inset 0 -0.5em 0 #FFD3E2;font-weight:bold;padding:0 2px;
+正文下划线标签（theme-index / 画廊示例）：background:#FFD3E2;color:#8F1A3C;font-weight:bold;padding:1px 6px 2px;border-radius:8px;box-shadow:inset 0 -2px 0 #F089A8;white-space:nowrap;
 正文字号：      16-17px，line-height:2
 中性/补充色：   #2C7A5E
 ```
@@ -43,7 +44,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFAFC;padding:40px 22px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#263238;font-size:17px;line-height:2;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FFFAFC;padding:40px 22px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#263238;font-size:17px;line-height:2;overflow-x:hidden;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -119,11 +120,13 @@
 ```html
 <p style="margin:0 0 24px;font-size:17px;line-height:2;color:#1E332B;text-align:justify;background-color:#FFFAFC;">
   <span leaf="">叙述正文，承上启下。这段是普通文章体，让长对话有呼吸感。</span>
-  <span leaf="">翻车不可怕，</span><span style="background:linear-gradient(transparent 60%, #FFD3E2 60%);font-weight:bold;padding:0 2px;"><span leaf="">关键句用蜜黄荧光笔</span></span><span leaf="">。</span>
+  <span leaf="">翻车不可怕，</span><span style="box-shadow:inset 0 -0.5em 0 #FFD3E2;font-weight:bold;padding:0 2px;"><span leaf="">关键句用蜜黄荧光笔</span></span><span leaf="">。</span>
 </p>
 ```
 
 荧光笔每段 ≤1 处、不跨行。
+
+本组件的半高亮用于叙述段 `**加粗**`；`++下划线++` / `<u>下划线</u>` 使用速查表中的粉底标签，与主题索引和画廊示例一致。按标记语义选择，保留这两种已有形态。
 
 ---
 
@@ -189,7 +192,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFAFC;padding:40px 22px 36px;...">
+<section style="text-align:left;max-width:677px;margin:0 auto;background:#FFFAFC;padding:40px 22px 36px;...">
   <!-- 1. 题头（组件 2） -->
   <!-- 2. 大标题（组件 3） -->
   <!-- 3. 开场叙述段（组件 6） -->
@@ -238,6 +241,7 @@
 | 普通段落 | 组件 6 叙述段 | 蜜黄标记关键句（≤1 处/段） |
 | `> 引用/小结` | 组件 8 要点卡 | |
 | `**加粗**` | 叙述内蜜黄荧光笔 / 气泡内 `#B23A72` 加粗 | 每段/气泡 ≤1 处 |
+| `++下划线++` / `<u>下划线</u>` | 速查表 / theme-index 的粉底标签 | 与画廊示例一致，不跨行 |
 | `![](图片)` | 组件 9 | |
 | 行内 `` `code` `` | `background:#F2FBF7;color:#14634A` 等宽胶囊 | |
 | ` ``` 代码块 ``` ` | 通用库 1a/1b | |

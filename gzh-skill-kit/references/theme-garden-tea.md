@@ -8,7 +8,7 @@
 > - ❌ 不支持 `<style>`/`<script>`、CSS class/id/`<div>`、`position:fixed/absolute/sticky`、`float`、`@media`/`@keyframes`、`display:grid`、CSS 变量 `var(--x)`
 > - ❌ 不使用任何渐变；高亮一律用纯色块（微信客户端渲染最稳）
 > - **外层底色会被剥离**：每个正文区块（开场、章节、浅底卡、深色面板、签名区）都要各自带 `background`
-> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`、`border-radius`、静态 SVG、`<section>/<p>/<span>/<img>`
+> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`（文字背景需按必要性评估）、`border-radius`、静态 SVG、`<section>/<p>/<span>/<img>`
 >
 > **WeChat 兼容铁律**：
 > - 装饰性空元素内部放 `<span leaf=""><br></span>`；SVG 整体包在 `<span leaf="">` 内，插画内不写文字
@@ -57,7 +57,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFF9FD;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2A1F3D;font-size:17px;line-height:2;overflow-x:hidden;box-sizing:border-box;">
+<section style="max-width:677px;margin:0 auto;background:#FFF9FD;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2A1F3D;font-size:17px;line-height:2;overflow-x:hidden;box-sizing:border-box;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -300,7 +300,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFF9FD;padding:44px 26px 40px;...">
+<section style="text-align:left;max-width:677px;margin:0 auto;background:#FFF9FD;padding:44px 26px 40px;...">
   <!-- 1. kicker + 星芒插画 + 大标题 + 三色条（组件 2） -->
   <!-- 2. 居中引言金句（组件 3） -->
   <!-- 3. 引言区块（组件 4，浅粉底） -->

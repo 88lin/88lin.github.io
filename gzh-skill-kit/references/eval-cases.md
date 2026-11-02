@@ -92,13 +92,17 @@
 
 1. **改** 组件库 / SKILL / 脚本
 2. **源头关**：`python3 scripts/component_lint.py .`
-   扫所有组件库的 ```html 块，检测 `white-space:pre`（大空白）、四周虚线框 `border:…dashed`（正文，居中占位块豁免）、平台禁用项（div/class/id/style/grid/position/var/@media）。须 **0 ERROR**。
+   扫组件库的 HTML 代码块和画廊 `.html` 示例，检测 `white-space:pre`（大空白）、四周虚线框 `border:…dashed`（正文，居中占位块豁免）、平台禁用项（div/class/id/style/grid/position/var/@media），并提醒文字背景渐变和有效的 `text-align:start/end`；完整 `.html` 示例还检查顶层区块是否显式设置对齐。须 **0 ERROR**。
 3. **生成** 用改后的 skill 排版 `assets/sample-article.md`（或真实文章）
 4. **产物关**：`python3 scripts/validate_gzh_html.py <产物.html>`
-   检测禁用标签、`<span leaf>` 包裹、半角标点。须 **0 ERROR、半角 0 WARN**。
-5. 任一关不过 → 回第 1 步，直到两关全绿。
+   检测禁用标签、`<span leaf>` 包裹、半角标点，以及文字背景渐变、有效的 `text-align:start/end` 和顶层区块漏写对齐。须 **0 ERROR、半角 0 WARN**；补齐完整文章的对齐设置，渐变 WARN 按必要性和原视觉逐项评估，不为清零而改变主题设计。
+5. 按上述要求修复错误、处理告警，再重跑相关关卡。
 
-两脚本分工：`component_lint` 管「组件库源头不含反模式」，`validate_gzh_html` 管「最终产物合规」。源头干净 → 产物必然跟着干净，这是循环成立的依据。
+两脚本分工：`component_lint` 管组件库及示例，`validate_gzh_html` 管最终产物。组件装配和新增样式仍可能引入问题，两关都要执行。
+
+**临时片段校验**：使用 `python scripts/validate_gzh_html.py --fragment <片段.html>`，或通过 `--stdin --fragment` 输入。片段允许继承装配容器的对齐，仅跳过顶层独立对齐要求，其余检查照常执行；装配成完整文章后再运行默认模式。`--stdin` 只改变输入来源，默认仍按完整文章检查。
+
+**对齐检查的已知边界**：当前独立对齐值只认可 `left/right/center/justify`；低频的 `-webkit-center`、`match-parent` 会触发顶层区块告警。`text-align:revert` 尚未按浏览器默认样式解析，可能漏掉回落后的 `start/end` 告警。这些写法需人工复核，本轮不扩展解析逻辑。无文字装饰不触发文字对齐告警。
 
 
 ## 脚本回归（自动执行）
@@ -111,4 +115,5 @@
 - 草稿回读失败保留 media_id 并报错；清理空白保留作者、原文链接及留言设置。
 - 本地图片预先检查、重复引用只上传一次、CLI 按 HTML 文件目录解析路径。
 - 在默认 GBK 标准流下仍可使用 UTF-8；全部画廊及其压缩产物合规，PNG 完整。
+- 文件、显式标准输入及省略文件名的标准输入都区分完整文章与 `--fragment`；片段继承对齐不会误报，禁用项及渐变、`start/end` 检查仍保留。
 - Linux CI 使用实际镜像脚本验证清旧文件、排除元数据及源/目标目录隔离。

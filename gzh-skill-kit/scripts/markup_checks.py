@@ -63,20 +63,32 @@ def declarations(style):
             for key, sep, val in [part.partition(':')] if sep]
 
 
-def has_background(style):
-    """Whether a block has a self-contained base, not just transparent paint."""
-    color, image = '', ''
+def background_layers(style):
+    """Resolve color and image separately, including shorthand and !important."""
+    layers = {'background-color': ('', False), 'background-image': ('', False)}
     for prop, value in declarations(style):
-        value = re.sub(r'\s*!important\s*$', '', value.lower())
+        if prop not in {'background', 'background-color', 'background-image'}:
+            continue
+        priority = bool(re.search(r'!\s*important\s*$', value, re.I))
+        value = re.sub(r'\s*!\s*important\s*$', '', value.lower())
         if prop == 'background':
             # Image function arguments (e.g. a URL named white.png) are not a base color.
             color = re.sub(r'(?:url|(?:repeating-)?(?:linear|radial|conic)-gradient)'
                            r'\((?:[^()]|\([^()]*\))*\)', '', value)
-            image = value  # shorthand resets both longhands
-        elif prop == 'background-color':
-            color = value
-        elif prop == 'background-image':
-            image = value
+            candidates = {'background-color': color, 'background-image': value}
+        else:
+            candidates = {prop: value}
+        # A shorthand can win for image while losing to an important color (or
+        # vice versa). Equal-priority declarations keep the last value.
+        for longhand, candidate in candidates.items():
+            if priority or not layers[longhand][1]:
+                layers[longhand] = (candidate, priority)
+    return layers['background-color'][0], layers['background-image'][0]
+
+
+def has_background(style):
+    """Whether a block has a self-contained base, not just transparent paint."""
+    color, image = background_layers(style)
 
     def opaque(value):
         if not value or value in {'none', 'transparent', 'inherit', 'initial',
@@ -101,12 +113,34 @@ def has_background(style):
     return opaque(color) or (opaque(image) and 'gradient(' in image)
 
 
+def has_gradient_background(style):
+    """Inspect the effective image layer; shorthand and `none` can reset it."""
+    _, image = background_layers(style)
+    # A URL or quoted string containing "linear-gradient(...)" is not a gradient.
+    image = re.sub(r'''url\((?:[^()"']|"[^"]*"|'[^']*'|\([^()]*\))*\)''', '', image, flags=re.I)
+    return bool(re.search(r'(?:^|[\s,])(?:-\w+-)?(?:repeating-)?(?:linear|radial|conic)-gradient\s*\(', image, re.I))
+
+
+def text_alignment(style):
+    """Return the winning inline text-align, respecting order and !important."""
+    alignment, important = '', False
+    for prop, value in declarations(style):
+        if prop != 'text-align':
+            continue
+        priority = bool(re.search(r'!\s*important\s*$', value, re.I))
+        if priority or not important:
+            alignment = re.sub(r'\s*!\s*important\s*$', '', value.lower()).strip()
+            important = priority
+    return alignment
+
+
 class MarkupChecker(HTMLParser):
-    def __init__(self):
+    def __init__(self, *, require_root_alignment=False):
         super().__init__(convert_charrefs=True)
         self.findings = []
         self.styles = []
-        self.stack = []  # (tag, covered_by_inner_block)
+        self.stack = []  # (tag, covered_by_inner_block, gradient, alignment, missing_root_alignment)
+        self.require_root_alignment = require_root_alignment
         self.sections = 0
         self.uncovered = []
 
@@ -142,10 +176,25 @@ class MarkupChecker(HTMLParser):
             self.sections += 1
         covered = self.stack[-1][1] if self.stack else False
         # The first section in each fragment is the disposable outer wrapper.
-        inner = any(t == 'section' for t, _ in self.stack)
+        inner = any(entry[0] == 'section' for entry in self.stack)
         covered = covered or (inner and tag in BLOCK_TAGS and has_background(style))
+        # Transparent descendants still expose an ancestor's gradient; an opaque
+        # child background covers it. Empty decorative rules never reach handle_data.
+        gradient = has_gradient_background(style) or (
+            bool(self.stack and self.stack[-1][2]) and not has_background(style))
+        own_alignment = text_alignment(style)
+        alignment = own_alignment
+        if not alignment or alignment in {'inherit', 'unset'}:
+            alignment = self.stack[-1][3] if self.stack else ''
+        elif alignment == 'initial':
+            alignment = 'start'
+        missing_root_alignment = self.stack[-1][4] if self.stack else True
+        # Article roots must carry their own default; a preview shell cannot
+        # satisfy this check. Reusable component fragments opt out of this rule.
+        if tag in BLOCK_TAGS and not any(entry[0] in BLOCK_TAGS for entry in self.stack):
+            missing_root_alignment = own_alignment not in {'left', 'right', 'center', 'justify'}
         if tag not in VOID_TAGS:
-            self.stack.append((tag, covered))
+            self.stack.append((tag, covered, gradient, alignment, missing_root_alignment))
 
     def handle_startendtag(self, tag, attrs):
         self.handle_starttag(tag, attrs)
@@ -161,14 +210,23 @@ class MarkupChecker(HTMLParser):
     def handle_data(self, data):
         if not data.strip() or not re.search(r'[\w\u3400-\u9fff]', data):
             return
-        if any(t in {'head', 'title', 'script', 'style', 'svg'} for t, _ in self.stack):
+        if any(entry[0] in {'head', 'title', 'script', 'style', 'svg'} for entry in self.stack):
             return
+        if self.stack and self.stack[-1][3] in {'start', 'end'}:
+            self.add('WARN', 'text-align 使用 start/end，不同终端解析可能不一致；'
+                     '请按原对齐方向使用 left/right，保留原有 center/justify（规范 1.6）')
+        if self.require_root_alignment and (not self.stack or self.stack[-1][4]):
+            self.add('WARN', '正文顶层区块未显式设置 text-align:left/right/center/justify；'
+                     '请按原排版补齐，避免依赖预览外壳或粘贴目标的默认对齐')
+        if self.stack and self.stack[-1][2]:
+            self.add('WARN', '文字背景使用渐变，微信深色模式会将其混合为纯色，可能影响可读性；'
+                     '优先采用保留原外观的非渐变实现；必要效果逐项评估，不要直接改变高亮形态（规范 4.1.2）')
         if self.stack and not self.stack[-1][1]:
             self.uncovered.append(data.strip()[:24])
 
 
-def inspect_markup(html):
-    checker = MarkupChecker()
+def inspect_markup(html, *, require_root_alignment=False):
+    checker = MarkupChecker(require_root_alignment=require_root_alignment)
     checker.feed(html)
     checker.close()
     return checker

@@ -12,7 +12,7 @@
 > - ❌ 不支持 `display: grid`
 > - ✅ 支持内联 `style` 属性
 > - ✅ 支持 `display: flex`（有限支持）
-> - ✅ 支持 `linear-gradient`
+> - ✅ 支持 `linear-gradient`（文字背景需按必要性评估）
 > - ✅ 支持 `border-radius`、`box-shadow`
 > - ✅ 支持 `<section>`、`<p>`、`<span>`、`<strong>`、`<img>` 等基础标签
 
@@ -48,7 +48,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width: 677px;margin: 0 auto;background: #FFFFFF;font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;color: #525252;line-height: 1.9;letter-spacing: 0.3px;overflow-x: hidden;">
+<section style="max-width: 677px;margin: 0 auto;background: #FFFFFF;font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;color: #525252;line-height: 1.9;letter-spacing: 0.3px;overflow-x: hidden;text-align:left;">
 
   <!-- 所有组件放在这里 -->
 
@@ -239,10 +239,10 @@
 
 ### 7e. 极浅墨绿荧光笔效果
 
-> 底部 40% 极浅绿色高亮，偶尔用于长句强调，仍保持克制。
+> 极浅绿色底部半高亮，偶尔用于长句强调，仍保持克制。
 
 ```html
-<span style="background: linear-gradient(180deg, transparent 60%, #D6E4DC 60%);font-weight: 600;color: #2B2B2B;"><span leaf="">荧光笔效果的重要长句</span></span>
+<span style="box-shadow:inset 0 -0.5em 0 #D6E4DC;font-weight: 600;color: #2B2B2B;"><span leaf="">荧光笔效果的重要长句</span></span>
 ```
 
 ---
@@ -341,7 +341,7 @@
 
 ```html
 <p style="margin-bottom: 26px;font-size:16px;line-height: 1.9;text-align: justify;font-weight: 600;color: #2B2B2B;padding: 0 16px;background-color:#FFFFFF;">
-  <span style="background: linear-gradient(180deg, transparent 60%, #D6E4DC 60%);"><span leaf="">荧光笔标记的结论句，极浅墨绿底，克制温柔。</span></span>
+  <span style="box-shadow:inset 0 -0.5em 0 #D6E4DC;"><span leaf="">荧光笔标记的结论句，极浅墨绿底，克制温柔。</span></span>
 </p>
 ```
 
@@ -439,7 +439,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width: 677px;margin: 0 auto;background: #FFFFFF;font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;color: #525252;line-height: 1.9;letter-spacing: 0.3px;overflow-x: hidden;">
+<section style="max-width: 677px;margin: 0 auto;background: #FFFFFF;font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;color: #525252;line-height: 1.9;letter-spacing: 0.3px;overflow-x: hidden;text-align:left;">
 
   <!-- 1. 开头引言卡片（纯白 + 上下细线 + 衬线大字） -->
   <!-- 组件 2 -->

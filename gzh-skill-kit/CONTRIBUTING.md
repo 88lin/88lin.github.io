@@ -27,6 +27,9 @@ python3 scripts/validate_gzh_html.py <生成的.html>
 
 - `component_lint.py` 须 **0 ERROR**
 - `validate_gzh_html.py` 须 **0 ERROR、半角标点 0 WARN**
+- 两关的**文字背景渐变 WARN 须逐项评估**：优先使用视觉接近的非渐变实现，荧光笔保留底部半高亮、不能直接改成整块底色；必要效果说明保留理由与深色模式验证情况。遵循[微信规范 4.1.2](https://developers.weixin.qq.com/doc/service/guide/product/plugin_spec.html#_4-1-2)，同时对照改前效果，避免为告警清零而改变主题设计。
+- **完整文章的顶层区块对齐须显式设置**：产物 CLI 和 `.html` 示例校验会提醒缺少 `text-align:left/right/center/justify`；可复用的 Markdown 组件片段允许继承装配容器。临时片段使用 `python scripts/validate_gzh_html.py --fragment <片段.html>` 或 `--stdin --fragment`，仅跳过顶层独立对齐要求，显式 `start/end`、文字背景渐变和禁用项等检查仍然执行。`--stdin` 只选择输入来源，不自动切换片段模式。无文字的装饰元素不报文字对齐警告。
+- **内阴影半高亮的验证边界**：本轮已做本地浏览器前后显示、真实剪贴板 HTML 和回归检查，尚未完成微信 iOS / Android 真机的浅色、深色模式验证。不能据此声称“内阴影在微信深色模式安全”，也没有依据断言微信一定不识别 `box-shadow`。验收时用同一篇含标题高亮、正文半高亮和原有纯色标签的文章，在两端切换浅色 / 深色模式，记录微信版本、系统版本及文字和色带是否清晰；浏览器的 `prefers-color-scheme` 模拟不能代替这一步。
 
 细节见 `references/eval-cases.md` 的「维护 · 可验证循环」一节。
 

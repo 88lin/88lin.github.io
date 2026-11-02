@@ -50,7 +50,7 @@
    - 完整文章模板骨架（按该主题的结构模型排定装配顺序，明确目录/导航相对封面的位置）
    - 文章类型 → 组件组合配方表
    - Markdown → 组件映射规则表
-3. **平台红线复查**：剔除任何 `class`/`id` 依赖（预览 HTML 里的 `id="block-*"` 仅用于预览定位，进主题库的组件 HTML 一律去掉 id）、禁用标签、`>24px` 字号；`table` 只保留真实表格语义的。
+3. **平台红线复查**：剔除任何 `class`/`id` 依赖（预览 HTML 里的 `id="block-*"` 仅用于预览定位，进主题库的组件 HTML 一律去掉 id）、禁用标签、`>24px` 字号；`table` 只保留真实表格语义的。评估文字背景渐变，优先采用视觉接近的非渐变实现；保留半高亮/笔刷形态、原配色、字重和间距，不直接改成整块底色或彩色文字，并同步预览 HTML。
 4. **登记 theme-index.md**：主题名 / 主色（THEME-COLOR）/ 适用场景（THEME-SCENE-TAGS）/ 组件库文件 / 正文下划线 CSS（从强调色或装饰色推导一条 `border-bottom` 样式）。
 5. **跑检查**：`python3 scripts/component_lint.py .` 须 0 ERROR；有 ERROR 修完再交付。
 6. **交付汇报**：主题名 + ID + 预览文件路径 + 已可在排版流程中选用；提醒用户可随时说「用 XX 主题排版」。
@@ -274,8 +274,10 @@
 7.3 样式兼容规则：
 - 所有关键视觉必须写在元素自身的 `style` 中，不能依赖 class、外链样式或全局样式继承。
 - 优先使用稳定、常见、简单的 CSS 属性，例如：`margin`、`padding`、`color`、`background`、`background-color`、`font-size`、`line-height`、`font-weight`、`text-align`、`border`、`border-radius`、`display`、`width`、`height`、`max-width`、`min-width`、`box-sizing`。
+- 中文文章全局容器显式写 `text-align:left`，保留子区块原有 `center/right/justify`；避免 `start/end` 及复制时由浏览器默认值生成的 `start`（微信规范 1.6）。独立使用组件时，也应在承载它的容器明确默认对齐方向。
 - 如非必要，不要使用复杂 CSS 缩写、变量、高级选择器或依赖浏览器完整实现的写法。
-- 阴影、渐变、圆角、边框都可以使用，但必须克制，并保证即使部分样式退化，结构依然成立。
+- 阴影、圆角、边框可以克制使用，并保证即使部分样式退化，结构依然成立。
+- 依据[微信规范 4.1.2](https://developers.weixin.qq.com/doc/service/guide/product/plugin_spec.html#_4-1-2)，尽量减少文字背景渐变。维护已有主题时先保留原视觉：荧光笔可用无模糊内阴影画底部半高亮，不能把半高亮改成整块底色；卡片取接近原有整体明度的颜色。无文字装饰可保留渐变，必要效果逐项评估并验证深色模式。兼容修复不等于重新设计主题。
 
 7.4 禁止或谨慎使用的能力：
 - 不要使用 `<style>`、`<script>`、`form`、`input`、`button`、`textarea`、`select`、`video`、`audio`、`canvas`、`iframe`。

@@ -1,5 +1,6 @@
 """Browser regressions: python tests/browser_preview.py (requires Playwright Chromium)."""
 from pathlib import Path
+import re
 import sys
 import unittest
 
@@ -63,6 +64,45 @@ class PreviewBrowserTests(unittest.TestCase):
             self.assertEqual(page.evaluate('window.selectedAtCopy'), '正文 ONLY')
             self.assertEqual(page.evaluate('getSelection().rangeCount'), 0)
             self.assertIn('已复制', page.locator('#gzhToast').inner_text())
+
+    def test_copy_preserves_alignment_without_serializing_logical_defaults(self):
+        article = ('<section><p><span leaf="">默认左对齐</span></p>'
+                   '<p style="text-align:center"><span leaf="">居中标题</span></p>'
+                   '<p style="text-align:right"><span leaf="">右侧署名</span></p>'
+                   '<p style="text-align:justify"><span leaf="">两端对齐正文</span></p></section>')
+        with self.browser.new_context(permissions=['clipboard-read', 'clipboard-write']) as context:
+            # Use a secure local fixture and read the browser's real HTML clipboard.
+            context.route('https://preview.test/', lambda route: route.fulfill(
+                content_type='text/html', body=render_preview(article, '对齐测试')))
+            page = context.new_page()
+            page.goto('https://preview.test/')
+            for preview_default, expected in [(False, 'start'), (True, 'left')]:
+                with self.subTest(preview_default=preview_default):
+                    page.set_content(render_preview(article, '对齐测试'))
+                    if not preview_default:
+                        # Control: remove the preview's stylesheet so the article
+                        # uses the browser default. No inline start/end is added.
+                        page.evaluate('''() => {
+                            for (const sheet of document.styleSheets) sheet.disabled = true;
+                        }''')
+                    page.locator('#gzhCopyBtn').click()
+                    copied = page.evaluate('''async () => {
+                        for (const item of await navigator.clipboard.read()) {
+                            if (item.types.includes('text/html')) {
+                                return await (await item.getType('text/html')).text();
+                            }
+                        }
+                        throw new Error('Missing HTML clipboard');
+                    }''')
+                    pattern = re.compile(r'text-align\s*:\s*(start|end)\b', re.I)
+                    if preview_default:
+                        self.assertNotRegex(copied, pattern)
+                    else:
+                        self.assertRegex(copied, pattern)
+                    page.set_content(copied)
+                    self.assertEqual(page.locator('p').evaluate_all(
+                        'nodes => nodes.map(el => getComputedStyle(el).textAlign)'),
+                        [expected, 'center', 'right', 'justify'])
 
 
 if __name__ == '__main__':

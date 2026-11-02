@@ -7,7 +7,7 @@
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class、`position:fixed/absolute`、`float`、`display:grid`
 > - **外层底色会被剥离**：公众号编辑器会剥掉最外层 `<section>` 的 `background`（纯色/渐变都可能丢）。页面底色不要只放顶层容器——每个正文区块（章节卡、分割装饰、签名区、互动区）都要各自带 `background` 或等价底色，确保外层被剥掉后任一区块都不是裸内容
-> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`、`border-radius`、`box-shadow`
+> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`（文字背景需按必要性评估）、`border-radius`、`box-shadow`
 >
 > **WeChat 兼容铁律**：
 > - 装饰性空元素（色点、短横线）内部放 `<span leaf=""><br></span>`
@@ -30,7 +30,7 @@
 淡青卡：        底 #DFF6F9 / 描边 #C2E9F0 / 标题字 #0E7490 / 正文字 #243E46 / 眉标+圆点 #0891B2
 淡粉卡：        底 #FFE3F1 / 描边 #FBCFE0 / 标题字 #BE185D / 正文字 #542838 / 眉标+圆点 #DB2777
 奶油黄金句卡：  底 #FFF4D6 / 描边 #F8E6B0 / 标题字 #92600A→#B45309 / 落款字 #A78A4E
-荧光笔（白底区）：linear-gradient(transparent 60%, #FBD97C 60%)
+荧光笔（白底区，底部半高亮）：box-shadow:inset 0 -0.5em 0 #FBD97C;font-weight:bold;padding:0 2px;
 次要文字：      #55506A
 等宽眉标字体：  'SF Mono',Consolas,Monaco,monospace
 标题字体：      -apple-system,'PingFang SC',sans-serif（900 重）
@@ -45,7 +45,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2B2B33;font-size:17px;line-height:2;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2B2B33;font-size:17px;line-height:2;overflow-x:hidden;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -93,7 +93,7 @@
 ```html
 <section style="margin-bottom:14px;padding:26px 22px;background:#F0EAFE;border:1px solid #E2D4FA;border-radius:20px;">
   <p style="margin:0 0 12px;font-size:19px;font-weight:900;color:#5B21B6;line-height:1.6;"><span leaf="">先说结论</span></p>
-  <p style="margin:0;font-size:16px;line-height:2;color:#3A2A58;text-align:justify;"><span leaf="">总述正文。</span><span style="background:linear-gradient(transparent 60%, #F6DC8E 60%);font-weight:bold;padding:0 2px;"><span leaf="">核心短语用荧光笔</span></span><span leaf="">，每卡 1 处。</span></p>
+  <p style="margin:0;font-size:16px;line-height:2;color:#3A2A58;text-align:justify;"><span leaf="">总述正文。</span><span style="box-shadow:inset 0 -0.5em 0 #F6DC8E;font-weight:bold;padding:0 2px;"><span leaf="">核心短语用荧光笔</span></span><span leaf="">，每卡 1 处。</span></p>
 </section>
 ```
 
@@ -104,7 +104,7 @@
 ```html
 <section style="margin-bottom:14px;padding:24px 22px;background:#EBF4FF;border:1px solid #D6E6FC;border-radius:20px;">
   <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#1D4ED8;line-height:1.6;"><span leaf="">① 工具名 —— 一句话定位</span></p>
-  <p style="margin:0 0 12px;font-size:16px;line-height:2;color:#283349;text-align:justify;"><span leaf="">正文：它解决什么问题，为什么值得用。</span><span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;"><span leaf="">关键短语</span></span><span leaf="">。</span></p>
+  <p style="margin:0 0 12px;font-size:16px;line-height:2;color:#283349;text-align:justify;"><span leaf="">正文：它解决什么问题，为什么值得用。</span><span style="box-shadow:inset 0 -0.5em 0 #FBD97C;font-weight:bold;padding:0 2px;"><span leaf="">关键短语</span></span><span leaf="">。</span></p>
   <section style="margin-bottom:8px;">
     <span style="display:inline-block;width:8px;height:8px;background:#2563EB;border-radius:50%;font-size:0;line-height:0;"><span leaf=""><br></span></span>
     <span style="font-size:16px;color:#2B2B33;"><span leaf="">适合：什么人/什么场景</span></span>
@@ -157,7 +157,7 @@
 ## 组件 10 卡内行内强调（荧光笔，不跨行）
 
 ```html
-<span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;padding:0 2px;"><span leaf="">关键短语</span></span>
+<span style="box-shadow:inset 0 -0.5em 0 #FBD97C;font-weight:bold;padding:0 2px;"><span leaf="">关键短语</span></span>
 ```
 
 **铁律**：短语 ≤12 字、必须在同一行内（跨行会拖出空色条）。每卡 1 处，宁少勿多。
@@ -220,7 +220,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;...">
+<section style="text-align:left;max-width:677px;margin:0 auto;background:#FDFCF8;padding:40px 24px 36px;...">
   <!-- 1. 顶部眉头（组件 2） -->
   <!-- 2. 大标题区（组件 3） -->
   <!-- 3. 淡紫总述卡（组件 4 眉标 + 组件 5） -->

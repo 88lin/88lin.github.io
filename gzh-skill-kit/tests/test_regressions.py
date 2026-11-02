@@ -84,6 +84,98 @@ class ValidationTests(unittest.TestCase):
                 for errors in self.both(source):
                     self.assertTrue(errors)
 
+    def test_logical_text_alignment_warns_in_both_validators(self):
+        for style, warns in [
+            ('text-align:start', True),
+            ('TEXT-ALIGN: END ! IMPORTANT', True),
+            ('text-align:center;text-align:end', True),
+            ('text-align:start!important;text-align:center', True),
+            ('text-align:start;text-align:left', False),
+            ('text-align:right!important;text-align:end', False),
+            ('text-align:start!important;text-align:center!important', False),
+            ('text-align:justify', False),
+        ]:
+            source = (f'<section style="background:#fff;text-align:center">'
+                      f'<span style="{style}"><span leaf="">对齐文字</span></span></section>')
+            with self.subTest(style=style), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / 'component.md'
+                path.write_text('```html\n' + source + '\n```', encoding='utf-8')
+                self.assertEqual(any('text-align' in msg for msg in validate(source)[1]), warns)
+                self.assertEqual(any('text-align' in msg for level, msg in lint_file(str(path))[1]
+                                     if level == 'WARN'), warns)
+
+    def test_alignment_example_text_does_not_warn(self):
+        source = ('<section><p style="background:#fff;text-align:left">'
+                  '<span leaf="">text-align:start 示例</span></p></section>')
+        self.assertEqual(validate(source)[:2], ([], []))
+
+    def test_logical_alignment_only_warns_when_it_reaches_text(self):
+        for content, warns in [
+            ('<span leaf=""><br></span>', False),
+            ('<img src="image.png" alt="说明">', False),
+            ('<p><span leaf="">正文</span></p>', True),
+            ('<p style="text-align:inherit"><span leaf="">正文</span></p>', True),
+            ('<p style="text-align:unset"><span leaf="">正文</span></p>', True),
+            ('<p style="text-align:center"><span leaf="">标题</span></p>', False),
+        ]:
+            source = f'<section style="text-align:start">{content}</section>'
+            with self.subTest(content=content), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / 'component.md'
+                path.write_text('```html\n' + source + '\n```', encoding='utf-8')
+                self.assertEqual(any('text-align 使用 start/end' in msg for msg in validate(source)[1]), warns)
+                self.assertEqual(any('text-align 使用 start/end' in msg for _, msg in lint_file(str(path))[1]), warns)
+
+    def test_article_root_alignment_is_checked_separately_from_components(self):
+        for style, missing in [
+            ('', True), ('text-align:inherit', True), ('text-align:initial', True),
+            ('text-align:start', True), ('text-align:left', False),
+            ('text-align:center', False), ('text-align:right', False),
+            ('text-align:justify', False),
+            ('text-align:right!important;text-align:end', False),
+        ]:
+            source = (f'<section style="{style}"><p style="background:#fff;text-align:center">'
+                      '<span leaf="">正文</span></p></section>')
+            with self.subTest(style=style), tempfile.TemporaryDirectory() as directory:
+                folder = Path(directory)
+                (folder / 'article.html').write_text(source, encoding='utf-8')
+                (folder / 'component.md').write_text('```html\n' + source + '\n```', encoding='utf-8')
+                self.assertEqual(any('顶层区块' in msg for msg in validate(
+                    source, require_root_alignment=True)[1]), missing)
+                self.assertEqual(any('顶层区块' in msg for _, msg in lint_file(str(folder / 'article.html'))[1]), missing)
+                self.assertFalse(any('顶层区块' in msg for _, msg in lint_file(str(folder / 'component.md'))[1]))
+
+    def test_empty_article_decorations_do_not_need_root_alignment(self):
+        source = '<section style="text-align:start"><span leaf=""><br></span></section>'
+        self.assertEqual(validate(source, require_root_alignment=True)[:2], ([], []))
+
+    def test_cli_distinguishes_articles_from_inheritable_fragments(self):
+        source = '<section><p style="background:#fff;text-align:left"><span leaf="">正文</span></p></section>'
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'component.html'
+            path.write_text(source, encoding='utf-8')
+            for entry in ([str(path)], ['--stdin'], []):
+                for fragment in (False, True):
+                    with self.subTest(entry=entry, fragment=fragment):
+                        command = [sys.executable, str(ROOT / 'scripts/validate_gzh_html.py'), *entry]
+                        if fragment:
+                            command.append('--fragment')
+                        result = subprocess.run(command, input=source, capture_output=True, encoding='utf-8')
+                        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                        self.assertEqual('顶层区块' in result.stdout, not fragment)
+                        if fragment:
+                            self.assertIn('片段检查通过', result.stdout)
+
+    def test_fragment_cli_keeps_other_checks_enabled(self):
+        source = ('<section><p style="background:linear-gradient(#fff,#eee);text-align:start">'
+                  '<span leaf="">正文</span></p><div><span leaf="">禁用标签</span></div></section>')
+        result = subprocess.run([sys.executable, str(ROOT / 'scripts/validate_gzh_html.py'),
+                                 '--stdin', '--fragment'], input=source, capture_output=True, encoding='utf-8')
+        self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+        self.assertIn('<div> 不被支持', result.stdout)
+        self.assertIn('文字背景使用渐变', result.stdout)
+        self.assertIn('text-align 使用 start/end', result.stdout)
+        self.assertNotIn('顶层区块', result.stdout)
+
     def test_bad_attribute_quotes_rejected_by_both(self):
         source = r'<section style=\"background: red; color: white;\"><span leaf="">正文</span></section>'
         for errors in self.both(source):
@@ -135,12 +227,94 @@ class ValidationTests(unittest.TestCase):
             source += f'<section style="{style}"><span leaf="">裸正文</span></section></section>'
             self.assertTrue(any('底色' in w for w in validate(source)[1]))
 
-    def test_solid_colors_and_opaque_base_below_gradient_cover_text(self):
+    def test_solid_colors_cover_text(self):
         for style in ['background:yellow', 'background:rebeccapurple',
-                      'background:linear-gradient(to right,transparent,#000) #fff',
                       'background:hsl(60 100% 50% / 100%)']:
             source = f'<section><section style="{style}"><span leaf="">正文</span></section></section>'
             self.assertEqual(validate(source)[:2], ([], []), style)
+
+    def test_text_on_gradients_warns_in_both_validators(self):
+        for style in ['background:linear-gradient(135deg,#fff,#000)',
+                      'background:linear-gradient(to right,transparent,#000) #fff',
+                      'background-image:radial-gradient(#eee 1px,transparent 1px)',
+                      'background-image:repeating-conic-gradient(#eee 0% 25%,#fff 25% 50%)',
+                      'BACKGROUND-IMAGE:-webkit-linear-gradient(left,#fff,#000)',
+                      'background:linear-gradient(#fff,#000)!important;background:#fff']:
+            source = (f'<section style="{style}"><p style="background:transparent">'
+                      '<span leaf="">正文</span></p></section>')
+            with self.subTest(style=style), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / 'component.md'
+                path.write_text('```html\n' + source + '\n```', encoding='utf-8')
+                self.assertTrue(any('文字背景使用渐变' in w for w in validate(source)[1]))
+                self.assertIn('WARN', [level for level, msg in lint_file(str(path))[1]
+                                      if '文字背景使用渐变' in msg])
+
+    def test_decorative_gradients_and_covered_text_do_not_warn(self):
+        for content in ['<span leaf=""><br></span>',
+                        '<p style="background:#fff"><span leaf="">正文</span></p>',
+                        '<span style="background:#fff"><span leaf="">正文</span></span>']:
+            source = f'<section style="background:linear-gradient(#fff,#000)">{content}</section>'
+            with self.subTest(content=content):
+                self.assertFalse(any('文字背景使用渐变' in w for w in validate(source)[1]))
+
+    def test_reset_gradients_and_literal_mentions_do_not_warn(self):
+        for style in ['background:linear-gradient(#fff,#000);background:#fff',
+                      'background-image:linear-gradient(#fff,#000);background-image:none',
+                      'background-image:none!important;background:linear-gradient(#fff,#000)',
+                      'background-image:url("linear-gradient(example).png")',
+                      'color:#111']:
+            source = (f"<p style='{style}'><span leaf=\"\">"
+                      'linear-gradient 示例代码</span></p>')
+            with self.subTest(style=style):
+                self.assertFalse(any('文字背景使用渐变' in w for w in validate(source)[1]))
+
+    def test_background_cascade_controls_gradient_exposure_in_both_validators(self):
+        cases = [
+            ('background-color:transparent!important;background:#fff', True),
+            ('background-color:#fff!important;background:transparent', False),
+            ('background:transparent!important;background-color:#fff', True),
+            ('background:#fff!important;background-color:transparent', False),
+            ('background-color:transparent!important;background:#fff!important', False),
+            ('background:#fff!important;background-color:transparent!important', True),
+            ('background-color:#fff!important;background:linear-gradient(#fff,#000)', True),
+            ('background-image:none!important;background:linear-gradient(#fff,#000) #fff', False),
+            ('background-color:#fff ! IMPORTANT;background:transparent', False),
+        ]
+        for style, exposed in cases:
+            source = (f'<section style="background:linear-gradient(#fff,#000)"><p style="{style}">'
+                      '<span leaf="">正文</span></p></section>')
+            with self.subTest(style=style), tempfile.TemporaryDirectory() as directory:
+                path = Path(directory) / 'component.md'
+                path.write_text('```html\n' + source + '\n```', encoding='utf-8')
+                self.assertEqual(any('文字背景使用渐变' in msg for msg in validate(source)[1]), exposed)
+                self.assertEqual(any('文字背景使用渐变' in msg for _, msg in lint_file(str(path))[1]), exposed)
+
+    def test_independent_background_coverage_respects_important(self):
+        for style, covered in [
+            ('background-color:transparent!important;background:#fff', False),
+            ('background-color:#fff!important;background:transparent', True),
+            ('background:transparent!important;background-color:#fff!important', True),
+        ]:
+            source = f'<section><p style="{style}"><span leaf="">正文</span></p></section>'
+            with self.subTest(style=style):
+                self.assertEqual(any('底色' in msg for msg in validate(source)[1]), not covered)
+
+    def test_gradient_warning_does_not_block_cli(self):
+        # The platform recommendation is advisory; preserve the warning without
+        # forcing users to change necessary visual effects just to pass CI.
+        source = '<section><p style="background:linear-gradient(#fff,#eee)"><span leaf="">正文</span></p></section>'
+        with tempfile.TemporaryDirectory() as directory:
+            folder = Path(directory)
+            (folder / 'references').mkdir()
+            (folder / 'references/component.md').write_text('```html\n' + source + '\n```', encoding='utf-8')
+            article = folder / 'article.html'
+            article.write_text(source, encoding='utf-8')
+            for script, target in [('component_lint.py', folder), ('validate_gzh_html.py', article)]:
+                with self.subTest(script=script):
+                    result = subprocess.run([sys.executable, str(ROOT / 'scripts' / script), str(target)],
+                                            capture_output=True, encoding='utf-8')
+                    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+                    self.assertIn('文字背景使用渐变', result.stdout)
 
     def test_independent_background_can_come_from_inner_ancestor(self):
         source = '<section><section style="background:#fff"><section><p><span leaf="">正文</span></p></section></section></section>'
@@ -331,10 +505,10 @@ class CLITests(unittest.TestCase):
 
     def test_validator_works_under_gbk_redirected_stdio(self):
         env = dict(os.environ, PYTHONIOENCODING='gbk')
-        result = subprocess.run([sys.executable, str(ROOT / 'scripts/validate_gzh_html.py'), '--stdin'],
+        result = subprocess.run([sys.executable, str(ROOT / 'scripts/validate_gzh_html.py'), '--stdin', '--fragment'],
                                 input='<p><span leaf="">正文</span></p>'.encode(), capture_output=True, env=env)
         self.assertEqual(result.returncode, 0, result.stderr.decode('utf-8', 'replace'))
-        self.assertIn('完全合规', result.stdout.decode('utf-8'))
+        self.assertIn('片段检查通过', result.stdout.decode('utf-8'))
 
     def test_component_lint_works_under_gbk_redirected_stdio(self):
         env = dict(os.environ, PYTHONIOENCODING='gbk')
@@ -351,8 +525,8 @@ class RepositoryTests(unittest.TestCase):
                 continue
             source = path.read_text(encoding='utf-8')
             with self.subTest(theme=path.stem):
-                self.assertEqual(validate(source)[:2], ([], []))
-                self.assertEqual(validate(minify_html(source))[:2], ([], []))
+                self.assertEqual(validate(source, require_root_alignment=True)[:2], ([], []))
+                self.assertEqual(validate(minify_html(source), require_root_alignment=True)[:2], ([], []))
 
     @unittest.skipUnless(Image, 'requires Pillow')
     def test_png_assets_are_complete(self):

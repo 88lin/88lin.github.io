@@ -61,7 +61,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFF9FB;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2B1B33;font-size:17px;line-height:2;overflow-x:hidden;box-sizing:border-box;">
+<section style="max-width:677px;margin:0 auto;background:#FFF9FB;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2B1B33;font-size:17px;line-height:2;overflow-x:hidden;box-sizing:border-box;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -309,7 +309,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFF9FB;padding:44px 26px 40px;...">
+<section style="text-align:left;max-width:677px;margin:0 auto;background:#FFF9FB;padding:44px 26px 40px;...">
   <!-- 1. kicker + 草莓插画 + 大标题 + 三色条（组件 2） -->
   <!-- 2. 标签胶囊行（组件 3，可选） -->
   <!-- 3. 居中引言金句（组件 4） -->

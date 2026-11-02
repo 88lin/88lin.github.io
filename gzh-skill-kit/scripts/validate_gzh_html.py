@@ -13,6 +13,11 @@ grid/@media/CSS 变量/外部字体）、**可点击的 `<a href>`**、**SVG 动
 用法:
     validate_gzh_html.py <file.html>
     validate_gzh_html.py --stdin < file.html
+    validate_gzh_html.py --fragment <component.html>
+    validate_gzh_html.py --stdin --fragment < component.html
+
+文件和标准输入默认都按完整文章校验。--fragment 允许片段继承容器对齐，
+仅跳过顶层区块的独立对齐要求，保留其余检查。
 
 退出码: 1 = 有 ERROR（会被公众号过滤或粘贴后样式丢失）; 0 = 通过。
 """
@@ -146,7 +151,8 @@ class LeafChecker(HTMLParser):
         return [m.start() for m in ASCII_QUOTE.finditer(masked)]
 
 
-def validate(html, name="<input>"):
+def validate(html, name="<input>", *, require_root_alignment=False):
+    """Check a fragment; full-article callers also require a standalone alignment."""
     errors, warnings = [], []
 
     # 空输入必须拦住：早期版本对空字符串报"完全合规"，
@@ -156,7 +162,7 @@ def validate(html, name="<input>"):
                       "（检查文件路径是否正确、生成步骤是否真的产出了内容）")
         return errors, warnings, 0
 
-    markup = inspect_markup(html)
+    markup = inspect_markup(html, require_root_alignment=require_root_alignment)
     for level, message in markup.findings:
         (errors if level == "ERROR" else warnings).append(message)
 
@@ -201,9 +207,11 @@ def validate(html, name="<input>"):
 
 def main():
     configure_stdio()
-    ap = argparse.ArgumentParser()
+    ap = argparse.ArgumentParser(description="默认按完整文章校验；可继承的组件片段请加 --fragment")
     ap.add_argument("file", nargs="?", help="HTML 文件路径")
     ap.add_argument("--stdin", action="store_true", help="从标准输入读取")
+    ap.add_argument("--fragment", action="store_true",
+                    help="按组件片段校验，允许顶层区块继承文字对齐，其余检查不变")
     args = ap.parse_args()
 
     if args.stdin or not args.file:
@@ -218,7 +226,7 @@ def main():
             sys.exit(1)
         name = args.file
 
-    errors, warnings, leaf_n = validate(html, name)
+    errors, warnings, leaf_n = validate(html, name, require_root_alignment=not args.fragment)
 
     print(f"📋 公众号 HTML 合规校验: {name}")
     print(f"   span leaf 包裹: {leaf_n} 处")
@@ -231,7 +239,10 @@ def main():
         for w in warnings:
             print(f"   • {w}")
     if not errors and not warnings:
-        print("\n✅ 完全合规，可直接粘贴到公众号编辑器")
+        if args.fragment:
+            print("\n✅ 片段检查通过（允许继承容器对齐；装配后请按完整文章再校验）")
+        else:
+            print("\n✅ 完全合规，可直接粘贴到公众号编辑器")
     elif not errors:
         print("\n✅ 无致命问题，可粘贴（warning 请人工确认）")
 

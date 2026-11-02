@@ -2,7 +2,7 @@
 
 > **使用说明**：本组件库将克莱因蓝、鸿蒙无衬线、几何细线与大面积纯白留白转译为微信公众号可用的内联 HTML。适合观点文章、艺术评论、品牌叙事、作品集、访谈与结构化教程。
 >
-> **设计原则（v2 卡片流版）**：预览页 `docs/gallery/klein-blue.html` 已改为「浅蓝底 `#F4F6FE` + 白/蓝圆角大卡流」——蓝幅 + 错位白卡标题开场，判断一/二/三分别用浅蓝水滴卡、白卡蓝点步骤、渐变蓝大卡承载，金句用左耳挂蓝条，页脚用白卡圆角+蓝圆徽标。`#002FA7` 只承担标签、序号圆点、高亮、金句条与徽标；正文一律深字（`#232C55` / `#333F75`），禁用浅灰。组件库下方的经典展册款组件仍可单独取用。
+> **设计原则（v2 卡片流版）**：预览页 `docs/gallery/klein-blue.html` 已改为「浅蓝底 `#F4F6FE` + 白/蓝圆角大卡流」——蓝幅 + 错位白卡标题开场，判断一/二/三分别用浅蓝水滴卡、白卡蓝点步骤、纯色蓝大卡承载，金句用左耳挂蓝条，页脚用白卡圆角+蓝圆徽标。`#002FA7` 只承担标签、序号圆点、高亮、金句条与徽标；浅底正文用深字（`#232C55` / `#333F75`），蓝底卡用白字或浅蓝字，禁用浅灰。组件库下方的经典展册款组件仍可单独取用。
 >
 > **微信兼容规则**：所有文字节点必须置于 `<span leaf="">`；装饰空元素放 `<span leaf=""><br></span>`；禁用 style 与 script 标签、class 与 id 属性、div 标签、复杂定位、Grid、CSS 变量与交互；所有文字字号不超过 `24px`。
 >
@@ -18,8 +18,10 @@
 主题名称：       克莱因蓝艺术展册
 主题 ID：        klein-blue
 主色：           #002FA7（Klein Blue）
-主色深：         #001E78（深蓝引用 / 封面渐变）
-主色亮：         #0648D8（渐变高光 / 次级进度）
+主色深：         #001E78（深色代码块底色）
+主色亮：         #0648D8（亮蓝点缀 / 次级进度）
+经典封面底：     #043DC0（接近原渐变整体色调）
+经典引用底：     #00268F（深蓝引用 / 静态视频底色）
 浅蓝：           #E8ECFF（标签底 / 弱强调底）
 极浅蓝：         #F3F6FF（导读 / 提示 / 代码底）
 纯白：           #FFFFFF（文章背景）
@@ -39,7 +41,7 @@
 v2 页面底（浅蓝）：  #F4F6FE
 v2 墨蓝正文：       #16224A / #232C55 / #333F75
 v2 淡蓝水滴卡：     底 #DCE4FB / 文字 #16224A
-v2 渐变蓝大卡：     linear-gradient(135deg,#1E45C4,#3A62E0)，文字白
+v2 纯色蓝大卡：     #1E45C4，文字白
 v2 浅蓝强调字：     #5C7BE0（浅底）/ #C9D5FA（深底辅字）
 v2 白卡描边：       #F0F4FF 底 / #E8EDFD 边
 v2 眉题：           #333F75 加粗（禁浅灰）
@@ -57,7 +59,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 
 中性/补充色：   #111C44
 ```html
-<section style="max-width:677px;margin:0 auto;background:#F4F6FE;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#16224A;font-size:16px;line-height:1.9;">
+<section style="max-width:677px;margin:0 auto;background:#F4F6FE;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#16224A;font-size:16px;line-height:1.9;text-align:left;">
   <section style="background:#002FA7;padding:52px 30px 104px;text-align:center;">
     <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:12px;font-weight:bold;letter-spacing:5px;padding-left:5px;color:#C9D5FA;"><span leaf="">栏目英文眉题 · 2026</span></p>
   </section>
@@ -118,13 +120,13 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 
 ---
 
-## 组件 V2-5 渐变蓝大卡（v2 压轴论点）
+## 组件 V2-5 纯色蓝大卡（v2 压轴论点）
 
 ```html
-<section style="margin:30px 26px 0;background:linear-gradient(135deg,#002FA7 0%,#1E45C4 55%,#3A62E0 100%);border-radius:18px;padding:30px 26px;">
+<section style="margin:30px 26px 0;background:#1E45C4;border-radius:18px;padding:30px 26px;">
   <p style="margin:0 0 10px;font-size:13px;font-weight:bold;color:#C9D5FA;letter-spacing:2px;"><span leaf="">判断三</span></p>
   <p style="margin:0 0 12px;font-size:19px;font-weight:900;color:#FFFFFF;line-height:1.6;"><span leaf="">压轴论点标题</span></p>
-  <p style="margin:0 0 14px;font-size:15px;line-height:1.95;color:#DCE4FB;text-align:justify;"><span leaf="">论述正文（浅蓝字在渐变深底上）。</span></p>
+  <p style="margin:0 0 14px;font-size:15px;line-height:1.95;color:#DCE4FB;text-align:justify;"><span leaf="">论述正文（浅蓝字在纯色深底上）。</span></p>
   <p style="margin:0;font-size:13px;font-weight:bold;letter-spacing:1px;color:#DCE4FB;"><span leaf="">链式收束：A → B → C → D</span></p>
 </section>
 ```
@@ -150,14 +152,14 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 </section>
 ```
 
-**v2 节奏铁律**：页面底一律浅蓝 `#F4F6FE`（组件 V2-1 已含）；三张分论点卡交替使用「水滴卡 V2-2 / 白卡步骤 V2-4 / 渐变大卡 V2-5」，中间穿插耳挂金句条 V2-3（全篇 ≤2 条）；眉题/标签一律 `#002FA7` 或 `#333F75` 加粗，禁浅灰；`#002FA7` 纯蓝只用于标签、圆点、耳挂条、徽标，不大面积平涂正文区。
+**v2 节奏铁律**：页面底一律浅蓝 `#F4F6FE`（组件 V2-1 已含）；三张分论点卡交替使用「水滴卡 V2-2 / 白卡步骤 V2-4 / 纯色蓝大卡 V2-5」，中间穿插耳挂金句条 V2-3（全篇 ≤2 条）；眉题/标签一律 `#002FA7` 或 `#333F75` 加粗，禁浅灰；`#002FA7` 纯蓝只用于标签、圆点、耳挂条、徽标，不大面积平涂正文区。
 
 ---
 
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#111111;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;line-height:1.75;letter-spacing:0.3px;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#111111;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;line-height:1.75;letter-spacing:0.3px;overflow-x:hidden;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -185,7 +187,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 > 观点、访谈、随笔类文章的默认封面。每篇最多一个。
 
 ```html
-<section style="margin:0 10px 36px;padding:34px 22px;background:linear-gradient(135deg,#002FA7 0%,#0648D8 52%,#001E78 100%);border-radius:6px;box-shadow:0 8px 24px rgba(0,47,167,0.16);box-sizing:border-box;">
+<section style="margin:0 10px 36px;padding:34px 22px;background:#043DC0;border-radius:6px;box-shadow:0 8px 24px rgba(0,47,167,0.16);box-sizing:border-box;">
   <p style="margin:0 0 26px;font-family:Georgia,'Times New Roman',serif;font-size:10px;color:#E8ECFF;letter-spacing:2px;"><span leaf="">BLUE MANIFESTO</span></p>
   <p style="margin:0 0 18px;font-size:24px;line-height:1.4;font-weight:600;color:#FFFFFF;"><span leaf="">宣言标题占位：让颜色成为观点，而不是装饰</span></p>
   <p style="margin:0;font-size:16px;line-height:1.9;color:#FFFFFF;"><span leaf="">宣言说明占位：这里展示一段具有判断力的开场文字，以纯蓝色块建立全文最强视觉锚点。</span></p>
@@ -333,7 +335,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 > 适合 60 个汉字以内的核心金句，每篇 1–2 次。
 
 ```html
-<section style="margin:8px 10px 28px;padding:22px 20px;background:linear-gradient(135deg,#002FA7 0%,#001E78 100%);border-radius:6px;box-shadow:0 8px 24px rgba(0,47,167,0.16);box-sizing:border-box;">
+<section style="margin:8px 10px 28px;padding:22px 20px;background:#00268F;border-radius:6px;box-shadow:0 8px 24px rgba(0,47,167,0.16);box-sizing:border-box;">
   <p style="margin:0 0 12px;font-family:Georgia,'Times New Roman',serif;font-size:24px;line-height:1;color:#E8ECFF;"><span leaf="">“</span></p>
   <p style="margin:0 0 16px;font-size:17px;line-height:1.9;color:#FFFFFF;font-weight:600;"><span leaf="">引用内容占位：真正值得被看见的，不只是答案，还有答案背后的判断方式。</span></p>
   <p style="margin:0;text-align:right;font-size:11px;color:#E8ECFF;letter-spacing:1px;"><span leaf="">—— 作者或来源占位</span></p>
@@ -510,7 +512,7 @@ v2 眉题：           #333F75 加粗（禁浅灰）
 ### 18c 静态视频占位
 
 ```html
-<section style="margin:0 10px 30px;padding:38px 20px;background:linear-gradient(135deg,#002FA7,#001E78);border-radius:6px;text-align:center;box-sizing:border-box;">
+<section style="margin:0 10px 30px;padding:38px 20px;background:#00268F;border-radius:6px;text-align:center;box-sizing:border-box;">
   <p style="margin:0 0 12px;font-size:24px;color:#FFFFFF;line-height:1;"><span leaf="">▷</span></p>
   <p style="margin:0 0 7px;font-size:16px;color:#FFFFFF;font-weight:700;"><span leaf="">视频内容占位</span></p>
   <p style="margin:0;font-size:12px;line-height:1.65;color:#E8ECFF;"><span leaf="">静态说明占位：此处用于提示后续补充视频封面或演示片段。</span></p>
@@ -781,7 +783,7 @@ END 几何收束：
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#111111;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;line-height:1.75;letter-spacing:0.3px;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#111111;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','HarmonyOS Sans SC','Microsoft YaHei',sans-serif;line-height:1.75;letter-spacing:0.3px;overflow-x:hidden;text-align:left;">
 
   <!-- 1. 展册刊头：组件 2 -->
 
@@ -820,7 +822,7 @@ END 几何收束：
 
 | 层级 | 视觉语言 | 用途 | 建议频率 |
 |---|---|---|---|
-| 强锚点层 | 深蓝渐变封面、深蓝引用、主 CTA | 开场、核心金句、关键行动 | 同屏最多 1 个，全文各 1–2 次 |
+| 强锚点层 | 纯色深蓝封面、深蓝引用、主 CTA | 开场、核心金句、关键行动 | 同屏最多 1 个，全文各 1–2 次 |
 | 结构层 | 蓝色章节号、圆点标题、1px 细线、浅蓝底卡 | 章节、步骤、数据、目录 | 按结构使用 |
 | 阅读层 | 16px 正文、黑色加粗、蓝色下划线 | 主体阅读与关键词 | 每段下划线 0–2 处 |
 | 辅助层 | `#7D86A5` 元信息、图注、英文标签 | 来源、日期、说明 | 克制使用 |
