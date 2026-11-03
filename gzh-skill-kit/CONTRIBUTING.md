@@ -43,6 +43,10 @@ python3 scripts/validate_gzh_html.py <生成的.html>
 
 ## 提交规范
 
+发布面向用户的新版时，递增根目录 `VERSION` 中的三段式版本号（如 `1.0.0` → `1.0.1`），与改动一起提交，并为该提交发布同名正式 Release（标签 `v1.0.1`）。发布工作流会校验标签与包内版本一致，并将 `VERSION` 附到 Release；也可手动上传该文件。确认附件上传成功后，新版提醒才能使用。草稿和预发布不触发提醒，普通提交不单独发版。
+
+检查优先读取 `https://github.com/88lin/gzh-skill-kit/releases/latest/download/VERSION`，失败后尝试在地址前加 `https://ghfast.top/`，每个来源使用短超时，不依赖 GitHub API 的匿名额度。更新提醒缓存保存在用户目录的 `.gzh-skill-kit/update-check.json`，不随技能发布；脚本不拉取或替换技能文件。Git 安装和 ZIP 安装均使用随包附带的 `VERSION`。
+
 - 一个 PR 只做一件事（一套新主题 / 一处修复 / 一处文档）。
 - commit 信息说清「改了什么 + 为什么」。
 - 不要提交本地排版产物（`.gitignore` 已忽略 `*_排版_*.html`）。

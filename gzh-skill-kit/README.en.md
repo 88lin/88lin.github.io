@@ -236,7 +236,9 @@ The tool follows WeChat's layout constraints and checks the output, but the edit
 
 **How do I update it or get help with an error?**
 
-Ask AI to help, keeping your custom themes when updating. For example:
+After completing a task, AI checks for a newer official Release at most once a week. A confirmed new version gets one short reminder at the end of the reply, once per version. Updates require your explicit request and preserve custom themes and activation records. Slow or failed official connections fall back to the [ghfast mirror](https://ghfast.top/); if both fail, the check stays quiet. Existing installations need one manual update to enable these reminders.
+
+Ask AI to help, for example:
 
 > Update gzh-skill-kit, preserve the themes I added or changed, and check that it works with the sample article.
 
