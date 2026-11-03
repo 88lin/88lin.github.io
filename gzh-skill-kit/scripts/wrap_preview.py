@@ -21,8 +21,10 @@ from urllib.parse import quote
 
 if __package__:
     from .cli_utils import configure_stdio
+    from .fan_access import FanAccessError, require_activation
 else:
     from cli_utils import configure_stdio
+    from fan_access import FanAccessError, require_activation
 
 
 def render_preview(content, title, base_url='./'):
@@ -38,6 +40,11 @@ def main():
     if len(sys.argv) < 2:
         print("用法: wrap_preview.py <section.html> [output.html]")
         sys.exit(1)
+    try:
+        require_activation()
+    except FanAccessError as exc:
+        print(str(exc), file=sys.stderr)
+        sys.exit(3)
     src = sys.argv[1]
     if not os.path.isfile(src):
         print(f"✗ 找不到文件: {src}")

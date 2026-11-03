@@ -20,6 +20,7 @@ from extract_docx import _md_image_path, extract, para_text, W, R, A
 from minify_gzh_html import minify_html
 from validate_gzh_html import validate
 import wechat_draft as draft
+from fan_access_test_support import isolated_skill
 
 try:
     import requests
@@ -67,6 +68,7 @@ class TokenTests(unittest.TestCase):
 
     def test_cli_missing_config_keys_has_no_traceback(self):
         with tempfile.TemporaryDirectory() as directory:
+            skill_root, activation_env = isolated_skill(directory)
             config_path = Path(directory) / 'config.json'
             for missing in ('WECHAT_APP_ID', 'WECHAT_APP_SECRET'):
                 data = {'WECHAT_APP_ID': 'example', 'WECHAT_APP_SECRET': 'do-not-print-secret'}
@@ -74,10 +76,10 @@ class TokenTests(unittest.TestCase):
                 config_path.write_text(json.dumps(data), encoding='utf-8')
                 with self.subTest(missing=missing):
                     result = subprocess.run([
-                        sys.executable, str(ROOT / 'scripts/wechat_draft.py'),
+                        sys.executable, str(skill_root / 'scripts/wechat_draft.py'),
                         'cover.jpg', 'title', 'digest', '<p>body</p>',
                     ], capture_output=True, text=True, encoding='utf-8', env=dict(
-                        os.environ, WECHAT_CONFIG_FILE=str(config_path),
+                        os.environ, **activation_env, WECHAT_CONFIG_FILE=str(config_path),
                         WECHAT_TOKEN_FILE=str(Path(directory) / 'absent-token.json'),
                     ))
                     self.assertEqual(result.returncode, 1)
@@ -288,11 +290,13 @@ class CleanupAuditTests(unittest.TestCase):
 class OutputAuditTests(unittest.TestCase):
     def test_cli_input_errors_are_clean_and_nonzero(self):
         with tempfile.TemporaryDirectory() as directory:
+            skill_root, activation_env = isolated_skill(directory)
             invalid = Path(directory) / 'invalid.html'
             invalid.write_bytes(b'\xff')
             for path in [Path(directory) / 'missing.html', invalid]:
-                result = subprocess.run([sys.executable, str(ROOT / 'scripts/wechat_draft.py'),
-                                         'cover', 'title', 'digest', '--html-file', str(path)], capture_output=True)
+                result = subprocess.run([sys.executable, str(skill_root / 'scripts/wechat_draft.py'),
+                                         'cover', 'title', 'digest', '--html-file', str(path)], capture_output=True,
+                                        env=dict(os.environ, **activation_env))
                 with self.subTest(path=path.name):
                     self.assertEqual(result.returncode, 1)
                     self.assertNotIn(b'Traceback', result.stderr)
@@ -312,13 +316,15 @@ class OutputAuditTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
+            skill_root, activation_env = isolated_skill(directory)
             source_dir, output_dir = root / '文章 #1', root / 'previews'
             source_dir.mkdir(); output_dir.mkdir()
             source = source_dir / 'article.html'
             source.write_text('<section><img src="image.svg"></section>', encoding='utf-8')
             for preview in [output_dir / 'preview.html', source_dir / 'preview.html']:
-                result = subprocess.run([sys.executable, str(ROOT / 'scripts/wrap_preview.py'),
-                                         str(source), str(preview)], capture_output=True)
+                result = subprocess.run([sys.executable, str(skill_root / 'scripts/wrap_preview.py'),
+                                         str(source), str(preview)], capture_output=True,
+                                        env=dict(os.environ, **activation_env))
                 self.assertEqual(result.returncode, 0, result.stderr)
                 parser = Resources(); parser.feed(preview.read_text(encoding='utf-8'))
                 resolved = urljoin(urljoin(preview.as_uri(), parser.base), parser.image)

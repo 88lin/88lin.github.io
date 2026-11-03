@@ -1,6 +1,6 @@
-gzh-skill-kit 个人非商业使用许可证 1.0
-GzhSkillKit Personal Non-Commercial License 1.0
-License identifier: LicenseRef-GzhSkillKit-NonCommercial-1.0
+gzh-skill-kit 个人非商业使用许可证 1.1
+GzhSkillKit Personal Non-Commercial License 1.1
+License identifier: LicenseRef-GzhSkillKit-NonCommercial-1.1
 
 Copyright (C) 2026 88lin (茉灵智库)
 许可证版本日期：2026-11-03
@@ -12,6 +12,9 @@ Copyright (C) 2026 88lin (茉灵智库)
 本许可证为自定义的非商业使用许可证，不是开源许可证。
 
 二、授权与限制
+
+使用前须加入作者指定的粉丝群领取激活码，完成一次本地激活。激活长期
+有效，不要求定期续码；不得公开传播群内激活码。
 
 在遵守本许可证的前提下，允许下载、安装、运行、研究和修改本项目，
 用于个人学习、研究和非商业内容创作。允许为这些用途免费分享原版或
@@ -47,8 +50,10 @@ English summary (the Chinese text above governs)
 
 This is a custom license for personal non-commercial use, not an open-source
 license. You may use, study, modify and share the project free of charge for
-personal learning, research and non-commercial content creation. Preserve
-this license and copyright notices, and identify modifications when sharing.
+personal learning, research and non-commercial content creation. Use requires
+one-time local activation with a code obtained in the author's fan group.
+Activation has no expiry; do not publish the group code. Preserve this license
+and copyright notices, and identify modifications when sharing.
 
 Commercial use is prohibited, including client services, business operations
 or promotion, monetization of content produced with the project, resale and

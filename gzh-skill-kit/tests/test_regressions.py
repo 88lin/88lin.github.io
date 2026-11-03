@@ -359,6 +359,13 @@ def response(value):
 
 @unittest.skipUnless(requests, 'requires requests')
 class DraftTests(unittest.TestCase):
+    def setUp(self):
+        # These cases exercise upload behavior after activation; activation itself
+        # and the pre-network boundary are covered in test_fan_access.py.
+        activation = patch.object(draft, 'require_activation')
+        activation.start()
+        self.addCleanup(activation.stop)
+
     def test_failed_readback_is_not_zero_problems(self):
         with patch('requests.post', return_value=response({'errcode': 45009})):
             with self.assertRaises(draft.DraftVerificationError) as raised:
@@ -455,6 +462,12 @@ class DraftTests(unittest.TestCase):
 
 
 class CLITests(unittest.TestCase):
+    def setUp(self):
+        # Error-contract cases start after the dedicated activation check.
+        activation = patch.object(draft, 'require_activation')
+        activation.start()
+        self.addCleanup(activation.stop)
+
     def test_public_modules_can_be_imported_without_changing_stdio(self):
         code = ('import sys; original = sys.stdout.encoding; '
                 'from scripts import minify_gzh_html, extract_docx, validate_gzh_html, '

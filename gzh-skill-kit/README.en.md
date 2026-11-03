@@ -20,6 +20,7 @@ Finished writing, but still adjusting fonts, colors, and spacing? **Give the dra
 
 > [!IMPORTANT]
 > **Personal non-commercial use only.** See [LICENSE](LICENSE) for the full terms.
+> Before first use, follow the author's [Xiaohongshu profile](https://www.xiaohongshu.com/user/profile/6a9a3ba20000000013032c00) and join **AI生产力实验室（仅粉丝）** to get the six-character alphanumeric activation code (case-insensitive). Activate once for ongoing use; see the [activation guide](docs/activation.md).
 
 <a id="quick-start"></a>
 
@@ -32,7 +33,8 @@ Please install this WeChat layout tool:
 https://github.com/88lin/gzh-skill-kit
 
 Read LICENSE and the non-commercial use rules in SKILL.md first.
-Format my article for WeChat.
+Check activation first; if needed, show me how to join the group and activate.
+After activation, format my article for WeChat.
 Choose a theme and preserve my content.
 Check the layout and create a preview
 with a Copy to WeChat button.
