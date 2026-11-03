@@ -6,7 +6,7 @@
 
 18 套精选主题 + 主题生成器 · 图片 / GIF / 代码块 · 自动整理章节与重点 · 一键复制到公众号
 
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-18%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
+[![License: Personal Non-Commercial](https://img.shields.io/badge/License-Personal%20Non--Commercial-orange.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-18%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
 
 [🚀 一句话开始](#quick-start) · [👀 看排版效果](#gallery) · [📖 跟着做一篇](#tutorials) · [🎨 挑选主题](#themes) · [❓ 常见问题](#faq)
 
@@ -18,6 +18,9 @@
 
 写完一篇文章，还要花时间调字号、配颜色、改间距？**把稿子交给 AI，让它帮你排好。** 选一套喜欢的风格，标题、引言、重点、配图和署名一起整理，最后打开预览、复制到公众号就能继续编辑。
 
+> [!IMPORTANT]
+> **仅限个人非商业使用**，完整条款见 [LICENSE](LICENSE)。
+
 <a id="quick-start"></a>
 
 ## 🚀 最简单的用法：复制这段话，发给 AI
@@ -28,6 +31,7 @@
 请帮我安装这个公众号排版工具：
 https://github.com/88lin/gzh-skill-kit
 
+请先阅读 LICENSE 和 SKILL.md 中的非商业使用规则。
 装好后，把我接下来提供的文章排成公众号图文。
 自动选一套合适的主题，保留正文，不改写观点。
 帮我检查排版，生成带复制按钮的预览页，
@@ -201,6 +205,10 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 
 ## ❓ 常见问题
 
+**可以商用、接单，或者用排版文章变现吗？**
+
+不可以。本版本仅限个人非商业使用，不允许接单、商业推广或变现，详见 [LICENSE](LICENSE)。
+
 **完全不会写代码，可以用吗？**
 
 可以按上面的默认流程使用：复制提示词、把文章发给 AI、打开预览并复制。安装与排版中的技术操作由 AI 协助完成，你主要负责检查内容和最终效果。
@@ -257,6 +265,6 @@ PDF 同样可以先整理再排版；扫描件、复杂表格和双栏内容可�
 
 [⭐ Star 收藏，下次排版更好找](https://github.com/88lin/gzh-skill-kit) · [🎨 推荐新主题](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md) · [🤝 一起完善](CONTRIBUTING.md)
 
-**AGPL-3.0 © 2026 88lin（茉灵智库）** · [查看许可证](LICENSE)
+**仅限个人非商业使用 © 2026 88lin（茉灵智库）** · [查看许可证](LICENSE)
 
 </div>

@@ -6,7 +6,7 @@
 
 18 curated themes + theme generator · images / GIFs / code · sections & highlights · one-click rich-text copy
 
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-18%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
+[![License: Personal Non-Commercial](https://img.shields.io/badge/License-Personal%20Non--Commercial-orange.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-18%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
 
 [🚀 Start with one prompt](#quick-start) · [👀 See the results](#gallery) · [📖 Your first article](#tutorials) · [🎨 Pick a theme](#themes) · [❓ FAQ](#faq)
 
@@ -18,6 +18,9 @@
 
 Finished writing, but still adjusting fonts, colors, and spacing? **Give the draft to AI and let it handle the layout.** Choose a style you like, and it will arrange headings, introductions, highlights, images, and your signature. Open the preview, copy the result, and continue editing in WeChat.
 
+> [!IMPORTANT]
+> **Personal non-commercial use only.** See [LICENSE](LICENSE) for the full terms.
+
 <a id="quick-start"></a>
 
 ## 🚀 The easiest way: copy this prompt and send it to AI
@@ -28,6 +31,7 @@ Finished writing, but still adjusting fonts, colors, and spacing? **Give the dra
 Please install this WeChat layout tool:
 https://github.com/88lin/gzh-skill-kit
 
+Read LICENSE and the non-commercial use rules in SKILL.md first.
 Format my article for WeChat.
 Choose a theme and preserve my content.
 Check the layout and create a preview
@@ -204,6 +208,10 @@ This requires your account's API permissions and credentials. **The tool creates
 
 ## ❓ FAQ
 
+**Can I use this commercially, for client work, or to monetize articles?**
+
+No. This version is for personal non-commercial use only. Client services, commercial promotion and monetization are prohibited. See [LICENSE](LICENSE).
+
 **Can I use it without writing code?**
 
 Follow the default route: copy the prompt, send AI your article, then open the preview and copy. AI helps with the technical setup and layout steps; you review the content and final appearance.
@@ -262,6 +270,6 @@ To discuss WeChat layout, AI tools, or theme collaboration, add WeChat **`Pisces
 
 [⭐ Star it for your next article](https://github.com/88lin/gzh-skill-kit) · [🎨 Suggest a theme](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md) · [🤝 Contribute](CONTRIBUTING.md)
 
-**AGPL-3.0 © 2026 88lin (茉灵智库)** · [Read the license](LICENSE)
+**Personal non-commercial use only © 2026 88lin (茉灵智库)** · [Read the license](LICENSE)
 
 </div>
