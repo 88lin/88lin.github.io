@@ -43,7 +43,7 @@ class ActivationTests(unittest.TestCase):
 
     def test_alphanumeric_code_accepts_lowercase_and_surrounding_whitespace(self):
         with patch('socket.socket', side_effect=AssertionError('activation must be offline')):
-            self.assertEqual(access.activate('  ' + TEST_CODE.lower() + '\n'), self.state)
+            self.assertEqual(access.activate('  ' + TEST_CODE.lower() + '\n'), self.state.resolve())
             self.assertIsNone(access.require_activation())
         self.assertEqual(json.loads(self.state.read_text())['activation_code'], TEST_CODE)
 
@@ -174,7 +174,7 @@ class PublisherSetupTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             private = Path(directory) / 'private' / 'group.activation-code.txt'
             policy = Path(directory) / 'public' / 'fan-access.json'
-            self.assertEqual(issuer.initialize(private, policy), private)
+            self.assertEqual(issuer.initialize(private, policy), private.resolve())
             code = private.read_text(encoding='utf-8').strip()
             self.assertRegex(code, r'^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$')
             self.assertRegex(code, r'[A-Z]')
