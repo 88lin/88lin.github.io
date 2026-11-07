@@ -4,9 +4,9 @@
 
 **Give your article to AI. Get a polished WeChat layout in return. ✨**
 
-17 curated themes + theme generator · images / GIFs / code · sections & highlights · one-click rich-text copy
+18 curated themes + theme generator · images / GIFs / code · sections & highlights · one-click rich-text copy
 
-[![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-17%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
+[![License: Personal Non-Commercial](https://img.shields.io/badge/License-Personal%20Non--Commercial-orange.svg)](LICENSE) [![Claude Code](https://img.shields.io/badge/Claude%20Code-Skill-blue)](https://claude.ai/code) [![Themes](https://img.shields.io/badge/themes-18%20+%20generator-059669)](references/theme-index.md) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md) [![Agents](https://img.shields.io/badge/Claude%20Code%20·%20Codex%20·%20Cursor-supported-8b5cf6.svg)](#quick-start)
 
 [🚀 Start with one prompt](#quick-start) · [👀 See the results](#gallery) · [📖 Your first article](#tutorials) · [🎨 Pick a theme](#themes) · [❓ FAQ](#faq)
 
@@ -18,6 +18,10 @@
 
 Finished writing, but still adjusting fonts, colors, and spacing? **Give the draft to AI and let it handle the layout.** Choose a style you like, and it will arrange headings, introductions, highlights, images, and your signature. Open the preview, copy the result, and continue editing in WeChat.
 
+> [!IMPORTANT]
+> **Personal non-commercial use only.** See [LICENSE](LICENSE) for the full terms.
+> Before first use, follow the author's [Xiaohongshu profile](https://www.xiaohongshu.com/user/profile/6a9a3ba20000000013032c00) and join **AI生产力实验室（仅粉丝）** to get the six-character alphanumeric activation code (case-insensitive). Activate once for ongoing use; see the [activation guide](docs/activation.md).
+
 <a id="quick-start"></a>
 
 ## 🚀 The easiest way: copy this prompt and send it to AI
@@ -28,7 +32,9 @@ Finished writing, but still adjusting fonts, colors, and spacing? **Give the dra
 Please install this WeChat layout tool:
 https://github.com/88lin/gzh-skill-kit
 
-Format my article for WeChat.
+Read LICENSE and the non-commercial use rules in SKILL.md first.
+Check activation first; if needed, show me how to join the group and activate.
+After activation, format my article for WeChat.
 Choose a theme and preserve my content.
 Check the layout and create a preview
 with a Copy to WeChat button.
@@ -64,29 +70,34 @@ Click any thumbnail to read the full article in that theme. The previews work on
 
 <table>
 <tr>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="Tech Cobalt (default) theme preview" width="250"></a><br><sub><b>Tech Cobalt (default)</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/soft-candy.html"><img src="assets/lf-soft-candy.thumb.png" alt="Soft Candy 主题预览" width="250"></a><br><sub><b>Soft Candy（default · new）</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/cream-puff.html"><img src="assets/lf-cream-puff.thumb.png" alt="Cream Puff 主题预览" width="250"></a><br><sub><b>Cream Puff（new）</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/letter.html"><img src="assets/lf-letter.thumb.png" alt="Letter theme preview" width="250"></a><br><sub><b>Letter</b></sub></td>
+</tr>
+<tr>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/bento.html"><img src="assets/lf-bento.thumb.png" alt="Bento theme preview" width="250"></a><br><sub><b>Bento</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/strawberry-milk.html"><img src="assets/lf-strawberry-milk.thumb.png" alt="草莓牛奶 theme preview" width="250"></a><br><sub><b>Strawberry Milk</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/garden-tea.html"><img src="assets/lf-garden-tea.thumb.png" alt="花园茶会 theme preview" width="250"></a><br><sub><b>Garden Tea</b></sub></td>
 </tr>
 <tr>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/berry-letter.html"><img src="assets/lf-berry-letter.thumb.png" alt="Berry Letter theme preview" width="250"></a><br><sub><b>Berry Letter</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/chat.html"><img src="assets/lf-chat.thumb.png" alt="Chat theme preview" width="250"></a><br><sub><b>Chat</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="Magazine theme preview" width="250"></a><br><sub><b>Magazine</b></sub></td>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/tech-cobalt.html"><img src="assets/lf-tech-cobalt.thumb.png" alt="Tech Cobalt theme preview" width="250"></a><br><sub><b>Tech Cobalt</b></sub></td>
 </tr>
 <tr>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/magazine.html"><img src="assets/lf-magazine.thumb.png" alt="Magazine theme preview" width="250"></a><br><sub><b>Magazine</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/journal.html"><img src="assets/lf-journal.thumb.png" alt="Journal theme preview" width="250"></a><br><sub><b>Journal</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/daily.html"><img src="assets/lf-daily.thumb.png" alt="Daily theme preview" width="250"></a><br><sub><b>Daily</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="Moyu Green theme preview" width="250"></a><br><sub><b>Moyu Green</b></sub></td>
 </tr>
 <tr>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-green.html"><img src="assets/lf-moyu-green.thumb.png" alt="Moyu Green theme preview" width="250"></a><br><sub><b>Moyu Green</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/red-white.html"><img src="assets/lf-red-white.thumb.png" alt="Red & White theme preview" width="250"></a><br><sub><b>Red & White</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/klein-blue.html"><img src="assets/lf-klein-blue.thumb.png" alt="Klein Blue theme preview" width="250"></a><br><sub><b>Klein Blue</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="Graphite Minimal theme preview" width="250"></a><br><sub><b>Graphite</b></sub></td>
 </tr>
 <tr>
+<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/graphite-minimal.html"><img src="assets/lf-graphite-minimal.thumb.png" alt="Graphite Minimal theme preview" width="250"></a><br><sub><b>Graphite</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/zen-whitespace.html"><img src="assets/lf-zen-whitespace.thumb.png" alt="Zen Whitespace theme preview" width="250"></a><br><sub><b>Zen Whitespace</b></sub></td>
 <td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/moyu-ticket.html"><img src="assets/lf-moyu-ticket.thumb.png" alt="Moyu Ticket theme preview" width="250"></a><br><sub><b>Moyu Ticket</b></sub></td>
-<td width="33%" align="center"><a href="https://88lin.github.io/gzh-skill-kit/docs/previews/olive-journal.html"><img src="assets/lf-olive-journal.thumb.png" alt="Olive Journal theme preview" width="250"></a><br><sub><b>Olive Journal</b></sub></td>
 </tr>
 </table>
 
@@ -123,7 +134,7 @@ Name a theme directly, or compare two versions first:
 
 > Choose the theme that fits the article and finish the layout without asking me to pick.
 
-If you are unsure, start with the default **Tech Cobalt**. More suggestions are in the [theme guide](#themes) below.
+If you are unsure, start with the default **Soft Candy**. More suggestions are in the [theme guide](#themes) below.
 
 ### 📋 Step 3: open the preview and copy to WeChat
 
@@ -159,11 +170,15 @@ Show me a preview first, then save it after I confirm so I can reuse it.
 
 | Color | Theme | Best for |
 | --- | --- | --- |
-| ![#1D4ED8](https://placehold.co/12/1D4ED8/1D4ED8.png) | **Tech Cobalt (default)** | AI tools, developer tutorials, workflow guides |
+| ![#FFD3E2](https://placehold.co/12/FFD3E2/FFD3E2.png) | **Soft Candy** | Tutorials, checklists, reviews, casual sharing |
+| ![#A83A57](https://placehold.co/12/A83A57/A83A57.png) | **Cream Puff** | Essays, methods, annual reviews, reading notes |
 | ![#2B7FD8](https://placehold.co/12/2B7FD8/2B7FD8.png) | **Letter** | Narratives, opinions, methods, annual reflections |
 | ![#7C3AED](https://placehold.co/12/7C3AED/7C3AED.png) | **Bento** | Tool reviews, checklists, curated resources |
+| ![#E84D72](https://placehold.co/12/E84D72/E84D72.png) | **Strawberry Milk** | Magazine numbering, hand-drawn art, lifestyle |
+| ![#8B6FD6](https://placehold.co/12/8B6FD6/8B6FD6.png) | **Garden Tea** | Magazine numbering, line art, brand storytelling |
 | ![#B9345A](https://placehold.co/12/B9345A/B9345A.png) | **Berry Letter** | Reading notes, opinion essays, literary reflections |
 | ![#059669](https://placehold.co/12/059669/059669.png) | **Chat** | Interviews, Q&A tutorials, case reviews |
+| ![#1D4ED8](https://placehold.co/12/1D4ED8/1D4ED8.png) | **Tech Cobalt** | AI tools, developer tutorials, workflow guides |
 | ![#15697C](https://placehold.co/12/15697C/15697C.png) | **Magazine** | Profiles, industry analysis, long-form features |
 | ![#C33D46](https://placehold.co/12/C33D46/C33D46.png) | **Journal** | Reading notes, essays, curated finds |
 | ![#C33D46](https://placehold.co/12/C33D46/C33D46.png) | **Daily** | News digests, weekly roundups, briefings |
@@ -173,7 +188,6 @@ Show me a preview first, then save it after I confirm so I can reuse it.
 | ![#52525B](https://placehold.co/12/52525B/52525B.png) | **Graphite Minimal** | Design, technology commentary, professional perspectives |
 | ![#4A5D52](https://placehold.co/12/4A5D52/4A5D52.png) | **Zen Whitespace** | Minimal living, meditation, reflective essays |
 | ![#059669](https://placehold.co/12/059669/059669.png) | **Moyu Ticket** | Tool comparisons, creative reviews |
-| ![#1e1f23](https://placehold.co/12/1e1f23/1e1f23.png) | **Olive Journal** | Editorial notes, detailed reviews, case studies |
 
 > 💡 Just tell AI the theme name. Colors, components, and exact theme IDs live in the [theme index](references/theme-index.md). For another style, [ask AI to generate a theme](references/theme-generator.md).
 
@@ -195,6 +209,10 @@ This requires your account's API permissions and credentials. **The tool creates
 <a id="faq"></a>
 
 ## ❓ FAQ
+
+**Can I use this commercially, for client work, or to monetize articles?**
+
+No. This version is for personal non-commercial use only. Client services, commercial promotion and monetization are prohibited. See [LICENSE](LICENSE).
 
 **Can I use it without writing code?**
 
@@ -218,7 +236,9 @@ The tool follows WeChat's layout constraints and checks the output, but the edit
 
 **How do I update it or get help with an error?**
 
-Ask AI to help, keeping your custom themes when updating. For example:
+After completing a task, AI checks for a newer official Release at most once a week. A confirmed new version gets one short reminder at the end of the reply, once per version. Updates require your explicit request and preserve custom themes and activation records. Slow or failed official connections fall back to the [ghfast mirror](https://ghfast.top/); if both fail, the check stays quiet. Existing installations need one manual update to enable these reminders.
+
+Ask AI to help, for example:
 
 > Update gzh-skill-kit, preserve the themes I added or changed, and check that it works with the sample article.
 
@@ -237,7 +257,7 @@ Most workflow and theme reference documents are in Chinese.
 
 ## 🗺 What's next
 
-- [x] 17 themes and a live gallery
+- [x] 18 themes and a live gallery
 - [x] Custom themes from descriptions or reference images
 - [ ] More curated themes ([suggest a style](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md))
 - [ ] Export an article and its images together as a package
@@ -254,6 +274,6 @@ To discuss WeChat layout, AI tools, or theme collaboration, add WeChat **`Pisces
 
 [⭐ Star it for your next article](https://github.com/88lin/gzh-skill-kit) · [🎨 Suggest a theme](https://github.com/88lin/gzh-skill-kit/issues/new?template=theme_request.md) · [🤝 Contribute](CONTRIBUTING.md)
 
-**AGPL-3.0 © 2026 88lin (茉灵智库)** · [Read the license](LICENSE)
+**Personal non-commercial use only © 2026 88lin (茉灵智库)** · [Read the license](LICENSE)
 
 </div>

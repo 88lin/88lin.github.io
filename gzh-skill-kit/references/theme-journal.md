@@ -28,7 +28,7 @@
 薄荷反衬：      #3FA98C / 松绿底 #E6FBF4
 深面板：        #2A2233
 虚线批注框：    1.5px dashed #EE8FB0
-正文下划线（theme-index 权威值）：background:linear-gradient(transparent 60%, #FFD3E2 60%);font-weight:bold;
+正文半高亮（与组件 5、theme-index 一致）：box-shadow:inset 0 -0.5em 0 #FFD3E2;font-weight:bold;padding:0 2px;
 正文字号：      17px，line-height:2
 书卡作者行：    #7A4A62（书卡内「作者 / 出版社」行）
 薰衣草点缀：      #8B5FC9（手账完贴纸字）/ #E8B4B8 / #C0A6CF（胶带浅玫瑰变体）
@@ -46,7 +46,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFF8FB;padding:40px 26px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2A2233;font-size:17px;line-height:2;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FFF8FB;padding:40px 26px 36px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#2A2233;font-size:17px;line-height:2;overflow-x:hidden;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -102,7 +102,7 @@
 ```html
 <p style="margin:0 0 18px;font-size:17px;line-height:2;color:#2A2233;text-align:justify;background-color:#FFF8FB;">
   <span leaf="">重读《置身事内》，第一次读是看热闹，这一次终于看懂了门道。</span>
-  <span style="background:linear-gradient(transparent 60%, #FFD3E2 60%);font-weight:bold;padding:0 2px;"><span leaf="">书没变，是读者的处境变了。</span></span>
+  <span style="box-shadow:inset 0 -0.5em 0 #FFD3E2;font-weight:bold;padding:0 2px;"><span leaf="">书没变，是读者的处境变了。</span></span>
 </p>
 ```
 
@@ -207,7 +207,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFF8FB;padding:40px 26px 36px;...">
+<section style="text-align:left;max-width:677px;margin:0 auto;background:#FFF8FB;padding:40px 26px 36px;...">
   <!-- 1. 题头日期（组件 2） -->
   <!-- 2. 大标题 + 胶带（组件 3） -->
   <!-- 3. 正文段（组件 5） -->

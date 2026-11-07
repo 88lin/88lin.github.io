@@ -48,7 +48,7 @@
 整篇文章唯一外层容器。背景不承担内部区块的可读性。
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#5E2E45;font-family:-apple-system,BlinkMacSystemFont,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif;font-size:16px;line-height:2.1;box-sizing:border-box;"><!-- 按下方骨架依次装入组件；各区块已有独立底色 --></section>
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#5E2E45;font-family:-apple-system,BlinkMacSystemFont,&#x27;PingFang SC&#x27;,&#x27;Hiragino Sans GB&#x27;,&#x27;Microsoft YaHei&#x27;,sans-serif;font-size:16px;line-height:2.1;box-sizing:border-box;text-align:left;"><!-- 按下方骨架依次装入组件；各区块已有独立底色 --></section>
 ```
 
 ### 2. 蝴蝶结扉页（cover）
@@ -326,7 +326,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#5E2E45;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:2.1;">
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;color:#5E2E45;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;font-size:16px;line-height:2.1;text-align:left;">
   <!-- 蝴蝶结扉页 cover → 手记引言 intro（原文有引言时） -->
   <!-- 阅读线索 contents（可选）：置于引言后，只选三个核心看点 -->
   <!-- 开场正文 paragraph -->

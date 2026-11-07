@@ -7,7 +7,7 @@
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class/id、`position:fixed/absolute`、`float`、`@media`/`@keyframes`、`display:grid`
 > - **外层底色会被剥离**：公众号编辑器会剥掉最外层 `<section>` 的 `background`（纯色/渐变都可能丢）。页面底色不要只放顶层容器——每个正文区块（章节卡、分割装饰、签名区、互动区）都要各自带 `background` 或等价底色，确保外层被剥掉后任一区块都不是裸内容
-> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`、`border-radius`、`box-shadow`、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
+> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`（文字背景需按必要性评估）、`border-radius`、`box-shadow`、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
 >
 > **WeChat 兼容铁律**（本主题组件全部已按此写好，改动时必须遵守）：
 > - 所有"装饰性空元素"（红色渐变分割线、END 短线、光晕竖条、数据卡分隔）**必须在内部放 `<span leaf=""><br></span>` 占位**，否则微信会剥掉样式
@@ -46,7 +46,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;overflow-x:hidden;text-align:left;">
 
   <!-- 所有组件放在这里 -->
 
@@ -234,7 +234,7 @@
 ### 7e. 荧光笔效果（偶尔用于长句强调）
 
 ```html
-<span style="background:linear-gradient(180deg,transparent 60%,#FECACA 60%);font-weight:700;color:#1C1917;"><span leaf="">荧光笔效果的重要长句</span></span>
+<span style="box-shadow:inset 0 -0.5em 0 #FECACA;font-weight:700;color:#1C1917;"><span leaf="">荧光笔效果的重要长句</span></span>
 ```
 
 ### 7f. 行内代码
@@ -541,7 +541,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;overflow-x:hidden;text-align:left;">
 
   <!-- 1. 开头引言卡片（组件2，白底红色光晕） -->
 

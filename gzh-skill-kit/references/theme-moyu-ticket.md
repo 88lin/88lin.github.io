@@ -49,7 +49,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;">
+<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;text-align:left;">
 
   <!-- 所有组件放在这里 -->
 
@@ -194,7 +194,7 @@
 ### 6b. 绿色高亮 —— 核心观点/关键数据
 
 ```html
-<span style="background:linear-gradient(120deg,#A7F3D0 0%,rgba(167,243,208,0) 100%);padding:0 4px;font-weight:600;color:#111;"><span leaf="">{{文字}}</span></span>
+<span style="background:#D3F9E8;padding:0 4px;font-weight:600;color:#111;"><span leaf="">{{文字}}</span></span>
 ```
 
 ### 6c. 绿色下划线 —— 重要短语（正文关键词的默认标记）
@@ -415,7 +415,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;">
+<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;text-align:left;">
 
   <!-- 1. 票据封面（组件2 ticket-cover） -->
 

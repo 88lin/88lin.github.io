@@ -7,12 +7,12 @@
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class/id、`position:fixed/absolute`、`float`、`@media`/`@keyframes`、`display:grid`
 > - **外层底色会被剥离**：公众号编辑器会剥掉最外层 `<section>` 的 `background`（纯色/渐变都可能丢）。页面底色不要只放顶层容器——每个正文区块（章节卡、分割装饰、签名区、互动区）都要各自带 `background` 或等价底色，确保外层被剥掉后任一区块都不是裸内容
-> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`、`border-radius`、`box-shadow`、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
+> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`（文字背景需按必要性评估）、`border-radius`、`box-shadow`、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
 >
 > **WeChat 兼容铁律**（本主题组件全部已按此写好，改动时必须遵守）：
 > - 所有"装饰性空元素"（三色装饰条、黄短条、分隔条）**内部放 `<span leaf=""><br></span>` 占位**，否则微信会剥掉样式
 > - **不要把 `font-size`/`border-bottom` 打在 `<strong>` 上**，也不要在同一个 `<p>` 里混多个不同 `font-size`——微信编辑器会自动"纠正"导致样式被重写
-> - 荧光笔高亮统一用 `background:linear-gradient(transparent 60%, #F4D758 60%)` 挂在外层 `<span>` 上
+> - 荧光笔保留文字底部的半高亮：用 `box-shadow:inset 0 -0.5em 0 #F4D758` 挂在外层 `<span>` 上，32px 标题用 `-0.45em`；保留原色、字重、padding 和自然换行，不改成整块黄底
 > - 标题断行协议：中文标题超一行必须用 `<br>` 在语义边界显式断句；英文装饰词独占一行 `white-space:nowrap;word-break:keep-all;overflow-wrap:normal;`，10 字母以内 56–68px、11–14 字母 48–56px、15–18 字母 38–48px
 > - 结构化区域没有内容时**整块删掉**，不留空 section
 
@@ -28,7 +28,7 @@
 主色蓝：       #2B7FD8（kicker 备选/装饰词/链接）
 强调黄：       #F4D758（黄短条/荧光笔/装饰条中段）
 点缀红：       #E84A5F（kicker/装饰条尾段）
-引言区块底：   #FFF8E1（方案C黄渐变底）
+引言区块底：   #FFF8E1（方案C黄色纯色底）
 衬线标题字体： Georgia,'Songti SC','Noto Serif SC',serif
 正文无衬线：   -apple-system,'PingFang SC','Helvetica Neue',sans-serif
 正文字号：     18px，line-height:2
@@ -42,7 +42,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#fefcf6;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1A1A2E;font-size:18px;line-height:2;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#fefcf6;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1A1A2E;font-size:18px;line-height:2;overflow-x:hidden;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -77,7 +77,7 @@
 ```html
 <p style="margin:0 0 12px;font-family:Georgia,'Songti SC','Noto Serif SC',serif;font-size:32px;font-weight:900;color:#1A1A2E;line-height:1.5;background-color:#fefcf6;">
   <span leaf="">把前沿 AI，</span><br>
-  <span leaf="">做成</span><span style="background:linear-gradient(transparent 60%, #F4D758 60%);padding:0 2px;"><span leaf="">能交付的东西</span></span><span leaf="">。</span>
+  <span leaf="">做成</span><span style="box-shadow:inset 0 -0.45em 0 #F4D758;padding:0 2px;"><span leaf="">能交付的东西</span></span><span leaf="">。</span>
 </p>
 ```
 
@@ -110,12 +110,12 @@
 
 ---
 
-## 组件 6 引言区块（方案C 黄渐变底）
+## 组件 6 引言区块（方案C 黄色纯色底）
 
 ```html
 <section style="margin-bottom:28px;padding:24px 22px;background:#FFF8E1;border-radius:16px;">
   <p style="margin:0 0 14px;font-size:16px;line-height:2;color:#1A1A2E;text-align:justify;"><span leaf="">三个月前我还在纠结"AI 到底能不能用"。直到有一天我决定认真试一次——不是随便问一句，而是把我的工作流完整交给它。</span></p>
-  <p style="margin:0;font-size:16px;line-height:2;color:#1A1A2E;text-align:justify;"><span leaf="">结果发现，</span><span style="background:linear-gradient(transparent 60%, #F4D758 60%);font-weight:bold;padding:0 2px;"><span leaf="">真正的瓶颈从来不是工具，而是我不知道自己要什么。</span></span></p>
+  <p style="margin:0;font-size:16px;line-height:2;color:#1A1A2E;text-align:justify;"><span leaf="">结果发现，</span><span style="box-shadow:inset 0 -0.5em 0 #F4D758;font-weight:bold;padding:0 2px;"><span leaf="">真正的瓶颈从来不是工具，而是我不知道自己要什么。</span></span></p>
 </section>
 ```
 
@@ -169,7 +169,7 @@
 ```html
 <p style="margin:0 0 18px;font-size:18px;line-height:2;color:#1A1A2E;text-align:justify;background-color:#fefcf6;">
   <span leaf="">我问 AI 的第一个问题是"帮我写一篇文案"。结果可想而知——又空又泛。后来才明白，</span>
-  <span style="background:linear-gradient(transparent 60%, #F4D758 60%);font-weight:bold;padding:0 2px;"><span leaf="">你给它什么质量的输入，它就还你什么质量的输出。</span></span>
+  <span style="box-shadow:inset 0 -0.5em 0 #F4D758;font-weight:bold;padding:0 2px;"><span leaf="">你给它什么质量的输入，它就还你什么质量的输出。</span></span>
 </p>
 ```
 
@@ -241,7 +241,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#fefcf6;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1A1A2E;font-size:18px;line-height:2;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#fefcf6;padding:44px 26px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1A1A2E;font-size:18px;line-height:2;overflow-x:hidden;text-align:left;">
 
   <!-- 1. 红色 kicker（组件 2） -->
   <!-- 2. 大标题区（组件 3） -->
@@ -296,7 +296,7 @@
 | `### 小标题` | `<strong>` 18px 段落 | 加粗成段 |
 | 普通段落 | 组件 9 正文段落 | 18px/行高 2 |
 | `**加粗文字**` | 荧光笔高亮 span | 每节 1–3 处 |
-| `> 引用段落` | 组件 6 引言区块 | 黄渐变底 |
+| `> 引用段落` | 组件 6 引言区块 | 黄色纯色底 |
 | `---` | 组件 5 三色分隔条 | 章节间 margin 56px |
 | `![](图片)` | 组件 11 图片 + 图注 | width:100% 圆角 14px |
 | `[text](url)` 超链接 | 通用库 4a 上标角标 + 4b 参考资料列表 | 角标套主色蓝 `#2B7FD8` |

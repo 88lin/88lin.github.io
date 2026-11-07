@@ -47,7 +47,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FEFAF5;padding:44px 24px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1F2226;font-size:16px;line-height:1.9;">
+<section style="max-width:677px;margin:0 auto;background:#FEFAF5;padding:44px 24px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1F2226;font-size:16px;line-height:1.9;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -72,7 +72,7 @@
 <section style="border-radius:14px;background:#E0F6EF;padding:22px 20px 20px;margin-bottom:18px;">
   <p style="margin:0 0 8px;font-size:13px;font-weight:bold;color:#215044;letter-spacing:1px;"><span leaf="">🫧 模型 · 01</span></p>
   <p style="margin:0 0 10px;font-size:18px;font-weight:900;color:#1F2226;line-height:1.6;"><span leaf="">条目标题放这里</span></p>
-  <p style="margin:0;font-size:15px;line-height:1.95;color:#3A4440;text-align:justify;"><span leaf="">正文放这里。</span><span style="background:linear-gradient(transparent 60%, #FBD97C 60%);font-weight:bold;"><span leaf="">高亮句（与卡底反差色）。</span></span></p>
+  <p style="margin:0;font-size:15px;line-height:1.95;color:#3A4440;text-align:justify;"><span leaf="">正文放这里。</span><span style="box-shadow:inset 0 -0.5em 0 #FBD97C;font-weight:bold;"><span leaf="">高亮句（与卡底反差色）。</span></span></p>
 </section>
 ```
 
@@ -127,7 +127,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FEFAF5;padding:44px 24px 40px;...">
+<section style="text-align:left;max-width:677px;margin:0 auto;background:#FEFAF5;padding:44px 24px 40px;...">
   <!-- 1. 开场胶囊 + 大标题（组件 2） -->
   <!-- 2. 粉彩横卡 ×3~4（组件 3，底色轮换） -->
   <!-- 3. 双栏小卡（组件 4，一组放两条短的） -->

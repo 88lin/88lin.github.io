@@ -22,6 +22,7 @@
   .gzh-toast{position:fixed;top:74px;left:50%;transform:translate(-50%,-8px);box-sizing:border-box;width:max-content;max-width:calc(100vw - 32px);background:#111827;color:#fff;padding:11px 20px;border-radius:12px;font-size:14px;font-weight:500;line-height:1.6;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.22);text-align:center;}
   .gzh-toast.show{opacity:1;transform:translate(-50%,0);}
   .gzh-stage{max-width:700px;margin:84px auto 64px;padding:0 8px;}
+  #gzh-content{text-align:left;}
   @media(max-width:520px){.gzh-toolbar{padding:0 14px;gap:10px;}.gzh-hint{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}}
   @media(prefers-reduced-motion:reduce){.gzh-copy,.gzh-toast{transition:none;}.gzh-copy:hover{transform:none;}}
 </style>
@@ -39,7 +40,7 @@
 <div class="gzh-toast" id="gzhToast"></div>
 <div class="gzh-stage">
   <div id="gzh-content">
-<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#ffffff;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#374151;line-height:1.75;letter-spacing:0.5px;overflow-x:hidden;text-align:left;">
 
   <!-- 1. 封面 cover-breaking（无右侧图片版） -->
   <section style="margin:0 0 32px;background:#fff;border:1.5px solid rgba(5,150,105,0.15);border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);width:100%;">
@@ -69,7 +70,7 @@
         </p>
       </section>
     </section>
-    <section style="background:linear-gradient(135deg,#059669,#10B981);padding:12px 28px;display:flex;align-items:center;justify-content:space-between;">
+    <section style="background:#0BA876;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;">
       <p style="font-size:12px;color:rgba(255,255,255,0.9);margin:0;font-weight:600;letter-spacing:0.5px;">
         <span leaf="">茉灵智库 · AI 观察</span>
       </p>
@@ -91,7 +92,7 @@
       </p>
     </section>
     <section style="overflow-x:scroll;-webkit-overflow-scrolling:touch;white-space:nowrap;padding-bottom:8px;">
-      <section style="display:inline-block;white-space:normal;vertical-align:top;width:110px;background:linear-gradient(135deg,#059669,#10B981);border-radius:12px;padding:12px;margin-right:8px;">
+      <section style="display:inline-block;white-space:normal;vertical-align:top;width:110px;background:#0BA876;border-radius:12px;padding:12px;margin-right:8px;">
         <p style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.7);letter-spacing:1px;margin:0 0 5px;"><span leaf="">PART 01</span></p>
         <p style="font-size:13px;font-weight:800;color:#fff;margin:0 0 3px;"><span leaf="">能力商品</span></p>
         <p style="font-size:10px;color:rgba(255,255,255,0.7);margin:0;"><span leaf="">Skill 的定义</span></p>
@@ -199,10 +200,10 @@
     </section>
     <!-- ### 子标题 → subtitle-highlight -->
     <p style="font-size:16px;font-weight:900;color:#111827;margin-top:32px;margin-bottom:16px;">
-      <span style="background:linear-gradient(180deg,transparent 65%,#FDE68A 65%);padding:0 4px;"><span leaf="">一个设计类 Skill 的例子</span></span>
+      <span style="box-shadow:inset 0 -0.45em 0 #FDE68A;padding:0 4px;"><span leaf="">一个设计类 Skill 的例子</span></span>
     </p>
     <p style="margin-bottom:16px;font-size:15px;line-height:1.9;text-align:justify;">
-      <span leaf="">它没有让图像模型一把梭生成 Logo，而是先生成 </span><span style="background:linear-gradient(120deg,#FDE68A 0%,rgba(255,255,255,0) 100%);padding:0 4px;border-radius:2px;font-weight:600;color:#111827;"><span leaf="">SVG 变体</span></span><span leaf="">，再做展示图。把 Logo 本体、展示场景、交互背景拆成不同层，分别用最适合的技术处理。</span>
+      <span leaf="">它没有让图像模型一把梭生成 Logo，而是先生成 </span><span style="background:#FEF3C7;padding:0 4px;border-radius:2px;font-weight:600;color:#111827;"><span leaf="">SVG 变体</span></span><span leaf="">，再做展示图。把 Logo 本体、展示场景、交互背景拆成不同层，分别用最适合的技术处理。</span>
     </p>
   </section>
 
@@ -302,7 +303,7 @@
     <p style="margin-bottom:24px;font-size:15px;line-height:1.9;text-align:justify;">
       <span leaf="">我是茉灵智库，专注 AI 观察与知识干货，帮你把复杂的东西讲简单。如果你觉得今天这篇有收获，欢迎点赞、转发、推荐三连，我们下篇见。</span>
     </p>
-    <section style="background:radial-gradient(circle at center,#F9FAFB 0%,#FFFFFF 100%);border:1px solid #E5E7EB;border-radius:16px;padding:32px 20px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.03);margin:0 0 24px;">
+    <section style="background:#FCFCFD;border:1px solid #E5E7EB;border-radius:16px;padding:32px 20px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.03);margin:0 0 24px;">
       <p style="font-size:13px;font-weight:bold;color:#111827;margin-bottom:20px;line-height:1.6;">
         <span leaf="">既然看到这里了，如果觉得有用，随手点个赞、转发、推荐三连吧。</span>
       </p>

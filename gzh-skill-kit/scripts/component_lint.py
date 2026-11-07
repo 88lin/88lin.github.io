@@ -46,11 +46,12 @@ def lint_file(path):
 
     # .html 产物（docs/gallery 下的主题示例）整份当一个块扫；
     # .md 组件库只扫 ```html 围栏内的块，避免说明文字干扰。
-    blocks = ([text] if path.lower().endswith(".html")
+    is_article = path.lower().endswith(".html")
+    blocks = ([text] if is_article
               else [m.group(1) for m in re.finditer(r"```html\s*\n(.*?)```", text, re.S)])
 
     for html in blocks:
-        markup = inspect_markup(html)
+        markup = inspect_markup(html, require_root_alignment=is_article)
         for level, message in markup.findings:
             add(level, message)
         # 漏 <span leaf=""> 包裹：粘贴后样式整片丢失，是最高频致命错。

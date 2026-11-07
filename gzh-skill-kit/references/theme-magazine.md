@@ -9,7 +9,7 @@
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class、`position:fixed/absolute`、`float`
 > - **外层底色会被剥离**：公众号编辑器会剥掉最外层 `<section>` 的 `background`（纯色/渐变都可能丢）。页面底色不要只放顶层容器——每个正文区块（章节卡、分割装饰、签名区、互动区）都要各自带 `background` 或等价底色，确保外层被剥掉后任一区块都不是裸内容
-> - ✅ 支持内联 `style`、`border-radius`、`linear-gradient`
+> - ✅ 支持内联 `style`、`border-radius`、`linear-gradient`（文字背景需按必要性评估）
 >
 > **WeChat 兼容铁律**：
 > - 装饰性空元素（细线、短条）内部放 `<span leaf=""><br></span>`
@@ -43,7 +43,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FDFBF9;padding:44px 28px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1D2A2D;font-size:18px;line-height:2;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FDFBF9;padding:44px 28px 40px;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#1D2A2D;font-size:18px;line-height:2;overflow-x:hidden;text-align:left;">
   <!-- 所有文章组件放在这里 -->
 </section>
 ```
@@ -112,7 +112,7 @@
 ```html
 <p style="margin:0 0 20px;font-size:18px;line-height:2;color:#1D2A2D;text-align:justify;background-color:#FDFBF9;">
   <span leaf="">她第一次听说 Agent 是在超市的夜班间隙。手机刷到一篇教程，看完只记住一句话：</span>
-  <span style="background:linear-gradient(transparent 60%, #F5CDB4 60%);font-weight:bold;padding:0 2px;"><span leaf="">让 AI 替你做重复的事，把人留给判断。</span></span>
+  <span style="box-shadow:inset 0 -0.5em 0 #F5CDB4;font-weight:bold;padding:0 2px;"><span leaf="">让 AI 替你做重复的事，把人留给判断。</span></span>
 </p>
 ```
 
@@ -212,7 +212,7 @@
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FDFBF9;padding:44px 28px 40px;...">
+<section style="text-align:left;max-width:677px;margin:0 auto;background:#FDFBF9;padding:44px 28px 40px;...">
   <!-- 1. 栏目标签（组件 2） -->
   <!-- 2. 特稿标题（组件 3） -->
   <!-- 3. 斜体导语（组件 4） -->

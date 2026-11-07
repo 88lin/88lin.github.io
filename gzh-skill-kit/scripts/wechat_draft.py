@@ -45,9 +45,11 @@ from urllib.parse import unquote, urlsplit
 # 两份拷贝必然漂移，之前就是这么把"换行被吃掉"的 bug 复制了两遍。
 if __package__:
     from .cli_utils import configure_stdio, print_status
+    from .fan_access import FanAccessError, require_activation
     from .minify_gzh_html import minify_html
 else:
     from cli_utils import configure_stdio, print_status
+    from fan_access import FanAccessError, require_activation
     from minify_gzh_html import minify_html
 
 # ── 配置路径（可通过环境变量覆盖）───────────────────────────────────────
@@ -380,6 +382,7 @@ def upload_and_cleanup(cover_path, title, digest, html_content, *, base_dir=None
     注意：微信草稿 API 不接受 0 长度的 thumb_media_id，
     所以 cover_path 不能省略；封面图请预先准备好。
     """
+    require_activation()
     if not html_content.strip():
         raise ValueError('正文不能为空')
     # Resolve every local image before any API request, so missing images do not create partial drafts.
@@ -446,6 +449,11 @@ def main():
     args = parser.parse_args()
     if args.html_file and args.content is not None:
         parser.error('--html-file 与正文参数不能同时使用')
+    try:
+        require_activation()
+    except FanAccessError as exc:
+        print_status(str(exc), file=sys.stderr)
+        return 3
     cover = args.cover or os.environ.get('WECHAT_COVER_PATH', 'image_001.jpg')
     title = args.title if args.title is not None else input('标题: ')
     digest = args.digest if args.digest is not None else input('摘要: ')
@@ -454,6 +462,9 @@ def main():
                    args.content if args.content is not None else sys.stdin.read())
         base_dir = args.base_dir or (args.html_file.resolve().parent if args.html_file else Path.cwd())
         upload_and_cleanup(cover, title, digest, content, base_dir=base_dir)
+    except FanAccessError as exc:
+        print_status(str(exc), file=sys.stderr)
+        return 3
     except DraftVerificationError as exc:
         # 草稿已经创建成功，只是回读验证没过——退出码 2，提示不要重复创建
         print_status(str(exc), file=sys.stderr)

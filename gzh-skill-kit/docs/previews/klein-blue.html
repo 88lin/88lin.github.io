@@ -22,6 +22,7 @@
   .gzh-toast{position:fixed;top:74px;left:50%;transform:translate(-50%,-8px);box-sizing:border-box;width:max-content;max-width:calc(100vw - 32px);background:#111827;color:#fff;padding:11px 20px;border-radius:12px;font-size:14px;font-weight:500;line-height:1.6;opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;z-index:100;box-shadow:0 8px 24px rgba(0,0,0,.22);text-align:center;}
   .gzh-toast.show{opacity:1;transform:translate(-50%,0);}
   .gzh-stage{max-width:700px;margin:84px auto 64px;padding:0 8px;}
+  #gzh-content{text-align:left;}
   @media(max-width:520px){.gzh-toolbar{padding:0 14px;gap:10px;}.gzh-hint{max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}}
   @media(prefers-reduced-motion:reduce){.gzh-copy,.gzh-toast{transition:none;}.gzh-copy:hover{transform:none;}}
 </style>
@@ -39,7 +40,7 @@
 <div class="gzh-toast" id="gzhToast"></div>
 <div class="gzh-stage">
   <div id="gzh-content">
-<section style="max-width:677px;margin:0 auto;background:#F4F6FE;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#16224A;font-size:16px;line-height:1.9;">
+<section style="max-width:677px;margin:0 auto;background:#F4F6FE;font-family:-apple-system,'PingFang SC','Helvetica Neue',sans-serif;color:#16224A;font-size:16px;line-height:1.9;text-align:left;">
 
   <!-- 1. 开场：全屏蓝幅 + 错位白卡标题（打破"刊头+Hero"套路） -->
   <section style="background:#002FA7;padding:52px 30px 104px;text-align:center;">
@@ -84,8 +85,8 @@
     <section style="margin:16px 0 0;background:#F0F4FF;border-radius:10px;padding:14px 16px;"><p style="margin:0;font-size:15px;line-height:1.95;color:#333F75;text-align:justify;"><span style="font-weight:bold;color:#002FA7;"><span leaf="">例 · </span></span><span leaf="">比如一个设计类 Skill：不让图像模型一把梭生成 Logo，而是先生成 SVG 变体、再做展示图——把本体、展示场景、交互背景拆层处理。</span></p></section>
   </section>
 
-  <!-- 5. 判断三：渐变蓝大卡（深浅蓝阶，非单一平涂） -->
-  <section style="margin:30px 26px 0;background:linear-gradient(135deg,#002FA7 0%,#1E45C4 55%,#3A62E0 100%);border-radius:18px;padding:30px 26px;">
+  <!-- 5. 判断三：纯色蓝大卡（白字与浅蓝正文） -->
+  <section style="margin:30px 26px 0;background:#1E45C4;border-radius:18px;padding:30px 26px;">
     <p style="margin:0 0 10px;font-size:13px;font-weight:bold;color:#C9D5FA;letter-spacing:2px;"><span leaf="">判断三</span></p>
     <p style="margin:0 0 12px;font-size:19px;font-weight:900;color:#FFFFFF;line-height:1.6;"><span leaf="">个人产品的复利飞轮</span></p>
     <p style="margin:0 0 14px;font-size:15px;line-height:1.95;color:#DCE4FB;text-align:justify;"><span leaf="">过去文章和产品是分开的：先做产品，再写推广。现在 Skill、文章、案例、开源仓库会互相喂养——每一次真实任务，都是在积累下一次能调用的能力资产。</span></p>

@@ -7,7 +7,7 @@
 > **公众号平台限制须知**：
 > - ❌ 不支持 `<style>`/`<script>`、CSS class/id/`<div>`、`position:fixed/absolute/sticky`、`float`、`@media`/`@keyframes`、`display:grid`、CSS 变量 `var(--x)`
 > - **外层底色会被剥离**：公众号编辑器会剥掉最外层 `<section>` 的 `background`（纯色/渐变都可能丢）。页面底色不要只放顶层容器——每个正文区块（章节卡、分割装饰、签名区、互动区）都要各自带 `background` 或等价底色，确保外层被剥掉后任一区块都不是裸内容
-> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`、`border-radius`、`box-shadow`、`position:relative`、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
+> - ✅ 支持内联 `style`、`display:flex`（有限）、`linear-gradient`（文字背景需按必要性评估）、`border-radius`、`box-shadow`、`position:relative`、`<section>/<p>/<span>/<strong>/<img>` 等基础标签
 > - font-size ≤ 24px；正文强调用左竖条/石墨下划线/小标签，**不用四周虚线框**（dashed）
 >
 > **WeChat 兼容铁律**（本主题组件全部已按此写好，改动时必须遵守）：
@@ -46,7 +46,7 @@
 ## 组件 1 全局容器
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#52525B;line-height:1.8;letter-spacing:0.3px;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#52525B;line-height:1.8;letter-spacing:0.3px;overflow-x:hidden;text-align:left;">
 
   <!-- 所有组件放在这里 -->
 
@@ -238,10 +238,10 @@
 <span style="border-bottom:2px solid #52525B;font-weight:600;color:#27272A;"><span leaf="">石墨下划线关键词</span></span>
 ```
 
-### 7e. 荧光笔效果（偶尔用于长句强调，底部 40% 极浅灰高亮）
+### 7e. 荧光笔效果（偶尔用于长句强调，极浅灰底部半高亮）
 
 ```html
-<span style="background:linear-gradient(180deg,transparent 60%,#E4E4E7 60%);font-weight:700;color:#27272A;"><span leaf="">荧光笔效果的重要长句</span></span>
+<span style="box-shadow:inset 0 -0.5em 0 #E4E4E7;font-weight:700;color:#27272A;"><span leaf="">荧光笔效果的重要长句</span></span>
 ```
 
 ### 7f. 橙色下划线（点睛锚点，全篇 ≤3 处含引言卡）
@@ -606,7 +606,7 @@ GIF 动图角标改极简描边胶囊：边框与字色用石墨主色 `#52525B`
 ## 完整文章模板骨架
 
 ```html
-<section style="max-width:677px;margin:0 auto;background:#FFFFFF;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#52525B;line-height:1.8;letter-spacing:0.3px;overflow-x:hidden;">
+<section style="max-width:677px;margin:0 auto;background:#FFFFFF;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;color:#52525B;line-height:1.8;letter-spacing:0.3px;overflow-x:hidden;text-align:left;">
 
   <!-- 1. 开头引言卡片（组件2，纯白 + 上下细线 + 大字金句） -->
 
