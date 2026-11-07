@@ -44,7 +44,7 @@
             marquee: {
                 enabled: false,
                 showLabel: false, // 是否在横幅最左边显示「推荐」角标（横幅太窄，默认不显示）
-                duration: 80,     // 三家轮完一遍的秒数，越大越慢。内容无缝首尾相接，不会滚出空白
+                duration: 90,     // 三家轮完一遍的秒数，越大越慢。内容无缝首尾相接，不会滚出空白
                 // 用户点 × 关闭后，多久才会再出现：
                 //   'session'  当前标签页内不再出现，重新访问网站就恢复（默认）
                 //   'reload'   刷新页面就恢复（最激进）
@@ -115,17 +115,6 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
-                id: 'agentrouter',
-                name: 'Agent Router',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
-                url: 'https://agentrouter.org/register?aff=G5Sl',
-                tagline: '免费公益大模型 API 平台，支持 claude-opus-5.5、GPT-6-Astra、gpt-6.1-sol、deepseek-v4-flash。注册送 $125，每日签到 $25，被邀再得 $50。',
-                desc: '免费公益大模型 API 平台，支持 claude-opus-5.5、GPT-6-Astra、gpt-6.1-sol、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
-                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
-                cta: '免费领取',
-                accent: '#5f4dff'
-            },
-            {
                 id: 'sheapi',
                 name: 'SheApi',
                 logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
@@ -135,39 +124,6 @@
                 highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
                 cta: '立即体验',
                 accent: '#1e88e5'
-            },
-            {
-                id: 'anyrouter',
-                name: 'Any Router',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/微信图片_20260907170036_114_2.webp',
-                url: 'https://anyrouter.top/register?aff=woX5',
-                tagline: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5.5 等顶级模型。注册即送 $50，每日签到还能再领随机额度。',
-                desc: '免费公益大模型 API 平台，支持 GPT-6-Astra、claude-opus-5.5 等顶级模型。注册即送 $50，每日签到还能再领随机额度。',
-                highlights: ['注册送 $50', '每日签到随机额度'],
-                cta: '免费领取',
-                accent: '#1e88e5'
-            },
-            {
-                id: 'workbuddy',
-                name: 'WorkBuddy',
-                logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
-                url: 'https://www.workbuddy.cn/events/invite?inviteCode=1qbwl6bilsn',
-                tagline: '腾讯出品的全能 AI 工作台，说需求、执行任务、交付完整成果。可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash，Hy4 限时免费，注册送 2000 积分，每月再送 500 积分。',
-                desc: '腾讯出品的全能 AI 工作台，国内最受欢迎的效率 AI 智能体服务，说出要求、开始执行任务、交付完整成果。其中 Hy4 模型限时免费使用，注册即可获取 2000 积分，每月再赠送 500 积分，可用 Kimi-K3、GLM-5.3、Hy4、Deepseek-V4.1-Flash 等模型。',
-                highlights: ['Hy4 模型限时免费', '注册送 2000 积分', '每月再送 500 积分'],
-                cta: '立即体验',
-                accent: '#0052d9'
-            },
-            {
-                id: 'workbuddy-auto-signin',
-                name: 'WorkBuddy 自动签到',
-                logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
-                url: 'https://github.com/88lin/workbuddy-auto-signin',
-                tagline: '自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、连登兑换、断登补签的开源脚本。支持 Windows / macOS 定时任务，零 Token 静默运行，完全免费。',
-                desc: '一个可以自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、领任务奖励、连登兑换、断登补签的自动化脚本。Windows / macOS 定时任务，一句话交给 AI 自动配好，零 Token 静默运行。',
-                highlights: ['自动签到', '静默运行', '连登奖励', '开盲盒抽奖', '派 Buddy', '旅行礼物'],
-                cta: '免费开源',
-                accent: '#4d6bff'
             },
             {
                 // 自家招商位，非付费链接：internal 为 true 时不打 sponsored 标记
@@ -183,37 +139,26 @@
                 internal: true
             },
             {
-                id: 'lightvela',
-                name: 'LightVela',
-                logo: 'https://lightvela.com/lightvela-logo.svg',
-                url: 'https://lightvela.ai/?ref=CC9FGXAT9W',
-                tagline: '腾讯轻量云团队推出的云端 Agent 托管产品，支持跨会话记忆、连接微信、QQ、飞书、钉钉等主流聊天通道。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
-                desc: '腾讯轻量云团队推出的云端 Agent 托管产品，它把 Agent 的部署、运维与 7×24 小时运行全部放在云端托管，支持跨会话记忆、连接主流聊天通道（微信、QQ、飞书、钉钉等），可自定义模型、工具、人设。新用户免费体验 1 个月，送 2核8G 云主机 + 4500 AI 积分。',
-                highlights: ['免费体验 1 个月', '送 2核8G 云主机', '4500 AI 积分'],
-                cta: '免费体验',
-                accent: '#1e80ff'
+                id: 'workbuddy-auto-signin',
+                name: 'WorkBuddy 自动签到',
+                logo: 'https://download.codebuddy.cn/web/workbuddy/0bebf86e38e7d71ff0c313d661e7753ff996c54e/assets/workbuddy-logo-WhgOvEF7.png',
+                url: 'https://github.com/88lin/workbuddy-auto-signin',
+                tagline: '自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、连登兑换、断登补签的开源脚本。支持 Windows / macOS 定时任务，零 Token 静默运行，完全免费。',
+                desc: '一个可以自动领取 WorkBuddy 每日签到积分、Buddy 旅行礼物、派 Buddy 出发、开盲盒、领任务奖励、连登兑换、断登补签的自动化脚本。Windows / macOS 定时任务，一句话交给 AI 自动配好，零 Token 静默运行。',
+                highlights: ['自动签到', '静默运行', '连登奖励', '开盲盒抽奖', '派 Buddy', '旅行礼物'],
+                cta: '免费开源',
+                accent: '#4d6bff'
             },
             {
-                id: 'huaweicloud-codearts',
-                name: '华为云码道',
-                logo: 'https://devcloud-res.hc-cdn.com/CodeArtsWorkWeb/126.8.952/hws/assets/codearts-logo-DOfpw9gr.svg',
-                url: 'https://devcloud.cn-north-4.huaweicloud.com/chat?source=dmzntgwlb&sourcead=dmzntgwlb1&invitecode=INV-DNTA8GxLcgPE0YG9w_TMcxN3sTBxtfVFhCoavbi6G7gTtjrB48iiiwWa0EIycqiKZf_kWr1qc99tdy5F-IbHZ1b0IP52wVmx-minKqai-eqJEdfQ5o3W2z9-ePtqeDbej_rFDCUJB0MPmLU',
-                tagline: '华为云官方出品的 CodeArts 代码智能体，一句话说清需求就能生成代码、定位并修复 Bug、跑通整个项目。支持 GLM-5.3、GLM-5.3-Flash、DeepSeek-V4.1-Flash，体验版免费开通，每日送 1000 万 Tokens。',
-                desc: '华为云码道（CodeArts）是华为云官方推出的 AI 代码智能体：用自然语言描述需求，即可自动生成代码、定位并修复问题、跑通构建与部署，覆盖 Web、后端、鸿蒙应用等常见开发场景。支持 GLM-5.3、GLM-5.3-Flash、DeepSeek-V4.1-Flash 等模型并随时切换；体验版套餐免费开通、无需绑卡，每日登录即领 1000 万免费 Tokens（当日有效），完成任务还能攒积分兑换开发者权益。',
-                highlights: ['GLM-5.3 / 5.3-Flash', 'DeepSeek-V4.1-Flash', '每日 1000 万Tokens', '免费开通'],
-                cta: '免费开通',
-                accent: '#1e80ff'
-            },
-            {
-                id: 'agentmore',
-                name: 'AgentMore',
-                logo: 'https://sfile.chatglm.cn/workspace/image/1c/1c83b94683.png',
-                url: 'https://agentmore.chatglm.cn?Rawcode=PM9UPGFZAX8M',
-                tagline: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，可用 GLM-5.3、GLM-5.3-Flash。每日完成任务领取1200积分。',
-                desc: '智谱清言官方的多 Agent 云端协作平台，云端 7×24 小时运行、多任务并行，轻松组建专属 Agent 团队，可用 GLM-5.3、GLM-5.3-Flash。每日完成任务领取1200积分。',
-                highlights: ['日领 1200 积分', '免费白嫖'],
-                cta: '立即领取',
-                accent: '#0052d9'
+                id: 'agentrouter',
+                name: 'Agent Router',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/90C5FAD072EA247822CB88BB32512A41.webp',
+                url: 'https://agentrouter.org/register?aff=G5Sl',
+                tagline: '免费公益大模型 API 平台，支持 claude-opus-5.5、GPT-6-Astra、gpt-6.1-sol、deepseek-v4-flash。注册送 $125，每日签到 $25，被邀再得 $50。',
+                desc: '免费公益大模型 API 平台，支持 claude-opus-5.5、GPT-6-Astra、gpt-6.1-sol、deepseek-v4-flash 等主流模型，国内直连。注册送 $125，每日签到得 $25，被邀得 $50，支持 GitHub / LinuxDo 登录。',
+                highlights: ['注册送 $125', '每日签到 $25', '被邀得 $50', 'GitHub / LinuxDo 登录'],
+                cta: '免费领取',
+                accent: '#5f4dff'
             }
         ]
     };
