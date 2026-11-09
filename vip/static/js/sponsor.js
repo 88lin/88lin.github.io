@@ -115,17 +115,6 @@
         // 图片加载失败会自动退回信息卡，不会留白块。
         sponsors: [
             {
-                id: 'sheapi',
-                name: 'SheApi',
-                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
-                url: 'https://www.sheapi.top/sign-up?aff=MvcR',
-                tagline: '可靠高效的 API 中转服务，提供 gpt-6-astra、grok-4.7、glm-5.3 等模型。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到得额度。',
-                desc: '可靠高效的 API 中转服务提供商，主要提供 gpt-6-astra、kimi-k3、grok-4.7、glm-5.3、deepseek-v4.1-flash 等主流模型的高稳定中转能力。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到还可领取专属免费额度。',
-                highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
-                cta: '立即体验',
-                accent: '#1e88e5'
-            },
-            {
                 // 自家招商位，非付费链接：internal 为 true 时不打 sponsored 标记
                 // 不配 logo / icon：托盘直接显示品牌名文字（.sp-logo-fallback 那套样式）
                 id: 'promo-slot',
@@ -137,6 +126,17 @@
                 cta: '联系我',
                 accent: '#0067f7',
                 internal: true
+            },
+            {
+                id: 'sheapi',
+                name: 'SheApi',
+                logo: 'https://cdn.jsdmirror.com/gh/88lin/picx-images-hosting@master/ScreenShot_2026-08-06_174058_726.webp',
+                url: 'https://www.sheapi.top/sign-up?aff=MvcR',
+                tagline: '可靠高效的 API 中转服务，提供 gpt-6-astra、grok-4.7、glm-5.3 等模型。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到得额度。',
+                desc: '可靠高效的 API 中转服务提供商，主要提供 gpt-6-astra、kimi-k3、grok-4.7、glm-5.3、deepseek-v4.1-flash 等主流模型的高稳定中转能力。Codex 倍率补贴低至 0.06，GPT-Image-2 生图每张 0.04。受邀注册送 $1 体验金，每日签到还可领取专属免费额度。',
+                highlights: ['Codex 倍率补贴低至 0.08', 'GPT-Image-2 生图每张 0.04', '受邀注册送 $1 体验金', '每日签到可领免费额度'],
+                cta: '立即体验',
+                accent: '#1e88e5'
             },
             {
                 id: 'workbuddy-auto-signin',

@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>钟面集 · 免费全屏在线时钟（含秒、翻页、LED 等 28 款表盘）</title>
+  <meta name="description" content="28 款好看的免费在线时钟：指针、翻页、数字、LED、世界时钟等。支持全屏、自定义配色、12/24 小时制、时区和收藏，无需安装、无需注册。">
+  <link rel="canonical" href="https://go.88lin.eu.org/clockfaces/">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="钟面集">
+  <meta property="og:title" content="钟面集 · 免费全屏在线时钟">
+  <meta property="og:description" content="28 款好看的在线时钟，一键全屏，自由配色，完全免费。">
+  <meta property="og:locale" content="zh_CN">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"钟面集 · 免费全屏在线时钟","url":"https://go.88lin.eu.org/clockfaces/","description":"28 款免费在线时钟，支持全屏、自定义配色、时区与收藏。","applicationCategory":"UtilitiesApplication","operatingSystem":"任意现代浏览器","offers":{"@type":"Offer","price":"0","priceCurrency":"CNY"}}</script>
+</head>
+<body data-face="cat">
+
+  <main id="stage" aria-label="实时时钟"></main>
+  <div class="tz-label" id="tzLabel" hidden></div>
+
+  <header class="bar ui" id="bar">
+    <a class="brand" href="./" aria-label="钟面集首页">
+      <img src="favicon.svg" alt="" width="22" height="22">
+      <span>钟面集</span>
+    </a>
+
+    <div class="picker">
+      <button class="icon-btn" id="prevBtn" type="button" aria-label="上一款表盘" title="上一款（←）">
+        <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+      </button>
+      <label class="select-wrap">
+        <span class="sr-only">选择表盘</span>
+        <select id="faceSelect" aria-label="选择表盘"></select>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
+      </label>
+      <button class="icon-btn" id="nextBtn" type="button" aria-label="下一款表盘" title="下一款（→）">
+        <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <div class="actions">
+      <button class="icon-btn" id="favBtn" type="button" aria-pressed="false" aria-label="加入收藏" title="收藏（H）">
+        <svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10.2C4.5 7 6.6 5 9 5c1.3 0 2.3.6 3 1.6C12.7 5.6 13.7 5 15 5c2.4 0 4.5 2 4.5 4.8C19.5 15.4 12 20 12 20z"/></svg>
+      </button>
+      <button class="icon-btn" id="randomBtn" type="button" aria-label="随机表盘" title="随机一款（R）">
+        <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="9" cy="9" r=".9"/><circle cx="15" cy="9" r=".9"/><circle cx="12" cy="12" r=".9"/><circle cx="9" cy="15" r=".9"/><circle cx="15" cy="15" r=".9"/></svg>
+      </button>
+      <button class="icon-btn" id="settingsBtn" type="button" aria-label="自定义" aria-controls="sheet" aria-expanded="false" title="自定义（S）">
+        <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+      </button>
+      <button class="icon-btn" id="fsBtn" type="button" aria-label="全屏" title="全屏（F）">
+        <svg viewBox="0 0 24 24" class="fs-enter"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+        <svg viewBox="0 0 24 24" class="fs-exit"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <button class="edge edge-prev ui" id="edgePrev" type="button" aria-label="上一款表盘" tabindex="-1">
+    <svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>
+  </button>
+  <button class="edge edge-next ui" id="edgeNext" type="button" aria-label="下一款表盘" tabindex="-1">
+    <svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+  </button>
+
+  <div class="counter" id="counter" aria-live="polite"></div>
+  <div class="hint" id="hint" hidden></div>
+
+  <aside class="sheet" id="sheet" aria-label="自定义时钟" aria-hidden="true">
+    <div class="sheet-head">
+      <h2 id="sheetTitle">自定义</h2>
+      <button class="icon-btn" id="closeSheet" type="button" aria-label="关闭">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="sheet-body">
+      <a class="app-card" id="appCard" target="_blank" rel="noopener" hidden>
+        <img id="appCardIcon" alt="" width="52" height="52">
+        <span class="app-card-text"><strong id="appCardName"></strong></span>
+        <span class="app-card-get">获取</span>
+      </a>
+      <section>
+        <h3 id="faceHeading">此表盘</h3>
+        <div class="controls" id="faceControls"></div>
+        <button class="text-btn" id="resetFace" type="button">恢复默认样式</button>
+        <button class="copy-link" id="copyLink" type="button">复制此表盘链接</button>
+      </section>
+      <section>
+        <h3>全部表盘</h3>
+        <div class="controls" id="globalControls"></div>
+      </section>
+      <p class="sheet-foot">提示：用 <kbd>←</kbd> <kbd>→</kbd> 切换表盘，<kbd>F</kbd> 全屏，<kbd>R</kbd> 随机，<kbd>H</kbd> 收藏，<kbd>S</kbd> 自定义。设置保存在本机浏览器中。</p>
+    </div>
+  </aside>
+
+  <noscript><p class="noscript">钟面集需要 JavaScript 才能显示实时时间。</p></noscript>
+
+  <article class="about" id="about">
+    <div class="about-inner">
+      <h1>好看的在线时钟，全屏且免费</h1>
+
+      <p>钟面集收录了 28 款手工制作的在线时钟——从经典挂钟表盘、带秒的大字数字钟，到机械翻页钟、复古 LED 数码管，以及并排显示多个时区的世界时钟。</p>
+      <p>每款时钟都直接在浏览器里运行，点一下就能全屏，还能自由调整配色，适配你的书桌、教室、电视或第二块屏幕。无需安装、无需注册，也没有广告挡在时间前面。</p>
+
+      <h2>全部表盘</h2>
+      <nav class="about-clocks about-clocks-lg" aria-label="全部表盘">
+        <div>
+          <h3>指针时钟</h3>
+          <ul>
+            <li><a href="#wall" data-face="wall">挂墙钟</a> <span>办公室与教室里的经典挂钟。</span></li>
+            <li><a href="#modern" data-face="modern">现代时钟</a> <span>简洁的包豪斯风格，配黄色秒针。</span></li>
+            <li><a href="#minimal" data-face="minimal">极简时钟</a> <span>只有指针，安静干净的表盘。</span></li>
+            <li><a href="#wooden" data-face="wooden">木纹时钟</a> <span>自然木纹搭配简洁刻度。</span></li>
+            <li><a href="#shadow" data-face="shadow">影子时钟</a> <span>利落的指针投下渐隐的长影。</span></li>
+            <li><a href="#roman" data-face="roman">罗马数字钟</a> <span>经典罗马数字与优雅矛形指针。</span></li>
+            <li><a href="#clock24" data-face="clock24">24 小时钟</a> <span>时针一天转一圈，带真实昼夜色带。</span></li>
+            <li><a href="#kids" data-face="kids">儿童时钟</a> <span>超大数字与中文读时，帮孩子学会看时间。</span></li>
+            <li><a href="#station" data-face="station">站台钟</a> <span>清晰的站台表盘，秒针走到 12 会略作停顿。</span></li>
+            <li><a href="#diver" data-face="diver">潜水表</a> <span>陶瓷表圈与夜光圆点的潜水腕表。</span></li>
+            <li><a href="#pilot" data-face="pilot">飞行表</a> <span>12 点带三角标记的飞行员腕表。</span></li>
+            <li><a href="#chrono" data-face="chrono">计时码表</a> <span>赛车风格表盘，三个小表盘都会走。</span></li>
+            <li><a href="#pocket" data-face="pocket">怀表</a> <span>复古怀表，带独立小秒盘。</span></li>
+            <li><a href="#pendulum" data-face="pendulum">摆钟</a> <span>木质挂钟，配一支摆动的黄铜钟摆。</span></li>
+            <li><a href="#alarm" data-face="alarm">复古闹钟</a> <span>双铃复古闹钟，整分时轻轻抖动。</span></li>
+            <li><a href="#gears" data-face="gears">齿轮钟</a> <span>开放式表盘后，黄铜与紫铜齿轮互相咬合。</span></li>
+            <li><a href="#rings" data-face="rings">圆环钟</a> <span>时、分、秒化作三道渐渐填满的圆环。</span></li>
+            <li><a href="#spin" data-face="spin">旋转钟</a> <span>没有秒针，整个表盘转过一枚固定指针。</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>数字时钟</h3>
+          <ul>
+            <li><a href="#flip" data-face="flip">翻页时钟</a> <span>复古翻页卡片，每一秒翻动一次。</span></li>
+            <li><a href="#splitflap" data-face="splitflap">翻牌时刻</a> <span>像车站翻牌屏一样逐格跳动出时间。</span></li>
+            <li><a href="#bigtype" data-face="bigtype">大字数字钟</a> <span>醒目的大字时间，带秒与日期。</span></li>
+            <li><a href="#lcd" data-face="lcd">LED 时钟</a> <span>发光的七段数码管，像床头闹钟。</span></li>
+          </ul>
+        </div>
+        <div>
+          <h3>创意时钟</h3>
+          <ul>
+            <li><a href="#world" data-face="world">世界时钟</a> <span>多个时区并排显示，表盘样式任选。</span></li>
+            <li><a href="#text" data-face="text">句子时钟</a> <span>把时间写成一句中文，可简可繁。</span></li>
+            <li><a href="#tape" data-face="tape">卷尺时钟</a> <span>时间像尺子刻度一样滑过中央标记。</span></li>
+            <li><a href="#cute" data-face="cute">可爱时钟</a> <span>粉色蓬松数字，还有一张害羞小脸。</span></li>
+            <li><a href="#cat" data-face="cat">猫咪时钟</a> <span>圆圆的猫脸，眼珠跟着时间张望。</span></li>
+            <li><a href="#dog" data-face="dog">小狗时钟</a> <span>圆圆的狗脸，垂耳与吐着的舌头。</span></li>
+          </ul>
+        </div>
+      </nav>
+
+      <h2>使用方法</h2>
+      <ul>
+        <li>用 <kbd>←</kbd> <kbd>→</kbd> 切换表盘，也可以点击或轻触屏幕两侧、左右滑动。骰子按钮（<kbd>R</kbd>）会随机跳到一款。</li>
+        <li>点击右上角的全屏按钮、双击画面，或按 <kbd>F</kbd> 进入全屏；按 <kbd>Esc</kbd> 退出。</li>
+        <li>打开<strong>自定义</strong>（<kbd>S</kbd>）可修改配色、字体、12/24 小时制、秒、日期、时区与亮度。设置会自动保存在本机。</li>
+      </ul>
+
+      <h2>常见问题</h2>
+      <dl class="about-faq">
+        <dt>钟面集是免费的吗？</dt>
+        <dd>是的。所有表盘和自定义选项都免费使用，无需注册。</dd>
+        <dt>怎样让时钟全屏显示？</dt>
+        <dd>点击右上角的全屏按钮、双击时钟，或按 F 键。按 Esc 可退出全屏。</dd>
+        <dt>可以显示其他时区吗？</dt>
+        <dd>可以。打开「自定义」，在「全部表盘」里选择时区，时钟下方会显示时区名称。想同时看多个时区，请用「世界时钟」。</dd>
+        <dt>屏幕会一直亮着吗？</dt>
+        <dd>在支持的浏览器里，打开「自定义」中的「保持屏幕常亮」，时钟页面打开时屏幕就不会休眠。</dd>
+        <dt>晚上能把时钟调暗吗？</dt>
+        <dd>可以。调低「自定义 → 全部表盘」中的亮度，或开启「夜间自动调暗」，在设备时间 22:00 至 7:00 之间自动调暗。</dd>
+        <dt>时钟会发出滴答声吗？</dt>
+        <dd>可以。在「自定义 → 全部表盘」里打开「滴答声」，并把指针钟的「秒针走动」设为「整秒跳动」，即可听到轻轻的走秒声，默认是关闭的。</dd>
+        <dt>能把带有我设置的时钟分享给别人吗？</dt>
+        <dd>可以。设置好之后，点击「自定义」里的「复制此表盘链接」。对方打开链接就会看到同样的表盘、配色和时区，很适合网课、会议或共享屏幕。</dd>
+        <dt>可以收藏喜欢的表盘吗？</dt>
+        <dd>可以。点击顶部的心形，或按 H 键。收藏的表盘会排在选择列表最前面，左右键和滑动也会优先经过它们。收藏保存在本机浏览器里。</dd>
+        <dt>我的设置会保存吗？</dt>
+        <dd>会。所选表盘、配色和各项设置都保存在本机浏览器中，下次打开自动恢复。</dd>
+      </dl>
+
+      <p class="about-foot"><a href="./">钟面集</a> · 免费在线时钟 · 全 28 款表盘 · <a href="../">返回茉灵导航</a></p>
+    </div>
+  </article>
+
+  <script id="routes" type="application/json">{"wall":"#wall","modern":"#modern","minimal":"#minimal","wooden":"#wooden","shadow":"#shadow","roman":"#roman","clock24":"#clock24","kids":"#kids","station":"#station","diver":"#diver","pilot":"#pilot","chrono":"#chrono","pocket":"#pocket","pendulum":"#pendulum","alarm":"#alarm","gears":"#gears","rings":"#rings","spin":"#spin","flip":"#flip","splitflap":"#splitflap","bigtype":"#bigtype","lcd":"#lcd","world":"#world","text":"#text","tape":"#tape","cute":"#cute","cat":"#cat","dog":"#dog"}</script>
+  <script src="faces.js"></script>
+  <script src="i18n.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
