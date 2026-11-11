@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+  <link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>声场 · 十三个声音 / 十三段独白</title>
+<meta name="description" content="《注意力税》声音选角：13 个中文音色，13 段不同的独白，每段 40–60 秒。逐张试听、比较，留下最适合的声音。">
+<meta name="theme-color" content="#edf1f4">
+<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('sonic-intro-seen')==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentElement.classList.add('skip-intro');}}catch(e){}</script>
+<link rel="stylesheet" href="style.css?v=5">
+</head>
+<body>
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-brand">
+    <span class="brand-orbit"><i></i></span>
+    <span>声场 <em>SONIC CASTING</em></span>
+  </div>
+  <div class="intro-panels"><span></span><span></span><span></span><span></span></div>
+</div>
+
+<div class="ambient" aria-hidden="true">
+  <span class="wash wash-sun"></span>
+  <span class="wash wash-mint"></span>
+  <span class="wash wash-lilac"></span>
+  <span class="cursor-glow" id="cursorGlow"></span>
+</div>
+
+<a class="skip-link" href="#roster">跳到音色阵容</a>
+
+<svg class="icon-sprite" aria-hidden="true">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8.8 5.6 18.6 12 8.8 18.4Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8.2 5.6v12.8M15.8 5.6v12.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path d="M18.3 6.4 9.4 12l8.9 5.6Z" fill="currentColor" stroke="none"/><path d="M6 5.8v12.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M5.7 6.4 14.6 12l-8.9 5.6Z" fill="currentColor" stroke="none"/><path d="M18 5.8v12.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 3.9 2.5 5.2 5.7.76-4.2 3.98 1.05 5.66L12 16.72 6.95 19.5 8 13.84 3.8 9.86l5.7-.76Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-star-fill" viewBox="0 0 24 24"><path d="m12 3.9 2.5 5.2 5.7.76-4.2 3.98 1.05 5.66L12 16.72 6.95 19.5 8 13.84 3.8 9.86l5.7-.76Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.4" y="8.4" width="10.5" height="10.5" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M15.6 8.4V6.5A1.5 1.5 0 0 0 14.1 5H6.5A1.5 1.5 0 0 0 5 6.5v7.6a1.5 1.5 0 0 0 1.5 1.5h1.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4.3 9.1v5.8h3.3L12 18.5V5.5L7.6 9.1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M15 9.1a4.2 4.2 0 0 1 0 5.8M17.7 6.6a7.6 7.6 0 0 1 0 10.8" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-muted" viewBox="0 0 24 24"><path d="M4.3 9.1v5.8h3.3L12 18.5V5.5L7.6 9.1Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="m15.3 10 4.4 4M19.7 10l-4.4 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v15.2M5.8 13l6.2 6.2L18.2 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 20V4.8M5.8 11 12 4.8 18.2 11" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-arrow-ne" viewBox="0 0 24 24"><path d="M6.4 17.6 17.6 6.4M8.4 6.4h9.2v9.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 2.8c.7 5.3 3.1 7.7 8.4 8.4-5.3.7-7.7 3.1-8.4 8.4-.7-5.3-3.1-7.7-8.4-8.4 5.3-.7 7.7-3.1 8.4-8.4Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-headphones" viewBox="0 0 24 24"><path d="M4.5 13.2v-1.4a7.5 7.5 0 0 1 15 0v1.4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><rect x="3.4" y="12.7" width="4.3" height="6.6" rx="2.1" fill="none" stroke="currentColor" stroke-width="1.7"/><rect x="16.3" y="12.7" width="4.3" height="6.6" rx="2.1" fill="none" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m4.8 12.6 4.7 4.7L19.4 7" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="site-head" id="siteHead">
+  <nav class="nav" aria-label="主导航">
+    <a class="brand" href="#top" aria-label="声场，回到顶部">
+      <span class="brand-orbit" aria-hidden="true"><i></i></span>
+      <span class="brand-text"><b>声场</b><em>SONIC CASTING</em></span>
+    </a>
+    <div class="nav-pages" id="navPages">
+      <a href="#top" data-nav="top" class="is-active">选角</a>
+      <a href="#roster" data-nav="roster">阵容</a>
+      <a href="#script" data-nav="script">独白</a>
+    </div>
+    <div class="nav-tools">
+      <span class="nav-count"><i class="pulse-dot" aria-hidden="true"></i><span>13 VOICES</span></span>
+      <button class="nav-play" id="navPlay" type="button" aria-label="播放当前音色">
+        <span class="nav-play-icon icon-play"><svg><use href="#i-play"/></svg></span>
+        <span class="nav-play-icon icon-pause"><svg><use href="#i-pause"/></svg></span>
+        <span class="nav-play-label" id="navPlayLabel">试听</span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-ring hero-ring-a" aria-hidden="true"></div>
+    <div class="hero-ring hero-ring-b" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          《注意力税》· 声音选角
+          <span class="eyebrow-year">2026</span>
+        </p>
+        <h1 class="hero-title">
+          <span class="line"><span class="line-in">十三个声音</span></span>
+          <span class="line"><span class="line-in"><span>十三段</span><span class="title-pill">独白<svg class="pill-spark"><use href="#i-spark"/></svg></span></span></span>
+        </h1>
+        <p class="hero-lede">十三种中文声线，十三段不同的自白，不露脸。<br>戴上耳机，逐张试听，找到那个最适合这部片的声音。</p>
+        <div class="hero-actions">
+          <button class="cta cta-ink magnetic" id="heroPlay" type="button">
+            <span class="cta-glyph"><svg><use href="#i-play"/></svg></span>
+            <span>从云希开始</span>
+          </button>
+          <a class="cta cta-pearl magnetic" href="#roster">
+            <span>听完这 13 个</span>
+            <span class="cta-circle"><svg><use href="#i-arrow-down"/></svg></span>
+          </a>
+        </div>
+        <div class="hero-foot">
+          <span class="hero-spec"><b>13</b> 个音色</span>
+          <span class="hero-spec"><b>04</b> 类口音</span>
+          <span class="hero-spec"><b>13</b> 段独白</span>
+          <span class="headphone-note"><svg><use href="#i-headphones"/></svg>建议佩戴耳机</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" id="heroVisual">
+        <div class="disc-scene" id="discScene">
+          <div class="disc-shadow" aria-hidden="true"></div>
+          <div class="disc-orbit" aria-hidden="true">
+            <svg viewBox="0 0 100 100">
+              <defs><path id="discOrbitPath" d="M50,50 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"/></defs>
+              <text><textPath href="#discOrbitPath" startOffset="0">THIRTEEN VOICES · 13 MONOLOGUES · 13 TAKES · </textPath></text>
+            </svg>
+          </div>
+          <div class="disc" id="disc">
+            <div class="disc-surface" aria-hidden="true"></div>
+            <div class="disc-grooves" aria-hidden="true"></div>
+            <canvas id="discCanvas" aria-hidden="true"></canvas>
+            <div class="disc-sheen" aria-hidden="true"></div>
+            <div class="disc-label">
+              <span class="disc-kicker" id="discKicker"><svg class="kicker-star"><use href="#i-spark"/></svg>主推 · BEST PICK</span>
+              <strong class="disc-name" id="discName">Yunxi</strong>
+              <span class="disc-zh" id="discZh">云希 / 冷静男声</span>
+              <button class="disc-play" id="discPlay" type="button" aria-label="播放 Yunxi">
+                <span class="icon-play"><svg><use href="#i-play"/></svg></span>
+                <span class="icon-pause"><svg><use href="#i-pause"/></svg></span>
+              </button>
+              <span class="disc-take" id="discTake">TAKE 01 / 13</span>
+            </div>
+          </div>
+          <div class="float-chip chip-cat" id="discCategoryChip"><i id="discCategoryDot"></i><span id="discCategory">普通话</span><em>·</em><span id="discDuration">0:20</span></div>
+          <div class="float-chip chip-status"><i class="status-dot" id="discStatusDot"></i><span id="discStatus">准备试听</span><span class="mini-eq" aria-hidden="true"><b></b><b></b><b></b></span></div>
+          <div class="sticker-rec" id="discRec"><svg><use href="#i-spark"/></svg>推荐</div>
+          <div class="chip-takes" aria-hidden="true"><span>13</span> TAKES<br><em>13 MONOLOGUES</em></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee-band">
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span class="mq-item"><b>云希</b><em>Yunxi</em><i>*</i></span><span class="mq-item"><b>晓晓</b><em>Xiaoxiao</em><i>*</i></span><span class="mq-item"><b>云健</b><em>Yunjian</em><i>*</i></span><span class="mq-item"><b>云夏</b><em>Yunxia</em><i>*</i></span><span class="mq-item"><b>云扬</b><em>Yunyang</em><i>*</i></span><span class="mq-item"><b>晓伊</b><em>Xiaoyi</em><i>*</i></span><span class="mq-item"><b>晓臻</b><em>HsiaoChen</em><i>*</i></span><span class="mq-item"><b>晓雨</b><em>HsiaoYu</em><i>*</i></span><span class="mq-item"><b>小北</b><em>Xiaobei</em><i>*</i></span><span class="mq-item"><b>小妮</b><em>Xiaoni</em><i>*</i></span><span class="mq-item"><b>晓佳</b><em>HiuGaai</em><i>*</i></span><span class="mq-item"><b>晓曼</b><em>HiuMaan</em><i>*</i></span><span class="mq-item"><b>云龙</b><em>WanLung</em><i>*</i></span><span class="mq-item"><b>云希</b><em>Yunxi</em><i>*</i></span><span class="mq-item"><b>晓晓</b><em>Xiaoxiao</em><i>*</i></span><span class="mq-item"><b>云健</b><em>Yunjian</em><i>*</i></span><span class="mq-item"><b>云夏</b><em>Yunxia</em><i>*</i></span><span class="mq-item"><b>云扬</b><em>Yunyang</em><i>*</i></span><span class="mq-item"><b>晓伊</b><em>Xiaoyi</em><i>*</i></span><span class="mq-item"><b>晓臻</b><em>HsiaoChen</em><i>*</i></span><span class="mq-item"><b>晓雨</b><em>HsiaoYu</em><i>*</i></span><span class="mq-item"><b>小北</b><em>Xiaobei</em><i>*</i></span><span class="mq-item"><b>小妮</b><em>Xiaoni</em><i>*</i></span><span class="mq-item"><b>晓佳</b><em>HiuGaai</em><i>*</i></span><span class="mq-item"><b>晓曼</b><em>HiuMaan</em><i>*</i></span><span class="mq-item"><b>云龙</b><em>WanLung</em><i>*</i></span>
+    </div>
+  </div>
+  </div>
+
+  <section class="roster" id="roster" aria-labelledby="rosterTitle">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-copy reveal">
+          <p class="eyebrow"><span class="eyebrow-index">01</span> THE ROSTER<span class="eyebrow-rule"></span>SIDE A</p>
+          <h2 class="section-title" id="rosterTitle">挑声音，<br><span class="serif-accent">像挑一张唱片。</span></h2>
+        </div>
+        <div class="section-side reveal" style="--delay:.1s">
+          <p>十三位候选，四类口音。<br>点卡片即刻试听，星标留下备选。</p>
+          <div class="roster-tools">
+            <button class="tool-pill" id="autoNext" type="button" role="switch" aria-checked="false">
+              <span class="switch-track" aria-hidden="true"><span></span></span>
+              自动连播
+            </button>
+            <button class="tool-pill shortlist-pill" id="shortlistStatus" type="button" aria-label="查看备选清单">
+              <svg><use href="#i-star"/></svg>
+              备选
+              <b id="shortlistCount">00</b>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-bar reveal" style="--delay:.16s">
+        <div class="filters" id="filters" aria-label="筛选音色">
+          <button class="filter is-active" type="button" data-filter="all" aria-pressed="true">全部<span>13</span></button>
+          <button class="filter" type="button" data-filter="mandarin" aria-pressed="false"><i class="filter-dot"></i>普通话<span>6</span></button>
+          <button class="filter" type="button" data-filter="taiwan" aria-pressed="false"><i class="filter-dot"></i>台湾<span>2</span></button>
+          <button class="filter" type="button" data-filter="dialect" aria-pressed="false"><i class="filter-dot"></i>方言<span>2</span></button>
+          <button class="filter" type="button" data-filter="cantonese" aria-pressed="false"><i class="filter-dot"></i>粤语<span>3</span></button>
+          <button class="filter filter-shortlist" type="button" data-filter="shortlist" aria-pressed="false" hidden>备选<span id="shortlistFilterCount">0</span></button>
+        </div>
+        <span class="filter-note" aria-hidden="true">SIDE A · 13 TRACKS</span>
+      </div>
+
+      <div class="voice-grid" id="voiceGrid"></div>
+    </div>
+  </section>
+
+  <section class="script" id="script" aria-labelledby="scriptTitle">
+    <h2 class="sr-only" id="scriptTitle">十三段独白</h2>
+    <div class="wrap">
+      <div class="script-stage reveal">
+        <div class="script-sun" aria-hidden="true"></div>
+        <div class="script-rings" aria-hidden="true"></div>
+        <div class="script-top">
+          <p class="eyebrow eyebrow-ink"><span class="eyebrow-index">02</span> THE MONOLOGUES<span class="eyebrow-rule"></span>SIDE B</p>
+          <span class="script-length"><span id="scriptMeta">云希 / 00:45</span></span>
+        </div>
+        <div class="script-grid">
+          <blockquote class="script-quote">
+            <div class="script-caption">
+              <span class="script-caption-dot" aria-hidden="true"></span>
+              <span id="scriptVoiceTag">云希 · 普通话 / 冷静男声</span>
+              <span class="script-caption-sep" aria-hidden="true"></span>
+              <span class="script-caption-note">13 MONOLOGUES</span>
+            </div>
+            <span class="quote-mark" aria-hidden="true">“</span>
+            <p id="scriptPull">注意力不会突然清零，它只是一笔一笔，被安静地花掉。</p>
+            <footer><span id="scriptByline">—— 云希 · 免费的东西，最贵。</span><svg><use href="#i-spark"/></svg></footer>
+          </blockquote>
+          <div class="script-sheet">
+            <div class="sheet-head">
+              <span><i class="sheet-dot"></i>独白全文 / MONOLOGUE</span>
+              <button class="mini-copy" id="copyScript" type="button"><svg><use href="#i-copy"/></svg>复制全文</button>
+            </div>
+            <ol class="script-lines" id="scriptLines">
+              <li><span class="line-no">01</span><p>我们总以为，注意力是免费的。</p></li>
+              <li><span class="line-no">02</span><p>打开一个应用，滑过几条视频，一个下午就过去了。没有人收费，也没有人提醒。</p></li>
+              <li><span class="line-no">03</span><p>可到了夜里，你合上手机，会觉得脑子里好像被谁悄悄拿走了一块。</p></li>
+              <li><span class="line-no">04</span><p>真正昂贵的，从来不是那些内容，而是你愿意停下来的每一秒。</p></li>
+              <li><span class="line-no">05</span><p>它们被记在一张看不见的账单上，换成别人的流量、别人的报表，也换成你再也想不起来的一天。</p></li>
+              <li><span class="line-no">06</span><p>注意力不会突然清零，它只是一笔一笔，被安静地花掉。</p></li>
+              <li><span class="line-no">07</span><p>所以，下一次点亮屏幕之前，先问自己一句：这一分钟，我打算把它花在哪里？</p></li>
+            </ol>
+            <p class="script-note">13 个声线，13 段独白。粤语声线以粤语展示音色；正式制作会按目标语言重写文案。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="finale" aria-labelledby="finaleTitle">
+    <div class="wrap">
+      <div class="finale-card reveal">
+        <div class="finale-sun" aria-hidden="true"></div>
+        <div class="finale-orbit" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <defs><path id="finalePath" d="M60,60 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/></defs>
+            <text><textPath href="#finalePath" startOffset="0">MAKE THE VOICE YOURS · 13 MONOLOGUES · </textPath></text>
+          </svg>
+          <svg class="finale-badge-star" viewBox="0 0 24 24"><use href="#i-spark"/></svg>
+        </div>
+        <div class="finale-copy">
+          <p class="eyebrow"><span class="eyebrow-index">03</span> YOUR PICK<span class="eyebrow-rule"></span>THE END</p>
+          <h2 class="finale-title" id="finaleTitle">让这个声音，<br><span>替你开口。</span></h2>
+          <p class="finale-sub">选定之后，把 Voice ID 发给我。<br>接下来，交给耳机。</p>
+          <div class="finale-pick">
+            <span class="pick-dot" id="finaleDot"></span>
+            <span class="pick-label">当前音色</span>
+            <strong id="finaleName">Yunxi</strong>
+            <span class="pick-divider"></span>
+            <span id="finaleCat">云希 · 普通话</span>
+            <code id="finaleId">zh-CN-YunxiNeural</code>
+          </div>
+          <div class="finale-actions">
+            <button class="cta cta-ink magnetic" id="finalePlay" type="button">
+              <span class="cta-glyph"><svg><use href="#i-play"/></svg></span>
+              <span>再听一遍</span>
+            </button>
+            <button class="cta cta-line" id="finaleCopy" type="button">
+              <svg><use href="#i-copy"/></svg>复制 Voice ID
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span><b>声场</b> · ATTENTION TAX / VOICE CASTING</span>
+    <span class="footer-center">13 TAKES · 13 MONOLOGUES · 0 FACES</span>
+    <span class="footer-type">TYPE: SMILEY SANS / NOTO SERIF SC / FRAUNCES / NOTO SANS SC</span>
+    <a href="#top">回到顶部<svg><use href="#i-arrow-up"/></svg></a>
+  </div>
+</footer>
+
+<div class="listen-cursor" id="listenCursor" aria-hidden="true"><span>试听</span><svg><use href="#i-play"/></svg></div>
+
+<div class="dock" id="dock" role="region" aria-label="当前试听播放器">
+  <span class="dock-progress" aria-hidden="true"><i id="dockProgress"></i></span>
+  <div class="dock-cover" id="dockArt" aria-hidden="true"><span id="dockTake">01</span><i class="dock-cover-ring"></i></div>
+  <div class="dock-id">
+    <span class="dock-kicker">NOW AUDITIONING</span>
+    <strong id="dockName">Yunxi</strong>
+    <span class="dock-cat" id="dockCat">云希 · 普通话 / 冷静男声</span>
+  </div>
+  <div class="dock-controls">
+    <button class="dock-side" id="prev" type="button" aria-label="上一段"><svg><use href="#i-prev"/></svg></button>
+    <button class="dock-play" id="play" type="button" aria-label="播放"><span class="icon-play"><svg><use href="#i-play"/></svg></span><span class="icon-pause"><svg><use href="#i-pause"/></svg></span></button>
+    <button class="dock-side" id="next" type="button" aria-label="下一段"><svg><use href="#i-next"/></svg></button>
+  </div>
+  <div class="dock-mid">
+    <canvas id="dockWave" class="dock-wave" role="slider" tabindex="0" aria-label="播放进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-valuetext="0:00 / 0:20"></canvas>
+    <div class="dock-time"><span id="cur">0:00</span><span class="time-sep">/</span><span id="dur">0:20</span></div>
+  </div>
+  <div class="dock-actions">
+    <button class="dock-action" id="mute" type="button" aria-label="静音" aria-pressed="false"><svg><use href="#i-volume"/></svg></button>
+    <button class="dock-action" id="star" type="button" aria-label="加入备选" aria-pressed="false"><svg><use href="#i-star"/></svg></button>
+    <button class="dock-action" id="copy" type="button" aria-label="复制音色 ID"><svg><use href="#i-copy"/></svg></button>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<audio id="audio" preload="metadata" playsinline></audio>
+
+<script src="waveforms.js?v=5"></script>
+<script src="app.js?v=5"></script>
+</body>
+</html>
