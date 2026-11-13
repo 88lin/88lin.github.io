@@ -20,7 +20,6 @@ Finished writing, but still adjusting fonts, colors, and spacing? **Give the dra
 
 > [!IMPORTANT]
 > **Personal non-commercial use only.** See [LICENSE](LICENSE) for the full terms.
-> Before first use, follow the author's [Xiaohongshu profile](https://www.xiaohongshu.com/user/profile/6a9a3ba20000000013032c00) and join **AI生产力实验室（仅粉丝）** to get the six-character alphanumeric activation code (case-insensitive). Activate once for ongoing use; see the [activation guide](docs/activation.md).
 
 <a id="quick-start"></a>
 
@@ -33,8 +32,7 @@ Please install this WeChat layout tool:
 https://github.com/88lin/gzh-skill-kit
 
 Read LICENSE and the non-commercial use rules in SKILL.md first.
-Check activation first; if needed, show me how to join the group and activate.
-After activation, format my article for WeChat.
+After installation, format my article for WeChat.
 Choose a theme and preserve my content.
 Check the layout and create a preview
 with a Copy to WeChat button.
@@ -236,7 +234,7 @@ The tool follows WeChat's layout constraints and checks the output, but the edit
 
 **How do I update it or get help with an error?**
 
-After completing a task, AI checks for a newer official Release at most once a week. A confirmed new version gets one short reminder at the end of the reply, once per version. Updates require your explicit request and preserve custom themes and activation records. Slow or failed official connections fall back to the [ghfast mirror](https://ghfast.top/); if both fail, the check stays quiet. Existing installations need one manual update to enable these reminders.
+After completing a task, AI checks for a newer official Release at most once a week. A confirmed new version gets one short reminder at the end of the reply, once per version. Updates require your explicit request and preserve custom themes and local configuration. Slow or failed official connections fall back to the [ghfast mirror](https://ghfast.top/); if both fail, the check stays quiet. Existing installations need one manual update to enable these reminders.
 
 Ask AI to help, for example:
 

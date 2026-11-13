@@ -8,8 +8,7 @@ __pycache__/
 .venv/
 venv/
 
-# 私密激活码与本地凭证
-*.activation-code.txt
+# 本地更新缓存与配置
 .gzh-skill-kit/
 
 # Node

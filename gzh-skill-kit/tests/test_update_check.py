@@ -131,13 +131,13 @@ class UpdateCheckTests(unittest.TestCase):
         with patch.object(updates, 'fetch_latest_version', return_value='1.1.0'):
             self.assertIn('v1.1.0', self.check())
 
-    def test_checks_preserve_installed_files_custom_themes_and_activation(self):
+    def test_checks_preserve_installed_files_custom_themes_and_local_config(self):
         custom = self.installation / 'my-custom-theme.md'
         custom.write_text('keep my theme', encoding='utf-8')
         self.state.parent.mkdir()
-        activation = self.state.parent / 'activation.json'
-        activation.write_text('{"keep": "private activation record"}', encoding='utf-8')
-        before = {path: path.read_bytes() for path in [self.version, custom, activation]}
+        config = self.state.parent / 'preferences.json'
+        config.write_text('{"keep": "local preferences"}', encoding='utf-8')
+        before = {path: path.read_bytes() for path in [self.version, custom, config]}
         with patch.object(updates, 'fetch_latest_version', return_value='2.0.0'):
             self.assertIn('v2.0.0', self.check())
         for path, contents in before.items():
