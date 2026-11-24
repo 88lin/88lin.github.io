@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+<meta charset="UTF-8"><style id="qw-theme">:root {
+  --color-bg: #faf9fc !important;
+  --color-text: #131920 !important;
+  --chat-column-base: 720px !important;
+  --chat-column-max: 720px !important;
+  --color-navbar-bg: #f9f9fb !important;
+  --color-navbar-fg: #131920 !important;
+  --color-navbar-divider: #0000001f !important;
+  --color-leftnav-bg: #fff !important;
+  --color-bg-chat-view: #f9f9fb !important;
+  --color-bg-secondary: #fff !important;
+  --color-bg-tertiary: #f9fafb !important;
+  --color-bg-hover: #f3f4f6 !important;
+  --color-surface: #f9fafb !important;
+  --color-surface-hover: #f3f4f6 !important;
+  --color-surface-active: #e5e7eb !important;
+  --color-border: #0000001f !important;
+  --color-border-light: #0000000f !important;
+  --color-border-strong: #d1d5db !important;
+  --background-toggle-off-default: #fff0 !important;
+  --color-primary: #4200db !important;
+  --color-primary-dark: #35009e !important;
+  --color-primary-light: #8575ff !important;
+  --color-primary-bg: #e8e6ff !important;
+  --color-primary-hover-border: #35009e !important;
+  --color-nav-icon-active: #4200db !important;
+  --color-nav-hover-border: #4200db !important;
+  --color-primary-alpha-3: color-mix(in srgb, #4200db 3%, transparent) !important;
+  --color-primary-alpha-5: color-mix(in srgb, #4200db 5%, transparent) !important;
+  --color-primary-alpha-8: color-mix(in srgb, #4200db 8%, transparent) !important;
+  --color-primary-alpha-12: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-primary-alpha-15: color-mix(in srgb, #4200db 15%, transparent) !important;
+  --color-primary-alpha-20: color-mix(in srgb, #4200db 20%, transparent) !important;
+  --color-primary-alpha-25: color-mix(in srgb, #4200db 25%, transparent) !important;
+  --color-primary-alpha-30: color-mix(in srgb, #4200db 30%, transparent) !important;
+  --color-primary-alpha-40: color-mix(in srgb, #4200db 40%, transparent) !important;
+  --color-primary-alpha-50: color-mix(in srgb, #4200db 50%, transparent) !important;
+  --color-primary-alpha-60: color-mix(in srgb, #4200db 60%, transparent) !important;
+  --color-primary-subtle: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-primary-border: color-mix(in srgb, #4200db 30%, transparent) !important;
+  --color-focus-ring: #4200db !important;
+  --color-sidebar-hover: color-mix(in srgb, #4200db 12%, transparent) !important;
+  --color-sidebar-hover-solid: color-mix(in srgb, #4200db 12%, #faf9fc) !important;
+  --block-selection-outline-offset: 2px !important;
+  --color-accent: #4200db !important;
+  --color-accent-foreground: #4200db !important;
+  --color-accent-dark: #35009e !important;
+  --color-accent-light: #e8e6ff !important;
+  --color-accent-inverse: #fff !important;
+  --color-link: #4200db !important;
+  --color-brand-ai-gradient-start: #6842ff !important;
+  --color-brand-ai-gradient-mid: #d600ba !important;
+  --color-brand-ai-gradient-end: #ff4b14 !important;
+  --color-brand-kiro: #9147ff !important;
+  --color-primary-gradient-end: #e8e6ff !important;
+  --color-primary-bg-solid: #e8e6ff !important;
+  --color-user-bubble: #f3f3f7 !important;
+  --color-user-bubble-text: #131920 !important;
+  --color-text-secondary: #5e5e5e !important;
+  --color-text-tertiary: #656871 !important;
+  --color-text-muted: #656871 !important;
+  --color-text-on-primary: #fff !important;
+  --color-success: #00802f !important;
+  --color-success-dark: #00471e !important;
+  --color-success-light: #d9ffd6 !important;
+  --color-success-hover: #005c26 !important;
+  --color-success-bg: #e6f5eb !important;
+  --color-success-border: #b3d9bf !important;
+  --color-success-foreground: #00802f !important;
+  --color-success-dark-foreground: #00471e !important;
+  --color-success-text: #00471e !important;
+  --color-error: #db0000 !important;
+  --color-error-dark: #700000 !important;
+  --color-error-light: #ffe0e0 !important;
+  --color-error-hover: #ffe0e0 !important;
+  --color-error-bg: #fceaea !important;
+  --color-error-border: #f2cccc !important;
+  --color-error-active-border: #db0000 !important;
+  --color-error-foreground: #db0000 !important;
+  --color-error-dark-foreground: #700000 !important;
+  --color-error-inverse: #fff !important;
+  --color-error-text: #700000 !important;
+  --color-warning: #f2b100 !important;
+  --color-warning-dark: #573a00 !important;
+  --color-warning-light: #fffbbd !important;
+  --color-warning-hover: #db9200 !important;
+  --color-warning-bg: #fef7e6 !important;
+  --color-warning-border: #f9dfa3 !important;
+  --color-warning-foreground: #f2b100 !important;
+  --color-warning-dark-foreground: #573a00 !important;
+  --color-warning-inverse: #573a00 !important;
+  --color-surface-warning: #fffbbd !important;
+  --color-text-warning: #573a00 !important;
+  --color-info: #006ce0 !important;
+  --color-info-dark: #002a66 !important;
+  --color-info-light: #d1f1ff !important;
+  --color-info-hover: #003b8f !important;
+  --color-info-bg: #ebf3fc !important;
+  --color-info-border: #b3d1f0 !important;
+  --color-info-foreground: #006ce0 !important;
+  --color-info-dark-foreground: #002a66 !important;
+  --color-info-inverse: #fff !important;
+  --color-overlay: #00000080 !important;
+  --color-shadow: #00000014 !important;
+  --color-hover: #0000000d !important;
+  --color-tooltip-bg: #000000d9 !important;
+  --color-tooltip-text: #fff !important;
+  --color-voice-purple: #8575ff !important;
+  --color-voice-purple-dark: #4200db !important;
+  --color-voice-purple-light: #8575ff !important;
+  --color-voice-red: #db0000 !important;
+  --color-voice-red-dark: #700000 !important;
+  --color-voice-amber: #f2b100 !important;
+  --color-voice-purple-glow: #4200db66 !important;
+  --color-voice-red-glow: #db000066 !important;
+  --font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  --font-mono: "SF Mono", "Monaco", "Menlo", "Consolas", monospace !important;
+  --text-2xs: .5625rem !important;
+  --text-xs: .625rem !important;
+  --text-sm: .6875rem !important;
+  --text-base: .75rem !important;
+  --text-md: .8125rem !important;
+  --text-lg: .875rem !important;
+  --text-xl: 1rem !important;
+  --text-2xl: 1.125rem !important;
+  --text-3xl: 1.25rem !important;
+  --text-4xl: 1.5rem !important;
+  --text-5xl: 2rem !important;
+  --spacing-1: calc(.25rem * 1) !important;
+  --spacing-1-5: calc(.25rem * 1.5) !important;
+  --spacing-2: calc(.25rem * 2) !important;
+  --spacing-3: calc(.25rem * 3) !important;
+  --spacing-4: calc(.25rem * 4) !important;
+  --spacing-5: calc(.25rem * 5) !important;
+  --spacing-6: calc(.25rem * 6) !important;
+  --spacing-7: calc(.25rem * 7) !important;
+  --spacing-8: calc(.25rem * 8) !important;
+  --spacing-9: calc(.25rem * 9) !important;
+  --spacing-10: calc(.25rem * 10) !important;
+  --border-radius-rounded-lg: 8px !important;
+  --radius-sm: 6px !important;
+  --radius-md: 10px !important;
+  --radius-card: 12px !important;
+  --radius-lg: 16px !important;
+  --radius-pill: 8px !important;
+  --shadow-sm: 0 1px 2px #0000000d !important;
+  --shadow-md: 0 4px 12px #00000014 !important;
+  --shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029 !important;
+  --color-success-bg-solid: #d9ffd6 !important;
+  --color-error-bg-solid: #ffe0e0 !important;
+  --color-error-border-solid: #ffe0e0 !important;
+  --color-warning-bg-solid: #fffbbd !important;
+  --color-warning-text: #573a00 !important;
+  --color-info-bg-solid: #d1f1ff !important;
+  --color-info-bg-solid-alt: #d1f1ff !important;
+  --color-info-text: #002a66 !important;
+  --color-info-text-alt: #002a66 !important;
+  --color-emerald: #10b981 !important;
+  --color-teal: #4ecdc4 !important;
+  --color-code-bg: #f3f3f7 !important;
+  --color-code-header-bg: #f1f3f5 !important;
+  --color-code-text: #24292e !important;
+  --color-code-border: #e1e4e8 !important;
+  --color-code-muted: #6a737d !important;
+  --color-inline-code-bg: #f3f3f7 !important;
+  --color-inline-code-text: #24292e !important;
+  --color-inline-code-border: #e1e4e8 !important;
+  --color-scrollbar-thumb: #d1d5db !important;
+  --color-scrollbar-track: transparent !important;
+  --qs-data-cat-01: #4338ca !important;
+  --qs-data-cat-02: #d97706 !important;
+  --qs-data-cat-03: #0891b2 !important;
+  --qs-data-cat-04: #8b5cf6 !important;
+  --qs-data-cat-05: #15803d !important;
+  --qs-data-cat-06: #0c4a6e !important;
+  --qs-data-cat-07: #d946ef !important;
+  --qs-data-cat-08: #65a30d !important;
+  --qs-data-cat-09: #1d4ed8 !important;
+  --qs-data-cat-10: #831843 !important;
+  --qs-data-cat-11: #c2410c !important;
+  --qs-data-cat-12: #115e59 !important;
+  --qs-data-cat-other: #737373 !important;
+  --qs-content: #fff !important;
+  --qs-main: #f9f9fb !important;
+  --qs-primary-foreground: #131920 !important;
+  --qs-secondary-foreground: #656871 !important;
+  --qs-tertiary-foreground: #656871 !important;
+  --qs-placeholder-foreground: #656871 !important;
+  --qs-divider: #dedee3 !important;
+  --qs-default-border: #8c8c94 !important;
+  --qs-neutral-soft: #b4b4bb !important;
+  --qs-neutral-gray-50: #f9fafb !important;
+  --qs-tertiary-background: #f9fafb !important;
+  --qs-action-hover: #f3f3f7 !important;
+  --qs-primary-default: #4200db !important;
+  --qs-primary-dark: #35009e !important;
+  --qs-primary-medium: #8575ff !important;
+  --qs-primary-light: #e8e6ff !important;
+  --qs-primary-inverse: #fff !important;
+  --qs-success-default: #00802f !important;
+  --qs-success-dark: #00471e !important;
+  --qs-success-light: #d9ffd6 !important;
+  --qs-error-default: #db0000 !important;
+  --qs-error-dark: #700000 !important;
+  --qs-warning-default: #f2b100 !important;
+  --qs-warning-dark: #573a00 !important;
+  --qs-warning-light: #fffbbd !important;
+  --qs-info-default: #006ce0 !important;
+  --qs-info-dark: #002a66 !important;
+  --qs-font-sans: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --safe-top: 0px !important;
+  --safe-bottom: 0px !important;
+  --safe-left: 0px !important;
+  --safe-right: 0px !important;
+  --qs-action-active: #e8e6ff !important;
+  --qs-action-active-hover: #b2a8ff !important;
+  --qs-action-disabled: #f3f3f7 !important;
+  --qs-active-border: #4200db !important;
+  --qs-application-navbar: #4200db !important;
+  --qs-application-navbar-dark: #35009e !important;
+  --qs-application-navbar-foreground: #fff !important;
+  --qs-application-navbar-light: #e8e6ff !important;
+  --qs-automation-dark: #660052 !important;
+  --qs-automation-default: #d600ba !important;
+  --qs-automation-light: #ffe0fb !important;
+  --qs-automation-medium: #b3008f !important;
+  --qs-automation-soft: #ff94f1 !important;
+  --qs-avatar-blue-bg: #d1f1ff !important;
+  --qs-avatar-blue-fg: #002a66 !important;
+  --qs-avatar-fuchsia-bg: #fce6ff !important;
+  --qs-avatar-fuchsia-fg: #590066 !important;
+  --qs-avatar-green-bg: #d9ffd6 !important;
+  --qs-avatar-green-fg: #00471e !important;
+  --qs-avatar-neutral-bg: #dedee3 !important;
+  --qs-avatar-neutral-fg: #131920 !important;
+  --qs-avatar-orange-bg: #ffe0d6 !important;
+  --qs-avatar-orange-fg: #661800 !important;
+  --qs-avatar-pink-bg: #ffe0fb !important;
+  --qs-avatar-pink-fg: #660052 !important;
+  --qs-avatar-primary-bg: #e8e6ff !important;
+  --qs-avatar-primary-fg: #35009e !important;
+  --qs-avatar-red-bg: #ffe0e0 !important;
+  --qs-avatar-red-fg: #700000 !important;
+  --qs-avatar-violet-bg: #f2e5ff !important;
+  --qs-avatar-violet-fg: #45008a !important;
+  --qs-avatar-yellow-bg: #fffbbd !important;
+  --qs-avatar-yellow-fg: #573a00 !important;
+  --qs-blue-100: #e2ebff !important;
+  --qs-blue-1000: #060d27 !important;
+  --qs-blue-200: #c2d5ff !important;
+  --qs-blue-300: #9fbdff !important;
+  --qs-blue-400: #7ea0fc !important;
+  --qs-blue-50: #fafbff !important;
+  --qs-blue-500: #517df6 !important;
+  --qs-blue-600: #2d5fe8 !important;
+  --qs-blue-700: #1d3cb9 !important;
+  --qs-blue-800: #162c85 !important;
+  --qs-blue-900: #102165 !important;
+  --qs-blue-950: #0b1746 !important;
+  --qs-brand: #fff !important;
+  --qs-brand-foreground: #131920 !important;
+  --qs-brand-navbar: #131920 !important;
+  --qs-brand-navbar-dark: #000 !important;
+  --qs-brand-navbar-foreground: #fff !important;
+  --qs-brand-navbar-light: #dedee3 !important;
+  --qs-coachmark: #006ce0 !important;
+  --qs-connection-dark: #661800 !important;
+  --qs-connection-default: #db3300 !important;
+  --qs-connection-light: #ffe0d6 !important;
+  --qs-connection-soft: #ff997a !important;
+  --qs-content-inverse: #333843 !important;
+  --qs-content-inverse-active: #131920 !important;
+  --qs-contrast-foreground: #131920 !important;
+  --qs-control-selected-bg: #4200db !important;
+  --qs-control-selected-hover-bg: #35009e !important;
+  --qs-darkpurple1-100: #eee1ef !important;
+  --qs-darkpurple1-1000: #130b14 !important;
+  --qs-darkpurple1-200: #dcc0dd !important;
+  --qs-darkpurple1-300: #c99ecc !important;
+  --qs-darkpurple1-400: #b57ab8 !important;
+  --qs-darkpurple1-50: #f8f2f8 !important;
+  --qs-darkpurple1-500: #97529b !important;
+  --qs-darkpurple1-600: #754078 !important;
+  --qs-darkpurple1-700: #542e57 !important;
+  --qs-darkpurple1-800: #472749 !important;
+  --qs-darkpurple1-900: #341c35 !important;
+  --qs-darkpurple1-950: #241325 !important;
+  --qs-darkpurple2-100: #f1e3fc !important;
+  --qs-darkpurple2-1000: #1b042f !important;
+  --qs-darkpurple2-200: #e7d0fb !important;
+  --qs-darkpurple2-300: #d6b0f8 !important;
+  --qs-darkpurple2-400: #be81f3 !important;
+  --qs-darkpurple2-50: #f8f1fe !important;
+  --qs-darkpurple2-500: #a652ef !important;
+  --qs-darkpurple2-600: #8e24eb !important;
+  --qs-darkpurple2-700: #7413c9 !important;
+  --qs-darkpurple2-800: #580e98 !important;
+  --qs-darkpurple2-900: #36095d !important;
+  --qs-darkpurple2-950: #260642 !important;
+  --qs-data-categorical-01: #4338ca !important;
+  --qs-data-categorical-02: #d97706 !important;
+  --qs-data-categorical-03: #0891b2 !important;
+  --qs-data-categorical-04: #8b5cf6 !important;
+  --qs-data-categorical-05: #15803d !important;
+  --qs-data-categorical-06: #0c4a6e !important;
+  --qs-data-categorical-07: #d946ef !important;
+  --qs-data-categorical-08: #65a30d !important;
+  --qs-data-categorical-09: #1d4ed8 !important;
+  --qs-data-categorical-10: #831843 !important;
+  --qs-data-categorical-11: #c2410c !important;
+  --qs-data-categorical-12: #115e59 !important;
+  --qs-data-categorical-other: #737373 !important;
+  --qs-data-divergent-negative: #ea580c !important;
+  --qs-data-divergent-positive: #4f46e5 !important;
+  --qs-data-divergent-red-green-negative: #dc2626 !important;
+  --qs-data-divergent-red-green-positive: #16a34a !important;
+  --qs-data-missing: #d4d4d4 !important;
+  --qs-data-sentiment-neutral: #737373 !important;
+  --qs-data-sentiment-warning: #9e6900 !important;
+  --qs-data-sequential-duochromatic-high: #1e1b4b !important;
+  --qs-data-sequential-duochromatic-low: #8b5cf6 !important;
+  --qs-data-sequential-monochromatic-high: #4f46e5 !important;
+  --qs-default-badge: #b4b4bb !important;
+  --qs-default-badge-dot: #656871 !important;
+  --qs-dimension: #4200db !important;
+  --qs-dimension-experimental: #4200db !important;
+  --qs-dimension-experimental-foreground: #4200db !important;
+  --qs-dimension-foreground: #fff !important;
+  --qs-disabled: #8c8c94 !important;
+  --qs-disabled-border: #dedee3 !important;
+  --qs-disabled-foreground: #b4b4bb !important;
+  --qs-divider-light: #f3f3f7 !important;
+  --qs-error-active-border: #db0000 !important;
+  --qs-error-border: #ffe0e0 !important;
+  --qs-error-foreground: #db0000 !important;
+  --qs-error-inverse: #fff !important;
+  --qs-error-light: #ffe0e0 !important;
+  --qs-error-medium: #900 !important;
+  --qs-error-soft: #ff9e9e !important;
+  --qs-focus-offset: 1px !important;
+  --qs-font-base-letter-spacing: .15px !important;
+  --qs-font-display: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --qs-font-family: "Amazon Ember", "Helvetica Neue", "Segoe UI", Helvetica, Arial, sans-serif !important;
+  --qs-gradient-automation-light-stop: #ffe0fb !important;
+  --qs-gradient-automation-medium-stop: #b3008f !important;
+  --qs-gradient-automation-stop: #d600ba !important;
+  --qs-gradient-connection-light-stop: #ffe0d6 !important;
+  --qs-gradient-connection-stop: #db3300 !important;
+  --qs-gradient-insight-light-stop: #fce6ff !important;
+  --qs-gradient-insight-stop: #a000b8 !important;
+  --qs-gradient-visualization-light-stop: #f2e5ff !important;
+  --qs-gradient-visualization-stop: #7300e5 !important;
+  --qs-green-100: #ccffd8 !important;
+  --qs-green-1000: #001409 !important;
+  --qs-green-200: #a9efba !important;
+  --qs-green-300: #84d39a !important;
+  --qs-green-400: #71c68c !important;
+  --qs-green-50: #f0fff3 !important;
+  --qs-green-500: #5bbe7a !important;
+  --qs-green-600: #3c955a !important;
+  --qs-green-700: #227340 !important;
+  --qs-green-800: #00441f !important;
+  --qs-green-900: #003317 !important;
+  --qs-green-950: #002410 !important;
+  --qs-grid-gap: 16px !important;
+  --qs-grid-gap-xl: 24px !important;
+  --qs-hero-banner-button-hover: color-mix(in srgb, #fff, transparent 60%) !important;
+  --qs-hover-border: #333843 !important;
+  --qs-info-inverse: #fff !important;
+  --qs-info-light: #d1f1ff !important;
+  --qs-info-medium: #003b8f !important;
+  --qs-info-soft: #75cfff !important;
+  --qs-insight-dark: #590066 !important;
+  --qs-insight-default: #a000b8 !important;
+  --qs-insight-light: #fce6ff !important;
+  --qs-insight-soft: #f299ff !important;
+  --qs-main-foreground: #131920 !important;
+  --qs-main-secondary-foreground: #656871 !important;
+  --qs-measure: #00802f !important;
+  --qs-measure-experimental: #f2b100 !important;
+  --qs-measure-experimental-foreground: #f2b100 !important;
+  --qs-measure-foreground: #fff !important;
+  --qs-neutral-0: #fff !important;
+  --qs-neutral-100: #f5f3ef !important;
+  --qs-neutral-1000: #0b0a0a !important;
+  --qs-neutral-200: #ece9e4 !important;
+  --qs-neutral-300: #e2dfda !important;
+  --qs-neutral-400: #cdc9c1 !important;
+  --qs-neutral-50: #faf9f7 !important;
+  --qs-neutral-500: #adaaa3 !important;
+  --qs-neutral-600: #94918b !important;
+  --qs-neutral-700: #7d7a73 !important;
+  --qs-neutral-800: #5e5b56 !important;
+  --qs-neutral-900: #302f2c !important;
+  --qs-neutral-950: #151310 !important;
+  --qs-neutral-black: #000 !important;
+  --qs-neutral-dark: #333843 !important;
+  --qs-neutral-deep: #656871 !important;
+  --qs-neutral-default: #dedee3 !important;
+  --qs-neutral-light: #f3f3f7 !important;
+  --qs-neutral-lightest: #f9f9fb !important;
+  --qs-neutral-medium: #8c8c94 !important;
+  --qs-neutral-strong: #131920 !important;
+  --qs-neutral-white: #fff !important;
+  --qs-overlay: color-mix(in srgb, #131920, transparent 50%) !important;
+  --qs-popover-border: transparent !important;
+  --qs-primary-inverse-foreground: #fff !important;
+  --qs-primary-soft: #b2a8ff !important;
+  --qs-progress-active: #4200db !important;
+  --qs-red-100: #ffe4e1 !important;
+  --qs-red-1000: #240004 !important;
+  --qs-red-200: #ffc7c2 !important;
+  --qs-red-300: #ffa099 !important;
+  --qs-red-400: #eb6560 !important;
+  --qs-red-50: #fff6f5 !important;
+  --qs-red-500: #c33c38 !important;
+  --qs-red-600: #aa2b2b !important;
+  --qs-red-700: #8a0f0f !important;
+  --qs-red-800: #6e000d !important;
+  --qs-red-900: #57000a !important;
+  --qs-red-950: #3d0007 !important;
+  --qs-secondary: #dedee3 !important;
+  --qs-secondary-dark: #b4b4bb !important;
+  --qs-secondary-light: #f3f3f7 !important;
+  --qs-shadow: #00000029 !important;
+  --qs-shadow-lg: 0 4px 16px 4px #00000029, 0 2px 6px 1px #00000029 !important;
+  --qs-shadow-md: 0 0 2px 0 #00000029, 0 2px 8px 1px #00000029 !important;
+  --qs-shadow-pin-left: inset -4px 0 4px -4px #00000029 !important;
+  --qs-shadow-pin-right: inset 4px 0 4px -4px #00000029 !important;
+  --qs-shadow-sm: 0 0 2px 0 #00000029, 0 0 4px 0 #00000029 !important;
+  --qs-shadow-xl: 0 4px 8px 2px #00000029, 0 6px 20px 4px #00000029 !important;
+  --qs-spice: #ff9800 !important;
+  --qs-success-inverse: #fff !important;
+  --qs-success-medium: #005c26 !important;
+  --qs-success-soft: #aeffa8 !important;
+  --qs-tag-default: #dedee3 !important;
+  --qs-tag-soft-border: #b4b4bb !important;
+  --qs-toggle-tile-lg: calc(.25rem * 15) !important;
+  --qs-toggle-tile-md: calc(.25rem * 12) !important;
+  --qs-toggle-tile-sm: calc(.25rem * 8) !important;
+  --qs-transparent: transparent !important;
+  --qs-visualization-dark: #45008a !important;
+  --qs-visualization-default: #7300e5 !important;
+  --qs-visualization-light: #f2e5ff !important;
+  --qs-visualization-soft: #d4a8ff !important;
+  --qs-warning-experimental: #f2b100 !important;
+  --qs-warning-experimental-light: #fffbbd !important;
+  --qs-warning-experimental-light-foreground: #fffbbd !important;
+  --qs-warning-inverse: #573a00 !important;
+  --qs-warning-medium: #db9200 !important;
+  --qs-warning-soft: #ffed4d !important;
+  --qs-width-modal-lg: 1136px !important;
+  --qs-width-modal-md: 600px !important;
+  --qs-width-modal-sm: 384px !important;
+  --qs-yellow-100: #fff5cf !important;
+  --qs-yellow-1000: #1f1100 !important;
+  --qs-yellow-200: #ffe79e !important;
+  --qs-yellow-300: #fbd86f !important;
+  --qs-yellow-400: #facb3d !important;
+  --qs-yellow-50: #fffcf0 !important;
+  --qs-yellow-500: #e2ac36 !important;
+  --qs-yellow-600: #ca8d2b !important;
+  --qs-yellow-700: #9d672f !important;
+  --qs-yellow-800: #7a4c19 !important;
+  --qs-yellow-900: #522e00 !important;
+  --qs-yellow-950: #381f00 !important;
+  --qs-duration-reorder: .125s !important;
+  --qs-ease-reorder: ease-in-out !important;
+  --z-subtask-modal: 10000 !important;
+  --z-above-subtask-modal: 10001 !important;
+}</style>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>配镜决策手册 · 自用</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet">
+</head>
+<body data-route="off">
+<header class="top"><div class="top-in"><span class="brand">配镜决策手册</span><span class="top-meta">自用版 · 2026.11 · 依据知识库 + Notion 文章 + 联网核对</span></div></header>
+<style>
+:root{
+  --page-bg:#FFFFFF; --page-ink:#14181F; --page-grey:#5F6672; --page-mute:#9AA0A8;
+  --page-rule:#E4E6E3; --page-soft:#F5F7F6;
+  --page-teal:#00857C; --page-teal-soft:#E4F3F1; --page-teal-ink:#00645D;
+  --page-warn:#C2410C; --page-warn-soft:#FBEEE6;
+  --page-sans:"Noto Sans SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB",system-ui,sans-serif;
+  --page-mono:"JetBrains Mono","SF Mono",Consolas,"Microsoft YaHei",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--page-bg);color:var(--page-ink);font-family:var(--page-sans);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--page-teal-ink)}
+.top{border-bottom:1px solid var(--page-rule);position:sticky;top:0;background:rgba(255,255,255,.94);backdrop-filter:saturate(1.2);z-index:5}
+.top-in{max-width:1200px;margin:0 auto;padding:12px 28px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.brand{font-weight:900;letter-spacing:.02em}
+.top-meta{font-size:13px;color:var(--page-grey)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:190px minmax(0,1fr);gap:56px}
+nav.toc{position:sticky;top:72px;align-self:start;padding-top:56px;font-size:14px}
+nav.toc a{display:block;color:var(--page-grey);text-decoration:none;padding:6px 0 6px 12px;border-left:2px solid var(--page-rule);line-height:1.4;transition:color .15s,border-color .15s}
+nav.toc a:hover{color:var(--page-ink)}
+nav.toc a.on{color:var(--page-ink);border-left-color:var(--page-teal);font-weight:700}
+nav.toc .grp{font-size:12px;color:var(--page-mute);margin:18px 0 4px 14px}
+main{min-width:0;padding-bottom:80px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:48px;padding:56px 0 48px;align-items:end}
+.hero h1{font-size:clamp(34px,5.4vw,62px);line-height:1.15;font-weight:900;letter-spacing:-.02em;margin:0 0 20px}
+.hero h1 .t{color:var(--page-teal)}
+.hero p.dek{font-size:18px;color:var(--page-grey);margin:0;max-width:34em}
+.spec{border-top:3px solid var(--page-ink)}
+.spec-title{font-size:13px;color:var(--page-grey);padding:10px 0 4px}
+.spec dl{margin:0;display:grid;grid-template-columns:auto minmax(0,1fr)}
+.spec dt,.spec dd{margin:0;padding:10px 0;border-bottom:1px solid var(--page-rule)}
+.spec dt{color:var(--page-grey);font-size:14px;padding-right:20px;white-space:nowrap}
+.spec dd{font-weight:700;font-size:15px}
+.spec dd .m{font-family:var(--page-mono);font-weight:600}
+
+/* price strip */
+.price{border-top:1px solid var(--page-rule);border-bottom:1px solid var(--page-rule);padding:28px 0 22px;margin-bottom:8px}
+.price h3{margin:0 0 4px;font-size:18px}
+.price .sub{color:var(--page-grey);font-size:14px;margin:0 0 18px}
+.scale{display:grid;grid-template-columns:110px minmax(0,1fr) 110px;gap:8px 16px;align-items:center;font-size:14px}
+.scale .lab{color:var(--page-grey)}
+.track{position:relative;height:14px;background:var(--page-soft)}
+.bar{position:absolute;top:0;bottom:0;background:var(--page-mute)}
+.bar.t{background:var(--page-teal)}
+.bar.w{background:var(--page-warn)}
+.bar.fade{background:repeating-linear-gradient(90deg,var(--page-warn) 0 6px,transparent 6px 10px)}
+.scale .v{font-family:var(--page-mono);font-weight:600}
+.ticks{display:grid;grid-template-columns:110px minmax(0,1fr) 110px;gap:16px;font-family:var(--page-mono);font-size:11px;color:var(--page-mute);margin-top:6px}
+.ticks div:nth-child(2){display:flex;justify-content:space-between}
+.price .src{font-size:12px;color:var(--page-mute);margin-top:14px}
+
+/* sections */
+.sec{padding:64px 0 8px;border-top:1px solid var(--page-rule);scroll-margin-top:60px}
+.step{font-family:var(--page-mono);font-size:13px;color:var(--page-teal-ink);font-weight:600}
+.sec h2{font-size:clamp(25px,3.3vw,36px);line-height:1.3;font-weight:900;letter-spacing:-.01em;margin:6px 0 14px;max-width:22em}
+.sec h3{font-size:19px;margin:40px 0 10px;font-weight:700}
+.lead{font-size:17px;color:var(--page-grey);max-width:40em;margin:0 0 8px}
+p{margin:0 0 12px;max-width:44em}
+.src{font-size:12.5px;color:var(--page-mute);margin-top:8px}
+strong{font-weight:700}
+mark{background:var(--page-teal-soft);color:var(--page-teal-ink);padding:0 3px}
+
+/* tables */
+.scroll{overflow-x:auto;margin:14px 0 6px}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+th{text-align:left;font-size:13px;color:var(--page-grey);font-weight:700;padding:10px 14px 10px 0;border-bottom:2px solid var(--page-ink);white-space:nowrap}
+td{padding:13px 14px 13px 0;border-bottom:1px solid var(--page-rule);vertical-align:top;line-height:1.6}
+td.k{font-weight:700;white-space:nowrap}
+td.n,th.n{font-family:var(--page-mono);text-align:right;font-variant-numeric:tabular-nums}
+tr.hl td{background:var(--page-teal-soft)}
+tr.hl td:first-child{box-shadow:inset 3px 0 0 var(--page-teal);padding-left:12px}
+tr.bad td{color:var(--page-grey)}
+.tag{display:inline-block;font-size:12px;font-weight:700;padding:1px 7px;border:1px solid currentColor;margin-left:6px;vertical-align:2px}
+.tag.t{color:var(--page-teal-ink)}
+.tag.w{color:var(--page-warn)}
+td ul{margin:0;padding-left:18px}
+td li{margin:0}
+
+/* plans */
+.plans td:first-child{width:76px}
+.plan-id{font-family:var(--page-mono);font-size:28px;font-weight:600;line-height:1}
+
+/* match list */
+.match{margin:12px 0 0;border-top:2px solid var(--page-ink)}
+.match div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.8fr);gap:20px;padding:12px 0;border-bottom:1px solid var(--page-rule)}
+.match b{font-family:var(--page-mono);color:var(--page-teal-ink)}
+
+/* callout */
+.call{border-left:3px solid var(--page-teal);background:var(--page-teal-soft);padding:18px 22px;margin:22px 0;max-width:46em}
+.call.w{border-left-color:var(--page-warn);background:var(--page-warn-soft)}
+.call h4{margin:0 0 6px;font-size:16px}
+.call p{margin:0 0 6px}
+.call p:last-child{margin:0}
+blockquote.say{margin:18px 0;padding:0 0 0 20px;border-left:3px solid var(--page-ink);font-size:20px;font-weight:700;line-height:1.55;max-width:30em}
+blockquote.say small{display:block;font-size:14px;font-weight:400;color:var(--page-grey);margin-top:6px}
+
+/* four accuracies */
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:2px solid var(--page-ink);margin:18px 0}
+.four div{padding:16px 16px 16px 0;border-bottom:1px solid var(--page-rule)}
+.four div+div{padding-left:16px;border-left:1px solid var(--page-rule)}
+.four b{display:block;font-size:20px;font-weight:900}
+.four span{display:block;font-size:14px;color:var(--page-grey);margin:4px 0 10px}
+.four em{font-style:normal;font-size:13px;font-weight:700}
+.four em.off{color:var(--page-warn)} .four em.on{color:var(--page-teal-ink)}
+
+/* ladder */
+.ladder{margin:16px 0;border-top:2px solid var(--page-ink)}
+.rung{display:grid;grid-template-columns:96px minmax(0,1fr) 130px;gap:16px;padding:12px 0;border-bottom:1px solid var(--page-rule);align-items:center}
+.rung .lv{font-weight:900}
+.rung .bar2{height:8px;background:var(--page-rule)}
+.rung .bar2 i{display:block;height:100%;background:var(--page-mute)}
+.rung .what{font-size:14px;color:var(--page-grey);margin-top:6px}
+.rung .res{font-size:14px;font-weight:700;text-align:right}
+.rung.pass{background:var(--page-teal-soft)}
+.rung.pass .lv{color:var(--page-teal-ink);padding-left:12px}
+.rung.pass .bar2 i{background:var(--page-teal)}
+.rung.pass .res{color:var(--page-teal-ink);padding-right:12px}
+.rung.worst .res{color:var(--page-warn)}
+
+/* lists */
+ul.clean{list-style:none;padding:0;margin:10px 0;max-width:46em}
+ul.clean li{padding:9px 0 9px 26px;border-bottom:1px solid var(--page-rule);position:relative}
+ul.clean li::before{content:"";position:absolute;left:4px;top:19px;width:10px;height:2px;background:var(--page-teal)}
+ul.clean.x li::before{background:var(--page-warn);transform:rotate(45deg);width:12px}
+ul.clean.x li::after{content:"";position:absolute;left:4px;top:19px;width:12px;height:2px;background:var(--page-warn);transform:rotate(-45deg)}
+ol.steps{padding:0;margin:10px 0;list-style:none;counter-reset:s;max-width:46em}
+ol.steps li{counter-increment:s;padding:10px 0 10px 40px;border-bottom:1px solid var(--page-rule);position:relative}
+ol.steps li::before{content:counter(s);position:absolute;left:0;top:9px;font-family:var(--page-mono);font-weight:600;color:var(--page-teal-ink);font-size:15px}
+.checks label{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--page-rule);cursor:pointer;max-width:46em}
+.checks input{width:18px;height:18px;margin-top:4px;accent-color:var(--page-teal);flex:none}
+.checks input:checked + span{color:var(--page-mute);text-decoration:line-through}
+
+/* rx anatomy */
+.rx{margin:22px 0 10px;border-top:2px solid var(--page-ink);border-bottom:1px solid var(--page-rule);padding:26px 0 18px}
+.rx-line{font-family:var(--page-mono);font-size:clamp(26px,5vw,48px);font-weight:600;letter-spacing:.02em;white-space:nowrap;overflow-x:auto}
+.rx-line span{padding:0 .12em}
+.rx-line .s{color:var(--page-ink)} .rx-line .c{color:var(--page-teal)} .rx-line .a{color:var(--page-warn)} .rx-line .e{color:var(--page-mute)}
+.rx-key{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+.rx-key div{border-top:3px solid var(--page-rule);padding-top:8px;font-size:14px;color:var(--page-grey)}
+.rx-key b{display:block;color:var(--page-ink);font-size:15px}
+.rx-key .ks{border-color:var(--page-ink)} .rx-key .kc{border-color:var(--page-teal)} .rx-key .ka{border-color:var(--page-warn)}
+
+/* tools */
+.tool{border:1px solid var(--page-ink);padding:24px;margin:22px 0;max-width:820px}
+.tool-h{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:16px}
+.tool-h b{font-size:17px}
+.tool-h span{font-size:13px;color:var(--page-grey)}
+.inputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.inputs label{font-size:13px;color:var(--page-grey)}
+.inputs input{display:block;width:100%;margin-top:6px;font-family:var(--page-mono);font-size:22px;font-weight:600;padding:8px 10px;border:1px solid var(--page-rule);border-bottom:2px solid var(--page-ink);background:var(--page-soft);color:var(--page-ink)}
+.inputs input:focus{outline:2px solid var(--page-teal);outline-offset:1px}
+.out{display:grid;grid-template-columns:auto minmax(0,1fr);gap:24px;align-items:center;margin-top:22px}
+.out .big{font-family:var(--page-mono);font-size:clamp(40px,7vw,64px);font-weight:600;line-height:1}
+.out .big small{font-size:20px;color:var(--page-grey);margin-left:4px}
+.out .verdict{font-size:20px;font-weight:900}
+.out .why{font-size:14px;color:var(--page-grey)}
+.gauge{position:relative;margin-top:22px;height:34px}
+.gz{position:absolute;top:0;height:10px}
+.gauge .mk{position:absolute;top:-4px;width:2px;height:18px;background:var(--page-ink);transition:left .25s ease-out}
+.gl{position:absolute;top:16px;font-family:var(--page-mono);font-size:11px;color:var(--page-mute);transform:translateX(-50%)}
+.formula{font-family:var(--page-mono);font-size:14px;color:var(--page-grey);margin-top:6px}
+.axis-out{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:20px;border-top:2px solid var(--page-ink)}
+.axis-out div{padding:14px 0;border-bottom:1px solid var(--page-rule)}
+.axis-out div+div{padding-left:20px;border-left:1px solid var(--page-rule)}
+.axis-out .lbl{font-size:13px;color:var(--page-grey)}
+.axis-out .num{font-family:var(--page-mono);font-size:34px;font-weight:600}
+.axis-out .num.t{color:var(--page-teal)}
+
+/* abbe */
+.abbe{margin:16px 0;border-top:2px solid var(--page-ink)}
+.ab{display:grid;grid-template-columns:120px minmax(0,1fr) 230px;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid var(--page-rule)}
+.ab .ix{font-family:var(--page-mono);font-weight:600;font-size:18px}
+.ab .tr{height:12px;background:var(--page-soft);position:relative}
+.ab .tr i{position:absolute;left:0;top:0;bottom:0;background:var(--page-mute)}
+.ab .tr b{position:absolute;top:-1px;font-family:var(--page-mono);font-size:12px;font-weight:600;padding-left:8px;color:var(--page-grey)}
+.ab .nt{font-size:14px;color:var(--page-grey)}
+.ab.pick .ix{color:var(--page-teal-ink)}
+.ab.pick .tr i{background:var(--page-teal)}
+.ab.pick .nt{color:var(--page-teal-ink);font-weight:700}
+
+/* card copy */
+.copybox{border:1px solid var(--page-rule);background:var(--page-soft);padding:18px 20px;margin:14px 0;max-width:46em}
+.copybox p{margin:0 0 12px}
+button.btn{font-family:var(--page-sans);font-size:14px;font-weight:700;padding:8px 16px;border:1px solid var(--page-ink);background:var(--page-ink);color:#fff;cursor:pointer;transition:background .15s}
+button.btn:hover{background:var(--page-teal);border-color:var(--page-teal)}
+button.btn:focus-visible{outline:2px solid var(--page-teal);outline-offset:2px}
+.kv{display:grid;grid-template-columns:150px minmax(0,1fr);border-top:2px solid var(--page-ink);max-width:820px;margin:14px 0}
+.kv div{padding:11px 0;border-bottom:1px solid var(--page-rule);font-size:15px}
+.kv div:nth-child(odd){color:var(--page-grey);font-size:14px;padding-right:16px}
+.blank{display:inline-block;min-width:64px;border-bottom:1px solid var(--page-ink);height:1.1em;vertical-align:-3px}
+
+.routebar{display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px;padding:28px 0 0}
+.route{display:inline-flex;border:1px solid var(--page-ink)}
+.route button{font-family:var(--page-sans);font-size:14px;font-weight:700;padding:8px 18px;border:0;background:#fff;color:var(--page-ink);cursor:pointer;transition:background .15s,color .15s}
+.route button+button{border-left:1px solid var(--page-ink)}
+.route button[aria-pressed="true"]{background:var(--page-ink);color:#fff}
+.route button:focus-visible{outline:2px solid var(--page-teal);outline-offset:2px}
+.route-note{font-size:13px;color:var(--page-grey)}
+body[data-route="off"] .on-only{display:none !important}
+body[data-route="on"] .off-only{display:none !important}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:2px solid var(--page-ink);margin:18px 0 8px}
+.flow div{padding:14px 12px 14px 12px;border-bottom:1px solid var(--page-rule);border-left:1px solid var(--page-rule);min-width:0}
+.flow div:nth-child(5n+1){border-left:0;padding-left:0}
+.flow b{display:block;font-family:var(--page-mono);color:var(--page-teal-ink);font-size:13px}
+.flow span{display:block;font-weight:700;margin:2px 0 4px}
+.flow em{font-style:normal;font-size:13px;color:var(--page-grey);display:block;line-height:1.55}
+.flow div.key{background:var(--page-teal-soft)}
+.flow div.key span{color:var(--page-teal-ink)}
+.flow.f5 div:nth-child(5n+1){border-left:0}
+.docs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--page-ink);margin:18px 0}
+.docs div{padding:14px 16px 14px 0;border-bottom:1px solid var(--page-rule);min-width:0}
+.docs div+div{padding-left:16px;border-left:1px solid var(--page-rule)}
+.docs b{display:block;font-size:16px}
+.docs i{display:block;font-style:normal;font-size:13px;color:var(--page-teal-ink);font-weight:700;margin:2px 0 6px}
+.docs span{display:block;font-size:14px;color:var(--page-grey)}
+.sub6{font-family:var(--page-mono);font-size:13px;color:var(--page-teal-ink);font-weight:600;margin:40px 0 0}
+.sub6 + h3{margin-top:4px}
+footer{border-top:1px solid var(--page-rule);margin-top:64px;padding:26px 0;font-size:13px;color:var(--page-mute)}
+
+@media (max-width:960px){
+  .wrap{grid-template-columns:minmax(0,1fr);gap:0}
+  nav.toc{display:none}
+  .hero{grid-template-columns:minmax(0,1fr);gap:28px}
+}
+@media (max-width:640px){
+  .wrap,.top-in{padding-left:18px;padding-right:18px}
+  .four{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .four div:nth-child(3){border-left:0;padding-left:0}
+  .rx-key{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .inputs{grid-template-columns:minmax(0,1fr)}
+  .ab{grid-template-columns:80px minmax(0,1fr)} .ab .nt{grid-column:1/-1;margin-top:-4px}
+  .rung{grid-template-columns:76px minmax(0,1fr)} .rung .res{grid-column:2;text-align:left}
+  .scale,.ticks{grid-template-columns:84px minmax(0,1fr) 70px;gap:8px 10px}
+  .match div{grid-template-columns:minmax(0,1fr);gap:4px}
+  .kv{grid-template-columns:110px minmax(0,1fr)}
+  .flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .flow div,.flow div:nth-child(5n+1){border-left:1px solid var(--page-rule);padding-left:12px}
+  .flow div:nth-child(odd){border-left:0;padding-left:0}
+  .docs{grid-template-columns:minmax(0,1fr)}
+  .docs div+div{border-left:0;padding-left:0}
+  .tool{padding:18px}
+  .out{grid-template-columns:minmax(0,1fr);gap:8px}
+}
+@media (prefers-reduced-motion:no-preference){
+  .enter{opacity:0;transform:translateY(10px);transition:opacity .5s ease-out,transform .5s ease-out}
+  .enter.in{opacity:1;transform:none}
+}
+@media print{
+  .top,nav.toc,button.btn{display:none}
+  .wrap{display:block}
+  .sec{break-inside:auto}
+}
+</style>
+
+<div class="wrap">
+<nav class="toc" aria-label="目录">
+  <a href="#conclusion">结论</a>
+  <a href="#basics">先搞懂两件事</a>
+  <a href="#plans">四种方案</a>
+  <a href="#flow">整体流程</a>
+  <div class="grp">按步骤</div>
+  <a href="#s1">1 找验光师</a>
+  <a href="#s2">2 看懂处方</a>
+  <a href="#s3">3 选镜框</a>
+  <a href="#fit">4 调框测参数</a>
+  <a href="#s4">5 选镜片</a>
+  <a href="#s5"><span class="off-only">6 开单与加工</span><span class="on-only">6 下单与加工</span></a>
+  <a href="#s6">7 取镜与适应</a>
+  <div class="grp">附录</div>
+  <a href="#go" class="off-only">出门前清单</a>
+  <a href="#card" class="on-only">线上参数卡</a>
+  <a href="#check">核对与来源</a>
+</nav>
+
+<main>
+<!-- HERO -->
+<div class="routebar">
+  <div class="route" role="group" aria-label="选择配镜路线">
+    <button type="button" data-r="off" aria-pressed="true">线下配镜</button>
+    <button type="button" data-r="on" aria-pressed="false">线下验光 + 网上配镜</button>
+  </div>
+  <span class="route-note">切换后，下面只显示这条路线的步骤；两条路共用的内容不变</span>
+</div>
+<section class="hero enter" id="conclusion">
+  <div class="off-only">
+    <h1>线下配镜按单子走：先验光，再选框，取镜当面验。</h1>
+    <p class="dek">近视约 500–600 度、四五年没验光、主要开车。带上两份打印的单子：验光师一份、配镜师一份，再加这本手册。从选店到戴稳一共 10 个环节，哪一步没做到，当场就能发现。</p>
+  </div>
+  <div class="spec off-only">
+    <div class="spec-title">线下配镜：你的配置</div>
+    <dl>
+      <dt>方案</dt><dd>B · 验光、配镜都在一家店</dd>
+      <dt>验光</dt><dd>按《验光配镜需求单》，付费验</dd>
+      <dt>镜框</dt><dd>先验光后选框；移心量 <span class="m">≤3 mm</span>，片高 <span class="m">≤35 mm</span></dd>
+      <dt>测量</dt><dd>调好镜框后再测瞳高</dd>
+      <dt>镜片</dt><dd><span class="m">1.60</span> 普通非球面单光，耐磨 + 减反射</dd>
+      <dt>取镜</dt><dd>焦度计当面复核 + 上脸调整 + 试戴</dd>
+      <dt>带去</dt><dd>需求单、配镜流程单（各打印一份）</dd>
+    </dl>
+  </div>
+  <div class="on-only">
+    <h1>验光去线下<span class="t">花钱买好的</span>，镜片去网上省钱。</h1>
+    <p class="dek">近视约 500–600 度、四五年没验光、主要开车，这种情况最划算的走法是：线下付费验光 → 网上按处方配镜 → 回线下核对和调校。</p>
+  </div>
+  <div class="spec on-only">
+    <div class="spec-title">你的推荐配置</div>
+    <dl>
+      <dt>方案</dt><dd>A · 拆开买</dd>
+      <dt>验光</dt><dd>口碑店或医院视光科，付费只验光</dd>
+      <dt>镜片</dt><dd><span class="m">1.60</span> 普通非球面单光</dd>
+      <dt>膜层</dt><dd>耐磨 + 减反射，不要防蓝光</dd>
+      <dt>镜框</dt><dd>移心量 <span class="m">≤3 mm</span>，片高 <span class="m">≤35 mm</span></dd>
+      <dt>到手后</dt><dd>焦度计核对 + 上脸调校</dd>
+      <dt>例外</dt><dd>散光 <span class="m">≥150</span> 度或斜轴 → 改线下加工</dd>
+    </dl>
+  </div>
+</section>
+
+<div class="price">
+  <h3>同一片镜片，渠道不同，价钱能差好几倍</h3>
+  <p class="sub">以蔡司为例，占官方定价的比例（文章给的价格带）</p>
+  <div class="scale">
+    <div class="lab">出厂价</div><div class="track"><span class="bar" style="left:0;width:10%"></span></div><div class="v">≈ 1 折</div>
+    <div class="lab">网上寄框网配</div><div class="track"><span class="bar t" style="left:0;width:25%"></span></div><div class="v">2–2.5 折</div>
+    <div class="lab">线下授权店</div><div class="track"><span class="bar w" style="left:0;width:60%"></span><span class="bar fade" style="left:60%;width:40%"></span></div><div class="v">≥ 6 折</div>
+  </div>
+  <div class="ticks"><div></div><div><span>0</span><span>2.5</span><span>5</span><span>7.5</span><span>10 折</span></div><div></div></div>
+  <p class="src">门店的成本主要是房租和人力，利润主要来自镜片差价；文章作者还发现，折扣越低的店，验光往往越敷衍。来源：《眼镜是妥协的艺术》。</p>
+</div>
+
+<!-- BASICS -->
+<section class="sec" id="basics">
+  <h2>一副好眼镜要四个“准”，其中两个只能在线下完成</h2>
+  <p class="lead">任何一环不到位，镜片再贵也白花。网购买得到合格的商品，买不到验光和上脸调整这两项服务。</p>
+  <div class="four">
+    <div><b>验得准</b><span>主觉验光 + 试戴，定出最终度数</span><em class="off">必须线下</em></div>
+    <div><b>磨得准</b><span>按处方的轴位、瞳距加工</span><em class="on">网上也能做</em></div>
+    <div><b>选得准</b><span>镜框尺寸匹配度数和脸</span><em class="on">按规则自己选</em></div>
+    <div><b>调得准</b><span>上脸调鼻托、镜腿、角度</span><em class="off">必须线下</em></div>
+  </div>
+  <p class="src">四大因素来自眼科医生“铁打的郎中”《网上配镜靠不靠谱》。</p>
+</section>
+
+<!-- PLANS -->
+<section class="sec" id="plans">
+  <h2>四种方案里，A 最适合你：省钱，又不牺牲验光质量</h2>
+  <div class="scroll"><table class="plans">
+    <thead><tr><th></th><th>怎么做</th><th>优点</th><th>缺点</th><th>适合谁</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td><span class="plan-id">A</span><br><span class="tag t">推荐</span></td><td>眼镜店或医院<strong>付费只验光</strong> → 网上按处方定制 → 附近眼镜店核对、调校</td><td><ul><li>花费明显更低</li><li>可以挑最好的验光师</li><li>不被推销镜片</li></ul></td><td><ul><li>多跑 1–2 趟</li><li>网店售后要寄来寄去</li><li>调校另找店，可能收少量费用</li></ul></td><td>眼睛大体正常、愿意多花点时间（你）</td></tr>
+      <tr><td><span class="plan-id">B</span></td><td>找一家好店，验光、配镜、调校、售后全包</td><td><ul><li>一站式省心</li><li>出问题一家负责</li></ul></td><td><ul><li>镜片约为网上的 2–3 倍</li><li>好店难找，要碰运气</li><li>容易被推销</li></ul></td><td>散光高或轴位斜、试戴反复不适、不想自己把关</td></tr>
+      <tr><td><span class="plan-id">C</span></td><td>医院视光科验光，可加查眼底、眼压；后半段同 A</td><td><ul><li>能同时排查眼病</li><li>没有卖镜片的动机</li></ul></td><td><ul><li>挂号排队</li><li>医生忙，试戴未必充分</li></ul></td><td>久未检查、怀疑斜视 / 弱视 / 度数突变</td></tr>
+      <tr class="bad"><td><span class="plan-id">D</span><br><span class="tag w">别选</span></td><td>只凭电脑验光单或估计的度数直接网购</td><td>最便宜</td><td><ul><li>电脑验光单不能直接配镜</li><li>度数不准会累、头晕</li></ul></td><td>不适合任何人</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">“约为网上的 2–3 倍”按文章的折扣带推算（线下授权店 ≥6 折 vs 网配 2–2.5 折），品牌和城市不同会有差异。</p>
+
+  <h3>对号入座</h3>
+  <div class="match">
+    <div><span>眼睛没有特别不适，想省钱</span><span><b>A</b></span></div>
+    <div><span>四五年没查过眼睛，想顺便查眼底、眼压（接近 600 度建议查）</span><span><b>C</b>，或 <b>A</b> + 去医院单独查一次</span></div>
+    <div><span>试戴怎么调都不舒服、重影、头晕</span><span><b>B</b>（选愿意反复调的店），或去医院查原因</span></div>
+    <div><span>验光后任一眼散光 ≥150 度，或轴位是斜的（约 30–60° / 120–150°）</span><span><b>B</b>：改为线下加工，不走网配</span></div>
+    <div><span>时间少、不想来回跑</span><span><b>B</b></span></div>
+    <div><span>想配蔡司等高端镜片</span><span><b>A</b> 省得最多，但要核对防伪</span></div>
+  </div>
+  <div class="call w">
+    <h4>散光 ≥150 度或斜轴，为什么不建议网配</h4>
+    <p>散光越高，成品眼镜的轴位允差越窄：150 度对应 ±4°，超过 150 度（到 250 度）为 ±3°，再高为 ±2°（GB 13511.1）。斜轴散光对加工和上脸调整也更敏感；郎中提到轴位偏 10° 就可能头晕。网配一旦超差要寄回返工，来回一两周；线下加工可以当场用焦度计核对、当场重做。</p>
+    <p>这一条是我综合资料后的判断，两份资料里没有明文规定。</p>
+  </div>
+  <div class="call">
+    <h4>我的建议</h4>
+    <p class="off-only"><strong>你选了线下配镜（方案 B）也完全可以</strong>：线下多花的钱主要买的是验光、加工和调整这些服务，那就把服务要到位——验光按需求单，选框到取镜按配镜流程单。镜框是价差最大的部分，可以议价，或问能否自带镜框只配镜片。</p>
+    <p>验光结果散光 &lt;150 度、也不是斜轴的话，走方案 A。四五年没验光、度数接近 600，建议顺便去医院查一次眼底和眼压，图个安心。验光这一步别省钱，挑口碑最好的店；镜片镜框在网上买，省下的钱足够覆盖验光和调校。</p>
+  </div>
+</section>
+
+<section class="sec" id="flow">
+  <div class="off-only">
+    <h2>线下配镜一共 10 个环节，验光只是第 1 个</h2>
+    <p class="lead">验光、选框、测参数、加工、调整是连在一起的：框选错了，验得再准光心也对不上；瞳高不在调好的框上测，加工得再精也白费。</p>
+    <div class="flow">
+      <div><b>0</b><span>选店预约</span><em>挑验光师，电话问清价格和流程</em></div>
+      <div><b>1</b><span>验光</span><em>主觉验光 + 试戴，拿最终处方</em></div>
+      <div class="key"><b>2</b><span>选镜框</span><em>先算尺寸，再上脸，再查做工</em></div>
+      <div class="key"><b>3</b><span>调框测参数</span><em>调好鼻托镜腿，再测瞳高</em></div>
+      <div><b>4</b><span>选镜片</span><em>1.60 单光，应对推销</em></div>
+      <div><b>5</b><span>开单</span><em>参数、价格、售后写在单上</em></div>
+      <div><b>6</b><span>加工</span><em>按单眼瞳距、瞳高、轴位</em></div>
+      <div class="key"><b>7</b><span>取镜验收</span><em>焦度计当面复核，拿包装袋</em></div>
+      <div class="key"><b>8</b><span>上脸调整 + 试戴</span><em>逐项调好，看远看近走动</em></div>
+      <div><b>9</b><span>适应与复查</span><em>1–2 周仍不适就回店</em></div>
+    </div>
+    <p class="src">底色标出的四步最容易被跳过。顺序依据郎中《3 要 3 不要》、柴知道实测（先验光 → 选框 → 选片 → 加工 → 面对面调整）及评论区经验。</p>
+    <h3>三份资料，各管一段</h3>
+    <div class="docs">
+      <div><b>验光配镜需求单</b><i>交给验光师 · 3 页</i><span>环节 0–1：验光流程、处方填写、未做项注明原因</span></div>
+      <div><b>配镜流程单</b><i>交给配镜师 · 3 页</i><span>环节 2–8：镜框要求、开单信息、加工要求、取镜验收、上脸调整</span></div>
+      <div><b>这本手册</b><i>你自己看</i><span>每一步做什么、看什么、怎么开口、哪里会被坑</span></div>
+    </div>
+    <div class="call">
+      <h4>店里让你先挑镜框怎么办</h4>
+      <p>很常见，评论区不少人遇到。可以说：“我想先验光，拿到度数再选框，散光方向会影响框形。”店里坚持的话，先随便看看款式，验完光再按第 3 步定框。</p>
+    </div>
+  </div>
+  <div class="on-only">
+    <h2>线下验光 + 网上配镜：5 步，只有两步要跑线下</h2>
+    <div class="flow f5">
+      <div class="key"><b>1</b><span>线下付费验光</span><em>按需求单，拿最终处方和单眼瞳距</em></div>
+      <div><b>2</b><span>选镜框</span><em>按尺寸筛选，网上多买几副试戴退掉不合适的</em></div>
+      <div><b>3</b><span>网上下单</span><em>用参数卡，售后要书面</em></div>
+      <div class="key"><b>4</b><span>到货线下核对</span><em>焦度计复核 + 上脸调校</em></div>
+      <div><b>5</b><span>适应与复查</span><em>1–2 周仍不适找售后</em></div>
+    </div>
+    <p class="src">散光 ≥150 度或斜轴，不建议走这条路（见“四种方案”）。</p>
+  </div>
+</section>
+
+<!-- STEP 1 -->
+<section class="sec" id="s1">
+  <div class="step">第 1 步</div>
+  <h2>验光质量看验光师怎么验，不看店多大、设备多贵</h2>
+  <p class="lead">两份资料的共同结论：看人和流程，不看机构类型。文章作者最满意的一次验光，来自一家没有蔡司设备、验光费最低的店。</p>
+
+  <h3>眼镜店和医院各有长短</h3>
+  <div class="scroll"><table>
+    <thead><tr><th></th><th>口碑好的眼镜店</th><th>医院视光科 / 眼科</th></tr></thead>
+    <tbody>
+      <tr><td class="k">能力上限</td><td>取决于验光师本人</td><td>更高：能查眼病，必要时给治疗方案</td></tr>
+      <tr><td class="k">实际服务</td><td>付费能买到时间和耐心</td><td>医生很忙，未必细致试戴</td></tr>
+      <tr><td class="k">费用</td><td>普通验光约 50 元起（文章 2023 年口径）；宝岛 2024 年约 200 元、带视功能约 400 元；大店加做视功能 + 眼底照相约 100 元</td><td>常规约 50–150 元，散瞳另收（网上公开信息）；评论区案例：眼科医院 4 元走完全流程，三甲二十多元只验了光</td></tr>
+      <tr><td class="k">推销动机</td><td>有，要防</td><td>基本没有（但医院配镜往往偏贵）</td></tr>
+      <tr><td class="k">适合</td><td>单纯近视 / 散光，眼睛大体正常</td><td>复杂情况，或想同时查眼健康</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">价格从几元到几百元都有，而且和验光质量没有对应关系。以上为 2023–2024 年前后的口径，以当地实际为准。</p>
+
+  <h3>怎么挑</h3>
+  <ol class="steps">
+    <li>在大众点评搜“验光”，优先看评价里提到“主觉验光很久”“反复对比”“认真试戴”的店；想找指定的好师傅，提前预约。</li>
+    <li class="on-only">先打电话问三件事：<strong>只验光收多少钱？包含主觉验光和试戴吗？能给完整处方和单眼瞳距吗？</strong></li>
+    <li class="off-only">先打电话问清：<strong>验光多少钱？包含主觉验光和试戴吗？在店里配镜的话验光费怎么算？能否自带镜框、只配镜片？</strong></li>
+    <li>到店先把《验光配镜需求单》给对方看，对方愿意照着做再开始。</li>
+  </ol>
+
+  <h3>现场判断：这次验光到了哪一档</h3>
+  <div class="ladder">
+    <div class="rung worst"><div class="lv">最次</div><div><div class="bar2"><i style="width:15%"></i></div><div class="what">只用电脑验光仪打个单子就给度数</div></div><div class="res">直接换一家</div></div>
+    <div class="rung"><div class="lv">勉强合格</div><div><div class="bar2"><i style="width:38%"></i></div><div class="what">电脑验光 + 红绿测试 + 交叉柱镜确认散光</div></div><div class="res">临时应急</div></div>
+    <div class="rung pass"><div class="lv">合格</div><div><div class="bar2"><i style="width:60%"></i></div><div class="what">再加：雾视后找最佳视力（MPMVA）+ 双眼平衡 + 10–15 分钟试戴</div></div><div class="res">你的及格线</div></div>
+    <div class="rung"><div class="lv">良好</div><div><div class="bar2"><i style="width:80%"></i></div><div class="what">再加：基础视功能检查</div></div><div class="res">久戴累、想查隐患</div></div>
+    <div class="rung"><div class="lv">优秀</div><div><div class="bar2"><i style="width:100%"></i></div><div class="what">完整视功能（眼位、融像、调节等）+ 检影验光</div></div><div class="res">视功能异常、复视</div></div>
+  </div>
+  <p class="src">档次划分来自《眼镜是妥协的艺术》；“只做电脑验光就换店”“试戴是最重要的环节”来自郎中系列。</p>
+
+  <h3>遇到这些就换一家</h3>
+  <ul class="clean x">
+    <li>只做了电脑验光（看“小房子 / 热气球”那台机器）就让你配镜</li>
+    <li>不试戴，或试戴一两分钟就定（标准是 10–15 分钟，要看远、看近、走动）</li>
+    <li>付了验光费，仍不肯给完整处方或单眼瞳距</li>
+    <li>一上来就推荐防蓝光、抗疲劳、高价镜片</li>
+  </ul>
+
+  <h3>想多对比几次，换个说法</h3>
+  <blockquote class="say">“我眼睛状态总在波动，想多对比几次确认一下。”<small>别说“我不信你，再测一遍”。把原因放在自己身上，对方更愿意配合。</small></blockquote>
+  <ul class="clean">
+    <li><strong>验几次够</strong>：文章作者的经验是，一般 3 次验光足以定度数、2 次足以定轴位；为 25 度的差别跑到第 4、5 家基本是内耗。</li>
+    <li><strong>轴位当场复测</strong>：轴位短时间内基本不变，两次差别明显就当场请对方复测，比回家纠结有效。</li>
+  </ul>
+</section>
+
+<!-- STEP 2 -->
+<section class="sec" id="s2">
+  <div class="step">第 2 步</div>
+  <h2>处方上一行字，就是三个数：度数、散光、散光方向</h2>
+  <div class="rx">
+    <div class="rx-line"><span class="e">R</span><span class="s">−5.50</span><span class="e">/</span><span class="c">−0.75</span><span class="e">×</span><span class="a">175</span></div>
+    <div class="rx-key">
+      <div class="ks"><b>球镜 S　−5.50</b>近视 550 度</div>
+      <div class="kc"><b>柱镜 C　−0.75</b>散光 75 度</div>
+      <div class="ka"><b>轴位 A　175</b>散光方向，1–180°</div>
+      <div><b>R / L</b>右眼 / 左眼</div>
+    </div>
+  </div>
+  <p class="src">示例数字，不是你的度数。</p>
+  <div class="scroll"><table>
+    <thead><tr><th>还要拿到</th><th>是什么</th><th>为什么重要</th></tr></thead>
+    <tbody>
+      <tr><td class="k">矫正视力 VA</td><td>戴这组度数能看到的视力</td><td>开车至少要到 1.0</td></tr>
+      <tr><td class="k">单眼瞳距 PD</td><td>每只眼瞳孔到鼻梁中线的距离，如 R 31 / L 31</td><td>网上配镜决定光学中心的位置，比总瞳距更准</td></tr>
+      <tr><td class="k">瞳高 PH</td><td>瞳孔到所选镜框下缘的高度</td><td>换镜框就会变；不测按默认做一般也没大问题</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>开车：法规底线 0.8，实际建议至少 1.0</h3>
+  <p>小型汽车驾驶证要求两眼裸眼或矫正视力达到对数视力表 <strong>4.9（约 0.8）以上</strong>。实际建议至少矫正到 1.0；要不要到 1.2，看远距需求，也看会不会让看近更累。夜里开车吃力，可以和验光师商量矫到 1.2。</p>
+
+  <h3>三个常见困惑</h3>
+  <ul class="clean">
+    <li><strong>电脑验光单不是处方</strong>，只能作为初始参考。</li>
+    <li><strong>红绿测试</strong>：红色更清楚＝近视欠矫，绿色更清楚＝过矫，红绿一样清楚才是终点。</li>
+    <li><strong>25 度的差别不必纠结</strong>：同一只眼可能有几组度数都能看到 1.0–1.2；清晰度一样时，选近视度数低的那组更不累。</li>
+  </ul>
+</section>
+
+<!-- STEP 3 -->
+<section class="sec" id="s3">
+  <div class="step">第 3 步</div>
+  <h2>镜框首先是镜片的架子：先按处方算尺寸，再看好不好看</h2>
+  <p class="lead">近视镜片中间薄、边缘厚。瞳孔离镜框中心越远，光学中心要“移”过去越多，边缘越厚、像差越大。郎中给的顺序是：先想清诉求，再看度数限制，最后才看脸型。下面 6 步按这个顺序走。</p>
+
+  <div class="sub6">1 / 6</div>
+  <h3>先算出你能选多大的框</h3>
+  <p>拿到处方后看<strong>总瞳距</strong>（两只眼的单眼瞳距相加）。镜腿内侧印着“镜圈 □ 鼻梁 – 镜腿”，如 50□18-145。用下面的计算器试几副框：</p>
+  <div class="tool" id="calc">
+    <div class="tool-h"><b>移心量计算器</b><span>镜腿内侧印着“镜圈 □ 鼻梁 – 镜腿”，如 50□18-145</span></div>
+    <div class="inputs">
+      <label>镜圈宽度 mm<input id="cA" type="number" inputmode="decimal" value="50" min="30" max="70" step="1"></label>
+      <label>鼻梁宽度 mm<input id="cB" type="number" inputmode="decimal" value="18" min="10" max="30" step="1"></label>
+      <label>总瞳距 mm<input id="cP" type="number" inputmode="decimal" value="62" min="45" max="80" step="0.5"></label>
+    </div>
+    <div class="out">
+      <div class="big"><span id="cOut">3.0</span><small>mm</small></div>
+      <div><div class="verdict" id="cV">良好</div><div class="why" id="cW">单侧移心量，大多数人以 ≤3 mm 为目标</div></div>
+    </div>
+    <div class="gauge" id="gauge">
+      <span class="gz" style="left:0;width:18.75%;background:var(--page-teal)"></span>
+      <span class="gz" style="left:18.75%;width:18.75%;background:#7FC4BD"></span>
+      <span class="gz" style="left:37.5%;width:25%;background:#E3C9A8"></span>
+      <span class="gz" style="left:62.5%;width:37.5%;background:var(--page-warn)"></span>
+      <span class="mk" id="cMk" style="left:37.5%"></span>
+      <span class="gl" style="left:0;transform:none">0</span><span class="gl" style="left:18.75%">1.5</span><span class="gl" style="left:37.5%">3</span><span class="gl" style="left:62.5%">5</span><span class="gl" style="left:100%;transform:translateX(-100%)">8 mm</span>
+    </div>
+    <div class="formula">移心量 =（镜圈 + 鼻梁 − 瞳距）÷ 2　·　≤1.5 优秀　≤3 良好　≤5 可接受上限　&gt;5 不推荐</div>
+  </div>
+  <p class="src">评价标准来自文章；等价于郎中系列评论区的“镜圈 + 鼻梁 − 瞳距 &lt; 10 mm”。成年男性瞳距常见 60–68 mm、女性 57–64 mm（郎中）。</p>
+  <p>换个说法：<strong>镜圈 + 鼻梁最好在“瞳距 + 6 mm”以内，最多“瞳距 + 10 mm”</strong>。也别选得比瞳距还窄——评论区提醒，宽度先要和瞳距匹配，不要为了薄一味选窄。</p>
+  <div class="scroll"><table>
+    <thead><tr><th>总瞳距</th><th class="n">镜圈 + 鼻梁 理想</th><th class="n">上限</th><th class="n">鼻梁 18 时的镜圈</th></tr></thead>
+    <tbody>
+      <tr><td>58 mm</td><td class="n">≤ 64</td><td class="n">≤ 68</td><td class="n">理想 ≤46，上限 ≤50</td></tr>
+      <tr><td>60 mm</td><td class="n">≤ 66</td><td class="n">≤ 70</td><td class="n">理想 ≤48，上限 ≤52</td></tr>
+      <tr class="hl"><td>62 mm</td><td class="n">≤ 68</td><td class="n">≤ 72</td><td class="n">理想 ≤50，上限 ≤54</td></tr>
+      <tr><td>64 mm</td><td class="n">≤ 70</td><td class="n">≤ 74</td><td class="n">理想 ≤52，上限 ≤56</td></tr>
+      <tr><td>66 mm</td><td class="n">≤ 72</td><td class="n">≤ 76</td><td class="n">理想 ≤54，上限 ≤58</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">按公式推算；鼻梁不是 18 时，用“上限 − 鼻梁”自己算镜圈。最终以上脸为准。</p>
+  <ul class="clean">
+    <li><strong>片高</strong>（镜框上下高度，常印在镜腿或吊牌上，没有就问）：文章的经验值是 600–800 度 &lt;35 mm、较低度数 &lt;40 mm。你 500–600 度在两档之间，取 ≤35 mm 是偏保守的选择。</li>
+    <li><strong>散光方向</strong>：水平散光（1–30° / 150–180°）选扁平、上下窄的框，避开下方特别长的水滴框；垂直散光（60–120°）选左右窄的框。散光 150–200 度以上尤其要注意（郎中）。</li>
+    <li><strong>度数接近 600</strong>：侧边稍厚的框（板材、粗边）能藏住镜片的厚边（郎中）。</li>
+  </ul>
+
+  <div class="sub6">2 / 6</div>
+  <h3>按诉求先排除</h3>
+  <ul class="clean">
+    <li>戴眼镜鼻子痛、太阳穴痛、耳后痛 → 越轻越好（郎中）。</li>
+    <li>运动多 → 弹性、柔软的框，或无鼻托的框，不怕鼻托折断（郎中）。</li>
+    <li>看腻了某种颜色、不想要某种风格 → 先按这条排除，后面都服从它（郎中）。</li>
+    <li>预算：镜框是整副眼镜里价差最大的部分（评论区：同类钛架网上 100–400 元，店里 900 元起），先定一个上限。</li>
+  </ul>
+
+  <div class="sub6">3 / 6</div>
+  <h3>上脸看：三不要，加上黄金比例</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>检查项</th><th>标准</th><th>不合格的表现</th></tr></thead>
+    <tbody>
+      <tr><td class="k">上缘</td><td>不压眉毛，比眉毛低一些更好</td><td>眉毛被框住、挤在框里</td></tr>
+      <tr><td class="k">下缘</td><td>笑起来不碰苹果肌</td><td>一笑镜框跟着抖、被顶起</td></tr>
+      <tr><td class="k">侧面</td><td>不夹太阳穴</td><td>戴久了留下凹痕</td></tr>
+      <tr><td class="k">黄金比例</td><td>下眼皮在镜框中间，<strong>黑眼珠在镜框中偏上 1/3</strong></td><td>眼睛贴着框的上沿或下沿</td></tr>
+      <tr><td class="k">框宽</td><td>镜圈外侧与颧骨大致齐平</td><td>太窄露出颧骨；太宽出现“两层脸”</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">三不要、黄金比例来自郎中；框宽与颧骨来自郎中和柴知道那期。</p>
+  <ul class="clean">
+    <li><strong>空框好看，不代表装上镜片也好看</strong>：展示片没有度数，看不出镜片厚边和“两层脸”，度数高时更要靠第 1 步的尺寸把关（郎中）。</li>
+    <li>用手机拍正面和侧面照片对比几副，比当场凭感觉准。</li>
+    <li>戴上后低头、摇头、笑一下：框不滑、不晃、不顶脸。</li>
+  </ul>
+
+  <div class="sub6">4 / 6</div>
+  <h3>鼻托和镜腿：有鼻托靠调整，无鼻托靠缘分</h3>
+  <div class="scroll"><table>
+    <thead><tr><th></th><th>有鼻托（金属框常见）</th><th>无鼻托（板材框常见）</th></tr></thead>
+    <tbody>
+      <tr><td class="k">优点</td><td>可调范围大：鼻梁不对称、高低眼、镜眼距都能靠调鼻托解决；S 型钩比 L 型可调范围大</td><td>不怕折断；高度数时镜片能更贴近眼睛</td></tr>
+      <tr><td class="k">缺点</td><td>会老化发黄发绿，可找店里换；被碰后容易歪，歪了会看东西变形（评论区）</td><td>架不住就是架不住；出汗出油容易下滑，可加耳钩</td></tr>
+      <tr><td class="k">适合</td><td>对清晰度敏感、鼻梁不高、脸不对称</td><td>运动多、度数很高、鼻梁刚好合适</td></tr>
+    </tbody>
+  </table></div>
+  <p class="src">来自郎中《镜框选有鼻托 or 没鼻托》及评论区。</p>
+  <ul class="clean">
+    <li><strong>镜腿长度</strong>要能勾住耳朵，太短挂不住（评论区）。</li>
+    <li><strong>高低耳</strong>很常见：选镜腿偏软的框（如弹性漆），或加耳钩平衡（郎中）。</li>
+    <li><strong>开车</strong>长时间戴、要求稳，建议优先可调鼻托，配好后让店里调稳。这是我的建议，资料里没有专门针对开车的说法。</li>
+  </ul>
+
+  <div class="sub6">5 / 6</div>
+  <h3>查材质和做工：几十块的“全钛”多半是号称</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>材质</th><th>特点</th><th>注意</th></tr></thead>
+    <tbody>
+      <tr><td class="k">钛</td><td>不易变形、不易过敏、轻</td><td>贵；几十块、一百块号称“全钛”的基本只是号称（郎中）。真钛镜腿内侧通常有 Ti / TITANIUM 字样（评论区整理）</td></tr>
+      <tr><td class="k">金属（非钛）</td><td>轻巧、显干练</td><td>便宜的可能腐蚀发绿（评论区：几十块的半年就发绿）</td></tr>
+      <tr><td class="k">板材 / 塑钢</td><td>常见，侧边厚能藏镜片厚边</td><td>多为无鼻托，注意鼻梁贴合</td></tr>
+    </tbody>
+  </table></div>
+  <p>当场检查做工（郎中《快来自测》）：</p>
+  <ul class="clean">
+    <li>左右是否对称、高低是否一致，镜腿有没有变形。</li>
+    <li><strong>把镜框反过来放在桌面上</strong>，看两条镜腿是否都服帖地贴着桌面。</li>
+    <li>表面有没有划痕、色差、瑕疵；新框可以用指甲轻刮漆面，一刮就掉的不要。</li>
+  </ul>
+
+  <div class="sub6">6 / 6</div>
+  <h3>定价和决定</h3>
+  <ul class="clean">
+    <li>配两三百元的镜片，60–100 元的钛架就够；配千元级镜片，200–300 元的镜架比较匹配（Notion 整理文的说法，NGA 原帖未核实）。</li>
+    <li class="off-only">同款在网上搜一下价格，心里有数再谈；镜框是最有议价空间的部分（评论区）。店里镜框太贵，可以问能否<strong>自带镜框、只在店里配镜片和加工</strong>，收费多少、加工时损坏谁负责要问清楚。</li>
+    <li class="off-only">定下来后，把型号、尺寸、片高、价格填进《配镜流程单》第 2 页。</li>
+    <li class="on-only">网上买框可以多买几副试戴、退掉不合适的（评论区有人这样做，提前跟卖家说好）；也可以线下试好同尺寸的框，再寄给网店加工。</li>
+  </ul>
+  <div class="call">
+    <h4>定框前过一遍</h4>
+    <div class="checks">
+      <label><input type="checkbox"><span>镜圈 + 鼻梁在“瞳距 + 6 mm”以内（最多 + 10 mm），片高 ≤35 mm，框形符合散光方向</span></label>
+      <label><input type="checkbox"><span>不压眉毛，笑不碰苹果肌，不夹太阳穴，黑眼珠在偏上 1/3，框宽≈颧骨</span></label>
+      <label><input type="checkbox"><span>鼻托、镜腿合适；做工检查通过；价格可接受</span></label>
+    </div>
+  </div>
+</section>
+
+<!-- STEP 3b -->
+<section class="sec" id="fit">
+  <div class="step">第 4 步</div>
+  <h2>瞳高要在调好的镜框上测，先测后调等于白测</h2>
+  <p class="lead">镜片的光学中心要根据你戴好的镜框和瞳孔位置来定，否则会有移心量、产生棱镜效应，看久了累（郎中系列评论区）。</p>
+  <ol class="steps off-only">
+    <li>先请店员把选定的镜框<strong>调到你脸上合适的位置</strong>：鼻托、镜腿、左右高低都调好。</li>
+    <li>再测<strong>瞳高</strong>：瞳孔中心到镜框下缘的高度。换框必须重测。</li>
+    <li>确认<strong>单眼瞳距</strong>：左右分开，不是总瞳距除以 2。验光单上有的话核对一致。</li>
+    <li>告诉配镜师：<strong>主要开车、看远</strong>。评论区有人指出，看近为主光学中心要下移，看远开车要让瞳孔正对；具体高度交给配镜师按惯例定。</li>
+    <li>普通单光不需要测镜眼距、前倾角、镜面角；只有个性化定制片才需要。</li>
+  </ol>
+  <div class="on-only">
+    <p>网上配镜量不了瞳高，这是评论区公认的短板。两个办法：</p>
+    <ul class="clean">
+      <li>在线下试戴尺寸相同或相近的框，看眼睛是否落在镜框高度的 0.618 附近（网配一般默认这个位置）（评论区）。</li>
+      <li>文章认为，一般人不测瞳高、按默认做也不会出大问题；测了就用它来校框，而不是被动接受一个数字。</li>
+    </ul>
+  </div>
+  <p class="src">柴知道那期：水平方向由瞳距决定，垂直一般高于镜框中心 2–4 mm，或按瞳高。</p>
+</section>
+
+<!-- STEP 4 -->
+<section class="sec" id="s4">
+  <div class="step">第 5 步</div>
+  <h2>选 1.60：比 1.67 / 1.74 色散小得多，500–600 度配小框也不会太厚</h2>
+  <p class="lead">折射率越高越薄、越贵，但阿贝数通常越低，看东西边缘越容易出彩边。下面是阿贝数（越长越好）：</p>
+  <div class="abbe">
+    <div class="ab"><div class="ix">1.56</div><div class="tr"><i style="width:60%"></i><b style="left:60%">约 34–38</b></div><div class="nt">郎中：一两百度够用；文章：不推荐。你的度数下不选</div></div>
+    <div class="ab pick"><div class="ix">1.60</div><div class="tr"><i style="width:68%"></i><b style="left:68%">41</b></div><div class="nt">★ 默认选择，两份资料都认可</div></div>
+    <div class="ab"><div class="ix">1.67</div><div class="tr"><i style="width:52%"></i><b style="left:52%">31</b></div><div class="nt">框偏大、1.60 太厚时的备选</div></div>
+    <div class="ab"><div class="ix">1.74</div><div class="tr"><i style="width:53%"></i><b style="left:53%">32</b></div><div class="nt">比 1.67 只薄约 20%，价格翻一番；一般用不到</div></div>
+  </div>
+  <p class="src">1.60 / 1.67 / 1.74 取自三井化学 MR 系列材料数据；1.56 不同厂家材料差别大，只给大致范围。1.50 的阿贝数更高（约 57），但 500–600 度用它太厚。实际以镜片包装为准。</p>
+  <div class="call">
+    <h4>为什么这样选</h4>
+    <p>1.67 和 1.74 的阿贝数几乎一样（31 vs 32），区别主要在厚度和价格；1.60 的阿贝数明显更高。所以最划算的路是<strong>先把框选小，再用 1.60</strong>。1.67 不算错，只是不必为它多花钱。</p>
+  </div>
+
+  <h3>镜片设计：看远为主，普通单光就够</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>类型</th><th>特点</th><th>适合你吗</th></tr></thead>
+    <tbody>
+      <tr class="hl"><td class="k">普通非球面单光</td><td>主流，价格低，看远清楚</td><td><strong>推荐</strong></td></tr>
+      <tr><td class="k">品牌单光（如蔡司泽锐）</td><td>品质稳定，价格高</td><td>预算够可以选</td></tr>
+      <tr><td class="k">蔡司智锐单光</td><td>针对看屏做了近用优化；文章称光心自动下移约 4 mm，网配只比泽锐贵约 100 元</td><td>看屏多可以考虑；对远处清晰度要求很高的人可能不适应</td></tr>
+      <tr><td class="k">数码型 / 抗疲劳</td><td>镜片下方带加光，减轻看近负担</td><td>年轻人一般不需要（文章：调节能力用进废退）；外隐斜不建议（郎中）</td></tr>
+      <tr><td class="k">驾驶型镜片</td><td>针对夜间眩光等场景</td><td>先把度数（尤其散光）测准，仍有眩光再考虑，效果不保证</td></tr>
+      <tr><td class="k">带度数偏光太阳镜</td><td>减弱白天强光和路面、水面反光</td><td>可作为第二副开车用；<strong>夜间不能戴</strong></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>膜层只要耐磨 + 减反射</h3>
+  <ul class="clean">
+    <li><strong>防蓝光不建议</strong>：文章引用 2023 年 Cochrane 系统综述，与普通镜片相比，防蓝光镜片在缓解视疲劳上可能没有短期优势；还会让镜片偏黄、影响看颜色。</li>
+    <li><strong>变色镜片不适合当开车墨镜</strong>：挡风玻璃会挡掉大部分紫外线，多数变色镜片在车里变色不明显。</li>
+  </ul>
+
+  <h3>品牌：国产够用，包装袋一定要拿</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>定位</th><th>代表</th><th>说明（文章）</th></tr></thead>
+    <tbody>
+      <tr><td class="k">性价比</td><td>万新、康耐特</td><td>国产实惠，质量够用</td></tr>
+      <tr><td class="k">中坚</td><td>明月 PMC、凯米 U2</td><td>价位和品质平衡</td></tr>
+      <tr><td class="k">高端</td><td>依视路、蔡司</td><td>戴了也觉得“就那样”的，完全可以回到国产</td></tr>
+    </tbody>
+  </table></div>
+  <p>折射率、阿贝数、型号从外观看不出来，<strong>镜片外包装袋一定要拿到</strong>（郎中）。蔡司等高端定制片，还可以核对加工单 / 优化单和镜片上的隐形标记（文章）。</p>
+  <div class="off-only">
+    <h3>柜台常推的几样，可以这样回</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>店员说</th><th>你可以说</th><th>依据</th></tr></thead>
+      <tbody>
+        <tr><td class="k">加个防蓝光吧</td><td>不用，普通膜层就行</td><td>2023 年 Cochrane 综述：缓解视疲劳可能没有短期优势；镜片会偏黄（文章）</td></tr>
+        <tr><td class="k">配个抗疲劳 / 数码型</td><td>不用，我主要看远</td><td>年轻人调节能力用进废退；外隐斜不建议（文章、郎中）</td></tr>
+        <tr><td class="k">你这度数要 1.67 / 1.74</td><td>框选得小，1.60 就够</td><td>框比折射率更决定厚度；1.67 / 1.74 阿贝数只有 31–32</td></tr>
+        <tr><td class="k">配个变色片开车方便</td><td>车里不怎么变色，不需要</td><td>挡风玻璃挡掉大部分紫外线</td></tr>
+        <tr><td class="k">这款是进口大牌</td><td>先看看国产和中档的价格</td><td>国产“85 分够用”（文章）</td></tr>
+      </tbody>
+    </table></div>
+    <p>请店员拿价目表或包装给你看；同一系列可以问不同折射率的价格差。</p>
+  </div>
+</section>
+
+<!-- STEP 5 -->
+<section class="sec" id="s5">
+  <div class="step">第 6 步</div>
+  <h2 class="off-only">开单时把所有参数和承诺写在单上，取镜时照着验</h2>
+  <h2 class="on-only">下单时把参数写死，到货后用标准对照验收</h2>
+  <div class="off-only">
+    <h3>开单核对（《配镜流程单》第 2 页）</h3>
+    <div class="checks">
+      <label><input type="checkbox"><span>处方与需求单“最终配镜处方”一致：球镜、柱镜、轴位，左右没写反</span></label>
+      <label><input type="checkbox"><span>单眼瞳距、瞳高已填（瞳高在调好的镜框上测）</span></label>
+      <label><input type="checkbox"><span>镜框型号、尺寸、片高、价格；镜片品牌、系列、折射率、膜层、价格</span></label>
+      <label><input type="checkbox"><span>合计金额、取镜时间</span></label>
+      <label><input type="checkbox"><span><strong>售后写在单上或拍照</strong>：不适能否复查调整、免费重做的条件、期限</span></label>
+    </div>
+    <h3>店里加工时应做的事（不用盯，但取镜时要验）</h3>
+    <ul class="clean">
+      <li>按单眼瞳距、瞳高给镜片<strong>定中心</strong>，按处方<strong>轴位</strong>磨制、割边、装进镜框（柴知道；评论区：好店会按戴好镜框后的瞳孔位置定光学中心）。</li>
+      <li>加工后用焦度计复核度数和轴位。</li>
+      <li>装配不过紧：装配标准要求周边不能有割边引起的严重不均匀应力（郎中）；郎中也说，应力是否影响视力没有定论，不必过度紧张。</li>
+    </ul>
+  </div>
+  <div class="on-only">
+  <h3>下单清单</h3>
+  <div class="checks">
+    <label><input type="checkbox"><span>填完整处方 + <strong>单眼瞳距</strong>（直接用附录的参数卡）</span></label>
+    <label><input type="checkbox"><span>写清镜框尺寸，自己用计算器算一遍移心量</span></label>
+    <label><input type="checkbox"><span>备注：不要防蓝光；随货附镜片包装袋（定制片附加工单）</span></label>
+    <label><input type="checkbox"><span><strong>拿到书面的售后期限和范围</strong>（聊天截图保存）：度数不适包不包、能不能免费重做、邮费谁出。各店差异很大，不要默认有售后</span></label>
+    <label><input type="checkbox"><span>镜框二选一：寄自己的框（可以先线下试好，但有邮费和压坏风险），或买网店的框（选支持退换的）</span></label>
+  </div>
+
+  </div>
+
+  <h3>散光轴位允许偏差：查一下你的</h3>
+  <div class="tool" id="axis">
+    <div class="tool-h"><b>轴位允差查询</b><span>输入处方上的散光度数（柱镜，单位：度）</span></div>
+    <div class="inputs" style="grid-template-columns:minmax(0,260px)">
+      <label>散光度数<input id="aC" type="number" inputmode="numeric" value="75" min="0" max="600" step="25"></label>
+    </div>
+    <div class="axis-out">
+      <div><div class="lbl">成品眼镜 GB 13511.1（= ISO 21987）· 验收看这个</div><div class="num t" id="aI">±6°</div></div>
+      <div><div class="lbl">镜片出厂 ISO 8980-1:2017 · 做到就很精准</div><div class="num" id="aA">±5°</div></div>
+    </div>
+    <p class="formula" id="aTip" style="margin-top:12px">例：处方轴位 10°，成品在 4°–16° 之内算合格。</p>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th>散光度数</th><th class="n">成品 GB 13511.1 / ISO 21987</th><th class="n">镜片 ISO 8980-1:2017</th></tr></thead>
+    <tbody>
+      <tr><td>约 25 度（0.12–0.25 D）</td><td class="n">±16°（GB 未列，取 ISO）</td><td class="n">±14°</td></tr>
+      <tr><td>50 度（&gt;0.25–0.50 D）</td><td class="n">±9°</td><td class="n">±7°</td></tr>
+      <tr><td>75 度（&gt;0.50–0.75 D）</td><td class="n">±6°</td><td class="n">±5°</td></tr>
+      <tr><td>100–150 度（&gt;0.75–1.50 D）</td><td class="n">±4°</td><td class="n">±3°</td></tr>
+      <tr><td>175–250 度（&gt;1.50–2.50 D）</td><td class="n">±3°</td><td class="n">±2°</td></tr>
+      <tr><td>275 度以上（&gt;2.50 D）</td><td class="n">±2°</td><td class="n">±2°</td></tr>
+    </tbody>
+  </table></div>
+  <div class="call w">
+    <h4>这张表之前写错了，已更正</h4>
+    <p>郎中视频里那张表（文章也引用了）的数值属于<strong>镜片出厂（未割边）标准 ISO 8980-1</strong>，却被标成了装配要求；他口播的“150 度 → 8–12°（±2°）”连镜片出厂标准都对不上（应为 ±3°，成品标准是 ±4°）。成品眼镜看 <strong>GB 13511.1-2011 表 3</strong>，它和 ISO 21987 逐档相同，只是没列 0.12–0.25 D 一档；在国内按国标验收更有约束力。</p>
+    <p><strong>验收看成品那一列：在范围内就合格，超出可以要求重做。</strong>散光越高轴位越要准，轴位偏 10° 可能比度数差 75 度还难适应（郎中）。</p>
+  </div>
+
+  <h3>光学中心的位置</h3>
+  <ul class="clean">
+    <li><strong>水平</strong>：按单眼瞳距定位。ISO 21987 对两片光心水平间距的允差：度数超过 3.25D 时，约相当于 2 mm 的位移。</li>
+    <li><strong>垂直</strong>：行业验配惯例是镜框每有 2° 前倾角，光心比瞳孔低约 1 mm（光学教材和蔡司资料都有；文章把它写成泽锐的降瞳高公式，最多 5 mm）。这是惯例，不是国家强制标准，交给加工方处理即可。</li>
+    <li><strong>两片高低差</strong>：度数超过 5.00D 时，ISO 21987 允许的两片垂直差约相当于 1 mm 位移。</li>
+  </ul>
+</section>
+
+<!-- STEP 6 -->
+<section class="sec" id="s6">
+  <div class="step">第 7 步</div>
+  <h2>到手先核对、再调校，第二天早上睡醒再换上</h2>
+  <ol class="steps off-only">
+    <li>请店员<strong>当面用焦度计</strong>读出两片的球镜、柱镜、轴位，填进《配镜流程单》第 3 页，和处方比对（允差见第 6 步）。</li>
+    <li>看外观：镜片无划痕、崩边；左右两片颜色、透亮度一致（郎中）。</li>
+    <li>拿到<strong>镜片包装袋</strong>，核对品牌、系列、折射率和单上一致。</li>
+    <li><strong>上脸调整</strong>，标准见下表。郎中：负责任的配镜师递给你新眼镜时，一定会让你戴上看是否服帖舒服。</li>
+    <li><strong>现场试戴</strong>：看远处、看手机、走几步楼梯（有散光尤其要试）。任何不舒服当场说，不要带着疑问走。</li>
+  </ol>
+  <ol class="steps on-only">
+    <li>去附近眼镜店用<strong>焦度计</strong>核对球镜、柱镜、轴位，对照第 5 步的允差。</li>
+    <li>请店里<strong>上脸调校</strong>，标准见下表。有的店免费，有的收少量费用。</li>
+  </ol>
+  <h3>上脸调校标准</h3>
+  <div class="kv">
+    <div>黑眼珠位置</div><div>镜框中偏上 <strong>1/3</strong>，下眼皮大致在镜框中间</div>
+    <div>镜眼距</div><div>约 <strong>12 mm</strong>（10–15 mm），眨眼时睫毛不碰镜片</div>
+    <div>前倾角</div><div><strong>8–15°</strong></div>
+    <div>镜面角</div><div>0–10°（文章）</div>
+    <div>鼻托</div><div>服帖、不压出印子，轻轻晃头不下滑</div>
+    <div>镜腿</div><div>不夹太阳穴、耳后不痛，左右高度一致</div>
+    <div>笑一下</div><div>镜框不碰苹果肌、不跟着抖</div>
+  </div>
+
+  <h3>四点自测，有一项不过关就去复查</h3>
+  <div class="checks">
+    <label><input type="checkbox"><span>左右眼分开看远处同一目标，<strong>清晰度</strong>差不多（比清晰度，不比亮度和颜色）</span></label>
+    <label><input type="checkbox"><span>双眼一起看，没有重影、拖影</span></label>
+    <label><input type="checkbox"><span>约 50 cm 外的电脑屏幕，5 号宋体字看得清</span></label>
+    <label><input type="checkbox"><span>戴久了不累，疲劳感不会越来越重</span></label>
+  </div>
+  <p class="src">80% 的视疲劳来自度数不准，而不是镜片不够贵（郎中）。</p>
+
+  <h3>适应期与开车</h3>
+  <ul class="clean">
+    <li><strong>第二天早上睡醒再换上新眼镜</strong>，比当场换适应得快（郎中）。</li>
+    <li>普通单光一般 3–5 天、一周左右基本适应（郎中）。</li>
+    <li>适应期内先在白天、熟悉的路段开，适应了再跑夜路和高速。</li>
+    <li>一两周后仍看不清、重影、眼胀、变形或头晕：<strong>别硬扛</strong>，及时找售后，拖久了可能错过售后期。</li>
+  </ul>
+  <h3>保养与复查</h3>
+  <ul class="clean">
+    <li>清水加少量洗洁精冲洗；不用衣服干擦，不用浓酒精；双手摘戴（柴知道）。</li>
+    <li>不要放在车前挡风玻璃下暴晒，镜片容易脱膜（柴知道）。</li>
+    <li>以黑眼珠为中心、半径约 30 mm 内有明显划痕或脱膜，就该换镜片（郎中）。</li>
+    <li><strong>每年验一次光；镜片 2–3 年换一次</strong>。理由：树脂镜片在空气中会自然老化，保养再好也一样（文章）。</li>
+    <li><strong>出现以下任一情况就提前换</strong>（郎中置顶评论的四条理由）：散光度数或方向变了；镜片划痕多、透光下降；鼻托出现铜锈或难以清洗；镜架磨损变形。郎中据此建议 1–2 年换，和文章不一致，所以按状态判断，不死守年限。</li>
+    <li>文章建议高度近视（&gt;600 度）把眼底（必要时 OCT）和眼压纳入年度检查。你接近 600 度、四五年没查，这次顺便查一次是我的保守建议。</li>
+  </ul>
+</section>
+
+<!-- APPENDIX A -->
+<section class="sec off-only" id="go">
+  <h2>出门前清单：打印两份单子，手机拍下每张填好的单</h2>
+  <div class="checks">
+    <label><input type="checkbox"><span>打印好的《验光配镜需求单》和《配镜流程单》各一份</span></label>
+    <label><input type="checkbox"><span>手机：拍下每张填好的单子、镜框尺寸、价格和售后说明</span></label>
+    <label><input type="checkbox"><span>预留时间：验光加试戴约半小时到一小时（柴知道实测近 1 小时），选框另算</span></label>
+    <label><input type="checkbox"><span>精神状态好的时候去，别在熬夜或长时间看屏幕之后马上验光（我的建议）</span></label>
+  </div>
+  <h3>关键数字速查</h3>
+  <div class="kv">
+    <div>移心量</div><div>（镜圈 + 鼻梁 − 总瞳距）÷ 2；≤3 mm 良好，≤5 mm 上限</div>
+    <div>镜圈 + 鼻梁</div><div>理想在“瞳距 + 6 mm”以内，最多“瞳距 + 10 mm”</div>
+    <div>片高</div><div>500–600 度建议 ≤35 mm</div>
+    <div>黑眼珠位置</div><div>镜框中偏上 1/3</div>
+    <div>镜眼距 / 前倾角 / 镜面角</div><div>约 12 mm / 8–15° / 0–10°</div>
+    <div>轴位允差（成品）</div><div>&gt;0.50–0.75 D ±6°；&gt;0.75–1.50 D ±4°；&gt;1.50–2.50 D ±3°</div>
+    <div>度数允差</div><div>9.00 D 以内约 ±0.12 D（ISO 21987）</div>
+    <div>开车视力</div><div>法规 4.9（约 0.8）以上；建议至少 1.0</div>
+    <div>适应期</div><div>3–5 天到一周；1–2 周仍不适就复查</div>
+  </div>
+</section>
+
+<section class="sec on-only" id="card">
+  <h2>线上定制参数卡：拿到处方后填好，发给客服</h2>
+  <div class="kv">
+    <div>右眼 R</div><div>球镜 <span class="blank"></span>　柱镜 <span class="blank"></span>　轴位 <span class="blank"></span>　单眼瞳距 <span class="blank"></span> mm</div>
+    <div>左眼 L</div><div>球镜 <span class="blank"></span>　柱镜 <span class="blank"></span>　轴位 <span class="blank"></span>　单眼瞳距 <span class="blank"></span> mm</div>
+    <div>瞳高（如有）</div><div>右 <span class="blank"></span> mm　左 <span class="blank"></span> mm（在所选镜框调好鼻托后测）</div>
+    <div>镜框</div><div>尺寸 <span class="blank"></span> □ <span class="blank"></span> – <span class="blank"></span>　片高 <span class="blank"></span> mm</div>
+    <div>镜片</div><div>品牌 / 型号 <span class="blank" style="min-width:140px"></span>　折射率 1.60（备选 1.67 / 1.74）</div>
+    <div>设计与膜层</div><div>普通非球面单光；耐磨 + 减反射；不要防蓝光，不要数码型 / 抗疲劳</div>
+    <div>镜眼距 / 前倾角 / 镜面角</div><div>仅定制片需要：<span class="blank"></span> mm / <span class="blank"></span>° / <span class="blank"></span>°</div>
+    <div>加工要求</div><div>光心水平按单眼瞳距、垂直按瞳高；严格按处方轴位磨制，成镜按 GB 13511.1 验收；出货前焦度计复核</div>
+    <div>售后（书面）</div><div>期限 <span class="blank"></span> 天　范围 <span class="blank" style="min-width:120px"></span>　邮费 <span class="blank"></span></div>
+    <div>随货附带</div><div>镜片原厂包装袋 / 质保卡；定制片附加工单或优化单</div>
+  </div>
+  <div class="copybox">
+    <p id="say">您好，我按下面的参数定制镜片，处方和单眼瞳距见表格。麻烦严格按单眼瞳距和处方轴位加工，出货前用焦度计复核一下，并随货附上镜片包装袋（定制片请附加工单）。不需要防蓝光膜。另外想确认一下售后：度数或适应有问题，多少天内可以处理？谢谢！</p>
+    <button class="btn" id="copyBtn" type="button">复制这段话</button>
+  </div>
+</section>
+
+<!-- APPENDIX B -->
+<section class="sec" id="check">
+  <h2>核对说明：三轮核对共修正 10 处，还有 4 处无法完全确认</h2>
+  <h3>修正的内容</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>项目</th><th>之前</th><th>核对后</th></tr></thead>
+    <tbody>
+      <tr><td class="k">散光轴位允差</td><td>把视频里的表当成品验收标准</td><td>那张表是镜片出厂标准 ISO 8980-1；成品验收改按 GB 13511.1 表 3（与 ISO 21987 一致）</td></tr>
+      <tr><td class="k">ISO 8980-1 首档</td><td>0.12–0.25 D 写成 ±7°</td><td>按 2017 版改为 ±14°</td></tr>
+      <tr><td class="k">阿贝数</td><td>1.60≈42；1.67/1.74≈32–33</td><td>按三井化学数据：1.60=41，1.67=31，1.74=32</td></tr>
+      <tr><td class="k">光心垂直位置</td><td>写成“单光通用做法”</td><td>改为行业验配惯例（非强制标准），注明文章归为泽锐公式</td></tr>
+      <tr><td class="k">售后</td><td>“正规网配通常有 90 天无忧售后”</td><td>改为下单前拿到书面期限和范围</td></tr>
+      <tr><td class="k">验光费</td><td>区间偏窄</td><td>补充 4 元 / 二十多元 / 50 元 / 200–400 元等案例和口径年份</td></tr>
+      <tr><td class="k">散光 ≥150 度或斜轴</td><td>只说“加工核对要严格”</td><td>明确建议改走线下加工（我的判断，已注明）</td></tr>
+      <tr><td class="k">更换周期</td><td>只给结论</td><td>补上两份资料的理由，改为“2–3 年 + 按状态提前换”</td></tr>
+      <tr><td class="k">1.56 阿贝数</td><td>网页和 Word 写法不一致</td><td>统一为约 34–38，并注明因材料而异</td></tr>
+      <tr><td class="k">开车视力</td><td>未提</td><td>补充驾照要求：对数视力 4.9（约 0.8）以上</td></tr>
+    </tbody>
+  </table></div>
+  <h3>资料之间的分歧</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>议题</th><th>郎中系列（知识库）</th><th>《眼镜是妥协的艺术》</th><th>本手册采用</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1.56</td><td>一两百度够用</td><td>不推荐</td><td>你的度数下两边一致：不选</td></tr>
+      <tr><td class="k">1.67</td><td>小瞳距、400 度可以用</td><td>不推荐，性价比尴尬</td><td>备选，不追</td></tr>
+      <tr><td class="k">更换周期</td><td>置顶评论 1–2 年（四条磨损理由）；柴知道那期 2–3 年</td><td>2–3 年（树脂自然老化）</td><td>每年验光；2–3 年换，有磨损提前换</td></tr>
+      <tr><td class="k">医院 vs 眼镜店</td><td>医院靠谱但忙</td><td>好店的实际服务常超过医院</td><td>看人和流程，不看机构</td></tr>
+    </tbody>
+  </table></div>
+  <h3>需要你留意</h3>
+  <ul class="clean">
+    <li>价格（验光费、折扣带）随城市和年份变化，文章价格为 2023–2024 年口径。</li>
+    <li>GB 13511.1 表 3、ISO 8980-1:2017 表 2 的数值来自标准原文（由你核对提供）；我联网只能查到 ISO 8980-1:1996 和 ISO 21987 的公开摘要，与这些数值吻合。表 3 首档是否包含 0.25 D 没能确认，这里按 ISO 写法分档。</li>
+    <li>钛架价格搭配一句来自 Notion 整理文，NGA 原帖没能核实。</li>
+    <li>智锐“光心自动下移约 4 mm”等产品细节来自文章，下单前以商家说明为准。</li>
+  </ul>
+  <h3>资料来源</h3>
+  <ul class="clean">
+    <li>知识库：铁打的郎中《配镜十讲》合辑，《网上配镜靠不靠谱》《配镜流程》；柴知道《如何科学地配一副好眼镜》。</li>
+    <li>茉茉灵智库《眼镜是妥协的艺术：挑框、验光、网配蔡司的避坑指南》（整理自 NGA 论坛帖）。</li>
+    <li>联网：ISO 8980-1:1996 镜片标准样本；Optician 杂志对 ISO 21987 与 ISO 8980 差异的说明；ISO 21987 装配眼镜标准摘要；三井化学 MR 系列材料数据；单光镜片前倾角与光心下移规则（20/20 Magazine、ABDO 等）；驾驶证视力要求与医院验光费用的公开信息。</li>
+  </ul>
+  <footer>本手册仅作配镜沟通与决策参考，不构成医疗建议；具体度数以专业验光结果为准，如有眼部不适请就医。</footer>
+</section>
+</main>
+</div>
+
+<script>
+(function(){
+  // 移心量计算器
+  var A=document.getElementById('cA'),B=document.getElementById('cB'),P=document.getElementById('cP');
+  var out=document.getElementById('cOut'),v=document.getElementById('cV'),w=document.getElementById('cW'),mk=document.getElementById('cMk');
+  function calc(){
+    var a=parseFloat(A.value),b=parseFloat(B.value),p=parseFloat(P.value);
+    if(isNaN(a)||isNaN(b)||isNaN(p)){out.textContent='—';return;}
+    var d=(a+b-p)/2, ad=Math.abs(d);
+    out.textContent=d.toFixed(1);
+    var col,txt,why;
+    if(ad<=1.5){txt='优秀';col='var(--page-teal-ink)';why='瞳孔几乎正对镜框中心';}
+    else if(ad<=3){txt='良好';col='var(--page-teal-ink)';why='大多数人以 ≤3 mm 为目标';}
+    else if(ad<=5){txt='可接受上限';col='#9A6B2F';why='能用，但可以试试镜圈小 1–2 mm 的框';}
+    else{txt='不推荐';col='var(--page-warn)';why='边缘明显增厚、像差变大，换小一点的框或窄一点的鼻梁';}
+    if(d<0){why+='（镜框比瞳距还窄，注意是否太小、压脸）';}
+    v.textContent=txt;v.style.color=col;w.textContent=why;
+    mk.style.left=Math.min(100,Math.max(0,ad/8*100))+'%';
+  }
+  [A,B,P].forEach(function(el){el.addEventListener('input',calc);});
+  calc();
+
+  // 轴位允差
+  var C=document.getElementById('aC'),oA=document.getElementById('aA'),oI=document.getElementById('aI'),tip=document.getElementById('aTip');
+  function axis(){
+    var deg=Math.abs(parseFloat(C.value));
+    if(isNaN(deg)||deg===0){oA.textContent='—';oI.textContent='—';tip.textContent='没有散光就不涉及轴位。';return;}
+    var D=deg/100, a, i;
+    if(D<0.12){oA.textContent='—';oI.textContent='—';tip.textContent='散光低于 0.12 D，标准不规定轴位。';return;}
+    if(D<=0.25)a=14; else if(D<=0.5)a=7; else if(D<=0.75)a=5; else if(D<=1.5)a=3; else a=2;
+    if(D<=0.25)i=16; else if(D<=0.5)i=9; else if(D<=0.75)i=6; else if(D<=1.5)i=4; else if(D<=2.5)i=3; else i=2;
+    function w(x){x=((x%180)+180)%180;return x===0?180:x;}
+    oA.textContent='±'+a+'°'; oI.textContent='±'+i+'°'+(D<=0.25?'（ISO）':'');
+    tip.textContent='例：处方轴位 10°，成品在 '+w(10-i)+'°–'+w(10+i)+'° 之间（经过 180°/0° 也算连续）为合格，超出可要求重做；做到 '+w(10-a)+'°–'+w(10+a)+'° 说明加工很精准。';
+  }
+  C.addEventListener('input',axis); axis();
+
+  // 复制话术
+  var btn=document.getElementById('copyBtn'),say=document.getElementById('say');
+  btn.addEventListener('click',function(){
+    var t=say.textContent;
+    function ok(){btn.textContent='已复制';setTimeout(function(){btn.textContent='复制这段话';},1600);}
+    function fallback(){var r=document.createRange();r.selectNodeContents(say);var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');ok();}catch(e){btn.textContent='已选中，按 Ctrl+C';}}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fallback);}else{fallback();}
+  });
+
+  // 目录高亮
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var map={};links.forEach(function(l){map[l.getAttribute('href').slice(1)]=l;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('on');});var l=map[e.target.id];if(l)l.classList.add('on');}});},{rootMargin:'-30% 0px -60% 0px'});
+    Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});
+  }
+
+  // 路线切换
+  var rbtn=[].slice.call(document.querySelectorAll('.route button'));
+  function setRoute(r){
+    document.body.setAttribute('data-route',r);
+    rbtn.forEach(function(b){b.setAttribute('aria-pressed',b.getAttribute('data-r')===r?'true':'false');});
+    try{localStorage.setItem('peijing-route',r);}catch(e){}
+  }
+  rbtn.forEach(function(b){b.addEventListener('click',function(){setRoute(b.getAttribute('data-r'));});});
+  try{var saved=localStorage.getItem('peijing-route');if(saved==='on'||saved==='off')setRoute(saved);}catch(e){}
+
+  // 首屏淡入
+  document.querySelectorAll('.enter').forEach(function(el){requestAnimationFrame(function(){el.classList.add('in');});});
+})();
+</script>
+
+
+</body></html>
